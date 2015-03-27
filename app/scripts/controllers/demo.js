@@ -7,7 +7,7 @@
  * # DemoCtrl
  * Controller of the p2pSiteMobApp
  */
-angular.module('p2pSiteMobApp')
+/*angular.module('p2pSiteMobApp')
   .controller('DemoCtrl', function($scope, $famous) {
     var Transitionable = $famous['famous/transitions/Transitionable'];
     var PhysicsEngine = $famous['famous/physics/PhysicsEngine'];
@@ -84,4 +84,4 @@ angular.module('p2pSiteMobApp')
       anchor: [0, 0, 0]
     });
     physicsEngine.attach(snap, $scope.circles);
-  });
+  });*/
