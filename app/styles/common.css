@@ -1,0 +1,113 @@
+.box-shadow {
+  box-shadow: 0em 0.1em 0.2em #eee;
+  box-sizing:border-box;
+}
+.border-grey {
+  border: 1px solid #ddd;
+}
+.border-grey-top {
+  border-top: 1px solid #ddd;
+}
+.border-grey-bottom {
+  border-bottom: 1px solid #ddd;
+}
+.border-ra-50 {
+  border-radius: 50%;
+}
+/* setposition */
+.position-re {
+  position: relative;
+}
+.position-ab {
+  position: absolute;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+/* font */
+.ft-0p75 {
+  font-size: 0.75em;
+}
+.ft-1 {
+  font-size: 1em;
+}
+.ft-1p5 {
+  font-size: 1.5em;
+}
+.ft-2 {
+  font-size: 2em;
+}
+.ft-white {
+  color: #fff;
+}
+.ft-grey {
+  color: #555;
+}
+.ft-grey1 {
+  color: #928e8e;
+}
+/* background */
+.bg-offWhite {
+  background-color: #f8f8f8;
+}
+.bg-white {
+  background-color: #fff;
+}
+.bg-grey {
+  background-color: #333;
+}
+/* margin、padding */
+.margin-0 {
+  margin:0;
+}
+.margin-t-0p5 {
+  margin-top: 0.5em;
+}
+.margin-b-0p5 {
+  margin-bottom: 0.5em;
+}
+.margin-t-1 {
+  margin-top: 1em;
+}
+.margin-b-1 {
+  margin-bottom: 1em;
+}
+.margin-t-2 {
+  margin-top: 2em;
+}
+.margin-t-2p5 {
+  margin-top: 2.5em;
+}
+.padding-0 {
+  padding: 0;
+}
+.padding-0p5 {
+  padding: 0.5em;
+}
+.padding-1 {
+  padding: 1em;
+}
+.padding-t-1 {
+  padding-top: 1em;
+}
+.padding-b-1 {
+  padding-bottom: 1em;
+}
+.padding-2 {
+  padding: 2em;
+}
+
+
+/* index-main */
+.clip-line {
+  width:37%;
+  padding-top: 0.7em;
+}
+
+/* clear float */
+.overflow-hid {
+  overflow: hidden;
+}

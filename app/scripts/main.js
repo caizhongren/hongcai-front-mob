@@ -9,7 +9,9 @@ require.config({
         'domReady': '../bower_components/requirejs-domready/domReady',
         'angular': '../bower_components/angular/angular',
         "uiRouter": "../bower_components/angular-ui-router/release/angular-ui-router",
-        "famous.angular": "../bower_components/famous/dist/famous-global.min"
+        "ngAnimate": "../bower_components/angular-animate/angular-animate.min",
+        "ngTouch": "../bower_components/angular-touch/angular-touch.min",
+        "ngFameApp": "../bower_components/famous-angular/dist/famous-angular.min"
     },
 
     /**
