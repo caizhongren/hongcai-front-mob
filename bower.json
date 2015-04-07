@@ -12,6 +12,6 @@
     "underscore": "~1.8.2",
     "requirejs": "~2.1.17",
     "fontawesome": "~4.2.0",
-    "domReady": "2.0.1"
+    "requirejs-domready": "~2.0.1"
   }
 }
