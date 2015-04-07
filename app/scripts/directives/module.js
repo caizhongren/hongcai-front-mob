@@ -5,5 +5,5 @@
  **/
 define(['angular'], function (ng) {
     'use strict';
-    return ng.module('app.directives', []);
+    return ng.module('p2psitemob.directives', []);
 });

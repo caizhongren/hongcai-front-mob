@@ -21,9 +21,9 @@
         });
     }]);
 });*/
-define(['./app'], function(app) {
+define(['./app'], function(p2psitemob) {
     'use strict';
-    return app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $uiViewScrollProvider, $httpProvider, $sceDelegateProvider) {
+    return p2psitemob.config(function($stateProvider, $urlRouterProvider, $locationProvider, $uiViewScrollProvider, $httpProvider, $sceDelegateProvider) {
         $stateProvider.state('view1',{
             url: '/view1',
             templateUrl: 'views/partial1.html',

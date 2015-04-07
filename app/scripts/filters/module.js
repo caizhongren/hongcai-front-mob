@@ -4,5 +4,5 @@
  **/
 define(['angular'], function (ng) {
     'use strict';
-    return ng.module('app.filters', []);
+    return ng.module('p2psitemob.filters', []);
 });

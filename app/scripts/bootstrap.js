@@ -16,6 +16,6 @@ define([
      */
 
     require(['domReady!'], function (document) {
-        ng.bootstrap(document, ['app']);
+        ng.bootstrap(document, ['p2psitemob']);
     });
 });
