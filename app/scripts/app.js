@@ -10,7 +10,7 @@ angular
   .module('p2pSiteMobApp', [
     'ngAnimate',
     'ngTouch',
-    'famous.angular',
+    // 'famous.angular',
     'ui.router'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
