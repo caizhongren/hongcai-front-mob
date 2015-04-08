@@ -14,6 +14,8 @@ define([
     './services/index'
 ], function (ng) {
     'use strict';
+    
+    //var ngFameApp = require('ngFameApp');
     return ng.module('p2psitemob', [
         'p2psitemob.services',
         'p2psitemob.controllers',

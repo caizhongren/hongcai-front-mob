@@ -23,7 +23,20 @@ require.config({
             exports: 'angular'
         },
         'uiRouter':{
-            deps: ['angular']
+            deps: ['angular'],
+            exports: 'uiRouter'
+        },
+        'ngAnimate':{
+            deps: ['angular'],
+            exports: 'ngAnimate'
+        },
+        'ngTouch':{
+            deps: ['angular'],
+            exports: 'ngTouch'
+        },
+        'ngFameApp':{
+            deps: ['angular'],
+            exports: 'ngFameApp'
         }
     },
     
