@@ -13,7 +13,7 @@ angular
     'famous.angular',
     'ui.router'
   ])
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('root', {
         abstract: true,
@@ -55,4 +55,4 @@ angular
         }
       });
       $urlRouterProvider.otherwise('/');
-  });
+  }]);
