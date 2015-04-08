@@ -71,17 +71,26 @@ module.exports = function (grunt) {
         hostname: 'localhost',
         livereload: 35729
       },
-      proxies: [{
-        context: '/hongcai/api/v1',
-        host: '192.168.1.43',
-        // host: '192.168.80.29',
-        // host: '192.168.80.114',
-        // host: '192.168.90.132',
-        // host: '192.168.60.32',
-        // host: '192.168.60.39',
-        // port: 8000
-        port: 8080
-      }],
+      base: {
+        proxies: [
+          {
+            context: '/ipa',
+            host: 'localhost',
+            port: 4000,
+            https: false
+          }
+        ]
+      },
+      hongcai: {
+        proxies: [
+          {
+            context: '/hongcai/api/v1',
+            host: '192.168.1.43',
+            port: 8080,
+            https: false
+          }
+        ]
+      },
       livereload: {
         options: {
           open: true,
