@@ -10,8 +10,6 @@
     "skeleton": "~2.0.4",
     "angular-ui-router": "~0.2.13",
     "underscore": "~1.8.2",
-    "requirejs": "~2.1.17",
-    "fontawesome": "~4.2.0",
-    "requirejs-domready": "~2.0.1"
+    "fontawesome": "~4.2.0"
   }
 }
