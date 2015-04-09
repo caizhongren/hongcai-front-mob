@@ -11,7 +11,8 @@ angular
     'ngAnimate',
     'ngTouch',
     'famous.angular',
-    'ui.router'
+    'ui.router',
+    'restmod'
   ])
   .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     $stateProvider
