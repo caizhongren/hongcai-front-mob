@@ -1,3 +1,4 @@
+'use strict';
 /**
  * @ngdoc overview
  * @name p2pSiteMobApp
@@ -36,7 +37,9 @@ angular
         url: '/',
         views: {
           '': {
-            templateUrl: 'views/main.html'
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl',
+            controllerUrl: 'scripts/controllers/main'
           }
         }
       })

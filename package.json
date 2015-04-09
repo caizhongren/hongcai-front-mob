@@ -2,6 +2,7 @@
   "name": "p2psitemob",
   "version": "0.0.0",
   "dependencies": {
+    "connect-modrewrite": "^0.7.11",
     "grunt-ng-annotate": "^0.10.0"
   },
   "devDependencies": {

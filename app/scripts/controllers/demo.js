@@ -9,9 +9,8 @@
  */
 
 angular.module('p2pSiteMobApp')
-  // .controller('DemoCtrl', function($scope, $famous) {
-  .controller('DemoCtrl', function($scope) {
-   /* var Transitionable = $famous['famous/transitions/Transitionable'];
+  .controller('DemoCtrl', function($scope, $famous) {
+    var Transitionable = $famous['famous/transitions/Transitionable'];
     var PhysicsEngine = $famous['famous/physics/PhysicsEngine'];
     var Circle = $famous['famous/physics/bodies/Circle'];
     var Particle = $famous['famous/physics/bodies/Particle'];
@@ -85,5 +84,5 @@ angular.module('p2pSiteMobApp')
     var snap = new Snap({
       anchor: [0, 0, 0]
     });
-    physicsEngine.attach(snap, $scope.circles);*/
+    physicsEngine.attach(snap, $scope.circles);
   });
