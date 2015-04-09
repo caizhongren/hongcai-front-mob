@@ -24,6 +24,8 @@ angular
           },
           'header': {
             templateUrl: 'views/header.html',
+            controller: 'HeaderCtrl',
+            url: 'scripts/controller/header-ctrl'
           },
           'footer': {
             templateUrl: 'views/footer.html'
