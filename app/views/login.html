@@ -1,0 +1,23 @@
+<div ng-include src='"views/_banner.html"'></div>
+<form autocomplete="on">
+  <h4> 登陆 </h4>
+  <p class="margin-0">
+      <label for="username" class="uname" data-icon="u" > 账户 </label>
+      <input id="username" name="username" required="required" type="text" placeholder="用户名 或 邮箱"/>
+  </p>
+  <p class="margin-0">
+      <label for="password" class="youpasswd" data-icon="p"> 密码 </label>
+      <input id="password" name="password" required="required" type="password"/>
+  </p>
+  <p class="keeplogin margin-0">
+      <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" />
+      <label for="loginkeeping">记住密码</label>
+  </p>
+  <p class="login margin-0">
+      <input type="submit" value="登录" />
+  </p>
+  <p class="change_link margin-0">
+      还没有注册 ?
+      <a href="#toregister" class="to_register">立即注册</a>
+  </p>
+</form>

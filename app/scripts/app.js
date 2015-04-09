@@ -43,6 +43,22 @@ angular
           }
         }
       })
+      .state('root.login', {
+        url: '/login',
+        views: {
+          '': {
+            templateUrl: 'views/login.html'
+          }
+        }
+      })
+      .state('root.register', {
+        url: '/register',
+        views: {
+          '': {
+            templateUrl: 'views/register.html'
+          }
+        }
+      })
       .state('root.demo', {
         url: '/demo',
         views: {

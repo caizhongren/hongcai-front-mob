@@ -1,0 +1,27 @@
+<div ng-include src='"views/_banner.html"'></div>
+<form autocomplete="on">
+    <h4> 注册 </h4>
+    <p class="margin-0">
+        <label for="usernamesignup" class="uname" data-icon="u">用户名</label>
+        <input id="usernamesignup" name="usernamesignup" required="required" type="text"/>
+    </p>
+    <p class="margin-0">
+        <label for="emailsignup" class="youmail" data-icon="e"> 邮箱</label>
+        <input id="emailsignup" name="emailsignup" required="required" type="email"/>
+    </p>
+    <p class="margin-0">
+        <label for="passwordsignup" class="youpasswd" data-icon="p">密码</label>
+        <input id="passwordsignup" name="passwordsignup" required="required" type="password"/>
+    </p>
+    <p class="margin-0">
+        <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">确认密码</label>
+        <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password"/>
+    </p>
+    <p class="signin margin-0">
+        <input type="submit" value="注册"/>
+    </p>
+    <p class="change_link margin-0">
+        已经注册过 ?
+        <a href="#tologin" class="to_register"> 登录 </a>
+    </p>
+</form>
