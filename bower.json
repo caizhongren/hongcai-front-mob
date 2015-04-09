@@ -10,6 +10,7 @@
     "skeleton": "~2.0.4",
     "angular-ui-router": "~0.2.13",
     "underscore": "~1.8.2",
-    "fontawesome": "~4.2.0"
+    "fontawesome": "~4.2.0",
+    "angular-restmod": "~1.1.8"
   }
 }
