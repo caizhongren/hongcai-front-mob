@@ -7,10 +7,7 @@
  * Controller of the p2pSiteMobApp
 + */
 angular.module('p2pSiteMobApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('MainCtrl',['$scope', 'User', 'HongcaiUser', function ($scope, User, HongcaiUser) {
+    $scope.user = User.$find(1);
+    $scope.oneHongcaiUser = HongcaiUser.$find(402016);
+  }]);

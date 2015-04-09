@@ -15,6 +15,8 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+  // var modRewrite = require('connect-modrewrite');
+
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
@@ -71,31 +73,47 @@ module.exports = function (grunt) {
         hostname: 'localhost',
         livereload: 35729
       },
-      base: {
-        proxies: [
-          {
-            context: '/ipa',
-            host: 'localhost',
-            port: 4000,
-            https: false
-          }
-        ]
-      },
-      hongcai: {
-        proxies: [
-          {
-            context: '/hongcai/api/v1',
-            host: '192.168.1.43',
-            port: 8080,
-            https: false
-          }
-        ]
-      },
+      proxies: [
+        {
+          context: '/ipa',
+          host: '192.168.60.34',
+          port: 4000,
+          https: false
+        },
+        {
+          context: '/hongcai',
+          host: '192.168.60.30',
+          port: 8080,
+          https: false
+        }
+      ],
+      // base: {
+      //   proxies: [
+      //     {
+      //       context: '/ipa/admin',
+      //       host: 'localhost',
+      //       port: 4000,
+      //       https: false
+      //     }
+      //   ]
+      // },
+      // hongcai: {
+      //   proxies: [
+      //     {
+      //       context: '/hongcai/api/v1',
+      //       host: '192.168.1.43',
+      //       port: 8080,
+      //       https: false
+      //     }
+      //   ]
+      // },
       livereload: {
         options: {
           open: true,
           middleware: function (connect) {
             return [
+              require('grunt-connect-proxy/lib/utils').proxyRequest,
+              // modRewrite(['^[^\\.]*$ /index.html [L]']),
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',
@@ -380,6 +398,7 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'autoprefixer',
+      'configureProxies:server',
       'connect:livereload',
       'watch'
     ]);
