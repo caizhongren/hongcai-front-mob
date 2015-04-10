@@ -13,9 +13,11 @@ angular
     'ngTouch',
     'famous.angular',
     'ui.router',
-    'restmod'
+    'restmod',
+    'angular-md5'
   ])
-  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+  .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $httpProvider) {
+    $httpProvider.defaults.headers.post["Content-Type"] = "application/json"
     $stateProvider
       .state('root', {
         abstract: true,
