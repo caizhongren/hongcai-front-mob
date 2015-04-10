@@ -1,3 +1,6 @@
+.line-normal {
+  line-height: normal;
+}
 .box-shadow {
   box-shadow: 0em 0.1rem 0.2rem #eee;
   box-sizing:border-box;
@@ -104,13 +107,6 @@
 }
 .padding-2 {
   padding: 2rem;
-}
-
-
-/* index-main */
-.clip-line {
-  width:37%;
-  padding-top: 0.7rem;
 }
 
 /* clear float */
