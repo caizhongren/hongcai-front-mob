@@ -1,6 +1,6 @@
 <div ng-include src='"views/_banner.html"'></div>
 <form id="register" autocomplete="on">
-    <h4> 注册 </h4>
+    <h5> 注册 </h5>
     <p class="margin-0">
         <label for="usernamesignup" class="uname" data-icon="u">用户名</label>
         <input id="usernamesignup" name="usernamesignup" required="required" type="text"/>
@@ -17,11 +17,11 @@
         <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">确认密码</label>
         <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password"/>
     </p>
-    <p class="signin margin-0">
+    <p class="signin margin-0 text-center">
         <input type="submit" value="注册"/>
     </p>
-    <p class="change_link margin-0">
+    <p class="change_link margin-0 text-center">
         已经注册过 ?
-        <a href="#tologin" class="to_register"> 登录 </a>
+        <a ui-sref="root.login" class="to_login"> 登录 </a>
     </p>
 </form>

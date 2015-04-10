@@ -1,15 +1,15 @@
 .box-shadow {
-  box-shadow: 0em 0.1em 0.2em #eee;
+  box-shadow: 0em 0.1rem 0.2rem #eee;
   box-sizing:border-box;
 }
 .border-grey {
-  border: 1rem solid #ddd;
+  border: 0.1rem solid #ddd;
 }
 .border-grey-top {
-  border-top: 1rem solid #ddd;
+  border-top: 0.1rem solid #ddd;
 }
 .border-grey-bottom {
-  border-bottom: 1rem solid #ddd;
+  border-bottom: 0.1rem solid #ddd;
 }
 .border-ra-50 {
   border-radius: 50%;
