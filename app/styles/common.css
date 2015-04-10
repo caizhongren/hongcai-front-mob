@@ -2,7 +2,7 @@
   line-height: normal;
 }
 .box-shadow {
-  box-shadow: 0em 0.1rem 0.2rem #eee;
+  box-shadow: 0em 0.2rem 0.2rem #eee;
   box-sizing:border-box;
 }
 .border-grey {
@@ -107,6 +107,12 @@
 }
 .padding-b-1 {
   padding-bottom: 1rem;
+}
+.padding-l-1 {
+  padding-left: 1rem;
+}
+.padding-r-1 {
+  padding-right: 1rem;
 }
 .padding-2 {
   padding: 2rem;
