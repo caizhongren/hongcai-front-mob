@@ -125,3 +125,29 @@
   float: left;
 }
 
+/* animation */
+@keyframes gyrate {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+
+@-moz-keyframes gyrate {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+
+@-webkit-keyframes gyrate /* Safari 和 Chrome */ {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+
+@-o-keyframes gyrate /* Opera */{
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+.gyrate {
+  animation: gyrate 2s;
+  -moz-animation: gyrate 2s; /* Firefox */
+  -webkit-animation: gyrate 2s;  /* Safari 和 Chrome */
+  -o-animation: gyrate 2s; /* Opera */
+}
