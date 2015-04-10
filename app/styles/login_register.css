@@ -1,0 +1,7 @@
+form#login input[type="text"],
+form#login input[type="password"],
+form#register input[type="text"],
+form#register input[type="password"] {
+  width: 100%;
+  box-sizing: border-box;
+}

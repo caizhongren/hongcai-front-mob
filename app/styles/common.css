@@ -3,13 +3,13 @@
   box-sizing:border-box;
 }
 .border-grey {
-  border: 1px solid #ddd;
+  border: 1rem solid #ddd;
 }
 .border-grey-top {
-  border-top: 1px solid #ddd;
+  border-top: 1rem solid #ddd;
 }
 .border-grey-bottom {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1rem solid #ddd;
 }
 .border-ra-50 {
   border-radius: 50%;
@@ -29,16 +29,19 @@
 }
 /* font */
 .ft-0p75 {
-  font-size: 0.75em;
+  font-size: 0.75rem;
 }
 .ft-1 {
-  font-size: 1em;
+  font-size: 1rem;
 }
 .ft-1p5 {
-  font-size: 1.5em;
+  font-size: 1.5rem;
 }
 .ft-2 {
-  font-size: 2em;
+  font-size: 2rem;
+}
+.ft-2p5 {
+  font-size: 2.5rem;
 }
 .ft-white {
   color: #fff;
@@ -67,47 +70,47 @@
   margin:0;
 }
 .margin-t-0p5 {
-  margin-top: 0.5em;
+  margin-top: 0.5rem;
 }
 .margin-b-0p5 {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
 }
 .margin-t-1 {
-  margin-top: 1em;
+  margin-top: 1rem;
 }
 .margin-b-1 {
-  margin-bottom: 1em;
+  margin-bottom: 1rem;
 }
 .margin-t-2 {
-  margin-top: 2em;
+  margin-top: 2rem;
 }
 .margin-t-2p5 {
-  margin-top: 2.5em;
+  margin-top: 2.5rem;
 }
 .padding-0 {
   padding: 0;
 }
 .padding-0p5 {
-  padding: 0.5em;
+  padding: 0.5rem;
 }
 .padding-1 {
-  padding: 1em;
+  padding: 1rem;
 }
 .padding-t-1 {
-  padding-top: 1em;
+  padding-top: 1rem;
 }
 .padding-b-1 {
-  padding-bottom: 1em;
+  padding-bottom: 1rem;
 }
 .padding-2 {
-  padding: 2em;
+  padding: 2rem;
 }
 
 
 /* index-main */
 .clip-line {
   width:37%;
-  padding-top: 0.7em;
+  padding-top: 0.7rem;
 }
 
 /* clear float */
