@@ -28,7 +28,7 @@ angular
           'header': {
             templateUrl: 'views/_header.html',
             controller: 'HeaderCtrl',
-            url: 'scripts/controller/header-ctrl'
+            controllerUrl: 'scripts/controller/header-ctrl'
           },
           'footer': {
             templateUrl: 'views/_footer.html'
@@ -49,7 +49,10 @@ angular
         url: '/login',
         views: {
           '': {
-            templateUrl: 'views/login.html'
+            templateUrl: 'views/login.html',
+            controller: 'LoginCtrl',
+            controllerUrl: 'scripts/controllers/login'
+
           }
         }
       })
