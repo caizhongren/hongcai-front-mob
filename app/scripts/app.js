@@ -26,12 +26,12 @@ angular
           templateUrl: 'views/root.html'
           },
           'header': {
-            templateUrl: 'views/header.html',
+            templateUrl: 'views/_header.html',
             controller: 'HeaderCtrl',
             url: 'scripts/controller/header-ctrl'
           },
           'footer': {
-            templateUrl: 'views/footer.html'
+            templateUrl: 'views/_footer.html'
           }
         }
       })
