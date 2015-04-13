@@ -16,7 +16,7 @@ angular
     'restmod',
     'angular-md5'
   ])
-  .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $httpProvider) {
+  .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
     $httpProvider.defaults.headers.post["Content-Type"] = "application/json"
     $stateProvider
       .state('root', {
@@ -101,4 +101,6 @@ angular
         }
       });
       $urlRouterProvider.otherwise('/');
+      $locationProvider.hashPrefix('!');
+      $urlRouterProvider.when('', '/');
   }]);
