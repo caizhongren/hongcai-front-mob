@@ -56,8 +56,27 @@ angular
           }
         }
       })
+      .state('root.loginByWechat', {
+        url: '/login/:openId',
+        views: {
+          '': {
+            templateUrl: 'views/login.html',
+            controller: 'LoginCtrl',
+            controllerUrl: 'scripts/controllers/login'
+
+          }
+        }
+      })
       .state('root.register', {
         url: '/register',
+        views: {
+          '': {
+            templateUrl: 'views/register.html'
+          }
+        }
+      })
+      .state('root.registerByWechat', {
+        url: '/register/:openId',
         views: {
           '': {
             templateUrl: 'views/register.html'
