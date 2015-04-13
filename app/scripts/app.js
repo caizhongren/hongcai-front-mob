@@ -83,6 +83,14 @@ angular
           }
         }
       })
+      .state('root.registration-agreement', {
+        url: '/registration-agreement',
+        views: {
+          '': {
+            templateUrl: 'views/registration-agreement.html'
+          }
+        }
+      })
       .state('root.demo', {
         url: '/demo',
         views: {

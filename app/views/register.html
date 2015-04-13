@@ -2,25 +2,34 @@
 <form id="register" class="padding-l-1 padding-r-1" autocomplete="on">
     <h5> 注册 </h5>
     <p class="margin-0">
-        <label for="usernamesignup" class="uname" data-icon="u">用户名</label>
-        <input id="usernamesignup" name="usernamesignup" required="required" type="text"/>
+        <!-- <label for="usernamesignup" class="uname" data-icon="u">用户名</label> -->
+        <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="请输入用户名"/>
     </p>
     <p class="margin-0">
-        <label for="emailsignup" class="youmail" data-icon="e"> 邮箱</label>
-        <input id="emailsignup" name="emailsignup" required="required" type="email"/>
+        <!-- <label for="emailsignup" class="youmail" data-icon="e"> 邮箱</label> -->
+        <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="请输入邮箱"/>
     </p>
     <p class="margin-0">
-        <label for="passwordsignup" class="youpasswd" data-icon="p">密码</label>
-        <input id="passwordsignup" name="passwordsignup" required="required" type="password"/>
+        <!-- <label for="passwordsignup" class="youpasswd" data-icon="p">密码</label> -->
+        <input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="请输入密码"/>
     </p>
     <p class="margin-0">
-        <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">确认密码</label>
-        <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password"/>
+        <!-- <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">确认密码</label> -->
+        <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="请确认密码"/>
+    </p>
+    <p class="margin-0">
+        <!-- <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">确认密码</label> -->
+        <input id="passwordsignup_confirm" class="u-pull-left" name="passwordsignup_confirm" required="required" type="password" placeholder="请输入验证码" style="width: 65%;"/>
+        <input type="button" class="button u-pull-left padding-0" value="获取验证码" style="margin-left: 5%; width: 30%;"/>
+        <!-- <img class="u-pull-left" src="" width="30%" style="margin-left: 5%"> -->
+    </p>
+    <p class="clear margin-0 margin-b-0p5">
+        <small>点击注册按钮即视为同意<a ui-sref="root.registration-agreement" target="_blank">《注册协议》</a></small>
     </p>
     <p class="signin margin-0 text-center">
-        <input type="submit" class="column" value="注册"/>
+        <input type="submit" class="button button-primary column" value="注册"/>
     </p>
-    <p class="change_link margin-0 text-center">
+    <p class="change_link margin-0 text-center clear">  
         已经注册过 ?
         <a ui-sref="root.login" class="to_login"> 登录 </a>
     </p>
