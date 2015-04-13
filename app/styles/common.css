@@ -1,5 +1,8 @@
+.line-normal {
+  line-height: normal;
+}
 .box-shadow {
-  box-shadow: 0em 0.1rem 0.2rem #eee;
+  box-shadow: 0em 0.2rem 0.2rem #eee;
   box-sizing:border-box;
 }
 .border-grey {
@@ -52,6 +55,9 @@
 .ft-grey1 {
   color: #928e8e;
 }
+.ft-shell {
+  color: #FFF5EE;
+}
 .ft-red {
   color: #eb5c3f;
 }
@@ -102,15 +108,14 @@
 .padding-b-1 {
   padding-bottom: 1rem;
 }
+.padding-l-1 {
+  padding-left: 1rem;
+}
+.padding-r-1 {
+  padding-right: 1rem;
+}
 .padding-2 {
   padding: 2rem;
-}
-
-
-/* index-main */
-.clip-line {
-  width:37%;
-  padding-top: 0.7rem;
 }
 
 /* clear float */
@@ -126,3 +131,29 @@
   float: left;
 }
 
+/* animation */
+@keyframes gyrate {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+
+@-moz-keyframes gyrate {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+
+@-webkit-keyframes gyrate /* Safari 和 Chrome */ {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+
+@-o-keyframes gyrate /* Opera */{
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+.gyrate {
+  animation: gyrate 2s;
+  -moz-animation: gyrate 2s; /* Firefox */
+  -webkit-animation: gyrate 2s;  /* Safari 和 Chrome */
+  -o-animation: gyrate 2s; /* Opera */
+}
