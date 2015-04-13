@@ -1,7 +1,7 @@
 <div ng-include src='"views/_banner.html"'></div>
 <form id="login" class="padding-l-1 padding-r-1" autocomplete="on" ng-submit="toLogin(user)">
   <h5> 登录 </h5>
-  <em ng-show="msg"><i class="fa fa-times-circle"></i>{{msg}}</em>
+  <p ng-show="msg"><i class="fa fa-times-circle"></i>{{msg}}</p>
   <p class="margin-0">
       <label for="username" class="uname" data-icon="u" > 账户 </label>
       <input id="username" name="username" required="required" type="text" ng-model="user.account" placeholder="用户名、邮箱、手机号"/>
