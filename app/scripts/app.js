@@ -17,7 +17,7 @@ angular
     'angular-md5'
   ])
   .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
-    $httpProvider.defaults.headers.post["Content-Type"] = "application/json"
+    $httpProvider.defaults.headers.post["Content-Type"] = "application/json";
     $stateProvider
       .state('root', {
         abstract: true,
@@ -108,7 +108,13 @@ angular
           }
         }
       });
-      $urlRouterProvider.otherwise('/');
-      $locationProvider.hashPrefix('!');
-      $urlRouterProvider.when('', '/');
+    $urlRouterProvider.otherwise('/');
+    // $locationProvider.html5Mode(true);
+    // $locationProvider.hashPrefix('!');
+    // $urlRouterProvider.when('', '/');
+    //initialize get if not there
+    // if (!$httpProvider.defaults.headers.get) {
+    //   $httpProvider.defaults.headers.get = {};
+    // }
+
   }]);

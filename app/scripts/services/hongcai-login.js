@@ -10,5 +10,5 @@
 angular.module('p2pSiteMobApp')
   .service('HongcaiLogin', function (restmod) {
     // AngularJS will instantiate a singleton by calling "new" on this function
-    return restmod.model('/ipa/hongcai/users/login');
+    return restmod.model('/hongcai/rest/users/login');
   });
