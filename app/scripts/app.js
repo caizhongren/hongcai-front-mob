@@ -7,16 +7,16 @@
  *
  * Main module of the application.
  */
-angular
-  .module('p2pSiteMobApp', [
+var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
     'ngAnimate',
     'ngTouch',
     'famous.angular',
     'ui.router',
     'restmod',
     'angular-md5'
-  ])
-  .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
+  ]);
+
+p2pSiteMobApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
     $httpProvider.defaults.headers.post["Content-Type"] = "application/json";
     $stateProvider
       .state('root', {
@@ -118,3 +118,11 @@ angular
     // }
 
   }]);
+
+p2pSiteMobApp.run(function($rootScope, $location, $window, $http, $state) {
+  $rootScope.$on('$stateChangeStart', function() {
+    $rootScope.showMe = false;
+
+  });
+
+});
