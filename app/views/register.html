@@ -1,8 +1,8 @@
 <!-- <div ng-include src='"views/_banner.html"'></div> -->
 
 <div class="bg-yellow padding-l-1 padding-r-1 padding-t-2">
-    <img src="/images/signup.png" width="100%">  
-    <form id="register" class="margin-0 padding-b-2 padding-t-2 ft-grey2" autocomplete="on">
+    <img src="/images/signup-1.png" width="100%">  
+    <form class="register margin-0 padding-b-2 padding-t-2 ft-grey2" autocomplete="on">
         <p class="margin-0 border-grey1 border-ra-0p5 margin-b-1p5">
             <label for="usernamesignup" class="border-grey1-right" data-icon="u"><small>用户名</small></label>
             <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="4-15位字符，以字母、中文开头"/>
@@ -37,8 +37,9 @@
             <input type="submit" class="button button-primary column" value="注册"/>
         </p>
         <p class="change_link margin-0 text-center clear">  
-            已经注册过 ?
-            <a ui-sref="root.login" class="to_login"> 登录 </a>
+            <small>已经注册过 ?
+                <a ui-sref="root.login" class="to_login"> 登录 </a>
+            </small>
         </p>
     </form> 
 </div>
