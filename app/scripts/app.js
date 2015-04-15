@@ -91,6 +91,14 @@ p2pSiteMobApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '
           }
         }
       })
+      .state('root.project-lists', {
+        url: '/project-lists',
+        views: {
+          '': {
+            templateUrl: 'views/project-lists.html'
+          }
+        }
+      })
       .state('root.demo', {
         url: '/demo',
         views: {

@@ -6,7 +6,5 @@ angular.module('p2pSiteMobApp')
     $scope.toggle = function () {
         $rootScope.showMe = !$rootScope.showMe;
     }
-
-   
    
   }]);
