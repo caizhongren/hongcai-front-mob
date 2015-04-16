@@ -19,11 +19,19 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
 p2pSiteMobApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
     $httpProvider.defaults.headers.post["Content-Type"] = "application/json";
     $stateProvider
+      .state('landing-page', {
+        url: '/landing-page',
+        views: {
+          'landingPage': {
+            templateUrl: 'views/landing-page.html'
+          }
+        }
+      })
       .state('root', {
         abstract: true,
         views: {
           '': {
-          templateUrl: 'views/root.html'
+            templateUrl: 'views/root.html'
           },
           'header': {
             templateUrl: 'views/_header.html',
