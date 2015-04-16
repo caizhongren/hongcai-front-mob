@@ -81,6 +81,8 @@ p2pSiteMobApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '
         views: {
           '': {
             templateUrl: 'views/register.html'
+            controller: 'RegisterCtrl',
+            controllerUrl: 'scripts/controllers/register'
           }
         }
       })
