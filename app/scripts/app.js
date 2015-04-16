@@ -35,6 +35,7 @@ angular
           }
         }
       })
+      // 注册登录流程
       .state('root.main', {
         url: '/',
         views: {
@@ -83,6 +84,7 @@ angular
           }
         }
       })
+      // 个人中心
       .state('root.registration-agreement', {
         url: '/registration-agreement',
         views: {
@@ -109,12 +111,5 @@ angular
         }
       });
     $urlRouterProvider.otherwise('/');
-    // $locationProvider.html5Mode(true);
-    // $locationProvider.hashPrefix('!');
-    // $urlRouterProvider.when('', '/');
-    //initialize get if not there
-    // if (!$httpProvider.defaults.headers.get) {
-    //   $httpProvider.defaults.headers.get = {};
-    // }
 
   }]);
