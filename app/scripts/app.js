@@ -7,16 +7,16 @@
  *
  * Main module of the application.
  */
-angular
-  .module('p2pSiteMobApp', [
+var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
     'ngAnimate',
     'ngTouch',
     'famous.angular',
     'ui.router',
     'restmod',
     'angular-md5'
-  ])
-  .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
+  ]);
+
+p2pSiteMobApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
     $httpProvider.defaults.headers.post["Content-Type"] = "application/json";
     $stateProvider
       .state('root', {
@@ -76,6 +76,14 @@ angular
           }
         }
       })
+      .state('root.register-success', {
+        url: '/register-success',
+        views: {
+          '': {
+            templateUrl: 'views/register-success.html'
+          }
+        }
+      })
       .state('root.registerByWechat', {
         url: '/register/:openId',
         views: {
@@ -90,6 +98,14 @@ angular
         views: {
           '': {
             templateUrl: 'views/registration-agreement.html'
+          }
+        }
+      })
+      .state('root.project-lists', {
+        url: '/project-lists',
+        views: {
+          '': {
+            templateUrl: 'views/project-lists.html'
           }
         }
       })
@@ -113,3 +129,11 @@ angular
     $urlRouterProvider.otherwise('/');
 
   }]);
+
+p2pSiteMobApp.run(function($rootScope, $location, $window, $http, $state) {
+  $rootScope.$on('$stateChangeStart', function() {
+    $rootScope.showMe = false;
+
+  });
+
+});

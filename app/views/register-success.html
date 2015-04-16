@@ -1,0 +1,33 @@
+<!-- <div ng-include src='"views/_banner.html"'></div> -->
+
+<div class="bg-yellow padding-l-1 padding-r-1 padding-t-2">
+    <div class="text-center">
+        <img src="/images/signup-2.png" width="30%"> 
+        <p class="padding-t-1 ft-2 ft-green"><strong>恭喜您，成功注册宏财网！</strong></p>
+        <p>
+            <strong><small>建议您完成个人身份认证，开通易宝资金托管账户，让您的资金更安全，投资更靠谱！</small></strong>
+        </p>
+    </div> 
+    <form class="register margin-0 padding-b-2 padding-t-2 ft-grey2" autocomplete="on">
+        <p class="margin-0 border-grey1 border-ra-0p5 margin-b-1">
+            <label for="emailsignup" class="youmail border-grey1-right" data-icon="e"><small> 邮箱</small></label>
+            <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="请输入您的常用邮箱"/>
+        </p>
+        <p class="margin-0 border-grey1 border-ra-0p5 margin-b-1p5">
+            <label for="realnamesignup" class="border-grey1-right" data-icon="u"><small>真实姓名</small></label>
+            <input id="realnamesignup" name="realnamesignup" required="required" type="text" placeholder="请输入身份证上的姓名"/>
+        </p>
+        <p class="margin-0 border-grey1 border-ra-0p5 margin-b-1p5">
+            <label for="IDcardsignup" class="border-grey1-right" data-icon="m"><small>身份证</small></label>
+            <input id="IDcardsignup" name="IDcardsignup" required="required" type="text" placeholder="请输入身份证上的号码"/>
+        </p>
+        <p class="signin margin-0 text-center">
+            <input type="submit" class="button button-primary column" value="开通易宝资金托管账户"/>
+        </p>
+        <p class="change_link margin-0 text-center clear">  
+            <small>
+                <a ui-sref="root.login" class="to_login"> 暂不开通 </a>
+            </small>
+        </p>
+    </form> 
+</div>

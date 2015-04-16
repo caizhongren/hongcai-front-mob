@@ -1,8 +1,46 @@
-form#login input[type="text"],
-form#login input[type="password"],
-form#register input[type="text"],
-form#register input[type="password"],
-form#register input[type="email"] {
-  width: 100%;
+#login input[type="text"],
+#login input[type="password"],
+.register input[type="text"],
+.register input[type="password"],
+.register input[type="email"],
+.register input[type="tel"] {
+  width: 75%;
+  margin-bottom: 0;
   box-sizing: border-box;
+  border: none;
+  box-shadow: 0 0.2rem 0.2rem #ebebeb inset;
+  border-top-right-radius: .5rem;
+  border-bottom-right-radius: .5rem;
+}
+.register {
+  label {
+    width: 25%;
+    box-sizing: border-box;
+    margin: 0;
+    float: left;
+    text-align: center;
+    height: 38px;
+    line-height: 38px;
+    background-color: #dfdfdf;
+    box-shadow: 0 0.1rem 0.2rem #fff inset;
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+  }
+}
+.getCaptcha {
+  display: inline-block;
+  margin-left: 5%; 
+  height: 38px;
+  line-height: 38px;
+}
+#invitationCode {
+  input[type="text"] {
+    border: 0.1rem solid #999;
+  }
+  label {
+    background-color: #fff9e9;
+    border: none;
+    box-shadow: none;
+    line-height: 19px;
+  }
 }
