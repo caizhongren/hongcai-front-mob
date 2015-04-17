@@ -1,5 +1,12 @@
 #login input[type="text"],
-#login input[type="password"],
+#login input[type="password"] {
+  width: 100%;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+  // box-shadow: 0 0.2rem 0.2rem #ebebeb inset;
+  border-top-right-radius: .5rem;
+  border-bottom-right-radius: .5rem;
+}
 .register input[type="text"],
 .register input[type="password"],
 .register input[type="email"],
@@ -8,7 +15,7 @@
   margin-bottom: 0;
   box-sizing: border-box;
   border: none;
-  box-shadow: 0 0.2rem 0.2rem #ebebeb inset;
+  // box-shadow: 0 0.2rem 0.2rem #ebebeb inset;
   border-top-right-radius: .5rem;
   border-bottom-right-radius: .5rem;
 }
@@ -22,7 +29,7 @@
     height: 38px;
     line-height: 38px;
     background-color: #dfdfdf;
-    box-shadow: 0 0.1rem 0.2rem #fff inset;
+    // box-shadow: 0 0.1rem 0.2rem #fff inset;
     border-top-left-radius: .5rem;
     border-bottom-left-radius: .5rem;
   }
@@ -35,12 +42,16 @@
 }
 #invitationCode {
   input[type="text"] {
-    border: 0.1rem solid #999;
+    // border: 0.1rem solid #999;
+    border: 0.1rem solid #ddd;
   }
   label {
     background-color: #fff9e9;
     border: none;
     box-shadow: none;
     line-height: 19px;
+  }
+  span {
+    font-weight: normal;
   }
 }
