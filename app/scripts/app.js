@@ -77,7 +77,7 @@ p2pSiteMobApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '
         }
       })
       .state('root.register', {
-        url: '/register',
+        url: '/register/:inviteCode',
         views: {
           '': {
             templateUrl: 'views/register.html',
@@ -147,3 +147,5 @@ p2pSiteMobApp.run(function($rootScope, $location, $window, $http, $state) {
   });
 
 });
+
+p2pSiteMobApp.constant('DEFAULT_DOMAIN', '/hongcai/rest');
