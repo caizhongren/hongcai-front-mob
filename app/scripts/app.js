@@ -90,7 +90,9 @@ p2pSiteMobApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '
         url: '/register-success',
         views: {
           '': {
-            templateUrl: 'views/register-success.html'
+            templateUrl: 'views/register-success.html',
+            controller: 'RegisterYeepayCtrl',
+            controllerUrl: 'scripts/controllers/registerYeepay'
           }
         }
       })

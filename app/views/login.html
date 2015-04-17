@@ -1,6 +1,6 @@
 <div class="bg-yellow">
     <form id="login" class="margin-0 padding-l-1 padding-r-1 padding-b-2 padding-t-2 ft-grey" autocomplete="on" ng-submit="toLogin(user)">
-        <p ng-show="msg"><i class="fa fa-times-circle"></i>{{msg}}</p>
+        <p ng-show="msg" class="ft-red"><i class="fa fa-times-circle"></i>&nbsp;&nbsp;{{msg}}</p>
         <p class="margin-0">
             <label for="username" class="uname" data-icon="u" > 账户 </label>
             <input id="username" class="border-grey" name="username" required="required" type="text" ng-model="user.account" placeholder="用户名、邮箱、手机号"/>

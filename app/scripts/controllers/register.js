@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RegisterCtrl', ['$scope', '$stateParams', 'md5', 'register', 'mobileCaptcha', function ($scope, $stateParams, md5, register, mobileCaptcha) {
+  .controller('RegisterCtrl', ['$rootScope', '$scope', '$state', '$stateParams', 'md5', 'register', 'mobileCaptcha', function ($rootScope, $scope, $state, $stateParams, md5, register, mobileCaptcha) {
     // 注册链接上是否有邀请码
     if ($stateParams.inviteCode) {
       $scope.user = {
@@ -17,10 +17,15 @@ angular.module('p2pSiteMobApp')
     }
     // 注册POST
     $scope.signUp = function(user) {
-      console.log(121);
       register.$create({name: user.name, password: md5.createHash(user.password), mobile: user.mobile, captcha: user.captcha, inviteCode: user.inviteCode}).$then(function(response){
         if (response.ret === -1) {
+        } else {
+          $rootScope.user = {
+            id: '123'
+          }
+          $state.go('root.register-success');
         }
+
       });
     };
     // 用户获取手机验证码
