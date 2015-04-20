@@ -19,6 +19,7 @@ angular.module('p2pSiteMobApp')
     $scope.signUp = function(user) {
       register.$create({name: user.name, password: md5.createHash(user.password), mobile: user.mobile, captcha: user.captcha, inviteCode: user.inviteCode}).$then(function(response){
         if (response.ret === -1) {
+          $scope.msg = response.msg;
         } else {
           $rootScope.user = {
             id: '123'

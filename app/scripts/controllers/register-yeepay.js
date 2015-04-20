@@ -14,6 +14,7 @@ angular.module('p2pSiteMobApp')
     $scope.signUpYeepay = function(user) {
       registerYeepay.$create({userId: user.id,email: user.email,realName: user.realName,idCardNo: user.idCardNo}).$then(function(response){
         if (response.ret === -1) {
+          $scope.msg = response.msg;
         } else {
           $state.go('root.register-success');
         }
