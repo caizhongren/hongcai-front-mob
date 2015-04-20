@@ -92,7 +92,7 @@ p2pSiteMobApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '
           '': {
             templateUrl: 'views/register-success.html',
             controller: 'RegisterYeepayCtrl',
-            controllerUrl: 'scripts/controllers/registerYeepay'
+            controllerUrl: 'scripts/controllers/register-yeepay'
           }
         }
       })
@@ -104,20 +104,32 @@ p2pSiteMobApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '
           }
         }
       })
-      // 个人中心
+
+      // 项目列表
+      .state('root.project-lists', {
+        url: '/projects',
+        views: {
+          '': {
+            templateUrl: 'views/project-lists.html'
+          }
+        }
+      })
+      // 项目详情
+      .state('root.project-details', {
+        url: '/projects/:number',
+        views: {
+          '': {
+            templateUrl: 'views/project-details.html',
+            controller: 'ProjectDetailsCtrl',
+            controllerUrl: 'scripts/controllers/project-details'
+          }
+        }
+      })
       .state('root.registration-agreement', {
         url: '/registration-agreement',
         views: {
           '': {
             templateUrl: 'views/registration-agreement.html'
-          }
-        }
-      })
-      .state('root.project-lists', {
-        url: '/project-lists',
-        views: {
-          '': {
-            templateUrl: 'views/project-lists.html'
           }
         }
       })

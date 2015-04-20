@@ -3,7 +3,7 @@
     <form class="register margin-0 padding-b-2 padding-t-1 ft-grey" name="registerForm" autocomplete="on" ng-submit="signUp(user);">
         <p class="margin-0 border-grey border-ra-0p5 margin-b-1p5">
             <label for="usernamesignup" class="border-grey-right"><small>用户名</small></label>
-            <input id="usernamesignup" name="name" ng-model="user.name" required="required" type="text" placeholder="4-15位字符，以字母、中文开头" real-mix-min-length="4" ng-maxlength="15" ng-pattern="/^[\u4e00-\u9fa5|a-z|A-Z][\u4e00-\u9fa5|a-z|A-Z|_|0-9|\-]{0,}$/" ensure-unique-name="name" ng-class="{'border-red':registerForm.name.$dirty && registerForm.name.$invalid && !registerForm.name.$focused}" required ng-focus autofocus/>
+            <input id="usernamesignup" name="name" ng-model="user.name" required="required" type="text" placeholder="4-15位字符，以字母、中文开头" real-mix-min-length="4" ng-maxlength="15" ng-pattern="/^[\u4e00-\u9fa5|a-z|A-Z][\u4e00-\u9fa5|a-z|A-Z|_|0-9|\-]{0,}$/" ensure-unique="name" ng-class="{'border-red':registerForm.name.$dirty && registerForm.name.$invalid && !registerForm.name.$focused}" required ng-focus autofocus/>
         </p>
         <!-- <p ng-if="registerForm.name.$dirty && registerForm.name.$invalid && !registerForm.name.$focused">
             <span ng-if="registerForm.name.$error.unique" class="row">

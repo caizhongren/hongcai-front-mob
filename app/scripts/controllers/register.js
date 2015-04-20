@@ -25,7 +25,6 @@ angular.module('p2pSiteMobApp')
           }
           $state.go('root.register-success');
         }
-
       });
     };
     // 用户获取手机验证码

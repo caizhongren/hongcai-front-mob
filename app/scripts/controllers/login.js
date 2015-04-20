@@ -15,7 +15,7 @@ angular.module('p2pSiteMobApp')
       if (openId === undefined || openId === '' || openId === null) {
         $scope.msg = 'yoinghuhfuhg';
         HongcaiLogin.$create({account: user.account, password: md5.createHash(user.password)}).$then(function(response){
-          if (response.ret == -1) {
+          if (response.ret === -1) {
             $scope.msg = response.msg;
           } else {
             $state.go('root.main');
@@ -24,7 +24,7 @@ angular.module('p2pSiteMobApp')
         });
       } else {
         Login.$create({account: user.account, password: md5.createHash(user.password), openId: openId}).$then(function(response){
-          if (response.ret == -1) {
+          if (response.ret === -1) {
             $scope.msg = response.msg;
           }
         });

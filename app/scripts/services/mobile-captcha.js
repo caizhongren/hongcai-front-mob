@@ -9,6 +9,6 @@
  */
 angular.module('p2pSiteMobApp')
   .service('mobileCaptcha', function (restmod) {
-    return restmod.model('/hongcai/rest/users/mobileCaptcha')
+    return restmod.model('/hongcai/rest/users/mobileCaptcha');
     // AngularJS will instantiate a singleton by calling "new" on this function
   });
