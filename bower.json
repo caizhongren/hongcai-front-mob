@@ -12,6 +12,7 @@
     "underscore": "~1.8.2",
     "fontawesome": "~4.2.0",
     "angular-restmod": "~1.1.8",
-    "angular-md5": "~0.1.7"
+    "angular-md5": "~0.1.7",
+    "jquery": "~2.1.3"
   }
 }
