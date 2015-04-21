@@ -28,13 +28,13 @@ angular.module('p2pSiteMobApp')
         if (response.ret === -1) {
           $scope.msg = response.msg;
         } else {
-          // $rootScope.user = {
-          //   id: '123'
-          // }
-          $state.go('root.register-success');
+          $rootScope.user = {
+            id: response.id
+          }
+          $state.go('root.register-success',{userId:$rootScope.user.id});
         }
       });
-    };
+      
     // 用户获取手机验证码
     $scope.sendMobileCaptcha = function(user) {
       console.log(user.mobile);
