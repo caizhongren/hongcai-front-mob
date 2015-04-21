@@ -10,5 +10,5 @@
 angular.module('p2pSiteMobApp')
   .service('registerYeepay', function (restmod, DEFAULT_DOMAIN, $stateParams) {
     // AngularJS will instantiate a singleton by calling "new" on this function
-    return restmod.model(DEFAULT_DOMAIN + '/users/' + $stateParams.userId + '/yeepay/register');
+    return restmod.model(DEFAULT_DOMAIN + '/users/' + $stateParams.userId + '/yeepayRegister');
   });
