@@ -87,7 +87,7 @@ p2pSiteMobApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '
         }
       })
       .state('root.register-success', {
-        url: '/register-success',
+        url: '/register-success/:userId',
         views: {
           '': {
             templateUrl: 'views/register-success.html',

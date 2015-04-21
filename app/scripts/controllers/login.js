@@ -13,7 +13,6 @@ angular.module('p2pSiteMobApp')
     var openId = $stateParams.openId;
     $scope.toLogin = function(user) {
       if (openId === undefined || openId === '' || openId === null) {
-        $scope.msg = 'yoinghuhfuhg';
         HongcaiLogin.$create({account: user.account, password: md5.createHash(user.password)}).$then(function(response){
           if (response.ret === -1) {
             $scope.msg = response.msg;
