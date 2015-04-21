@@ -7,23 +7,25 @@
  * # ensureUnique
  */
 angular.module('p2pSiteMobApp')
-  .directive('ensureUnique', ['$scope', 'isEnsureUnique',function ($scope, isEnsureUnique) {
+  .directive('ensureUnique', ['isEnsureUnique', function (isEnsureUnique) {
     return {
       restrict: 'AE',
       require: 'ngModel',
-      link: function(scope, elem, attrs, ctrl){
-        // 获取unique的类型{account|mobile|email}
-        var uniqueKey = attrs.ensureUnique;
-        var uniqueValue = angular.element('#' + attrs.ensureUnique).val();
-        if (uniqueKey !== '') {
-          isEnsureUnique.$create({uniqueKey: uniqueValue}).$then(function(response) {
-            // if () {
-            //   ctrl.$setValidity('unique', true);
-            // } else if () {
-            //   ctrl.$setValidity('unique', false);
-            // }
-          });
-        }
+      link: function(scope, elem, attrs, ctrl) {
+        scope.$watch(attrs.ngModel, function() {
+          console.log(elem.val());
+          var uniqueValue = elem.val();
+          if(uniqueValue !== '') {
+            isEnsureUnique.$create({account: uniqueValue}).$then(function(response) {
+              console.log(response);
+              if (response.ret === -1) {
+                ctrl.$setValidity('unique', true);
+              } else if (response.ret === 1) {
+                ctrl.$setValidity('unique', false);
+              }
+            });
+          }
+        });
       }
     };
   }]);
