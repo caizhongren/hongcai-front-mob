@@ -1,4 +1,7 @@
 <div class="line-normal" ng-include src='"views/_banner.html"'></div>
-
-<div class="columns twelve main padding-l-1 padding-r-1" ng-include src='"views/main/_recommend-projects.html"'>
+<!-- 宏金保保 -->
+<div class="columns twelve main padding-l-1 padding-r-1" ng-include src='"views/main/_recommend-projects.html"' ng-show="projectsRecommendations">
+</div>
+<!-- 宏金盈推荐列表 -->
+<div class="columns twelve main padding-l-1 padding-r-1" ng-include src='"views/main/_recommend-funds-projects.html"' ng-show="fundsProjectsRecommendations">
 </div>

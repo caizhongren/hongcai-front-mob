@@ -4,24 +4,26 @@
     <div class="margin-0 border-grey border-ra-0p5 margin-b-1p5">
       <label for="name" class="border-grey-right"><small>用户名</small>
       </label>
-      <input id="name" name="name"   ng-model="user.name" real-mix-min-length="4"required="required" type="text" placeholder="4-15位字符，以字母、中文开头"  ng-maxlength="15" ng-pattern="/^[\u4e00-\u9fa5|a-z|A-Z][\u4e00-\u9fa5|a-z|A-Z|_|0-9|\-]{0,}$/"  ensure-unique="name" ng-class="{'border-red':registerForm.name.$dirty && registerForm.name.$invalid && !registerForm.name.$focused}" required ng-focus autofocus/>
+      <input type="text" id="name" name="name" ng-model="user.name" ng-minlength="4" ng-maxlength="15" ng-pattern="/^[\u4e00-\u9fa5|a-z|A-Z][\u4e00-\u9fa5|a-z|A-Z|_|0-9|\-]{0,}$/" placeholder="4-15位字符，以字母、中文开头" ensure-unique="name" ng-class="{'border-red':registerForm.name.$dirty && registerForm.name.$invalid && !registerForm.name.$focused}" required ng-focus autofocus/>
     </div>
     <div ng-if="registerForm.name.$dirty && registerForm.name.$invalid && !registerForm.name.$focused">
-      <span ng-if="registerForm.name.$error.unique" class="row">
-                <small class="input-tips regist-input-tips">用户名已被占用</small>
-            </span>
-      <span ng-if="registerForm.name.$error.minlength" class="row">
-                <small class="input-tips regist-input-tips">不能小于4个字符</small>
-            </span>
-      <span ng-if="registerForm.name.$error.maxlength" class="row">
-                <small class="input-tips regist-input-tips">不能大于15个字符</small>
-            </span>
-      <span ng-if="registerForm.name.$error.pattern" class="row">
-                <small class="input-tips regist-input-tips">4-15位字符，以字母、中文开头，支持中文、字母、数字以及下划线</small>
-            </span>
-      <span ng-if="registerForm.name.$error.required" class="row">
-                <small class="input-tips regist-input-tips">4-15位字符，以字母、中文开头，支持中文、字母、数字以及下划线</small>
-            </span>
+      <span>registerForm.name.$error = {{registerForm.name.$error}}</span>
+      <span>registerForm.$error = {{registerForm.$error}}</span>
+      <span class="row" ng-if="registerForm.name.$error.unique">
+        <small class="input-tips regist-input-tips">用户名已被占用</small>
+      </span>
+      <span class="row" ng-if="registerForm.name.$error.minlength">
+        <small class="input-tips regist-input-tips">不能小于4个字符</small>
+      </span>
+      <span class="row" ng-if="registerForm.name.$error.maxlength">
+        <small class="input-tips regist-input-tips">不能大于15个字符</small>
+      </span>
+      <span class="row" ng-if="registerForm.name.$error.pattern">
+        <small class="input-tips regist-input-tips">4-15位字符，以字母、中文开头，支持中文、字母、数字以及下划线</small>
+      </span>
+      <span class="row" ng-if="registerForm.name.$error.required">
+        <small class="input-tips regist-input-tips">4-15位字符，以字母、中文开头，支持中文、字母、数字以及下划线</small>
+      </span>
     </div>
     <div class="margin-0 border-grey border-ra-0p5 margin-b-1p5">
       <label for="passwordsignup" class="border-grey-right" data-icon="p"><small>密码</small>
@@ -54,8 +56,8 @@
     </div>
     <div class="change_link margin-0 text-center clear">
       <small>已经注册过 ?
-                <a ui-sref="root.login" class="to_login"> 登录 </a>
-            </small>
+        <a ui-sref="root.login" class="to_login"> 登录 </a>
+      </small>
     </div>
   </form>
 </div>
