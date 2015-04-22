@@ -8,15 +8,16 @@
  * Main module of the application.
  */
 var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
-    'ngAnimate',
-    'ngTouch',
-    'famous.angular',
-    'ui.router',
-    'restmod',
-    'angular-md5'
-  ]);
+  'ngAnimate',
+  'ngTouch',
+  'famous.angular',
+  'ui.router',
+  'restmod',
+  'angular-md5'
+]);
 
-p2pSiteMobApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
+p2pSiteMobApp
+  .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
     $httpProvider.defaults.headers.post["Content-Type"] = "application/json";
     $stateProvider
       .state('landing-page', {
@@ -105,8 +106,8 @@ p2pSiteMobApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '
         }
       })
 
-      // 项目列表
-      .state('root.project-list', {
+    // 项目列表
+    .state('root.project-list', {
         url: '/projects',
         views: {
           '': {
@@ -145,6 +146,18 @@ p2pSiteMobApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '
           }
         }
       })
+      // 个人中心
+      .state('root.user-center.account', {
+        url: '/account',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/account.html',
+            controller: 'AccountCtrl',
+            controllerUrl: 'scripts/controllers/user-center/account'
+          }
+        }
+      })
+      //
       .state('root.demo', {
         url: '/demo',
         views: {
@@ -164,14 +177,11 @@ p2pSiteMobApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '
       });
     $urlRouterProvider.otherwise('/');
 
-  }]);
+}])
+  .run(function($rootScope) {
+    $rootScope.$on('$stateChangeStart', function() {
+      $rootScope.showMe = false;
+    });
+  })
 
-p2pSiteMobApp.run(function($rootScope, $location, $window, $http, $state) {
-  $rootScope.$on('$stateChangeStart', function() {
-    $rootScope.showMe = false;
-
-  });
-
-});
-
-p2pSiteMobApp.constant('DEFAULT_DOMAIN', '/hongcai/rest');
+  .constant('DEFAULT_DOMAIN', '/hongcai/rest');

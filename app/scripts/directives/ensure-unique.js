@@ -7,27 +7,22 @@
  * # ensureUnique
  */
 angular.module('p2pSiteMobApp')
-  .directive('ensureUnique', ['isEnsureUnique', function (isEnsureUnique) {
+  .directive('ensureUnique', function (isEnsureUnique) {
     return {
-      restrict: 'AE',
-      // scope: {
-      //     checkValidity: '=checkValidity' // isolate directive's scope and inherit only checking function from parent's one
-      // },
       require: 'ngModel',
-      link: function(scope, elem, attrs, ctrl) {
+      link: function(scope, elem, attrs, ngModelCtrl) {
         scope.$watch(attrs.ngModel, function() {
-          console.log(elem.val());
           var uniqueValue = elem.val();
           if(uniqueValue !== '') {
             isEnsureUnique.$create({account: uniqueValue}).$then(function(response) {
               if (response.ret === -1) {
-                ctrl.$setValidity('unique', true);
+                ngModelCtrl.$setValidity('unique', false);
               } else if (response.ret === 1) {
-                ctrl.$setValidity('unique', false);
+                ngModelCtrl.$setValidity('unique', true);
               }
             });
           }
         });
       }
     };
-  }]);
+  });
