@@ -29,10 +29,11 @@ angular.module('p2pSiteMobApp')
         } else {
           $rootScope.user = {
             id: response.id
-          }
+          };
           $state.go('root.register-success',{userId:$rootScope.user.id});
         }
       });
+    };
 
     // 用户获取手机验证码
     $scope.sendMobileCaptcha = function(user) {
