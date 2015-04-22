@@ -1,23 +1,19 @@
-<div class="columns twelve margin-t-0p5 margin-b-0p5">
+<!-- <div class="columns twelve margin-t-0p5 margin-b-0p5">
   <div class="u-pull-left clip-line"></div>
   <div class="text-center u-pull-left ft-grey circle-border border-ra-50">推荐项目</div>
   <div class="u-pull-right clip-line"></div>
-</div>
-<div class="margin-t-2" ng-repeat="item in fundsProjectsRecommendations">
-  <div class="bg-white overflow-hid padding-1 margin-b-0p5">
-    <header class="margin-b-1">{{item.product.name}}{{item.name}}</header>
-    <div class="columns twelve">
-      <div class="columns eight text-center">
-        <span class="u-pull-left">{{item.product.sealingDays}}天</span>
-        <span><strong class="ft-red gyrate">{{item.product.baseRate}}</strong>%</span>
-        <span class="u-pull-right">{{item.total}}元</span>
-        <hr class="margin-t-0p5 margin-b-0p5">
-        <span class="u-pull-right">{{item.total - (item.soldStock + item.occupancyStock) * item.increaseAmount}}元可投金额</span>
+</div> -->
+<div class="margin-b-1p5 border-grey" ng-repeat="item in fundsProjectsRecommendations">
+  <div class="bg-white overflow-hid padding-b-0p5">
+    <header class="text-center padding-t-0p5 padding-b-0p5 bg-grey1">{{item.product.name}}{{item.name}}</header>
+    <div class="position-re columns twelve padding-t-1 padding-b-0p5">
+      <div class="columns twelve text-center">
+        <span class="columns four"><strong class="ft-red gyrate ft-2">{{item.product.baseRate}}</strong>%<br><small class="ft-grey2">年化收益</small></span>
+        <span class="columns four"><strong class="ft-2">{{item.product.sealingDays}}</strong>天<br><small class="ft-grey2">项目期限</small></span>
+        <span class="columns four"><strong class="ft-2">{{item.total - (item.soldStock + item.occupancyStock) * item.increaseAmount}}</strong>元<br><small class="ft-grey2">可投金额</small></span>
       </div>
-      <div class="columns four padding-t-1 padding-b-1 u-pull-right">
-        <div class="margin-0 padding-0 u-pull-right" style="width:90%">
-          <a class="button button-primary " ui-sref="root.funds-project-detail({number: item.number})">马上加入</a>
-        </div>
+      <div class="position-ab columns two process-flag">
+        <img src="/images/process-1.png" width="100%">
       </div>
     </div>
   </div>
