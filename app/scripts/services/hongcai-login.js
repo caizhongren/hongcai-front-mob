@@ -10,5 +10,8 @@
 angular.module('p2pSiteMobApp')
   .service('HongcaiLogin', function (restmod, DEFAULT_DOMAIN) {
     // AngularJS will instantiate a singleton by calling "new" on this function
-    return restmod.model(DEFAULT_DOMAIN + '/users/login');
+    return {
+      userLogin : restmod.model(DEFAULT_DOMAIN + '/users/login'),
+      userLogout : restmod.model(DEFAULT_DOMAIN + '/users/logout')
+    }
   });

@@ -13,12 +13,15 @@ angular.module('p2pSiteMobApp')
     var openId = $stateParams.openId;
     $scope.toLogin = function(user) {
       if (openId === undefined || openId === '' || openId === null) {
-        HongcaiLogin.$create({account: user.account, password: md5.createHash(user.password)}).$then(function(response){
+        HongcaiLogin.userLogin.$create({account: user.account, password: md5.createHash(user.password)}).$then(function(response){
           if (response.ret === -1) {
             $scope.msg = response.msg;
           } else {
-            $state.go('root.main');
             $rootScope.login = true;
+            $rootScope.user = {
+              id : response.id
+            };
+            $state.go('root.main');
           }
         });
       } else {
