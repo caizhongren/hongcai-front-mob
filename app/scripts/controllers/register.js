@@ -9,7 +9,6 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('RegisterCtrl', ['$rootScope', '$scope', '$state', '$stateParams', 'md5', 'register', 'mobileCaptcha', function($rootScope, $scope, $state, $stateParams, md5, register, mobileCaptcha) {
-    $scope.user;
     // 注册链接上是否有邀请码
     if ($stateParams.inviteCode) {
       $scope.user = {
@@ -34,7 +33,7 @@ angular.module('p2pSiteMobApp')
           $state.go('root.register-success',{userId:$rootScope.user.id});
         }
       });
-      
+
     // 用户获取手机验证码
     $scope.sendMobileCaptcha = function(user) {
       console.log(user.mobile);
@@ -45,6 +44,7 @@ angular.module('p2pSiteMobApp')
           $scope.msg = response.msg;
           console.log($scope.msg);
         }
-      });;
+      });
     };
+
   }]);
