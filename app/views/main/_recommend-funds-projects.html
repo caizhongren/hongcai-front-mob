@@ -15,7 +15,7 @@
         <span class="u-pull-right">{{item.total - (item.soldStock + item.occupancyStock) * item.increaseAmount}}元可投金额</span>
       </div>
       <div class="columns four padding-t-1 padding-b-1 u-pull-right">
-        <div class="button button-primary margin-0 padding-0 u-pull-right" style="width:90%">马上加入</div>
+        <div class="button button-primary margin-0 padding-0 u-pull-right" style="width:90%"><a ui-sref="root.funds-project-detail({number: item.number})">马上加入</a></div>
       </div>
     </div>
   </div>
@@ -35,9 +35,4 @@
     </div>
   </div>
 </div>
-<div class="columns twelve button button-primary margin-t-1 text-center">
-  查看宏金保项目&gt;
-</div>
-<div class="columns twelve button button-primary margin-t-1 text-center">
-  查看宏金盈项目&gt;
-</div>
+
