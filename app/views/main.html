@@ -1,13 +1,21 @@
 <div class="line-normal" ng-include src='"views/_banner.html"'></div>
-<!-- 宏金保保 -->
+<!-- 宏金保 -->
 <div class="columns twelve main padding-l-1 padding-r-1" ng-include src='"views/main/_recommend-projects.html"' ng-show="projectsRecommendations">
 </div>
 <!-- 宏金盈推荐列表 -->
 <div class="columns twelve main padding-l-1 padding-r-1" ng-include src='"views/main/_recommend-funds-projects.html"' ng-show="fundsProjectsRecommendations">
 </div>
-<div class="columns twelve button button-primary margin-t-1 text-center">
-  <a ui-sref="root.project-list">查看宏金保项目&gt;</a>
+<div class="row">
+  <a ui-sref="root.project-list" class="columns twelve button button-primary margin-t-1 text-center">查看宏金保项目&gt;</a>
 </div>
-<div class="columns twelve button button-primary margin-t-1 text-center">
-  <a ui-sref="root.project-list">查看宏金盈项目&gt;</a>
+<div class="row">
+  <a ui-sref="root.project-list" class="columns twelve button button-primary margin-t-1 text-center">查看宏金盈项目&gt;</a>
+</div>
+
+<div class="row">
+  <div class="one-half column">
+    <a class="button button-info" ui-sref="root.login">快速注册</a>
+  </div>
+  <div class="one-half column">
+    <a class="button button-primary" ui-sref="root.register">登录</a></div>
 </div>

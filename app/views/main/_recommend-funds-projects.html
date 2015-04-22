@@ -1,36 +1,21 @@
 <div class="columns twelve margin-t-0p5 margin-b-0p5">
-  <div class="u-pull-left clip-line"></div>
-  <div class="text-center u-pull-left ft-grey circle-border border-ra-50">推荐项目</div>
-  <div class="u-pull-right clip-line"></div>
+
 </div>
 <div class="margin-t-2" ng-repeat="item in fundsProjectsRecommendations">
   <div class="bg-white overflow-hid padding-1 margin-b-0p5">
-    <header class="margin-b-1">{{item.name}}</header>
+    <header class="margin-b-1">{{item.product.name}}{{item.name}}</header>
     <div class="columns twelve">
       <div class="columns eight text-center">
-        <span class="u-pull-left">{{'12'}}个月</span>
-        <span><strong class="ft-red gyrate">{{'12'}}</strong>%</span>
-        <span class="u-pull-right">{{'500'}}元</span>
+        <span class="u-pull-left">{{item.product.sealingDays}}天</span>
+        <span><strong class="ft-red gyrate">{{item.product.baseRate}}</strong>%</span>
+        <span class="u-pull-right">{{item.total}}元</span>
         <hr class="margin-t-0p5 margin-b-0p5">
         <span class="u-pull-right">{{item.total - (item.soldStock + item.occupancyStock) * item.increaseAmount}}元可投金额</span>
       </div>
       <div class="columns four padding-t-1 padding-b-1 u-pull-right">
-        <div class="button button-primary margin-0 padding-0 u-pull-right" style="width:90%"><a ui-sref="root.funds-project-detail({number: item.number})">马上加入</a></div>
-      </div>
-    </div>
-  </div>
-  <div class="bg-white overflow-hid padding-1">
-    <header class="margin-b-1">{{"宏金盈20150506期"}}</header>
-    <div class="columns twelve">
-      <div class="columns eight text-center">
-        <span class="u-pull-left">{{'12'}}个月</span>
-        <span><strong class="ft-red gyrate">{{'12'}}</strong>%</span>
-        <span class="u-pull-right">{{'500'}}元</span>
-        <hr class="margin-t-0p5 margin-b-0p5">
-        <span class="u-pull-right">{{'23,000,000'}}元可投金额</span>
-      </div>
-      <div class="columns four padding-t-1 padding-b-1 u-pull-right">
-        <div class="button button-primary margin-0 padding-0 u-pull-right" style="width:90%">马上加入</div>
+        <div class="margin-0 padding-0 u-pull-right" style="width:90%">
+          <a class="button button-primary " ui-sref="root.funds-project-detail({number: item.number})">马上加入</a>
+        </div>
       </div>
     </div>
   </div>
