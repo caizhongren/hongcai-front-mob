@@ -2,7 +2,7 @@
   <img src="/images/signup-3.png" width="65%">
   <form class="register margin-0 padding-b-2 padding-t-1 ft-grey" name="registerForm" autocomplete="on" ng-submit="signUp(user);">
     <div class="margin-0 border-grey border-ra-0p5 margin-b-1p5">
-      <label for="name" class="border-grey-right"><small>用户名</small>
+      <label for="name"><small>用户名</small>
       </label>
       <input type="text" id="name" name="name" ng-model="user.name" ng-minlength="4" ng-maxlength="15" ng-pattern="/^[\u4e00-\u9fa5|a-z|A-Z][\u4e00-\u9fa5|a-z|A-Z|_|0-9|\-]{0,}$/" placeholder="4-15位字符，以字母、中文开头" ensure-unique="name" ng-class="{'border-red':registerForm.name.$dirty && registerForm.name.$invalid && !registerForm.name.$focused}" required ng-focus autofocus/>
     </div>
@@ -26,17 +26,17 @@
       </span>
     </div>
     <div class="margin-0 border-grey border-ra-0p5 margin-b-1p5">
-      <label for="passwordsignup" class="border-grey-right" data-icon="p"><small>密码</small>
+      <label for="passwordsignup"><small>密码</small>
       </label>
       <input id="passwordsignup" name="passwordsignup" ng-model="user.password" required="required" type="password" placeholder="6-22位字符，数字或字母组合" />
     </div>
     <div class="margin-0 border-grey border-ra-0p5 margin-b-1p5">
-      <label for="mobilesignup" class="border-grey-right" data-icon="m"><small>手机号码</small>
+      <label for="mobilesignup"><small>手机号码</small>
       </label>
       <input id="mobilesignup" name="mobilesignup" ng-model="user.mobile" required="required" type="tel" placeholder="11位长度手机号码" />
     </div>
     <div class="margin-0 border-grey border-ra-0p5 margin-b-1p5 u-pull-left" style="width: 65%;">
-      <label for="captchasignup" class=" border-grey-right" data-icon="c" style="width: 39%;"><small>验证码</small>
+      <label for="captchasignup" style="width: 39%;"><small>验证码</small>
       </label>
       <input id="captchasignup" name="captchasignup" ng-model="user.captcha" required="required" type="text" placeholder="6位数字" style="width: 61%;" />
     </div>
@@ -52,7 +52,7 @@
       <input type="checkbox" checked><small>我已阅读并同意<a ui-sref="root.registration-agreement" target="_blank">《注册协议》</a></small>
     </div>
     <div class="signin margin-0 text-center">
-      <input type="submit" class="button button-primary column" value="注册" />
+      <input type="submit" class="button button-primary column" value="立即注册" />
     </div>
     <div class="change_link margin-0 text-center clear">
       <small>已经注册过 ?
