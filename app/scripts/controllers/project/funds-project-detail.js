@@ -15,5 +15,5 @@ angular.module('p2pSiteMobApp')
       $state.go('root.project-list');
     }
     // simple project
-    $scope.simpleFundsProject = fundsProjects.find(number);
+    $scope.simpleFundsProject = fundsProjects.$find(number);
   }]);
