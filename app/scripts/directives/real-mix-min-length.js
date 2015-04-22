@@ -17,10 +17,10 @@ angular.module('p2pSiteMobApp')
         ctrl.$parsers.unshift(function (str) {
           var len = str.match(/[^ -~]/g) === null ? str.length : str.length + str.match(/[^ -~]/g).length;
           if( len >= minLen ){
-            ctrl.$setValidity('realMixMinLength', true);
+            ctrl.$setValidity('minlength', true);
             return str;
           } else{
-            ctrl.$setValidity('realMixMinLength', false);
+            ctrl.$setValidity('minlength', false);
             return undefined;
           }
         });

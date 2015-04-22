@@ -148,7 +148,7 @@ p2pSiteMobApp
       })
       // 个人中心
       .state('root.user-center.account', {
-        url: '/account'
+        url: '/account',
         views: {
           '': {
             templateUrl: 'views/user-center/account.html',
@@ -178,8 +178,7 @@ p2pSiteMobApp
     $urlRouterProvider.otherwise('/');
 
 }])
-
-  .run(function($rootScope, $location, $window, $http, $state) {
+  .run(function($rootScope) {
     $rootScope.$on('$stateChangeStart', function() {
       $rootScope.showMe = false;
     });
