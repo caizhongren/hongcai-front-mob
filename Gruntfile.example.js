@@ -433,6 +433,42 @@ module.exports = function (grunt) {
     'karma'
   ]);
 
+  grunt.registerTask('buildTest43', [
+    'clean:dist',
+    'wiredep',
+    'less',
+    'useminPrepare',
+    'concurrent:dist',
+    'autoprefixer',
+    'concat',
+    'ngAnnotate',
+    'copy:dist',
+    // 'cdnify',
+    'cssmin',
+    'uglify',
+    'filerev',
+    'usemin',
+    'htmlmin'
+  ]);
+
+  grunt.registerTask('buildTest321', [
+    'clean:dist',
+    'wiredep',
+    'less',
+    'useminPrepare',
+    'concurrent:dist',
+    'autoprefixer',
+    'concat',
+    'ngAnnotate',
+    'copy:dist',
+    // 'cdnify',
+    'cssmin',
+    'uglify',
+    'filerev',
+    'usemin',
+    'htmlmin'
+  ]);
+
   grunt.registerTask('build', [
     'clean:dist',
     'wiredep',
