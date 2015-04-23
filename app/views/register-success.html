@@ -8,7 +8,7 @@
             <strong class="ft-grey">建议您完成个人身份认证，开通易宝资金托管账户，让您的资金更安全，投资更靠谱！</strong>
         </p>
     </div> 
-    <form class="register margin-0 padding-b-2 padding-t-1 ft-grey" autocomplete="on" ng-submit="signUpYeepay(user);">
+    <form name="registerYeepayForm" class="register margin-0 padding-b-2 padding-t-1 ft-grey" autocomplete="on" ng-submit="signUpYeepay(user);">
         <p class="margin-0 border-grey border-ra-0p5 margin-b-1">
             <label for="emailsignup"><small> 邮箱</small></label>
             <input id="emailsignup" name="emailsignup" ng-model="user.email" required="required" type="email" placeholder="请输入您的常用邮箱"/>
@@ -17,12 +17,14 @@
             <label for="realnamesignup"><small>真实姓名</small></label>
             <input id="realnamesignup" name="realnamesignup" ng-model="user.realName" required="required" type="text" placeholder="请输入身份证上的姓名"/>
         </p>
-        <p class="margin-0 border-grey border-ra-0p5 margin-b-1p5">
+        <p class="margin-0 border-grey border-ra-0p5 margin-b-1p5" ng-class="{'border-red':registerYeepayForm.IDcardsignup.$dirty && registerYeepayForm.$invalid && !registerYeepayForm.IDcardsignup.$focused && registerYeepayForm.$error.pattern}">
             <label for="IDcardsignup"><small>身份证</small></label>
-            <input id="IDcardsignup" name="IDcardsignup" ng-model="user.idCardNo" required="required" type="text" placeholder="请输入身份证上的号码"/>
+            <input id="IDcardsignup" type="text" name="IDcardsignup" ng-model="user.idCardNo" required="required"  ng-pattern="/^([0-9]{17}[0-9X]{1})$|^([0-9]{15})$/" placeholder="请输入身份证上的号码" ng-focus/>
         </p>
-        <p class="signin margin-0 text-center">
-            <input type="submit" class="button button-primary column" value="开通易宝资金托管账户"/>
+        <p ng-if="registerYeepayForm.IDcardsignup.$dirty && registerYeepayForm.$invalid && !registerYeepayForm.IDcardsignup.$focused && registerYeepayForm.$error.pattern" class="text-center ft-red"><small>输入的身份证号码格式不正确</small></p>
+        <p class="signin margin-0 text-center padding-t-1">
+            <!-- <input type="submit" class="button button-primary column" value="开通易宝资金托管账户"/> -->
+            <input type="submit" class="button button-primary column {{registerYeepayForm.$invalid ? 'button-disabled' : ''}}" ng-disabled="registerYeepayForm.$invalid" value="开通易宝资金托管账户"/>
         </p>
         <p class="change_link margin-0 text-center clear">  
             <small>
