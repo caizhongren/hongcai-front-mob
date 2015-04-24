@@ -5,12 +5,13 @@ angular.module('p2pSiteMobApp')
     $rootScope.showMe = false;
     $scope.toggle = function () {
         $rootScope.showMe = !$rootScope.showMe;
-    }
+    };
     // 退出登录功能
     $scope.toLogout = function() {
       // var
       if ($rootScope.hasLoggedUser) {
-        var logoutModel = restmod.model(DEFAULT_DOMAIN + '/users/' + $rootScope.hasLoggedUser.id + '/logout')
+        // TODO  登出的model在这里不太好吧。
+        var logoutModel = restmod.model(DEFAULT_DOMAIN + '/users/' + $rootScope.hasLoggedUser.id + '/logout');
         logoutModel.$create().$then(function(response) {
           if (response.ret === 1) {
             $rootScope.hasLoggedUser = null;
