@@ -13,12 +13,13 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'famous.angular',
   'ui.router',
   'restmod',
+  'ipCookie',
   'angular-md5'
 ]);
 
 p2pSiteMobApp
   .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
-    $httpProvider.defaults.headers.post["Content-Type"] = "application/json";
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/json'        ;
     $stateProvider
       .state('landing-page', {
         url: '/landing-page',
@@ -157,6 +158,17 @@ p2pSiteMobApp
           }
         }
       })
+      // 个人中心还没出，先把流程展示全
+      .state('root.account', {
+        url: '/account',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/account.html',
+            controller: 'AccountCtrl',
+            controllerUrl: 'scripts/controllers/user-center/account'
+          }
+        }
+      })
       //
       .state('root.demo', {
         url: '/demo',
@@ -178,9 +190,26 @@ p2pSiteMobApp
     $urlRouterProvider.otherwise('/');
 
 }])
-  .run(function($rootScope) {
+  .run(function($rootScope, DEFAULT_DOMAIN, $state, $location, $http, restmod) {
+    var routespermission = [
+      '/account'
+    ];
     $rootScope.$on('$stateChangeStart', function() {
       $rootScope.showMe = false;
+      var checkModel = restmod.model(DEFAULT_DOMAIN + '/users');
+      checkModel.$find('checkSession').$then(function(response) {
+        if (response.id) {
+          $rootScope.isLogged = true;
+          $rootScope.hasLoggedUser = response;
+          //用户未登录状态
+        } else if(response.ret === -1) {
+          $rootScope.isLogged = false;
+          $rootScope.hasLoggedUser = null;
+          if (routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
+            $location.path('/login');
+          }
+        }
+      });
     });
   })
 
