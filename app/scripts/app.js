@@ -97,6 +97,16 @@ p2pSiteMobApp
           }
         }
       })
+      .state('root.registerYeepay-success', {
+        url: '/registerYeepay-success',
+        views: {
+          '': {
+            templateUrl: 'views/yeepay-success.html',
+            controller: 'RegisterYeepaySuccessCtrl',
+            controllerUrl: 'scripts/controllers/registerYeepay-success'
+          }
+        }
+      })
       .state('root.registerByWechat', {
         url: '/register/:openId',
         views: {
