@@ -8,6 +8,9 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('AccountCtrl', function ($scope) {
-
-  });
+  .controller('AccountCtrl', ['$scope', '$rootScope', 'HongcaiUser',function ($scope, $rootScope, HongcaiUser) {
+    console.log("account.js" + $rootScope.hasLoggedUser);
+    if ($rootScope.hasLoggedUser) {
+      $scope.userAccount = HongcaiUser.$find($rootScope.hasLoggedUser.id + '/account');
+    }
+  }]);
