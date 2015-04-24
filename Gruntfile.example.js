@@ -7,7 +7,7 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
@@ -25,7 +25,39 @@ module.exports = function (grunt) {
 
   // Define the configuration for all the tasks
   grunt.initConfig({
+    ngconstant: {
 
+      development: {
+        options: {
+          dest: '.tmp/scripts/config.js',
+          name: 'config',
+          constants: {
+            config: grunt.file.readJSON('config_buildTest43.json')
+          }
+        }
+      },
+
+      developmentTest321: {
+        options: {
+          dest: '.tmp/scripts/config.js',
+          name: 'config',
+          constants: {
+            config: grunt.file.readJSON('config_buildTest321.json')
+          }
+        }
+      },
+
+
+      production: {
+        options: {
+          dest: '.tmp/scripts/config.js',
+          name: 'config',
+          constants: {
+            config: grunt.file.readJSON('config_build.json')
+          }
+        }
+      }
+    },
     // Project settings
     yeoman: appConfig,
 
@@ -74,20 +106,17 @@ module.exports = function (grunt) {
         // hostname: '192.168.60.34',
         livereload: 35729
       },
-      proxies: [
-        {
-          context: '/ipa',
-          host: '192.168.60.34',
-          port: 4000,
-          https: false
-        },
-        {
-          context: '/hongcai',
-          host: '192.168.60.30',
-          port: 8080,
-          https: false
-        }
-      ],
+      proxies: [{
+        context: '/ipa',
+        host: '192.168.60.34',
+        port: 4000,
+        https: false
+      }, {
+        context: '/hongcai',
+        host: '192.168.60.30',
+        port: 8080,
+        https: false
+      }],
       // base: {
       //   proxies: [
       //     {
@@ -111,7 +140,7 @@ module.exports = function (grunt) {
       livereload: {
         options: {
           open: true,
-          middleware: function (connect) {
+          middleware: function(connect) {
             return [
               require('grunt-connect-proxy/lib/utils').proxyRequest,
               // modRewrite(['^[^\\.]*$ /index.html [L]']),
@@ -128,7 +157,7 @@ module.exports = function (grunt) {
       test: {
         options: {
           port: 9001,
-          middleware: function (connect) {
+          middleware: function(connect) {
             return [
               connect.static('.tmp'),
               connect.static('test'),
@@ -203,7 +232,7 @@ module.exports = function (grunt) {
     wiredep: {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
-        ignorePath:  /\.\.\//
+        ignorePath: /\.\.\//
       }
     },
 
@@ -246,7 +275,19 @@ module.exports = function (grunt) {
               js: ['concat', 'uglifyjs'],
               css: ['cssmin']
             },
-            post: {}
+            post: {
+              css: [{
+                name: 'cssmin',
+                createConfig: function(context) {
+                  var generated = context.options.generated;
+                  generated.options = {
+                    keepSpecialComments: 0,
+                    banner: '/*! All Rights Reserved by hongcai.com.' + new Date() + '*/',
+                    compatibility: 'ie8'
+                  };
+                }
+              }]
+            }
           }
         }
       }
@@ -256,11 +297,26 @@ module.exports = function (grunt) {
     usemin: {
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
+      js: '<%= yeoman.dist %>/scripts/*.js',
       options: {
-        assetsDirs: ['<%= yeoman.dist %>','<%= yeoman.dist %>/images']
+        assetsDirs: ['<%= yeoman.dist %>', '<%= yeoman.dist %>/images'],
+        patterns: {
+          js: [
+            [/(images\/.*?\.(?:gif|jpeg|jpg|png|webp|svg))/gm, 'Update the JS to reference our revved images']
+          ]
+        }
       }
     },
 
+    cssmin: {
+      generated: {
+        options: {
+          keepSpecialComments: 0,
+          banner: '/*! 2014-2015 All Rights Reserved by hongcai.com. */',
+          compatibility: 'ie8'
+        }
+      }
+    },
     // The following *-min tasks will produce minified files in the dist folder
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
@@ -368,6 +424,11 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
+        }, {
+          expand: true,
+          cwd: 'bower_components/fontawesome',
+          src: 'fonts/*',
+          dest: '<%= yeoman.dist %>'
         }]
       },
       styles: {
@@ -403,13 +464,14 @@ module.exports = function (grunt) {
   });
 
 
-  grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
+  grunt.registerTask('serve', 'Compile then start a connect web server', function(target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
     }
 
     grunt.task.run([
       'clean:server',
+      'ngconstant:development',
       'wiredep',
       'less',
       'concurrent:server',
@@ -420,7 +482,7 @@ module.exports = function (grunt) {
     ]);
   });
 
-  grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
+  grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function(target) {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
     grunt.task.run(['serve:' + target]);
   });
@@ -435,6 +497,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('buildTest43', [
     'clean:dist',
+    'ngconstant:development',
     'wiredep',
     'less',
     'useminPrepare',
@@ -453,6 +516,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('buildTest321', [
     'clean:dist',
+    'ngconstant:developmentTest321',
     'wiredep',
     'less',
     'useminPrepare',
@@ -471,6 +535,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'ngconstant:production',
     'wiredep',
     'less',
     'useminPrepare',

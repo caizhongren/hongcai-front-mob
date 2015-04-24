@@ -3,7 +3,7 @@
   <div class="text-center u-pull-left ft-grey circle-border border-ra-50">推荐项目</div>
   <div class="u-pull-right clip-line"></div>
 </div> -->
-<div class="margin-b-1p5 border-grey" ng-repeat="item in fundsProjectsRecommendations">
+<div class="margin-b-1p5 border-grey" ng-repeat="item in fundsProjectsRecommendations | limitTo: 4">
   <div class="bg-white overflow-hid padding-b-0p5">
     <header class="text-center padding-t-0p5 padding-b-0p5 bg-grey1">{{item.product.name}}{{item.name}}</header>
     <div class="position-re columns twelve padding-t-1 padding-b-0p5">
