@@ -1,17 +1,18 @@
 <div class="register bg-white padding-l-1 padding-r-1 padding-t-2">
     <div class="text-center">
-        <img src="/images/signup-2.png" width="30%"> 
+        <img src="/images/signup-2.png" width="30%">
         <p class="padding-t-1 ft-2 ft-orange"><strong>恭喜您，成功注册宏财网！</strong></p>
         <p>
             <strong class="ft-grey">建议您完成个人身份认证，开通易宝资金托管账户，让您的资金更安全，投资更靠谱！</strong>
         </p>
-    </div> 
+    </div>
     <form name="registerYeepayForm" class="margin-0 padding-b-2 padding-t-1 ft-grey" autocomplete="on" ng-submit="signUpYeepay(user);">
         <p class="margin-0 border-grey border-ra-0p5 margin-b-1" ng-class="{'border-red':registerYeepayForm.email.$dirty && registerYeepayForm.email.$invalid && !registerYeepayForm.email.$blur}">
             <label for="emailsignup"><small> 邮箱</small></label>
-            <input id="emailsignup" name="email" ng-model="user.email" required="required" type="email" ng-pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" placeholder="请输入您的常用邮箱" ng-focus/>
+            <input id="emailsignup" name="email" ensure-unique ng-model="user.email" required="required" type="email" ng-pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" placeholder="请输入您的常用邮箱" ng-focus/>
         </p>
         <p ng-if="registerYeepayForm.email.$dirty && registerYeepayForm.email.$invalid && !registerYeepayForm.email.$blur" class="text-center ft-red">
+            <small ng-if="registerYeepayForm.email.$error.unique" class="input-tips regist-input-tips">邮箱已经存在</small>
             <small ng-if="registerYeepayForm.email.$error.pattern" class="input-tips regist-input-tips">邮箱格式不正确</small>
             <small ng-if="registerYeepayForm.email.$error.required" class="input-tips regist-input-tips">请填写邮箱</small>
         </p>
@@ -21,17 +22,17 @@
         </p>
         <p class="margin-0 border-grey border-ra-0p5 margin-b-1p5" ng-class="{'border-red':registerYeepayForm.IDcardsignup.$dirty && registerYeepayForm.$invalid && !registerYeepayForm.IDcardsignup.$focused && registerYeepayForm.$error.pattern}">
             <label for="IDcardsignup"><small>身份证</small></label>
-            <input id="IDcardsignup" type="text" name="IDcardsignup" ng-model="user.idCardNo" required="required"  ng-pattern="/^([0-9]{17}[0-9X]{1})$|^([0-9]{15})$/" placeholder="请输入身份证上的号码" ng-focus/>
+            <input id="IDcardsignup" type="text" name="IDcardsignup" ng-model="user.idCardNo" required="required"  ng-pattern="/^([0-9]{17}[0-9xX]{1})$|^([0-9]{15})$/" placeholder="请输入身份证上的号码" ng-focus/>
         </p>
         <p ng-if="registerYeepayForm.IDcardsignup.$dirty && registerYeepayForm.$invalid && !registerYeepayForm.IDcardsignup.$focused && registerYeepayForm.$error.pattern" class="text-center ft-red"><small>输入的身份证号码格式不正确</small></p>
         <p class="signin margin-0 text-center padding-t-1">
             <!-- <input type="submit" class="button button-primary column" value="开通易宝资金托管账户"/> -->
             <input type="submit" class="button button-primary column {{registerYeepayForm.$invalid ? 'button-disabled' : ''}}" ng-disabled="registerYeepayForm.$invalid" value="开通易宝资金托管账户"/>
         </p>
-        <p class="change_link margin-0 text-center clear">  
+        <p class="change_link margin-0 text-center clear">
             <small>
                 <a ui-sref="root.login" class="to_login"> 暂不开通 </a>
             </small>
         </p>
-    </form> 
+    </form>
 </div>
