@@ -25,7 +25,39 @@ module.exports = function (grunt) {
 
   // Define the configuration for all the tasks
   grunt.initConfig({
+    ngconstant: {
 
+      development: {
+        options: {
+          dest: '.tmp/scripts/config.js',
+          name: 'config',
+          constants: {
+            config: grunt.file.readJSON('config_buildTest43.json')
+          }
+        }
+      },
+
+     developmentTest321: {
+        options: {
+          dest: '.tmp/scripts/config.js',
+          name: 'config',
+          constants: {
+            config: grunt.file.readJSON('config_buildTest321.json')
+          }
+        }
+      },
+
+
+      production: {
+        options: {
+          dest: '.tmp/scripts/config.js',
+          name: 'config',
+          constants: {
+            config: grunt.file.readJSON('config_build.json')
+          }
+        }
+      }
+    },
     // Project settings
     yeoman: appConfig,
 
@@ -246,7 +278,19 @@ module.exports = function (grunt) {
               js: ['concat', 'uglifyjs'],
               css: ['cssmin']
             },
-            post: {}
+            post: {
+              css: [{
+                name: 'cssmin',
+                createConfig: function(context) {
+                  var generated = context.options.generated;
+                  generated.options = {
+                    keepSpecialComments: 0,
+                    banner: '/*! All Rights Reserved by hongcai.com.' + new Date() + '*/',
+                    compatibility: 'ie8'
+                  };
+                }
+              }]
+            }
           }
         }
       }
@@ -257,10 +301,24 @@ module.exports = function (grunt) {
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
-        assetsDirs: ['<%= yeoman.dist %>','<%= yeoman.dist %>/images']
+        assetsDirs: ['<%= yeoman.dist %>','<%= yeoman.dist %>/images'],
+        patterns: {
+          js: [
+            [/(images\/.*?\.(?:gif|jpeg|jpg|png|webp|svg))/gm, 'Update the JS to reference our revved images']
+          ]
+        }
       }
     },
 
+    cssmin: {
+      generated: {
+        options: {
+          keepSpecialComments: 0,
+          banner: '/*! 2014-2015 All Rights Reserved by hongcai.com. */',
+          compatibility: 'ie8'
+        }
+      }
+    },
     // The following *-min tasks will produce minified files in the dist folder
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
@@ -410,6 +468,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'ngconstant:development',
       'wiredep',
       'less',
       'concurrent:server',
@@ -435,6 +494,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('buildTest43', [
     'clean:dist',
+    'ngconstant:development',
     'wiredep',
     'less',
     'useminPrepare',
@@ -453,6 +513,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('buildTest321', [
     'clean:dist',
+    'ngconstant:developmentTest321',
     'wiredep',
     'less',
     'useminPrepare',
@@ -471,6 +532,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'ngconstant:production',
     'wiredep',
     'less',
     'useminPrepare',
