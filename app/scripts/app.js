@@ -98,6 +98,16 @@ p2pSiteMobApp
           }
         }
       })
+      .state('root.yeepay-callback', {
+        url: '/yeepay-callback/:type/:status',
+        views: {
+          '': {
+            templateUrl: 'views/yeepay-callback.html',
+            controller: 'YeepayCallbackCtrl',
+            controllerUrl: 'scripts/controllers/yeepay-callback'
+          }
+        }
+      })
       .state('root.registerByWechat', {
         url: '/register/:openId',
         views: {

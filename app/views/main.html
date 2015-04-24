@@ -1,14 +1,14 @@
 <div class="line-normal" ng-include src='"views/_banner.html"'></div>
-<div class="columns twelve margin-t-1p5 margin-b-1p5 padding-l-1 padding-r-1">
+<div class="main columns twelve margin-t-1p5 margin-b-1p5 padding-l-1 padding-r-1">
   <div class="u-pull-left clip-line"></div>
   <div class="text-center u-pull-left ft-grey recommend-border">推荐项目</div>
   <div class="u-pull-right clip-line"></div>
 </div>
 <!-- 宏金保 -->
-<div class="columns twelve padding-l-1 padding-r-1" ng-include src='"views/main/_recommend-projects.html"' ng-show="projectsRecommendations">
+<div class="main columns twelve padding-l-1 padding-r-1" ng-include src='"views/main/_recommend-projects.html"' ng-show="projectsRecommendations">
 </div>
 <!-- 宏金盈推荐列表 -->
-<div class="columns twelve" ng-include src='"views/main/_recommend-funds-projects.html"' ng-show="fundsProjectsRecommendations">
+<div class="main columns twelve" ng-include src='"views/main/_recommend-funds-projects.html"' ng-show="fundsProjectsRecommendations">
 </div>
 <a ui-sref="root.project-list" class="columns twelve button bg-blue ft-blue text-center border-blue">更多宏金盈产品&gt;</a>
 <a ui-sref="root.project-list" class="columns twelve button bg-blue ft-blue margin-b-2 text-center border-blue">更多宏金保产品&gt;</a>
