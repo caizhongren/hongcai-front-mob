@@ -97,13 +97,13 @@ p2pSiteMobApp
           }
         }
       })
-      .state('root.registerYeepay-success', {
-        url: '/registerYeepay-success',
+      .state('root.yeepay-callback', {
+        url: '/yeepay-callback/:type/:status',
         views: {
           '': {
-            templateUrl: 'views/yeepay-success.html',
-            controller: 'RegisterYeepaySuccessCtrl',
-            controllerUrl: 'scripts/controllers/registerYeepay-success'
+            templateUrl: 'views/yeepay-callback.html',
+            controller: 'YeepayCallbackCtrl',
+            controllerUrl: 'scripts/controllers/yeepay-callback'
           }
         }
       })
