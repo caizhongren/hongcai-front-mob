@@ -47,7 +47,7 @@ angular.module('p2pSiteMobApp')
     };
     $scope.toggle.switchSubTab = function(subTabIndex) {
       $scope.toggle.activeSubTab = subTabIndex;
-      var type = subTabIndex + 2;
-      $scope.switchFundsProjects(type);
+      var subType = subTabIndex + 2;
+      $scope.switchFundsProjects(subType);
     };
   }]);
