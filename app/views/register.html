@@ -36,10 +36,10 @@
     <p class="margin-0 border-grey border-ra-0p5 margin-b-1p5 u-pull-left" style="width: 65%;">
       <label for="captchasignup" style="width: 39%;"><small>验证码</small>
       </label>
-      <input id="captchasignup" name="captchasignup" ng-model="user.captcha"  required="required" type="text" placeholder="6位数字" style="width: 61%;" />
+      <input id="captchasignup" name="captchasignup" ng-model="user.captcha" required="required" type="text" placeholder="6位数字" style="width: 61%;" />
     </p>
     <p class="margin-0 margin-b-1p5">
-      <a href="javascript:;" class="getCaptcha" ng-click="sendMobileCaptcha(user);"><strong><small>获取验证码</small></strong></a>
+      <button href="javascript:;" class="getCaptcha {{registerForm.mobile.$invalid ? 'button-disabled' : 'button-primary'}}" ng-click="sendMobileCaptcha(user);"  ng-disabled="registerForm.mobile.$invalid"><strong><small>获取验证码</small></strong></button>
     </p>
     <p id="invitationCode" class="margin-0 margin-b-1p5 clear">
       <label><small>邀请码<br><span class="ft-grey1">(选填)</span></small>
