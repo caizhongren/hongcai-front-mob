@@ -1,6 +1,8 @@
-<h3>hello, here is account view</h3>
+<div class="row">
+  <p> 尊敬的{{hasLoggedUser.name}}</p>
 
-<ui>
-  <li>name: {{hasLoggedUser.name}}</li>
-  <li>invest account: {{userAccount.investAmount}}</li>
-</ui>
+  <p>您的账户总额度：{{userAccount.balance | currency:"":2 || 0}}元</p>
+  <p>冻结资金：{{userAccount.freezeCapital | currency:"":2 || 0 }} 元</p>
+  <p>代收本金：{{userAccount.waitingCapital | currency:"":2 || 0 }} 元</p>
+  <p>代收收益：{{userAccount.waitingProfit | currency:"":2 || 0 }} 元</p>
+</div>

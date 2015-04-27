@@ -10,6 +10,13 @@
 angular.module('p2pSiteMobApp')
   .controller('AccountCtrl', ['$scope', '$rootScope', 'HongcaiUser',function ($scope, $rootScope, HongcaiUser) {
     if ($rootScope.hasLoggedUser) {
-      $scope.userAccount = HongcaiUser.$find($rootScope.hasLoggedUser.id + '/account');
+      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/account').$then(function(response) {
+        if (response.$status === 'ok') {
+          // 获取用户金额信息
+          $scope.userAccount = response;
+        } else {
+          // 获取信息失败。
+        }
+      });
     }
   }]);
