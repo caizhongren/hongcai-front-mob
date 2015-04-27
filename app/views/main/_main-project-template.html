@@ -5,11 +5,11 @@
   </div>
   <hr>
   <div>
-    <span class="ft-orange">{{recFundsProjects.product.baseRate}}%</span>起，每七日涨<span class="ft-orange">{{recFundsProjects.product.riseRate}}%</span>，最高<span class="ft-orange">{{recFundsProjects.product.maxRate}}%</span>
+    <span class="ft-orange">{{recFundsProjects.product.baseRate || 0}}%</span>起，每七日涨<span class="ft-orange">{{recFundsProjects.product.riseRate || 0}}%</span>，最高<span class="ft-orange">{{recFundsProjects.product.maxRate || 0}}%</span>
   </div>
   <hr>
   <div>
-    <i class="fa fa-jpy"></i>&nbsp;<span>剩余可投金额&nbsp;<strong class="ft-blue">{{recFundsProjectInvestNum}}</strong>&nbsp;元</span>
+    <i class="fa fa-jpy"></i>&nbsp;<span>剩余可投金额&nbsp;<strong class="ft-blue">{{recFundsProjectInvestNum | currency:"":0 || 0}}</strong>&nbsp;元</span>
   </div>
   <a  ui-sref="root.funds-project-detail({number: recFundsProjects.number})" class="columns eight offset-by-two button button-primary margin-t-2">查看详情</a>
   <div class="columns twelve margin-b-2">
