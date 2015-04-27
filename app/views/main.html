@@ -1,44 +1,9 @@
-<!-- <div class="line-normal" ng-include src='"views/_banner.html"'></div>
-<div class="main columns twelve margin-t-1p5 margin-b-1p5 padding-l-1 padding-r-1">
-  <div class="u-pull-left clip-line"></div>
-  <div class="text-center u-pull-left ft-grey recommend-border">推荐项目</div>
-  <div class="u-pull-right clip-line"></div>
-</div>
-宏金保
-<div class="main columns twelve padding-l-1 padding-r-1" ng-include src='"views/main/_recommend-projects.html"' ng-show="projectsRecommendations">
-</div>
-宏金盈推荐列表
-<div class="main columns twelve" ng-include src='"views/main/_recommend-funds-projects.html"' ng-show="fundsProjectsRecommendations">
-</div>
-<a ui-sref="root.project-list" class="columns twelve button bg-blue ft-blue text-center border-blue">更多宏金盈产品&gt;</a>
-<a ui-sref="root.project-list" class="columns twelve button bg-blue ft-blue margin-b-2 text-center border-blue">更多宏金保产品&gt;</a>
-<div class="column twelve padding-l-1 padding-r-1 margin-b-1">
-  <div class="one-half column button button-primary u-pull-left border-none" ui-sref="root.register">快速注册</div>
-  <div class="one-half column button ft-white bg-yellow u-pull-right border-none" ui-sref="root.login">登录</div>
-</div> -->
-<div class="main">
+<div class="main" ng-init="toggle.activeTab=0;">
   <ul class="nav-ul columns ten offset-by-one border-blue border-ra-0p5 margin-t-2">
-    <li class="column one-half text-center margin-0 padding-t-0p5 padding-b-0p5 bg-blue ft-white">7日理财</li>
-    <li class="column one-half text-center margin-0 padding-t-0p5 padding-b-0p5 ft-blue">1-6月理财</li>
+    <li class="column one-half text-center margin-0 padding-t-0p5 padding-b-0p5 ft-blue"  ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab_right in tabs" ng-click="toggle.switchTab($index)">{{tab_right.title}}</li>
+    <!-- <li class="column one-half text-center margin-0 padding-t-0p5 padding-b-0p5">1-6月理财</li> -->
   </ul>
-  <div class="columns twelve bg-white overflow-hid padding-t-2 padding-b-2 text-center">
-    <div class="columns six offset-by-three margin-b-2 border-ra-50 text-center ft-orange circle-rate">
-      <span><strong class=" ft-2">{{"6.9"}}</strong>%</span>
-      <br>
-      年化收益率
-    </div>
-    <hr>
-    <div>
-      <span class="ft-orange">{{"6.9"}}%</span>起，每七日涨<span class="ft-orange">{{0.3}}%</span>，最高<span class="ft-orange">{{"8.9"}}%</span></span>
-    </div>
-    <hr>
-    <div>
-      <i class="fa fa-jpy"></i>&nbsp;<span>剩余可投金额&nbsp;<strong class="ft-blue">{{"80,000"}}</strong>&nbsp;元</span>
-    </div>
-    <a class="columns eight offset-by-two button button-primary margin-t-2">查看详情</a>
-    <div class="columns twelve margin-b-2">
-      <small class="ft-grey2">已有{{"76"}}人次参与“七日盈”</small>
-    </div>
+  <div class="tab-content columns twelve bg-white overflow-hid padding-t-2 padding-b-2 text-center" ng-include src='"views/main/_main-project.html"' ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs">
   </div>
   <div class="column twelve padding-2 bg-yellow1">
     <div class="one-half column button margin-0 bg-yellow ft-white u-pull-left border-none" ui-sref="root.register">快速注册</div>
