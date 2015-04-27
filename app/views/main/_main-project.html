@@ -1,37 +1,20 @@
 <!-- 7日理财模块-->
-<section ng-if="tab.title==='7日理财'">
-  <div class="columns six offset-by-three margin-b-2 border-ra-50 text-center ft-orange circle-rate">
-    <span><strong class=" ft-2">{{tab.content.product.maxRate}}</strong>%</span>
-    <br>
-    年化收益率
-  </div>
-  <hr>
-  <div>
-    <span class="ft-orange">{{"6.9"}}%</span>起，每七日涨<span class="ft-orange">{{0.3}}%</span>，最高<span class="ft-orange">{{"8.9"}}%</span></span>
-  </div>
-  <hr>
-  <div>
-    <i class="fa fa-jpy"></i>&nbsp;<span>剩余可投金额&nbsp;<strong class="ft-blue">{{"80,000"}}</strong>&nbsp;元</span>
-  </div>
-  <a class="columns eight offset-by-two button button-primary margin-t-2">查看详情</a>
-  <div class="columns twelve margin-b-2">
-    <small class="ft-grey2">已有{{"76"}}人次参与“七日盈”</small>
-  </div>
+<section ng-if="tab.title==='7日理财'" ng-include src='"views/main/_main-project-template.html"'>
 </section>
 <!-- 1-6月理财 Tab 模块-->
 <section ng-if="tab.title==='1-6月理财'" ng-init="toggle.activeSubTab=0;">
   <ul class="main-tab2 nav-ul columns twelve border-grey1">
-    <li class="columns margin-0 border-grey1-right padding-t-0p5 padding-b-0p5" ng-class="{active: toggle.activeSubTab===$index}" ng-repeat="tab_sub in tabs_sub" ng-click="toggle.switchSubTab($index)">{{tab_sub.title}}</li>
+    <li class="columns margin-0 border-grey1-right padding-t-0p5 padding-b-0p5" ng-class="{active: toggle.activeSubTab===$index}" ng-repeat="subTab in subTabs" ng-click="toggle.switchSubTab($index)">{{subTab.title}}</li>
   </ul>
-  <div class="tab-content columns twelve bg-white overflow-hid padding-t-2 padding-b-2 text-center" ng-class="{active: toggle.activeSubTab===$index}" ng-repeat="tab_sub in tabs_sub">
+  <div class="tab-content columns twelve bg-white overflow-hid padding-t-2 padding-b-2 text-center" ng-class="{active: toggle.activeSubTab===$index}" ng-repeat="subTab in subTabs">
     <!-- 月月盈 -->
-    <section ng-if="tab_sub.title==='月月盈'" ng-include src='"views/main/_main-project-template.html"'>
+    <section ng-if="subTab.title==='月月盈'" ng-include src='"views/main/_main-project-template.html"'>
     </section>
     <!-- 季度盈 -->
-    <section ng-if="tab_sub.title==='季度盈'" ng-include src='"views/main/_main-project-template.html"'>
+    <section ng-if="subTab.title==='季度盈'" ng-include src='"views/main/_main-project-template.html"'>
     </section>
     <!-- 半年盈 -->
-    <section ng-if="tab_sub.title==='半年盈'" ng-include src='"views/main/_main-project-template.html"'>
+    <section ng-if="subTab.title==='半年盈'" ng-include src='"views/main/_main-project-template.html"'>
     </section>
   </div>
 </section>
