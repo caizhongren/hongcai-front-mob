@@ -14,6 +14,7 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'ui.router',
   'restmod',
   'ipCookie',
+  'angularMoment',
   'angular-md5'
 ]);
 

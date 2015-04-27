@@ -1,3 +1,31 @@
-<ul>
-  <li>name: {{simpleFundsProject.product.name}}{{simpleFundsProject.name}}</li>
-</ul>
+<div class="row">
+  <p>{{simpleFundsProject.product.name}}{{simpleFundsProject.name}}</p><span>{{statusMap[simpleFundsProject.status]}}</span>
+  <p>年化收益率：{{simpleFundsProject.product.baseRate}}% -- {{simpleFundsProject.product.maxRate}}%</p>
+</div>
+<div class="row">
+  <table class="u-full-width">
+    <tbody>
+      <tr>
+        <td>递增方式</td>
+        <td>递增收益，每期递增{{simpleFundsProject.product.riseRate || 0}} %</td>
+      </tr>
+      <tr>
+        <td>续投次数</td>
+        <td>{{simpleFundsProject.product.repeatInvestMaxCount}}次</td>
+      </tr>
+      <tr>
+        <td>锁定期限</td>
+        <td>{{simpleFundsProject.product.sealingDays || 0}}日</td>
+      </tr>
+      <tr>
+        <td>退出日期</td>
+        <td>{{simpleFundsProject.repaymentDate | amDateFormat:'YYYY年MM月DD日'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="row">
+  <p>参投人数:{{}}人</p>
+  <p>剩余可投金额{{fundsProjectInvestNum | currency:"":0 || 0}} 元</p>
+</div>
