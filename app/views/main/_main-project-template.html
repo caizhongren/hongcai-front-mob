@@ -13,5 +13,5 @@
   </div>
   <a  ui-sref="root.funds-project-detail({number: recFundsProjects.number})" class="columns eight offset-by-two button button-primary margin-t-2">查看详情</a>
   <div class="columns twelve margin-b-2">
-    <small class="ft-grey2">已有{{"76"}}人次参与“七日盈”</small>
+    <small class="ft-grey2">已有{{recFundsProjects.product.investNumber || 0}}人次参与“七日盈”</small>
   </div>
