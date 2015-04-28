@@ -11,7 +11,10 @@
   <div>
     <i class="fa fa-jpy"></i>&nbsp;<span>剩余可投金额&nbsp;<strong class="ft-blue">{{recFundsProjectInvestNum | currency:"":0 || 0}}</strong>&nbsp;元</span>
   </div>
-  <a  ui-sref="root.funds-project-detail({number: recFundsProjects.number})" class="columns eight offset-by-two button button-primary margin-t-2">查看详情</a>
+  <div class="padding-l-2 padding-r-2">
+    <a  ui-sref="root.funds-project-detail({number: recFundsProjects.number})" class="u-full-width button button-primary margin-t-2">查看详情</a>
+  </div>
+  
   <div class="columns twelve margin-b-2">
     <small class="ft-grey2">已有{{recFundsProjects.product.investNumber || 0}}人次参与“七日盈”</small>
   </div>
