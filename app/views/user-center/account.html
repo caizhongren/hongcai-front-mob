@@ -1,8 +1,32 @@
-<div class="row">
-  <p> 尊敬的{{hasLoggedUser.name}}</p>
+<div class="account">
+  <!-- 白色 -->
+  <div class="row" style="background-color: #fff; margin-bottom: 1.5rem;">
+    <div class="row" >
+      <div class="one-half column border-grey-right" style="text-align: center; margin-bottom: 1rem;">
+        <img ng-src="images/user-center/account-balance.png">
+        <p><span style="font-size: 2rem;">账户余额：{{userAccount.balance | currency:"":2 || 0}} 元</span></p>
+      </div>
+      <div class="one-half column" style="text-align: center; margin-bottom: 1rem;">
+        <img ng-src="images/user-center/account-gifi.png">
+        <p><span style="font-size: 2rem;">活动奖金： {{userAccount.reward | currency:"":2 || 0}} 元</span></p>
+      </div>
+    </div>
 
-  <p>您的账户总额度：{{userAccount.balance | currency:"":2 || 0}}元</p>
-  <p>冻结资金：{{userAccount.freezeCapital | currency:"":2 || 0 }} 元</p>
-  <p>代收本金：{{userAccount.waitingCapital | currency:"":2 || 0 }} 元</p>
-  <p>代收收益：{{userAccount.waitingProfit | currency:"":2 || 0 }} 元</p>
+    <div class="row" style="text-align: center;">
+      <img ng-src="images/user-center/account-info.png">
+    </div>
+  </div>
+
+  <!-- 灰色 -->
+  <div class="row" style="text-align: center;">
+    <img ng-src="images/user-center/account-tip.png">
+  </div>
+
+  <div class="row" style="text-align: center;">
+    <p><span style="font-size: 2rem;">此时，您可以：</span></p>
+    <div>
+      <input type="button" class="button button-primary" value="浏览理财项目" style="font-size: 2rem;">
+      <input type="button" class="button button-primary" value="安全保障说明" style="font-size: 2rem;">
+    </div>
+  </div>
 </div>

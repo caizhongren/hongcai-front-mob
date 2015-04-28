@@ -212,7 +212,10 @@ p2pSiteMobApp
         url: '/about',
         views: {
           '': {
-            templateUrl: 'views/about.html'
+            templateUrl: 'views/about.html',
+            controller: 'AboutCtrl',
+            controllerUrl: 'scripts/controllers/about'
+
           }
         }
       });
