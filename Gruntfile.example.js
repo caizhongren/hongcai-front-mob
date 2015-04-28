@@ -299,7 +299,7 @@ module.exports = function(grunt) {
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       js: '<%= yeoman.dist %>/scripts/*.js',
       options: {
-        assetsDirs: ['<%= yeoman.dist %>', '<%= yeoman.dist %>/images'],
+        assetsDirs: ['<%= yeoman.dist %>', '<%= yeoman.dist %>/images', '<%= yeoman.dist %>/images/user-center'],
         patterns: {
           js: [
             [/(images\/.*?\.(?:gif|jpeg|jpg|png|webp|svg))/gm, 'Update the JS to reference our revved images']

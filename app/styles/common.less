@@ -1,15 +1,11 @@
 table {
-  border-collapse:collapse;
-  border-spacing:0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 a {
   text-decoration: none;
 }
-.button.button-primary, 
-button.button-primary, 
-input[type="submit"].button-primary, 
-input[type="reset"].button-primary, 
-input[type="button"].button-primary {
+.button.button-primary, button.button-primary, input[type="submit"].button-primary, input[type="reset"].button-primary, input[type="button"].button-primary {
   color: #FFF;
   background-color: #eb5c3f;
   border-color: #e94828;
@@ -19,7 +15,7 @@ input[type="button"].button-primary {
 }
 .box-shadow {
   box-shadow: 0em 0.2rem 0.2rem #eee;
-  box-sizing:border-box;
+  box-sizing: border-box;
 }
 .border-none {
   border: none !important;
@@ -59,7 +55,7 @@ input[type="button"].button-primary {
 }
 .border-orange1 {
   border: 0.1rem solid #ffe8c7;
-} 
+}
 .border-red {
   border: 0.1rem solid red;
 }
@@ -73,6 +69,7 @@ input[type="button"].button-primary {
   border-radius: 20rem;
 }
 /* setposition */
+
 .position-re {
   position: relative;
 }
@@ -89,6 +86,7 @@ input[type="button"].button-primary {
   text-align: right;
 }
 /* font */
+
 .ft-0p75 {
   font-size: 0.75rem;
 }
@@ -138,6 +136,7 @@ input[type="button"].button-primary {
   color: #a4cff1;
 }
 /* background */
+
 .bg-offWhite {
   background-color: #f5f5f5;
 }
@@ -180,8 +179,9 @@ input[type="button"].button-primary {
   border: 0.1rem solid #ddd !important;
 }
 /* margin、padding */
+
 .margin-0 {
-  margin:0;
+  margin: 0;
 }
 .margin-t-0p5 {
   margin-top: 0.5rem;
@@ -258,16 +258,16 @@ input[type="button"].button-primary {
 .padding-b-3 {
   padding-bottom: 3rem;
 }
-
 /* clear float */
+
 .overflow-hid {
   overflow: hidden;
 }
 .clear {
   clear: both;
-} 
-
+}
 /* nav */
+
 .nav-ul {
   list-style: none;
 }
@@ -275,43 +275,66 @@ input[type="button"].button-primary {
   float: left;
 }
 .nav-ul .active {
-  .bg-blue; 
+  .bg-blue;
   .ft-white;
 }
-
 /* animation */
+
 @keyframes gyrate {
-  from {transform:rotate(0deg);}
-  to {transform:rotate(360deg);}
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
-
 @-moz-keyframes gyrate {
-  from {transform:rotate(0deg);}
-  to {transform:rotate(360deg);}
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
+@-webkit-keyframes gyrate
+/* Safari 和 Chrome */
 
-@-webkit-keyframes gyrate /* Safari 和 Chrome */ {
-  from {transform:rotate(0deg);}
-  to {transform:rotate(360deg);}
+{
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
+@-o-keyframes gyrate
+/* Opera */
 
-@-o-keyframes gyrate /* Opera */{
-  from {transform:rotate(0deg);}
-  to {transform:rotate(360deg);}
+{
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 .gyrate {
   animation: gyrate 2s;
-  -moz-animation: gyrate 2s; /* Firefox */
-  -webkit-animation: gyrate 2s;  /* Safari 和 Chrome */
-  -o-animation: gyrate 2s; /* Opera */
-}
+  -moz-animation: gyrate 2s;
+  /* Firefox */
 
+  -webkit-animation: gyrate 2s;
+  /* Safari 和 Chrome */
+
+  -o-animation: gyrate 2s;
+  /* Opera */
+}
 .process-flag {
   top: 0;
   right: 0;
 }
-
 /* tab */
+
 .tab-content {
   display: none;
 }
@@ -319,8 +342,10 @@ input[type="button"].button-primary {
   display: block;
   visibility: visible;
 }
-
 /* main 、project-details */
+.circle-rate-container {
+  padding: 0 26%;
+}
 .circle-rate {
   margin: 0 auto;
   border: 0.1rem solid #ffa729;
@@ -332,7 +357,10 @@ input[type="button"].button-primary {
     margin: 0;
   }
 }
-
 .half {
   width: 48%;
+}
+
+.indent-2rem {
+  text-indent: 2rem;
 }
