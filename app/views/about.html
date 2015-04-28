@@ -7,13 +7,13 @@
   <div class="tab-content columns twelve bg-white overflow-hid padding-t-2 padding-b-2 text-center " ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs">
     <section ng-if="tab.title==='战略伙伴'">
       <div class="safe text-left" ng-repeat="item in partners">
-        <div class="border-bottom-safe font-bule ft-2 item-style">
+        <div class="border-bottom-safe font-bule ft-1p8 item-style">
           <span>&nbsp {{ item.name }} &nbsp</span>
         </div>
         <div class="ft-1p5">
           <p><strong>{{ item.title }}</strong>
           </p>
-          <p>{{ item.introduction }}</p>
+          <p class="indent-2rem text-left">{{ item.introduction }}</p>
         </div>
       </div>
     </section>
@@ -62,7 +62,7 @@
           <p>{{ item.title }}</p>
         </div>
         <div class="ten columns">
-          <p class="indent-2rem">{{ item.introduction }}</p>
+          <p class="indent-2rem text-left">{{ item.introduction }}</p>
         </div>
       </div>
     </section>
