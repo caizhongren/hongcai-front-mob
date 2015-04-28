@@ -1,23 +1,13 @@
-<div class="safe" ng-init="toggle.activeTab=0;">
-  <ul class="safe-tab1 nav-ul columns ten offset-by-one border-blue border-ra-0p5 margin-t-2">
-    <li class="column text-center margin-0 padding-t-0p5 padding-b-0p5 ft-blue" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
-  </ul>
-  <div class="tab-content columns twelve bg-white overflow-hid padding-t-2 padding-b-2 text-center" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs">
-    <section ng-if="tab.title==='资金保障'">
-      <p>A+级优质担保，第三方本息保障</p>
-      <p>宏财网仅与信用评级A+级以上的大型融资性担保公司合作，对担保项目进行全额本息保障。</p>
-    </section>
-    <section ng-if="tab.title==='资金托管'">
-      <p>易宝支付资金托管，避免资金池</p>
-      <p>宏财网在银监会监管政策出台之前严格自律，所有资金全部由第三方易宝支付进行资金托管，避免资金池。此外，宏财网还采用先进的安全保护技术和完善的安全监测系统，对数据实时进行备份，用6层架构的代码防篡改技术来为用户保驾护航，避免客户资料丢失。在发现网站有非正常访问时，系统会及时作出安全响应。</p>
-    </section>
-    <section ng-if="tab.title==='风控体系'">
-      <p>美国FICO结合三亿大数据</p>
-      <p>宏财网由美国FICO结合三亿大数据独创宏财信用评价模型。并采用“提前履约+风险备付金+抵押担保”模式，对项目进行线下尽职调查并且实时监控，全面确保客户权益。</p>
-    </section>
-    <section ng-if="tab.title==='法律支持'">
-      <p>中国法学会理事专业领队</p>
-      <p>由中国法学会理事蔡曙涛领队的专业律师团队严格控制贷后风险，全面确保客户的法律权益。</p>
-    </section>
+<div class="safe" ng-repeat="item in safes" style="background-color: #fff; padding-left: 1rem; margin-bottom: 1rem;">
+  <div class="border-bottom-safe font-bule ft-2" style="margin-top: 1rem; margin-bottom: 1.5rem;">
+    <i class="fa {{item.fa}}"></i>
+    <span>&nbsp {{ item.name }} &nbsp</span>
+    <span class="font-sub-bule">{{ item.eName }}</span>
+  </div>
+  <div class="ft-1p5">
+    <p><strong>{{ item.title }}</strong>
+    </p>
+    <p>{{ item.content }}</p>
   </div>
 </div>
+<!-- #68A8F0 -->
