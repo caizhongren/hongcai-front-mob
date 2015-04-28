@@ -195,7 +195,9 @@ p2pSiteMobApp
         url: '/issue',
         views: {
           '': {
-            templateUrl: 'views/issue.html'
+            templateUrl: 'views/issue.html',
+            controller: 'IssueCtrl',
+            controllerUrl: 'scripts/controllers/issue'
           }
         }
       })
@@ -204,7 +206,9 @@ p2pSiteMobApp
         url: '/safe',
         views: {
           '': {
-            templateUrl: 'views/safe.html'
+            templateUrl: 'views/safe.html',
+            controller: 'SafeCtrl',
+            controllerUrl: 'scripts/controllers/safe'
           }
         }
       })
