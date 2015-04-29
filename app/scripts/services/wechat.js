@@ -8,7 +8,10 @@
  * Service in the p2pSiteMobApp.
  */
 angular.module('p2pSiteMobApp')
-  .service('Login', function (restmod) {
+  .service('wechat', function (restmod) {
     // AngularJS will instantiate a singleton by calling "new" on this function
-    return restmod.model('/ipa/hongcai/users/login');
+    return {
+      login: restmod.model('/ipa/hongcai/users/login'),
+      signUp: restmod.model('/ipa/hongcai/users/signup')
+    }
   });

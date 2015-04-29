@@ -8,13 +8,20 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('LoginCtrl', ['$scope', '$state', '$rootScope', '$stateParams', 'md5', 'ipCookie', 'Login', 'HongcaiLogin', function ($scope, $state, $rootScope, $stateParams, md5, ipCookie, Login, HongcaiLogin) {
+  .controller('LoginCtrl', ['$scope', '$state', '$rootScope', '$stateParams', 'md5', 'ipCookie', 'wechat', 'HongcaiLogin', function($scope, $state, $rootScope, $stateParams, md5, ipCookie, wechat, HongcaiLogin) {
     // 获取用户的openId
     var openId = $stateParams.openId;
+    var loginBe;
 
     if (ipCookie('userName')) {
       $scope.user = [];
       $scope.user.account = ipCookie('userName');
+    }
+
+    if (openId === undefined || openId === '' || openId === null) {
+      loginBe = HongcaiLogin.userLogin;
+    } else {
+      loginBe = wechat.login;
     }
 
     $scope.toLogin = function(user) {
@@ -23,22 +30,18 @@ angular.module('p2pSiteMobApp')
           expires: 60
         });
       }
-      if (openId === undefined || openId === '' || openId === null) {
-        HongcaiLogin.userLogin.$create({account: user.account, password: md5.createHash(user.password)}).$then(function(response){
-          if (response.ret === -1) {
-            $scope.msg = response.msg;
-          } else {
-            $rootScope.isLogged = true;
-            $rootScope.hasLoggedUser = response;
-            $state.go('root.main');
-          }
-        });
-      } else {
-        Login.$create({account: user.account, password: md5.createHash(user.password), openId: openId}).$then(function(response){
-          if (response.ret === -1) {
-            $scope.msg = response.msg;
-          }
-        });
-      }
+      loginBe.$create({
+        account: user.account,
+        password: md5.createHash(user.password),
+        openId: openId
+      }).$then(function(response) {
+        if (response.ret === -1) {
+          $scope.msg = response.msg;
+        } else {
+          $rootScope.isLogged = true;
+          $rootScope.hasLoggedUser = response;
+          $state.go('root.main');
+        }
+      });
     };
   }]);
