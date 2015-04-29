@@ -230,7 +230,7 @@ p2pSiteMobApp
     var routespermission = [
       '/account'
     ];
-    var titleMap = {'': '首页', 'issue': '常见问题', 'about': '帮助中心', 'safe': '安全保障', 'funds-projects': '项目详情', 'account': '账户总览'};
+    var titleMap = {'issue': '常见问题', 'about': '帮助中心', 'safe': '安全保障', 'account': '账户总览'};
     $rootScope.$on('$stateChangeStart', function() {
       // $rootScope.showTitle = titleMap[path];
       $rootScope.showMe = false;
