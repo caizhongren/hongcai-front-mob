@@ -5,21 +5,23 @@
 
   <!-- 要展示的内容如下 -->
   <div class="tab-content columns twelve bg-white overflow-hid padding-t-2 padding-b-2 text-center " ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs">
-    <section ng-if="tab.title==='战略伙伴'">
+    <section ng-if="tab.title==='战略伙伴'" style="background-color: #F5F5F5;">
       <div class="safe text-left" ng-repeat="item in partners">
         <div class="border-bottom-safe font-bule ft-1p8 item-style">
+          <i class="fa {{item.fa}}"></i>
           <span>&nbsp {{ item.name }} &nbsp</span>
+           <span class="font-sub-bule">{{ item.eName }}</span>
         </div>
         <div class="ft-1p5">
           <p><strong>{{ item.title }}</strong>
           </p>
-          <p class="indent-2rem text-left">{{ item.introduction }}</p>
+          <p class="text-left">{{ item.introduction }}</p>
         </div>
       </div>
     </section>
-    <section ng-if="tab.title==='宏财简介'">
+    <section class="base-background" ng-if="tab.title==='宏财简介'">
       <div class="safe text-left">
-        <div class="border-bottom-safe font-bule ft-2 item-style">
+        <div class="border-bottom-safe font-bule ft-1p8 item-style">
           <i class="fa fa-rocket"></i>
           <span>&nbsp 成立背景  &nbsp</span>
           <span class="font-sub-bule">Background</span>
@@ -55,14 +57,13 @@
       </div>
     </section>
     <section ng-if="tab.title==='顾问团队'">
-      <div class="row" ng-repeat="item in consultants">
+      <div class="row border-solidf5-bottom" style="margin-top: 1rem;" ng-repeat="item in consultants">
         <div class="two columns">
-          <img ng-src="{{ item.img }}" width="50%">
-          <p style="margin-bottom: 0rem;">{{ item.name }}</p>
-          <p>{{ item.title }}</p>
+          <img ng-src="{{ item.img }}" width="100%">
         </div>
         <div class="ten columns">
-          <p class="indent-2rem text-left">{{ item.introduction }}</p>
+          <p class="text-left ft-1p5"><strong >{{ item.name }}</strong>{{ item.title }}</p>
+          <p class="text-left ft-grey-db">{{ item.introduction }}</p>
         </div>
       </div>
     </section>
