@@ -19,10 +19,10 @@ angular.module('p2pSiteMobApp')
     $scope.loadMore = function() {
       $scope.pageSize = $scope.pageSize + 8;
       $scope.projectList = projects.$find('/', {page: $scope.page, pageSize: $scope.pageSize});
-    }
+    };
     // 加载更多宏金盈项目
     $scope.loadFundsMore = function() {
       $scope.pageSize = $scope.pageSize + 8;
       $scope.fundsProjectLists = fundsProjects.$find('/', {page: $scope.page, pageSize: $scope.pageSize});
-    }
+    };
   }]);
