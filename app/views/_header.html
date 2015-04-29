@@ -1,7 +1,7 @@
-<nav id="header" class="bg-white box-shadow position-re padding-t-1 padding-l-1 padding-r-1 overflow-hid">
-  <a ui-sref="root.main"><img src="images/logo.png" width="25%">
+<nav id="header" class="position-re bg-white box-shadow position-re padding-t-1 padding-l-1 padding-r-1 overflow-hid">
+  <a ui-sref="root.main"><img ng-src="images/logo.png" width="25%">
   </a>
-    <strong style="font-size: 2rem; margin: 0 auto;">{{showTitle}}</strong>
+    <strong class="ft-1 position-ab">{{showTitle}}</strong>
   <i class="fa fa-bars u-pull-right ft-2p5" ng-click="toggle();" dropdownMenu></i>
   <ul class="nav-ul columns twelve margin-0 margin-t-0p5 margin-b-0p5" ng-show="showMe">
     <li class="columns text-center margin-0" ng-show="isLogged" ng-click="toLogout();"><i class="fa fa-sign-out ft-grey ft-2p5"></i>
