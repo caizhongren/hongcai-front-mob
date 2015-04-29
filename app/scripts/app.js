@@ -80,7 +80,7 @@ p2pSiteMobApp
         }
       })
       .state('root.register', {
-        url: '/register/:inviteCode',
+        url: '/register/:openId/:inviteCode',
         views: {
           '': {
             templateUrl: 'views/register.html',
@@ -251,7 +251,6 @@ p2pSiteMobApp
     });
     $rootScope.$on('$stateChangeSuccess', function() {
       var path = $location.path().split('/')[1];
-      console.log(path);
       $rootScope.showTitle = titleMap[path];
     });
   })
