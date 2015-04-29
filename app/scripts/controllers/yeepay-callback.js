@@ -9,6 +9,6 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('YeepayCallbackCtrl', ['$rootScope','$scope', '$state', '$stateParams', function ($rootScope, $scope, $state, $stateParams) {
-    $scope.page = "0";
-    
+    $scope.page = '0';
+
   }]);

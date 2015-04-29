@@ -19,7 +19,7 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
 ]);
 
 p2pSiteMobApp
-  .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
+  .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $httpProvider) {
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/json'        ;
     $stateProvider
       .state('landing-page', {
@@ -253,7 +253,7 @@ p2pSiteMobApp
       var path = $location.path().split('/')[1];
       console.log(path);
       $rootScope.showTitle = titleMap[path];
-    })
+    });
   })
 
   .constant('DEFAULT_DOMAIN', '/hongcai/rest');

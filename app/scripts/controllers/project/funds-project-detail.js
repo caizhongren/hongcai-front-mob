@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('FundsProjectDetailCtrl', ['$scope', '$stateParams', 'fundsProjects', function ($scope, $stateParams, fundsProjects) {
+  .controller('FundsProjectDetailCtrl', ['$scope', '$state', '$stateParams', 'fundsProjects', function ($scope, $state, $stateParams, fundsProjects) {
     // 宏金盈详情页面
     var number = $stateParams.number;
     if (!number) {
@@ -33,5 +33,5 @@ angular.module('p2pSiteMobApp')
       3: '融资结束',
       4: '还款中',
       5: '还款完成'
-    }
+    };
   }]);
