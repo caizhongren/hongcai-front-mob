@@ -16,6 +16,11 @@ angular.module('p2pSiteMobApp')
       };
     }
 
+    $scope.showRegistrationAgreement = false;
+    $scope.toggle = function () {
+        $scope.showRegistrationAgreement = !$scope.showRegistrationAgreement;
+    };
+
     $scope.signUp = function(user) {
       register.$create({
         name: user.name,

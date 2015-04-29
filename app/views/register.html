@@ -47,7 +47,7 @@
       <input class="invitationCode" name="invitationCode" type="text" placeholder="11位长度手机号码" />
     </p>
     <p class="clear margin-0 margin-b-0p5 text-left">
-      <input type="checkbox" checked><small>我已阅读并同意<a ui-sref="root.registration-agreement" target="_blank">《注册协议》</a></small>
+      <input type="checkbox" checked><small>我已阅读并同意<a href="javascript:;" ng-click="toggle();">《注册协议》</a></small>
     </p>
     <p class="signin margin-0 text-center">
       <input type="submit" class="button button-primary column {{registerForm.$invalid ? 'button-disabled' : ''}}" ng-disabled="registerForm.$invalid" value="立即注册"/>
@@ -59,3 +59,6 @@
     </p>
   </form>
 </div>
+<div class="registration-agreement" ng-show="showRegistrationAgreement" ng-include src='"views/_registration-agreement.html"'>
+</div>
+<div class="mask" ng-show="showRegistrationAgreement"></div>
