@@ -6,8 +6,8 @@
     </p>
     <div class="padding-b-1">
       <div class="border-ra-50 text-center ft-orange circle-rate">
-        <p class="margin-0 padding-t-2"><strong class=" ft-2">{{simpleFundsProject.product.baseRate}}</strong>% <strong class=" ft-2">- {{simpleFundsProject.product.maxRate}}</strong>%</p>
-        <br>
+      <br>
+        <p class="margin-0 padding-t-2 padding-b-1"><strong class=" ft-2">{{simpleFundsProject.product.baseRate}}</strong>% <strong class=" ft-2">- {{simpleFundsProject.product.maxRate}}</strong>%</p>
         <hr class="border-orange1">
         <p class="margin-0 padding-t-0p5 padding-b-0p5">年化收益率</p>
         <hr class="border-orange1">
@@ -39,7 +39,7 @@
 
   <div class="overflow-hid bg-blue2 padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 border-blue1 margin-b-2 ft-1">
     <span class="u-pull-left"><i class="fa fa-users ft-blue2"></i>&nbsp;参投人数:<strong class="ft-blue1">{{simpleFundsProject.investNumber || 0}}</strong>人</span>
-    <span class="u-pull-right"><i class="fa fa-pie-chart ft-blue2"></i>&nbsp;剩余可投金额<strong class="ft-blue1">{{fundsProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
+    <span class="u-pull-right"><i class="fa fa-pie-chart ft-blue2"></i>&nbsp;可投金额<strong class="ft-blue1">{{fundsProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
   </div>
 </div>
 
