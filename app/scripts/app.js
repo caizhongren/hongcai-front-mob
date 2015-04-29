@@ -230,7 +230,9 @@ p2pSiteMobApp
     var routespermission = [
       '/account'
     ];
+    var titleMap = {'': '首页', 'issue': '常见问题', 'about': '帮助中心', 'safe': '安全保障', 'funds-projects': '项目详情', 'account': '账户总览'};
     $rootScope.$on('$stateChangeStart', function() {
+      // $rootScope.showTitle = titleMap[path];
       $rootScope.showMe = false;
       var checkModel = restmod.model(DEFAULT_DOMAIN + '/users');
       checkModel.$find('checkSession').$then(function(response) {
@@ -247,6 +249,11 @@ p2pSiteMobApp
         }
       });
     });
+    $rootScope.$on('$stateChangeSuccess', function() {
+      var path = $location.path().split('/')[1];
+      console.log(path);
+      $rootScope.showTitle = titleMap[path];
+    })
   })
 
   .constant('DEFAULT_DOMAIN', '/hongcai/rest');
