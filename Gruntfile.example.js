@@ -15,7 +15,7 @@ module.exports = function(grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
-  // var modRewrite = require('connect-modrewrite');
+  var modRewrite = require('connect-modrewrite');
 
   // Configurable paths for the application
   var appConfig = {
@@ -23,6 +23,7 @@ module.exports = function(grunt) {
     dist: 'dist'
   };
 
+  grunt.loadNpmTasks('grunt-connect-proxy');
   // Define the configuration for all the tasks
   grunt.initConfig({
     ngconstant: {
@@ -68,7 +69,7 @@ module.exports = function(grunt) {
         tasks: ['wiredep']
       },
       js: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+        files: ['<%= yeoman.app %>/scripts/{,*/}*{,*/}*.js'],
         tasks: ['newer:jshint:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -102,7 +103,7 @@ module.exports = function(grunt) {
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
+        hostname: '192.168.10.70',
         // hostname: '192.168.60.34',
         livereload: 35729
       },
@@ -113,30 +114,11 @@ module.exports = function(grunt) {
         https: false
       }, {
         context: '/hongcai',
-        host: '192.168.60.30',
+        host: '192.168.1.43',
+        // host: '192.168.10.83',
         port: 8080,
         https: false
       }],
-      // base: {
-      //   proxies: [
-      //     {
-      //       context: '/ipa/admin',
-      //       host: 'localhost',
-      //       port: 4000,
-      //       https: false
-      //     }
-      //   ]
-      // },
-      // hongcai: {
-      //   proxies: [
-      //     {
-      //       context: '/hongcai/api/v1',
-      //       host: '192.168.1.43',
-      //       port: 8080,
-      //       https: false
-      //     }
-      //   ]
-      // },
       livereload: {
         options: {
           open: true,
@@ -187,7 +169,7 @@ module.exports = function(grunt) {
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%= yeoman.app %>/scripts/{,*/}*{,*/}*.js'
         ]
       },
       test: {
@@ -295,7 +277,7 @@ module.exports = function(grunt) {
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/{,*/}*.html'],
+      html: ['<%= yeoman.dist %>/**/*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       js: '<%= yeoman.dist %>/scripts/*.js',
       options: {
