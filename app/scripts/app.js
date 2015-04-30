@@ -251,6 +251,7 @@ p2pSiteMobApp
     });
     $rootScope.$on('$stateChangeSuccess', function() {
       var path = $location.path().split('/')[1];
+      $rootScope.showPath = path;
       $rootScope.showTitle = titleMap[path];
     });
   })
