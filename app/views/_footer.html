@@ -5,7 +5,7 @@
     <a ui-sref="root.about" class="padding-t-1 padding-b-1 ft-color-b4 border-grey-right">&nbsp;宏财介绍</a>
     <a ui-sref="root.register" class="padding-t-1 padding-b-1 ft-color-b4">&nbsp;注册/登录</a>
   </div>
-  <div class="footer-up columns twelve ft-shell margin-t-1" ng-show="isLogged && !showPath">
+  <div class="footer-up columns twelve ft-shell margin-t-1" ng-show="isLogged && showPath !== 'account'">
     <a ui-sref="root.issue" class="border-grey-right padding-t-1 padding-b-1 ft-color-b4">&nbsp;常见问题</a>
     <a ui-sref="root.safe" class="border-grey-right padding-t-1 padding-b-1 ft-color-b4">&nbsp;安全保障</a>
     <a ui-sref="root.about" class="padding-t-1 padding-b-1 ft-color-b4 border-grey-right">&nbsp;宏财介绍</a>
