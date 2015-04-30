@@ -16,6 +16,11 @@ angular.module('p2pSiteMobApp')
       };
     }
 
+    $scope.showRegistrationAgreement = false;
+    $scope.toggle = function () {
+      $scope.showRegistrationAgreement = !$scope.showRegistrationAgreement;
+    };
+
     var openId = $stateParams.openId;
     var signUpBe;
     if (openId === undefined || openId === '' || openId === null) {
@@ -25,6 +30,7 @@ angular.module('p2pSiteMobApp')
       // wechat路线
       signUpBe = wechat.signUp;
     }
+    
     $scope.signUp = function(user) {
       signUpBe.$create({
         name: user.name,

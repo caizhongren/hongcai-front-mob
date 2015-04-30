@@ -1,10 +1,10 @@
 <div class="bg-white padding-l-1 padding-r-1 padding-t-1 text-center">
   <img src="/images/signup-3.png" width="65%">
-  <form class="register margin-0 padding-b-2 padding-t-1 ft-grey" name="registerForm" autocomplete="on" ng-submit="signUp(user);" id="registerForm">
+  <form autocomplete="off" class="register margin-0 padding-b-2 padding-t-1 ft-grey" name="registerForm" autocomplete="on" ng-submit="signUp(user);" id="registerForm">
     <p class="margin-0 border-grey border-ra-0p5 margin-b-1p5" ng-class="{'border-red':registerForm.name.$dirty && registerForm.name.$invalid && !registerForm.name.$focused}">
       <label for="name"><small>用户名</small>
       </label>
-      <input type="text" id="name" name="name" ng-model="user.name" real-mix-min-length="4" ng-maxlength="15" ng-pattern="/^[\u4e00-\u9fa5|a-z|A-Z][\u4e00-\u9fa5|a-z|A-Z|_|0-9|\-]{0,}$/" placeholder="4-15位字符，以字母、中文开头" ensure-unique ng-class="{'border-red':registerForm.name.$dirty && registerForm.name.$invalid && !registerForm.name.$focused}" required ng-focus autofocus/>
+      <input type="text" id="name" name="name" ng-model="user.name" real-mix-min-length="4" ng-maxlength="15" ng-pattern="/^[\u4e00-\u9fa5|a-z|A-Z][\u4e00-\u9fa5|a-z|A-Z|_|0-9|\-]{0,}$/" placeholder="4-15位字符，以字母、中文开头" ensure-unique ng-class="{'border-red':registerForm.name.$dirty && registerForm.name.$invalid && !registerForm.name.$focused}" required ng-focus/>
     </p>
 
     <p class="ft-red" ng-if="registerForm.name.$dirty && registerForm.name.$invalid && !registerForm.name.$focused">
@@ -47,7 +47,7 @@
       <input class="invitationCode" name="invitationCode" type="text" placeholder="11位长度手机号码" />
     </p>
     <p class="clear margin-0 margin-b-0p5 text-left">
-      <input type="checkbox" checked><small>我已阅读并同意<a ui-sref="root.registration-agreement" target="_blank">《注册协议》</a></small>
+      <input type="checkbox" checked><small>我已阅读并同意<a href="javascript:;" ng-click="toggle();">《注册协议》</a></small>
     </p>
     <p class="signin margin-0 text-center">
       <input type="submit" class="button button-primary column {{registerForm.$invalid ? 'button-disabled' : ''}}" ng-disabled="registerForm.$invalid" value="立即注册"/>
@@ -59,3 +59,6 @@
     </p>
   </form>
 </div>
+<div class="registration-agreement" ng-show="showRegistrationAgreement" ng-include src='"views/_registration-agreement.html"'>
+</div>
+<div class="mask" ng-show="showRegistrationAgreement"></div>
