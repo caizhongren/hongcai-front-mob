@@ -1,23 +1,21 @@
-  <div class="padding-b-1">
-    <div class="margin-b-2 border-ra-50 text-center ft-orange circle-rate">
-      <p class="margin-0 padding-t-2 padding-b-1"><strong class="ft-2">{{recFundsProjects.product.maxRate}}</strong>%</p>
-      <hr class="border-orange1">
-      <p class="margin-0 padding-t-0p5 padding-b-0p5">年化收益率</p>
-      <hr class="border-orange1">
-    </div>
+<div class="padding-b-1">
+  <div class="margin-b-2 border-ra-50 text-center ft-orange circle-rate">
+    <p class="margin-0 padding-t-2 padding-b-1"><strong class="ft-3">{{recFundsProjects.product.maxRate}}</strong>%</p>
+    <hr class="border-orange1">
+    <p class="margin-0 padding-t-0p5 padding-b-0p5">年化收益率</p>
+    <hr class="border-orange1">
   </div>
-  <hr>
-  <div>
-    <span class="ft-orange">{{recFundsProjects.product.baseRate || 0}}%</span>起，每七日涨<span class="ft-orange">{{recFundsProjects.product.riseRate || 0}}%</span>，最高<span class="ft-orange">{{recFundsProjects.product.maxRate || 0}}%</span>
-  </div>
-  <hr>
-  <div>
-    <i class="fa fa-jpy"></i>&nbsp;<span>可投金额&nbsp;<strong class="ft-blue">{{recFundsProjectInvestNum | currency:"":0 || 0}}</strong>&nbsp;元</span>
-  </div>
-  <div class="padding-l-2 padding-r-2">
-    <a  ui-sref="root.funds-project-detail({number: recFundsProjects.number})" class="u-full-width button button-primary margin-t-2">查看详情</a>
-  </div>
-  
-  <div class="columns twelve margin-b-2">
-    <small class="ft-grey2">已有{{recFundsProjects.product.investNumber || 0}}人次参与“七日盈”</small>
-  </div>
+</div>
+<hr>
+<div>
+  <span class="ft-orange">{{recFundsProjects.product.baseRate || 0}}%</span>起，每七日涨<span class="ft-orange">{{recFundsProjects.product.riseRate || 0}}%</span>，最高<span class="ft-orange">{{recFundsProjects.product.maxRate || 0}}%</span>
+</div>
+<hr>
+<div class="padding-l-2 padding-r-2">
+  <a ui-sref="root.funds-project-detail({number: recFundsProjects.number})" class="u-full-width button button-primary margin-t-2">查看详情</a>
+</div>
+
+<div class="columns twelve margin-b-2">
+  <span>可投金额&nbsp;<strong class="ft-blue">{{recFundsProjectInvestNum | currency:"":0 || 0}}</strong>&nbsp;元</span>
+  <span class="ft-grey2">已有{{recFundsProjects.product.investNumber || 0}}人参与“七日盈”</span>
+</div>

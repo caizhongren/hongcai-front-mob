@@ -2,14 +2,14 @@
   <!-- 7天理财、1-6月理财Tab模块 -->
   <div class="padding-l-2 padding-r-2">
     <ul class="main-tab1 nav-ul columns border-blue border-ra-0p5 margin-t-2">
-      <li class="column text-center margin-0 padding-t-0p5 padding-b-0p5 ft-blue"  ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
+      <li class="column text-center margin-0 padding-t-0p5 padding-b-0p5 ft-blue" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
     </ul>
   </div>
   <div class="tab-content columns twelve bg-white overflow-hid padding-t-2 padding-b-2 text-center" ng-include src='"views/main/_main-project.html"' ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs">
   </div>
   <!-- 登陆、注册模块 -->
-  <div class="overflow-hid padding-2 bg-yellow1">
+  <!--   <div class="overflow-hid padding-2 bg-yellow1">
     <a class="half button margin-0 bg-yellow ft-white u-pull-left border-none" ui-sref="root.register">快速注册</a>
     <a class="half button margin-0 ft-orange bg-white border-orange u-pull-right" ui-sref="root.login">登录</a>
   </div>
-</div>
+ --></div>
