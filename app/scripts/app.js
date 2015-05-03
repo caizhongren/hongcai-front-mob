@@ -159,18 +159,16 @@ p2pSiteMobApp
         }
       })
       // 个人中心
-      .state('root.user-center.account', {
-        url: '/account',
+      .state('root.user-center', {
+        abstract: true,
         views: {
           '': {
-            templateUrl: 'views/user-center/account.html',
-            controller: 'AccountCtrl',
-            controllerUrl: 'scripts/controllers/user-center/account'
+            templateUrl: 'views/user-center/ab.html'
           }
         }
       })
       // 个人中心还没出，先把流程展示全
-      .state('root.account', {
+      .state('root.user-center.account', {
         url: '/account',
         views: {
           '': {
