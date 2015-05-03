@@ -20,7 +20,6 @@ angular.module('p2pSiteMobApp')
       });
     }
 
-
     // 退出登录功能
     $scope.toLogout = function() {
       // var

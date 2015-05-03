@@ -167,7 +167,7 @@ p2pSiteMobApp
           }
         }
       })
-      // 个人中心还没出，先把流程展示全
+      // 基本资料
       .state('root.user-center.account', {
         url: '/account',
         views: {
@@ -178,7 +178,105 @@ p2pSiteMobApp
           }
         }
       })
-      //
+      .state('root.user-center.info', {
+        url: '/info',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/info.html',
+            controller: 'InfoCtrl',
+            controllerUrl: 'scripts/controllers/user-center/info'
+          }
+        }
+      })
+      // 投资统计
+      .state('root.user-center.investments-stat', {
+        url: '/investments-stat',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/investments-stat.html',
+            controller: 'InvestmentsStatCtrl',
+            controllerUrl: 'scripts/controllers/user-center/investments-stat'
+          }
+        }
+      })
+      // 我的债券
+      .state('root.user-center.credits', {
+        url: '/credits',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/credit.html',
+            controller: 'CreditCtrl',
+            controllerUrl: 'scripts/controllers/user-center/credit'
+          }
+        }
+      })
+      // 我的订单
+      .state('root.user-center.orders', {
+        url: '/orders',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/order.html',
+            controller: 'OrderCtrl',
+            controllerUrl: 'scripts/controllers/user-center/order'
+          }
+        }
+      })
+      // 充值
+      .state('root.user-center.recharge', {
+        url: '/recharge',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/recharge.html',
+            controller: 'RechargeCtrl',
+            controllerUrl: 'scripts/controllers/user-center/recharge'
+          }
+        }
+      })
+      // 提现
+      .state('root.user-center.withdraw', {
+        url: '/withdraw',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/withdraw.html',
+            controller: 'WithdrawCtrl',
+            controllerUrl: 'scripts/controllers/user-center/withdraw'
+          }
+        }
+      })
+      // 银行卡管理
+      .state('root.user-center.bankcard', {
+        url: '/bankcard',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/bankcard.html',
+            controller: 'BankcardCtrl',
+            controllerUrl: 'scripts/controllers/user-center/bankcard'
+          }
+        }
+      })
+      // 站内消息
+      .state('root.user-center.messages', {
+        url: '/messages',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/message.html',
+            controller: 'MessageCtrl',
+            controllerUrl: 'scripts/controllers/user-center/message'
+          }
+        }
+      })
+      // 交易记录
+      .state('root.user-center.deals', {
+        url: '/deals',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/deal.html',
+            controller: 'DealCtrl',
+            controllerUrl: 'scripts/controllers/user-center/deal'
+          }
+        }
+      })
+      // 预约记录
       .state('root.demo', {
         url: '/demo',
         views: {
@@ -210,6 +308,7 @@ p2pSiteMobApp
           }
         }
       })
+      // 宏财简介
       .state('root.about', {
         url: '/about',
         views: {
@@ -226,7 +325,18 @@ p2pSiteMobApp
 }])
   .run(function($rootScope, DEFAULT_DOMAIN, $state, $location, $http, restmod) {
     var routespermission = [
-      '/account'
+      '/account',
+      '/credits',
+      '/investments-stat',
+      '/order',
+      '/withdraw',
+      '/bankcard',
+      '/deals',
+      '/messages',
+      '/recharge',
+      '/orders',
+      '/credits',
+      '/info'
     ];
     var titleMap = {'issue': '常见问题', 'about': '帮助中心', 'safe': '安全保障', 'account': '账户总览'};
     $rootScope.$on('$stateChangeStart', function() {
