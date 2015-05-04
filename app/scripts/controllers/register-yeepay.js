@@ -9,7 +9,20 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('RegisterYeepayCtrl', ['$rootScope','$scope', '$state', '$stateParams', 'md5', 'registerYeepay', 'mobileCaptcha', function ($rootScope, $scope, $state, $stateParams, md5, registerYeepay, mobileCaptcha) {
-
+    var userId = $stateParams.userId;
+    console.log(userId);
+    if (!userId) {
+      $state.go('root.main');
+    }
+    if ($rootScope.user) {
+      var remoteUserId = $rootScope.user.id;
+      console.log(remoteUserId);
+      if (userId !== remoteUserId) {
+        $state.go('root.main');
+      }
+    } else {
+      $state.go('root.main');
+    }
     function newForm() {
       var f = document.createElement('form');
       document.body.appendChild(f);
