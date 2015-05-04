@@ -8,21 +8,25 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RegisterYeepayCtrl', ['$rootScope','$scope', '$state', '$stateParams', 'md5', 'registerYeepay', 'mobileCaptcha', function ($rootScope, $scope, $state, $stateParams, md5, registerYeepay, mobileCaptcha) {
+  .controller('RegisterYeepayCtrl', ['$rootScope','$scope', '$state', '$stateParams', 'md5', 'registerYeepay', 'HongcaiUser', 'config', function ($rootScope, $scope, $state, $stateParams, md5, registerYeepay, HongcaiUser, config) {
     var userId = $stateParams.userId;
-    console.log(userId);
     if (!userId) {
       $state.go('root.main');
     }
-    if ($rootScope.user) {
-      var remoteUserId = $rootScope.user.id;
-      console.log(remoteUserId);
-      if (userId !== remoteUserId) {
+    HongcaiUser.$find('checkSession').$then(function(response) {
+      if (response.id) {
+        // 用户在url上输入一个错误的userId
+        if (userId != response.id ) {
+          $state.go('root.main');
+        } else if (response.email) {
+          // 该用户已经绑定
+          $state.go('root.main');
+        }
+      } else {
+        // 绑定超时
         $state.go('root.main');
       }
-    } else {
-      $state.go('root.main');
-    }
+    });
     function newForm() {
       var f = document.createElement('form');
       document.body.appendChild(f);
@@ -61,10 +65,10 @@ angular.module('p2pSiteMobApp')
           var _f = newForm();
           createElements(_f, 'req', req);
           createElements(_f, 'sign', sign);
-          _f.action = 'http://192.168.1.43:3300/yeepay/2.0.3/member/bha/' + 'toRegister';
+          _f.action = config.YEEPAY_ADDRESS + 'toRegister';
           _f.submit();
         }
       });
     };
-    
+
   }]);
