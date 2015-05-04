@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RechargeCtrl', function ($scope) {
+  .controller('RechargeCtrl', ['$scope', '$rootScope', 'HongcaiUser', function ($scope, $rootScope, HongcaiUser) {
     if ($rootScope.hasLoggedUser) {
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/recharge').$then(function(response) {
         if (response.$status === 'ok') {
@@ -19,4 +19,4 @@ angular.module('p2pSiteMobApp')
         }
       });
     }
-  });
+  }]);

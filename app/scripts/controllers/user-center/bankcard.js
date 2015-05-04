@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('BankcardCtrl',['$scope', '$rootScope', 'HongcaiUser', function ($scope) {
+  .controller('BankcardCtrl',['$scope', '$rootScope', 'HongcaiUser', function ($scope, $rootScope, HongcaiUser) {
     if ($rootScope.hasLoggedUser) {
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/bankcard').$then(function(response) {
         if (response.$status === 'ok') {

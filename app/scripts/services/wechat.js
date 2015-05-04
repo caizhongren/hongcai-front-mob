@@ -13,5 +13,5 @@ angular.module('p2pSiteMobApp')
     return {
       login: restmod.model('/ipa/hongcai/users/login'),
       signUp: restmod.model('/ipa/hongcai/users/signup')
-    }
+    };
   });

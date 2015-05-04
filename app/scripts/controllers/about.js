@@ -24,6 +24,7 @@ angular.module('p2pSiteMobApp')
 
 
     // 顾问团队
+    /*jslint es5: true */
     $scope.consultants = [
       {name: '邓艳芳', img: 'images/head/head-1.png', title: '（项目资产评估顾问）', introduction: '高级会计师，财政部金融企业国有资产评估项目评审专家，IACVA国际企业价值评估分析师协会（中国）教育委员会副主任委员。专注于金融资产评估，对金融企业评估有丰富的经验，谙熟金融企业运作模式。'},
       {name: '杜莹芬', img: 'images/head/head-2.png', title: '（项目财务评估顾问）', introduction: '中国社会科学院工业经济研究所研究员，财务与会计研究室主任，中国企业管理研究会常务理事，中国社会科学院研究生院教授、博士生导师，全国企业管理现代化创新成果审定委员会专家组成员。主要研究方向为企业管理、财务管理、企业并购与重组。'},
