@@ -20,8 +20,9 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
 ]);
 
 p2pSiteMobApp
-  .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $httpProvider) {
-    $httpProvider.defaults.headers.post['Content-Type'] = 'application/json'        ;
+  .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$uiViewScrollProvider', function($stateProvider, $urlRouterProvider, $httpProvider, $uiViewScrollProvider) {
+    $uiViewScrollProvider.useAnchorScroll();
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
     $stateProvider
       .state('landing-page', {
         url: '/landing-page',
