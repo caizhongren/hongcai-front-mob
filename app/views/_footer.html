@@ -1,0 +1,36 @@
+<footer class="footer columns twelve text-center">
+  <div class="footer-up columns twelve ft-shell margin-t-1" ng-show="!isLogged && showPath === ''">
+    <a ui-sref="root.issue" class="border-grey-right-footer padding-t-1 padding-b-1 ft-color-b4">&nbsp;常见问题</a>
+    <a ui-sref="root.safe" class="border-grey-right-footer padding-t-1 padding-b-1 ft-color-b4">&nbsp;安全保障</a>
+    <a ui-sref="root.about" class="padding-t-1 padding-b-1 ft-color-b4 border-grey-right-footer">&nbsp;宏财介绍</a>
+    <a ui-sref="root.register" class="padding-t-1 padding-b-1 ft-color-b4 none-border">&nbsp;注册/登录</a>
+  </div>
+  <div class="footer-up columns twelve ft-shell margin-t-1" ng-show="isLogged && showPath === ''">
+    <a ui-sref="root.issue" class="border-grey-right-footer padding-t-1 padding-b-1 ft-color-b4">&nbsp;常见问题</a>
+    <a ui-sref="root.safe" class="border-grey-right-footer padding-t-1 padding-b-1 ft-color-b4">&nbsp;安全保障</a>
+    <a ui-sref="root.about" class="padding-t-1 padding-b-1 ft-color-b4 border-grey-right-footer">&nbsp;宏财介绍</a>
+    <a ui-sref="root.user-center.account" class="padding-t-1 padding-b-1 ft-color-b4 none-border">&nbsp;我的账户</a>
+  </div>
+
+  <div class="footer-up columns twelve ft-shell margin-t-1" ng-show="isLogged && showPath === 'account'">
+    <a ui-sref="root.issue" class="border-grey-right-footer padding-t-1 padding-b-1 ft-color-b4">&nbsp;常见问题</a>
+    <a ui-sref="root.safe" class="border-grey-right-footer padding-t-1 padding-b-1 ft-color-b4">&nbsp;安全保障</a>
+    <a ui-sref="root.about" class="padding-t-1 padding-b-1 ft-color-b4 border-grey-right-footer">&nbsp;宏财介绍</a>
+    <a ui-sref="root.main" class="padding-t-1 padding-b-1 ft-color-b4 none-border">&nbsp;理财产品</a>
+  </div>
+  <!-- 当用户进入详情页不显示 -->
+<!--   <div ng-show="showPath === 'funds-projects'">
+  </div>
+ -->
+  <!--  -->
+  <!--   <div class="footer-down columns twelve text-center bg-grey2 padding-t-1">
+    <p class="border-grey1-bottom overflow-hid padding-b-1 margin-0">
+      <a class="ft-blue1" class="padding-t-1 padding-b-1 ft-white">下载Android客户端</a>
+      <a class="ft-grey2">IOS客户端敬请期待</a>
+    </p>
+    <p class="ft-grey1 padding-t-1">
+      <small>&copy; 2014-2015 宏财泰富（北京）科技有限公司
+      <br>京ICP备14051673号-1</small>
+    </p>
+  </div> -->
+</footer>

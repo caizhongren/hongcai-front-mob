@@ -1,0 +1,20 @@
+<!-- 7日理财模块-->
+<section ng-if="tab.title==='7日理财'" ng-include src='"views/main/_main-project-template.html"'>
+</section>
+<!-- 1-6月理财 Tab 模块-->
+<section ng-if="tab.title==='1-6月理财'" ng-init="toggle.activeSubTab=0;">
+  <ul class="main-tab3 nav-ul columns twelve" style="margin-top: -2rem;">
+    <li class="columns margin-0 border-grey1-right padding-t-0p5 padding-b-0p5 ft-bule" ng-class="{active: toggle.activeSubTab===$index}" ng-repeat="subTab in subTabs" ng-click="toggle.switchSubTab($index)">{{subTab.title}}</li>
+  </ul>
+  <div class="tab-content columns twelve bg-white overflow-hid padding-t-2 padding-b-2 text-center" ng-class="{active: toggle.activeSubTab===$index}" ng-repeat="subTab in subTabs">
+    <!-- 月月盈 -->
+    <section ng-if="subTab.title==='月月盈'" ng-include src='"views/main/_main-project-template.html"'>
+    </section>
+    <!-- 季度盈 -->
+    <section ng-if="subTab.title==='季度盈'" ng-include src='"views/main/_main-project-template.html"'>
+    </section>
+    <!-- 半年盈 -->
+    <section ng-if="subTab.title==='半年盈'" ng-include src='"views/main/_main-project-template.html"'>
+    </section>
+  </div>
+</section>

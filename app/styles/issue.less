@@ -1,0 +1,33 @@
+.issue {
+  li {
+    width: 25%;
+    float: left;
+  }
+  th,
+  td {
+    font-size: 1rem;
+    text-align: center;
+    border: 0.1rem solid #ddd;
+  }
+  th {
+    font-weight: normal;
+    padding: 0.5rem 0;
+  }
+  td {
+    padding: 1.2rem 0;
+  }
+  .safe-tab1 {
+    border-right: 0.1rem solid #ddd;
+    li {
+      border: 0.1rem solid #ddd;
+      border-bottom: none;
+      color: #bbb;
+      &.active {
+        color: #6da9f3;
+        background-color: #fff;
+        border-top: 0.2rem solid #2896f0;
+        box-shadow: 0rem -0.1rem 0.8rem #ddd;
+      }
+    }
+  }
+}

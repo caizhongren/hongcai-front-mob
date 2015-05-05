@@ -1,1 +1,71 @@
-<h1>This is the about view.</h1>
+<div class="about" ng-init="toggle.activeTab=0;">
+  <ul class="about-tab1 nav-ul columns ten offset-by-one border-blue border-ra-0p5 margin-t-2">
+    <li class="column text-center margin-0 padding-t-0p5 padding-b-0p5 ft-blue" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
+  </ul>
+
+  <!-- 要展示的内容如下 -->
+  <div class="tab-content columns twelve bg-white overflow-hid padding-t-2 padding-b-2 text-center " ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs">
+    <section ng-if="tab.title==='战略伙伴'" style="background-color: #F5F5F5;">
+      <div class="safe text-left" ng-repeat="item in partners">
+        <div class="border-bottom-safe font-bule ft-1p8 item-style">
+          <i class="fa {{item.fa}}"></i>
+          <span>&nbsp {{ item.name }} &nbsp</span>
+           <span class="font-sub-bule">{{ item.eName }}</span>
+        </div>
+        <div class="ft-1p5">
+          <p><strong>{{ item.title }}</strong>
+          </p>
+          <p class="text-left">{{ item.introduction }}</p>
+        </div>
+      </div>
+    </section>
+    <section class="base-background" ng-if="tab.title==='宏财简介'">
+      <div class="safe text-left">
+        <div class="border-bottom-safe font-bule ft-1p8 item-style">
+          <i class="fa fa-rocket"></i>
+          <span>&nbsp 成立背景  &nbsp</span>
+          <span class="font-sub-bule">Background</span>
+        </div>
+        <div class="ft-1p5">
+          <p class="indent-2rem">宏财泰富（北京）科技有限公司创建于2015年1月23日，注册资金1000万，总部位于北京市国家会议中心。创始人及核心团队由来自大型互联网公司和大型金融机构的资深人士所组成，致力于解决中小企业融资难、融资贵的社会难题。旗下宏财网（www.hongcai.com）是国内最具创新意识的互联网金融资产交易服务平台。宏财网运用信息技术创新手段，以完善的风险管控体系为基础，为信用优良的中小企业、国有大型担保机构提供专业、高效、安全的综合行金融资产交易相关服务以及投融资顾问服务，致力于通过优质服务及不断的创新，提升交易效率，优化金融资产配置，成为中国领先创新型金融资产交易服务平台。</p>
+        </div>
+      </div>
+      <div class="safe text-left">
+        <div class="border-bottom-safe font-bule ft-2 item-style">
+          <i class="fa fa-gift"></i>
+          <span>&nbsp 业务范围  &nbsp</span>
+          <span class="font-sub-bule">Busyness</span>
+        </div>
+        <div class="ft-1p5">
+          <p>业务范围涵盖：</p>
+          <ol style="padding-left: 2rem;">
+            <li>金融创新产品的咨询、开发、设计、交易等服务；</li>
+            <li>金融类应用软件开发、电子商务；</li>
+            <li>金融市场调研及数据分析；</li>
+          </ol>
+        </div>
+      </div>
+      <div class="safe text-left">
+        <div class="border-bottom-safe font-bule ft-2 item-style">
+          <i class="fa fa-cubes"></i>
+          <span>&nbsp 组织架构  &nbsp</span>
+          <span class="font-sub-bule">Structure</span>
+        </div>
+        <div class="ft-1p5">
+          <img src="/images/about-structure.png" width="100%">
+        </div>
+      </div>
+    </section>
+    <section ng-if="tab.title==='顾问团队'">
+      <div class="row border-solidf5-bottom" style="margin-top: 1rem;" ng-repeat="item in consultants">
+        <div class="two columns">
+          <img ng-src="{{ item.img }}" width="100%">
+        </div>
+        <div class="ten columns">
+          <p class="text-left ft-1p5"><strong >{{ item.name }}</strong>{{ item.title }}</p>
+          <p class="text-left ft-grey3">{{ item.introduction }}</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

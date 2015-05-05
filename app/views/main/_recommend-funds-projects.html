@@ -1,0 +1,21 @@
+<!-- <div class="columns twelve margin-t-0p5 margin-b-0p5">
+  <div class="u-pull-left clip-line"></div>
+  <div class="text-center u-pull-left ft-grey circle-border border-ra-50">推荐项目</div>
+  <div class="u-pull-right clip-line"></div>
+</div> -->
+<div class="margin-b-1p5 border-grey" ng-repeat="item in fundsProjectsRecommendations | limitTo: 4">
+  <div class="bg-white overflow-hid padding-b-0p5">
+    <header class="text-center padding-t-0p5 padding-b-0p5 bg-grey1">{{item.product.name}}{{item.name}}</header>
+    <div class="position-re columns twelve padding-t-1 padding-b-0p5">
+      <div class="columns twelve text-center">
+        <span class="columns four"><strong class="ft-red gyrate ft-2">{{item.product.baseRate}}</strong>%<br><small class="ft-grey2">年化收益</small></span>
+        <span class="columns four"><strong class="ft-2">{{item.product.sealingDays}}</strong>天<br><small class="ft-grey2">项目期限</small></span>
+        <span class="columns four"><strong class="ft-2">{{item.total - (item.soldStock + item.occupancyStock) * item.increaseAmount}}</strong>元<br><small class="ft-grey2">可投金额</small></span>
+      </div>
+      <div class="position-ab columns two process-flag">
+        <img ng-src="images/process-1.png" width="100%">
+      </div>
+    </div>
+  </div>
+</div>
+

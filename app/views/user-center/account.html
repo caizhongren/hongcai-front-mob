@@ -1,0 +1,40 @@
+<div class="account">
+  <div class="row bg-white padding-b-2">
+    <div class="row padding-2 position-re" >
+      <div class="half column text-center">
+        <div class="column text-center padding-l-2 padding-r-2">
+          <img src="images/user-center/account-balance.png" width="100%">
+        </div>
+        <p class="margin-0 ft-1">账户余额：<span class="ft-orange">{{userAccount.balance | currency:"":2 || 0}} 元</span></p>
+      </div>
+      <div class="position-ab clip-line u-pull-left ft-2 border-grey-right">&nbsp;</div>
+      <div class="half column text-center">
+        <div class="column text-center padding-l-2 padding-r-2">
+          <img src="/images/user-center/account-gifi.png" width="100%">
+        </div>
+        <p class="margin-0 ft-1">活动奖金： <span class="ft-orange">{{userAccount.reward | currency:"":2 || 0}} 元</span></p>
+      </div>
+    </div>
+
+    <div class="row text-center">
+      <img src="/images/user-center/account-info.png" width="100%">
+    </div>
+  </div>
+
+  <hr>
+  <div class="column twelve padding-l-2 padding-r-2 padding-b-2 margin-b-2 text-center">
+    <p><span class="ft-2">此时，您可以：</span></p>
+    <a class="half margin-0 padding-t-0p5 padding-b-0p5 bg-blue3 ft-white u-pull-left ft-1p8" ui-sref="root.main">浏览理财项目</a>
+    <a class="half margin-0 padding-t-0p5 padding-b-0p5 bg-blue3 ft-white u-pull-right ft-1p8" ui-sref="root.safe">安全保障说明</a>
+  </div>
+
+  <div class="row text-center padding-t-2">
+    <img src="/images/user-center/account-tip.png">
+    <p class='ft-grey1 ft-1p8'>功能完善中，敬请期待！</p>
+  </div>
+
+  <div class="row text-center">
+    <input type="button" class="half margin-0 padding-t-0p5 padding-b-0p5 bg-blue3 ft-white u-pull-center ft-1p8" ng-click="toLogout();" value="安全退出">
+  </div>
+
+</div>
