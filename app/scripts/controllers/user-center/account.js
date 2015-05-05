@@ -35,4 +35,13 @@ angular.module('p2pSiteMobApp')
         });
       }
     };
+
+    // tab
+    $scope.toggle = {};
+    $scope.tabs = [{
+      title: '账户总览',
+    }, {
+      title: '我的投资'
+    }];
+
   }]);
