@@ -20,7 +20,7 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
 ]);
 
 p2pSiteMobApp
-  .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$uiViewScrollProvider', function($stateProvider, $urlRouterProvider, $httpProvider, $uiViewScrollProvider) {
+  .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', '$uiViewScrollProvider', function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, $uiViewScrollProvider) {
     $uiViewScrollProvider.useAnchorScroll();
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
     $stateProvider
@@ -325,7 +325,7 @@ p2pSiteMobApp
     $urlRouterProvider.otherwise('/');
 
 }])
-  .run(function($rootScope, DEFAULT_DOMAIN, $state, $location, $http, restmod) {
+  .run(function($rootScope, DEFAULT_DOMAIN, $state, $location, $http, restmod, config) {
     var routespermission = [
       '/account',
       '/credits',
@@ -346,9 +346,9 @@ p2pSiteMobApp
       $rootScope.showMe = false;
       var checkModel = restmod.model(DEFAULT_DOMAIN + '/users');
       checkModel.$find('checkSession').$then(function(response) {
-        if (response.id) {
+        if (response.user) {
           $rootScope.isLogged = true;
-          $rootScope.hasLoggedUser = response;
+          $rootScope.hasLoggedUser = response.user;
           //用户未登录状态
         } else if(response.ret === -1) {
           $rootScope.isLogged = false;

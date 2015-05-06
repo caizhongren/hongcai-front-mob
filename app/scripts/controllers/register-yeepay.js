@@ -14,11 +14,11 @@ angular.module('p2pSiteMobApp')
       $state.go('root.main');
     }
     HongcaiUser.$find('checkSession').$then(function(response) {
-      if (response.id) {
+      if (response.user) {
         // 用户在url上输入一个错误的userId
-        if (userId != response.id ) {
+        if (userId != response.user.id ) {
           $state.go('root.main');
-        } else if (response.email) {
+        } else if (response.securityStatus.realNameAuthStatus === 1) {
           // 该用户已经绑定
           $state.go('root.main');
         }
