@@ -139,13 +139,19 @@ p2pSiteMobApp
       // 个人中心
       .state('root.user-center', {
         abstract: true,
+        url: '/user-center',
         views: {
-          '': {
-            templateUrl: 'views/user-center/ab.html'
+          'user-center': {
+            templateUrl: 'views/user-center/user-center.html'
+            // controller: 'UserCenterCtrl',
+            // controllerUrl: 'scripts/controller/user-center/user-center'
+          },
+          'user-center-toggle': {
+            templateUrl: 'views/user-center/user-center-toggle.html'
           }
         }
       })
-      // 基本资料
+      //我的账户
       .state('root.user-center.account', {
         url: '/account',
         views: {
@@ -153,16 +159,6 @@ p2pSiteMobApp
             templateUrl: 'views/user-center/account.html',
             controller: 'AccountCtrl',
             controllerUrl: 'scripts/controllers/user-center/account'
-          }
-        }
-      })
-      .state('root.user-center.info', {
-        url: '/info',
-        views: {
-          '': {
-            templateUrl: 'views/user-center/info.html',
-            controller: 'InfoCtrl',
-            controllerUrl: 'scripts/controllers/user-center/info'
           }
         }
       })
@@ -177,7 +173,18 @@ p2pSiteMobApp
           }
         }
       })
-      // 我的债券
+      // 基本资料
+      .state('root.user-center.info', {
+        url: '/info',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/info.html',
+            controller: 'InfoCtrl',
+            controllerUrl: 'scripts/controllers/user-center/info'
+          }
+        }
+      })
+      // 我的债权
       .state('root.user-center.credits', {
         url: '/credits',
         views: {
@@ -229,6 +236,17 @@ p2pSiteMobApp
             templateUrl: 'views/user-center/bankcard.html',
             controller: 'BankcardCtrl',
             controllerUrl: 'scripts/controllers/user-center/bankcard'
+          }
+        }
+      })
+      // 回款计划
+      .state('root.user-center.payment-collection', {
+        url: '/payment-collection',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/payment-collection.html',
+            controller: 'PaymentCollectionCtrl',
+            controllerUrl: 'scripts/controllers/user-center/payment-collection'
           }
         }
       })
