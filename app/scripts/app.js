@@ -20,8 +20,9 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
 ]);
 
 p2pSiteMobApp
-  .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $httpProvider) {
-    $httpProvider.defaults.headers.post['Content-Type'] = 'application/json'        ;
+  .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$uiViewScrollProvider', function($stateProvider, $urlRouterProvider, $httpProvider, $uiViewScrollProvider) {
+    $uiViewScrollProvider.useAnchorScroll();
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
     $stateProvider
       .state('landing-page', {
         url: '/landing-page',
@@ -120,16 +121,16 @@ p2pSiteMobApp
       })
 
     // 项目列表
-    .state('root.project-list', {
-        url: '/projects',
-        views: {
-          '': {
-            templateUrl: 'views/project/project-list.html',
-            controller: 'ProjectListCtrl',
-            controllerUrl: 'scripts/controllers/project/project-list'
-          }
-        }
-      })
+    // .state('root.project-list', {
+    //     url: '/projects',
+    //     views: {
+    //       '': {
+    //         templateUrl: 'views/project/project-list.html',
+    //         controller: 'ProjectListCtrl',
+    //         controllerUrl: 'scripts/controllers/project/project-list'
+    //       }
+    //     }
+    //   })
       // 项目详情
       .state('root.project-detail', {
         url: '/projects/:number',
