@@ -12,7 +12,7 @@ angular.module('p2pSiteMobApp')
     // 宏金盈详情页面
     var number = $stateParams.number;
     if (!number) {
-      $state.go('root.project-list');
+      $state.go('root.main');
     }
     // simple project
     fundsProjects.$find(number).$then(function(response) {

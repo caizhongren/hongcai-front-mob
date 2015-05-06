@@ -121,16 +121,16 @@ p2pSiteMobApp
       })
 
     // 项目列表
-    .state('root.project-list', {
-        url: '/projects',
-        views: {
-          '': {
-            templateUrl: 'views/project/project-list.html',
-            controller: 'ProjectListCtrl',
-            controllerUrl: 'scripts/controllers/project/project-list'
-          }
-        }
-      })
+    // .state('root.project-list', {
+    //     url: '/projects',
+    //     views: {
+    //       '': {
+    //         templateUrl: 'views/project/project-list.html',
+    //         controller: 'ProjectListCtrl',
+    //         controllerUrl: 'scripts/controllers/project/project-list'
+    //       }
+    //     }
+    //   })
       // 项目详情
       .state('root.project-detail', {
         url: '/projects/:number',
