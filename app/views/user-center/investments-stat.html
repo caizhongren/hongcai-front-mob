@@ -1,7 +1,7 @@
 <!-- 我的投资 -->
 <div class="investment">
   <div>
-    <p class="border-grey margin-0 text-center">尊敬的{{"fjfjf"}}<br>&nbsp;&nbsp;您累计投资项目{{"6"}}个</p>
+    <p class="border-grey margin-0 text-center">尊敬的{{ userAccount.name }}<br>&nbsp;&nbsp;您累计投资项目{{ userAccount.investAmount }}个</p>
     <ul class="account-tab1 nav-ul overflow-hid">
       <li class="column border-grey text-center margin-0 padding-t-0p5 padding-b-0p5">回款中项目： {{'5'}}个</li>
       <li class="column border-grey text-center margin-0 padding-t-0p5 padding-b-0p5">已结清项目： {{'5'}}个</li>
@@ -13,7 +13,7 @@
   </div>
 
   <!-- 尚未开通易宝提示 -->
-  <div ng-include src="'views/yeepayless-hint.html'">
+  <div ng-include src="'views/yeepayless-hint.html'" ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus === 0">
   </div>
 
   <div class="text-center">

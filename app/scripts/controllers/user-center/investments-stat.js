@@ -9,14 +9,15 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('InvestmentsStatCtrl', ['$state', '$rootScope', 'HongcaiUser',function ($scope, $rootScope, HongcaiUser) {
-    if ($rootScope.hasLoggedUser) {
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/investments/stat').$then(function(response) {
+/*    if ($rootScope.hasLoggedUser) {
+      HongcaiUser.$find($rootScope.hasLoggedUser.user.id + '/account').$then(function(response) {
         if (response.$status === 'ok') {
           // 获取用户投资信息
-          $scope.simpleInvestmentsStat = response;
+          // $scope.userAccount = response;
+          $scope.test = 'gjgj';
         } else {
           // 获取信息失败。
         }
       });
-    }
+    }*/
   }]);

@@ -1,21 +1,22 @@
 <!-- 我的账户 -->
 <div class="account-userInfo">
   <div>
-    <p class="border-grey margin-0 text-center">尊敬的{{"fjfjf"}}<br>&nbsp;&nbsp;您的账户总资产{{"7,200.4"}}元</p>
+    <p class="border-grey margin-0 text-center">尊敬的{{ userAccount.name }}<br>&nbsp;&nbsp;您的账户总资产{{ userAccount.tTotalAssets }}元</p>
     <ul class="account-tab1 nav-ul overflow-hid">
-      <li class="column border-grey text-center margin-0 padding-t-0p5 padding-b-0p5">可用余额： {{'500'}}元</li>
-      <li class="column border-grey text-center margin-0 padding-t-0p5 padding-b-0p5">冻结资金： {{'5'}}个</li>
-      <li class="column border-grey text-center margin-0 padding-t-0p5 padding-b-0p5">待收本金({{'3'}}笔)： {{'500'}}元</li>
-      <li class="column border-grey text-center margin-0 padding-t-0p5 padding-b-0p5">待收收益 {{'103.72'}}元</li>
+      <li class="column border-grey text-center margin-0 padding-t-0p5 padding-b-0p5">可用余额： {{ userAccount.availableCash }}元</li>
+      <li class="column border-grey text-center margin-0 padding-t-0p5 padding-b-0p5">冻结资金： {{ userAccount.freezeCapital }}个</li>
+      <li class="column border-grey text-center margin-0 padding-t-0p5 padding-b-0p5">待收本金({{'3'}}笔)： {{ userAccount.waitingCapital }}元</li>
+      <li class="column border-grey text-center margin-0 padding-t-0p5 padding-b-0p5">待收收益 {{ userAccount.waitingProfit }}元</li>
       <!-- <li class="column border-grey text-center margin-0 padding-t-0p5 padding-b-0p5">活动奖金 {{'103.72'}}元</li> -->
     </ul>
   </div>
-  <div>
+  <!-- 已开通易宝时展示 -->
+  <div ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus !== 0">
     <button ui-sref="root.user-center.withdraw">提现</button>
     <button ui-sref="root.user-center.recharge">充值</button>
   </div>
   <!-- 尚未开通易宝提示 -->
-  <div ng-include src="'views/yeepayless-hint.html'">
+  <div ng-include src="'views/yeepayless-hint.html'" ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus === 0">
   </div>
   <div class="text-center">
     <a class="column" ui-sref="root.user-center.info">基本资料</a>

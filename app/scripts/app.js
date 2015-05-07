@@ -21,7 +21,7 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
 
 p2pSiteMobApp
   .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $httpProvider) {
-    $httpProvider.defaults.headers.post['Content-Type'] = 'application/json'        ;
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
     $stateProvider
       .state('landing-page', {
         url: '/landing-page',
@@ -142,9 +142,9 @@ p2pSiteMobApp
         url: '/user-center',
         views: {
           'user-center': {
-            templateUrl: 'views/user-center/user-center.html'
-            // controller: 'UserCenterCtrl',
-            // controllerUrl: 'scripts/controller/user-center/user-center'
+            templateUrl: 'views/user-center/user-center.html',
+            controller: 'UserCenterCtrl',
+            controllerUrl: 'scripts/controller/user-center/user-center'
           },
           'user-center-toggle': {
             templateUrl: 'views/user-center/user-center-toggle.html'
@@ -340,7 +340,7 @@ p2pSiteMobApp
       $rootScope.showMe = false;
       var checkModel = restmod.model(DEFAULT_DOMAIN + '/users');
       checkModel.$find('checkSession').$then(function(response) {
-        if (response.id) {
+        if (response.user.id) {
           $rootScope.isLogged = true;
           $rootScope.hasLoggedUser = response;
           //用户未登录状态
