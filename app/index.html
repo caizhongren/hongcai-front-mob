@@ -34,16 +34,19 @@
   <!-- endbuild -->
 </head>
 
-<body class="bg-offWhite" ng-app="p2pSiteMobApp">
+<body class="bg-White padding-0" ng-app="p2pSiteMobApp">
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
   <!-- Add your site or application content here -->
+  <div class="padding-0">
     <section ui-view="header"></section>
     <section ui-view autoscroll="true"></section>
     <section ui-view="footer"></section>
     <section ui-view="landingPage"></section>
+  </div>
+
 
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
   <!--      <script>
