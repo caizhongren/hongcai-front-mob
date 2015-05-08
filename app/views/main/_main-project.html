@@ -2,7 +2,7 @@
 <section ng-if="tab.title==='7日理财'" ng-include src='"views/main/_main-project-template.html"'>
 </section>
 <!-- 1-6月理财 Tab 模块-->
-<section ng-if="tab.title==='1-6月理财'" ng-init="toggle.activeSubTab=0;">
+<section ng-if="tab.title==='1-6月理财'" ng-init="toggle.activeSubTab=2;">
   <ul class="main-tab3 nav-ul columns twelve" style="margin-top: -2rem;">
     <li class="columns margin-0 border-grey1-right padding-t-0p5 padding-b-0p5 ft-bule" ng-class="{active: toggle.activeSubTab===$index}" ng-repeat="subTab in subTabs" ng-click="toggle.switchSubTab($index)">{{subTab.title}}</li>
   </ul>

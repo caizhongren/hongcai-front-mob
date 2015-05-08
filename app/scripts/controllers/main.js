@@ -43,9 +43,11 @@ angular.module('p2pSiteMobApp')
     $scope.toggle.switchTab = function(tabIndex) {
       $scope.toggle.activeTab = tabIndex;
       var type = tabIndex + 1;
-      $scope.switchFundsProjects(type);
+      if (tabIndex !== 1 ) {
+        $scope.switchFundsProjects(type);
+      }
       //初始化第二层Tab数据
-      tabIndex === 1?$scope.toggle.switchSubTab(2):'';
+      tabIndex === 1 ? $scope.toggle.switchSubTab(2) : '';
     };
     $scope.toggle.switchSubTab = function(subTabIndex) {
       $scope.toggle.activeSubTab = subTabIndex;
