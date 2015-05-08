@@ -7,17 +7,33 @@
  * Controller of the p2pSiteMobApp
 + */
 angular.module('p2pSiteMobApp')
-  .controller('MainCtrl', ['$scope', '$state', 'projects', 'fundsProjects', function ($scope, $state, projects, fundsProjects) {
+  .controller('MainCtrl', ['$scope', '$state', 'projects', 'fundsProjects', function($scope, $state, projects, fundsProjects) {
 
     // 获取宏金宝投资列表
     // $scope.projectsRecommendations = projects.$find('recommendations');
     // 获取宏金盈投资列表
     $scope.switchFundsProjects = function(type) {
-      fundsProjects.$find('recommendations', {productType: type}).$then(function(response) {
+      fundsProjects.$find('recommendations', {
+        productType: type
+      }).$then(function(response) {
         if (response.$status === 'ok') {
           $scope.recFundsProjects = response;
           // 可投资金额
           $scope.recFundsProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
+          switch (type) {
+            case 1:
+              $scope.stepShowMsg = '每7日';
+              break;
+            case 2:
+              $scope.stepShowMsg = '每月';
+              break;
+            case 3:
+              $scope.stepShowMsg = '每季度';
+              break;
+            case 4:
+              $scope.stepShowMsg = '每半年';
+              break;
+          }
         } else {
           // 访问接口失败；
         }
@@ -43,11 +59,11 @@ angular.module('p2pSiteMobApp')
     $scope.toggle.switchTab = function(tabIndex) {
       $scope.toggle.activeTab = tabIndex;
       var type = tabIndex + 1;
-      if (tabIndex !== 1 ) {
+      if (tabIndex !== 1) {
         $scope.switchFundsProjects(type);
       }
       //初始化第二层Tab数据
-      tabIndex === 1 ? $scope.toggle.switchSubTab(2) : '';
+      tabIndex === 1 ? $scope.toggle.switchSubTab(1) : '';
     };
     $scope.toggle.switchSubTab = function(subTabIndex) {
       $scope.toggle.activeSubTab = subTabIndex;
