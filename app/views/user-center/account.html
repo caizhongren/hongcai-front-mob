@@ -1,5 +1,5 @@
 <!-- 我的账户 -->
-<div class="account-userInfo">
+<div class="account-userInfo bg-white">
   <div>
     <p class="border-grey margin-0 text-center">尊敬的{{ userAccount.name }}<br>&nbsp;&nbsp;您的账户总资产{{ userAccount.tTotalAssets }}元</p>
     <ul class="account-tab1 nav-ul overflow-hid">
@@ -18,7 +18,7 @@
   <!-- 尚未开通易宝提示 -->
   <div ng-include src="'views/yeepayless-hint.html'" ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus === 0">
   </div>
-  <div class="text-center">
+  <div class="text-center overflow-hid">
     <a class="column" ui-sref="root.user-center.info">基本资料</a>
     <a class="column" ui-sref="root.user-center.bankcard">银行卡管理</a>
     <a class="column" ui-sref="root.user-center.deals">交易记录</a>

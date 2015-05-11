@@ -20,4 +20,5 @@ angular.module('p2pSiteMobApp')
         }
       });
     }*/
+    $rootScope.selectedSide =  'investments-stat';
   }]);
