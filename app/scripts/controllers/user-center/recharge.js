@@ -9,6 +9,7 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('RechargeCtrl', ['$scope', '$rootScope', 'HongcaiUser', function ($scope, $rootScope, HongcaiUser) {
+    $rootScope.selectedSide =  'account';
     if ($rootScope.hasLoggedUser) {
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/recharge').$then(function(response) {
         if (response.$status === 'ok') {
