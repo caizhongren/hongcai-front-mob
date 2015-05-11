@@ -41,6 +41,13 @@
     <span class="u-pull-left"><i class="fa fa-users ft-blue2"></i>&nbsp;参投人数:<strong class="ft-blue1">{{simpleFundsProject.investNumber || 0}}</strong>人</span>
     <span class="u-pull-right"><i class="fa fa-pie-chart ft-blue2"></i>&nbsp;可投金额<strong class="ft-blue1">{{fundsProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
   </div>
+  <!-- 投资模块 -->
+  <div>
+    <form>
+      <input type="number" min="100" step="100" placeholder="100起投">
+      <button class="button button-primary button-shadow">投资</button>
+    </form>
+  </div>
 </div>
 
 
