@@ -11,7 +11,7 @@ angular.module('p2pSiteMobApp')
   .controller('RechargeCtrl', ['$scope', '$rootScope', 'HongcaiUser', function ($scope, $rootScope, HongcaiUser) {
     $rootScope.selectedSide =  'account';
     if ($rootScope.hasLoggedUser) {
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/recharge').$then(function(response) {
+      HongcaiUser.$find($rootScope.hasLoggedUser.user.id + '/recharge').$then(function(response) {
         if (response.$status === 'ok') {
           // 获取用户充值信息
           $scope.simpleRecharge = response;
