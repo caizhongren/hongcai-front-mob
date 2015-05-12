@@ -138,16 +138,18 @@ p2pSiteMobApp
       })
       // 个人中心
       .state('root.user-center', {
-        abstract: true,
-        url: '/user-center',
+       /* abstract: true,
+        url: '/user-center',*/
         views: {
           'user-center': {
-            templateUrl: 'views/user-center/user-center.html',
+            templateUrl: 'views/user-center/user-center.html'/*,
             controller: 'UserCenterCtrl',
-            controllerUrl: 'scripts/controller/user-center/user-center'
+            controllerUrl: 'scripts/controller/user-center/user-center'*/
           },
           'user-center-toggle': {
-            templateUrl: 'views/user-center/user-center-toggle.html'
+            templateUrl: 'views/user-center/user-center-toggle.html',
+            controller: 'UserCenterCtrl',
+            controllerUrl: 'scripts/controller/user-center/user-center'
           }
         }
       })

@@ -9,16 +9,16 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('AccountCtrl', ['$scope', '$rootScope', '$state', 'HongcaiUser', 'restmod', 'DEFAULT_DOMAIN', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN) {
-/*    if ($rootScope.hasLoggedUser) {
+    if ($rootScope.hasLoggedUser) {
       HongcaiUser.$find($rootScope.hasLoggedUser.user.id + '/account').$then(function(response) {
         if (response.$status === 'ok') {
           // 获取用户金额信息
-          // $scope.userAccount = response;
+          $scope.userAccount = response;
         } else {
           // 获取信息失败。
         }
       });
-    }*/
+    }
 
     $rootScope.selectedSide =  'account';
 

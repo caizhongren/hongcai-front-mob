@@ -37,11 +37,15 @@ angular.module('p2pSiteMobApp')
     };
 
     // tab
-    $scope.toggle = {};
-    $scope.tabs = [{
-      title: '账户总览',
+    /*$scope.toggle = {};
+    $scope.subTabs = [{
+      title: '持有中',
     }, {
-      title: '我的投资'
+      title: '已回款',
     }];
+
+    $scope.toggle.switchSubTab = function(subTabIndex) {
+      $scope.toggle.activeSubTab = subTabIndex;
+    };*/
 
   }]);
