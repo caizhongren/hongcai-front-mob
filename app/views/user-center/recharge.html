@@ -1,7 +1,7 @@
 <div class="recharge bg-white">
   <h6 class="border-grey text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>充值</strong></h6>
   <div class="padding-2">
-    <form class="margin-b-1p5" name="rechargeForm">
+    <form class="margin-b-1p5" name="rechargeForm" ng-submit="recharge();">
       <label>账户余额:&nbsp;<span class="ft-blue">{{"17.26"}}</span>元</label>
       <input name="amount" type="text" class="u-full-width padding-t-1 padding-b-1 padding-l-1 padding-r-1 margin-t-1"  ng-model="rechargeAmount" ng-pattern="/^[0-9]*(\.[0-9]{1,2})?$/" ng-focus required placeholder="请输入充值金额">
       <div ng-show="rechargeForm.amount.$dirty && rechargeForm.amount.$error.pattern">
