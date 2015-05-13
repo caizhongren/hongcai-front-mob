@@ -138,8 +138,8 @@ p2pSiteMobApp
       })
       // 个人中心
       .state('root.user-center', {
-       /* abstract: true,
-        url: '/user-center',*/
+        abstract: true,
+        url: '/user-center',
         views: {
           'user-center': {
             templateUrl: 'views/user-center/user-center.html'/*,

@@ -1,29 +1,35 @@
 <!-- 我的账户 -->
 <div class="account-userInfo bg-white">
   <div>
-    <div class="border-blue margin-0 text-center bg-blue2 padding-1">您好，尊敬的&nbsp;<strong class="ft-blue">{{ userAccount.name }}</strong>&nbsp;!</div>
-    <div class="account-assets">
-      <span class="ft-blue bg-white border-ra-20">账户总资产</span><strong class="ft-white ft-2">{{ userAccount.tTotalAssets }}</strong>元
+    <div class="border-blue margin-0 text-center bg-blue2 padding-1">您好，亲爱的&nbsp;<strong class="ft-blue">{{ userAccount.name }}</strong>&nbsp;!</div>
+    <div class="account-bg padding-3 padding-l-4">
+      <span class="ft-blue bg-white border-ra-20 padding-1 padding-t-0p2 padding-b-0p2">账户总资产</span>&nbsp;&nbsp;&nbsp;<strong class="ft-white">{{ userAccount.tTotalAssets }}</strong><span class="ft-white">&nbsp;元</span>
     </div>
-    <ul class="account-tab1 nav-ul overflow-hid">
-      <li class="column border-grey text-center margin-0 padding-t-0p5 padding-b-0p5">可用余额： {{ userAccount.availableCash }}元</li>
-      <li class="column border-grey text-center margin-0 padding-t-0p5 padding-b-0p5">冻结资金： {{ userAccount.freezeCapital }}个</li>
-      <li class="column border-grey text-center margin-0 padding-t-0p5 padding-b-0p5">待收本金({{'3'}}笔)： {{ userAccount.waitingCapital }}元</li>
-      <li class="column border-grey text-center margin-0 padding-t-0p5 padding-b-0p5">待收收益 {{ userAccount.waitingProfit }}元</li>
-      <!-- <li class="column border-grey text-center margin-0 padding-t-0p5 padding-b-0p5">活动奖金 {{'103.72'}}元</li> -->
-    </ul>
+    <!-- 已开通易宝时展示 账户资金详情-->
+    <div ng-include src="'views/user-center/_account-assets-info.html'" ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus !== 0">
+    </div>
   </div>
-  <!-- 已开通易宝时展示 -->
-  <div ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus !== 0">
-    <button ui-sref="root.user-center.withdraw">提现</button>
-    <button ui-sref="root.user-center.recharge">充值</button>
+  <!-- 已开通易宝时展示 充值/提现提示-->
+  <div class="padding-l-2 padding-r-2 text-center overflow-hid margin-t-2" ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus !== 0">
+    <button class="margin-0 half u-pull-left border-blue bg-blue2 ft-blue ft-1p5" ui-sref="root.user-center.withdraw">提现</button>
+    <button class="margin-0 half u-pull-right bg-blue ft-white ft-1p5" ui-sref="root.user-center.recharge">充值</button>
   </div>
   <!-- 尚未开通易宝提示 -->
   <div ng-include src="'views/yeepayless-hint.html'" ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus === 0">
   </div>
-  <div class="text-center overflow-hid">
-    <a class="column" ui-sref="root.user-center.info">基本资料</a>
-    <a class="column" ui-sref="root.user-center.bankcard">银行卡管理</a>
-    <a class="column" ui-sref="root.user-center.deals">交易记录</a>
+  <!-- 细分页面入口 -->
+  <div class="overflow-hid padding-t-2 padding-b-2">
+    <a class="column border-grey padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5" ui-sref="root.user-center.info">
+      <span class="u-pull-left ft-grey"><i class="fa fa-info-circle ft-blue ft-1p8">&nbsp;&nbsp;</i>基本资料</span>
+      <span class="u-pull-right"><i class="fa fa-chevron-right ft-grey2 ft-2"></i></span>
+    </a>
+    <a class="column border-grey border-top-none padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5" ui-sref="root.user-center.bankcard">
+      <span class="u-pull-left ft-grey"><i class="fa fa-credit-card ft-blue ft-1p8">&nbsp;&nbsp;</i>银行卡管理</span>
+      <span class="u-pull-right"><i class="fa fa-chevron-right ft-grey2 ft-2"></i></span>
+    </a>
+    <a class="column border-grey border-top-none padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5" ui-sref="root.user-center.deals">
+      <span class="u-pull-left ft-grey"><i class="fa fa-list-ul ft-blue ft-1p8">&nbsp;&nbsp;</i>交易记录</span>
+      <span class="u-pull-right"><i class="fa fa-chevron-right ft-grey2 ft-2"></i></span>
+    </a>
   </div>
 </div>

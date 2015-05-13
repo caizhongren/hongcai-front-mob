@@ -1,24 +1,38 @@
 <!-- 我的投资 -->
 <div class="investment bg-white overflow-hid">
   <div>
-    <p class="border-grey margin-0 text-center">尊敬的{{ userAccount.name }}<br>&nbsp;&nbsp;您累计投资项目{{ userAccount.investAmount }}个</p>
-    <ul class="account-tab1 nav-ul overflow-hid">
-      <li class="column border-grey text-center margin-0 padding-t-0p5 padding-b-0p5">回款中项目： {{'5'}}个</li>
-      <li class="column border-grey text-center margin-0 padding-t-0p5 padding-b-0p5">已结清项目： {{'5'}}个</li>
-    </ul>
+    <div class="border-blue margin-0 text-center bg-blue2 padding-1">您好，亲爱的&nbsp;<strong class="ft-blue">{{ userAccount.name }}</strong>&nbsp;!</div>
+    <div class="account-bg padding-3 padding-l-4">
+      <span class="ft-blue bg-white border-ra-20 padding-1 padding-t-0p2 padding-b-0p2">累计投资项目</span>&nbsp;&nbsp;&nbsp;<strong class="ft-white">{{ userAccount.investAmount }}</strong><span class="ft-white">&nbsp;个</span>
+    </div>
+    <!-- 已开通易宝时展示 投资项目状态详情-->
+    <div ng-include src="'views/user-center/_investments-stat-info.html'" ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus !== 0">
+    </div>
   </div>
   <!-- 未支付订单提示 -->
-  <div class="margin-t-0p5 margin-b-0p5 text-center">
-    <div>您有订单尚未支付（5分钟后失效）<button>立即支付</button></div>
+  <div class="text-center padding-1 border-blue bg-blue2 ft-grey1 margin-t-2">
+    <small>您有订单尚未支付(5分钟后失效)</small>
+    <br>
+    <button class="margin-0 margin-t-0p5 bg-blue ft-white border-none ft-1p5">立即支付</button>
   </div>
 
   <!-- 尚未开通易宝提示 -->
   <div ng-include src="'views/yeepayless-hint.html'" ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus === 0">
   </div>
 
-  <div class="text-center">
-    <a class="column" ui-sref="root.user-center.credits">我的债权</a>
-    <a class="column" ui-sref="root.user-center.orders">我的订单</a>
-    <a class="column" ui-sref="root.user-center.payment-collection">回款计划</a>
+  <!-- 细分页面入口 -->
+  <div class="overflow-hid padding-t-2 padding-b-2">
+    <a class="column border-grey padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5" ui-sref="root.user-center.credits">
+      <span class="u-pull-left ft-grey"><i class="fa fa-money ft-blue ft-1p8">&nbsp;&nbsp;</i>我的债权</span>
+      <span class="u-pull-right"><i class="fa fa-chevron-right ft-grey2 ft-2"></i></span>
+    </a>
+    <a class="column border-grey border-top-none padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5" ui-sref="root.user-center.orders">
+      <span class="u-pull-left ft-grey"><i class="fa fa-shopping-cart  ft-blue ft-1p8">&nbsp;&nbsp;</i>我的订单</span>
+      <span class="u-pull-right"><i class="fa fa-chevron-right ft-grey2 ft-2"></i></span>
+    </a>
+    <a class="column border-grey border-top-none padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5" ui-sref="root.user-center.payment-collection">
+      <span class="u-pull-left ft-grey"><i class="fa fa-list-ol ft-blue ft-1p8">&nbsp;&nbsp;</i>回款计划</span>
+      <span class="u-pull-right"><i class="fa fa-chevron-right ft-grey2 ft-2"></i></span>
+    </a>
   </div>
 </div>
