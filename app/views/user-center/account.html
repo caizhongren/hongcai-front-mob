@@ -1,7 +1,10 @@
 <!-- 我的账户 -->
 <div class="account-userInfo bg-white">
   <div>
-    <p class="border-grey margin-0 text-center">尊敬的{{ userAccount.name }}<br>&nbsp;&nbsp;您的账户总资产{{ userAccount.tTotalAssets }}元</p>
+    <div class="border-blue margin-0 text-center bg-blue2 padding-1">您好，尊敬的&nbsp;<strong class="ft-blue">{{ userAccount.name }}</strong>&nbsp;!</div>
+    <div class="account-assets">
+      <span class="ft-blue bg-white border-ra-20">账户总资产</span><strong class="ft-white ft-2">{{ userAccount.tTotalAssets }}</strong>元
+    </div>
     <ul class="account-tab1 nav-ul overflow-hid">
       <li class="column border-grey text-center margin-0 padding-t-0p5 padding-b-0p5">可用余额： {{ userAccount.availableCash }}元</li>
       <li class="column border-grey text-center margin-0 padding-t-0p5 padding-b-0p5">冻结资金： {{ userAccount.freezeCapital }}个</li>
