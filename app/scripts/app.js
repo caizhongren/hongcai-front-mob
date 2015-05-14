@@ -342,9 +342,10 @@ p2pSiteMobApp
       $rootScope.showMe = false;
       var checkModel = restmod.model(DEFAULT_DOMAIN + '/users');
       checkModel.$find('checkSession').$then(function(response) {
-        if (response.user.id) {
+        if (response.user) {
           $rootScope.isLogged = true;
           $rootScope.hasLoggedUser = response;
+          $rootScope.securityStatus = response.securityStatus;
           //用户未登录状态
         } else if(response.ret === -1) {
           $rootScope.isLogged = false;
