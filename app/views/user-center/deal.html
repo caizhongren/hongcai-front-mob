@@ -1,18 +1,25 @@
-<h4>交易记录</h4>
-<hr>
-<table>
-  <thead>
-    <th>时间</th>
-    <th>交易类型</th>
-    <th>交易金额(元)</th>
-    <th>账户现金(元)</th>
-  </thead>
-  <tbody>
-    <tr ng-repeat="">
-      <td>{{'2015-04-24 10:00:00'}}</td>
-      <td>{{'充值'}}</td>
-      <td>{{'+100.00'}}</td>
-      <td>{{'100.00'}}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="deal bg-white">
+  <h6 class="border-grey text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>交易记录</strong></h6>
+  <div class="padding-2">
+    <table>
+      <thead class="bg-blue2">
+        <th class="ft-grey3">时间</th>
+        <th class="ft-grey3">交易类型</th>
+        <th class="ft-grey3">交易金额(元)</th>
+        <th class="ft-grey3">账户现金(元)</th>
+      </thead>
+      <tbody>
+        <!-- <tr ng-repeat=""> -->
+        <tr>
+          <td>{{'2015-04-24 10:00:00'}}</td>
+          <td>{{'充值'}}</td>
+          <td><strong class="ft-orange">{{'+100.00'}}</strong></td>
+          <td><strong class="ft-orange">{{'100.00'}}</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+

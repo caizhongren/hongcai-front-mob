@@ -3,5 +3,5 @@
   <li class="column border-grey margin-0 padding-0p5 ft-grey1">冻结资金&nbsp;<span class="ft-orange">{{ userAccount.freezeCapital }}</span>&nbsp;元</li>
   <li class="column border-grey margin-0 padding-0p5 ft-grey1 border-right-none border-top-none">待收本金&nbsp;<span class="ft-orange">{{ userAccount.waitingCapital }}</span>&nbsp;元</li>
   <li class="column border-grey margin-0 padding-0p5 ft-grey1 border-top-none">待收收益&nbsp;<span class="ft-orange">{{ userAccount.waitingProfit }}</span>&nbsp;元</li>
-  <li class="column border-grey margin-0 padding-0p5 ft-grey1 border-top-none" style="width: 100%;">活动奖金 &nbsp;<span class="ft-orange">{{'103.72'}}</span>&nbsp;元</li>
+  <li class="column border-grey margin-0 padding-0p5 ft-grey1 border-top-none" style="width: 100%;" ng-if="userAccount.reward">活动奖金 &nbsp;<span class="ft-orange">{{ userAccount.reward }}</span>&nbsp;元</li>
 </ul>
