@@ -8,11 +8,11 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('FundsProjectDetailCtrl', ['$scope', '$state', '$stateParams', 'fundsProjects', function($scope, $state, $stateParams, fundsProjects) {
+  .controller('FundsProjectDetailCtrl', ['$scope', '$state', '$rootScope', '$stateParams', 'fundsProjects', 'orders', 'restmod', 'DEFAULT_DOMAIN', function($scope, $state, $rootScope, $stateParams, fundsProjects, orders, restmod, DEFAULT_DOMAIN) {
     // 宏金盈详情页面
     var number = $stateParams.number;
     if (!number) {
-      $state.go('root.project-list');
+      $state.go('root.main');
     }
     // simple project
     fundsProjects.$find(number).$then(function(response) {
@@ -21,7 +21,7 @@ angular.module('p2pSiteMobApp')
         $scope.simpleFundsProject = response;
         // 可投资金额
         $scope.fundsProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
-        // 当status===1可融资状态的时候，判断invPlanFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。
+        // 当status===1可融资状态的时候，判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。
         if ($scope.simpleFundsProject.status === 1) {
           if ($rootScope.account) {
             // 用户可投资金额
@@ -57,24 +57,73 @@ angular.module('p2pSiteMobApp')
       4: '还款中',
       5: '还款完成'
     };
+    $scope.checkLargeUserCanAmount = function(simpleFundsProject) {
+      if ($rootScope.account) {
+        if ($rootScope.account.balance < simpleFundsProject.investAmount) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    };
+
+    $scope.checkStepAmount = function(simpleFundsProject) {
+      if (simpleFundsProject.investAmount >= simpleFundsProject.increaseAmount) {
+        if (simpleFundsProject.investAmount % simpleFundsProject.increaseAmount === 0) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    };
+
+    $scope.checkAutoTransfer = function(simpleFundsProject) {
+      if ($scope.invPlanFlag !== 3) {
+        $scope.simpleFundsProject.isRepeatFlag = false;
+        simpleFundsProject.isRepeatFlag = false;
+        $scope.toAutoTransfer();
+      }
+    };
 
     $scope.toInvest = function(simpleFundsProject) {
-      // if (simpleFundsProject.isRepeatFlag && $scope.invPlanFlag === 3) {
-      //   $scope.isRepeat = 1;
-      // } else {
-      //   $scope.isRepeat = 2;
-      // }
-      // $scope.invPlanAmount = simpleFundsProject.invPlanAmount;
-      // if ($scope.invPlanFlag === 0) {
-      //   $scope.toRealLogin();
-      // } else if ($scope.invPlanFlag === 1) {
-      //   $scope.toRealNameAuth();
-      //   // 跳到实名认证页面
-      // } else if ($scope.checkLargeUserCanAmount(simpleFundsProject)) {
-      //   $scope.toRecharge();
-      // } else if ($scope.invPlanFlag === 2 || $scope.invPlanFlag === 3) {
+      if (simpleFundsProject.isRepeatFlag && $scope.fundsFlag === 3) {
+        $scope.isRepeat = 1;
+      } else {
+        $scope.isRepeat = 2;
+      }
+      $scope.investAmount = simpleFundsProject.investAmount;
+      if ($scope.fundsFlag === 0) {
+        $state.go('root.login');
+      } else if ($scope.fundsFlag === 1) {
+        // 需要跳动实名认证页面
+      } else if ($scope.checkLargeUserCanAmount(simpleFundsProject)) {
+        $state.go('root.user-center.recharge');
+      } else if ($scope.fundsFlag === 2 || $scope.fundsFlag === 3) {
+        // console.log($rootScope.hasLoggedUser);
+        // how to bulid investment path restmod.model
+        // restmod.model(DEFAULT_DOMAIN + '/projects')
+        restmod.model(DEFAULT_DOMAIN + '/fundsProjects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
+        // fundsProjects.$find(number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
+          amount: simpleFundsProject.investAmount,
+          projectId: simpleFundsProject.id,
+          isRepeat: $scope.isRepeat
+        }).$then(function(response) {
+          console.log(response);
+          if (response.$status === 'ok') {
+            // restmod.model(DEFAULT_DOMAIN + '/orders/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/payment').$create({
+            // // orders.$find(response.number + 'users' + $rootScope.hasLoggedUser.id + 'payment').$create({
+            //   projectId: simpleFundsProject.projectId,
+            //   orderId: orderId
+            // }).$then(function(response) {
+
+            // })
+          }
+        })
+      }
       //   ProjectService.isFundsAvailableInvest.get({
-      //     amount: simpleFundsProject.invPlanAmount,
+      //     amount: simpleFundsProject.investAmount,
       //     projectId: simpleFundsProject.id,
       //     isRepeat: $scope.isRepeat
       //   }, function(response) {

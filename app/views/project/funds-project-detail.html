@@ -40,10 +40,6 @@
     <a>《宏金盈协议范本》</a>
   </div>
 
-  <div class="overflow-hid bg-blue2 padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 border-blue1 ft-1">
-    <span class="u-pull-left"><i class="fa fa-users ft-blue2"></i>&nbsp;参投人数:<strong class="ft-blue1">{{simpleFundsProject.investNumber || 0}}</strong>人</span>
-    <span class="u-pull-right"><i class="fa fa-pie-chart ft-blue2"></i>&nbsp;可投金额<strong class="ft-blue1">{{fundsProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
-  </div>
   <!-- 投资模块 -->
   <div ng-include src="'views/project/_funds-project-investment.html'">
   </div>

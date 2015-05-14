@@ -355,8 +355,9 @@ p2pSiteMobApp
       checkModel.$find('checkSession').$then(function(response) {
         if (response.user) {
           $rootScope.isLogged = true;
-          $rootScope.hasLoggedUser = response;
+          $rootScope.hasLoggedUser = response.user;
           $rootScope.securityStatus = response.securityStatus;
+          $rootScope.account = response.account;
           //用户未登录状态
         } else if(response.ret === -1) {
           $rootScope.isLogged = false;
