@@ -15,7 +15,17 @@ angular.module('p2pSiteMobApp')
         if (response.$status === 'ok') {
           // 获取用户充值信息
           $scope.simpleWithdraw = response;
-          console.log($scope.simpleWithdraw);
+          $scope.withdraw = function(amount) {
+            /*$scope.msg = '3';
+            $scope.withdrawAmount = amount;
+            $alert({
+              scope: $scope,
+              template: 'views/modal/alertYEEPAY.html',
+              show: true
+            });*/
+
+            window.open('/#/yeepay-transfer/withdraw/' + amount);
+          }
         } else {
           // 获取信息失败。
         }
