@@ -41,7 +41,7 @@ angular.module('p2pSiteMobApp')
       // var
       if ($rootScope.hasLoggedUser) {
         // TODO  登出的model在这里不太好吧。
-        var logoutModel = restmod.model(DEFAULT_DOMAIN + '/users/' + $rootScope.hasLoggedUser.user.id + '/logout');
+        var logoutModel = restmod.model(DEFAULT_DOMAIN + '/users/' + $rootScope.hasLoggedUser.id + '/logout');
         logoutModel.$create().$then(function(response) {
           if (response.ret === 1) {
             $rootScope.hasLoggedUser = null;
