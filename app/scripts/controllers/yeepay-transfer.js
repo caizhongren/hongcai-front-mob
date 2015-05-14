@@ -27,7 +27,7 @@ angular.module('p2pSiteMobApp')
 
     $scope.type = $stateParams.type;
     $scope.number = $stateParams.number;
-    $scope.HongcaiUser = DEFAULT_DOMAIN + '/users/' + $rootScope.hasLoggedUser.user.id;
+    $scope.HongcaiUser = DEFAULT_DOMAIN + '/users/' + $rootScope.hasLoggedUser.id;
 
     if ($scope.type === 'recharge') {
       //充值
