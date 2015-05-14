@@ -9,11 +9,13 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('WithdrawCtrl', ['$scope','$rootScope','HongcaiUser',function ($scope, $rootScope, HongcaiUser) {
+    $rootScope.selectedSide =  'account';
     if ($rootScope.hasLoggedUser) {
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/withdraw').$then(function(response) {
+      HongcaiUser.$find($rootScope.hasLoggedUser.user.id + '/account').$then(function(response) {
         if (response.$status === 'ok') {
           // 获取用户充值信息
           $scope.simpleWithdraw = response;
+          console.log($scope.simpleWithdraw);
         } else {
           // 获取信息失败。
         }

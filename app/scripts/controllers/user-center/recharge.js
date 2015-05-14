@@ -23,7 +23,6 @@ angular.module('p2pSiteMobApp')
               if (response.$status === 'ok') {
                 // 获取用户充值信息
                 $scope.simpleRecharge = response;
-                alert('充值成功');
               } else {
                   // 获取信息失败。
               }
