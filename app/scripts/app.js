@@ -334,18 +334,7 @@ p2pSiteMobApp
 }])
   .run(function($rootScope, DEFAULT_DOMAIN, $state, $location, $http, restmod) {
     var routespermission = [
-      '/account',
-      '/credits',
-      '/investments-stat',
-      '/order',
-      '/withdraw',
-      '/bankcard',
-      '/deals',
-      '/messages',
-      '/recharge',
-      '/orders',
-      '/credits',
-      '/info'
+      '/user-center'
     ];
     var titleMap = {'issue': '常见问题', 'about': '帮助中心', 'safe': '安全保障', 'account': '账户总览'};
     $rootScope.$on('$stateChangeStart', function() {
