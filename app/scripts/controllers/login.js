@@ -39,7 +39,7 @@ angular.module('p2pSiteMobApp')
           $scope.msg = response.msg;
         } else {
           $rootScope.isLogged = true;
-          $rootScope.hasLoggedUser = response;
+          $rootScope.hasLoggedUser = response.user;
           $state.go('root.main');
         }
       });
