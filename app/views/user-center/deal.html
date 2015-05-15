@@ -18,7 +18,7 @@
       <tbody>
         <tr ng-repeat="item in deals.data">
           <td>{{item.createTime | date: 'yyyy-MM-dd'}}</td>
-          <td>{{'充值'}}</td>
+          <td>{{ dealMap[item.type] }}</td>
           <td><strong class="ft-orange">{{ item.description }}</strong></td>
           <td class="ft-orange">{{item.getAmount |currency:"":1 || 0}}</td>
           <td class="ft-orange">{{item.payAmount |currency:"":1 || 0}}</td>
@@ -27,7 +27,7 @@
       </tbody>
     </table>
     <div class="text-center">
-      <input type="button" class="button button-primary" value="加载更多">
+      <input type="button" class="button button-primary" ng-click="loadDealMore();" value="加载更多">
     </div>
   </div>
 
