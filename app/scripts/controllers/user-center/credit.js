@@ -25,7 +25,7 @@ angular.module('p2pSiteMobApp')
     };
 
     if ($rootScope.hasLoggedUser) {
-      HongcaiUser.$find($rootScope.hasLoggedUser.user.id + '/credits').$then(function(response) {
+      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/credits').$then(function(response) {
         if (response.$status === 'ok') {
           $scope.simpleCredits = response;
         } else {
