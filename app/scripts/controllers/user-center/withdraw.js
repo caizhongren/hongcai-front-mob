@@ -15,14 +15,14 @@ angular.module('p2pSiteMobApp')
         if (response.$status === 'ok') {
           // 获取用户充值信息
           $scope.simpleWithdraw = response;
-          $scope.withdraw = function(amount) {
-            /*$scope.msg = '3';
-            $scope.withdrawAmount = amount;
-            $alert({
-              scope: $scope,
-              template: 'views/modal/alertYEEPAY.html',
-              show: true
-            });*/
+          $scope.toWithdraw = function(simpleWithdraw) {
+            // $scope.msg = '3';
+            var amount =  simpleWithdraw.amount;
+            // $alert({
+            //   scope: $scope,
+            //   template: 'views/modal/alertYEEPAY.html',
+            //   show: true
+            // });
 
             window.open('/#/yeepay-transfer/withdraw/' + amount);
           }
@@ -31,4 +31,13 @@ angular.module('p2pSiteMobApp')
         }
       });
     }
+
+    $scope.checkMaxAmount = function(simpleWithdraw) {
+      if (simpleWithdraw.amount > simpleWithdraw.availableCash) {
+        return true;
+      } else {
+        return false;
+      }
+
+    };
   }]);

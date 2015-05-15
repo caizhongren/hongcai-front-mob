@@ -1,6 +1,7 @@
 'use strict';
 angular.module('p2pSiteMobApp')
   .controller('YeepayTransferCtrl', ['$scope', '$state', '$rootScope', '$stateParams', 'restmod', 'DEFAULT_DOMAIN', 'config', function($scope, $state, $rootScope, $stateParams, restmod, DEFAULT_DOMAIN, config) {
+
     function newForm() {
       var f = document.createElement('form');
       document.body.appendChild(f);
@@ -30,7 +31,6 @@ angular.module('p2pSiteMobApp')
     // 跳转较慢并且认证用户失败的判断。
     if ($rootScope.hasLoggedUser) {
       $scope.HongcaiUser = DEFAULT_DOMAIN + '/users/' + $rootScope.hasLoggedUser.id;
-
       if ($scope.type === 'recharge') {
         //充值
         var rechargeModel = restmod.model($scope.HongcaiUser + '/recharge');
@@ -69,6 +69,6 @@ angular.module('p2pSiteMobApp')
         });
       }
     } else {
-      $state.go('root.login');
+      // $state.go('root.login');
     }
   }]);
