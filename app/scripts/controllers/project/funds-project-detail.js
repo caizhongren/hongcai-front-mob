@@ -80,10 +80,10 @@ angular.module('p2pSiteMobApp')
     };
 
     $scope.checkAutoTransfer = function(simpleFundsProject) {
-      if ($scope.invPlanFlag !== 3) {
+      if ($scope.fundsFlag !== 3) {
         $scope.simpleFundsProject.isRepeatFlag = false;
         simpleFundsProject.isRepeatFlag = false;
-        $scope.toAutoTransfer();
+        $scope.msg = "您还没有开通自动续投";
       }
     };
 
@@ -111,14 +111,12 @@ angular.module('p2pSiteMobApp')
           isRepeat: $scope.isRepeat
         }).$then(function(response) {
           console.log(response);
-          if (response.$status === 'ok') {
-            // restmod.model(DEFAULT_DOMAIN + '/orders/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/payment').$create({
-            // // orders.$find(response.number + 'users' + $rootScope.hasLoggedUser.id + 'payment').$create({
-            //   projectId: simpleFundsProject.projectId,
-            //   orderId: orderId
-            // }).$then(function(response) {
-
-            // })
+          // 重复下单后，response.number为undefined
+          if (response.$status === 'ok' && response.number !== null && response.number !== undefined) {
+            restmod.model(DEFAULT_DOMAIN + '/orders/' + response.number + '/users/' + $rootScope.hasLoggedUser.id + '/payment').$create().$then(function(response) {
+              console.log('订单成功');
+              // $state.go('');
+            })
           }
         })
       }
