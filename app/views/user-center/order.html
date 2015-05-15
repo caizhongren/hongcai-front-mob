@@ -1,1 +1,22 @@
-<h3>This is orders views</h3>
+<div class="order bg-white">
+  <h6 class="border-grey text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>我的订单</strong></h6>
+  <!-- 无订单时 -->
+  <div ng-include src="'views/user-center/_order-none.html'" ng-if="!simpleOrder.length"></div>
+  <!-- 订单列表 -->
+  <div class="order-item border-grey2-bottom margin-b-2" ng-if="simpleOrder.length">
+    <div ng-repeat="simpleOrder">
+      <div class="border-orange padding-l-2 padding-r-2 padding-t-1 padding-b-1 overflow-hid bg-yellow1">
+        <span class="u-pull-left ft-grey3">订单号：{{'254687154578787'}}</span>
+        <span class="u-pull-right ft-grey2"><i class="fa fa-history"></i>{{'未支付'}}</span>
+      </div>
+      <div class="u-full-width padding-2 overflow-hid">
+        <span class="u-pull-left">{{'七日盈150415期'}}</span>
+        <span class="u-pull-right">投资金额：<strong class="ft-orange">{{'5,000'}}</strong>元</span>
+      </div>
+    </div>
+    
+  </div>
+
+</div>
+
+
