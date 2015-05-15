@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('FundsProjectDetailCtrl', ['$scope', '$state', '$rootScope', '$stateParams', 'fundsProjects', 'restmod', 'DEFAULT_DOMAIN', function($scope, $state, $rootScope, $stateParams, fundsProjects, restmod, DEFAULT_DOMAIN) {
+  .controller('FundsProjectDetailCtrl', ['$scope', '$state', '$rootScope', '$stateParams', 'fundsProjects', 'restmod', 'DEFAULT_DOMAIN', 'config', function($scope, $state, $rootScope, $stateParams, fundsProjects, restmod, DEFAULT_DOMAIN, config) {
     // 宏金盈详情页面
     var number = $stateParams.number;
     if (!number) {
@@ -86,6 +86,29 @@ angular.module('p2pSiteMobApp')
         $scope.msg = "您还没有开通自动续投";
       }
     };
+    function newForm() {
+      var f = document.createElement('form');
+      document.body.appendChild(f);
+      f.method = 'post';
+      // f.target = '_blank';
+      return f;
+    }
+
+    function createElements(eForm, eName, eValue) {
+      var e = document.createElement('input');
+      eForm.appendChild(e);
+      e.type = 'text';
+      e.name = eName;
+      if (!document.all) {
+        e.style.display = 'none';
+      } else {
+        e.style.display = 'block';
+        e.style.width = '0px';
+        e.style.height = '0px';
+      }
+      e.value = eValue;
+      return e;
+    }
 
     $scope.toInvest = function(simpleFundsProject) {
       if (simpleFundsProject.isRepeatFlag && $scope.fundsFlag === 3) {
@@ -113,7 +136,15 @@ angular.module('p2pSiteMobApp')
           if (response.$status === 'ok') {
             if (response.number !== null && response.number !== undefined) {
               restmod.model(DEFAULT_DOMAIN + '/orders/' + response.number + '/users/' + $rootScope.hasLoggedUser.id + '/payment').$create().$then(function(response) {
-                console.log('订单成功');
+                if (response.$status === 'ok') {
+                  var req = response.data.req;
+                  var sign = response.data.sign;
+                  var _f = newForm(); //创建一个form表单
+                  createElements(_f, 'req', req); //创建form中的input对象
+                  createElements(_f, 'sign', sign);
+                  _f.action = config.YEEPAY_ADDRESS + 'toTransfer'; //form提交地址
+                  _f.submit(); //提交
+                }
                 // $state.go('');
               })
             } else if (response.ret === -1) {
