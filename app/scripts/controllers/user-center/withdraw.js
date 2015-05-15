@@ -8,8 +8,8 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('WithdrawCtrl', ['$scope','$rootScope','HongcaiUser',function ($scope, $rootScope, HongcaiUser) {
-    $rootScope.selectedSide =  'account';
+  .controller('WithdrawCtrl', ['$scope', '$rootScope', 'HongcaiUser', function($scope, $rootScope, HongcaiUser) {
+    $rootScope.selectedSide = 'account';
     if ($rootScope.hasLoggedUser) {
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/account').$then(function(response) {
         if (response.$status === 'ok') {
@@ -17,7 +17,7 @@ angular.module('p2pSiteMobApp')
           $scope.simpleWithdraw = response;
           $scope.toWithdraw = function(simpleWithdraw) {
             // $scope.msg = '3';
-            var amount =  simpleWithdraw.amount;
+            var amount = simpleWithdraw.amountDraw;
             // $alert({
             //   scope: $scope,
             //   template: 'views/modal/alertYEEPAY.html',
