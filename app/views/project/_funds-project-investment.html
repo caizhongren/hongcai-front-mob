@@ -66,7 +66,7 @@
       <span class="u-pull-right"><i class="fa fa-pie-chart ft-blue2"></i>&nbsp;可投金额<strong class="ft-blue1">{{fundsProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
     </div>
     <form name="investForm" class="investForm overflow-hid" ng-submit="toInvest(simpleFundsProject)">
-      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="msg && !!investForm.investAmount.$error.required">
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="msg">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>{{msg}}</span>
       </div>
       <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="investForm.investAmount.$error.number">
@@ -98,7 +98,7 @@
       <span class="u-pull-right"><i class="fa fa-pie-chart ft-blue2"></i>&nbsp;可投金额<strong class="ft-blue1">{{fundsProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
     </div>
     <form name="investForm" class="investForm overflow-hid" ng-submit="toInvest(simpleFundsProject)">
-      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="msg && !!investForm.investAmount.$error.required">
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="msg">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>{{msg}}</span>
       </div>
       <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="investForm.investAmount.$error.number">
