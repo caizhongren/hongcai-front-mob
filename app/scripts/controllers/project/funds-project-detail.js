@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('FundsProjectDetailCtrl', ['$scope', '$state', '$rootScope', '$stateParams', 'fundsProjects', 'orders', 'restmod', 'DEFAULT_DOMAIN', function($scope, $state, $rootScope, $stateParams, fundsProjects, orders, restmod, DEFAULT_DOMAIN) {
+  .controller('FundsProjectDetailCtrl', ['$scope', '$state', '$rootScope', '$stateParams', 'fundsProjects', 'restmod', 'DEFAULT_DOMAIN', function($scope, $state, $rootScope, $stateParams, fundsProjects, restmod, DEFAULT_DOMAIN) {
     // 宏金盈详情页面
     var number = $stateParams.number;
     if (!number) {
@@ -104,7 +104,7 @@ angular.module('p2pSiteMobApp')
         // how to bulid investment path restmod.model
         // restmod.model(DEFAULT_DOMAIN + '/projects')
         restmod.model(DEFAULT_DOMAIN + '/fundsProjects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
-        // fundsProjects.$find(number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
+          // fundsProjects.$find(number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
           amount: simpleFundsProject.investAmount,
           projectId: simpleFundsProject.id,
           isRepeat: $scope.isRepeat
