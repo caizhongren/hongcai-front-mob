@@ -80,10 +80,10 @@ angular.module('p2pSiteMobApp')
     };
 
     $scope.checkAutoTransfer = function(simpleFundsProject) {
-      if ($scope.invPlanFlag !== 3) {
+      if ($scope.fundsFlag !== 3) {
         $scope.simpleFundsProject.isRepeatFlag = false;
         simpleFundsProject.isRepeatFlag = false;
-        $scope.toAutoTransfer();
+        $scope.msg = "您还没有开通自动续投";
       }
     };
 
@@ -101,7 +101,6 @@ angular.module('p2pSiteMobApp')
       } else if ($scope.checkLargeUserCanAmount(simpleFundsProject)) {
         $state.go('root.user-center.recharge');
       } else if ($scope.fundsFlag === 2 || $scope.fundsFlag === 3) {
-        // console.log($rootScope.hasLoggedUser);
         // how to bulid investment path restmod.model
         // restmod.model(DEFAULT_DOMAIN + '/projects')
         restmod.model(DEFAULT_DOMAIN + '/fundsProjects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
@@ -110,48 +109,21 @@ angular.module('p2pSiteMobApp')
           projectId: simpleFundsProject.id,
           isRepeat: $scope.isRepeat
         }).$then(function(response) {
-          console.log(response);
+          // 重复下单后，response.number为undefined
           if (response.$status === 'ok') {
-            // restmod.model(DEFAULT_DOMAIN + '/orders/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/payment').$create({
-            // // orders.$find(response.number + 'users' + $rootScope.hasLoggedUser.id + 'payment').$create({
-            //   projectId: simpleFundsProject.projectId,
-            //   orderId: orderId
-            // }).$then(function(response) {
-
-            // })
+            if (response.number !== null && response.number !== undefined) {
+              restmod.model(DEFAULT_DOMAIN + '/orders/' + response.number + '/users/' + $rootScope.hasLoggedUser.id + '/payment').$create().$then(function(response) {
+                console.log('订单成功');
+                // $state.go('');
+              })
+            } else if (response.ret === -1) {
+              $scope.msg = response.msg;
+            }
+          } else {
+            $scope.msg = "服务器累瘫了，请稍微访问。";
           }
         })
       }
-      //   ProjectService.isFundsAvailableInvest.get({
-      //     amount: simpleFundsProject.investAmount,
-      //     projectId: simpleFundsProject.id,
-      //     isRepeat: $scope.isRepeat
-      //   }, function(response) {
-      //     if (response.ret === 1) {
-      //       $state.go('root.invplan-verify', {
-      //         projectId: response.data.projectId,
-      //         amount: response.data.amount,
-      //         isRepeat: response.data.isRepeat
-      //       });
-      //     } else {
-      //       if (response.code === -1027) {
-      //         $scope.msg = '抱歉，已经卖光了。';
-      //         $modal({
-      //           scope: $scope,
-      //           template: 'views/modal/alert-dialog.html',
-      //           show: true
-      //         });
-      //       } else {
-      //         $scope.msg = response.msg;
-      //         $modal({
-      //           scope: $scope,
-      //           template: 'views/modal/alert-dialog.html',
-      //           show: true
-      //         });
-      //       }
-      //     }
-      //   });
-      // }
     };
 
   }]);
