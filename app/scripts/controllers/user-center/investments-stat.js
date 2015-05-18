@@ -25,10 +25,11 @@ angular.module('p2pSiteMobApp')
   .controller('InvestmentsStatCtrl', ['$scope', '$rootScope', '$state', 'HongcaiUser', 'restmod', 'DEFAULT_DOMAIN', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN) {
     if ($rootScope.hasLoggedUser) {
       // HongcaiUser.$find($rootScope.hasLoggedUser.id + '/investments/stat').$then(function(response) {
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/account').$then(function(response) {
+        var investmentsModel = restmod.model(DEFAULT_DOMAIN + '/users/' + $rootScope.hasLoggedUser.id + '/investments/stat')
+      investmentsModel.$create().$then(function(response) {
         if (response.$status === 'ok') {
           // 获取用户金额信息
-          $scope.userAccount = response;
+          $scope.investmentsStat = response;
         } else {
           // 获取信息失败。
         }
@@ -52,13 +53,5 @@ angular.module('p2pSiteMobApp')
         });
       }
     };
-
-    // tab
-    $scope.toggle = {};
-    $scope.tabs = [{
-      title: '账户总览',
-    }, {
-      title: '我的投资'
-    }];
 
   }]);
