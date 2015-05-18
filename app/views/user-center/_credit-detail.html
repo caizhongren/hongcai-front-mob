@@ -1,21 +1,21 @@
 <div class="credit-item border-grey2-bottom margin-b-2">
   <div class="border-orange padding-l-2 padding-r-2 padding-t-1 padding-b-1 overflow-hid bg-yellow1">
-    <span class="u-pull-left">{{'七日盈20150228期'}}</span>
+    <span class="u-pull-left">{{ item.name }}</span>
     <span class="u-pull-right ft-grey2"><i class="fa fa-history"></i>{{'未自动续投'}}</span>
   </div>
   <div class="u-full-width padding-2 overflow-hid">
     <div class="credit-item-info u-pull-left text-left ft-1p4">
-      <strong class="ft-orange">{{'1,000'}}</strong>
+      <strong class="ft-orange">{{ item.transferableAmount |currency:"":1 || 0}}</strong>
       <br>
       <span class="ft-grey2">投资金额(元)</span>
     </div>
     <div class="credit-item-info u-pull-left text-left ft-1p4">
-      <strong class="ft-orange">{{'0'}}</strong>
+      <strong class="ft-orange">{{ item.profit - item.returnProfit |currency:"":1 || 0}}</strong>
       <br>
       <span class="ft-grey2">已收收益(元)</span>
     </div>
     <div class="credit-item-info u-pull-left text-left ft-1p4">
-      <strong class="ft-orange">{{'3.28'}}</strong>
+      <strong class="ft-orange">{{ item.returnProfit |currency:"":1 || 0}}</strong>
       <br>
       <span class="ft-grey2">待收金额(元)</span>
     </div>
