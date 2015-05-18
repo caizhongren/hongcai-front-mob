@@ -120,7 +120,7 @@ angular.module('p2pSiteMobApp')
       if ($scope.fundsFlag === 0) {
         $state.go('root.login');
       } else if ($scope.fundsFlag === 1) {
-        // 需要跳动实名认证页面
+        // 需要跳到实名认证页面
       } else if ($scope.checkLargeUserCanAmount(simpleFundsProject)) {
         $state.go('root.user-center.recharge');
       } else if ($scope.fundsFlag === 2 || $scope.fundsFlag === 3) {
@@ -151,7 +151,7 @@ angular.module('p2pSiteMobApp')
               $scope.msg = response.msg;
             }
           } else {
-            $scope.msg = "服务器累瘫了，请稍微访问。";
+            $scope.msg = "服务器累瘫了，请稍后访问。";
           }
         })
       }
