@@ -27,7 +27,7 @@ angular.module('p2pSiteMobApp')
             });*/
             $state.go('root.yeepay-transfer', {
               type: 'recharge',
-              number: '100'
+              number: amount
             });
             // window.open('/#/yeepay-transfer/recharge/' + amount);
           };

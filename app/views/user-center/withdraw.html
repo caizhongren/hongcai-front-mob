@@ -2,9 +2,9 @@
   <h6 class="border-grey text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>提现</strong></h6>
   <div class="padding-2">
     <form class="margin-b-1p5 ft-1p4" name="withdrawForm" ng-submit="toWithdraw(simpleWithdraw)">
-      <label>可用余额:&nbsp;<span class="ft-blue">{{ simpleWithdraw.balance }}</span>元</label>
+      <label>可用余额:&nbsp;<span class="ft-blue">{{ simpleWithdraw.availableCash }}</span>元</label>
       <label>手续费:&nbsp;<span class="ft-blue">2</span>元<span class="ft-grey3">(第三方支付收取)</span></label>
-      <label>可提现金额:&nbsp;<span class="ft-blue">{{ simpleWithdraw.availableCash }}</span>元</label>
+      <label>可提现金额:&nbsp;<span class="ft-blue">{{ availableCashRealNo }}</span>元</label>
       <div class="hint text-center bg-red1 box-shadow" ng-show="withdrawForm.amount.$dirty && withdrawForm.amount.$error.pattern">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入数字(最多精确到小数点后两位)</span>
       </div>

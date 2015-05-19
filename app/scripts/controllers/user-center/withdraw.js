@@ -15,6 +15,8 @@ angular.module('p2pSiteMobApp')
         if (response.$status === 'ok') {
           // 获取用户充值信息
           $scope.simpleWithdraw = response;
+          $scope.availableCash = $scope.simpleWithdraw.availableCash;
+          $scope.availableCashRealNo = $scope.availableCash >= 2 ? $scope.availableCash - 2 : 0;
           $scope.toWithdraw = function(simpleWithdraw) {
             // $scope.msg = '3';
             var amount = simpleWithdraw.amountDraw;
@@ -25,7 +27,7 @@ angular.module('p2pSiteMobApp')
             // });
             $state.go('root.yeepay-transfer', {
               type: 'withdraw',
-              number: '100'
+              number: amount
             });
             // window.open('/#/yeepay-transfer/withdraw/' + amount);
           }
