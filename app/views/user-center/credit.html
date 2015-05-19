@@ -4,7 +4,7 @@
   <ul class="account-tab1 nav-ul columns bg-white overflow-hid margin-0" ng-show="credits">
     <li class="column text-center margin-0 padding-t-0p5 padding-b-0p5" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
   </ul>
-  <div class="tab-content columns bg-white overflow-hid text-center" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" >
+  <div class="tab-content u-full-width bg-white overflow-hid text-center" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" >
     <div ng-repeat="item in credits.data" ng-include src='"views/user-center/_credit-detail.html"'>
     </div>
     <div class="text-center" ng-show="credits.data.length > 10">
