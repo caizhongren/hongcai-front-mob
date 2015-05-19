@@ -18,10 +18,17 @@ angular.module('p2pSiteMobApp')
       title: '已回款',
     }];
 
-    $rootScope.selectedSide =  'investments-stat';
+    $rootScope.selectedSide = 'investments-stat';
     $scope.page = 1;
     $scope.pageSize = 10;
 
+    if ($rootScope.hasLoggedUser) {
+      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/totalProfit').$then(function(response){
+        if (response.$status === 'ok') {
+          $scope.totalProfit = response;
+        }
+      });
+    }
     $scope.toggle.switchTab = function(tabIndex) {
       $scope.toggle.activeTab = tabIndex;
       if (tabIndex === 0) {

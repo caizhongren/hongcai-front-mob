@@ -1,7 +1,7 @@
 <div class="credit bg-white" ng-init="toggle.activeTab=0;" >
   <h6 class="border-grey text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>我的债权</strong></h6>
-  <div class="u-full-width bg-blue2 text-center padding-1 border-grey2-bottom">累计收益：<strong class="ft-blue">{{'17.26'}}</strong>元</div>
-  <ul class="account-tab1 nav-ul columns bg-white overflow-hid margin-0">
+  <div class="u-full-width bg-blue2 text-center padding-1 border-grey2-bottom">累计收益：<strong class="ft-blue">{{totalProfit.totalProfit}}</strong>元</div>
+  <ul class="account-tab1 nav-ul columns bg-white overflow-hid margin-0" ng-show="credits">
     <li class="column text-center margin-0 padding-t-0p5 padding-b-0p5" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
   </ul>
   <div class="tab-content columns bg-white overflow-hid text-center" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" >
