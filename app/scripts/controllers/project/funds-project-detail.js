@@ -137,8 +137,8 @@ angular.module('p2pSiteMobApp')
             if (response.number !== null && response.number !== undefined) {
               restmod.model(DEFAULT_DOMAIN + '/orders/' + response.number + '/users/' + $rootScope.hasLoggedUser.id + '/payment').$create().$then(function(response) {
                 if (response.$status === 'ok') {
-                  var req = response.data.req;
-                  var sign = response.data.sign;
+                  var req = response.req;
+                  var sign = response.sign;
                   var _f = newForm(); //创建一个form表单
                   createElements(_f, 'req', req); //创建form中的input对象
                   createElements(_f, 'sign', sign);
