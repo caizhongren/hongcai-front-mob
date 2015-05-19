@@ -8,8 +8,8 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RechargeCtrl', ['$scope', '$rootScope', 'HongcaiUser', 'restmod', 'DEFAULT_DOMAIN', function ($scope, $rootScope, HongcaiUser, restmod, DEFAULT_DOMAIN) {
-    $rootScope.selectedSide =  'account';
+  .controller('RechargeCtrl', ['$scope', '$rootScope', 'HongcaiUser', '$state', 'restmod', 'DEFAULT_DOMAIN', function($scope, $rootScope, HongcaiUser, $state, restmod, DEFAULT_DOMAIN) {
+    $rootScope.selectedSide = 'account';
     $scope.rechargeAmount = '';
     if ($rootScope.hasLoggedUser) {
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/account').$then(function(response) {
@@ -25,16 +25,15 @@ angular.module('p2pSiteMobApp')
               template: 'views/modal/alertYEEPAY.html',
               show: true
             });*/
-            window.open('/#/yeepay-transfer/recharge/' + amount);
+            $state.go('root.yeepay-transfer', {
+              type: 'recharge',
+              number: '100'
+            });
+            // window.open('/#/yeepay-transfer/recharge/' + amount);
           };
-
-
-
         } else {
           // 获取信息失败。
         }
       });
-
-
     }
   }]);

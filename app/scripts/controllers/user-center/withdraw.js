@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('WithdrawCtrl', ['$scope', '$rootScope', 'HongcaiUser', function($scope, $rootScope, HongcaiUser) {
+  .controller('WithdrawCtrl', ['$scope', '$rootScope', '$state', 'HongcaiUser', function($scope, $rootScope, $state, HongcaiUser) {
     $rootScope.selectedSide = 'account';
     if ($rootScope.hasLoggedUser) {
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/account').$then(function(response) {
@@ -23,8 +23,11 @@ angular.module('p2pSiteMobApp')
             //   template: 'views/modal/alertYEEPAY.html',
             //   show: true
             // });
-
-            window.open('/#/yeepay-transfer/withdraw/' + amount);
+            $state.go('root.yeepay-transfer', {
+              type: 'withdraw',
+              number: '100'
+            });
+            // window.open('/#/yeepay-transfer/withdraw/' + amount);
           }
         } else {
           // 获取信息失败。
@@ -38,6 +41,5 @@ angular.module('p2pSiteMobApp')
       } else {
         return false;
       }
-
     };
   }]);
