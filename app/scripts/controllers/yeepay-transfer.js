@@ -1,7 +1,6 @@
 'use strict';
 angular.module('p2pSiteMobApp')
   .controller('YeepayTransferCtrl', ['$scope', '$state', '$rootScope', '$stateParams', 'restmod', 'DEFAULT_DOMAIN', 'config', function($scope, $state, $rootScope, $stateParams, restmod, DEFAULT_DOMAIN, config) {
-
     function newForm() {
       var f = document.createElement('form');
       document.body.appendChild(f);
@@ -25,13 +24,21 @@ angular.module('p2pSiteMobApp')
       e.value = eValue;
       return e;
     }
-
+    // 新打开的页面无法获取$rootScope.hasLoggedUser
+    // if ($rootScope.hasLoggedUser === undefined) {
+    //   window.location.reload();
+    // }
+    // var checkModel = restmod.model(DEFAULT_DOMAIN + '/users');
+    // checkModel.$find('checkSession').$then(function(response) {
+    //   if (response.user) {
+    //     $rootScope.hasLoggedUser = response.user;
+    //
+    //   }
+    // });
     $scope.type = $stateParams.type;
     $scope.number = $stateParams.number;
-    // 跳转较慢并且认证用户失败的判断。
-    console.log($rootScope.hasLoggedUser);
-    alert($rootScope.hasLoggedUser);
     $scope.HongcaiUser = DEFAULT_DOMAIN + '/users/' + $rootScope.hasLoggedUser.id;
+    // 跳转较慢并且认证用户失败的判断。
     if ($scope.type === 'recharge') {
       //充值
       var rechargeModel = restmod.model($scope.HongcaiUser + '/recharge');
