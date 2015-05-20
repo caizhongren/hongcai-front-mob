@@ -14,6 +14,12 @@ angular.module('p2pSiteMobApp')
     if (!number) {
       $state.go('root.main');
     }
+
+    $scope.showFundsAgreement = false;
+    $scope.toggle = function () {
+      $scope.showFundsAgreement = !$scope.showFundsAgreement;
+    };
+
     // simple project
     fundsProjects.$find(number).$then(function(response) {
       if (response.$status === 'ok') {
