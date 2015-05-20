@@ -1,6 +1,9 @@
 <div class="recharge bg-white">
   <h6 class="border-grey text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>充值</strong></h6>
   <div class="padding-2">
+    <!-- 未绑定银行卡 -->
+    <!-- <div ng-include src="'views/user-center/_bankcardless-hint.html'" ng-if=""></div> -->
+    <!-- 已经绑定银行卡 -->
     <form class="margin-b-1p5" name="rechargeForm" ng-submit="recharge(rechargeAmount);">
       <label>可用余额:&nbsp;<span class="ft-blue">{{ userAccount.balance }}</span>元</label>
       <div class="hint text-center bg-red1 box-shadow" ng-show="rechargeForm.amount.$dirty && rechargeForm.amount.$error.pattern">
