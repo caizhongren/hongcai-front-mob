@@ -1,0 +1,133 @@
+<div class="row" ng-show="simpleFundsProject.status === 1" ng-switch="fundsFlag">
+  <div ng-switch-when=0>
+    <div class="overflow-hid bg-blue2 padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 border-blue1 ft-1">
+      <span class="u-pull-left"><i class="fa fa-users ft-blue2"></i>&nbsp;参投人数:<strong class="ft-blue1">{{simpleFundsProject.investNumber || 0}}</strong>人</span>
+      <span class="u-pull-right"><i class="fa fa-pie-chart ft-blue2"></i>&nbsp;可投金额<strong class="ft-blue1">{{fundsProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
+    </div>
+    <form name="investForm" class="investForm overflow-hid" ng-submit="toInvest(simpleFundsProject)">
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="investForm.investAmount.$error.number">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>输入金额格式不对，只能输入数字</span>
+      </div>
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="investForm.investAmount.$dirty && checkLargeUserCanAmount(simpleFundsProject)">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>余额不足，请充值</span>
+      </div>
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="investForm.investAmount.$error.max || investForm.investAmount.$error.min">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入一个介于{{ simpleFundsProject.minInvest }}-{{ fundsProjectInvestNum }}之间的值</span>
+      </div>
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="fundsFlag >= 1 && investForm.investAmount.$dirty && checkStepAmount(simpleFundsProject)">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>输入值必须是100的整数倍</span>
+      </div>
+      <div class="padding-l-2 padding-r-2 margin-t-2 overflow-hid">
+        <input type="number" min="{{ simpleFundsProject.minInvest }}" max="{{fundsProjectInvestNum}}" name="investAmount" step="{{simpleFundsProject.increaseAmount}}" placeholder="100元起投" class="investAmount u-pull-left padding-t-1 padding-b-1" ng-model="simpleFundsProject.investAmount">
+        <button class="button button-primary button-shadow border-ra-0p5 u-pull-left" ng-show="checkLargeUserCanAmount(simpleFundsProject)">充值</button>
+        <button class="button button-primary button-shadow border-ra-0p5 u-pull-left" ng-hide="checkLargeUserCanAmount(simpleFundsProject)">投资</button>
+        <!-- <hr class="margin-0 clear"> -->
+        <!-- <input type="checkbox" class="margin-t-1" ng-model="simpleFundsProject.isRepeatFlag" ng-click="checkAutoTransfer(fundsProject);">自动续投 -->
+        <!-- <p class="ft-grey2">续投需开通自动投标权限，且本期到期后，所投本金自动续投到宏金盈项目中。</p> -->
+      </div>
+    </form>
+  </div>
+
+  <div ng-switch-when=1>
+    <div class="overflow-hid bg-blue2 padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 border-blue1 ft-1">
+      <span class="u-pull-left"><i class="fa fa-users ft-blue2"></i>&nbsp;参投人数:<strong class="ft-blue1">{{simpleFundsProject.investNumber || 0}}</strong>人</span>
+      <span class="u-pull-right"><i class="fa fa-pie-chart ft-blue2"></i>&nbsp;可投金额<strong class="ft-blue1">{{fundsProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
+    </div>
+    <form name="investForm" class="investForm overflow-hid" ng-submit="toInvest(simpleFundsProject)">
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="msg">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>{{msg}}</span>
+      </div>
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="investForm.investAmount.$error.number">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>输入金额格式不对，只能输入数字</span>
+      </div>
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="investForm.investAmount.$dirty && checkLargeUserCanAmount(simpleFundsProject)">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>余额不足，请充值</span>
+      </div>
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="investForm.investAmount.$error.max || investForm.investAmount.$error.min">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入一个介于{{ simpleFundsProject.minInvest }}-{{ fundsProjectInvestNum }}之间的值</span>
+      </div>
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="fundsFlag >= 1 && investForm.investAmount.$dirty && checkStepAmount(simpleFundsProject)">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>输入值必须是100的整数倍</span>
+      </div>
+      <div class="padding-l-2 padding-r-2 margin-t-2 overflow-hid">
+        <input type="number" min="{{ simpleFundsProject.minInvest }}" max="{{fundsProjectInvestNum}}" name="investAmount" step="{{simpleFundsProject.increaseAmount}}" placeholder="100元起投" class="investAmount u-pull-left padding-t-1 padding-b-1" ng-model="simpleFundsProject.investAmount">
+        <button class="button button-primary button-shadow border-ra-0p5 u-pull-left" ng-show="checkLargeUserCanAmount(simpleFundsProject)">充值</button>
+        <button class="button button-primary button-shadow border-ra-0p5 u-pull-left" ng-hide="checkLargeUserCanAmount(simpleFundsProject)">投资</button>
+        <!-- <hr class="margin-0 clear"> -->
+        <!-- <input type="checkbox" class="margin-t-1" ng-model="simpleFundsProject.isRepeatFlag" ng-click="checkAutoTransfer(fundsProject);">自动续投 -->
+        <!-- <p class="ft-grey2">续投需开通自动投标权限，且本期到期后，所投本金自动续投到宏金盈项目中。</p> -->
+      </div>
+    </form>
+  </div>
+
+  <div ng-switch-when=2>
+    <div class="overflow-hid bg-blue2 padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 border-blue1 ft-1">
+      <span class="u-pull-left"><i class="fa fa-jpy ft-blue2"></i>&nbsp;账户余额:<strong class="ft-blue1">{{ account.balance | currency:"":2 || 0}}</strong>元</span>
+      <span class="u-pull-right"><i class="fa fa-pie-chart ft-blue2"></i>&nbsp;可投金额<strong class="ft-blue1">{{fundsProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
+    </div>
+    <form name="investForm" class="investForm overflow-hid" ng-submit="toInvest(simpleFundsProject)">
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="msg">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>{{msg}}</span>
+      </div>
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="investForm.investAmount.$error.number">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>输入金额格式不对，只能输入数字</span>
+      </div>
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="investForm.investAmount.$dirty && checkLargeUserCanAmount(simpleFundsProject)">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>余额不足，请充值</span>
+      </div>
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="investForm.investAmount.$error.max || investForm.investAmount.$error.min">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入一个介于{{ simpleFundsProject.minInvest }}-{{ fundsProjectInvestNum }}之间的值</span>
+      </div>
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="fundsFlag >= 1 && investForm.investAmount.$dirty && checkStepAmount(simpleFundsProject)">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>输入值必须是100的整数倍</span>
+      </div>
+      <div class="padding-l-2 padding-r-2 margin-t-2 overflow-hid">
+        <input type="number" min="{{ simpleFundsProject.minInvest }}" max="{{fundsProjectInvestNum}}" name="investAmount" step="{{simpleFundsProject.increaseAmount}}" placeholder="100元起投" class="investAmount u-pull-left padding-t-1 padding-b-1" ng-model="simpleFundsProject.investAmount" required>
+        <button class="button button-primary button-shadow border-ra-0p5 u-pull-left" ng-show="checkLargeUserCanAmount(simpleFundsProject)">充值</button>
+        <button class="button button-primary button-shadow border-ra-0p5 u-pull-left" ng-hide="checkLargeUserCanAmount(simpleFundsProject)">投资</button>
+        <hr class="margin-0 clear">
+        <input type="checkbox" class="margin-t-1" ng-model="simpleFundsProject.isRepeatFlag" ng-click="checkAutoTransfer(simpleFundsProject);">自动续投
+        <p class="ft-grey2">续投需开通自动投标权限，且本期到期后，所投本金自动续投到宏金盈项目中。</p>
+      </div>
+    </form>
+  </div>
+
+  <div ng-switch-when=3>
+    <div class="overflow-hid bg-blue2 padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 border-blue1 ft-1">
+      <span class="u-pull-left"><i class="fa fa-jpy ft-blue2"></i>&nbsp;账户余额:<strong class="ft-blue1">{{ account.balance | currency:"":2 || 0}}</strong>元</span>
+      <span class="u-pull-right"><i class="fa fa-pie-chart ft-blue2"></i>&nbsp;可投金额<strong class="ft-blue1">{{fundsProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
+    </div>
+    <form name="investForm" class="investForm overflow-hid" ng-submit="toInvest(simpleFundsProject)">
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="msg">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>{{msg}}</span>
+      </div>
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="investForm.investAmount.$error.number">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>输入金额格式不对，只能输入数字</span>
+      </div>
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="investForm.investAmount.$dirty && checkLargeUserCanAmount(simpleFundsProject)">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>余额不足，请充值</span>
+      </div>
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="investForm.investAmount.$error.max || investForm.investAmount.$error.min">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入一个介于{{ simpleFundsProject.minInvest }}-{{ fundsProjectInvestNum }}之间的值</span>
+      </div>
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="fundsFlag >= 1 && investForm.investAmount.$dirty && checkStepAmount(simpleFundsProject)">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>输入值必须是100的整数倍</span>
+      </div>
+      <div class="padding-l-2 padding-r-2 margin-t-2 overflow-hid">
+        <input type="number" min="{{ simpleFundsProject.minInvest }}" max="{{fundsProjectInvestNum}}" name="investAmount" step="{{simpleFundsProject.increaseAmount}}" placeholder="100元起投" class="investAmount u-pull-left padding-t-1 padding-b-1" ng-model="simpleFundsProject.investAmount" required>
+        <button class="button button-primary button-shadow border-ra-0p5 u-pull-left" ng-show="checkLargeUserCanAmount(simpleFundsProject)">充值</button>
+        <button class="button button-primary button-shadow border-ra-0p5 u-pull-left" ng-hide="checkLargeUserCanAmount(simpleFundsProject)">投资</button>
+        <hr class="margin-0 clear">
+        <input type="checkbox" class="margin-t-1" ng-model="simpleFundsProject.isRepeatFlag" ng-click="checkAutoTransfer(simpleFundsProject);">自动续投
+        <p class="ft-grey2">续投需开通自动投标权限，且本期到期后，所投本金自动续投到宏金盈项目中。</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row" ng-show="simpleFundsProject.status !== 1">
+  <div class="overflow-hid bg-blue2 padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 border-blue1 ft-1">
+    <span class="u-pull-left"><i class="fa fa-users ft-blue2"></i>&nbsp;参投人数:<strong class="ft-blue1">{{simpleFundsProject.investNumber || 0}}</strong>人</span>
+    <span class="u-pull-right"><i class="fa fa-pie-chart ft-blue2"></i>&nbsp;可投金额<strong class="ft-blue1">{{fundsProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
+  </div>
+</div>

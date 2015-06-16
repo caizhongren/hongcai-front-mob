@@ -20,9 +20,9 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
 ]);
 
 p2pSiteMobApp
-  .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', '$uiViewScrollProvider', function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, $uiViewScrollProvider) {
-    $uiViewScrollProvider.useAnchorScroll();
+  .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$uiViewScrollProvider', function($stateProvider, $urlRouterProvider, $httpProvider, $uiViewScrollProvider) {
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
+    $uiViewScrollProvider.useAnchorScroll();
     $stateProvider
       .state('landing-page', {
         url: '/landing-page',
@@ -119,29 +119,6 @@ p2pSiteMobApp
           }
         }
       })
-
-    // 项目列表
-    // .state('root.project-list', {
-    //     url: '/projects',
-    //     views: {
-    //       '': {
-    //         templateUrl: 'views/project/project-list.html',
-    //         controller: 'ProjectListCtrl',
-    //         controllerUrl: 'scripts/controllers/project/project-list'
-    //       }
-    //     }
-    //   })
-      // 项目详情
-      .state('root.project-detail', {
-        url: '/projects/:number',
-        views: {
-          '': {
-            templateUrl: 'views/project/project-detail.html',
-            controller: 'ProjectDetailCtrl',
-            controllerUrl: 'scripts/controllers/project/project-detail'
-          }
-        }
-      })
       .state('root.funds-project-detail', {
         url: '/funds-projects/:number',
         views: {
@@ -163,13 +140,21 @@ p2pSiteMobApp
       // 个人中心
       .state('root.user-center', {
         abstract: true,
+        url: '/user-center',
         views: {
-          '': {
-            templateUrl: 'views/user-center/ab.html'
+          'user-center': {
+            templateUrl: 'views/user-center/user-center.html'/*,
+            controller: 'UserCenterCtrl',
+            controllerUrl: 'scripts/controller/user-center/user-center'*/
+          },
+          'user-center-toggle': {
+            templateUrl: 'views/user-center/user-center-toggle.html',
+            controller: 'UserCenterCtrl',
+            controllerUrl: 'scripts/controller/user-center/user-center'
           }
         }
       })
-      // 基本资料
+      //我的账户
       .state('root.user-center.account', {
         url: '/account',
         views: {
@@ -177,16 +162,6 @@ p2pSiteMobApp
             templateUrl: 'views/user-center/account.html',
             controller: 'AccountCtrl',
             controllerUrl: 'scripts/controllers/user-center/account'
-          }
-        }
-      })
-      .state('root.user-center.info', {
-        url: '/info',
-        views: {
-          '': {
-            templateUrl: 'views/user-center/info.html',
-            controller: 'InfoCtrl',
-            controllerUrl: 'scripts/controllers/user-center/info'
           }
         }
       })
@@ -201,7 +176,18 @@ p2pSiteMobApp
           }
         }
       })
-      // 我的债券
+      // 基本资料
+      .state('root.user-center.info', {
+        url: '/info',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/info.html',
+            controller: 'InfoCtrl',
+            controllerUrl: 'scripts/controllers/user-center/info'
+          }
+        }
+      })
+      // 我的债权
       .state('root.user-center.credits', {
         url: '/credits',
         views: {
@@ -256,6 +242,17 @@ p2pSiteMobApp
           }
         }
       })
+      // 回款计划
+      .state('root.user-center.payment-collection', {
+        url: '/payment-collection',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/payment-collection.html',
+            controller: 'PaymentCollectionCtrl',
+            controllerUrl: 'scripts/controllers/user-center/payment-collection'
+          }
+        }
+      })
       // 站内消息
       .state('root.user-center.messages', {
         url: '/messages',
@@ -275,6 +272,17 @@ p2pSiteMobApp
             templateUrl: 'views/user-center/deal.html',
             controller: 'DealCtrl',
             controllerUrl: 'scripts/controllers/user-center/deal'
+          }
+        }
+      })
+      // 易宝新页面打开中转页
+      .state('root.yeepay-transfer', {
+        url: '/yeepay-transfer/:type/:number',
+        views: {
+          '': {
+            templateUrl: 'views/yeepay-transfer.html',
+            controller: 'YeepayTransferCtrl',
+            controllerUrl: 'scripts/controllers/yeepay-transfer'
           }
         }
       })
@@ -327,18 +335,7 @@ p2pSiteMobApp
 }])
   .run(function($rootScope, DEFAULT_DOMAIN, $state, $location, $http, restmod, config) {
     var routespermission = [
-      '/account',
-      '/credits',
-      '/investments-stat',
-      '/order',
-      '/withdraw',
-      '/bankcard',
-      '/deals',
-      '/messages',
-      '/recharge',
-      '/orders',
-      '/credits',
-      '/info'
+      '/user-center'
     ];
     var titleMap = {'issue': '常见问题', 'about': '帮助中心', 'safe': '安全保障', 'account': '账户总览'};
     $rootScope.$on('$stateChangeStart', function() {
@@ -349,6 +346,8 @@ p2pSiteMobApp
         if (response.user) {
           $rootScope.isLogged = true;
           $rootScope.hasLoggedUser = response.user;
+          $rootScope.securityStatus = response.securityStatus;
+          $rootScope.account = response.account;
           //用户未登录状态
         } else if(response.ret === -1) {
           $rootScope.isLogged = false;
