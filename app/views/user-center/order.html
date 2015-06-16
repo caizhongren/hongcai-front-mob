@@ -1,1 +1,83 @@
-<h3>This is orders views</h3>
+<div class="order bg-white">
+  <h6 class="border-grey text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>我的订单</strong></h6>
+
+  <!-- 无订单时 -->
+  <!-- <div ng-include src="'views/user-center/_order-none.html'" ng-if="!simpleOrder.length"></div> -->
+  
+  <!-- 有未支付订单提示框 -->
+  <div class="padding-l-2 padding-r-2 padding-t-1 padding-b-1 border-orange ft-grey1 margin-t-1 margin-b-1 overflow-hid bg-yellow1 position-re">
+    <i class="fa fa-exclamation-triangle ft-grey2 u-pull-left ft-1p8"></i>
+    <i class="fa fa-times-circle u-pull-right position-ab close-hint"></i>
+    <div>
+      <small class="u-pull-left">&nbsp;<strong class="ft-orange">1</strong>个未支付订单</small>
+      <br>
+      <hr class="margin-0">
+      <span class="ft-1 text-left">
+        请在下单后<strong class="ft-orange">5分钟</strong>内完成支付，否则系统会自动取消订单！
+      </span>      
+    </div>
+  </div>
+
+
+  <!-- 订单列表 -->
+  <!-- <div class="order-item border-grey2-bottom margin-b-2" ng-if="simpleOrder.length"> -->
+  <div class="order-item border-grey2-bottom margin-b-2">
+
+    <!-- 未支付 -->
+    <div class="border-grey-bottom margin-b-1">
+      <div class="border-orange padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 overflow-hid bg-yellow1">
+        <small class="u-pull-left ft-grey3">
+          <strong class="bg-grey3">&nbsp;</strong>&nbsp;&nbsp;订单号：{{'254687154578787'}}
+        </small>
+        <small class="u-pull-right ft-grey2 ft-orange">
+          <i class="fa fa-clock-o ft-1p5">&nbsp;</i>{{'未支付'}}
+        </small>
+      </div>
+      <div class="u-full-width padding-l-2 padding-r-2 padding-t-1 padding-b-1 overflow-hid">
+        <span class="u-pull-left">{{'七日盈150415期'}}</span>
+        <span class="u-pull-right">投资金额：<strong class="ft-orange">{{'5,000'}}</strong>元</span>
+      </div>
+      <hr class="margin-0">
+      <div class="padding-l-2 padding-r-2 padding-t-1 padding-b-1">
+        <button class="half border-grey bg-white margin-0">取消订单</button>
+        <button class="half bg-yellow ft-white border-none margin-0">立即支付</button>
+      </div>
+    </div> 
+
+    <!-- 已完成 -->
+    <div class="border-grey-bottom margin-b-1">
+      <div class="border-green padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 overflow-hid bg-green">
+        <small class="u-pull-left ft-grey3">
+          <strong class="bg-grey3">&nbsp;</strong>&nbsp;&nbsp;订单号：{{'254687154578787'}}
+        </small>
+        <small class="u-pull-right ft-grey2 ft-green">
+          <i class="fa fa-check-square ft-1p5">&nbsp;</i>{{'已完成'}}
+        </small>
+      </div>
+      <div class="u-full-width padding-l-2 padding-r-2 padding-t-1 padding-b-1 overflow-hid">
+        <span class="u-pull-left">{{'七日盈150415期'}}</span>
+        <span class="u-pull-right">投资金额：<strong class="ft-orange">{{'5,000'}}</strong>元</span>
+      </div>
+    </div>
+
+    <!-- 已取消 -->
+    <div class="border-grey-bottom margin-b-1">
+      <div class="border-grey padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 overflow-hid bg-grey1">
+        <small class="u-pull-left ft-grey3">
+          <strong class="bg-grey3">&nbsp;</strong>&nbsp;&nbsp;订单号：{{'254687154578787'}}
+        </small>
+        <small class="u-pull-right ft-grey2 ft-grey">
+          <i class="fa fa-ban ft-1p5">&nbsp;</i>{{'已取消'}}
+        </small>
+      </div>
+      <div class="u-full-width padding-l-2 padding-r-2 padding-t-1 padding-b-1 overflow-hid ft-grey3">
+        <span class="u-pull-left">{{'七日盈150415期'}}</span>
+        <span class="u-pull-right">投资金额：<strong class="ft-grey3">{{'5,000'}}</strong>元</span>
+      </div>
+    </div>
+    
+  </div>
+
+</div>
+
+

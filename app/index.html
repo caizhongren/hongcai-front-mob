@@ -8,6 +8,7 @@
   <meta name="fragment" content="!">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width,initial-scale=1,mininum-scale=1,maximum-scale=1,user-scaleable=no">
+  <meta name="renderer" content="webkit">
   <meta name='apple-mobile-web-app-capable' content='yes' />
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name='format-detection' content='telephone=no' />
@@ -31,10 +32,11 @@
   <link rel="stylesheet" href="styles/user-center.css">
   <link rel="stylesheet" href="styles/safe.css">
   <link rel="stylesheet" href="styles/issue.css">
+  <link rel="stylesheet" href="styles/account.css">
   <!-- endbuild -->
 </head>
 
-<body class="bg-White padding-0" ng-app="p2pSiteMobApp">
+<body class="bg-white padding-0" ng-app="p2pSiteMobApp">
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -115,14 +117,14 @@
   <script src="scripts/controllers/demo.js"></script>
   <script src="scripts/controllers/header-ctrl.js"></script>
   <script src="scripts/controllers/login.js"></script>
-  <script src="scripts/controllers/project/project-list.js"></script>
-  <script src="scripts/controllers/project/project-detail.js"></script>
   <script src="scripts/controllers/project/funds-project-detail.js"></script>
   <script src="scripts/controllers/register.js"></script>
   <script src="scripts/controllers/register-yeepay.js"></script>
   <script src="scripts/controllers/yeepay-callback.js"></script>
   <script src="scripts/controllers/issue.js"></script>
   <script src="scripts/controllers/safe.js"></script>
+  <script src="scripts/controllers/yeepay-transfer.js"></script>
+  <script src="scripts/controllers/user-center/user-center.js"></script>
   <script src="scripts/controllers/user-center/credit.js"></script>
   <script src="scripts/controllers/user-center/account.js"></script>
   <script src="scripts/controllers/user-center/investments-stat.js"></script>
@@ -130,9 +132,11 @@
   <script src="scripts/controllers/user-center/recharge.js"></script>
   <script src="scripts/controllers/user-center/withdraw.js"></script>
   <script src="scripts/controllers/user-center/bankcard.js"></script>
+  <script src="scripts/controllers/user-center/payment-collection.js"></script>
   <script src="scripts/controllers/user-center/message.js"></script>
   <script src="scripts/controllers/user-center/deal.js"></script>
   <script src="scripts/controllers/user-center/info.js"></script>
+  <script src="scripts/services/orders.js"></script>
   <!-- endbuild -->
 </body>
 

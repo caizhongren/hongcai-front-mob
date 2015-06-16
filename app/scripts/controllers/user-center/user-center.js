@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('AccountCtrl', ['$scope', '$rootScope', '$state', 'HongcaiUser', 'restmod', 'DEFAULT_DOMAIN', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN) {
+  .controller('UserCenterCtrl', ['$scope', '$rootScope', '$state', 'HongcaiUser', 'restmod', 'DEFAULT_DOMAIN', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN) {
     if ($rootScope.hasLoggedUser) {
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/account').$then(function(response) {
         if (response.$status === 'ok') {
@@ -19,8 +19,6 @@ angular.module('p2pSiteMobApp')
         }
       });
     }
-
-    $rootScope.selectedSide =  'account';
 
     // 退出登录功能
     $scope.toLogout = function() {
@@ -39,11 +37,15 @@ angular.module('p2pSiteMobApp')
     };
 
     // tab
-    $scope.toggle = {};
-    $scope.tabs = [{
-      title: '账户总览',
+    /*$scope.toggle = {};
+    $scope.subTabs = [{
+      title: '持有中',
     }, {
-      title: '我的投资'
+      title: '已回款',
     }];
+
+    $scope.toggle.switchSubTab = function(subTabIndex) {
+      $scope.toggle.activeSubTab = subTabIndex;
+    };*/
 
   }]);

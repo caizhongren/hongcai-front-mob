@@ -9,6 +9,10 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('LoginCtrl', ['$scope', '$state', '$rootScope', '$stateParams', 'md5', 'ipCookie', 'wechat', 'HongcaiLogin', function($scope, $state, $rootScope, $stateParams, md5, ipCookie, wechat, HongcaiLogin) {
+    // 如果已经登录，自动跳转到首页。
+    // if ($rootScope.hasLoggedUser) {
+    //   $state.go('root.main');
+    // }
     // 获取用户的openId
     var openId = $stateParams.openId;
     var loginBe;
@@ -39,7 +43,7 @@ angular.module('p2pSiteMobApp')
           $scope.msg = response.msg;
         } else {
           $rootScope.isLogged = true;
-          $rootScope.hasLoggedUser = response;
+          $rootScope.hasLoggedUser = response.user;
           $state.go('root.main');
         }
       });
