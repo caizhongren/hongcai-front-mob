@@ -18,20 +18,20 @@
     <table class="u-full-width" border-collapse = "collapse">
       <tbody>
         <tr>
-          <td>递增方式</td>
-          <td>递增收益，每期递增&nbsp;<span class="ft-orange">{{simpleFundsProject.product.riseRate |currency:"":1 || 0}} %</span></td>
+          <td>收益递增</td>
+          <td>每期递增&nbsp;<span class="ft-orange">{{simpleFundsProject.product.riseRate |currency:"":1 || 0}} %</span>，需开通自动续投</td>
         </tr>
         <tr>
           <td>续投次数</td>
-          <td>{{simpleFundsProject.product.repeatInvestMaxCount}}次</td>
+          <td>最高&nbsp;{{simpleFundsProject.product.repeatInvestMaxCount}}次</td>
         </tr>
         <tr>
           <td>锁定期限</td>
           <td>{{simpleFundsProject.product.sealingDays || 0}}日</td>
         </tr>
         <tr>
-          <td>退出日期</td>
-          <td>{{simpleFundsProject.repaymentDate | amDateFormat:'YYYY年MM月DD日'}}</td>
+          <td>退出时间</td>
+          <td>{{simpleFundsProject.repaymentDate | amDateFormat:'YYYY.MM.DD日'}}&nbsp;23:00时</td>
         </tr>
       </tbody>
     </table>
