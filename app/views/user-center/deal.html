@@ -5,7 +5,7 @@
     <p class="padding-2-t">亲，您还没有产生任何交易呢...</p>
     <input type="button" class="half margin-0 padding-t-0p5 padding-b-0p5 bg-blue3 ft-white ft-1p8 button button-primary" ui-sref="root.main" value="浏览理财产品">
   </div>
-  <div class="padding-t-2 padding-b-2" ng-show="deals">
+  <div class="padding-t-2 padding-b-2" ng-show="deals.length > 0" >
     <table class="u-full-width">
       <thead class="bg-blue2">
         <th class="ft-grey3">时间</th>
@@ -15,15 +15,17 @@
         <th class="ft-grey3">支出(元)</th>
         <th class="ft-grey3">账户现金(元)</th>
       </thead>
-      <tbody  infinite-scroll="loadDealMuch()" infinite-scroll-distance="1" infinite-scroll-disabled='DealBusy'>
-        <tr ng-repeat="item in deals.data" >
-          <td>{{item.createTime | date: 'yyyy-MM-dd'}}</td>
-          <td>{{ dealMap[item.type] }}</td>
-          <td><strong class="ft-orange">{{ item.description }}</strong></td>
-          <td class="ft-orange">{{item.getAmount |currency:"":1 || 0}}</td>
-          <td class="ft-orange">{{item.payAmount |currency:"":1 || 0}}</td>
-          <td><strong class="ft-orange">{{item.balance |currency:"":1 || 0}}</strong></td>
-        </tr>
+      <tbody >
+        <div  infinite-scroll="loadDealMuch()" infinite-scroll-distance="3">
+          <tr ng-repeat="item in deals">
+            <td>{{item.createTime | date: 'yyyy-MM-dd'}}</td>
+            <td>{{ dealMap[item.type] }}</td>
+            <td><strong class="ft-orange">{{ item.description }}</strong></td>
+            <td class="ft-orange">{{item.getAmount |currency:"":1 || 0}}</td>
+            <td class="ft-orange">{{item.payAmount |currency:"":1 || 0}}</td>
+            <td><strong class="ft-orange">{{item.balance |currency:"":1 || 0}}</strong></td>
+          </tr>
+        </div>
       </tbody>
     </table>
     <div class="text-center">
