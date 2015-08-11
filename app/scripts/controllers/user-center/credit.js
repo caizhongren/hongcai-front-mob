@@ -21,6 +21,7 @@ angular.module('p2pSiteMobApp')
     $rootScope.selectedSide = 'investments-stat';
     $scope.page = 1;
     $scope.pageSize = 10;
+    $scope.creditsDetail = [];
 
     if ($rootScope.hasLoggedUser) {
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/totalProfit').$then(function(response){
@@ -37,7 +38,10 @@ angular.module('p2pSiteMobApp')
         $scope.creditStatus = '3';
       }
       $scope.getCredits($scope.creditStatus);
+      $scope.getCreditList($scope.creditStatus);
     };
+
+
 
     $scope.getCredits = function(status) {
       if ($rootScope.hasLoggedUser) {
@@ -50,33 +54,38 @@ angular.module('p2pSiteMobApp')
       }
     };
 
-    $scope.loadCreditMore = function() {
-      $scope.pageSize = $scope.pageSize + 10;
-      $scope.getCredits($scope.creditStatus);
-    };
+    // $scope.loadCreditMore = function() {
+    //   $scope.pageSize = $scope.pageSize + 10;
+    //   $scope.getCredits($scope.creditStatus);
+    // };
 
     $scope.getCredits('1,2');
 
-    $scope.getCreditList = function(){
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/credits', {
+    //以下为自动加载代码
+
+     $scope.getCreditList = function(status){
+       if ($rootScope.hasLoggedUser) {
+        $scope.creditStatus = status;
+        var creditsReq = HongcaiUser.$find($rootScope.hasLoggedUser.id + '/credits', {
           status: $scope.creditStatus,
           page: $scope.page,
           pageSize: $scope.pageSize
-        }).then(function(response){
+        });
+        creditsReq.$then(function(response){
           if(response.$status === 'ok'){
-            $scope.credits.data = response.data;
-          }else{
-            $scope.msg = '获取购买信息失败';
+              for (var i = 0; i < response.data.length; i++) {
+                $scope.creditsDetail.push(response.data[i]);
+              };
           }
-        })
-    }
-    $scope.getCreditList();
+        });
+      }
+     }
+    $scope.getCreditList('1,2');
     $scope.loadCreditMuch = function(){
-      $scope.loadCreList = true;
+      $scope.creditsBusy = true;
       $scope.pageSize = $scope.pageSize + 10;
       $scope.getCreditList();
-      $scope.loadCreList = false;
-
+      $scope.creditsBusy = false;
     }
 
   }]);
