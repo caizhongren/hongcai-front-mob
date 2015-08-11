@@ -16,6 +16,7 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'config',
   'ipCookie',
   'angularMoment',
+  'infinite-scroll',
   'angular-md5'
 ]);
 

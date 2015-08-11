@@ -56,4 +56,27 @@ angular.module('p2pSiteMobApp')
     };
 
     $scope.getCredits('1,2');
+
+    $scope.getCreditList = function(){
+      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/credits', {
+          status: $scope.creditStatus,
+          page: $scope.page,
+          pageSize: $scope.pageSize
+        }).then(function(response){
+          if(response.$status === 'ok'){
+            $scope.credits.data = response.data;
+          }else{
+            $scope.msg = '获取购买信息失败';
+          }
+        })
+    }
+    $scope.getCreditList();
+    $scope.loadCreditMuch = function(){
+      $scope.loadCreList = true;
+      $scope.pageSize = $scope.pageSize + 10;
+      $scope.getCreditList();
+      $scope.loadCreList = false;
+
+    }
+
   }]);
