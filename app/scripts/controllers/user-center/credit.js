@@ -21,6 +21,7 @@ angular.module('p2pSiteMobApp')
     $rootScope.selectedSide = 'investments-stat';
     $scope.page = 1;
     $scope.pageSize = 10;
+    //$scope.creditsDetail = [];
 
     if ($rootScope.hasLoggedUser) {
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/totalProfit').$then(function(response){
@@ -31,13 +32,17 @@ angular.module('p2pSiteMobApp')
     }
     $scope.toggle.switchTab = function(tabIndex) {
       $scope.toggle.activeTab = tabIndex;
+      console.log(tabIndex);
       if (tabIndex === 0) {
         $scope.creditStatus = '1,2';
       } else {
         $scope.creditStatus = '3';
       }
       $scope.getCredits($scope.creditStatus);
+      //$scope.getCreditList($scope.creditStatus);
     };
+
+
 
     $scope.getCredits = function(status) {
       if ($rootScope.hasLoggedUser) {
@@ -56,4 +61,35 @@ angular.module('p2pSiteMobApp')
     };
 
     $scope.getCredits('1,2');
+
+    //以下为自动加载代码
+
+    //  $scope.getCreditList = function(status){
+    //    if ($rootScope.hasLoggedUser) {
+    //     $scope.creditStatus = status;
+    //     var creditsReq = HongcaiUser.$find($rootScope.hasLoggedUser.id + '/credits', {
+    //       status: $scope.creditStatus,
+    //       page: $scope.page,
+    //       pageSize: $scope.pageSize
+    //     });
+    //     creditsReq.$then(function(response){
+    //       console.log(response.$status);
+    //       if(response.$status === 'ok'){
+    //           for (var i = 0; i < response.data.length; i++) {
+    //             $scope.creditsDetail.push(response.data[i]);
+    //             console.log($scope.creditsDetail);
+    //           };
+    //       }
+    //     });
+    //   }
+    //  }
+
+    // $scope.loadCreditMuch = function(){
+    //   $scope.creditsBusy = true;
+    //   //$scope.page = $scope.page + 1;
+    //   $scope.pageSize = $scope.pageSize + 10;
+    //   $scope.getCreditList();
+    //   $scope.creditsBusy = false;
+    // }
+    // $scope.getCreditList('1,2');
   }]);

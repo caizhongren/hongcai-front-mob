@@ -7,9 +7,20 @@
   <div class="tab-content u-full-width bg-white overflow-hid text-center" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" >
     <div ng-repeat="item in credits.data" ng-include src='"views/user-center/_credit-detail.html"'>
     </div>
-    <div class="text-center" ng-show="credits.data.length > 10">
-      <p><a ng-click="loadCreditMore();" style="cursor:pointer;"> <i class="fa fa-list"></i>&nbsp 查看更多债权信息...</a></p>
+    <div class="text-center" ng-show="credits.data.length >= pageSize">
+      <p><a ng-click="loadCreditMore();" style="cursor:pointer;">点击加载...</a></p>
     </div>
+
+    <!-- <div infinite-scroll="loadCreditMuch()" infinite-scroll-distance="3">
+      <div ng-repeat="item in credits.data" ng-include src='"views/user-center/_credit-detail.html"'>
+      </div>
+    </div>
+    <div class="text-center" ng-show="credits.data.length >= 10">
+      <p><a ng-show='creditsBusy' style="cursor:pointer;"><img src="/images/ajax-loader1.gif">加载更多...</a></p>
+    </div> -->
+
+
+     <!-- <i class="fa fa-list"></i>&nbsp 查看更多债权信息... -->
   </div>
 </div>
 

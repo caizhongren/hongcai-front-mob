@@ -12,9 +12,9 @@ angular.module('p2pSiteMobApp')
     // tab
     $scope.toggle = {};
     $scope.tabs = [{
-      title: '战略伙伴',
-    }, {
       title: '宏财简介',
+    }, {
+      title: '战略伙伴',
     }, {
       title: '顾问团队',
     }];
