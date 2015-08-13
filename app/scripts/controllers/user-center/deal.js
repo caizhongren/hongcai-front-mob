@@ -69,8 +69,9 @@ angular.module('p2pSiteMobApp')
     $scope.loadDealMuch = function(){
       $scope.DealBusy = true;
       $scope.page = $scope.page + 1;
+      $scope.totalPage = $scope.totalPage + 1;
       $scope.pageSize = $scope.pageSize;
-      console.log($scope.pageSize);
+      console.log($scope.page);
       $scope.dealList();
       $scope.DealBusy = false;
     };
