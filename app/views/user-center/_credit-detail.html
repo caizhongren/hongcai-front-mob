@@ -11,9 +11,9 @@
       <span class="ft-grey2">投资金额(元)</span>
     </div>
     <div class="credit-item-info u-pull-left text-left ft-1p4">
-      <strong class="ft-orange">{{ item.returnProfit |currency:"":1 || 0}}</strong>
+      <strong class="ft-orange">{{ item.baseRate + item.riseRate |currency:"":1 || 0}}&nbsp;</strong>
       <br>
-      <span class="ft-grey2">已收收益(元)</span>
+      <span class="ft-grey2">本期利率(%)</span>
     </div>
     <div class="credit-item-info u-pull-left text-left ft-1p4">
       <strong class="ft-orange">{{ item.profit - item.returnProfit |currency:"":1 || 0}}</strong>
