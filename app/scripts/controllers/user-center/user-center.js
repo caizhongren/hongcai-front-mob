@@ -9,16 +9,15 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('UserCenterCtrl', ['$scope', '$rootScope', '$state', 'HongcaiUser', 'restmod', 'DEFAULT_DOMAIN', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN) {
-    if ($rootScope.hasLoggedUser) {
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/account').$then(function(response) {
-        if (response.$status === 'ok') {
-          // 获取用户金额信息
-          $scope.userAccount = response;
-        } else {
-          // 获取信息失败。
-        }
-      });
-    }
+    
+
+    $rootScope.checkSession.promise.then(function(){
+      if(!$rootScope.isLogged){
+        $state.go('root.login');
+      }
+
+    });
+
 
     // 退出登录功能
     $scope.toLogout = function() {

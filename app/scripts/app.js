@@ -334,16 +334,23 @@ p2pSiteMobApp
     $urlRouterProvider.otherwise('/');
 
 }])
-  .run(function($rootScope, DEFAULT_DOMAIN, $state, $location, $http, restmod, config) {
+  .run(function($rootScope, DEFAULT_DOMAIN,  $q, $timeout, $state, $location, $http, restmod, config) {
     var routespermission = [
       '/user-center'
     ];
     var titleMap = {'issue': '常见问题', 'about': '帮助中心', 'safe': '安全保障', 'account': '账户总览'};
     $rootScope.$on('$stateChangeStart', function() {
+      $rootScope.timeout = false;
+      $timeout(function(){
+          $rootScope.timeout = true;
+      }, 400);
+
       // $rootScope.showTitle = titleMap[path];
       $rootScope.showMe = false;
-      var checkModel = restmod.model(DEFAULT_DOMAIN + '/users');
-      checkModel.$find('checkSession').$then(function(response) {
+      $rootScope.checkSession = $q.defer();
+      var $checkSessionServer = $http.get(DEFAULT_DOMAIN + '/users/checkSession');
+      $checkSessionServer.success(function(response) {
+        $rootScope.checkSession.resolve(response);
         if (response.user) {
           $rootScope.isLogged = true;
           $rootScope.hasLoggedUser = response.user;

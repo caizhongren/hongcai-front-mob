@@ -23,7 +23,11 @@ angular.module('p2pSiteMobApp')
     $rootScope.selectedSide =  'investments-stat';
   }]);*/
   .controller('InvestmentsStatCtrl', ['$scope', '$rootScope', '$state', 'HongcaiUser', 'restmod', 'DEFAULT_DOMAIN', 'config', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, config) {
-    if ($rootScope.hasLoggedUser) {
+
+    $rootScope.checkSession.promise.then(function(){
+      if(!$rootScope.isLogged){
+        $state.go('root.login');
+      }
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/investments/stat').$then(function(response) {
         if (response.$status === 'ok') {
           // 获取用户金额信息
@@ -32,7 +36,8 @@ angular.module('p2pSiteMobApp')
           // 获取信息失败。
         }
       });
-    }
+      
+    });
 
     $rootScope.selectedSide =  'investments-stat';
 

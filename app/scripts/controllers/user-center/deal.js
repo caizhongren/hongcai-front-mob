@@ -63,8 +63,15 @@ angular.module('p2pSiteMobApp')
     //   });
     //  //$scope.DealBusy = false;
     // }
+    $rootScope.checkSession.promise.then(function(){
+      if(!$rootScope.isLogged){
+        $state.go('root.login');
+      }
 
-    $scope.dealList();
+      $scope.dealList();
+    });
+
+    
 
     $scope.loadDealMuch = function(){
       $scope.DealBusy = true;
