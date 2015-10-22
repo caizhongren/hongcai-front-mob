@@ -17,7 +17,8 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'ipCookie',
   'angularMoment',
   'infinite-scroll',
-  'angular-md5'
+  'angular-md5',
+  'restangular'
 ]);
 
 p2pSiteMobApp
@@ -330,11 +331,40 @@ p2pSiteMobApp
 
           }
         }
-      });
+      })
+
+      // 分享活动详情
+      .state('root.share-detail', {
+        url: '/share-detail/:number',
+        views: {
+          '': {
+            templateUrl: 'views/share/share-detail.html',
+            controller: 'ShareDetailCtrl',
+            controllerUrl: 'scripts/controllers/share/share-detail-ctrl'
+          }
+        }
+      })  
+          //分享页
+      .state('root.share-home', {
+        url: '/share-home',
+        views: {
+          '': {
+            templateUrl: 'views/share/share-home.html',
+            controller: 'ShareHomeCtrl',
+            controllerUrl: 'scripts/controllers/share/share-home-ctrl'
+          }
+        }
+      })
+
+
+      ;
     $urlRouterProvider.otherwise('/');
 
 }])
-  .run(function($rootScope, DEFAULT_DOMAIN,  $q, $timeout, $state, $location, $http, restmod, config) {
+  .run(function($rootScope, DEFAULT_DOMAIN,  $q, $timeout, $state, $location, $http, restmod, config, Restangular) {
+    Restangular.setBaseUrl('/hongcai/rest');
+    Restangular.setDefaultHeaders({'Content-Type': 'application/json'})
+
     var routespermission = [
       '/user-center'
     ];

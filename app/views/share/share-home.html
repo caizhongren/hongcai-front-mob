@@ -1,0 +1,660 @@
+<style>
+.share-page-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  background-color: #f9d326;
+}
+
+.share-page-wrapper .head-wrapper {
+  position: relative;
+  width: 26.5rem;
+  height: 21.75rem;
+  margin: 0 auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.share-page-wrapper .head-wrapper-home {
+  background-image: url(/images/share/head-bg-img-home@2x.png);
+}
+
+.share-page-wrapper .head-img-other {
+  background-image: url(/images/share/head-bg-img-other@2x.png);
+}
+
+.share-page-wrapper .head-wrapper .more-enter {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #000;
+  font-size: 1.2rem;
+}
+
+.share-page-wrapper .slogan {
+  position: absolute;
+  width: 6.83rem;
+  height: 6.583rem;
+  top: 7.375rem;
+  left: 1.75rem;
+  background-size: cover;
+}
+
+.share-page-wrapper .send-you {
+  background-image: url(/images/share/user-slogan-red@2x.png);
+}
+
+.share-page-wrapper .send-ta {
+  background-image: url(/images/share/user-slogan-white@2x.png);
+}
+
+.share-page-wrapper .money-highest {
+  position: absolute;
+  width: 8.71rem;
+  height: 3.79rem;
+  top: 9.1rem;
+  right: 6.2rem;
+  background-image: url(/images/share/50-@2x.png);
+  background-size: cover;
+}
+
+.share-page-wrapper .money {
+  position: absolute;
+  width: 8.71rem;
+  height: 3.79rem;
+  top: 9.4rem;
+  right: 6.8rem;
+  -webkit-transform-origin: top left;
+  transform-origin: top left;
+  -webkit-transform: rotate(-6deg);
+  transform: rotate(-6deg);
+  font: 3.2rem Tahoma, Geneva, sans-serif;
+  color: #ff8400;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #7d0404;
+  font-weight: bold;
+  text-align: center;
+}
+
+.share-page-wrapper .head-wrapper .band {
+  position: relative;
+  top: 18.17rem;
+  left: -1.38rem;
+  height: 2.75rem;
+  width: 18.375rem;
+  margin: 0 auto;
+  background-image: url(/images/share/band@2x.png);
+  background-size: cover;
+  -webkit-transform-origin: top left;
+  transform-origin: top left;
+  -webkit-transform: rotate(-6deg);
+  transform: rotate(-6deg);
+}
+
+.share-page-wrapper .head-wrapper .band img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 2.3rem;
+  width: 2.3rem;
+  margin-top: 0.25rem;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
+
+.share-page-wrapper .head-wrapper .band p:nth-of-type(1) {
+  margin: 0;
+  height: 50%;
+  line-height: 1.37rem;
+  font-size: 1rem;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+}
+
+.share-page-wrapper .head-wrapper .band p:nth-of-type(2) {
+  margin: 0;
+  height: 50%;
+  line-height: 1.37rem;
+  font-size: 1.17rem;
+  text-align: center;
+  color: yellow;
+  font-weight: bold;
+}
+
+.share-page-wrapper .process {
+  position: relative;
+  margin: 1rem auto;
+  width: 11.6rem;
+  height: 0.5rem;
+  background-color: #fde0b1;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+
+.share-page-wrapper .process .progress-bar {
+  width: 12%;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  background-color: #c01a18;
+}
+
+.share-page-wrapper .process .processing {
+  position: absolute;
+  top: -16px;
+  left: 3px;
+  color: #000;
+  font-size: 0.5rem;
+}
+
+.share-page-wrapper .foot-wrapper {
+  width: 22.9rem;
+  margin: 0 auto 1.5rem;
+}
+
+.share-page-wrapper .foot-wrapper .share-btn {
+  width: 100%;
+  height: 3.125rem;
+  margin: 1.5rem 0;
+  border: 1px solid #d63020;
+  color: rgba(0, 0, 0, 0.9);
+  background: -webkit-linear-gradient(-90deg, #cd2e1e 0, #f33733 100%);
+  background: linear-gradient(180deg, #cd2e1e 0, #f33733 100%);
+  background-position: 50% 50%;
+  -webkit-background-origin: padding-box;
+  background-origin: padding-box;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-background-size: auto auto;
+  background-size: auto auto;
+  -webkit-box-shadow: 0 4px 5px 0 rgba(252, 72, 70, 0.5), 0 1px 0 0 #f33d3c inset;
+  box-shadow: 0 4px 5px 0 rgba(252, 72, 70, 0.5), 0 1px 0 0 #f33d3c inset;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.share-page-wrapper .foot-wrapper .share-btn p {
+  height: 3.125rem;
+  line-height: 3.125rem;
+  text-align: center;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.share-page-wrapper .foot-wrapper .share-btn p .main-btn-thumb-icon {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 5px;
+  background-image: url(/images/share/thumb@2x.png);
+  background-size: cover;
+  vertical-align: middle;
+}
+
+.share-page-wrapper .foot-wrapper .share-btn p .main-btn-get-icon {
+  display: inline-block;
+  width: 1.6rem;
+  height: 1.5rem;
+  margin-right: 5px;
+  background-image: url(/images/share/get-icon@2x.png);
+  background-size: cover;
+  vertical-align: middle;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 3.5rem 1.75rem 1rem;
+  border: 1px solid #901110;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.2) inset;
+  background: url(/images/share/words-list-bg@2x.png) repeat;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .foot-head {
+  position: absolute;
+  top: 1rem;
+  left: 0;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .foot-head .word {
+  width: 6.25rem;
+  height: 1.75rem;
+  background: rgb(243, 68, 68);
+  /* Old browsers */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(243, 68, 68, 1)), color-stop(100%, rgba(225, 0, 25, 1)));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(243, 68, 68, 1) 0%, rgba(225, 0, 25, 1) 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: linear-gradient(to bottom, rgba(243, 68, 68, 1) 0%, rgba(225, 0, 25, 1) 100%);
+  /* W3C */
+  font-size: 1.17rem;
+  color: #fff;
+  float: left;
+  border-top: 1px solid #901110;
+  border-bottom: 1px solid #901110;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .foot-head .word > p {
+  width: 8rem;
+  position: absolute;
+  text-align: center;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .foot-head .word .comment-icon {
+  display: inline-block;
+  width: 1.1rem;
+  height: 1rem;
+  margin-right: 5px;
+  background-image: url(/images/share/comment@2x.png);
+  background-size: cover;
+  vertical-align: middle;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .foot-head .corner {
+  display: inline-block;
+  width: 1.75rem;
+  height: 1.75rem;
+  background: rgb(243, 68, 68);
+  /* Old browsers */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(243, 68, 68, 1)), color-stop(100%, rgba(225, 0, 25, 1)));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(243, 68, 68, 1) 0%, rgba(225, 0, 25, 1) 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: linear-gradient(to bottom, rgba(243, 68, 68, 1) 0%, rgba(225, 0, 25, 1) 100%);
+  /* W3C */
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-top: 1px solid #901110;
+  border-bottom: 1px solid #901110;
+  float: right;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .words-list {
+  position: relative;
+  height: 9rem;
+  overflow: hidden;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .words-list .words-list-item {
+  position: relative;
+  margin-bottom: 10px;
+  padding-left: 3.125rem;
+  font-size: 0.83rem;
+  color: #565555;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .words-list .words-list-item img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .words-list .words-list-item .para {
+  line-height: 2.25rem;
+  word-wrap: break-word;
+  border-bottom: 1px solid #a3a2a2;
+  padding-right: 2.5rem;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .words-list .words-list-item .para .add-money {
+  position: absolute;
+  right: 0;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .words-list-none {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-size: 0.83rem;
+  color: #565555;
+  text-align: center;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .words-list-none .face-icon {
+  display: inline-block;
+  width: 1.3rem;
+  height: 1.3rem;
+  background-image: url(/images/share/face-icon@2x.png);
+  background-size: cover;
+  vertical-align: middle;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-rule-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 3.5rem 1.75rem 1rem;
+  margin-top: 2rem;
+  border: 1px solid #901110;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.2) inset;
+  background: url(/images/share/words-list-bg@2x.png) repeat;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-rule-wrapper .foot-head {
+  position: absolute;
+  top: 1rem;
+  left: 0;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-rule-wrapper .foot-head .word {
+  width: 6.25rem;
+  height: 1.75rem;
+  background: rgb(243, 68, 68);
+  /* Old browsers */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(243, 68, 68, 1)), color-stop(100%, rgba(225, 0, 25, 1)));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(243, 68, 68, 1) 0%, rgba(225, 0, 25, 1) 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: linear-gradient(to bottom, rgba(243, 68, 68, 1) 0%, rgba(225, 0, 25, 1) 100%);
+  /* W3C */
+  font-size: 1.17rem;
+  color: #fff;
+  float: left;
+  border-top: 1px solid #901110;
+  border-bottom: 1px solid #901110;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-rule-wrapper .foot-head .word > p {
+  width: 8rem;
+  position: absolute;
+  text-align: center;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-rule-wrapper .foot-head .word .active-rule-icon {
+  display: inline-block;
+  width: 1.1rem;
+  height: 1rem;
+  margin-right: 5px;
+  background-image: url(/images/share/active-rule@2x.png);
+  background-size: cover;
+  vertical-align: middle;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-rule-wrapper .foot-head .corner {
+  display: inline-block;
+  width: 1.75rem;
+  height: 1.75rem;
+  background: rgb(243, 68, 68);
+  /* Old browsers */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(243, 68, 68, 1)), color-stop(100%, rgba(225, 0, 25, 1)));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(243, 68, 68, 1) 0%, rgba(225, 0, 25, 1) 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: linear-gradient(to bottom, rgba(243, 68, 68, 1) 0%, rgba(225, 0, 25, 1) 100%);
+  /* W3C */
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-top: 1px solid #901110;
+  border-bottom: 1px solid #901110;
+  float: right;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-rule-wrapper .words-list .words-list-item {
+  position: relative;
+  margin-bottom: 0;
+  font-size: 0.83rem;
+  color: #565555;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-rule-wrapper .words-list .words-list-item .para {
+  line-height: 1.75rem;
+  word-wrap: break-word;
+}
+
+.share-page-mask-activity {
+  display: inline-block;
+  background-color: #ec1c00;
+  color: white;
+  padding: 0.3rem 1rem;
+  border-top-left-radius: 0.5rem;
+}
+
+.share-page-mask-btn {
+  width: 100%;
+  height: 38px;
+  line-height: 38px;
+  background-color: #ec1c00;
+  text-align: center;
+  border-radius: 0.5rem;
+  color: #fff;
+}
+
+.share-page-breakWishLayer {
+  position: fixed;
+  top: 0;
+  z-index: 999999;
+}
+</style>
+<div class="share-page-wrapper">
+  <!-- head-wrapper 必须， head-wrapper-home 用于首页，head-img-other 用于其他  -->
+  <div class="head-wrapper head-wrapper-home">
+    <div class="more-enter ft-bold" ng-click="isActiveDetail = !isActiveDetail">活动详情>></div>
+  </div>
+  <div class="foot-wrapper">
+    <div class="share-btn" ng-show="buttonFlag" ng-click="openFreeWish()" my-click-once>
+      <p><span class="main-btn-thumb-icon" style="display:none;"></span><span class="main-btn-get-icon"></span>我要领取</p>
+    </div>
+    <div class="share-btn" ng-show="!buttonFlag" ng-click="goShareDetail()">
+      <p><span class="main-btn-thumb-icon" style="display:none;"></span>我的免费愿望</p>
+    </div>
+    <div class="words-list-wrapper">
+      <div class="foot-head">
+        <div class="word">
+          <p><span class="comment-icon"></span><span>领取花名册</span></p>
+        </div>
+        <div class="corner"></div>
+      </div>
+      <div class="words-list" ng-repeat="freeWish in freeWishes" ng-show="freeWishes.length >=0 ">
+        <div class="words-list-item">
+          <img ng-src="{{ freeWish.user.headImgUrl || '/images/wishes/headAssistor.png'}}" alt="user-head"></img>
+          <div class="para"><span>{{freeWish.user.nickName}}</span><span class="add-money">+{{freeWish.amount | number:1}}元</span></div>
+        </div>
+        <div class="words-list-item">
+          <img src=" http://placehold.it/25x25" alt="">
+          <div class="para"><span>我寄思心与明月，随君领取好东西2</span><span class="add-money">+9元</span></div>
+        </div>
+        <div class="words-list-item">
+          <img src=" http://placehold.it/25x25" alt="">
+          <div class="para"><span>我寄思心与明月，随君领取好东西3</span><span class="add-money">+9元</span></div>
+        </div>
+        <div class="words-list-item">
+          <img src=" http://placehold.it/25x25" alt="">
+          <div class="para"><span>我寄思心与明月，随君领取4</span><span class="add-money">+9元</span></div>
+        </div>
+        <div class="words-list-item">
+          <img src=" http://placehold.it/25x25" alt="">
+          <div class="para"><span>我寄思心与明月，随君领取好东西5</span><span class="add-money">+9元</span></div>
+        </div>
+        <div class="words-list-item">
+          <img src=" http://placehold.it/25x25" alt="">
+          <div class="para"><span>我寄思心与明月，随君领取好东西6</span><span class="add-money">+9元</span></div>
+        </div>
+      </div>
+      <div class="words-list" ng-show="freeWishes.length <=0 ">
+        <div class="words-list-item">
+          <img src=" http://placehold.it/25x25" alt="">
+          <div class="para"><span>我寄思心与明月，随君领取好东西2</span><span class="add-money">+9元</span></div>
+        </div>
+        <div class="words-list-item">
+          <img src=" http://placehold.it/25x25" alt="">
+          <div class="para"><span>我寄思心与明月，随君领取好东西2</span><span class="add-money">+9元</span></div>
+        </div>
+        <div class="words-list-item">
+          <img src=" http://placehold.it/25x25" alt="">
+          <div class="para"><span>我寄思心与明月，随君领取好东西3</span><span class="add-money">+9元</span></div>
+        </div>
+        <div class="words-list-item">
+          <img src=" http://placehold.it/25x25" alt="">
+          <div class="para"><span>我寄思心与明月，随君领取4</span><span class="add-money">+9元</span></div>
+        </div>
+        <div class="words-list-item">
+          <img src=" http://placehold.it/25x25" alt="">
+          <div class="para"><span>我寄思心与明月，随君领取好东西5</span><span class="add-money">+9元</span></div>
+        </div>
+        <div class="words-list-item">
+          <img src=" http://placehold.it/25x25" alt="">
+          <div class="para"><span>我寄思心与明月，随君领取好东西6</span><span class="add-money">+9元</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="words-list-rule-wrapper">
+      <div class="foot-head">
+        <div class="word">
+          <p><span class="active-rule-icon"></span><span>活动规则</span></p>
+        </div>
+        <div class="corner"></div>
+      </div>
+      <div class="words-list">
+        <div class="words-list-item">
+          <div class="para"><span>1、成功为好友点赞或通过其他途径参与活动的用户，均可获得10-50元梦想基金.</span></div>
+        </div>
+        <div class="words-list-item">
+          <div class="para"><span>2、用户通过邀请10位好友为自己“点赞”，获得梦想基金。每位好友的点赞可以贡献1-5元奖金.</span></div>
+        </div>
+        <div class="words-list-item">
+          <div class="para"><span>3、活动有效期2015.10.01-2015.12.31</span></div>
+        </div>
+        <div class="words-list-item">
+          <div class="para"><span>4、服务热线：010-59436409</span></div>
+        </div>
+        <div class="words-list-item">
+          <div class="para"><span>5、本活动最终解释权归宏财理财所有.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 活动详情蒙层 -->
+<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="isActiveDetail" ng-init="isActiveDetail = false">
+  <div class="bg-white margin-t-5 margin-l-1 margin-r-1 ft-1p2 padding-1" style="border-radius:0.5rem;">
+    <div class="border-red-bottom"><span class="share-page-mask-activity">活动详情</span><span class="u-pull-right ft-red3" ng-click="isActiveDetail = false;">关闭</span></div>
+    <div class="margin-t-1 ft-1 ft-black2 padding-r-1">
+      <p class="margin-t-1">1、成功为好友点赞或通过其他途径参与活动的用户，均可获得10-50元梦想基金.</p>
+      <p class="margin-t-1">2、用户通过邀请10位好友为自己“点赞”，获得梦想基金。每位好友的点赞可以贡献1-5元奖金.</p>
+      <p class="margin-t-1">3、活动有效期2015.10.01-2015.12.31</p>
+      <p class="margin-t-1">4、服务热线：010-59436409</p>
+      <p class="margin-t-1">5、本活动最终解释权归宏财金融所有.</p>
+    </div>
+  </div>
+</div>
+<!-- 引导用户关注蒙层（二维码） 可以用ng-show控制-->
+<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="coverLayerFlag">
+  <div class="bg-grey4 margin-t-5 margin-l-1 margin-r-1 ft-1p2 padding-1 text-center" style="border-radius:0.5rem;">
+    <div class="padding-t-1"><span class="u-pull-right ft-red3" ng-click="coverLayerFlag=false;">关闭</span></div>
+    <img src="/images/share/QRcode_test.jpg" alt="" width="100%" ng-show="test">
+    <img src="/images/share/QRcode.jpg" alt="" width="100%" ng-show="!test">
+  </div>
+</div>
+<script>
+! function(a, b, c) {
+  function q() {
+    var d = Math.min((o ? e[h]().width : f.innerWidth) / (a / b), c);
+    d != p && (k.innerHTML = "html{font-size:" + d + "px!important;" + n + "}", p = d)
+  }
+
+  function r() {
+    clearTimeout(l), l = setTimeout(q, 500)
+  }
+  var l, d = document,
+    e = d.documentElement,
+    f = window,
+    g = "addEventListener",
+    h = "getBoundingClientRect",
+    i = "pageshow",
+    j = d.head || d.getElementsByTagName("HEAD")[0],
+    k = d.createElement("STYLE"),
+    m = "text-size-adjust:100%;",
+    n = "-webkit-" + m + "-moz-" + m + "-ms-" + m + "-o-" + m + m,
+    o = h in e,
+    p = null;
+  a = a || 320, b = b || 16, c = c || 32, j.appendChild(k), d[g]("DOMContentLoaded", q, !1), "on" + i in f ? f[g](i, function(a) {
+    a.persisted && r()
+  }, !1) : f[g]("load", r, !1), f[g]("resize", r, !1), q()
+}(
+  320, // 设置设计稿基准宽度
+  12, // 设置开发时的被除数（见HOW TO USE第4步） 在设计稿基准宽度为320时最好设置为16（在在设计稿基准宽度为其他值时等比放大，如640时设置为32等）。因为浏览器默认的值就是16，这样代码失效或尚未起效时，不会有布局问题
+  32 // 设置最大根元素font-size，请注意这是一个css像素值，而非物理像素值。它的作用是，当用户用非常宽的屏幕（pad、pc）访问页面时，不至于使得根元素的font-size超过这个值，使得布局非常难看。见图“show/wide_max_rem.jpg”
+);
+$(document).ready(function() {
+  var setTop = 0;
+  var i = 0;
+  var listNum = $('.words-list-wrapper .words-list .words-list-item').length;
+  window.setInterval(function() {
+    var slideHeight = $('.words-list-wrapper .words-list .words-list-item').height()
+    if (i % listNum === 0) {
+      setTop = 0;
+    } else {
+      setTop = setTop + slideHeight + 10;
+    }
+    $(".words-list-wrapper .words-list .words-list-item").css({
+      '-webkit-transform': 'translateY(-' + setTop + 'px)',
+      'transform': 'translateY(-' + setTop + 'px)',
+      '-webkit-transition': 'transform 200ms cubic-bezier(0.645, 0.045, 0.355, 1) 10ms',
+      'transition': 'transform 200ms cubic-bezier(0.645, 0.045, 0.355, 1) 10ms'
+    })
+    i++;
+  }, 1000)
+})
+</script>
+<script>
+function countDown(obj, second, inOrOut) {
+  var getMobile = document.getElementById("mobile");
+  var mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678])|(14[0-9]))\d{8}$/;
+
+  if (inOrOut === 'out' && window.buttonFlag == 0) {
+    return;
+  }
+
+  // 如果秒数还是大于0，则表示倒计时还没结束
+  if (mobilePattern.test(getMobile.value)) {
+    if (second >= 0) {
+      // 获取默认按钮上的文字
+
+      if (typeof buttonDefaultValue === 'undefined') {
+        buttonDefaultValue = obj.defaultValue;
+      }
+      // 按钮置为不可点击状态
+      obj.disabled = true;
+      window.buttonFlag = 0;
+      // 按钮里的内容呈现倒计时状态
+      //obj.value = buttonDefaultValue + '(' + second + ')';
+      obj.innerHTML = "重新发送" + "(" + second + ")";
+      obj.className = 'col-md-4 col-lg-4 white-button border-grey-bottom ft-grey7 padding-0 u-pull-right';
+      // 时间减一
+      second--;
+      // 一秒后重复执行
+      setTimeout(function() {
+        countDown(obj, second, 'in');
+      }, 1000);
+      // 否则，按钮重置为初始状态
+    } else {
+      // 按钮置为可点击状态
+      obj.disabled = false;
+      window.buttonFlag = 1;
+      // 按钮里的内容恢复初始状态
+      obj.className = 'col-md-4 col-lg-4 border-none padding-0 u-pull-right';
+      obj.innerHTML = "发送验证码";
+    }
+  } else {
+    obj.disabled = true;
+    window.buttonFlag = 0;
+  }
+}
+</script>
