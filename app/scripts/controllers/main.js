@@ -56,6 +56,12 @@ angular.module('p2pSiteMobApp')
     // 默认调用七日盈。
     $scope.switchFundsProjects(1);
 
+
+    $scope.goDetail = function(project){
+      $state.go('root.funds-project-detail', {number: project.number});
+
+    }
+
     $scope.toggle.switchTab = function(tabIndex) {
       $scope.toggle.activeTab = tabIndex;
       var type = tabIndex + 1;

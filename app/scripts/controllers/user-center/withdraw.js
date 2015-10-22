@@ -10,7 +10,13 @@
 angular.module('p2pSiteMobApp')
   .controller('WithdrawCtrl', ['$scope', '$rootScope', '$state', 'HongcaiUser', function($scope, $rootScope, $state, HongcaiUser) {
     $rootScope.selectedSide = 'account';
-    if ($rootScope.hasLoggedUser) {
+
+
+    $rootScope.checkSession.promise.then(function(){
+      if(!$rootScope.isLogged){
+        return;
+      }
+
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/account').$then(function(response) {
         if (response.$status === 'ok') {
           // 获取用户充值信息
@@ -34,8 +40,10 @@ angular.module('p2pSiteMobApp')
         } else {
           // 获取信息失败。
         }
-      });
-    }
+        });
+    
+    });
+    
 
     $scope.checkMaxAmount = function(simpleWithdraw) {
       if (simpleWithdraw.amount > simpleWithdraw.availableCash) {

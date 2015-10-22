@@ -20,41 +20,45 @@ angular.module('p2pSiteMobApp')
       $scope.showFundsAgreement = !$scope.showFundsAgreement;
     };
 
-    // simple project
-    fundsProjects.$find(number).$then(function(response) {
-      if (response.$status === 'ok') {
-        // 项目详情
-        $scope.simpleFundsProject = response;
-        // 可投资金额
-        $scope.fundsProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
-        // 当status===1可融资状态的时候，判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。
-        if ($scope.simpleFundsProject.status === 1) {
-          if ($rootScope.account) {
-            // 用户可投资金额
-            $scope.userCanFundsInvestNum = $scope.fundsProjectInvestNum > $rootScope.account.balance ? $rootScope.account.balance : $scope.fundsProjectInvestNum;
+    $rootScope.checkSession.promise.then(function(){
+       // simple project
+       fundsProjects.$find(number).$then(function(response) {
+         if (response.$status === 'ok') {
+           // 项目详情
+           $scope.simpleFundsProject = response;
+           // 可投资金额
+           $scope.fundsProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
+           // 当status===1可融资状态的时候，判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。
+           if ($scope.simpleFundsProject.status === 1) {
+             if ($rootScope.account) {
+               // 用户可投资金额
+               $scope.userCanFundsInvestNum = $scope.fundsProjectInvestNum > $rootScope.account.balance ? $rootScope.account.balance : $scope.fundsProjectInvestNum;
 
-            var plusNum = $rootScope.securityStatus.realNameAuthStatus + $rootScope.securityStatus.autoTransfer;
-            switch (plusNum) {
-              case 2:
-                $scope.fundsFlag = 3;
-                break;
-              case 1:
-                $scope.fundsFlag = 2;
-                break;
-              case 0:
-                $scope.fundsFlag = 1;
-                break;
-            }
-          } else {
-            $scope.userCanCreditInvestNum = 0;
-            $scope.fundsFlag = 0;
-          }
-        }
-      } else {
-        // do anything?
-        // 请求数据失败，请重新加载该页面
-      }
+               var plusNum = $rootScope.securityStatus.realNameAuthStatus + $rootScope.securityStatus.autoTransfer;
+               switch (plusNum) {
+                 case 2:
+                   $scope.fundsFlag = 3;
+                   break;
+                 case 1:
+                   $scope.fundsFlag = 2;
+                   break;
+                 case 0:
+                   $scope.fundsFlag = 1;
+                   break;
+               }
+             } else {
+               $scope.userCanCreditInvestNum = 0;
+               $scope.fundsFlag = 0;
+             }
+           }
+         } else {
+           // do anything?
+           // 请求数据失败，请重新加载该页面
+         }
+       }); 
     });
+
+    
 
     $scope.statusMap = {
       1: '融资中',
@@ -63,9 +67,10 @@ angular.module('p2pSiteMobApp')
       4: '还款中',
       5: '还款完成'
     };
-    $scope.checkLargeUserCanAmount = function(simpleFundsProject) {
+
+    $scope.checkLargeUserCanAmount = function(project) {
       if ($rootScope.account) {
-        if ($rootScope.account.balance < simpleFundsProject.investAmount) {
+        if ($rootScope.account.balance < project.investAmount) {
           return true;
         } else {
           return false;
@@ -75,9 +80,9 @@ angular.module('p2pSiteMobApp')
       }
     };
 
-    $scope.checkStepAmount = function(simpleFundsProject) {
-      if (simpleFundsProject.investAmount >= simpleFundsProject.increaseAmount) {
-        if (simpleFundsProject.investAmount % simpleFundsProject.increaseAmount === 0) {
+    $scope.checkStepAmount = function(project) {
+      if (project.investAmount >= project.increaseAmount) {
+        if (project.investAmount % project.increaseAmount === 0) {
           return false;
         } else {
           return true;
