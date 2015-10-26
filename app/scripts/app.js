@@ -22,7 +22,7 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
 ]);
 
 p2pSiteMobApp
-  .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$uiViewScrollProvider', function($stateProvider, $urlRouterProvider, $httpProvider, $uiViewScrollProvider) {
+  .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$uiViewScrollProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $uiViewScrollProvider) {
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
     $uiViewScrollProvider.useAnchorScroll();
     $stateProvider
@@ -359,6 +359,8 @@ p2pSiteMobApp
 
       ;
     $urlRouterProvider.otherwise('/');
+    $locationProvider.html5Mode(true);
+    $locationProvider.hashPrefix('!');
 
 }])
   .run(function($rootScope, DEFAULT_DOMAIN,  $q, $timeout, $state, $location, $http, restmod, config, Restangular, URLService) {
