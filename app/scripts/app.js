@@ -407,12 +407,11 @@ p2pSiteMobApp
           var redirect_uri = location.href;
           if (wechat_code){ // 用户未登录但已经有code，去登录
             restmod.model(DEFAULT_DOMAIN + '/desireUsers/').$find(wechat_code + '/openid').$then(function(response){
-              $rootScope.isLogged = false;
-              $rootScope.hasLoggedUser = null;
+              $rootScope.isLogged = true;
+              $rootScope.hasLoggedUser = response;
               $rootScope.openid = response.openid;
               $rootScope.nickName = response.nickName;
               $rootScope.headImgUrl = response.headImgUrl;
-              $rootScope.userInfo = response;
               if ($rootScope.openid && !response.user.mobile && !response.user.email && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) { // 未注册，且访问的url需要注册，则需要跳转到注册页
                 $state.go('register', {
                   'openid': $rootScope.openid, 
@@ -439,20 +438,20 @@ p2pSiteMobApp
         }
 
 
-        $rootScope.checkSession.resolve(response);
-        if (response.user) {
-          $rootScope.isLogged = true;
-          $rootScope.hasLoggedUser = response.user;
-          $rootScope.securityStatus = response.securityStatus;
-          $rootScope.account = response.account;
-          //用户未登录状态
-        } else if(response.ret === -1) {
-          $rootScope.isLogged = false;
-          $rootScope.hasLoggedUser = null;
-          if (routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
-            $location.path('/login');
-          }
-        }
+        // $rootScope.checkSession.resolve(response);
+        // if (response.user) {
+        //   $rootScope.isLogged = true;
+        //   $rootScope.hasLoggedUser = response.user;
+        //   $rootScope.securityStatus = response.securityStatus;
+        //   $rootScope.account = response.account;
+        //   //用户未登录状态
+        // } else if(response.ret === -1) {
+        //   $rootScope.isLogged = false;
+        //   $rootScope.hasLoggedUser = null;
+        //   if (routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
+        //     $location.path('/login');
+        //   }
+        // }
       });
     });
     $rootScope.$on('$stateChangeSuccess', function() {
