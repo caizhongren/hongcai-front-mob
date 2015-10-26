@@ -556,10 +556,16 @@
         </p>
         <p class="margin-0 margin-b-1p5 ft-1" style="line-height: 38px;">
           <span style="display:inline-block;border-bottom: 1px solid #ddd;width:70%;">
-      <span class="captcha ft-black ft-1">验证码</span>
+          <span class="captcha ft-black ft-1">验证码</span>
           <input id="captcha" class="ft-black" name="captcha" required="required" type="tel" ng-model="user.captcha" placeholder="验证码" style="width:50%;padding:6px 2px 6px 2rem;border:0;text-align: left;" ng-disabled="!timeout">
           </span>
           <span class="{{registerForm.mobile.$invalid ? 'border-none bg-white' : 'button-enable'}} ft-1 u-pull-right padding-0" onclick="countDown(this,60,'out');" ng-click="sendMobileCaptcha(user);" ng-disabled="registerForm.mobile.$invalid || buttonFlag === 0" id="get-capache" style="border-bottom: 1px solid #ddd;">获取验证码</span>
+        </p>
+        <p class="margin-0 margin-b-1p5 ft-1" style="line-height: 38px;border-bottom: 1px solid #ddd;">
+          <span style="display:inline-block;">
+          <span class="ft-black ft-1">密码</span>
+          <input id="password" class="ft-black" name="password" required="required" type="text" ng-model="user.password" placeholder="密码" style="width:auto;padding:6px 2px 6px 2rem;border:0;text-align: left;" ng-minlength="6" ng-maxlength="22" ng-pattern="/^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,22}$/"ng-disabled="!timeout">
+          </span>
         </p>
       </div>
       <div class="ft-red text-center margin-t-2 margin-b-1 ft-1p2">

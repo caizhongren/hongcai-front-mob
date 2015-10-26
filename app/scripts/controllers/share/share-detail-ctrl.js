@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('p2pSiteMobApp')
-  .controller('ShareDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, $location, md5, register, mobileCaptcha, Restangular, config, DialogService) {
+  .controller('ShareDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, $location, md5, restmod, mobileCaptcha, Restangular, config, DialogService) {
     $rootScope.showButton = false;
 
     $scope.test = config.test;
@@ -215,7 +215,7 @@ angular.module('p2pSiteMobApp')
           }
         }else if(buttonFlag === 5){
           $('html').css('font-size','10px');
-          $state.go('root.user-center.wishCapital');
+          $state.go('root.user-center.account');
         }
     }
 
@@ -291,10 +291,11 @@ angular.module('p2pSiteMobApp')
     $scope.errorMobileMsg = "";
     $scope.signUp = function(user) {
       console.log($rootScope.openid);
-      register.$create({
+      restmod.model(DEFAULT_DOMAIN + '/desireUsers/register').$create({
         mobile: user.mobile,
         captcha: user.captcha,
         inviteCode: user.inviteCode,
+        password: user.password,
         openId: $rootScope.openid,
         nickName: $rootScope.nickName,
         headImgUrl: $rootScope.headImgUrl
