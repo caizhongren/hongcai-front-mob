@@ -394,11 +394,7 @@ p2pSiteMobApp
           $rootScope.headImgUrl = response.user.headImgUrl;
 
           if (!response.user.mobile && !response.user.email && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1){
-            $state.go('register', {
-              'openid': $rootScope.userInfo.openid, 
-              'nickName': $rootScope.userInfo.nickName, 
-              'headImgUrl': $rootScope.userInfo.headImgUrl
-            });
+            $location.path('/login');
           }
         } 
 
@@ -413,11 +409,7 @@ p2pSiteMobApp
               $rootScope.nickName = response.nickName;
               $rootScope.headImgUrl = response.headImgUrl;
               if ($rootScope.openid && !response.user.mobile && !response.user.email && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) { // 未注册，且访问的url需要注册，则需要跳转到注册页
-                $state.go('register', {
-                  'openid': $rootScope.openid, 
-                  'nickName': $rootScope.nickName, 
-                  'headImgUrl': $rootScope.headImgUrl
-                });
+                $location.path('/login');
               } else if (response.ret == -1){ // 未拿到openid再次请求授权
                 var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechatAppid + 
                   "&redirect_uri=" + encodeURIComponent(URLService.removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
