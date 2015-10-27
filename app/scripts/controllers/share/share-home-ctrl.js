@@ -38,7 +38,7 @@ angular.module('p2pSiteMobApp')
       }).then(function(response){
           console.log(response);
           if(response.ret === -1){
-            DialogService.alert('领取出错', response.msg, function(){
+            DialogService.alert('不能领取拉', response.msg, function(){
               $rootScope.alert = null;
             });
           }else{
