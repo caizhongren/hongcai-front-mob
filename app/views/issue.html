@@ -2,7 +2,7 @@
   <div class="item">
     <h4 class="bg-offWhite ft-grey2 ft-1p8 padding-1 margin-0">一、宏金盈是什么？<i class="fa fa-check-circle u-pull-right ft-1p8"></i></h4>
     <div class="bg-white padding-1">
-      <p class="margin-0">宏金盈是宏财网推出的一款帮助用户实现自动投资和债权转让的理财计划。期限分为一周、一月、一季、半年4种，更好地满足了出借人对于资金灵活性的个性化需求。同时它还兼顾稳健的收益，实现收益的按期递增。</p>
+      <p class="margin-0">宏金盈是宏财网推出的一款帮助用户实现自动投资和债权转让的理财计划。期限分为一月、一季、半年3种，更好地满足了出借人对于资金灵活性的个性化需求。同时它还兼顾稳健的收益，实现收益的按期递增。</p>
     </div>
   </div>
 
@@ -10,7 +10,7 @@
   <div class="item">
     <h4 class="bg-offWhite ft-grey2 ft-1p8 padding-1 margin-0">二、宏金盈有哪些特点？<i class="fa fa-check-circle u-pull-right ft-1p8"></i></h4>
     <div class="bg-white padding-1">
-      <p class="margin-0">1. 真实安全：加入宏金盈的资金，全部用于投资真实、提供100%本息担保的小额借款项目。 2. 超低门槛：100元即可以加入，以100元倍数递增。 3. 多样选择：多种期限搭配，满足不同流动性需求。 4. 省心优利：一次投入，按月（期）付息，到期还本；七日盈、月月盈、季度盈、半年盈可选择自动续投。 5. 零手续费：加入和到期赎回全免费。 6. 分散投资：一份投资对应多份债权，降低投资风险。 7. 递增收益：6%-14.5%，七日盈、月月盈、季度盈、半年盈每期分别递增0.3%、0.4%、0.5%、1.5% 。</p>
+      <p class="margin-0">1. 真实安全：加入宏金盈的资金，全部用于投资真实、提供100%本息担保的小额借款项目。 2. 超低门槛：100元即可以加入，以100元倍数递增。 3. 多样选择：多种期限搭配，满足不同流动性需求。 4. 省心优利：一次投入，按月（期）付息，到期还本；月月盈、季度盈、半年盈可选择自动续投。 5. 零手续费：加入和到期赎回全免费。 6. 分散投资：一份投资对应多份债权，降低投资风险。 7. 递增收益：7%-14.5%，月月盈、季度盈、半年盈每期分别递增0.4%、0.5%、1.5% 。</p>
     </div>
 
   </div>
@@ -23,24 +23,6 @@
           <li class="column text-center margin-0 padding-t-0p5 padding-b-0p5 ft-blue" ng-class="{'active': toggle.activeTab===$index,'border-right-none': $index === 0||1}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
         </ul>
         <div class="tab-content columns twelve bg-white overflow-hid text-center" ng-class="{'active': toggle.activeTab===$index}" ng-repeat="tab in tabs">
-          <section ng-if="tab.title==='七日盈'">
-            <table class="u-full-width margin-0" border-collapse="collapse">
-              <thead class="bg-blue2">
-                <th>
-                  投资
-                </th>
-                <th>续投第一次</th>
-                <th>续投第二次</th>
-                <th>续投第三次至七次</th>
-              </thead>
-              <tbody>
-                <td> 6% </td>
-                <td> 6.3% </td>
-                <td> 6.6% </td>
-                <td> 6.9% </td>
-              </tbody>
-            </table>
-          </section>
           <section ng-if="tab.title==='月月盈'">
             <table class="u-full-width margin-0" border-collapse="collapse">
               <thead class="bg-blue2">
@@ -97,7 +79,7 @@
           </section>
         </div>
       </div>
-      <p class="bg-white margin-0">举例说明： 投资七日盈10000元，锁定周期为7日，到期结息。首次投资年化收益为 6%，第一次续投年化收益为6.3%，第二次续投年化收益为：6.6%，第三次续投年化收益为：6.9%，第四、五、六、七次续投收益不再递增，按照年化6.9%计息，完成第七次续投结束后，资金自动赎回至投资人易宝账户内，可再次投资或提现。即：七日盈最多可续投七次。</p>
+      <p class="bg-white margin-0">举例说明： 投资月月盈10000元，锁定周期为30日，到期结息。首次投资年化收益为 7%，第一次续投年化收益为7.4%，第二次续投年化收益为：7.8%，第三次续投年化收益为：8.2%，第四、五次续投收益不再递增，按照年化8.2%计息，完成第五次续投结束后，资金自动赎回至投资人易宝账户内，可再次投资或提现。即：月月盈最多可续投四次。</p>
     </div>
 
   </div>
