@@ -7,7 +7,10 @@
  * Controller of the p2pSiteMobApp
 + */
 angular.module('p2pSiteMobApp')
-  .controller('MainCtrl', ['$scope', '$state', 'projects', 'fundsProjects', function($scope, $state, projects, fundsProjects) {
+  .controller('MainCtrl', function($scope, $stateParams, $state, projects, fundsProjects) {
+
+    
+
 
     // 获取宏金宝投资列表
     // $scope.projectsRecommendations = projects.$find('recommendations');
@@ -58,8 +61,11 @@ angular.module('p2pSiteMobApp')
 
 
     $scope.goDetail = function(project){
-      $state.go('root.funds-project-detail', {number: project.number});
-
+      if ($scope.toggle.activeTab === 0){
+        $state.go('root.current-deposit-detail', {number: project.number});
+      } else {
+        $state.go('root.funds-project-detail', {number: project.number});
+      }
     }
 
     $scope.toggle.switchTab = function(tabIndex) {
@@ -71,9 +77,26 @@ angular.module('p2pSiteMobApp')
       //初始化第二层Tab数据
       tabIndex === 1 ? $scope.toggle.switchSubTab(1) : '';
     };
+
+    $scope.toggle.switch = function(tabIndex, subTab) {
+      $scope.toggle.activeTab = tabIndex;
+      if (tabIndex !== 1) {
+        $scope.switchFundsProjects(1);
+      } else {
+        //初始化第二层Tab数据
+        $scope.toggle.switchSubTab(subTab);
+      }
+      
+    };
+
     $scope.toggle.switchSubTab = function(subTabIndex) {
       $scope.toggle.activeSubTab = subTabIndex;
       var subType = subTabIndex + 2;
       $scope.switchFundsProjects(subType);
     };
-  }]);
+
+
+    $scope.tab = $stateParams.tab || 0;
+    $scope.subTab = $stateParams.subTab || 0;
+    $scope.toggle.switch(+$scope.tab, +$scope.subTab);
+  });

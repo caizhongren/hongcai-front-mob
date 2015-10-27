@@ -49,9 +49,8 @@ p2pSiteMobApp
           }
         }
       })
-      // 注册登录流程
       .state('root.main', {
-        url: '/',
+        url: '/?tab&subTab',
         views: {
           '': {
             templateUrl: 'views/main.html',
@@ -60,6 +59,9 @@ p2pSiteMobApp
           }
         }
       })
+
+      
+      // 注册登录流程
       .state('root.login', {
         url: '/login',
         views: {
@@ -125,6 +127,16 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/project/funds-project-detail.html',
+            controller: 'FundsProjectDetailCtrl',
+            controllerUrl: 'scripts/controllers/project/funds-project-detail'
+          }
+        }
+      })
+      .state('root.current-deposit-detail', {
+        url: '/current-deposit/:number',
+        views: {
+          '': {
+            templateUrl: 'views/project/current-deposit-detail.html',
             controller: 'FundsProjectDetailCtrl',
             controllerUrl: 'scripts/controllers/project/funds-project-detail'
           }

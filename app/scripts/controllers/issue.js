@@ -11,8 +11,6 @@ angular.module('p2pSiteMobApp')
   .controller('IssueCtrl', function ($scope) {
     $scope.toggle = {};
     $scope.tabs = [{
-      title: '七日盈',
-    }, {
       title: '月月盈',
     }, {
       title: '季度盈',
