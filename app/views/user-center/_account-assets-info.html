@@ -4,14 +4,14 @@
       <td class="border-grey padding-0p5 ft-grey1">
         <span class="u-pull-left">可用余额&nbsp;</span>
         <span class="u-pull-left">
-          <strong class="ft-orange">{{ userAccount.availableCash }}</strong>
+          <strong class="ft-orange">{{ userAccount.balance | number:2 }}</strong>
           &nbsp;元
         </span>
       </td>
       <td class="border-grey padding-0p5 ft-grey1">
         <span class="u-pull-left">冻结资金&nbsp;</span>
         <span class="u-pull-left">
-          <strong class="ft-orange">{{ userAccount.freezeCapital }}</strong>
+          <strong class="ft-orange">{{ userAccount.freezeCapital | number:2 }}</strong>
           &nbsp;元
         </span>
       </td>
@@ -20,20 +20,20 @@
       <td class="border-grey padding-0p5 ft-grey1">
         <span class="u-pull-left">待收本金&nbsp;</span>
         <span class="u-pull-left">
-          <strong class="ft-orange">{{ userAccount.waitingCapital }}</strong>
+          <strong class="ft-orange">{{ userAccount.waitingCapital | number:2 }}</strong>
           &nbsp;元
         </span>
       </td>
       <td class="border-grey padding-0p5 ft-grey1">
         <span class="u-pull-left">待收收益&nbsp;</span>
         <span class="u-pull-left">
-          <strong class="ft-orange">{{ userAccount.waitingProfit }}</strong>
+          <strong class="ft-orange">{{ userAccount.waitingProfit  | number:2}}</strong>
           &nbsp;元
         </span></td>
     </tr>
     <tr ng-if="userAccount.reward">
       <td colspan="2" class="border-grey padding-0p5 ft-grey1">
-        活动奖金 &nbsp;<span class="ft-orange">{{ userAccount.reward }}</span>&nbsp;元
+        活动奖金 &nbsp;<span class="ft-orange">{{ userAccount.reward  | number:2}}</span>&nbsp;元
       </td>
     </tr>
   </table>
