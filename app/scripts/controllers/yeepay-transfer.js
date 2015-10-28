@@ -43,7 +43,8 @@ angular.module('p2pSiteMobApp')
       //充值
       var rechargeModel = restmod.model($scope.HongcaiUser + '/recharge');
       rechargeModel.$create({
-        'amount': $scope.number
+        'amount': $scope.number,
+        'from': 2
       }).$then(function(response) {
         if (response.$status === 'ok') {
           var req = response.req;
@@ -61,7 +62,8 @@ angular.module('p2pSiteMobApp')
       //提现
       var withdrawModel = restmod.model($scope.HongcaiUser + '/withdraw');
       withdrawModel.$create({
-        'amount': $scope.number
+        'amount': $scope.number,
+        'from': 2
       }).$then(function(response) {
         if (response.$status === 'ok') {
           var req = response.req;

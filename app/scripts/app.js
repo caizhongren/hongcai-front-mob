@@ -21,7 +21,7 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
 ]);
 
 p2pSiteMobApp
-  .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$uiViewScrollProvider', function($stateProvider, $urlRouterProvider, $httpProvider, $uiViewScrollProvider) {
+  .config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpProvider', '$uiViewScrollProvider', function($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, $uiViewScrollProvider) {
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
     $uiViewScrollProvider.useAnchorScroll();
     $stateProvider
@@ -105,7 +105,7 @@ p2pSiteMobApp
         }
       })
       .state('root.yeepay-callback', {
-        url: '/yeepay-callback/:type/:status',
+        url: '/yeepay-callback/:business/:status?amount',
         views: {
           '': {
             templateUrl: 'views/yeepay-callback.html',
@@ -344,6 +344,7 @@ p2pSiteMobApp
         }
       });
     $urlRouterProvider.otherwise('/');
+    $locationProvider.hashPrefix('!');
 
 }])
   .run(function($rootScope, DEFAULT_DOMAIN,  $q, $timeout, $state, $location, $http, restmod, config) {
