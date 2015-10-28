@@ -27,6 +27,15 @@ angular.module('p2pSiteMobApp')
 
     $rootScope.selectedSide =  'account';
 
+
+    $scope.goWithdraw = function(){
+      $state.go("root.user-center.withdraw");
+    }
+
+    $scope.goRecharge = function(){
+      $state.go("root.user-center.recharge");
+    }
+
     // 退出登录功能
     $scope.toLogout = function() {
       // var

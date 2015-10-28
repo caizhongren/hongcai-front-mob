@@ -14,10 +14,10 @@ angular.module('p2pSiteMobApp')
 
     $rootScope.checkSession.promise.then(function(){
       if(!$rootScope.isLogged){
-        return;
+        $state.go('root.login');
       }
 
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/account').$then(function(response) {
+      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/availableCash').$then(function(response) {
         if (response.$status === 'ok') {
           // 获取用户充值信息
           $scope.simpleWithdraw = response;
