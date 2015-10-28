@@ -45,7 +45,9 @@ p2pSiteMobApp
             controllerUrl: 'scripts/controller/header-ctrl'
           },
           'footer': {
-            templateUrl: 'views/_footer.html'
+            templateUrl: 'views/_footer.html',
+            controller: 'RootCtrl',
+            controllerUrl: 'scripts/controller/root-ctrl'
           }
         }
       })

@@ -12,8 +12,8 @@
 
   <!-- 已开通易宝时展示 充值/提现提示-->
   <div class="padding-l-2 padding-r-2 text-center overflow-hid margin-t-2" ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus !== 0">
-    <button class="margin-0 half u-pull-left border-blue bg-blue2 ft-blue ft-1p5" ui-sref="root.user-center.withdraw">提现</button>
-    <button class="margin-0 half u-pull-right bg-blue ft-white ft-1p5" ui-sref="root.user-center.recharge">充值</button>
+    <button class="margin-0 half u-pull-left border-blue bg-blue2 ft-blue ft-1p5" ng-click="!timeout || goWithdraw()" >提现</button>
+    <button class="margin-0 half u-pull-right bg-blue ft-white ft-1p5" ng-click="!timeout || goRecharge()" >充值</button>
   </div>
   <!-- 尚未开通易宝提示 -->
   <div ng-include src="'views/yeepayless-hint.html'" ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus === 0">
