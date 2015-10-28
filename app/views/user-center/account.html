@@ -3,7 +3,7 @@
   <div>
     <div class="border-blue margin-0 text-center bg-blue2 padding-1">您好，亲爱的&nbsp;<strong class="ft-blue">{{ hasLoggedUser.name }}</strong>&nbsp;!</div>
     <div class="account-bg padding-3 padding-l-4">
-      <span class="ft-blue bg-white border-ra-20 padding-1 padding-t-0p2 padding-b-0p2">账户总资产</span>&nbsp;&nbsp;&nbsp;<strong class="ft-white">{{ userAccount.tTotalAssets }}</strong><span class="ft-white">&nbsp;元</span>
+      <span class="ft-blue bg-white border-ra-20 padding-1 padding-t-0p2 padding-b-0p2">账户总资产</span>&nbsp;&nbsp;&nbsp;<strong class="ft-white">{{ userAccount.tTotalAssets | number:2}}</strong><span class="ft-white">&nbsp;元</span>
     </div>
     <!-- 已开通易宝时展示 账户资金详情-->
     <div ng-include src="'views/user-center/_account-assets-info.html'" ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus !== 0">
