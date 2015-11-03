@@ -26,16 +26,11 @@ angular.module('p2pSiteMobApp')
           $scope.toWithdraw = function(simpleWithdraw) {
             // $scope.msg = '3';
             var amount = simpleWithdraw.amountDraw;
-            // $alert({
-            //   scope: $scope,
-            //   template: 'views/modal/alertYEEPAY.html',
-            //   show: true
-            // });
+
             $state.go('root.yeepay-transfer', {
               type: 'withdraw',
               number: amount
             });
-            // window.open('/#/yeepay-transfer/withdraw/' + amount);
           }
         } else {
           // 获取信息失败。
@@ -43,6 +38,19 @@ angular.module('p2pSiteMobApp')
         });
     
     });
+
+  /**
+   * 绑定银行卡
+   */
+  $scope.bindBankcard = function(){
+    if($scope.simpleWithdraw.cardStatus == 'VERIFIED' || $scope.simpleWithdraw.cardStatus == 'VERIFYING'){
+      return;
+    } 
+
+    $state.go('root.yeepay-transfer', {
+      type: 'BIND_BANK_CARD'
+    });
+  }
     
 
     $scope.checkMaxAmount = function(simpleWithdraw) {
