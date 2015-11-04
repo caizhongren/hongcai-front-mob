@@ -1,6 +1,7 @@
 body {
   max-width: 640px;
   margin: 0 auto;
+  font-family: "微软雅黑"
 }
 table {
   border-collapse: collapse;
@@ -13,8 +14,8 @@ div,p {box-sizing: border-box;}
 .button.button-primary, button.button-primary, input[type="submit"].button-primary, input[type="reset"].button-primary, input[type="button"].button-primary {
   color: #FFF;
   // background-color: #eb5c3f;
-  background-color: #FDBF3D;
-  border-color: #FDBF3D;
+  background-color: #fd8f3f;
+  border-color: #fd8f3f;
 }
 .button.button-primary:hover, button.button-primary:hover, input[type="submit"].button-primary:hover, input[type="reset"].button-primary:hover, input[type="button"].button-primary:hover, .button.button-primary:focus, button.button-primary:focus, input[type="submit"].button-primary:focus, input[type="reset"].button-primary:focus, input[type="button"].button-primary:focus {
   color: #FFF;
@@ -23,7 +24,7 @@ div,p {box-sizing: border-box;}
 }
 .button-shadow {
   font-size: 2rem;
-  box-shadow: 0rem 0.5rem 0rem 0rem #E9AA0E;
+  box-shadow: 0rem 0.5rem 0rem 0rem #dc6d1c;
 }
 // .button.
 .line-normal {
@@ -123,6 +124,9 @@ div,p {box-sizing: border-box;}
 }
 /* font */
 
+.ft-bold{
+  font-weight: bold;
+}
 .ft-0p75 {
   font-size: 0.75rem;
 }
@@ -171,6 +175,9 @@ div,p {box-sizing: border-box;}
 .ft-grey3 {
   color: #bdbdbd;
 }
+.ft-grey4{
+  color: #7a7a7a;
+}
 .ft-color-b4 {
   color: #B4B4B4;
 }
@@ -178,7 +185,7 @@ div,p {box-sizing: border-box;}
   color: #FFF5EE;
 }
 .ft-orange {
-  color: #ffab32;
+  color: #fd8f3f;
 }
 .ft-red {
   color: #eb5c3f;
@@ -238,6 +245,9 @@ div,p {box-sizing: border-box;}
 }
 .bg-green {
   background-color: #f7fff0;
+}
+.bg-orange{
+  background-color: #fd8f3f;
 }
 .button-disabled {
   background-color: #fafafa !important;
@@ -429,7 +439,7 @@ Opera
 }
 .circle-rate {
   margin: 0 auto;
-  border: 0.8rem solid #FEE7C9;
+  border: 0.8rem solid #ffecde;
   // box-shadow: 0rem 0rem 1.5rem #ffe8c7 inset;
   width: 17rem;
   height: 17rem;
@@ -440,7 +450,7 @@ Opera
 }
 .circle-rate-outside {
   margin: 0 auto;
-  border: 0.2rem solid #FDA60E;
+  border: 0.2rem solid #ffb986;
   width: 17.2rem;
   height: 17.2rem;
   overflow: hidden;
@@ -470,6 +480,17 @@ Opera
   background: #b2b2b2;
   background: rgba(0,0,0,.5);
   filter: alpha(opacity=50);
+}
+
+.footer-pos{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999999;
+}
+.footer-up a{
+  color: #7a7a7a;
 }
 
 

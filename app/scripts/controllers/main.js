@@ -42,12 +42,14 @@ angular.module('p2pSiteMobApp')
         }
       });
     };
-    // tab
+    // tab 零存宝  宏金盈 宏金保
     $scope.toggle = {};
     $scope.tabs = [{
-      title: '7日理财',
+      title: '零存宝',
     }, {
-      title: '1-6月理财'
+      title: '宏金盈'
+    }, {
+      title: '宏金保'
     }];
     $scope.subTabs = [{
       title: '月月盈',
