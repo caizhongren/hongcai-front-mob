@@ -8,8 +8,9 @@
 + */
 angular.module('p2pSiteMobApp')
   .controller('MainCtrl', function($scope, $stateParams, $state, projects, fundsProjects) {
-
+    // 宏金保列表页百分比值
     
+    $scope.curr = 27;
 
 
     // 获取宏金宝投资列表
@@ -62,11 +63,15 @@ angular.module('p2pSiteMobApp')
     $scope.switchFundsProjects(1);
 
 
-    $scope.goDetail = function(project){
-      if ($scope.toggle.activeTab === 0){
-        $state.go('root.current-deposit-detail', {number: project.number});
+    $scope.goDetail = function(project) {
+      if ($scope.toggle.activeTab === 0) {
+        $state.go('root.current-deposit-detail', {
+          number: project.number
+        });
       } else {
-        $state.go('root.funds-project-detail', {number: project.number});
+        $state.go('root.funds-project-detail', {
+          number: project.number
+        });
       }
     }
 
@@ -88,7 +93,7 @@ angular.module('p2pSiteMobApp')
         //初始化第二层Tab数据
         $scope.toggle.switchSubTab(subTab);
       }
-      
+
     };
 
     $scope.toggle.switchSubTab = function(subTabIndex) {
