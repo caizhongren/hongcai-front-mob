@@ -146,6 +146,28 @@ p2pSiteMobApp
           }
         }
       })
+      // 宏金保详情页
+      .state('root.project-detail', {
+        url: '/project-detail',
+        views: {
+          '': {
+            templateUrl: 'views/project/project-detail.html',
+            //controller: 'FundsProjectDetailCtrl',
+            //controllerUrl: 'scripts/controllers/project/funds-project-detail'
+          }
+        }
+      })
+      // 宏金保详情页更多详情
+      .state('root.project-detail-more', {
+        url: '/project-detail-more',
+        views: {
+          '': {
+            templateUrl: 'views/project/project-detail-more.html',
+            //controller: 'FundsProjectDetailCtrl',
+            //controllerUrl: 'scripts/controllers/project/funds-project-detail'
+          }
+        }
+      })
       .state('root.registration-agreement', {
         url: '/registration-agreement',
         views: {

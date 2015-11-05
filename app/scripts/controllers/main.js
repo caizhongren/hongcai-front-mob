@@ -62,16 +62,19 @@ angular.module('p2pSiteMobApp')
     // 默认调用七日盈。
     $scope.switchFundsProjects(1);
 
-
-    $scope.goDetail = function(project) {
+    // 查看详情 通过activeTab判断  值为0 是零存宝 ;值为1  是宏金盈; 值为2  是宏金保;
+    $scope.goDetail = function(project) { 
       if ($scope.toggle.activeTab === 0) {
         $state.go('root.current-deposit-detail', {
           number: project.number
         });
-      } else {
+      } else if ($scope.toggle.activeTab === 1){
         $state.go('root.funds-project-detail', {
           number: project.number
         });
+      }else if ($scope.toggle.activeTab === 2){
+        // $state.go('root.project-detail');
+        console.log($scope.toggle.activeTab);
       }
     }
 
