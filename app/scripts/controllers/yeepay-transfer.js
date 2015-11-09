@@ -37,6 +37,8 @@ angular.module('p2pSiteMobApp')
     // });
     $scope.type = $stateParams.type;
     $scope.number = $stateParams.number;
+    $scope.realName = $stateParams.realName;
+    $scope.idNo = $stateParams.idNo;
     $scope.HongcaiUser = DEFAULT_DOMAIN + '/users/' + $rootScope.hasLoggedUser.id;
     // 跳转较慢并且认证用户失败的判断。
     if ($scope.type === 'recharge') {
@@ -99,7 +101,8 @@ angular.module('p2pSiteMobApp')
       //提现
       var withdrawModel = restmod.model($scope.HongcaiUser + '/yeepayRegister');
       withdrawModel.$create({
-        'amount': $scope.number,
+        'realName': $scope.realName,
+        'idCardNo': $scope.idNo,
         'from': 2
       }).$then(function(response) {
         if (response.$status === 'ok') {

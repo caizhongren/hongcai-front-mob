@@ -294,7 +294,7 @@ p2pSiteMobApp
       })
       // 易宝新页面打开中转页
       .state('root.yeepay-transfer', {
-        url: '/yeepay-transfer/:type/:number',
+        url: '/yeepay-transfer/:type/:number?realName&idNo',
         views: {
           '': {
             templateUrl: 'views/yeepay-transfer.html',
