@@ -556,24 +556,24 @@
     </div>
   </div>
 </div>
-<!-- 活动注册蒙层 可以用ng-show控制-->
-<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="registFlag">
-  <div class="bg-white margin-t-5 margin-l-1 margin-r-1 ft-1p2 padding-1" style="border-radius:0.5rem;">
+<!-- 活动注册蒙层 可以用ng-show控制 registFlag-->
+<div class="share-page-breakWishLayer width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="registFlag">
+  <div class="bg-white margin-t-5 margin-l-2 margin-r-1 ft-1p2 padding-2" style="border-radius:0.5rem;">
     <div class="border-red-bottom padding-t-1"><span class="share-page-mask-activity">身份验证</span><span class="u-pull-right ft-red3" ng-click="registFlag=false;">关闭</span></div>
     <form autocomplete="on" id="registerForm" name="registerForm" class="margin-b-0">
-      <div class="margin-t-1 ft-1 ft-black2">
-        <p class="margin-0 margin-b-1p5 ft-1" style="line-height: 38px;border-bottom: 1px solid #ddd;">
+      <div class="margin-t-1 ft-1p4 ft-black2">
+        <p class="margin-0 margin-b-1" style="line-height: 38px;border-bottom: 1px solid #ddd; padding-bottom:0;">
           <span style="display:inline-block;">
-          <span class="ft-black ft-1">手机号</span>
-          <input id="mobile" class="ft-black" name="mobile" required="required" type="tel" ng-model="user.mobile" placeholder="手机号" style="width:auto;padding:6px 2px 6px 2rem;border:0;text-align: left;" ng-pattern="/^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678])|(14[0-9]))\d{8}$/" ng-disabled="!timeout">
+          <span class="ft-black">手机号</span>
+          <input id="mobile" class="ft-black margin-b-0" name="mobile" required="required" type="tel" ng-model="user.mobile" placeholder="手机号" style="width:auto;padding:6px 2px 6px 2rem;border:0;text-align: left;" ng-pattern="/^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678])|(14[0-9]))\d{8}$/" ng-disabled="!timeout">
           </span>
         </p>
-        <p class="margin-0 margin-b-1p5 ft-1" style="line-height: 38px;">
-          <span style="display:inline-block;border-bottom: 1px solid #ddd;width:70%;">
-      <span class="captcha ft-black ft-1">验证码</span>
-          <input id="captcha" class="ft-black" name="captcha" required="required" type="tel" ng-model="user.captcha" placeholder="验证码" style="width:50%;padding:6px 2px 6px 2rem;border:0;text-align: left;" ng-disabled="!timeout">
+        <p class="margin-0 margin-b-1 ft-1p4" style="line-height: 38px;">
+          <span style="display:inline-block;border-bottom: 1px solid #ddd;width:65%;">
+      <span class="captcha ft-black">验证码</span>
+          <input id="captcha" class="ft-black margin-b-0" name="captcha" required="required" type="tel" ng-model="user.captcha" placeholder="验证码" style="width:50%;padding:6px 2px 6px 2rem;border:0;text-align: left;" ng-disabled="!timeout">
           </span>
-          <span class="{{registerForm.mobile.$invalid ? 'border-none bg-white' : 'button-enable'}} ft-1 u-pull-right padding-0" onclick="countDown(this,60,'out');" ng-click="sendMobileCaptcha(user);" ng-disabled="registerForm.mobile.$invalid || buttonFlag === 0" id="get-capache" style="border-bottom: 1px solid #ddd;">获取验证码</span>
+          <span class="{{registerForm.mobile.$invalid ? 'border-none bg-white' : 'button-enable'}} u-pull-right padding-0" onclick="countDown(this,60,'out');" ng-click="sendMobileCaptcha(user);" ng-disabled="registerForm.mobile.$invalid || buttonFlag === 0" id="get-capache" style="border-bottom: 1px solid #ddd;">获取验证码</span>
         </p>
       </div>
       <div class="ft-red text-center margin-t-2 margin-b-1 ft-1p2">
