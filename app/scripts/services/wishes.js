@@ -1,5 +1,5 @@
 'use strict';
-angular.module('desire')
+angular.module('p2pSiteMobApp')
   .factory('Wishes', function(restmod) {
     return restmod.model('/hongcai/rest/wishes');
   });

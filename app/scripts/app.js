@@ -361,7 +361,7 @@ p2pSiteMobApp
       })  
           //分享页
       .state('root.share-home', {
-        url: '/',
+        url: '/share-home',
         views: {
           '': {
             templateUrl: 'views/share/share-home.html',
@@ -405,6 +405,7 @@ p2pSiteMobApp
           $rootScope.openid = response.user.openid;
           $rootScope.nickName = response.user.nickName;
           $rootScope.headImgUrl = response.user.headImgUrl;
+          $rootScope.userInfo = response.user;
 
           if (!response.user.mobile && !response.user.email && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1){
             $location.path('/login');
