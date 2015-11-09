@@ -12,6 +12,7 @@ angular.module('p2pSiteMobApp')
     
     $scope.curr = 27;
 
+    $scope.tabClassIndex = "";
 
     // 获取宏金宝投资列表
     // $scope.projectsRecommendations = projects.$find('recommendations');
@@ -86,6 +87,8 @@ angular.module('p2pSiteMobApp')
       }
       //初始化第二层Tab数据
       tabIndex === 1 ? $scope.toggle.switchSubTab(1) : '';
+      $scope.tabClassIndex = $scope.toggle.activeTab;
+      console.info($scope.tabClassIndex);
     };
 
     $scope.toggle.switch = function(tabIndex, subTab) {
