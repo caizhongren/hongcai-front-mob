@@ -18,6 +18,7 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'angularMoment',
   'infinite-scroll',
   'angular-md5',
+  'ui.bootstrap',
   'restangular'
 ]);
 
@@ -343,6 +344,29 @@ p2pSiteMobApp
             controller: 'AboutCtrl',
             controllerUrl: 'scripts/controllers/about'
 
+          }
+        }
+      })
+
+      //分享页
+      .state('root.share-detail', {
+        url: '/share-detail/:number',
+        views: {
+          '': {
+            templateUrl: 'views/share/share-detail.html',
+            controller: 'ShareDetailCtrl',
+            controllerUrl: 'scripts/controllers/share/share-detail-ctrl'
+          }
+        }
+      })  
+          //分享页
+      .state('root.share-home', {
+        url: '/',
+        views: {
+          '': {
+            templateUrl: 'views/share/share-home.html',
+            controller: 'ShareHomeCtrl',
+            controllerUrl: 'scripts/controllers/share/share-home-ctrl'
           }
         }
       })

@@ -12,7 +12,7 @@ var _hmt = _hmt || [];
 
 <head>
   <meta charset="utf-8">
-  <title>宏财微站</title>
+  <title>宏财金融</title>
   <base href="/">
   <meta name="fragment" content="!">
   <meta name="description" content="">
@@ -43,6 +43,8 @@ var _hmt = _hmt || [];
   <link rel="stylesheet" href="styles/issue.css">
   <link rel="stylesheet" href="styles/account.css">
   <!-- endbuild -->
+  <link rel="stylesheet" href="styles/box-flex.css">
+  <link rel="stylesheet" href="styles/weui.min.css">
 </head>
 
 <body class="bg-white padding-0" ng-app="p2pSiteMobApp">
@@ -57,7 +59,7 @@ var _hmt = _hmt || [];
     <section ui-view="footer"></section>
     <section ui-view="landingPage"></section>
   </div>
-
+  <div ng-include src="'views/component/dialog.html'" ></div>
 
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
   <!--      <script>
@@ -110,6 +112,8 @@ var _hmt = _hmt || [];
   <script src="scripts/directives/ensure-unique.js"></script>
   <script src="scripts/directives/real-mix-min-length.js"></script>
   <script src="scripts/directives/ng-focus.js"></script>
+  <script src="scripts/directives/auto-focus.js"></script>
+  <script src="scripts/directives/my-click-once.js"></script>
 
   <!-- servies -->
   <script src="scripts/services/users.js"></script>
@@ -124,6 +128,16 @@ var _hmt = _hmt || [];
   <script src="scripts/services/funds-projects.js"></script>
   <script src="scripts/services/orders.js"></script>
   <script src="scripts/services/URLService.js"></script>
+
+  <script src="scripts/services/desire-users.js"></script>
+  <script src="scripts/services/register1.js"></script>
+  <script src="scripts/services/wishes.js"></script>
+  <script src="scripts/services/mobile-captcha1.js"></script>
+  <script src="scripts/services/is-ensure-unique1.js"></script>
+  <script src="scripts/services/wechat.js"></script>
+  <script src="scripts/services/DateUtils.js"></script>
+  <script src="scripts/services/DialogService.js"></script>
+  <script src="scripts/services/URLService1.js"></script>
 
   <!-- controller -->
   <script src="scripts/controllers/main.js"></script>
@@ -151,6 +165,10 @@ var _hmt = _hmt || [];
   <script src="scripts/controllers/user-center/deal.js"></script>
   <script src="scripts/controllers/user-center/info.js"></script>
   <script src="scripts/controllers/root-ctrl.js"></script>
+  <script src="scripts/controllers/share/share-home-ctrl.js"></script>
+  <script src="scripts/controllers/share/share-detail-ctrl.js"></script>
+  <script src="scripts/jweixin-1.0.0.js"></script>
+  <script src="scripts/jquery.gallery.js"></script>
   <!-- endbuild -->
 </body>
 
