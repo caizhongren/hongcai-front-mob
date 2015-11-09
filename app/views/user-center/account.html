@@ -4,8 +4,8 @@
     <div class=" margin-0 padding-1">您好，亲爱的&nbsp;<strong class="ft-orange">{{ hasLoggedUser.name }}</strong>&nbsp;<i class="fa fa-newspaper-o"></i>
       <span class="pull-right">基本资料></span></div>
     <div class="account-bg padding-3 padding-l-4">
-      <span class="ft-black bg-white border-ra-20 padding-1 padding-t-0p2 padding-b-0p2">账户资产(元)</span>&nbsp;&nbsp;&nbsp;<strong class="ft-white">{{ userAccount.tTotalAssets | number:2}}</strong><span class="ft-white">&nbsp;元</span>
-      <div class="pull-right margin-t-2p5"><a href="" class="ft-white" style="text-decoration:underline;">投资项目</a></div>
+      <span class="ft-black bg-white border-ra-20 padding-1 padding-t-0p2 padding-b-0p2">账户资产(元)</span>&nbsp;&nbsp;&nbsp;<span class="ft-white ft-2p5">{{ userAccount.tTotalAssets | number:2}}</span><span class="ft-white">&nbsp;元</span>
+      <div class="pull-right margin-t-2p5"><a class="ft-white" style="text-decoration:underline;" ui-sref="root.user-center.investments-stat">投资项目</a></div>
     </div>
     <!-- 已开通易宝时展示 账户资金详情-->
     <div ng-include src="'views/user-center/_account-assets-info.html'" ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus !== 0">
