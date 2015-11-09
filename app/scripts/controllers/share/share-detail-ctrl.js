@@ -295,7 +295,7 @@ angular.module('p2pSiteMobApp')
     $scope.errorMobileMsg = "";
     $scope.signUp = function(user) {
       console.log($rootScope.openid);
-      register.$create({
+      register1.$create({
         mobile: user.mobile,
         captcha: user.captcha,
         inviteCode: user.inviteCode,
