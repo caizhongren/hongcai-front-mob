@@ -483,6 +483,12 @@
   width:26.5rem;
 
 }
+.margin-b-0{
+  margin-bottom: 0;
+}
+.type-img{
+  height: 0.5rem;
+}
 </style>
 <div class="share-page-wrapper">
   <!-- head-wrapper 必须， head-wrapper-home 用于首页，head-img-other 用于其他  -->
@@ -526,12 +532,12 @@
       </div>
       <!-- 没有朋友点赞 -->
       <div class="words-list-none" ng-show="freeWishCheerRecords.length <= 0" ng-if="viewerFlag === 1">
-        <p><span>还没有好友帮你点赞哦</span><span class="face-icon"></span></p>
-        <p><span>邀10位好友点赞才能领取哦！</span></p>
+        <p class="margin-b-0"><span>还没有好友帮你点赞哦</span><span class="face-icon"></span></p>
+        <p class="margin-b-0"><span>邀10位好友点赞才能领取哦！</span></p>
       </div>
       <div class="words-list-none" ng-show="freeWishCheerRecords.length <= 0" ng-if="viewerFlag === 2">
-        <p><span>10人点赞即可帮助好友领得奖金</span></p>
-        <p><span>做第一个帮助TA的人吧~</span></p>
+        <p class="margin-b-0"><span>10人点赞即可帮助好友领得奖金</span></p>
+        <p class="margin-b-0"><span>做第一个帮助TA的人吧~</span></p>
       </div>
     </div>
   </div>
@@ -541,12 +547,12 @@
   <div class="bg-white margin-t-5 margin-l-1 margin-r-1 ft-1p2 padding-1" style="border-radius:0.5rem;">
     <div class="border-red-bottom"><span class="share-page-mask-activity">活动详情</span><span class="u-pull-right ft-red3" ng-click="activityDetailFlag=false;">关闭</span></div>
     <div class="margin-t-1 ft-1 ft-black2 padding-r-1">
-      <p class="margin-t-1">1、成功为好友点赞或通过其他途径参与活动的用户，均可获得10-50元宏财现金.</p>
-      <p class="margin-t-1">2、用户通过邀请10位好友为自己“点赞”，获得宏财现金。每位好友的点赞可以贡献1-5元奖金.</p>
-      <p class="margin-t-1">3、活动有效期2015年11月9日上午10点-2015年11月16日0点</p>
-      <p class="margin-t-1">4、宏财现金有效期为7天。7天之内未领取者，宏财现金自动清零</p>
-      <p class="margin-t-1">5、服务热线：010-59436409</p>
-      <p class="margin-t-1">6、本活动最终解释权归宏财金融所有.</p>
+      <p class="margin-t-1 margin-b-0">1、成功为好友点赞或通过其他途径参与活动的用户，均可获得10-50元宏财现金.</p>
+      <p class="margin-t-1 margin-b-0">2、用户通过邀请10位好友为自己“点赞”，获得宏财现金。每位好友的点赞可以贡献1-5元奖金.</p>
+      <p class="margin-t-1 margin-b-0">3、活动有效期2015年11月9日上午10点-2015年11月16日0点</p>
+      <p class="margin-t-1 margin-b-0">4、宏财现金有效期为7天。7天之内未领取者，宏财现金自动清零</p>
+      <p class="margin-t-1 margin-b-0">5、服务热线：010-59436409</p>
+      <p class="margin-t-1 margin-b-0">6、本活动最终解释权归宏财金融所有.</p>
     </div>
   </div>
 </div>
