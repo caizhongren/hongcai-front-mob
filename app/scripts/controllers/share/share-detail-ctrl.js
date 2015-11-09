@@ -217,7 +217,7 @@ angular.module('p2pSiteMobApp')
           }
         }else if(buttonFlag === 5){
           $('html').css('font-size','10px');
-          window.location.href="http://m.hongcai.com/#!/user-center/account";
+          $state.go('root.user-center.account');
         }
     }
 
