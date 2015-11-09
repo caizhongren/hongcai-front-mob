@@ -8,13 +8,13 @@
   </ul>
   <div class="tab-content columns twelve bg-white overflow-hid padding-t-2 padding-b-2 text-center" ng-class="{active: toggle.activeSubTab===$index}" ng-repeat="subTab in subTabs">
     <!-- 月月盈 -->
-    <section ng-if="subTab.title==='月月盈'" ng-include src='"views/main/_main-project-template.html"'>
+    <section ng-if="subTab.title==='月月盈'" ng-include src='"views/main/_main-funds-project-template.html"'>
     </section>
     <!-- 季度盈 -->
-    <section ng-if="subTab.title==='季度盈'" ng-include src='"views/main/_main-project-template.html"'>
+    <section ng-if="subTab.title==='季度盈'" ng-include src='"views/main/_main-funds-project-template.html"'>
     </section>
     <!-- 半年盈 -->
-    <section ng-if="subTab.title==='半年盈'" ng-include src='"views/main/_main-project-template.html"'>
+    <section ng-if="subTab.title==='半年盈'" ng-include src='"views/main/_main-funds-project-template.html"'>
     </section>
   </div>
 </section>

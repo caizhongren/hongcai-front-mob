@@ -1,3 +1,4 @@
+<!-- 零存宝详情页 -->
 <div class="funds-project bg-white">
   <div class="row padding-l-2 padding-r-2">
     <p class="text-center margin-0 padding-t-2 padding-b-2">
@@ -9,7 +10,7 @@
       <br>
         <p class="margin-0 padding-t-2 padding-b-1"><strong class="ft-3">{{simpleFundsProject.product.baseRate |currency:"":1 || 0}}</strong>% <strong class="ft-3">- {{simpleFundsProject.product.maxRate |currency:"":1 || 0}}</strong>%</p>
         <hr class="border-orange1">
-        <p class="margin-0 padding-t-0p5 padding-b-0p5">年化收益率</p>
+        <p class="margin-0 padding-t-0p5 padding-b-0p5 ft-1p8">年化收益率</p>
         <hr class="border-orange1">
       </div>
     </div>
@@ -45,7 +46,7 @@
   </div>
 
   <!-- 投资模块 -->
-  <div ng-include src="'views/project/_funds-project-investment.html'">
+  <div ng-include src="'views/project/_current-project-investment.html'">
   </div>
 
   <div class="alert-agreement" ng-show="showFundsAgreement" ng-include src="'views/_current_deposit-agreement.html'">

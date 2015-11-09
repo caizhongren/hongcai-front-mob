@@ -22,6 +22,21 @@ div,p {box-sizing: border-box;}
   background-color: #fd8f3f;
   border-color: #fd8f3f;
 }
+// 蓝色按钮
+.button.button-primary-blue, button.button-primary-blue, input[type="submit"].button-primary-blue, input[type="reset"].button-primary-blue, input[type="button"].button-primary-blue {
+  color:#fff;
+  background-color:#6dd0f5;
+  border-color: #6dd0f5; 
+}
+.button.button-primary-blue:hover, button.button-primary-blue:hover, input[type="submit"].button-primary-blue:hover, input[type="reset"].button-primary-blue:hover, input[type="button"].button-primary-blue:hover, .button.button-primary-blue:focus, button.button-primary-blue:focus, input[type="submit"].button-primary-blue:focus, input[type="reset"].button-primary-blue:focus, input[type="button"].button-primary-blue:focus {
+  color: #FFF;
+  background-color: #fd8f3f;
+  border-color: #fd8f3f;
+}
+.button-blue-shadow{
+  font-size: 2rem;
+  box-shadow: 0rem 0.5rem 0rem 0rem #4fb9e1;
+}
 .button-shadow {
   font-size: 2rem;
   box-shadow: 0rem 0.5rem 0rem 0rem #dc6d1c;
@@ -83,6 +98,9 @@ div,p {box-sizing: border-box;}
 }
 .border-blue1 {
   border: 0.1rem solid #a4cff1;
+}
+.border-blue3{
+  border: 0.1rem solid #d0f2ff;
 }
 .border-orange {
   border: 0.1rem solid #ffa729;
@@ -220,6 +238,12 @@ div,p {box-sizing: border-box;}
 .ft-blue4{
   color: #3cc3cc;
 }
+.ft-blue5{
+  color: #6dd0f5;
+}
+.ft-blue6{
+  color: #33c7ff;
+}
 .ft-black{
   color: #000;
 }
@@ -285,6 +309,9 @@ div,p {box-sizing: border-box;}
 
 .margin-0 {
   margin: 0;
+}
+.margin-2{
+  margin: 2rem;
 }
 .margin-b-0{
   margin-bottom: 0;
@@ -355,17 +382,29 @@ div,p {box-sizing: border-box;}
 .padding-t-2 {
   padding-top: 2rem;
 }
+.padding-l-0p5{
+  padding-left: 0.5rem;
+}
 .padding-l-1 {
   padding-left: 1rem;
 }
 .padding-l-2 {
   padding-left: 2rem;
 }
+.padding-l-3{
+  padding-left: 3rem;
+}
+.padding-l-9{
+  padding-left: 9rem;
+}
 .padding-r-1 {
   padding-right: 1rem;
 }
 .padding-r-2 {
   padding-right: 2rem;
+}
+.padding-r-3{
+  padding-right: 3rem;
 }
 .padding-2 {
   padding: 2rem;
@@ -486,6 +525,25 @@ Opera
 .circle-rate-outside {
   margin: 0 auto;
   border: 0.2rem solid #ffb986;
+  width: 17.2rem;
+  height: 17.2rem;
+  overflow: hidden;
+
+}
+.circle-rate-blue {
+  margin: 0 auto;
+  border: 0.8rem solid #d0f2ff;
+  // box-shadow: 0rem 0rem 1.5rem #ffe8c7 inset;
+  width: 17rem;
+  height: 17rem;
+  overflow: hidden;
+  hr {
+    margin: 0;
+  }
+}
+.circle-rate-outside-blue {
+  margin: 0 auto;
+  border: 0.2rem solid #6ed0f5;
   width: 17.2rem;
   height: 17.2rem;
   overflow: hidden;

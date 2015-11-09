@@ -1,16 +1,17 @@
+<!-- 宏金盈详情页 -->
 <div class="funds-project bg-white">
   <div class="row padding-l-2 padding-r-2">
     <p class="text-center margin-0 padding-t-2 padding-b-2">
       <strong class="ft-2">{{simpleFundsProject.product.name}}{{simpleFundsProject.name}}</strong>
       <span class="ft-1p8 border-grey bg-grey3 ft-white padding-l-2 padding-r-2 border-ra-20">{{statusMap[simpleFundsProject.status]}}</span>
     </p>
-    <div class="padding-b-1 border-ra-50 circle-rate-outside">
-      <div class="border-ra-50 text-center ft-orange circle-rate">
+    <div class="padding-b-1 border-ra-50 circle-rate-outside-blue">
+      <div class="border-ra-50 text-center ft-blue5 circle-rate-blue">
       <br>
         <p class="margin-0 padding-t-2 padding-b-1"><strong class="ft-3">{{simpleFundsProject.product.baseRate |currency:"":1 || 0}}</strong>% <strong class="ft-3">- {{simpleFundsProject.product.maxRate |currency:"":1 || 0}}</strong>%</p>
-        <hr class="border-orange1">
+        <hr class="border-blue3">
         <p class="margin-0 padding-t-0p5 padding-b-0p5">年化收益率</p>
-        <hr class="border-orange1">
+        <hr class="border-blue3">
       </div>
     </div>
   </div>
@@ -18,8 +19,8 @@
     <table class="u-full-width" border-collapse = "collapse">
       <tbody>
         <tr>
-          <td>收益递增</td>
-          <td>每期递增&nbsp;<span class="ft-orange">{{simpleFundsProject.product.riseRate |currency:"":1 || 0}} %</span><br>需开通自动续投</td>
+          <td>递增方式</td>
+          <td>递增收益，每期递增&nbsp;<span class="ft-blue6">{{simpleFundsProject.product.riseRate |currency:"":1 || 0}} %</span></td>
         </tr>
         <tr>
           <td>续投次数</td>
@@ -31,13 +32,13 @@
         </tr>
         <tr>
           <td>退出时间</td>
-          <td>{{simpleFundsProject.repaymentDate | amDateFormat:'YYYY.MM.DD日'}}&nbsp;23:00时</td>
+          <td>{{simpleFundsProject.repaymentDate | amDateFormat:'YYYY.MM.DD日'}}</td>
         </tr>
       </tbody>
     </table>
   </div>
   <div class="text-center padding-b-2">
-    <a href="javascript:;" ng-click="toggle();" class="ft-grey2">《宏金盈协议范本》</a>
+    <a href="javascript:;" ng-click="toggle();" class="ft-grey2" style="text-decoration:underline;">《宏金盈协议范本》</a>
   </div>
 
   <!-- 投资模块 -->
