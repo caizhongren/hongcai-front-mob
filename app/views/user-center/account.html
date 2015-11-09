@@ -26,13 +26,13 @@
       <p class="margin-b-1 rate-span"><span></span><span>+1%</span> <span>2张</span></p>
     </div>
   </div>
-  <!-- 已开通易宝时展示 充值/提现提示-->
-  <div class="padding-l-2 padding-r-2 text-center overflow-hid margin-t-2" ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus !== 0">
+  <!-- 已开通易宝时展示 充值/提现提示 !==0-->
+  <div class="padding-l-2 padding-r-2 text-center overflow-hid margin-t-2 margin-b-7" ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus !== 0">
     <button class="margin-0 half u-pull-left button btn-orange-border" ng-click="!timeout || goWithdraw()">提现</button>
     <button class="margin-0 half u-pull-right button button-primary" ng-click="!timeout || goRecharge()">充值</button>
   </div>
-  <!-- 尚未开通易宝提示 -->
-  <div ng-include src="'views/yeepayless-hint.html'" ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus === 0">
+  <!-- 尚未开通易宝提示 ===0  -->
+  <div ng-include src="'views/yeepayless-hint.html'" ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus === 0" class=" margin-b-7">
   </div>
   <!-- 细分页面入口 -->
   <div class="overflow-hid padding-t-2 padding-b-2">
