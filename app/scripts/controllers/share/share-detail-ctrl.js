@@ -217,7 +217,8 @@ angular.module('p2pSiteMobApp')
           }
         }else if(buttonFlag === 5){
           $('html').css('font-size','10px');
-          $state.go('root.user-center.account');
+          window.location.href = config.domain + '/user-center/account'
+          // $state.go('root.user-center.account');
         }
     }
 
@@ -352,7 +353,8 @@ angular.module('p2pSiteMobApp')
           DialogService.confirm('领取成功', $scope.freeWish.amount + '元已经打入您的账户，请到账户查看。', function(){$rootScope.confirm = null;}, function(){
             $rootScope.confirm = null;
             $('html').css('font-size','10px');
-            $state.go('root.user-center.account');
+            window.location.href = config.domain + '/user-center/account'
+            // $state.go('root.user-center.account');
           });
         }
           
