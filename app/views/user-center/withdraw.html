@@ -4,7 +4,7 @@
     <!-- 未绑定银行卡 -->
     <div ng-include src="'views/user-center/_bankcardless-hint.html'"></div>
     <!-- 已经绑定银行卡 -->
-    <form class="margin-b-1p5 ft-1p4" name="withdrawForm" ng-submit="toWithdraw(simpleWithdraw)">
+    <form class="margin-b-1p5 ft-1p4" name="withdrawForm" ng-submit="toWithdraw(simpleWithdraw)" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
       <label>可用余额:&nbsp;<span class="ft-blue">{{ simpleWithdraw.availableCash | number:2}}</span>元</label>
       <label>手续费:&nbsp;<span class="ft-blue">2</span>元<span class="ft-grey3">(第三方支付收取)</span></label>
       <label>可提现金额:&nbsp;<span class="ft-blue">{{ availableCashRealNo | number:2}}</span>元</label>
