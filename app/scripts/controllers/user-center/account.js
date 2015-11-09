@@ -28,6 +28,14 @@ angular.module('p2pSiteMobApp')
     $rootScope.selectedSide =  'account';
 
 
+    $scope.openYeepay = function(){
+      $state.go('root.yeepay-transfer', {
+        type: 'register',
+        number: ""
+      });
+    }
+
+
     $scope.goWithdraw = function(){
       $state.go("root.user-center.withdraw");
     }

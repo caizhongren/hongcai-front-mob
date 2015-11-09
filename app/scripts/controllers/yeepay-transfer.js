@@ -77,5 +77,24 @@ angular.module('p2pSiteMobApp')
           alert('充值失败', response);
         }
       });
+    } else if ($scope.type === 'register') {
+      //提现
+      var withdrawModel = restmod.model($scope.HongcaiUser + '/yeepayRegister');
+      withdrawModel.$create({
+        'amount': $scope.number,
+        'from': 2
+      }).$then(function(response) {
+        if (response.$status === 'ok') {
+          var req = response.req;
+          var sign = response.sign;
+          var _f = newForm();
+          createElements(_f, 'req', req);
+          createElements(_f, 'sign', sign);
+          _f.action = config.YEEPAY_ADDRESS + 'toRegister';
+          _f.submit();
+        } else {
+          alert('开通易宝失败', response);
+        }
+      });
     }
   }]);
