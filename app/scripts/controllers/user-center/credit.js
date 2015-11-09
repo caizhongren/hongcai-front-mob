@@ -13,7 +13,7 @@ angular.module('p2pSiteMobApp')
     // tab
     $scope.toggle = {};
     $scope.tabs = [{
-      title: '回款中',
+      title: '持有中',
     }, {
       title: '已回款',
     }];

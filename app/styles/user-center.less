@@ -13,6 +13,9 @@
     background-size: 100% 100%;
   }
   .credit {
+    li:nth-child(1) {
+      border-right: 0.1rem solid #ddd;
+    }
     li.active {
       border-top: 0.2rem solid #fd8f3f;
       color: #fd8f3f;
@@ -27,7 +30,8 @@
   }
   .deal {
     table {
-      th,td {
+      th,
+      td {
         font-size: 1rem;
         padding: 0;
         text-align: center;
@@ -42,37 +46,37 @@
       opacity: 0.5;
     }
   }
-  .account-userInfo{
-    button{
+  .account-userInfo {
+    button {
       font-weight: normal;
       font-family: "微软雅黑";
       font-size: 1.8rem;
     }
-    .btn-orange-border{
-      border:0.1rem solid #fd8f3f;
+    .btn-orange-border {
+      border: 0.1rem solid #fd8f3f;
       border-radius: 0.5rem;
-      color:#fd8f3f;
+      color: #fd8f3f;
     }
-    .bg-experience{
+    .bg-experience {
       background-image: url(/images/user-center/bg-experience.png);
       background-size: 100% 100%;
     }
-    .bg-ratemoney{
+    .bg-ratemoney {
       background-image: url(/images/user-center/bg-ratemoney.png);
       background-size: 100% 100%;
     }
-    .rate-span{
-      span:nth-child(1){
+    .rate-span {
+      span:nth-child(1) {
         width: 24%;
         display: inline-block;
       }
-      span:nth-child(2){
-        width:34%;
+      span:nth-child(2) {
+        width: 34%;
         display: inline-block;
         text-align: left;
         color: #fd8f3f;
       }
-      span:nth-child(3){
+      span:nth-child(3) {
         width: 38%;
         display: inline-block;
         text-align: left;
@@ -80,4 +84,4 @@
       }
     }
   }
-} 
+}
