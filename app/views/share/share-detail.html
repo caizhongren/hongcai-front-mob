@@ -431,6 +431,7 @@
   position: fixed;
   top: 0;
   z-index: 999999;
+  bottom: 0;
 }
 
 .heart {
@@ -577,13 +578,13 @@
   </div>
 </div> -->
 <!-- 分享给好友蒙层 可以用ng-show控制-->
-<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-click="inviteFlag = false;" ng-show="inviteFlag">
+<div class="share-page-breakWishLayer width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-click="inviteFlag = false;" ng-show="inviteFlag">
   <div class="margin-l-1 margin-r-1 ft-1p2 padding-1" style="border-radius:0.5rem;">
     <img src="/images/share/share-activity.png" alt="" width="100%">
   </div>
 </div>
 <!-- 引导用户关注蒙层（二维码） 可以用ng-show控制-->
-<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="attentionFlag">
+<div class="share-page-breakWishLayer width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="attentionFlag">
   <div class="bg-grey4 margin-t-5 margin-l-1 margin-r-1 ft-1p2 padding-1 text-center" style="border-radius:0.5rem;">
     <div class="padding-t-1"><span class="u-pull-right ft-red3" ng-click="attentionFlag=false;">关闭</span></div>
     <img src="/images/share/QRcode_test.jpg" alt="" width="100%" ng-show="test">
