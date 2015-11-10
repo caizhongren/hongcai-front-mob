@@ -2,7 +2,7 @@
   <h6 class="border-grey text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>提现</strong></h6>
   <div class="padding-2">
     <!-- 未绑定银行卡 -->
-    <div ng-include src="'views/user-center/_bankcardless-hint.html'"></div>
+    <div ng-include src="'views/user-center/_bankcardless-hint.html'" ng-show="simpleWithdraw.cardStatus !== 'VERIFIED'"></div>
     <!-- 已经绑定银行卡 -->
     <form class="margin-b-1p5 ft-1p4" name="withdrawForm" ng-submit="toWithdraw(simpleWithdraw)" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
       <label>可用余额:&nbsp;<span class="ft-blue">{{ simpleWithdraw.availableCash | number:2}}</span>元</label>
