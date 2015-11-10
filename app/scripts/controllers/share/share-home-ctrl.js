@@ -40,9 +40,10 @@ angular.module('p2pSiteMobApp')
       }).then(function(response){
           console.log(response);
           if(response.ret === -1){
-            DialogService.alert('领取出错', response.msg, function(){
-              $rootScope.alert = null;
-            });
+            // DialogService.alert('领取出错', response.msg, function(){
+            //   $rootScope.alert = null;
+            // });
+            alert(response.msg);
           }else{
             $scope.freeWish = response;
             $state.go("root.share-detail",{

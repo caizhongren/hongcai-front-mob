@@ -195,7 +195,7 @@ angular.module('p2pSiteMobApp')
         if(buttonFlag === 1){
           $timeout(function() {
             $scope.inviteFlag = true;
-          }, 500);
+          }, 300);
           
         }else if(buttonFlag === 2){
           if($rootScope.userInfo.id > 0){
@@ -236,9 +236,10 @@ angular.module('p2pSiteMobApp')
         userId: $rootScope.userInfo.id
       }).then(function(response){
           if(response.ret === -1){
-            DialogService.alert('领取错误', response.msg, function(){
-              $rootScope.alert = null;
-            });
+            // DialogService.alert('领取错误', response.msg, function(){
+            //   $rootScope.alert = null;
+            // });
+            alert('领取错误:' + response.msg);
             return;
           }
 
@@ -280,9 +281,11 @@ angular.module('p2pSiteMobApp')
             if (response.code == -1217){
               msgTitle = '2015年最佳大好人';
             }
-            DialogService.alert(msgTitle, response.msg, function(){
-              $rootScope.alert = null;
-            });
+            // DialogService.alert(msgTitle, response.msg, function(){
+            //   $rootScope.alert = null;
+            // });
+
+            alert(msgTitle + " " + response.msg);
             return;
           }
           var cheerRecord = response;
@@ -347,18 +350,21 @@ angular.module('p2pSiteMobApp')
         userId: $rootScope.userInfo.id
       }).then(function(response){
         if (response.ret == -1){
-          DialogService.alert('领取出错', response.msg, function(){
-            $rootScope.alert = null;
-          });
+          // DialogService.alert('领取出错', response.msg, function(){
+          //   $rootScope.alert = null;
+          // });
+          alert(response.msg);
         } else {
           $scope.freeWish = response;
           $scope.initPageMsg();
-          DialogService.confirm('领取成功', $scope.freeWish.amount + '元已经打入您的账户，请到账户查看。', function(){$rootScope.confirm = null;}, function(){
-            $rootScope.confirm = null;
-            $('html').css('font-size','10px');
-            window.location.href = config.domain + '/user-center/account'
-            // $state.go('root.user-center.account');
-          });
+          // DialogService.confirm('领取成功', $scope.freeWish.amount + '元已经打入您的账户，请到账户查看。', function(){$rootScope.confirm = null;}, function(){
+          //   $rootScope.confirm = null;
+          //   $('html').css('font-size','10px');
+          //   window.location.href = config.domain + '/user-center/account'
+          //   // $state.go('root.user-center.account');
+          // });
+          alert('领取成功，' + $scope.freeWish.amount + '元已经打入您的账户，请到账户查看。');
+          window.location.href = config.domain + '/user-center/account';
         }
           
       });
