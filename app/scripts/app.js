@@ -206,6 +206,17 @@ p2pSiteMobApp
           }
         }
       })
+      //个人设置
+      .state('root.user-center.setting', {
+        url: '/setting',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/setting.html',
+            //controller: 'AccountCtrl',
+            //controllerUrl: 'scripts/controllers/user-center/account'
+          }
+        }
+      })
       // 投资统计
       .state('root.user-center.investments-stat', {
         url: '/investments-stat',
