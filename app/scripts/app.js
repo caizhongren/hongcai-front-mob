@@ -420,6 +420,7 @@ p2pSiteMobApp
             restmod.model(DEFAULT_DOMAIN + '/desireUsers/').$find(wechat_code + '/openid').$then(function(response){
               $rootScope.isLogged = true;
               $rootScope.hasLoggedUser = response;
+              $rootScope.userInfo = response;
               $rootScope.openid = response.openid;
               $rootScope.nickName = response.nickName;
               $rootScope.headImgUrl = response.headImgUrl;
