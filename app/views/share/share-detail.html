@@ -561,13 +561,13 @@
         <p class="margin-0 margin-b-1" style="line-height: 38px;border-bottom: 1px solid #ddd; padding-bottom:0;">
           <span style="display:inline-block;">
           <span class="ft-black">手机号</span>
-          <input id="mobile" class="ft-black margin-b-0 ft-1p4" name="mobile" required="required" type="tel" ng-model="user.mobile" placeholder="手机号" style="width:50%;padding:6px 2px 6px 2rem;border:0;text-align: left;" ng-pattern="/^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678])|(14[0-9]))\d{8}$/" ng-disabled="!timeout">
+          <input id="mobile" class="ft-black margin-b-0 ft-1p4" name="mobile" required="required" type="tel" ng-model="user.mobile" placeholder="手机号" style="width:70%;padding:6px 2px 6px 2rem;border:0;text-align: left;" ng-pattern="/^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678])|(14[0-9]))\d{8}$/" ng-disabled="!timeout">
           </span>
         </p>
         <p class="margin-0 margin-b-1 ft-1p4" style="line-height: 38px;">
           <span style="display:inline-block;border-bottom: 1px solid #ddd;width:60%;">
           <span class="captcha ft-black">验证码</span>
-          <input id="captcha" class="ft-black margin-b-0 ft-1p4" name="captcha" required="required" type="tel" ng-model="user.captcha" placeholder="验证码" style="width:50%;padding:6px 2px 6px 2rem;border:0;text-align: left;" ng-disabled="!timeout">
+          <input id="captcha" class="ft-black margin-b-0 ft-1p4" name="captcha" required="required" type="tel" ng-model="user.captcha" placeholder="验证码" style="width:60%;padding:6px 2px 6px 2rem;border:0;text-align: left;" ng-disabled="!timeout">
           </span>
           <span class="{{registerForm.mobile.$invalid ? 'border-none bg-white' : 'button-enable'}} u-pull-right padding-0" onclick="countDown(this,60,'out');" ng-click="sendMobileCaptcha(user);" ng-disabled="registerForm.mobile.$invalid || buttonFlag === 0" id="get-capache" style="border-bottom: 1px solid #ddd;">获取验证码</span>
         </p>
