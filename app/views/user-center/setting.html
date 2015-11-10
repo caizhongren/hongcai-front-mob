@@ -1,0 +1,76 @@
+<div class="setting">
+  <div class="text-center ft-black2 margin-t-0p5 ft-1p8 border-b-grey padding-b-1">
+    基本资料
+  </div>
+  <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
+    <p>用户名：</p>
+    <p class="p-block">
+      <span class="ft-grey4">youki</span>
+      <span><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已设置</span>
+    </p>
+  </div>
+  <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
+    <p>登录密码：</p>
+    <p class="p-block">
+      <span class="ft-grey4">用于登录宏财网</span>
+      <span ng-click="checkPwdFlag=true"><a>修改></a></span>
+    </p>
+  </div>
+  <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
+    <p>手机号码</p>
+    <p class="p-block">
+      <span class="ft-grey4">188*****253</span>
+      <span><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已绑定</span>
+    </p>
+  </div>
+  <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
+    <p>邮箱：</p>
+    <p class="p-block">
+      <span class="ft-grey4">aaa***@163.com</span>
+      <span><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已绑定</span>
+    </p>
+  </div>
+  <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
+    <p>第三方托管账户</p>
+    <p class="p-block">
+      <span class="ft-grey4">保证您的资金安全</span>
+      <span><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已开通</span>
+      <!-- <span><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通</span> -->
+    </p>
+  </div>
+  <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
+    <p>自动投标权限</p>
+    <p class="p-block">
+      <span class="ft-grey4">方便您续投、预约项目</span>
+      <!-- <span><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已开通</span> -->
+      <span><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通</span>
+    </p>
+  </div>
+  <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
+    <p>我的邀请码</p>
+    <p class="ft-grey4">1290481298918</p>
+  </div>
+  <div class="padding-1 margin-1 ft-grey2 ft-1p4">
+    <p class="margin-b-1">温馨提示：</p>
+    <p class="margin-b-1">暂时不提供手机号码的修改服务，请联系客服400-990-7626进行修改</p>
+    <p>手机版暂不支持自动投标权限的开通，请登录电脑版开通</p>
+  </div>
+</div>
+<!-- 修改密码蒙层 -->
+<div ng-show="true" styLe="position:fixed;top:0;bottom:0;left:0;bottom:0;right:0;background-color:rgba(0,0,0,0.15);z-index:999999;">
+  <div ng-click="checkPwdFlag=false" class="bg-white setting-mask" style="margin:5rem 2rem 0 2rem;height:20rem;">
+    <p>
+      <label for="">旧密码</label>
+      <input type="text">
+    </p>
+    <p>
+      <label for="">新密码</label>
+      <input type="text">
+    </p>
+    <p>
+      <label for="">重复新密码</label>
+      <input type="text">
+    </p>
+    <p style="margin-top:2rem;border-top:0.1rem solid #bbb;clear:both;margin-bottom:0;"><span>取消</span><span>修改</span></p>
+  </div>
+</div>
