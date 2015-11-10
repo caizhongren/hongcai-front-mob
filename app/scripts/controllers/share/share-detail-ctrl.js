@@ -192,6 +192,9 @@ angular.module('p2pSiteMobApp')
 
     // buttonFlag  1:邀请好友帮忙，2：帮TA点赞，3：点击领取(免费愿望)，4：立即领取(奖励)，5：查看我的账户
     $scope.buttonClick = function(buttonFlag){
+        DialogService.alert('领取错误', '测试dialog', function(){
+          $rootScope.alert = null;
+        });
         if(buttonFlag === 1){
           $scope.inviteFlag = true;
         }else if(buttonFlag === 2){
