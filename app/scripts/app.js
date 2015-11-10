@@ -397,7 +397,6 @@ p2pSiteMobApp
       $checkSessionServer.success(function(response) {
 
         if (response.user) { // 已经授权过，1、登录 2未注册
-          $rootScope.checkSession.resolve(response);
           $rootScope.isLogged = true;
           $rootScope.hasLoggedUser = response.user;
           $rootScope.securityStatus = response.securityStatus;
@@ -406,6 +405,8 @@ p2pSiteMobApp
           $rootScope.nickName = response.user.nickName;
           $rootScope.headImgUrl = response.user.headImgUrl;
           $rootScope.userInfo = response.user;
+
+          $rootScope.checkSession.resolve(response);
 
           if (!response.user.mobile && !response.user.email && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1){
             $location.path('/login');
@@ -422,6 +423,8 @@ p2pSiteMobApp
               $rootScope.openid = response.openid;
               $rootScope.nickName = response.nickName;
               $rootScope.headImgUrl = response.headImgUrl;
+
+              $rootScope.checkSession.resolve(response);
               if ($rootScope.openid && !response.user.mobile && !response.user.email && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) { // 未注册，且访问的url需要注册，则需要跳转到注册页
                 $location.path('/login');
               } else if (response.ret == -1){ // 未拿到openid再次请求授权
