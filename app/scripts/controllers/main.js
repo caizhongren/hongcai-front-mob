@@ -44,14 +44,12 @@ angular.module('p2pSiteMobApp')
         }
       });
     };
-    // tab 零存宝  宏金盈 宏金保
+    // tab 零存宝  宏金盈 宏金保暂时不做
     $scope.toggle = {};
     $scope.tabs = [{
       title: '零存宝',
     }, {
       title: '宏金盈'
-    }, {
-      title: '宏金保'
     }];
     $scope.subTabs = [{
       title: '月月盈',
