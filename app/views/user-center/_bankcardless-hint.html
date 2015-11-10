@@ -1,4 +1,5 @@
-<div class="padding-2 text-center">
+<div class="padding-2 text-center" ng-click="bindBankcard()" ng-disabled="!timeout">
   <i class="fa fa-smile-o ft-7"></i>
-  <h6 class="margin-t-2">亲，你还没绑定银行卡哦，请移步到<a href="https://www.hongcai.com">宏财网电脑版</a>完成绑卡操作吧~</h6>
+  <h6 class="margin-t-2" ng-show="simpleWithdraw.cardStatus !== 'VERIFYING'">亲，你还没绑定银行卡哦，请点击完成绑卡操作吧~</h6>
+  <h6 class="margin-t-2" ng-show="simpleWithdraw.cardStatus == 'VERIFYING'">亲，您的银行卡还在审核中，请稍等哦~</h6>
 </div>

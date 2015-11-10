@@ -17,7 +17,9 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'ipCookie',
   'angularMoment',
   'infinite-scroll',
-  'angular-md5'
+  'angular-md5',
+  'ui.bootstrap',
+  'restangular'
 ]);
 
 p2pSiteMobApp
@@ -292,7 +294,7 @@ p2pSiteMobApp
       })
       // 易宝新页面打开中转页
       .state('root.yeepay-transfer', {
-        url: '/yeepay-transfer/:type/:number',
+        url: '/yeepay-transfer/:type/:number?realName&idNo',
         views: {
           '': {
             templateUrl: 'views/yeepay-transfer.html',
@@ -344,12 +346,40 @@ p2pSiteMobApp
 
           }
         }
-      });
+      })
+
+      //分享页
+      .state('root.share-detail', {
+        url: '/share-detail/:number',
+        views: {
+          '': {
+            templateUrl: 'views/share/share-detail.html',
+            controller: 'ShareDetailCtrl',
+            controllerUrl: 'scripts/controllers/share/share-detail-ctrl'
+          }
+        }
+      })  
+          //分享页
+      .state('root.share-home', {
+        url: '/share-home',
+        views: {
+          '': {
+            templateUrl: 'views/share/share-home.html',
+            controller: 'ShareHomeCtrl',
+            controllerUrl: 'scripts/controllers/share/share-home-ctrl'
+          }
+        }
+      })
+    ;
     $urlRouterProvider.otherwise('/');
+    $locationProvider.html5Mode(true);
     $locationProvider.hashPrefix('!');
 
 }])
-  .run(function($rootScope, DEFAULT_DOMAIN,  $q, $timeout, $state, $location, $http, restmod, config) {
+  .run(function($rootScope, DEFAULT_DOMAIN,  $q, $timeout, $state, $location, $http, restmod, config, Restangular, URLService) {
+    Restangular.setBaseUrl('/hongcai/rest');
+    Restangular.setDefaultHeaders({'Content-Type': 'application/json'})
+
     var routespermission = [
       '/user-center'
     ];
@@ -365,20 +395,73 @@ p2pSiteMobApp
       $rootScope.checkSession = $q.defer();
       var $checkSessionServer = $http.get(DEFAULT_DOMAIN + '/users/checkSession');
       $checkSessionServer.success(function(response) {
-        $rootScope.checkSession.resolve(response);
-        if (response.user) {
+
+        if (response.user) { // 已经授权过，1、登录 2未注册
           $rootScope.isLogged = true;
           $rootScope.hasLoggedUser = response.user;
           $rootScope.securityStatus = response.securityStatus;
           $rootScope.account = response.account;
-          //用户未登录状态
-        } else if(response.ret === -1) {
-          $rootScope.isLogged = false;
-          $rootScope.hasLoggedUser = null;
-          if (routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
+          $rootScope.openid = response.user.openid;
+          $rootScope.nickName = response.user.nickName;
+          $rootScope.headImgUrl = response.user.headImgUrl;
+          $rootScope.userInfo = response.user;
+
+          $rootScope.checkSession.resolve(response);
+
+          if (!response.user.mobile && !response.user.email && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1){
             $location.path('/login');
           }
+        } 
+
+        else if(response.ret === -1) { //用户未登录，。
+          var wechat_code = $location.search().code;
+          var redirect_uri = location.href;
+          if (wechat_code){ // 用户未登录但已经有code，去登录
+            restmod.model(DEFAULT_DOMAIN + '/desireUsers/').$find(wechat_code + '/openid').$then(function(response){
+              $rootScope.isLogged = true;
+              $rootScope.hasLoggedUser = response;
+              $rootScope.userInfo = response;
+              $rootScope.openid = response.openid;
+              $rootScope.nickName = response.nickName;
+              $rootScope.headImgUrl = response.headImgUrl;
+
+              $rootScope.checkSession.resolve(response);
+              if ($rootScope.openid && !response.user.mobile && !response.user.email && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) { // 未注册，且访问的url需要注册，则需要跳转到注册页
+                $location.path('/login');
+              } else if (response.ret == -1){ // 未拿到openid再次请求授权
+                var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechatAppid + 
+                  "&redirect_uri=" + encodeURIComponent(URLService.removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
+                window.location.href = wechatRedirectUrl;
+              } else {
+                $rootScope.checkSession.resolve(response);
+              }
+              
+            });
+          } else { // 未登录且还未授权
+
+            var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechatAppid + 
+              "&redirect_uri=" + encodeURIComponent(URLService.removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
+            window.location.href = wechatRedirectUrl;
+
+          }
+          
         }
+
+
+        // $rootScope.checkSession.resolve(response);
+        // if (response.user) {
+        //   $rootScope.isLogged = true;
+        //   $rootScope.hasLoggedUser = response.user;
+        //   $rootScope.securityStatus = response.securityStatus;
+        //   $rootScope.account = response.account;
+        //   //用户未登录状态
+        // } else if(response.ret === -1) {
+        //   $rootScope.isLogged = false;
+        //   $rootScope.hasLoggedUser = null;
+        //   if (routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
+        //     $location.path('/login');
+        //   }
+        // }
       });
     });
     $rootScope.$on('$stateChangeSuccess', function() {

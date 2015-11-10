@@ -1,0 +1,542 @@
+<style>
+.share-page-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  background-color: #f9d326;
+}
+
+.share-page-wrapper .head-wrapper {
+  position: relative;
+  width: 26.5rem;
+  height: 21.75rem;
+  margin: 0 auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.share-page-wrapper .head-wrapper-home {
+  background-image: url(/images/share/head-bg-img-home@2x.png);
+}
+
+.share-page-wrapper .head-img-other {
+  background-image: url(/images/share/head-bg-img-other@2x.png);
+}
+
+.share-page-wrapper .head-wrapper .more-enter {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #000;
+  font-size: 1.2rem;
+}
+
+.share-page-wrapper .slogan {
+  position: absolute;
+  width: 6.83rem;
+  height: 6.583rem;
+  top: 7.375rem;
+  left: 1.75rem;
+  background-size: cover;
+}
+
+.share-page-wrapper .send-you {
+  background-image: url(/images/share/user-slogan-red@2x.png);
+}
+
+.share-page-wrapper .send-ta {
+  background-image: url(/images/share/user-slogan-white@2x.png);
+}
+
+.share-page-wrapper .money-highest {
+  position: absolute;
+  width: 8.71rem;
+  height: 3.79rem;
+  top: 9.1rem;
+  right: 6.2rem;
+  background-image: url(/images/share/50-@2x.png);
+  background-size: cover;
+}
+
+.share-page-wrapper .money {
+  position: absolute;
+  width: 4.355rem;
+  height: 1.895rem;
+  top: 9.4rem;
+  right: 11rem;
+  font: 3.2rem Tahoma, Geneva, sans-serif;
+  color: #ff8400;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #7d0404;
+  font-weight: bold;
+  text-align: center;
+  transform: rotate(-8deg);
+}
+
+.share-page-wrapper .head-wrapper .band {
+  position: relative;
+  top: 18.17rem;
+  left: -1.38rem;
+  height: 2.75rem;
+  width: 18.375rem;
+  margin: 0 auto;
+  background-image: url(/images/share/band@2x.png);
+  background-size: cover;
+  -webkit-transform-origin: top left;
+  transform-origin: top left;
+  -webkit-transform: rotate(-6deg);
+  transform: rotate(-6deg);
+}
+
+.share-page-wrapper .head-wrapper .band img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 2.3rem;
+  width: 2.3rem;
+  margin-top: 0.25rem;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
+
+.share-page-wrapper .head-wrapper .band p:nth-of-type(1) {
+  margin: 0;
+  height: 50%;
+  line-height: 1.37rem;
+  font-size: 1rem;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+}
+
+.share-page-wrapper .head-wrapper .band p:nth-of-type(2) {
+  margin: 0;
+  height: 50%;
+  line-height: 1.37rem;
+  font-size: 1.17rem;
+  text-align: center;
+  color: yellow;
+  font-weight: bold;
+}
+
+.share-page-wrapper .process {
+  position: relative;
+  margin: 1rem auto;
+  width: 11.6rem;
+  height: 0.5rem;
+  background-color: #fde0b1;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+
+.share-page-wrapper .process .progress-bar {
+  width: 12%;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  background-color: #c01a18;
+}
+
+.share-page-wrapper .process .processing {
+  position: absolute;
+  top: -16px;
+  left: 3px;
+  color: #000;
+  font-size: 0.5rem;
+}
+
+.share-page-wrapper .foot-wrapper {
+  width: 22.9rem;
+  margin: 0 auto 1.5rem;
+}
+
+.share-page-wrapper .foot-wrapper .share-btn {
+  width: 100%;
+  height: 3.125rem;
+  margin: 1.5rem 0;
+  border: 1px solid #d63020;
+  color: rgba(0, 0, 0, 0.9);
+  background: -webkit-linear-gradient(-90deg, #cd2e1e 0, #f33733 100%);
+  background: linear-gradient(180deg, #cd2e1e 0, #f33733 100%);
+  background-position: 50% 50%;
+  -webkit-background-origin: padding-box;
+  background-origin: padding-box;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-background-size: auto auto;
+  background-size: auto auto;
+  -webkit-box-shadow: 0 4px 5px 0 rgba(252, 72, 70, 0.5), 0 1px 0 0 #f33d3c inset;
+  box-shadow: 0 4px 5px 0 rgba(252, 72, 70, 0.5), 0 1px 0 0 #f33d3c inset;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.share-page-wrapper .foot-wrapper .share-btn p {
+  height: 3.125rem;
+  line-height: 3.125rem;
+  text-align: center;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.share-page-wrapper .foot-wrapper .share-btn p .main-btn-thumb-icon {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 5px;
+  background-image: url(/images/share/thumb@2x.png);
+  background-size: cover;
+  vertical-align: middle;
+}
+
+.share-page-wrapper .foot-wrapper .share-btn p .main-btn-get-icon {
+  display: inline-block;
+  width: 1.6rem;
+  height: 1.5rem;
+  margin-right: 5px;
+  background-image: url(/images/share/get-icon@2x.png);
+  background-size: cover;
+  vertical-align: middle;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 3.5rem 1.75rem 1rem;
+  border: 1px solid #901110;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.2) inset;
+  background: url(/images/share/words-list-bg@2x.png) repeat;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .foot-head {
+  position: absolute;
+  top: 1rem;
+  left: 0;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .foot-head .word {
+  width: 6.25rem;
+  height: 1.75rem;
+  background: rgb(243, 68, 68);
+  /* Old browsers */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(243, 68, 68, 1)), color-stop(100%, rgba(225, 0, 25, 1)));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(243, 68, 68, 1) 0%, rgba(225, 0, 25, 1) 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: linear-gradient(to bottom, rgba(243, 68, 68, 1) 0%, rgba(225, 0, 25, 1) 100%);
+  /* W3C */
+  font-size: 1.17rem;
+  color: #fff;
+  float: left;
+  border-top: 1px solid #901110;
+  border-bottom: 1px solid #901110;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .foot-head .word > p {
+  width: 8rem;
+  position: absolute;
+  text-align: center;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .foot-head .word .comment-icon {
+  display: inline-block;
+  width: 1.1rem;
+  height: 1rem;
+  margin-right: 5px;
+  background-image: url(/images/share/comment@2x.png);
+  background-size: cover;
+  vertical-align: middle;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .foot-head .corner {
+  display: inline-block;
+  width: 1.75rem;
+  height: 1.75rem;
+  background: rgb(243, 68, 68);
+  /* Old browsers */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(243, 68, 68, 1)), color-stop(100%, rgba(225, 0, 25, 1)));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(243, 68, 68, 1) 0%, rgba(225, 0, 25, 1) 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: linear-gradient(to bottom, rgba(243, 68, 68, 1) 0%, rgba(225, 0, 25, 1) 100%);
+  /* W3C */
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-top: 1px solid #901110;
+  border-bottom: 1px solid #901110;
+  float: right;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .words-list .words-list-item1 {
+  position: relative;
+  margin-bottom: 0.75rem;
+  padding-left: 3.125rem;
+  font-size: 0.83rem;
+  color: #565555;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .words-list .words-list-item1 img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .words-list .words-list-item1 .para {
+  line-height: 2.25rem;
+  word-wrap: break-word;
+  border-bottom: 1px solid #a3a2a2;
+  padding-right: 2.5rem;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .words-list .words-list-item1 .para .add-money {
+  position: absolute;
+  right: 0;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .words-list-none {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-size: 0.83rem;
+  color: #565555;
+  text-align: center;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-wrapper .words-list-none .face-icon {
+  display: inline-block;
+  width: 1.3rem;
+  height: 1.3rem;
+  background-image: url(/images/share/face-icon@2x.png);
+  background-size: cover;
+  vertical-align: middle;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-rule-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 3.5rem 1.75rem 1rem;
+  margin-top: 2rem;
+  border: 1px solid #901110;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.2) inset;
+  background: url(/images/share/words-list-bg@2x.png) repeat;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-rule-wrapper .foot-head {
+  position: absolute;
+  top: 1rem;
+  left: 0;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-rule-wrapper .foot-head .word {
+  width: 6.25rem;
+  height: 1.75rem;
+  background: rgb(243, 68, 68);
+  /* Old browsers */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(243, 68, 68, 1)), color-stop(100%, rgba(225, 0, 25, 1)));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(243, 68, 68, 1) 0%, rgba(225, 0, 25, 1) 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: linear-gradient(to bottom, rgba(243, 68, 68, 1) 0%, rgba(225, 0, 25, 1) 100%);
+  /* W3C */
+  font-size: 1.17rem;
+  color: #fff;
+  float: left;
+  border-top: 1px solid #901110;
+  border-bottom: 1px solid #901110;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-rule-wrapper .foot-head .word > p {
+  width: 8rem;
+  position: absolute;
+  text-align: center;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-rule-wrapper .foot-head .word .active-rule-icon {
+  display: inline-block;
+  width: 1.1rem;
+  height: 1rem;
+  margin-right: 5px;
+  background-image: url(/images/share/active-rule@2x.png);
+  background-size: cover;
+  vertical-align: middle;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-rule-wrapper .foot-head .corner {
+  display: inline-block;
+  width: 1.75rem;
+  height: 1.75rem;
+  background: rgb(243, 68, 68);
+  /* Old browsers */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(243, 68, 68, 1)), color-stop(100%, rgba(225, 0, 25, 1)));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(243, 68, 68, 1) 0%, rgba(225, 0, 25, 1) 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: linear-gradient(to bottom, rgba(243, 68, 68, 1) 0%, rgba(225, 0, 25, 1) 100%);
+  /* W3C */
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-top: 1px solid #901110;
+  border-bottom: 1px solid #901110;
+  float: right;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-rule-wrapper .words-list .words-list-item1 {
+  position: relative;
+  margin-bottom: 0.75rem;
+  font-size: 0.83rem;
+  color: #565555;
+}
+
+.share-page-wrapper .foot-wrapper .words-list-rule-wrapper .words-list .words-list-item1 .para {
+  line-height: 2.25rem;
+  word-wrap: break-word;
+}
+
+.share-page-mask-activity {
+  display: inline-block;
+  background-color: #ec1c00;
+  color: white;
+  padding: 0.3rem 1rem;
+  border-top-left-radius: 0.5rem;
+}
+
+.share-page-mask-btn {
+  width: 100%;
+  height: 38px;
+  line-height: 38px;
+  background-color: #ec1c00;
+  text-align: center;
+  border-radius: 0.5rem;
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+.share-page-breakWishLayer {
+  position: fixed;
+  top: 0;
+  z-index: 999999;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.heart {
+  -webkit-animation: beat .55s infinite alternate;
+  animation: beat .55s infinite alternate;
+  -webkit-transform-origin: center;
+  transform-origin: center;
+}
+
+@keyframes "beat" {
+  to {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+}
+
+@-webkit-keyframes "beat" {
+  to {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+}
+
+.money-bounce {
+  -webkit-animation: money-bounce 1s 1 alternate;
+  animation: money-bounce 1s 1 alternate;
+  -webkit-transform-origin: center;
+  transform-origin: center;
+}
+
+@keyframes money-bounce {
+  0% {
+    transform: scale(0.1) rotate(-8deg) translateX(300px) translateY(300px)
+  }
+  100% {
+    transform: scale(1) rotate(-8deg)
+  }
+}
+
+.head-top-img {
+  width: 26.5rem;
+}
+
+.margin-b-0 {
+  margin-bottom: 0;
+}
+
+.type-img {
+  height: 0.5rem;
+}
+
+.check-id {
+  width: 100%;
+  clear: both;
+  line-height: 38px;
+  padding-bottom: 0;
+}
+
+.check-id span:nth-child(1) {
+  width: 30%;
+  display: inline-block;
+  text-align: right;
+  float: left;
+}
+
+.check-id span:nth-child(2) {
+  width: 70%;
+  display: inline-block;
+  float: left;
+  text-align: left;
+}
+.margin-b-1{
+  margin-bottom: 1rem;
+}
+body{
+  font-family: "微软雅黑";
+}
+</style>
+<div class="share-page-breakWishLayer width-100 height-100" style="background-color:rgba(0,0,0,0.8);">
+  <div class="bg-white margin-t-5 margin-l-2 margin-r-1 ft-1p2 padding-2" style="border-radius:0.5rem;">
+    <div class="border-red-bottom padding-t-1"><span class="share-page-mask-activity">身份验证</span><span class="u-pull-right ft-red3" ng-click="$parent.toRealNameAuth=false;">关闭</span></div>
+    <form autocomplete="on" id="realNameAuthForm" name="realNameAuthForm" class="margin-b-0">
+      <div class="margin-t-1 ft-1p4 ft-black2">
+        <p class="margin-0 margin-b-1 check-id">
+          <span class="ft-black">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</span></span>
+          <span style="border-bottom: 1px solid #ddd;"><input id="realName" class="ft-black margin-b-0 ft-1p4" name="realName" type="text" ng-model="user.realName" placeholder="姓名" style="width:100%;padding:6px 2px 6px 2rem;border:0;text-align: left;" ng-disabled="!timeout" required>
+          </span>
+        </p>
+        <p class="margin-0 margin-b-1 check-id">
+          <span class="ft-black">身份证号码:</span>
+          <span style="border-bottom: 1px solid #ddd;"><input id="idNo" class="ft-black margin-b-0 ft-1p4" name="idNo" type="text" ng-model="user.idNo" placeholder="身份证号码" style="width:100%;padding:6px 2px 6px 2rem;border:0;text-align: left;" ng-pattern="/^([0-9]{17}[0-9X]{1})|([0-9]{15})$/" ng-disabled="!timeout" required>
+          </span>
+        </p>
+        <p></p>
+      </div>
+      <div class="ft-red text-center margin-t-2 margin-b-1 ft-1p2">
+        {{errMsg}}
+      </div>
+      <div class="margin-b-1">
+        <button class="share-page-mask-btn" ng-disabled="realNameAuthForm.$invalid" ng-click="realNameAuth(user)" my-click-once>点击认证</button>
+      </div>
+    </form>
+  </div>
+</div>
+</div>

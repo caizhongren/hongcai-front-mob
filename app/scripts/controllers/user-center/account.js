@@ -27,6 +27,24 @@ angular.module('p2pSiteMobApp')
 
     $rootScope.selectedSide =  'account';
 
+    $scope.realNameAuth = function(user){
+      if (!user.realName || !user.idNo){
+        $scope.errMsg = '请输入姓名或身份证号';
+      }
+      $state.go('root.yeepay-transfer', {
+        type: 'register',
+        number: "null",
+        realName: user.realName,
+        idNo: user.idNo
+      });
+
+    }
+
+
+    $scope.openYeepay = function(){
+      $scope.toRealNameAuth = true;
+    }
+
 
     $scope.goWithdraw = function(){
       $state.go("root.user-center.withdraw");

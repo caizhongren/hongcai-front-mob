@@ -37,6 +37,8 @@ angular.module('p2pSiteMobApp')
     // });
     $scope.type = $stateParams.type;
     $scope.number = $stateParams.number;
+    $scope.realName = $stateParams.realName;
+    $scope.idNo = $stateParams.idNo;
     $scope.HongcaiUser = DEFAULT_DOMAIN + '/users/' + $rootScope.hasLoggedUser.id;
     // 跳转较慢并且认证用户失败的判断。
     if ($scope.type === 'recharge') {
@@ -75,6 +77,44 @@ angular.module('p2pSiteMobApp')
           _f.submit();
         } else {
           alert('充值失败', response);
+        }
+      });
+    } else if ($scope.type === 'BIND_BANK_CARD') {
+      //提现
+      var bindBankcardModel = restmod.model($scope.HongcaiUser + '/bindBankcard');
+      bindBankcardModel.$create({
+        'from': 2
+      }).$then(function(response) {
+        if (response.$status === 'ok') {
+          var req = response.req;
+          var sign = response.sign;
+          var _f = newForm();
+          createElements(_f, 'req', req);
+          createElements(_f, 'sign', sign);
+          _f.action = config.YEEPAY_ADDRESS + 'toWithdraw';
+          _f.submit();
+        } else {
+          alert('绑卡失败', response);
+        }
+      });
+    } else if ($scope.type === 'register') {
+      //提现
+      var withdrawModel = restmod.model($scope.HongcaiUser + '/yeepayRegister');
+      withdrawModel.$create({
+        'realName': $scope.realName,
+        'idCardNo': $scope.idNo,
+        'from': 2
+      }).$then(function(response) {
+        if (response.$status === 'ok') {
+          var req = response.req;
+          var sign = response.sign;
+          var _f = newForm();
+          createElements(_f, 'req', req);
+          createElements(_f, 'sign', sign);
+          _f.action = config.YEEPAY_ADDRESS + 'toRegister';
+          _f.submit();
+        } else {
+          alert('开通易宝失败', response);
         }
       });
     }
