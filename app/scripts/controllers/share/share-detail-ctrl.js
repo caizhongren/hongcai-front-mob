@@ -195,7 +195,7 @@ angular.module('p2pSiteMobApp')
         if(buttonFlag === 1){
           $timeout(function() {
             $scope.inviteFlag = true;
-          }, 300);
+          }, 500);
           
         }else if(buttonFlag === 2){
           if($rootScope.userInfo.id > 0){
