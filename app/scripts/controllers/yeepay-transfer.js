@@ -91,7 +91,7 @@ angular.module('p2pSiteMobApp')
           var _f = newForm();
           createElements(_f, 'req', req);
           createElements(_f, 'sign', sign);
-          _f.action = config.YEEPAY_ADDRESS + 'toWithdraw';
+          _f.action = config.YEEPAY_ADDRESS + 'toBindBankCard';
           _f.submit();
         } else {
           alert('绑卡失败', response);
