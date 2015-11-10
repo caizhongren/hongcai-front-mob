@@ -183,7 +183,7 @@ angular.module('p2pSiteMobApp')
 
 
     wx.error(function(res){
-        window.location.reload();
+        // window.location.reload();
         // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
         $scope.configJsApi();
     });
