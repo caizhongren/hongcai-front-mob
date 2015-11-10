@@ -20,6 +20,8 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'angular-md5',
   'restangular',
   'angular-svg-round-progress'
+  'ui.bootstrap',
+  'restangular'
 ]);
 
 p2pSiteMobApp
@@ -316,7 +318,7 @@ p2pSiteMobApp
       })
       // 易宝新页面打开中转页
       .state('root.yeepay-transfer', {
-        url: '/yeepay-transfer/:type/:number',
+        url: '/yeepay-transfer/:type/:number?realName&idNo',
         views: {
           '': {
             templateUrl: 'views/yeepay-transfer.html',
@@ -370,7 +372,7 @@ p2pSiteMobApp
         }
       })
 
-      // 分享活动详情
+      //分享页
       .state('root.share-detail', {
         url: '/share-detail/:number',
         views: {
@@ -394,7 +396,7 @@ p2pSiteMobApp
       })
 
 
-      ;
+    ;
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
     $locationProvider.hashPrefix('!');
@@ -421,7 +423,6 @@ p2pSiteMobApp
       $checkSessionServer.success(function(response) {
 
         if (response.user) { // 已经授权过，1、登录 2未注册
-          $rootScope.checkSession.resolve(response);
           $rootScope.isLogged = true;
           $rootScope.hasLoggedUser = response.user;
           $rootScope.securityStatus = response.securityStatus;
@@ -429,6 +430,9 @@ p2pSiteMobApp
           $rootScope.openid = response.user.openid;
           $rootScope.nickName = response.user.nickName;
           $rootScope.headImgUrl = response.user.headImgUrl;
+          $rootScope.userInfo = response.user;
+
+          $rootScope.checkSession.resolve(response);
 
           if (!response.user.mobile && !response.user.email && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1){
             $location.path('/login');
@@ -442,9 +446,12 @@ p2pSiteMobApp
             restmod.model(DEFAULT_DOMAIN + '/desireUsers/').$find(wechat_code + '/openid').$then(function(response){
               $rootScope.isLogged = true;
               $rootScope.hasLoggedUser = response;
+              $rootScope.userInfo = response;
               $rootScope.openid = response.openid;
               $rootScope.nickName = response.nickName;
               $rootScope.headImgUrl = response.headImgUrl;
+
+              $rootScope.checkSession.resolve(response);
               if ($rootScope.openid && !response.user.mobile && !response.user.email && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) { // 未注册，且访问的url需要注册，则需要跳转到注册页
                 $location.path('/login');
               } else if (response.ret == -1){ // 未拿到openid再次请求授权

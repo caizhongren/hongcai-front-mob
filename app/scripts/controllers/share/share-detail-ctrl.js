@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('p2pSiteMobApp')
-  .controller('ShareDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, $location, md5, restmod, mobileCaptcha, Restangular, config, DialogService) {
+  .controller('ShareDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, $location, register1, mobileCaptcha, Restangular, config, DialogService) {
     $rootScope.showButton = false;
 
     $scope.test = config.test;
@@ -22,8 +22,8 @@ angular.module('p2pSiteMobApp')
      */
     $scope.onMenuShareAppMessage = function(wishNumber){
       wx.onMenuShareAppMessage({
-        title: 'WO需要你的帮忙',
-        desc: '帮我点个赞，为我涨奖金吧，么么哒！',
+        title: '亲 这次一定要帮我呢',
+        desc: '没有什么比现金更实在的。帮我点赞，你也一起来拿钱！',
         link: config.domain + '/share-detail/' + wishNumber,
         imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/KuGEE3Ins1Oc1gSxsWNG7hnKVzX83nWM3rQsiaPNUdqWoR7DddJAW7H7Iico9rad9armXmH9UM8veRvicaoBEpeTA/0?wx_fmt=png',
         trigger: function (res) {
@@ -44,7 +44,7 @@ angular.module('p2pSiteMobApp')
     $scope.getCheerRecordsUserIds = function(freeWishCheerRecords){
         if(freeWishCheerRecords != null && freeWishCheerRecords.length > 0){
             for(var i=0; i<freeWishCheerRecords.length; i++){
-                if($rootScope.hasLoggedUser.id === freeWishCheerRecords[i].userId){
+                if($rootScope.userInfo.id === freeWishCheerRecords[i].userId){
                     return true;
                 }
             }
@@ -55,21 +55,21 @@ angular.module('p2pSiteMobApp')
     $scope.initPageMsg = function(){
       if($scope.freeWish.status === 3){
           if($scope.viewerFlag === 1){
-              $scope.buttonValue = '领取梦想基金';
+              $scope.buttonValue = '领取宏财现金';
               $scope.buttonFlag = 4;
 
               $scope.firstMsg = $scope.freeWish.praiseCount + '位好友为你点赞';
               $scope.secondMsg = '人品杠杠滴！';
           }else{
             if ($scope.isReceived == true){
-              $scope,buttonValue = "查看我的奖金";
+              $scope.buttonValue = "查看我的奖金";
             } else {
               $scope.buttonValue = '领取我的奖金';
             }
               $scope.buttonFlag = 3;
 
               $scope.firstMsg = '好友已成功领取奖金，';
-              $scope.secondMsg = '领取你自己的梦想基金吧！';
+              $scope.secondMsg = '领取你自己的宏财现金吧！';
           }
       }else if($scope.freeWish.status === 4){
           if($scope.viewerFlag === 1){
@@ -80,14 +80,14 @@ angular.module('p2pSiteMobApp')
               $scope.secondMsg = '您的宏财金融账户';
           }else{
               if ($scope.isReceived == true){
-                $scope,buttonValue = "查看我的奖金";
+                $scope.buttonValue = "查看我的奖金";
               } else {
                 $scope.buttonValue = '领取我的奖金';
               }
               $scope.buttonFlag = 3;
 
               $scope.firstMsg = '好友已成功领取奖金，';
-              $scope.secondMsg = '领取你自己的梦想基金吧！';
+              $scope.secondMsg = '领取你自己的宏财现金吧！';
           }
       }else{
           if($scope.viewerFlag === 1){
@@ -134,19 +134,19 @@ angular.module('p2pSiteMobApp')
           $scope.freeWishCheerRecords = response.cheerRecords; 
           $scope.progress = $scope.freeWish.wishAmount * 100 / $scope.freeWish.amount;
 
-          if($rootScope.hasLoggedUser.id !== $scope.freeWish.userId){
+          if($rootScope.userInfo.id !== $scope.freeWish.userId){
             $scope.viewerFlag = 2;
             $scope.sloganClass = 'slogan send-ta';
             // 登录用户是否已经领取
-            Restangular.one('freeWishes', $rootScope.hasLoggedUser.id).one('isReceived').get().then(function(response){
+            Restangular.one('freeWishes', $rootScope.userInfo.id).one('isReceived').get().then(function(response){
               $scope.isReceived = response;
               $scope.initPageMsg();
-              $scope.onMenuShareAppMessage($scope.freeWish.number);
+              // $scope.onMenuShareAppMessage($scope.freeWish.number);
             });
             
           } else {
             $scope.initPageMsg();
-            $scope.onMenuShareAppMessage($scope.freeWish.number);
+            // $scope.onMenuShareAppMessage($scope.freeWish.number);
           }
         });
     });
@@ -173,7 +173,8 @@ angular.module('p2pSiteMobApp')
             signature: apiConfig.signature,// 必填，签名，见附录1
             jsApiList: 
                 [
-                'onMenuShareAppMessage'
+                'onMenuShareAppMessage',
+                'hideMenuItems'
                 ]
         });
       });
@@ -184,7 +185,7 @@ angular.module('p2pSiteMobApp')
     wx.error(function(res){
         window.location.reload();
         // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
-        // $scope.configJsApi();
+        $scope.configJsApi();
     });
 
 
@@ -192,30 +193,35 @@ angular.module('p2pSiteMobApp')
     // buttonFlag  1:邀请好友帮忙，2：帮TA点赞，3：点击领取(免费愿望)，4：立即领取(奖励)，5：查看我的账户
     $scope.buttonClick = function(buttonFlag){
         if(buttonFlag === 1){
-          $scope.inviteFlag = true;
+          $timeout(function() {
+            $scope.inviteFlag = true;
+          }, 300);
+          
         }else if(buttonFlag === 2){
-          if($rootScope.hasLoggedUser.id > 0){
+          if($rootScope.userInfo.id > 0){
             $scope.cheerFreeWish();
           } else {
             $scope.addFreeWishPraise();
             $scope.attentionFlag = true;
           }
         } else if(buttonFlag === 3){ // 点击领取时要判断用户是否已经注册，未注册引导关注
-          if ($rootScope.hasLoggedUser.id > 0){
+          // alert($rootScope.userInfo.id);
+          if ($rootScope.userInfo.id > 0){
             $scope.openFreeWish();
           } else {
             $scope.attentionFlag = true;
           }
           
         }else if(buttonFlag === 4){
-          if($rootScope.hasLoggedUser.mobile != null){
+          if($rootScope.userInfo.mobile != null){
             $scope.receiveReward();
           }else{
             $scope.registFlag = true;
           }
         }else if(buttonFlag === 5){
           $('html').css('font-size','10px');
-          $state.go('root.user-center.account');
+          window.location.href = config.domain + '/user-center/account'
+          // $state.go('root.user-center.account');
         }
     }
 
@@ -227,7 +233,7 @@ angular.module('p2pSiteMobApp')
      */
     $scope.openFreeWish = function(){
       Restangular.one('freeWishes').post('addFreeWish', {
-        userId: $rootScope.hasLoggedUser.id
+        userId: $rootScope.userInfo.id
       }).then(function(response){
           if(response.ret === -1){
             DialogService.alert('领取错误', response.msg, function(){
@@ -237,10 +243,12 @@ angular.module('p2pSiteMobApp')
           }
 
           $scope.freeWish = response;
-          $location.path('/share-detail/') + response.number;
-          $state.go("root.share-detail",{
-            number: response.number
-          });
+
+          window.location.href = config.domain + '/share-detail/' + response.number;
+          // $location.path('/share-detail/' + response.number); 
+          // $state.go("root.share-detail",{
+          //   number: response.number
+          // });
       });
     }
 
@@ -250,8 +258,8 @@ angular.module('p2pSiteMobApp')
      */
     $scope.addFreeWishPraise = function(){
       Restangular.one('freeWishes', $scope.freeWish.id).post('addFreeWishPraise', {
-        userId: $rootScope.hasLoggedUser.id,
-        openId: $rootScope.hasLoggedUser.openid
+        userId: $rootScope.userInfo.id,
+        openId: $rootScope.userInfo.openid
       }).then(function(response){
           if(response.ret === -1){
             console.log(response.msg);
@@ -265,7 +273,7 @@ angular.module('p2pSiteMobApp')
    */
     $scope.cheerFreeWish = function(){
       Restangular.one('freeWishes', $stateParams.number).post('cheerFreeWish', {
-        userId: $rootScope.hasLoggedUser.id
+        userId: $rootScope.userInfo.id
       }).then(function(response){
           if(response.ret === -1){
             var msgTitle = '不能点赞了哦';
@@ -278,7 +286,7 @@ angular.module('p2pSiteMobApp')
             return;
           }
           var cheerRecord = response;
-          cheerRecord.user = $rootScope.hasLoggedUser;
+          cheerRecord.user = $rootScope.userInfo;
           var wishAmount = $scope.freeWish.wishAmount + cheerRecord.amount;
           $scope.progress = wishAmount * 100 / $scope.freeWish.amount;
           $scope.freeWish.praiseCount = $scope.freeWish.praiseCount + 1;
@@ -291,11 +299,10 @@ angular.module('p2pSiteMobApp')
     $scope.errorMobileMsg = "";
     $scope.signUp = function(user) {
       console.log($rootScope.openid);
-      restmod.model(DEFAULT_DOMAIN + '/desireUsers/register').$create({
+      register1.$create({
         mobile: user.mobile,
         captcha: user.captcha,
         inviteCode: user.inviteCode,
-        password: user.password,
         openId: $rootScope.openid,
         nickName: $rootScope.nickName,
         headImgUrl: $rootScope.headImgUrl
@@ -304,7 +311,7 @@ angular.module('p2pSiteMobApp')
           $scope.errorMobileMsg = response.msg;
           console.log($scope.errorMobileMsg);
         } else {
-          $rootScope.hasLoggedUser = response.user;
+          $rootScope.userInfo = response.user;
           $scope.receiveReward();
           $scope.registFlag = false;
         }
@@ -337,7 +344,7 @@ angular.module('p2pSiteMobApp')
      */
     $scope.receiveReward = function(){
       Restangular.one('freeWishes', $stateParams.number).post('receiveReward', {
-        userId: $rootScope.hasLoggedUser.id
+        userId: $rootScope.userInfo.id
       }).then(function(response){
         if (response.ret == -1){
           DialogService.alert('领取出错', response.msg, function(){
@@ -349,19 +356,22 @@ angular.module('p2pSiteMobApp')
           DialogService.confirm('领取成功', $scope.freeWish.amount + '元已经打入您的账户，请到账户查看。', function(){$rootScope.confirm = null;}, function(){
             $rootScope.confirm = null;
             $('html').css('font-size','10px');
-            $state.go('root.user-center.wishCapital');
+            window.location.href = config.domain + '/user-center/account'
+            // $state.go('root.user-center.account');
           });
         }
           
       });
     }
-
-    $scope.configJsApi();
+    
 
     wx.ready(function(){
+      $scope.onMenuShareAppMessage($scope.freeWish.number);
       wx.hideMenuItems({
           menuList: ['menuItem:share:timeline'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
       });
     });
+
+    $scope.configJsApi();
 
   });

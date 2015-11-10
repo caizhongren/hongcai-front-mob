@@ -1,3 +1,4 @@
+
 <!-- 我的账户 -->
 <div class="account-userInfo bg-white">
   <div>
@@ -10,7 +11,7 @@
       <div style="position:absolute;bottom:1rem;right:1rem;"><a class="ft-white" style="text-decoration:underline;" ui-sref="root.user-center.investments-stat">投资项目</a></div>
     </div>
     <!-- 已开通易宝时展示 账户资金详情-->
-    <div ng-include src="'views/user-center/_account-assets-info.html'" ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus !== 0">
+    <div ng-include src="'views/user-center/_account-assets-info.html'">
     </div>
   </div>
   <!-- 体验金 -->
@@ -33,8 +34,8 @@
     <button class="margin-0 half u-pull-left button btn-orange-border" ng-click="!timeout || goWithdraw()">提现</button>
     <button class="margin-0 half u-pull-right button button-primary" ng-click="!timeout || goRecharge()">充值</button>
   </div>
-  <!-- 尚未开通易宝提示 ===0  -->
-  <div ng-include src="'views/yeepayless-hint.html'" ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus === 0" class=" margin-b-7">
+  <!-- 尚未开通易宝提示 -->
+  <div ng-include src="'views/yeepayless-hint.html'" ng-if="securityStatus.trusteeshipAccountStatus === 0">
   </div>
   <!-- 细分页面入口 -->
   <div class="overflow-hid padding-t-2 padding-b-2">
@@ -49,6 +50,20 @@
     <!-- <a class="column border-grey border-top-none padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 margin-0" ui-sref="root.user-center.deals">
       <span class="u-pull-left ft-grey"><i class="fa fa-list-ul ft-blue ft-1p8">&nbsp;&nbsp;</i>交易记录</span>
       <span class="u-pull-right"><i class="fa fa-chevron-right ft-grey2"></i></span>
+<<<<<<< HEAD
     </a> -->
   </div>
 </div>
+=======
+    </a>
+
+
+    <!-- 实名认证 -->
+    <div ng-include src="'views/user-center/realname-auth.html'" ng-show="toRealNameAuth">
+
+    
+</div>
+
+
+
+>>>>>>> hotfix/add_wechat_login

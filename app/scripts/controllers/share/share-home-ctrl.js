@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('p2pSiteMobApp')
-  .controller('ShareHomeCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, md5, Restangular, config, DialogService) {
+  .controller('ShareHomeCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, Restangular, config, DialogService) {
     
     $rootScope.showButton = false;
     $scope.test = config.test;
@@ -9,9 +9,9 @@ angular.module('p2pSiteMobApp')
     $scope.buttonFlag = true;
     $scope.coverLayerFlag = false;
     $rootScope.checkSession.promise.then(function(){
-        if($rootScope.hasLoggedUser.id > 0){
-          console.log($rootScope.hasLoggedUser.id);
-          Restangular.one('freeWishes', $rootScope.hasLoggedUser.id).one('myFreeWish').get().then(function(response){
+        if($rootScope.userInfo.id > 0){
+          console.log($rootScope.userInfo.id);
+          Restangular.one('freeWishes', $rootScope.userInfo.id).one('myFreeWish').get().then(function(response){
             if(response !== undefined){
               if(response.id > 0){
                   $scope.myFreeWish = response;
@@ -21,6 +21,8 @@ angular.module('p2pSiteMobApp')
           });
         }
         $scope.freeWishes = Restangular.one('freeWishes').getList().$object;
+
+        
     });
 
     /**
@@ -28,17 +30,17 @@ angular.module('p2pSiteMobApp')
      * @return freeWish
      */
     $scope.openFreeWish = function(){
-      if (!$rootScope.hasLoggedUser || $rootScope.hasLoggedUser.id == 0){
+      if (!$rootScope.userInfo || $rootScope.userInfo.id == 0){
         $scope.coverLayerFlag = true;
         return;
       }
       
       Restangular.one('freeWishes').post('addFreeWish', {
-        userId: $rootScope.hasLoggedUser.id
+        userId: $rootScope.userInfo.id
       }).then(function(response){
           console.log(response);
           if(response.ret === -1){
-            DialogService.alert('不能领取拉', response.msg, function(){
+            DialogService.alert('领取出错', response.msg, function(){
               $rootScope.alert = null;
             });
           }else{
