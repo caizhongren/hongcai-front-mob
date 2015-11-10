@@ -77,7 +77,7 @@ angular.module('p2pSiteMobApp')
               $scope.buttonFlag = 5;
 
               $scope.firstMsg = '奖金成功充入';
-              $scope.secondMsg = '您的宏财金融账户';
+              $scope.secondMsg = '您的宏财理财账户';
           }else{
               if ($scope.isReceived == true){
                 $scope.buttonValue = "查看我的奖金";
