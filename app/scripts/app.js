@@ -19,8 +19,8 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'infinite-scroll',
   'angular-md5',
   'restangular',
-  'angular-svg-round-progress'
-  'ui.bootstrap',
+  'angular-svg-round-progress',
+  // 'ui.bootstrap',
   'restangular'
 ]);
 
