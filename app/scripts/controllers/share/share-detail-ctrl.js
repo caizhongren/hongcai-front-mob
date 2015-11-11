@@ -71,7 +71,7 @@ angular.module('p2pSiteMobApp')
               $scope.firstMsg = '好友已成功领取奖金，';
               $scope.secondMsg = '领取你自己的宏财现金吧！';
           }
-      }else if($scope.freeWish.status === 4){
+      }else if($scope.freeWish.status === 4 || $scope.freeWish.status === 5){
           if($scope.viewerFlag === 1){
               $scope.buttonValue = '查看我的账户';
               $scope.buttonFlag = 5;
