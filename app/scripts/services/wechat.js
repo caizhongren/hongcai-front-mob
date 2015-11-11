@@ -1,5 +1,6 @@
 'use strict';
 angular.module('p2pSiteMobApp')
-  .factory('Wechat', function(restmod) {
+  .factory('wechat', function(restmod) {
     return restmod.model('/hongcai/rest/wechat');
   });
+
