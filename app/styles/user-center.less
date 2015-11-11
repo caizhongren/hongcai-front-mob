@@ -145,7 +145,7 @@
       padding: 0 0 0 0.5rem;
     }
   }
-  p:last-child{
+  p:last-child {
     //padding: 1rem 0 !important;
     height: 4rem;
     line-height: 4rem;
@@ -160,9 +160,66 @@
       border-right: 0.1rem solid #bbb;
       text-align: center;
     }
-    span:last-child{
+    span:last-child {
       color: #fd8f3f;
       text-align: center;
     }
+  }
+}
+
+.bank-span {
+  height: 4rem;
+  line-height: 4rem;
+  background-color: #f2f2f2;
+  clear: both;
+  padding: 0;
+  margin: 0;
+  span:nth-child(1) {
+    width: 38%;
+    display: inline-block;
+    float: left;
+    text-align: right;
+  }
+  span:nth-child(2) {
+    width: 60%;
+    display: inline-block;
+    float: left;
+    text-align: left;
+  }
+}
+
+.with-bank {
+  label {
+    span:nth-child(1) {
+      width: 38%;
+      display: inline-block;
+      float: left;
+      text-align: right;
+      font-weight: normal;
+    }
+    span:nth-child(2) {
+      width: 60%;
+      display: inline-block;
+      float: left;
+      text-align: left;
+      font-weight: normal;
+    }
+  }
+}
+.withdraw,.recharge{
+  font-family: "微软雅黑" !important;
+  button{
+  font-family: "微软雅黑" !important;
+  }
+  input{
+  font-family: "微软雅黑" !important;
+  }
+}
+
+.add-bank{
+  padding:1rem 2rem;
+  background-color: #f2f2f2;
+  p{
+    margin-bottom: 1rem;
   }
 }
