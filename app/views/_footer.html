@@ -1,22 +1,12 @@
 <footer class="footer bg-offWhite columns twelve text-center footer-pos" style="border-top:0.1rem solid #ddd;">
-  <div class="footer-up columns twelve padding-t-0p5 padding-b-0p5 ft-grey4" ng-show="!isLogged && showPath === ''">
-    <a ng-click="!timeout || go('root.issue')" class="border-grey-right-footer padding-t-1 padding-b-1 ">&nbsp;常见问题</a>
-    <a ng-click="!timeout || go('root.safe')" class="border-grey-right-footer padding-t-1 padding-b-1 ">&nbsp;安全保障</a>
-    <a ng-click="!timeout || go('root.about')" class="padding-t-1 padding-b-1  border-grey-right-footer">&nbsp;宏财介绍</a>
-    <a ng-click="!timeout || go('root.login')" class="padding-t-1 padding-b-1  none-border">&nbsp;注册/登录</a>
-  </div>
-  <div class="footer-up columns twelve padding-t-0p5 padding-b-0p5 ft-grey4" ng-show="isLogged && showPath === ''">
-    <a ng-click="!timeout || go('root.issue')" class="border-grey-right-footer padding-t-1 padding-b-1 ">&nbsp;常见问题</a>
-    <a ng-click="!timeout || go('root.safe')" class="border-grey-right-footer padding-t-1 padding-b-1 ">&nbsp;安全保障</a>
-    <a ng-click="!timeout || go('root.about')" class="padding-t-1 padding-b-1  border-grey-right-footer">&nbsp;宏财介绍</a>
-    <a ng-click="!timeout || go('root.user-center.account')" class="padding-t-1 padding-b-1  none-border">&nbsp;我的账户</a>
-  </div>
+  <div class="footer-up columns twelve padding-t-0p5 padding-b-0p5 ft-grey4">
+    <!-- <a ng-click="!timeout || go('root.issue')" class="border-grey-right-footer padding-t-1 padding-b-1 ">&nbsp;常见问题</a>  && showPath === ''"-->
+    <a ng-click="!timeout || go('root.main')" class="border-grey-right-footer padding-t-1 padding-b-1 ">&nbsp;宏财产品</a>
 
-  <div class="footer-up columns twelve padding-t-0p5 padding-b-0p5 ft-grey4" ng-show="isLogged && showPath === 'user-center'">
-    <a ng-click="!timeout || go('root.issue')" class="border-grey-right-footer padding-t-1 padding-b-1 ">&nbsp;常见问题</a>
     <a ng-click="!timeout || go('root.safe')" class="border-grey-right-footer padding-t-1 padding-b-1 ">&nbsp;安全保障</a>
     <a ng-click="!timeout || go('root.about')" class="padding-t-1 padding-b-1  border-grey-right-footer">&nbsp;宏财介绍</a>
-    <a ng-click="!timeout || go('root.main')" class="padding-t-1 padding-b-1  none-border">&nbsp;理财产品</a>
+    <a ng-click="!timeout || go('root.login')" class="padding-t-1 padding-b-1  none-border" ng-show="!isLogged">&nbsp;注册/登录</a>
+    <a ng-click="!timeout || go('root.user-center.account')" class="padding-t-1 padding-b-1  none-border" ng-show="isLogged">&nbsp;我的账户</a>
   </div>
     <p style="color:#c9c7c7;margin-bottom:1rem;">北京竞财投资服务有限公司</p>
   <!-- 当用户进入详情页不显示 -->
