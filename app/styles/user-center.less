@@ -123,12 +123,14 @@
   }
 }
 .setting-mask{
-  padding:1rem;
   p{
     label{
       display: inline-block;
       float: left;
       width: 30%;
+      height: 38px;
+      line-height: 38px;
+      text-align: right;
     }
     input{
       display: inline-block;
@@ -139,7 +141,8 @@
       padding:0;
     }
   }
-  p{
+  p:last-child(){
+    padding:0 !important;
     span{
       display: inline-block;
       float: left;
