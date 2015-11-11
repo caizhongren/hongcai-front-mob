@@ -122,9 +122,13 @@
     color: #333;
   }
 }
-.setting-mask{
-  p{
-    label{
+
+.setting-mask {
+  padding-top: 2rem;
+  font-family: "microsoft yahei";
+  p {
+    padding: 0 2rem;
+    label {
       display: inline-block;
       float: left;
       width: 30%;
@@ -132,25 +136,33 @@
       line-height: 38px;
       text-align: right;
     }
-    input{
+    input {
       display: inline-block;
       float: left;
       width: 70%;
       height: 38px;
       line-height: 38px;
-      padding:0;
+      padding: 0 0 0 0.5rem;
     }
   }
-  p:last-child(){
-    padding:0 !important;
-    span{
+  p:last-child{
+    //padding: 1rem 0 !important;
+    height: 4rem;
+    line-height: 4rem;
+    font-size: 1.6rem;
+    span {
       display: inline-block;
       float: left;
-      width: 48%;
+      width: 49.5%;
       text-align: center;
     }
-    span:nth-child(1){
+    span:nth-child(1) {
       border-right: 0.1rem solid #bbb;
+      text-align: center;
+    }
+    span:last-child{
+      color: #fd8f3f;
+      text-align: center;
     }
   }
 }
