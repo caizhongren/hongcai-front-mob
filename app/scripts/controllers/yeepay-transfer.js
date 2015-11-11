@@ -48,7 +48,7 @@ angular.module('p2pSiteMobApp')
         'amount': $scope.number,
         'from': 2
       }).$then(function(response) {
-        if (response.$status === 'ok') {
+        if (response.ret !== -1) {
           var req = response.req;
           var sign = response.sign;
           var _f = newForm();
@@ -67,7 +67,7 @@ angular.module('p2pSiteMobApp')
         'amount': $scope.number,
         'from': 2
       }).$then(function(response) {
-        if (response.$status === 'ok') {
+        if (response.ret !== -1) {
           var req = response.req;
           var sign = response.sign;
           var _f = newForm();
@@ -85,7 +85,7 @@ angular.module('p2pSiteMobApp')
       bindBankcardModel.$create({
         'from': 2
       }).$then(function(response) {
-        if (response.$status === 'ok') {
+        if (response.ret !== -1) {
           var req = response.req;
           var sign = response.sign;
           var _f = newForm();
@@ -105,7 +105,7 @@ angular.module('p2pSiteMobApp')
         'idCardNo': $scope.idNo,
         'from': 2
       }).$then(function(response) {
-        if (response.$status === 'ok') {
+        if (response.ret !== -1) {
           var req = response.req;
           var sign = response.sign;
           var _f = newForm();
