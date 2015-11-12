@@ -14,20 +14,25 @@
     </div>
   </div>
   <!-- 已开通易宝时展示 充值/提现提示 !==0-->
-  <div ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus === 0">
+  <div ng-if="securityStatus.trusteeshipAccountStatus === 1">
     <!-- 体验金 -->
     <div class="padding-0p5 bg-experience margin-2">
       <div class="text-center padding-l-9">
         <p class="margin-b-0 margin-t-1">体验金</p>
-        <p class="ft-orange margin-b-1">￥<span class="ft-2p5">5000</span></p>
+        <p class="ft-orange margin-b-1">￥<span class="ft-2p5">{{userAccount.experienceAmount | number:0}}</span></p>
       </div>
     </div>
     <!-- 加息券 -->
-    <div class="padding-0p5 bg-ratemoney margin-2 clear">
+    <div class="padding-0p5 bg-ratemoney margin-2 clear" ng-if="couponStatis.couponTypes.length > 0">
       <div class="text-center padding-l-9 clear">
         <p class="margin-b-0 margin-t-1">加息券</p>
-        <p class="margin-b-1 rate-span"><span></span><span>+0.5%</span> <span>1张</span></p>
-        <p class="margin-b-1 rate-span"><span></span><span>+1%</span> <span>2张</span></p>
+        <p class="margin-b-1 rate-span" ng-repeat="couponType in couponStatis.couponTypes"><span></span><span>+{{couponType.rate}}%</span> <span>{{couponType.couponNum}}张</span></p>
+      </div>
+    </div>
+    <div class="padding-0p5 bg-ratemoney margin-2 clear" ng-if="couponStatis.couponTypes.length <= 0">
+      <div class="text-center padding-l-9 clear">
+        <p class="margin-b-0 margin-t-1">加息券</p>
+        <p class="ft-orange margin-b-1"><span class="ft-2p5">无</span></p>
       </div>
     </div>
     <div class="padding-l-2 padding-r-2 text-center overflow-hid margin-t-2 margin-b-7">
@@ -36,7 +41,7 @@
     </div>
   </div>
   <!-- 尚未开通易宝提示 -->
-  <div ng-include src="'views/yeepayless-hint.html'" ng-if="securityStatus.trusteeshipAccountStatus !== 0">
+  <div ng-include src="'views/yeepayless-hint.html'" ng-if="securityStatus.trusteeshipAccountStatus !== 1">
   </div>
   <!-- 细分页面入口 -->
   <div class="overflow-hid padding-t-2 padding-b-2">

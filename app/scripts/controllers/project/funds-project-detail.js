@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('FundsProjectDetailCtrl', ['$scope', '$state', '$rootScope', '$stateParams', 'fundsProjects', 'restmod', 'DEFAULT_DOMAIN', 'config', function($scope, $state, $rootScope, $stateParams, fundsProjects, restmod, DEFAULT_DOMAIN, config) {
+  .controller('FundsProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, fundsProjects, restmod, DEFAULT_DOMAIN, config) {
     // 宏金盈详情页面
     var number = $stateParams.number;
     if (!number) {
@@ -168,4 +168,4 @@ angular.module('p2pSiteMobApp')
       }
     };
 
-  }]);
+  });
