@@ -506,14 +506,16 @@
   float: left;
   text-align: left;
 }
-.margin-b-1{
+
+.margin-b-1 {
   margin-bottom: 1rem;
 }
-body{
+
+body {
   font-family: "微软雅黑";
 }
 </style>
-<div class="share-page-breakWishLayer width-100 height-100" style="background-color:rgba(0,0,0,0.8);">
+<!-- <div class="share-page-breakWishLayer width-100 height-100" style="background-color:rgba(0,0,0,0.8);">
   <div class="bg-white margin-t-5 margin-l-2 margin-r-1 ft-1p2 padding-2" style="border-radius:0.5rem;">
     <div class="border-red-bottom padding-t-1"><span class="share-page-mask-activity">身份验证</span><span class="u-pull-right ft-red3" ng-click="$parent.toRealNameAuth=false;">关闭</span></div>
     <form autocomplete="on" id="realNameAuthForm" name="realNameAuthForm" class="margin-b-0">
@@ -539,4 +541,23 @@ body{
     </form>
   </div>
 </div>
+</div> -->
+<div styLe="position:fixed;top:0;bottom:0;left:0;bottom:0;right:0;background-color:rgba(0,0,0,0.15);z-index:999999;">
+  <div class="bg-white realname-mask" style="margin:10rem 2rem 0 2rem;border-radius:0.5rem;">
+    <form autocomplete="on" id="realNameAuthForm" name="realNameAuthForm" class="margin-b-0">
+      <p class="ft-grey2">身份认证</p>
+      <p>
+        <label for="">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+        <input id="realName" name="realName" type="text" ng-model="user.realName" placeholder="姓名" ng-disabled="!timeout" required>
+      </p>
+      <p>
+        <label for="">身份证号：</label>
+        <input id="idNo" name="idNo" type="text" ng-model="user.idNo" placeholder="身份证号码" ng-pattern="/^([0-9]{17}[0-9X]{1})|([0-9]{15})$/" ng-disabled="!timeout" required>
+      </p>
+      <p style="margin-top:5rem;border-top:0.1rem solid #bbb;clear:both;">
+        <span class="ft-grey2" ng-click="$parent.toRealNameAuth=false;">取消</span>
+        <span ng-disabled="realNameAuthForm.$invalid" ng-click="realNameAuth(user)"  my-click-once ng-class="{active: !realNameAuthForm.$invalid}">点击认证</span>
+      </p>
+    </form>
+  </div>
 </div>
