@@ -114,7 +114,7 @@ angular.module('p2pSiteMobApp')
           _f.action = config.YEEPAY_ADDRESS + 'toRegister';
           _f.submit();
         } else {
-          alert('开通易宝失败', response);
+          alert('身份认证失败：', response);
         }
       });
     }

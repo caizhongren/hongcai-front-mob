@@ -307,8 +307,8 @@ angular.module('p2pSiteMobApp')
         captcha: user.captcha,
         inviteCode: user.inviteCode,
         openId: $rootScope.openid,
-        nickName: $rootScope.nickName,
-        headImgUrl: $rootScope.headImgUrl
+        nickName: $rootScope.nickName || '无',
+        headImgUrl: $rootScope.headImgUrl || '无'
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.errorMobileMsg = response.msg;
