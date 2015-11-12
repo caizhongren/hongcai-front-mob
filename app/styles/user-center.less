@@ -126,7 +126,9 @@
 .setting-mask {
   padding-top: 2rem;
   font-family: "microsoft yahei";
-  p:nth-child(1),p:nth-child(2),p:nth-child(3) {
+  p:nth-child(1),
+  p:nth-child(2),
+  p:nth-child(3) {
     padding: 1rem 2rem;
     label {
       display: inline-block;
@@ -209,20 +211,81 @@
     }
   }
 }
-.withdraw,.recharge{
+
+.withdraw,
+.recharge {
   font-family: "微软雅黑" !important;
-  button{
-  font-family: "微软雅黑" !important;
+  button {
+    font-family: "微软雅黑" !important;
   }
-  input{
-  font-family: "微软雅黑" !important;
+  input {
+    font-family: "微软雅黑" !important;
   }
 }
 
-.add-bank{
-  padding:1rem 2rem;
+.add-bank {
+  padding: 1rem 2rem;
   background-color: #f2f2f2;
-  p{
+  p {
     margin-bottom: 1rem;
+  }
+}
+
+.realname-mask {
+  padding-top: 2rem;
+  font-family: "microsoft yahei";
+  p:nth-child(1) {
+    width: 100%;
+    border-bottom: 0.1rem solid #bbb;
+    padding: 1rem 2rem;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  p:nth-child(2),
+  p:nth-child(3) {
+    padding: 1rem 2rem;
+    label {
+      display: inline-block;
+      float: left;
+      width: 34%;
+      height: 38px;
+      font-size: 1.6rem;
+      line-height: 38px;
+      text-align: right;
+      font-weight: normal;
+    }
+    input {
+      display: inline-block;
+      float: right;
+      width: 65%;
+      height: 38px;
+      line-height: 38px;
+      padding: 0 0 0 0.5rem;
+      border-radius: 0;
+    }
+  }
+  p:last-child {
+    //padding: 1rem 0 !important;
+    height: 4rem;
+    line-height: 4rem;
+    font-size: 1.6rem;
+    span {
+      display: inline-block;
+      float: left;
+      width: 49.5%;
+      text-align: center;
+    }
+    span:nth-child(1) {
+      border-right: 0.1rem solid #bbb;
+      text-align: center;
+    }
+    span:last-child {
+      color: #fd8f3f;
+      text-align: center;
+    }
+    .active{
+      background-color: #fd8f3f;
+      color: white !important;
+    }
   }
 }
