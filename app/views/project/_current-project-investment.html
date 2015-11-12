@@ -1,9 +1,9 @@
 <div class="row" ng-show="simpleFundsProject.status === 1" ng-switch="fundsFlag">
-<!-- 判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。 -->
+  <!-- 判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。 -->
   <div ng-switch-when=0>
-    <div class="overflow-hid bg-blue2 padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 border-blue1 ft-1">
-      <span class="u-pull-left"><i class="fa fa-users ft-blue2"></i>&nbsp;参投人数:<strong class="ft-blue1">{{simpleFundsProject.investNumber || 0}}</strong>人</span>
-      <span class="u-pull-right"><i class="fa fa-pie-chart ft-blue2"></i>&nbsp;可投金额<strong class="ft-blue1">{{fundsProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
+    <div class="overflow-hid bg-orange1 padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 border-orange3 ft-1">
+      <span class="u-pull-left"><i class="fa fa-users ft-orange"></i>&nbsp;参投人数:<strong class="ft-orange">{{simpleFundsProject.investNumber || 0}}</strong>人</span>
+      <span class="u-pull-right"><i class="fa fa-pie-chart ft-orange"></i>&nbsp;可投金额<strong class="ft-orange">{{fundsProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
     </div>
     <form name="investForm" class="investForm overflow-hid" ng-submit="toInvest(simpleFundsProject)">
       <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="investForm.investAmount.$error.number">
@@ -62,9 +62,9 @@
     </form>
   </div>
   <div ng-switch-when=2>
-    <div class="overflow-hid bg-blue2 padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 border-blue1 ft-1">
-      <span class="u-pull-left"><i class="fa fa-jpy ft-blue2"></i>&nbsp;账户余额:<strong class="ft-blue1">{{ account.balance | currency:"":2 || 0}}</strong>元</span>
-      <span class="u-pull-right"><i class="fa fa-pie-chart ft-blue2"></i>&nbsp;可投金额<strong class="ft-blue1">{{fundsProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
+    <div class="overflow-hid bg-orange1 padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 border-orange3 ft-1">
+      <span class="u-pull-left"><i class="fa fa-jpy ft-orange"></i>&nbsp;账户余额:<strong class="ft-orange">{{ account.balance | currency:"":2 || 0}}</strong>元</span>
+      <span class="u-pull-right"><i class="fa fa-pie-chart ft-orange"></i>&nbsp;可投金额<strong class="ft-orange">{{fundsProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
     </div>
     <form name="investForm" class="investForm overflow-hid" ng-submit="toInvest(simpleFundsProject)">
       <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="msg">
@@ -94,9 +94,9 @@
     </form>
   </div>
   <div ng-switch-when=3>
-    <div class="overflow-hid bg-blue2 padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 border-blue1 ft-1">
-      <span class="u-pull-left"><i class="fa fa-jpy ft-blue2"></i>&nbsp;账户余额:<strong class="ft-blue1">{{ account.balance | currency:"":2 || 0}}</strong>元</span>
-      <span class="u-pull-right"><i class="fa fa-pie-chart ft-blue2"></i>&nbsp;可投金额<strong class="ft-blue1">{{fundsProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
+    <div class="overflow-hid bg-orange1 padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 border-orange3 ft-1">
+      <span class="u-pull-left"><i class="fa fa-jpy ft-orange"></i>&nbsp;账户余额:<strong class="ft-orange">{{ account.balance | currency:"":2 || 0}}</strong>元</span>
+      <span class="u-pull-right"><i class="fa fa-pie-chart ft-orange"></i>&nbsp;可投金额<strong class="ft-orange">{{fundsProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
     </div>
     <form name="investForm" class="investForm overflow-hid" ng-submit="toInvest(simpleFundsProject)">
       <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="msg">
@@ -127,8 +127,24 @@
   </div>
 </div>
 <div class="row" ng-show="simpleFundsProject.status !== 1">
-  <div class="overflow-hid bg-blue2 padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 border-blue1 ft-1">
-    <span class="u-pull-left"><i class="fa fa-users ft-blue2"></i>&nbsp;参投人数:<strong class="ft-blue1">{{simpleFundsProject.investNumber || 0}}</strong>人</span>
-    <span class="u-pull-right"><i class="fa fa-pie-chart ft-blue2"></i>&nbsp;可投金额<strong class="ft-blue1">{{fundsProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
+  <div class="overflow-hid bg-orange1 padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 border-orange3 ft-1">
+    <span class="u-pull-left"><i class="fa fa-users ft-orange"></i>&nbsp;参投人数:<strong class="ft-orange">{{simpleFundsProject.investNumber || 0}}</strong>人</span>
+    <span class="u-pull-right"><i class="fa fa-pie-chart ft-orange"></i>&nbsp;可投金额<strong class="ft-orange">{{fundsProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
+  </div>
+</div>
+<div styLe="position:fixed;top:0;bottom:0;left:0;bottom:0;right:0;background-color:rgba(0,0,0,0.15);z-index:999999;" ng-show="false">
+  <div class="bg-white" style="margin:10rem 2rem 0 2rem;border-radius:0.5rem;">
+    <p class="margin-b-1 padding-l-2 padding-t-2">
+      <input type="checkbox">使用体验金</p>
+    <p class="margin-b-1 padding-l-2">
+      <select name="" id="">
+        <option value="0">不使用加息券</option>
+        <option value="1">+0.1%加息券</option>
+      </select>
+    </p>
+    <p class="margin-b-1 padding-l-2 padding-r-2">
+    <button class="button button-primary" style="width:48%;">取消</button>
+    <button class="button button-primary" style="width:48%;">确定使用</button>
+    </p>
   </div>
 </div>
