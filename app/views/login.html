@@ -1,25 +1,25 @@
 <div class="bg-white padding-l-1 padding-r-1 padding-t-3 padding-b-3 text-center">
-    <img src="/images/login-1.png" width="65%">
-    <form class="login margin-0 padding-l-1 padding-r-1 padding-b-2 padding-t-2 ft-grey text-left" autocomplete="on" ng-submit="toLogin(user)">
-        <p ng-show="msg" class="ft-red"><i class="fa fa-times-circle"></i>&nbsp;&nbsp;{{msg}}</p>
-        <div class="margin-0 border-grey border-ra-0p5 margin-b-1p5">
-            <label for="username"> 账户 </label>
-            <input id="username" class="border-grey" name="username" required="required" type="text" ng-model="user.account" placeholder="用户名/手机号/邮箱"/ autofocus>
-        </div>
-        <div class="margin-0 border-grey border-ra-0p5 margin-b-1p5">
-            <label for="password"> 密码 </label>
-            <input id="password" class="border-grey" name="password" ng-model="user.password" required="required" type="password" placeholder="输入登录密码"/>
-        </div>
-        <p class="keeplogin margin-0">
-            <input type="checkbox" name="loginkeeping" id="loginkeeping" class="u-pull-left" ng-model="rememberUserName" value="loginkeeping" />
-            <span for="loginkeeping">记住账户</span>
-        </p>
-        <p class="login margin-0 text-center">
-            <input type="submit" class="button button-primary column" value="立即登录" />
-        </p>
-        <p class="change_link margin-0 text-center">
-            还没有注册 ?
-            <a ui-sref="root.register" class="to-register">立即注册</a>
-        </p>
-    </form>
+  <img src="/images/login-2.png" width="65%">
+  <form class="login margin-0 padding-l-1 padding-r-1 padding-b-2 padding-t-2 ft-grey text-left" autocomplete="on" ng-submit="toLogin(user)">
+    <p ng-show="msg" class="ft-red"><i class="fa fa-times-circle"></i>&nbsp;&nbsp;{{msg}}</p>
+    <div class="margin-0 border-grey margin-b-1p5">
+      <label for="username" class="test1"> 用户名 </label>
+      <input id="username" class="border-grey" name="username" required="required" type="text" ng-model="user.account" placeholder="用户名/手机号/邮箱" / autofocus>
+    </div>
+    <div class="margin-0 border-grey margin-b-1p5">
+      <label for="password" class="test1"> 密&nbsp;&nbsp;&nbsp;码 </label>
+      <input id="password" class="border-grey" name="password" ng-model="user.password" required="required" type="password" placeholder="输入登录密码" />
+    </div>
+    <p class="keeplogin margin-0">
+      <input type="checkbox" name="loginkeeping" id="loginkeeping" ng-model="rememberUserName" value="loginkeeping" />
+      <span for="loginkeeping">记住账户</span>
+    </p>
+    <p class="login margin-0 text-center">
+      <input type="submit" class="button button-primary button-shadow column" value="立即登录" />
+    </p>
+    <p class="change_link margin-0 text-center">
+      还没有注册 ?
+      <a ui-sref="root.register" class="to-register">立即注册</a>
+    </p>
+  </form>
 </div>
