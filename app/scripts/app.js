@@ -212,8 +212,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/user-center/setting.html',
-            //controller: 'AccountCtrl',
-            //controllerUrl: 'scripts/controllers/user-center/account'
+            controller: 'AccountCtrl',
+            controllerUrl: 'scripts/controllers/user-center/account'
           }
         }
       })
