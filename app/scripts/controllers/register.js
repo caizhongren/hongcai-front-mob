@@ -28,7 +28,7 @@ angular.module('p2pSiteMobApp')
       signUpBe = register;
     } else {
       // wechat路线
-      signUpBe = wechat.signUp;
+      signUpBe = register;
     }
     
     $scope.signUp = function(user) {
