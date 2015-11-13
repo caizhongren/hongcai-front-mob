@@ -8,7 +8,7 @@
 
   <!-- 要展示的内容如下 -->
   <div class="tab-content columns twelve bg-offWhite overflow-hid padding-b-2 text-center " ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs">
-    <section ng-if="tab.title==='战略伙伴'" style="background-color: #F5F5F5;">
+    <section ng-if="tab.title==='战略伙伴'" style="background-color: #F5F5F5;" class="margin-b-7">
       <div class="safe bg-white text-left" ng-repeat="item in partners">
         <div class="border-bottom-safe ft-1p8 item-style">
           <i class="fa {{item.fa}} ft-blue5"></i>
@@ -22,7 +22,7 @@
         </div>
       </div>
     </section>
-    <section class="base-background" ng-if="tab.title==='宏财简介'">
+    <section class="base-background margin-b-7" ng-if="tab.title==='宏财简介'">
       <div class="safe bg-white text-left">
         <div class="border-bottom-safe ft-1p8 item-style">
           <i class="fa fa-rocket ft-blue5"></i>
@@ -59,7 +59,7 @@
         </div>
       </div>
     </section>
-    <section ng-if="tab.title==='顾问团队'">
+    <section ng-if="tab.title==='顾问团队'" class="margin-b-7">
       <div class="row border-solidf5-bottom bg-white padding-t-1" ng-class="{'margin-t-0p5': $index !== 0}" ng-repeat="item in consultants">
         <div class="two columns padding-1">
           <img ng-src="{{ item.img }}" width="30%" style="float:left;">
