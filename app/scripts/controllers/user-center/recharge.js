@@ -8,9 +8,9 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RechargeCtrl', ['$scope', '$rootScope', 'HongcaiUser', '$state', 'restmod', 'DEFAULT_DOMAIN', function($scope, $rootScope, HongcaiUser, $state, restmod, DEFAULT_DOMAIN) {
+  .controller('RechargeCtrl', function($scope, $rootScope, $stateParams, HongcaiUser, $state, restmod, DEFAULT_DOMAIN) {
     $rootScope.selectedSide = 'account';
-    $scope.rechargeAmount = '';
+    $scope.rechargeAmount = $stateParams.amount;
 
     $rootScope.checkSession.promise.then(function(){
       if(!$rootScope.isLogged){
@@ -43,4 +43,4 @@ angular.module('p2pSiteMobApp')
     });
 
     
-  }]);
+  });

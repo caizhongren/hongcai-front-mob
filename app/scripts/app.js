@@ -228,7 +228,7 @@ p2pSiteMobApp
       })
       // 充值
       .state('root.user-center.recharge', {
-        url: '/recharge',
+        url: '/recharge?amount',
         views: {
           '': {
             templateUrl: 'views/user-center/recharge.html',
