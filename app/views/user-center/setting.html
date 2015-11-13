@@ -27,15 +27,16 @@
     <p>邮箱：</p>
     <p class="p-block">
       <span class="ft-grey4">aaa***@163.com</span>
-      <span><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已绑定</span>
+      <!-- <span><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已绑定</span> -->
+      <span ng-click="checkEmailFlag=true"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;修改</span>
     </p>
   </div>
   <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
     <p>第三方托管账户</p>
     <p class="p-block">
       <span class="ft-grey4">保证您的资金安全</span>
-      <span><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已开通</span>
-      <!-- <span><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通</span> -->
+      <!-- <span><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已开通</span> -->
+      <span ng-click="toRealNameAuth=true"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通</span>
     </p>
   </div>
   <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
@@ -43,7 +44,7 @@
     <p class="p-block">
       <span class="ft-grey4">方便您续投、预约项目</span>
       <!-- <span><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已开通</span> -->
-      <span><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通</span>
+      <span ng-click="checkAutoFlag=true"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通</span>
     </p>
   </div>
   <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
@@ -57,8 +58,8 @@
   </div>
 </div>
 <!-- 修改密码蒙层 -->
-<div ng-show="checkPwdFlag" styLe="position:fixed;top:0;bottom:0;left:0;bottom:0;right:0;background-color:rgba(0,0,0,0.15);z-index:999999;">
-  <div class="bg-white setting-mask" style="margin:10rem 2rem 0 2rem;border-radius:0.5rem;">
+<div ng-show="checkPwdFlag" class="project-mask">
+  <div class="bg-white setting-mask project-mask-inner">
     <p>
       <label for="">旧密码&nbsp;&nbsp;</label>
       <input type="password" placeholder="请输入旧密码">
@@ -72,6 +73,35 @@
       <input type="password" placeholder="再次输入新密码">
     </p>
     <p style="margin-top:5rem;border-top:0.1rem solid #bbb;clear:both;">
-    	<span ng-click="checkPwdFlag=false">取消</span><span>修改</span></p>
+    	<span ng-click="checkPwdFlag=false">取消</span>
+      <span>修改</span></p>
+  </div>
+</div>
+<!-- 修改邮箱蒙层 -->
+<div ng-show="checkEmailFlag" class="project-mask">
+  <div class="bg-white email-mask project-mask-inner">
+    <p>
+      <label for="">邮箱&nbsp;&nbsp;</label>
+      <input type="eamil" placeholder="请输入邮箱">
+    </p>
+    <p style="margin-top:5rem;border-top:0.1rem solid #bbb;clear:both;">
+      <span ng-click="checkEmailFlag=false">取消</span>
+      <span>修改</span></p>
+  </div>
+</div>
+
+<!-- 实名认证 toRealNameAuth-->
+<div ng-include src="'views/user-center/realname-auth.html'" ng-show="toRealNameAuth">
+</div>
+
+<!-- 开通自动投标权限蒙层 -->
+<div ng-show="checkAutoFlag" class="project-mask">
+  <div class="bg-white email-mask project-mask-inner">
+    <p>
+      您还未开通自动投标权限，确定去开通？
+    </p>
+    <p style="margin-top:5rem;border-top:0.1rem solid #bbb;clear:both;">
+      <span ng-click="checkAutoFlag=false">取消</span>
+      <span>修改</span></p>
   </div>
 </div>

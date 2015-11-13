@@ -283,9 +283,56 @@
       color: #fd8f3f;
       text-align: center;
     }
-    .active{
+    .active {
       background-color: #fd8f3f;
       color: white !important;
+    }
+  }
+}
+
+.email-mask {
+  padding-top: 2rem;
+  font-family: "microsoft yahei";
+  p:nth-child(1) {
+    padding: 1rem 2rem;
+    label {
+      display: inline-block;
+      float: left;
+      width: 25%;
+      height: 38px;
+      font-size: 1.6rem;
+      line-height: 38px;
+      text-align: right;
+      font-weight: normal;
+    }
+    input {
+      display: inline-block;
+      float: right;
+      width: 65%;
+      height: 38px;
+      line-height: 38px;
+      padding: 0 0 0 0.5rem;
+      border-radius: 0;
+    }
+  }
+  p:last-child {
+    //padding: 1rem 0 !important;
+    height: 4rem;
+    line-height: 4rem;
+    font-size: 1.6rem;
+    span {
+      display: inline-block;
+      float: left;
+      width: 49.5%;
+      text-align: center;
+    }
+    span:nth-child(1) {
+      border-right: 0.1rem solid #bbb;
+      text-align: center;
+    }
+    span:last-child {
+      color: #fd8f3f;
+      text-align: center;
     }
   }
 }
