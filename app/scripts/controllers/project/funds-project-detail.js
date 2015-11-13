@@ -135,7 +135,7 @@ angular.module('p2pSiteMobApp')
       } else if ($scope.checkLargeUserCanAmount(simpleFundsProject)) {
         $state.go('root.yeepay-transfer', {
               type: 'recharge',
-              number: $scope.investAmount - $rootScope.account.balance - ($rootScope.account.reward == null ? 0 : $rootScope.account.reward)
+              number: $scope.investAmount - $rootScope.account.balance + ($rootScope.account.reward == null ? 0 : $rootScope.account.reward)
         });
         // $state.go('root.user-center.recharge');
       } else if ($scope.fundsFlag === 2 || $scope.fundsFlag === 3) {
