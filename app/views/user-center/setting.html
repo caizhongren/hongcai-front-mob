@@ -23,14 +23,14 @@
       <span><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已绑定</span>
     </p>
   </div>
-  <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
+<!--   <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
     <p>邮箱：</p>
     <p class="p-block">
       <span class="ft-grey4">aaa***@163.com</span>
-      <!-- <span><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已绑定</span> -->
+      <span><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已绑定</span>
       <span ng-click="checkEmailFlag=true"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;修改</span>
     </p>
-  </div>
+  </div> -->
   <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
     <p>第三方托管账户</p>
     <p class="p-block">
@@ -78,7 +78,7 @@
   </div>
 </div>
 <!-- 修改邮箱蒙层 -->
-<div ng-show="checkEmailFlag" class="project-mask">
+<!-- <div ng-show="checkEmailFlag" class="project-mask">
   <div class="bg-white email-mask project-mask-inner">
     <p>
       <label for="">邮箱&nbsp;&nbsp;</label>
@@ -88,7 +88,7 @@
       <span ng-click="checkEmailFlag=false">取消</span>
       <span>修改</span></p>
   </div>
-</div>
+</div> -->
 
 <!-- 实名认证 toRealNameAuth-->
 <div ng-include src="'views/user-center/realname-auth.html'" ng-show="toRealNameAuth">
@@ -97,10 +97,10 @@
 <!-- 开通自动投标权限蒙层 -->
 <div ng-show="checkAutoFlag" class="project-mask">
   <div class="bg-white email-mask project-mask-inner">
-    <p>
+    <p class="margin-b-0 text-center">
       您还未开通自动投标权限，确定去开通？
     </p>
-    <p class="project-mask-btn">
+    <p class="project-mask-btn2">
       <span ng-click="checkAutoFlag=false">取消</span>
       <span>修改</span></p>
   </div>
