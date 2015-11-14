@@ -76,7 +76,7 @@ angular.module('p2pSiteMobApp')
           _f.action = config.YEEPAY_ADDRESS + 'toWithdraw';
           _f.submit();
         } else {
-          alert('充值失败', response);
+          alert('提现失败', response);
         }
       });
     } else if ($scope.type === 'BIND_BANK_CARD') {

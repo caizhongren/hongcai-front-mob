@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('WithdrawCtrl', ['$scope', '$rootScope', '$state', 'HongcaiUser', function($scope, $rootScope, $state, HongcaiUser) {
+  .controller('WithdrawCtrl', function($scope, $rootScope, $state, HongcaiUser, fundsProjects) {
     $rootScope.selectedSide = 'account';
 
 
@@ -18,26 +18,47 @@ angular.module('p2pSiteMobApp')
       }
 
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/availableCash').$then(function(response) {
-        if (response.$status === 'ok') {
+        if (response.ret !== -1) {
           // 获取用户充值信息
           $scope.simpleWithdraw = response;
-          $scope.availableCash = $scope.simpleWithdraw.availableCash;
+          $scope.availableCash = $scope.simpleWithdraw.account.availableCash;
           $scope.availableCashRealNo = $scope.availableCash >= 2 ? $scope.availableCash - 2 : 0;
-          $scope.toWithdraw = function(simpleWithdraw) {
-            // $scope.msg = '3';
-            var amount = simpleWithdraw.amountDraw;
 
-            $state.go('root.yeepay-transfer', {
-              type: 'withdraw',
-              number: amount
-            });
-          }
         } else {
           // 获取信息失败。
         }
         });
-    
     });
+
+
+
+    // 跳转到零存宝详情页
+    $scope.toInvestCurrentDeposit = function(){
+      fundsProjects.$find('recommendations', {
+        productType: 1
+      }).$then(function(response) {
+        if (response.ret  !== -1) {
+          $state.go('root.current-deposit-detail', {number: response.number});
+        } else {
+
+        }
+      });
+    }
+
+
+
+    /**
+     * 提现
+     */
+    $scope.toWithdraw = function(simpleWithdraw) {
+      // $scope.msg = '3';
+      var amount = simpleWithdraw.amountDraw;
+
+      $state.go('root.yeepay-transfer', {
+        type: 'withdraw',
+        number: amount
+      });
+    }
 
   /**
    * 绑定银行卡
@@ -60,4 +81,4 @@ angular.module('p2pSiteMobApp')
         return false;
       }
     };
-  }]);
+  });

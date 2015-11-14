@@ -133,7 +133,11 @@ angular.module('p2pSiteMobApp')
       } else if ($scope.fundsFlag === 1) {
         // 需要跳到实名认证页面
       } else if ($scope.checkLargeUserCanAmount(simpleFundsProject)) {
-        $state.go('root.user-center.recharge');
+        $state.go('root.yeepay-transfer', {
+              type: 'recharge',
+              number: $scope.investAmount - $rootScope.account.balance + ($rootScope.account.reward == null ? 0 : $rootScope.account.reward)
+        });
+        // $state.go('root.user-center.recharge');
       } else if ($scope.fundsFlag === 2 || $scope.fundsFlag === 3) {
         // how to bulid investment path restmod.model
         // restmod.model(DEFAULT_DOMAIN + '/projects')

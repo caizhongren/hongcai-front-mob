@@ -18,12 +18,21 @@
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入数字(最多精确到小数点后两位)</span>
       </div>
       <div class="hint text-center bg-red1 box-shadow" ng-show="simpleWithdraw.amountDraw>availableCashRealNo || simpleWithdraw.amountDraw<1">
-        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入一个介于 1 -- {{simpleWithdraw.availableCash | number:2}}之间的值</span>
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入一个介于 1 -- {{availableCash | number:2}}之间的值</span>
       </div>
-      <div class="padding-2">
-        <input type="text" name="amount" class="u-full-width padding-1 margin-t-1" min="1" max="{{ simpleWithdraw.availableCash }}" ng-model="simpleWithdraw.amountDraw" ng-pattern="/^[0-9]*(\.[0-9]{1,2})?$/" placeholder="请输入提现金额" required>
-        <button type="submit" class="u-full-width ft-1p6 button button-primary margin-t-0p5 {{withdrawForm.$invalid ? 'button-disabled' : 'button-shadow'}}" ng-disabled="withdrawForm.$invalid || simpleWithdraw.amountDraw>availableCashRealNo || simpleWithdraw.amountDraw<1">申请提现</button>
+
+      <div class="hint text-center bg-red1 box-shadow" ng-show="simpleWithdraw.account.reward  > 0 && availableCashRealNo - simpleWithdraw.account.reward < 1">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>需要投资100元之后才能提现奖金哦</span>
       </div>
+      <input type="text" name="amount" class="u-full-width padding-t-1 padding-b-1 padding-l-1 padding-r-1 margin-t-1" min="1" max="{{availableCash }}" ng-model="simpleWithdraw.amountDraw" ng-pattern="/^[0-9]*(\.[0-9]{1,2})?$/" placeholder="请输入提现金额" ng-disabled="availableCashRealNo  < 1" required>
+      <button type="submit" class="u-full-width button button-primary margin-t-0p5 {{withdrawForm.$invalid ? 'button-disabled' : 'button-shadow'}}" ng-disabled="withdrawForm.$invalid || simpleWithdraw.amountDraw>availableCashRealNo || simpleWithdraw.amountDraw<1 || (simpleWithdraw.account.reward  > 0 && availableCashRealNo - simpleWithdraw.account.reward < 1) || availableCashRealNo < 1" ng-show="!(simpleWithdraw.account.reward  > 0 && availableCashRealNo - simpleWithdraw.account.reward < 1)" ng-click="toWithdraw(simpleWithdraw)" >
+        申请提现
+      </button>
+
+      <button type="text" class="u-full-width button button-primary margin-t-0p5 {{withdrawForm.$invalid ? 'button-disabled' : 'button-shadow'}}"  ng-show="simpleWithdraw.account.reward  > 0 && availableCashRealNo - simpleWithdraw.account.reward < 1" ng-click="toInvestCurrentDeposit()">
+        去投资
+      </button>
+
     </form>
     <hr class="margin-0">
     <div class="ft-grey4 margin-t-0p5 padding-2" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">

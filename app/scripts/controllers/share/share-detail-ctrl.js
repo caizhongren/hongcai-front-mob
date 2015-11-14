@@ -301,6 +301,15 @@ angular.module('p2pSiteMobApp')
 
     $scope.errorMobileMsg = "";
     $scope.signUp = function(user) {
+      if ($scope.notRegister){
+        return;
+      }
+
+      $scope.notRegister = true;
+      $timeout(function() {
+        $scope.notRegister = false;
+      }, 1000);
+
       console.log($rootScope.openid);
       register1.$create({
         mobile: user.mobile,
