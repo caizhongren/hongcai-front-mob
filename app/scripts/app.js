@@ -406,6 +406,18 @@ p2pSiteMobApp
         }
       })
 
+          //体验金活动页
+      .state('root.experience-activity', {
+        url: '/experience-activity',
+        views: {
+          '': {
+            templateUrl: 'views/activity/experience-activity.html',
+            //controller: 'ShareHomeCtrl',
+            //controllerUrl: 'scripts/controllers/share/share-home-ctrl'
+          }
+        }
+      })
+
 
     ;
     $urlRouterProvider.otherwise('/');
