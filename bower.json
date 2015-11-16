@@ -19,6 +19,7 @@
     "angular-moment": "~0.10.0",
     "restangular": "~1.5.1",
     "angular-svg-round-progressbar": "~0.3.8",
-    "angular-bootstrap":"~0.14.3"
+    "angular-bootstrap": "~0.14.3",
+    "angular-strap": "~2.3.6"
   }
 }

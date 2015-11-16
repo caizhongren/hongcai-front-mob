@@ -465,6 +465,7 @@ p2pSiteMobApp
           $rootScope.nickName = response.user.nickName;
           $rootScope.headImgUrl = response.user.headImgUrl;
           $rootScope.userInfo = response.user;
+          $rootScope.voucher = response.voucher;
 
           $rootScope.checkSession.resolve(response);
 

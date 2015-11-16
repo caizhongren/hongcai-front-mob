@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('AccountCtrl', ['$scope', '$rootScope', '$state', 'HongcaiUser', 'restmod', 'DEFAULT_DOMAIN', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN) {
+  .controller('AccountCtrl', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN) {
 
     $rootScope.checkSession.promise.then(function(){
       if(!$rootScope.isLogged){
@@ -46,7 +46,6 @@ angular.module('p2pSiteMobApp')
         realName: user.realName,
         idNo: user.idNo
       });
-
     }
 
     $scope.toRealNameAuth = false;
@@ -120,4 +119,4 @@ angular.module('p2pSiteMobApp')
       } 
       return emailADArray.join('') + emailEnd
     }
-  }]);
+  });
