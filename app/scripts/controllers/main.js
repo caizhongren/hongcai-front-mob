@@ -102,6 +102,10 @@ angular.module('p2pSiteMobApp')
     };
 
     $scope.toggle.switchSubTab = function(subTabIndex) {
+      if (subTabIndex < 0 || subTabIndex > 2){
+        return;
+      }
+      
       $scope.toggle.activeSubTab = subTabIndex;
       var subType = subTabIndex + 2;
       $scope.switchFundsProjects(subType);
