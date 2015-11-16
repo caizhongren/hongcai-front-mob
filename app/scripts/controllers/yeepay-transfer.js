@@ -92,6 +92,15 @@ angular.module('p2pSiteMobApp')
           redirectToYeepay('toTransfer', response);
         });
 
+      } else if ($scope.type === 'autoTransfer'){ // 自动投标
+        
+        var autoTransfer = restmod.model($scope.HongcaiUser + '/authorizeAutoTransfer');
+        autoTransfer.$create({
+          'from': 2
+        }).$then(function(response) {
+          redirectToYeepay('toAuthorizeAutoTransfer', response);
+        });
+
       }
 
   });

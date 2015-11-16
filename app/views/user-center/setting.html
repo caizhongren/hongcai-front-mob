@@ -19,8 +19,9 @@
   <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
     <p>手机号码</p>
     <p class="p-block">
-      <span class="ft-grey4">{{handleMobileNum(hasLoggedUser.mobile)}}</span>
-      <span><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已绑定</span>
+      <span class="ft-grey4">{{handleMobileNum(hasLoggedUser.mobile) || '无'}}</span>
+      <span ng-show="hasLoggedUser.mobile !== null"><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已绑定</span>
+      <span ng-show="hasLoggedUser.mobile == null"><i class="fa fa-check-circle-o"></i>&nbsp;未绑定</span>
     </p>
   </div>
 <!--   <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
@@ -43,7 +44,7 @@
     <p>自动投标权限</p>
     <p class="p-block">
       <span class="ft-grey4">方便您续投、预约项目</span>
-      <span><i class="fa fa-check-circle-o ft-green" ng-show="securityStatus.autoTransfer === 1"></i>&nbsp;已开通</span>
+      <span ng-show="securityStatus.autoTransfer === 1"><i class="fa fa-check-circle-o ft-green" ></i>&nbsp;已开通</span>
       <span ng-click="checkAutoFlag=true" ng-show="securityStatus.autoTransfer !== 1"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通<small class="ft-orange">(立即开通)</small></span>
     </p>
   </div>
@@ -103,6 +104,6 @@
     </p>
     <p class="project-mask-btn2">
       <span ng-click="checkAutoFlag=false">取消</span>
-      <span>修改</span></p>
+      <span ng-click="toAuthAutoTransfer()">确定</span></p>
   </div>
 </div>
