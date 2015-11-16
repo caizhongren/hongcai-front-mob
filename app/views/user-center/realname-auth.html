@@ -14,7 +14,7 @@
         {{errMsg}}
       </p>
       <p style="margin-top:5rem;border-top:0.1rem solid #bbb;clear:both;">
-        <span class="ft-grey2" ng-click="$parent.toRealNameAuth=false;">取消</span>
+        <span class="ft-grey2" ng-click="$parent.toRealNameAuth=false;" my-click-once>取消</span>
         <span ng-disabled="realNameAuthForm.$invalid" ng-click="realNameAuth(user)" my-click-once ng-class="{active: !realNameAuthForm.$invalid}">点击认证</span>
       </p>
     </form>

@@ -1,26 +1,22 @@
-<ul class=" nav-ul columns twelve mainsubtab1" style="margin-top: -2rem;" ng-show="subtabClassIndex === 0">
+<ul class=" nav-ul columns twelve mainsubtab1 margin-b-0" style="margin-top: -2rem;" ng-show="subtabClassIndex === 0">
   <li class="columns margin-0 padding-t-0p5 padding-b-0p5 ft-bule"></li>
   <li class="columns margin-0 padding-t-0p5 padding-b-0p5 ft-bule" ng-class="{active: subtabClassIndex === 1}" ng-click="toggle.switchSubTab($index)">月月盈</li>
   <li class="columns margin-0 padding-t-0p5 padding-b-0p5 ft-bule" ng-class="{active: subtabClassIndex === 2}" ng-click="toggle.switchSubTab($index)">季度盈</li>
 </ul>
-<ul class="main-tab2 nav-ul columns twelve mainsubtab2" style="margin-top: -2rem;" ng-show="subtabClassIndex === 1">
+<ul class="main-tab2 nav-ul columns twelve mainsubtab2 margin-b-0" style="margin-top: -2rem;" ng-show="subtabClassIndex === 1">
   <li class="columns margin-0 padding-t-0p5 padding-b-0p5 ft-bule" ng-class="{active: subtabClassIndex === 0}" ng-click="toggle.switchSubTab($index)">月月盈</li>
   <li class="columns margin-0 padding-t-0p5 padding-b-0p5 ft-bule" ng-class="{active: subtabClassIndex === 1}" ng-click="toggle.switchSubTab($index)">季度盈</li>
   <li class="columns margin-0 padding-t-0p5 padding-b-0p5 ft-bule" ng-class="{active: subtabClassIndex === 2}" ng-click="toggle.switchSubTab($index)">半年盈</li>
 </ul>
-<ul class="main-tab2 nav-ul columns twelve mainsubtab3" style="margin-top: -2rem;" ng-show="subtabClassIndex === 2">
+<ul class="main-tab2 nav-ul columns twelve mainsubtab3 margin-b-0" style="margin-top: -2rem;" ng-show="subtabClassIndex === 2">
   <li class="columns margin-0 padding-t-0p5 padding-b-0p5 ft-bule" ng-class="{active: subtabClassIndex === 0}" ng-click="toggle.switchSubTab($index)">季度盈</li>
   <li class="columns margin-0 padding-t-0p5 padding-b-0p5 ft-bule" ng-class="{active: subtabClassIndex === 1}" ng-click="toggle.switchSubTab($index)">半年盈</li>
   <li class="columns margin-0 padding-t-0p5 padding-b-0p5 ft-bule"></li>
 </ul>
 <div class="tab-content columns twelve bg-white overflow-hid padding-t-2 padding-b-2 text-center" ng-class="{active: toggle.activeSubTab===$index}" ng-repeat="subTab in subTabs">
-  <!-- 月月盈 -->
-  <section ng-if="subTab.title==='月月盈'" ng-include src='"views/main/_main-funds-project-template.html"' ng-swipe-left="toggle.switchSubTab($index+1)">
+
+  <!-- 宏金盈 -->
+  <section ng-include src='"views/main/_main-funds-project-template.html"' ng-swipe-left="toggle.switchSubTab($index+1)" ng-swipe-right="toggle.switchSubTab($index-1)">
   </section>
-  <!-- 季度盈 -->
-  <section ng-if="subTab.title==='季度盈'" ng-include src='"views/main/_main-funds-project-template.html"' ng-swipe-left="toggle.switchSubTab($index+1)"  ng-swipe-right="toggle.switchSubTab($index-1)">
-  </section>
-  <!-- 半年盈 -->
-  <section ng-if="subTab.title==='半年盈'" ng-include src='"views/main/_main-funds-project-template.html"' ng-swipe-right="toggle.switchSubTab($index-1)">
-  </section>
+ 
 </div>
