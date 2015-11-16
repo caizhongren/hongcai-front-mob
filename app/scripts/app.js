@@ -418,6 +418,17 @@ p2pSiteMobApp
         }
       })
 
+      .state('root.rate-activity', {
+        url: '/rate-activity',
+        views: {
+          '': {
+            templateUrl: 'views/activity/rate-activity.html',
+            //controller: 'ShareHomeCtrl',
+            //controllerUrl: 'scripts/controllers/share/share-home-ctrl'
+          }
+        }
+      })
+
 
     ;
     $urlRouterProvider.otherwise('/');
