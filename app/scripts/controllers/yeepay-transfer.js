@@ -58,8 +58,8 @@ angular.module('p2pSiteMobApp')
           redirectToYeepay('toRecharge', response);
         });
 
-      } else if ($scope.type === 'withdraw') {
-        //提现
+      } else if ($scope.type === 'withdraw') { //提现
+        
         var withdrawModel = restmod.model($scope.HongcaiUser + '/withdraw');
         withdrawModel.$create({
           'amount': $scope.number,
@@ -68,8 +68,8 @@ angular.module('p2pSiteMobApp')
           redirectToYeepay('toWithdraw', response);
         });
 
-      } else if ($scope.type === 'BIND_BANK_CARD') {
-        //提现
+      } else if ($scope.type === 'BIND_BANK_CARD') { //绑卡
+        
         var bindBankcardModel = restmod.model($scope.HongcaiUser + '/bindBankcard');
         bindBankcardModel.$create({
           'from': 2
@@ -77,8 +77,7 @@ angular.module('p2pSiteMobApp')
           redirectToYeepay('toBindBankCard', response);
         });
 
-      } else if ($scope.type === 'register') {
-        //提现
+      } else if ($scope.type === 'register') { // 开通易宝
         var withdrawModel = restmod.model($scope.HongcaiUser + '/yeepayRegister');
         withdrawModel.$create({
           'realName': $scope.realName,
@@ -87,6 +86,12 @@ angular.module('p2pSiteMobApp')
         }).$then(function(response) {
           redirectToYeepay('toRegister', response);
         });
+      } else if ($scope.type === 'transfer') { //投资
+        
+        restmod.model(DEFAULT_DOMAIN + '/orders/' + $scope.number + '/users/' + $rootScope.hasLoggedUser.id + '/payment').$create().$then(function(response) {
+          redirectToYeepay('toTransfer', response);
+        });
+
       }
 
   });
