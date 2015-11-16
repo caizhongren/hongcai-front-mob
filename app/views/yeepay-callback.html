@@ -4,7 +4,7 @@
     <p class="padding-t-1 ft-2 ft-black2 margin-t-2">
       <strong ng-switch-default>恭喜您，成功开通易宝账户！</strong>
       <strong ng-switch-when="1">恭喜您，成功充值{{amount | number:2}}元！</strong>
-      <strong ng-switch-when="2">恭喜您，成功提现！</strong>
+      <strong ng-switch-when="2">恭喜您，成功提现{{amount | number:2}}元！</strong>
       <strong ng-switch-when="3">恭喜您，成功投资{{amount | number:2}}元！</strong>
       <strong ng-switch-when="4">恭喜您，成功绑定银行卡！</strong>
     </p>
