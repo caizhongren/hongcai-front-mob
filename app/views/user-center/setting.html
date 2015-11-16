@@ -19,7 +19,7 @@
   <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
     <p>手机号码</p>
     <p class="p-block">
-      <span class="ft-grey4">188*****253</span>
+      <span class="ft-grey4">{{handleMobileNum(hasLoggedUser.mobile)}}</span>
       <span><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已绑定</span>
     </p>
   </div>
@@ -35,21 +35,21 @@
     <p>第三方托管账户</p>
     <p class="p-block">
       <span class="ft-grey4">保证您的资金安全</span>
-      <!-- <span><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已开通</span> -->
-      <span ng-click="toRealNameAuth=true"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通</span>
+      <span ng-show="securityStatus.trusteeshipAccountStatus === 1"><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已开通</span>
+      <span ng-click="toRealNameAuth=true" ng-show="securityStatus.trusteeshipAccountStatus !== 1"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通<small class="ft-orange">(立即开通)</small></span>
     </p>
   </div>
   <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
     <p>自动投标权限</p>
     <p class="p-block">
       <span class="ft-grey4">方便您续投、预约项目</span>
-      <!-- <span><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已开通</span> -->
-      <span ng-click="checkAutoFlag=true"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通</span>
+      <span><i class="fa fa-check-circle-o ft-green" ng-show="securityStatus.autoTransfer === 1"></i>&nbsp;已开通</span>
+      <span ng-click="checkAutoFlag=true" ng-show="securityStatus.autoTransfer !== 1"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通<small class="ft-orange">(立即开通)</small></span>
     </p>
   </div>
   <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
     <p>我的邀请码</p>
-    <p class="ft-grey4">1290481298918</p>
+    <p class="ft-grey4">{{voucher.inviteCode}}</p>
   </div>
   <div class="padding-1 margin-1 ft-grey2 ft-1p4">
     <p class="margin-b-1">温馨提示：</p>
@@ -77,6 +77,7 @@
       <span>修改</span></p>
   </div>
 </div>
+
 <!-- 修改邮箱蒙层 -->
 <!-- <div ng-show="checkEmailFlag" class="project-mask">
   <div class="bg-white email-mask project-mask-inner">

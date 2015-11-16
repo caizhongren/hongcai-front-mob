@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('FundsProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, fundsProjects, restmod, DEFAULT_DOMAIN, config) {
+  .controller('FundsProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, fundsProjects, Restangular, restmod, DEFAULT_DOMAIN, config) {
     // 宏金盈详情页面
     var number = $stateParams.number;
     if (!number) {
@@ -67,6 +67,8 @@ angular.module('p2pSiteMobApp')
       4: '还款中',
       5: '还款完成'
     };
+
+    $scope.rewardFlag = false;
 
     $scope.checkLargeUserCanAmount = function(project) {
       if ($rootScope.account) {
@@ -172,4 +174,25 @@ angular.module('p2pSiteMobApp')
       }
     };
 
+    /**
+     * 加息券统计信息
+     */
+     Restangular.one('users', $rootScope.hasLoggedUser.id).one('unUsedIncreaseRateCoupons').get().then(function(response){
+          $scope.increaseRateCoupons = response;
+          $scope.selectCoupon = null;
+          if($scope.increaseRateCoupons.length > 0){
+            for(var i=0; i < $scope.increaseRateCoupons.length; i++){
+              var rateText = '加息券 +' + $scope.increaseRateCoupons[i].rate + '%';
+              $scope.increaseRateCoupons[i].rateText = rateText;
+            }
+            var increaseRateCoupon = {
+              number: "",
+              rate: 0,
+              rateText: "不使用加息券"
+            }
+            $scope.increaseRateCoupons.push(increaseRateCoupon);
+
+            $scope.selectCoupon = $scope.increaseRateCoupons[0];
+          }
+        });
   });
