@@ -1,3 +1,4 @@
+<p class="margin-b-0 margin-t-0 padding-t-0p5 padding-b-0p5 bg-yellow2 padding-l-1" ng-hide="closeInfo">宏财网与东兴证券合作，开启P2F模式！<i class="fa fa-times fr fa-2x padding-r-2 ft-grey" ng-click="closeInfo=true"></i></p>
 <div class="bg-white padding-l-1 padding-r-1 padding-t-1 text-center margin-b-7">
   <img src="/images/login-2.png" width="65%">
   <form autocomplete="off" class="register margin-0 padding-b-2 padding-t-1 ft-grey" name="registerForm" autocomplete="on" ng-submit="signUp(user);" id="registerForm">
@@ -6,7 +7,6 @@
       </label>
       <input type="text" id="name" name="name" ng-model="user.name" real-mix-min-length="4" ng-maxlength="15" ng-pattern="/^[\u4e00-\u9fa5|a-z|A-Z][\u4e00-\u9fa5|a-z|A-Z|_|0-9|\-]{0,}$/" placeholder="4-15位字符，以字母、中文开头" ensure-unique ng-class="{'border-red':registerForm.name.$dirty && registerForm.name.$invalid && !registerForm.name.$focused}" required ng-focus/>
     </p>
-
     <p class="ft-red" ng-if="registerForm.name.$dirty && registerForm.name.$invalid && !registerForm.name.$focused">
       <small ng-if="registerForm.name.$error.unique">用户名已被占用</small>
       <small ng-if="registerForm.name.$error.minlength">不能小于4个字符</small>
@@ -19,7 +19,7 @@
       </label>
       <input id="passwordsignup" name="password" ng-model="user.password" ng-minlength="6" ng-maxlength="22" ng-pattern="/^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,22}$/" required="required" type="password" placeholder="6-22位字符，数字或字母组合" />
     </p>
-    <p  class="ft-red" ng-if="registerForm.password.$dirty && registerForm.password.$invalid && !registerForm.password.$focused">
+    <p class="ft-red" ng-if="registerForm.password.$dirty && registerForm.password.$invalid && !registerForm.password.$focused">
       <small ng-if="registerForm.password.$error.minlength">不能小于6个字符</small>
       <small ng-if="registerForm.password.$error.maxlength">不能大于22个字符</small>
       <small ng-if="registerForm.password.$error.pattern">长度6-22，数字或字母的组合，可以包含特殊字符</small>
@@ -43,9 +43,9 @@
     </p>
     <p class="margin-0 border-grey margin-b-1p5 u-pull-left" style="width:100%;" id="invitationCode">
       <label>邀请码</label>
-      <input class="invitationCode" name="invitationCode" type="text" placeholder="11位长度手机号码" style="border-radius:0;"/>
+      <input class="invitationCode" name="invitationCode" type="text" placeholder="11位长度手机号码" style="border-radius:0;" />
     </p>
-<!--     <p id="invitationCode" class="margin-0 margin-b-1p5 clear">
+    <!--     <p id="invitationCode" class="margin-0 margin-b-1p5 clear">
       <label>邀请码</label>
       <input class="invitationCode" name="invitationCode" type="text" placeholder="11位长度手机号码" style="border-radius:0;"/>
     </p> -->
