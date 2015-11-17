@@ -39,7 +39,6 @@ angular.module('p2pSiteMobApp')
           $scope.oldPassword = null;
           $scope.newPassword1 = null;
           $scope.newPassword2 = null;
-          $scope.correctCheck = true;
         }
       });
     }
