@@ -45,6 +45,10 @@
   <div ng-include src="'views/project/_funds-project-investment.html'">
   </div>
 
+    <!-- 开通自动投标权限 -->
+  <div ng-include src="'views/user-center/auto-auto-transfer.html'" ng-show="authAutoTransferFlag">
+  </div>
+
   <div class="alert-agreement" ng-show="showFundsAgreement" ng-include src="'views/_funds-agreement.html'">
   </div>
 </div>
