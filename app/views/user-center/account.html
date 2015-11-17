@@ -3,11 +3,15 @@
   <div>
     <div class=" margin-0 padding-1">您好，亲爱的&nbsp;<strong class="ft-orange">{{ hasLoggedUser.name }}</strong>&nbsp;<i class="fa fa-newspaper-o"></i>
       <span class="pull-right" ui-sref="root.user-center.setting">基本资料></span></div>
-    <div class="account-bg padding-t-1 padding-b-3 padding-l-1" style="position:relative;">
-      <div class="padding-l-0p5">
-        <span class="ft-black bg-white border-ra-20 padding-1 padding-t-0p5 padding-b-0p5">账户资产(元)</span>&nbsp;&nbsp;&nbsp;<span class="ft-white ft-2p5">{{ userAccount.tTotalAssets | number:2}}</span><span class="ft-white">&nbsp;元</span>
+    <div class="account-bg padding-t-1 padding-b-3 padding-l-1 position-re">
+      <div class="padding-l-0p5 money-info">
+        <p>
+          <span class="ft-black">账户资产(元)</span>
+          <span class="ft-white ft-2p5">&nbsp;&nbsp;&nbsp;{{ userAccount.tTotalAssets | number:2}}</span>
+          <span class="ft-white">&nbsp;元</span>
+        </p>
       </div>
-      <div style="position:absolute;bottom:1rem;right:1rem;"><a class="ft-white" style="text-decoration:underline;" ui-sref="root.user-center.investments-stat">投资项目</a></div>
+      <div class="touzi-product"><a class="ft-white" ui-sref="root.user-center.investments-stat">投资项目</a></div>
     </div>
     <!-- 已开通易宝时展示 账户资金详情-->
     <div ng-include src="'views/user-center/_account-assets-info.html'">
