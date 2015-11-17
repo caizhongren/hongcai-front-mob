@@ -193,6 +193,7 @@ angular.module('p2pSiteMobApp')
 
       if (!simpleFundsProject.investAmount){
         $scope.msg = '投资金额有误，请重新输入';
+        return;
       }
 
       $scope.investAmount = simpleFundsProject.investAmount;
