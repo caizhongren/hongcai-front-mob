@@ -176,8 +176,6 @@ angular.module('p2pSiteMobApp')
       $scope.investAmount = simpleFundsProject.investAmount;
       var payAmount = $scope.investAmount - $scope.experienceAmount;
       var couponNumber = $scope.couponNumber;
-      
-      alert(payAmount + "=======" + couponNumber);
       if ($scope.fundsFlag === 0) {
         $state.go('root.login');
       } else if ($scope.fundsFlag === 1) {
