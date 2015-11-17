@@ -8,9 +8,12 @@
 + */
 angular.module('p2pSiteMobApp')
   .controller('MainCtrl', function($scope, $stateParams, $state, projects, fundsProjects) {
-
+    // 宏金保列表页百分比值
     
+    $scope.curr = 27;
 
+    $scope.tabClassIndex = "";
+    $scope.subtabClassIndex = "";
 
     // 获取宏金宝投资列表
     // $scope.projectsRecommendations = projects.$find('recommendations');
@@ -42,12 +45,12 @@ angular.module('p2pSiteMobApp')
         }
       });
     };
-    // tab
+    // tab 零存宝  宏金盈 宏金保暂时不做
     $scope.toggle = {};
     $scope.tabs = [{
-      title: '7日理财',
+      title: '零存宝',
     }, {
-      title: '1-6月理财'
+      title: '宏金盈'
     }];
     $scope.subTabs = [{
       title: '月月盈',
@@ -59,12 +62,19 @@ angular.module('p2pSiteMobApp')
     // 默认调用七日盈。
     $scope.switchFundsProjects(1);
 
-
-    $scope.goDetail = function(project){
-      if ($scope.toggle.activeTab === 0){
-        $state.go('root.current-deposit-detail', {number: project.number});
-      } else {
-        $state.go('root.funds-project-detail', {number: project.number});
+    // 查看详情 通过activeTab判断  值为0 是零存宝 ;值为1  是宏金盈; 值为2  是宏金保;
+    $scope.goDetail = function(project) { 
+      if ($scope.toggle.activeTab === 0) {
+        $state.go('root.current-deposit-detail', {
+          number: project.number
+        });
+      } else if ($scope.toggle.activeTab === 1){
+        $state.go('root.funds-project-detail', {
+          number: project.number
+        });
+      }else if ($scope.toggle.activeTab === 2){
+        // $state.go('root.project-detail');
+        console.log($scope.toggle.activeTab);
       }
     }
 
@@ -76,6 +86,8 @@ angular.module('p2pSiteMobApp')
       }
       //初始化第二层Tab数据
       tabIndex === 1 ? $scope.toggle.switchSubTab(1) : '';
+      $scope.tabClassIndex = $scope.toggle.activeTab;
+      console.info($scope.tabClassIndex);
     };
 
     $scope.toggle.switch = function(tabIndex, subTab) {
@@ -86,13 +98,19 @@ angular.module('p2pSiteMobApp')
         //初始化第二层Tab数据
         $scope.toggle.switchSubTab(subTab);
       }
-      
+
     };
 
     $scope.toggle.switchSubTab = function(subTabIndex) {
+      if (subTabIndex < 0 || subTabIndex > 2){
+        return;
+      }
+      
       $scope.toggle.activeSubTab = subTabIndex;
       var subType = subTabIndex + 2;
       $scope.switchFundsProjects(subType);
+      $scope.subtabClassIndex = subTabIndex;
+      console.log($scope.subtabClassIndex);
     };
 
 

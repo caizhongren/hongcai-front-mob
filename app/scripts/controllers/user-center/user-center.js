@@ -16,6 +16,11 @@ angular.module('p2pSiteMobApp')
         $state.go('root.login');
       }
 
+      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/account').$then(function(response) {
+        $scope.userAccount = response;
+      });
+
+
     });
 
 

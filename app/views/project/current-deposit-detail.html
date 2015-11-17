@@ -1,3 +1,4 @@
+<!-- 零存宝详情页 -->
 <div class="funds-project bg-white">
   <div class="row padding-l-2 padding-r-2">
     <p class="text-center margin-0 padding-t-2 padding-b-2">
@@ -9,7 +10,7 @@
       <br>
         <p class="margin-0 padding-t-2 padding-b-1"><strong class="ft-3">{{simpleFundsProject.product.baseRate |currency:"":1 || 0}}</strong>% <strong class="ft-3">- {{simpleFundsProject.product.maxRate |currency:"":1 || 0}}</strong>%</p>
         <hr class="border-orange1">
-        <p class="margin-0 padding-t-0p5 padding-b-0p5">年化收益率</p>
+        <p class="margin-0 padding-t-0p5 padding-b-0p5 ft-1p8">年化收益率</p>
         <hr class="border-orange1">
       </div>
     </div>
@@ -18,30 +19,38 @@
     <table class="u-full-width" border-collapse = "collapse">
       <tbody>
         <tr>
-          <td>收益递增</td>
-          <td>每期递增&nbsp;<span class="ft-orange">{{simpleFundsProject.product.riseRate |currency:"":1 || 0}} %</span><br>需开通自动续投</td>
+          <td>递增方式</td>
+          <td>递增收益，每期递增&nbsp;<span class="ft-orange">{{simpleFundsProject.product.riseRate |currency:"":1 || 0}} %</span></td>
         </tr>
         <tr>
           <td>续投次数</td>
-          <td>最高&nbsp;{{simpleFundsProject.product.repeatInvestMaxCount}}次</td>
+          <td>{{simpleFundsProject.product.repeatInvestMaxCount}}次</td>
         </tr>
         <tr>
           <td>锁定期限</td>
           <td>{{simpleFundsProject.product.sealingDays || 0}}日</td>
         </tr>
         <tr>
-          <td>退出时间</td>
-          <td>{{simpleFundsProject.repaymentDate | amDateFormat:'YYYY.MM.DD日'}}&nbsp;23:00时</td>
+          <td>退出日期</td>
+          <td>{{simpleFundsProject.repaymentDate | amDateFormat:'YYYY.MM.DD日'}}</td>
+        </tr>
+        <tr>
+          <td>投资上限</td>
+          <td>累积投资不超过<span class="ft-orange">{{simpleFundsProject.product.maxInvest | number : 0}}</span>元</td>
         </tr>
       </tbody>
     </table>
   </div>
   <div class="text-center padding-b-2">
-    <a href="javascript:;" ng-click="toggle();" class="ft-grey2">《零存宝协议范本》</a>
+    <a href="javascript:;" ng-click="toggle();" class="ft-grey4" style="text-decoration:underline;">零存宝协议范本</a>
   </div>
 
   <!-- 投资模块 -->
-  <div ng-include src="'views/project/_funds-project-investment.html'">
+  <div ng-include src="'views/project/_current-project-investment.html'">
+  </div>
+
+      <!-- 开通自动投标权限 -->
+  <div ng-include src="'views/user-center/auto-auto-transfer.html'" ng-show="authAutoTransferFlag">
   </div>
 
   <div class="alert-agreement" ng-show="showFundsAgreement" ng-include src="'views/_current_deposit-agreement.html'">

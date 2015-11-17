@@ -5,17 +5,20 @@
     }
   }
   .account-bg {
-    background-image: url(/images/user-center/account-bg.png);
+    background-image: url(/images/user-center/user-account-bg.png);
     background-size: 100% 100%;
   }
   .investments-stat-bg {
-    background-image: url(/images/user-center/investments-stat-bg.png);
+    background-image: url(/images/user-center/user-account-bg.png);
     background-size: 100% 100%;
   }
   .credit {
+    li:nth-child(1) {
+      border-right: 0.1rem solid #ddd;
+    }
     li.active {
-      border-top: 0.2rem solid #6da9f3;
-      color: #6da9f3;
+      border-top: 0.2rem solid #ee7822;
+      color: #fd8f3f;
       background-color: #fff;
     }
     .tab-content.active {
@@ -27,9 +30,10 @@
   }
   .deal {
     table {
-      th,td {
-        font-size: 1rem;
-        padding: 0;
+      th,
+      td {
+        font-size: 1.3rem;
+        padding: 0.5rem 0;
         text-align: center;
         border: 0.1rem solid #ddd;
       }
@@ -42,4 +46,316 @@
       opacity: 0.5;
     }
   }
-} 
+  .account-userInfo {
+    button {
+      font-weight: normal;
+      font-family: "微软雅黑";
+      font-size: 1.8rem;
+    }
+    .btn-orange-border {
+      border: 0.1rem solid #fd8f3f;
+      border-radius: 0.5rem;
+      color: #fd8f3f;
+    }
+    .bg-experience {
+      background-image: url(/images/user-center/bg-experience.png);
+      background-size: 100% 100%;
+    }
+    .bg-ratemoney {
+      background-image: url(/images/user-center/bg-ratemoney.png);
+      background-size: 100% 100%;
+    }
+    .rate-span {
+      span:nth-child(1) {
+        width: 24%;
+        display: inline-block;
+      }
+      span:nth-child(2) {
+        width: 34%;
+        display: inline-block;
+        text-align: left;
+        color: #fd8f3f;
+      }
+      span:nth-child(3) {
+        width: 38%;
+        display: inline-block;
+        text-align: left;
+        color: black;
+      }
+    }
+  }
+}
+
+.setting {
+  margin-bottom: 7rem;
+  .border-b-grey {
+    border-bottom: 0.1rem solid #ddd;
+  }
+  p {
+    margin-bottom: 0 !important;
+  }
+  .margin-1 {
+    margin: 1rem;
+  }
+  .margin-b-1 {
+    margin-bottom: 1rem !important;
+  }
+  .p-block {
+    clear: both;
+    width: 100%;
+    padding-bottom: 2rem;
+    height: 3rem;
+    line-height: 3rem;
+    span:nth-child(1) {
+      width: 50%;
+      display: inline-block;
+      text-align: left;
+      float: left;
+      font-size: 1.3rem;
+    }
+    span:nth-child(2) {
+      width: 50%;
+      display: inline-block;
+      text-align: right;
+      float: right;
+    }
+    span:nth-child(3) {
+      width: 50%;
+      display: inline-block;
+      text-align: right;
+      float: right;
+    }
+  }
+  a {
+    text-decoration: underline;
+    color: #333;
+  }
+}
+
+.setting-mask {
+  padding-top: 2rem;
+  font-family: "microsoft yahei";
+  p:nth-child(1),
+  p:nth-child(2),
+  p:nth-child(3) {
+    padding: 1rem 2rem;
+    height: 38px;
+    line-height: 38px;
+    span:nth-child(1) {
+      display: inline-block;
+      float: left;
+      width: 34%;
+      height: 38px;
+      font-size: 1.6rem;
+      line-height: 38px;
+      text-align: right;
+      font-weight: normal;
+    }
+    input {
+      display: inline-block;
+      float: right;
+      width: 65%;
+      height: 38px;
+      line-height: 38px;
+      padding: 0 0 0 0.5rem;
+      border-radius: 0;
+    }
+  }
+  p:last-child {
+    //padding: 1rem 0 !important;
+    height: 5rem;
+    line-height: 5rem;
+    font-size: 1.6rem;
+    span {
+      display: inline-block;
+      float: left;
+      width: 49.5%;
+      text-align: center;
+    }
+    span:nth-child(1) {
+      border-right: 0.1rem solid #bbb;
+      text-align: center;
+    }
+    span:last-child {
+      color: #fd8f3f;
+      text-align: center;
+    }
+  }
+}
+
+.bank-span {
+  height: 4rem;
+  line-height: 4rem;
+  background-color: #f2f2f2;
+  clear: both;
+  padding: 0;
+  margin: 0;
+  span:nth-child(1) {
+    width: 38%;
+    display: inline-block;
+    float: left;
+    text-align: right;
+  }
+  span:nth-child(2) {
+    width: 60%;
+    display: inline-block;
+    float: left;
+    text-align: left;
+  }
+}
+
+.with-bank {
+  label {
+    span:nth-child(1) {
+      width: 38%;
+      display: inline-block;
+      float: left;
+      text-align: right;
+      font-weight: normal;
+    }
+    span:nth-child(2) {
+      width: 60%;
+      display: inline-block;
+      float: left;
+      text-align: left;
+      font-weight: normal;
+    }
+  }
+}
+
+.withdraw,
+.recharge {
+  font-family: "微软雅黑" !important;
+  button {
+    font-family: "微软雅黑" !important;
+  }
+  input {
+    font-family: "微软雅黑" !important;
+  }
+}
+
+.add-bank {
+  padding: 1rem 2rem;
+  background-color: #f2f2f2;
+  p {
+    margin-bottom: 1rem;
+  }
+}
+
+.realname-mask {
+  padding-top: 2rem;
+  font-family: "microsoft yahei";
+  p:nth-child(1) {
+    width: 100%;
+    border-bottom: 0.1rem solid #bbb;
+    padding: 1rem 2rem;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  p:nth-child(2),
+  p:nth-child(3) {
+    padding: 1rem 2rem;
+    label {
+      display: inline-block;
+      float: left;
+      width: 36%;
+      height: 38px;
+      font-size: 1.6rem;
+      line-height: 38px;
+      text-align: right;
+      font-weight: normal;
+    }
+    input {
+      display: inline-block;
+      float: right;
+      width: 64%;
+      height: 38px;
+      line-height: 38px;
+      padding: 0 0 0 0.5rem;
+      border-radius: 0;
+    }
+  }
+  p:last-child {
+    //padding: 1rem 0 !important;
+    height: 5rem;
+    line-height: 5rem;
+    font-size: 1.6rem;
+    span {
+      display: inline-block;
+      float: left;
+      width: 49.5%;
+      text-align: center;
+    }
+    span:nth-child(1) {
+      border-right: 0.1rem solid #bbb;
+      text-align: center;
+    }
+    span:last-child {
+      color: #fd8f3f;
+      text-align: center;
+    }
+    .active {
+      background-color: #fd8f3f;
+      color: white !important;
+    }
+  }
+}
+
+.email-mask {
+  padding-top: 2rem;
+  font-family: "microsoft yahei";
+  p:nth-child(1) {
+    padding: 1rem 2rem;
+    label {
+      display: inline-block;
+      float: left;
+      width: 25%;
+      height: 38px;
+      font-size: 1.6rem;
+      line-height: 38px;
+      text-align: right;
+      font-weight: normal;
+    }
+    input {
+      display: inline-block;
+      float: right;
+      width: 65%;
+      height: 38px;
+      line-height: 38px;
+      padding: 0 0 0 0.5rem;
+      border-radius: 0;
+    }
+  }
+  p:last-child {
+    //padding: 1rem 0 !important;
+    height: 5rem;
+    line-height: 5rem;
+    font-size: 1.6rem;
+    span {
+      display: inline-block;
+      float: left;
+      width: 49.5%;
+      text-align: center;
+    }
+    span:nth-child(1) {
+      border-right: 0.1rem solid #bbb;
+      text-align: center;
+    }
+    span:last-child {
+      color: #fd8f3f;
+      text-align: center;
+    }
+  }
+}
+
+.border-left {
+  border-left: 0.5rem solid #fd8f3f;
+  padding-left: 1rem;
+  font-weight: bold;
+}
+.border-tb-5{
+  border-top-left-radius: 19px;
+  border-top-right-radius: 19px;
+  border-bottom-left-radius: 19px;
+  border-bottom-right-radius: 19px;
+}

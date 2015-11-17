@@ -1,23 +1,51 @@
-
 <!-- 我的账户 -->
 <div class="account-userInfo bg-white">
   <div>
-    <div class="border-blue margin-0 text-center bg-blue2 padding-1">您好，亲爱的&nbsp;<strong class="ft-blue">{{ hasLoggedUser.name }}</strong>&nbsp;!</div>
-    <div class="account-bg padding-3 padding-l-4">
-      <span class="ft-blue bg-white border-ra-20 padding-1 padding-t-0p2 padding-b-0p2">账户总资产</span>&nbsp;&nbsp;&nbsp;<strong class="ft-white">{{ userAccount.tTotalAssets | number:2}}</strong><span class="ft-white">&nbsp;元</span>
+    <div class=" margin-0 padding-1">您好，亲爱的&nbsp;<strong class="ft-orange">{{ hasLoggedUser.name }}</strong>&nbsp;<i class="fa fa-newspaper-o"></i>
+      <span class="pull-right" ui-sref="root.user-center.setting">基本资料></span></div>
+    <div class="account-bg padding-t-1 padding-b-3 padding-l-1 position-re">
+      <div class="padding-l-0p5 money-info">
+        <p>
+          <span class="ft-black">账户资产(元)</span>
+          <span class="ft-white ft-2p5">&nbsp;&nbsp;&nbsp;{{ userAccount.tTotalAssets | number:2}}</span>
+          <span class="ft-white">&nbsp;元</span>
+        </p>
+      </div>
+      <div class="touzi-product"><a class="ft-white" ui-sref="root.user-center.investments-stat">投资项目</a></div>
     </div>
     <!-- 已开通易宝时展示 账户资金详情-->
     <div ng-include src="'views/user-center/_account-assets-info.html'">
     </div>
   </div>
-
-  <!-- 已开通易宝时展示 充值/提现提示-->
-  <div class="padding-l-2 padding-r-2 text-center overflow-hid margin-t-2" ng-if="securityStatus.trusteeshipAccountStatus !== 0">
-    <button class="margin-0 half u-pull-left border-blue bg-blue2 ft-blue ft-1p5" ng-click="!timeout || goWithdraw()" >提现</button>
-    <button class="margin-0 half u-pull-right bg-blue ft-white ft-1p5" ng-click="!timeout || goRecharge()" >充值</button>
+  <!-- 已开通易宝时展示 充值/提现提示 !==0-->
+  <div ng-if="securityStatus.trusteeshipAccountStatus === 1">
+    <!-- 体验金 -->
+    <div class="padding-0p5 bg-experience margin-2">
+      <div class="text-center padding-l-9">
+        <p class="margin-b-0 margin-t-1">体验金:<span class="ft-orange">&nbsp;￥<span class="ft-2p5">{{userAccount.experienceAmount | number:0}}</span></span></p>
+        <p class="margin-b-0 margin-t-1"><button class="button button-primary border-tb-5 btn-focus" ng-click="quickInvest()">快速投资</button></p>
+      </div>
+    </div>
+    <!-- 加息券 -->
+    <div class="padding-0p5 bg-ratemoney margin-2 clear" ng-if="couponStatis.couponTypes.length > 0">
+      <div class="text-center padding-l-9 clear">
+        <p class="margin-b-0 margin-t-1">加息券</p>
+        <p class="margin-b-1 rate-span" ng-repeat="couponType in couponStatis.couponTypes"><span></span><span>+{{couponType.rate}}%</span> <span>{{couponType.couponNum}}张</span></p>
+      </div>
+    </div>
+    <div class="padding-0p5 bg-ratemoney margin-2 clear" ng-if="couponStatis.couponTypes.length <= 0">
+      <div class="text-center padding-l-9 clear">
+        <p class="margin-b-0 margin-t-1">加息券</p>
+        <p class="ft-orange margin-b-1"><span class="ft-2p5">无</span></p>
+      </div>
+    </div>
+    <div class="padding-l-2 padding-r-2 text-center overflow-hid margin-t-2 margin-b-7">
+      <button class="margin-0 half u-pull-left button btn-orange-border" ng-click="!timeout || goWithdraw()">提现</button>
+      <button class="margin-0 half u-pull-right button button-primary" ng-click="!timeout || goRecharge()">充值</button>
+    </div>
   </div>
   <!-- 尚未开通易宝提示 -->
-  <div ng-include src="'views/yeepayless-hint.html'" ng-if="securityStatus.trusteeshipAccountStatus === 0">
+  <div ng-include src="'views/yeepayless-hint.html'" ng-if="securityStatus.trusteeshipAccountStatus !== 1">
   </div>
   <!-- 细分页面入口 -->
   <div class="overflow-hid padding-t-2 padding-b-2">
@@ -29,17 +57,28 @@
       <span class="u-pull-left ft-grey"><i class="fa fa-credit-card ft-blue ft-1p8">&nbsp;&nbsp;</i>银行卡管理</span>
       <span class="u-pull-right"><i class="fa fa-chevron-right ft-grey2 ft-2"></i></span>
     </a> -->
-    <a class="column border-grey border-top-none padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 margin-0" ui-sref="root.user-center.deals">
+    <!-- <a class="column border-grey border-top-none padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5 margin-0" ui-sref="root.user-center.deals">
       <span class="u-pull-left ft-grey"><i class="fa fa-list-ul ft-blue ft-1p8">&nbsp;&nbsp;</i>交易记录</span>
       <span class="u-pull-right"><i class="fa fa-chevron-right ft-grey2"></i></span>
-    </a>
-
-
-    <!-- 实名认证 -->
-    <div ng-include src="'views/user-center/realname-auth.html'" ng-show="toRealNameAuth">
-
-    
+<<<<<<< HEAD
+    </a> -->
+  </div>
+</div>
+<!-- 实名认证 toRealNameAuth-->
+<div ng-include src="'views/user-center/realname-auth.html'" ng-show="toRealNameAuth">
 </div>
 
-
-
+<!-- 快速投资蒙层 -->
+<div class="project-mask" ng-show="useExperience">
+  <div class="bg-white email-mask project-mask-inner">
+    <p class="margin-b-0 text-center ft-1p8">
+      您将投资&nbsp;<strong class="ft-orange">{{userAccount.experienceAmount | number:0}}</strong>&nbsp;元体验金到零存宝
+    </p>
+    <p class="margin-b-0 text-center ft-1p8">
+      并获得&nbsp;<strong class="ft-orange">{{userAccount.experienceAmount * 6 * 7 /36500 | number:2}}</strong>&nbsp;元收益
+    </p>
+    <p class="project-mask-btn2">
+      <span ng-click="useExperience=false;">取消</span>
+      <span ng-click="toInvest()">确定</span></p>
+  </div>
+</div>

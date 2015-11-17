@@ -1,5 +1,6 @@
 .login,
 .register {
+  font-family: "微软雅黑";
   input[type="text"],
   input[type="password"],
   input[type="email"],
@@ -8,8 +9,6 @@
     margin-bottom: 0;
     box-sizing: border-box;
     border: none;
-    border-top-right-radius: .5rem;
-    border-bottom-right-radius: .5rem;
   }
   label {
     width: 25%;
@@ -19,23 +18,31 @@
     text-align: center;
     height: 38px;
     line-height: 38px;
+    background-color: #f0f0f0;
   }
 }
+
 .getCaptcha {
   // display: inline-block;
-  margin-left: 5%; 
+  margin-left: 5%;
   margin-bottom: 0;
 }
-#invitationCode {
-  input[type="text"] {
-    border: 0.1rem solid #ddd;
-  }
-  label {
-    border: none;
-    box-shadow: none;
-    line-height: 19px;
-  }
-  span {
-    font-weight: normal;
+#invitationCode{
+  background-color: #f0f0f0;
+  input{
+    //background-color: #f0f0f0;
   }
 }
+// #invitationCode {
+//   input[type="text"] {
+//     border: 0.1rem solid #ddd;
+//   }
+//   label {
+//     border: none;
+//     box-shadow: none;
+//     line-height: 38px;
+//   }
+//   span {
+//     font-weight: normal;
+//   }
+// }

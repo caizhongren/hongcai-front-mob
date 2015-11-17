@@ -1,26 +1,35 @@
-<div class="withdraw bg-white">
+<div class="withdraw bg-white margin-b-7">
+  <div class=" margin-0 padding-1">您好，亲爱的&nbsp;<strong class="ft-orange">{{ hasLoggedUser.name }}</strong>&nbsp;<i class="fa fa-newspaper-o"></i>
+    <span class="pull-right" ui-sref="root.user-center.setting">基本资料></span></div>
+  <hr class="hr-grey">
   <h6 class="border-grey text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>提现</strong></h6>
-  <div class="padding-2">
-    <!-- 未绑定银行卡 -->
+  <div class="with-bank">
+    <!-- 未绑定银行卡 simpleWithdraw.cardStatus !== 'VERIFIED'-->
     <div ng-include src="'views/user-center/_bankcardless-hint.html'" ng-show="simpleWithdraw.cardStatus !== 'VERIFIED'"></div>
-    <!-- 已经绑定银行卡 -->
-    <form class="margin-b-1p5 ft-1p4" name="withdrawForm" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
-      <label>可用余额:&nbsp;<span class="ft-blue">{{ availableCash | number:2}}</span>元</label>
-      <label>手续费:&nbsp;<span class="ft-blue">2</span>元<span class="ft-grey3">(第三方支付收取)</span></label>
-      <label>可提现金额:&nbsp;<span class="ft-blue">{{ availableCashRealNo | number:2}}</span>元</label>
+    <!-- 已经绑定银行卡 simpleWithdraw.cardStatus == 'VERIFIED'-->
+    <form class="margin-b-1p5 ft-1p5" name="withdrawForm" ng-submit="toWithdraw(simpleWithdraw)" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
+      <div class="bank-span">
+        <span>交通银行：&nbsp;</span><span>6222************1213</span>
+      </div>
+      <label class="margin-t-1"><span>可用余额：&nbsp;</span><span><b class="ft-orange">{{ simpleWithdraw.account.balance | number:2}}&nbsp;</b>元</span></label>
+      <label><span>手续费：&nbsp;</span><span><b class="ft-orange">2.00&nbsp;</b>元<b class="ft-grey3">&nbsp;(第三方支付收取)</b></span></label>
+      <label><span>可提现金额：&nbsp;</span><span><b class="ft-orange">{{ availableCashRealNo | number:2}}&nbsp;</b>元</span></label>
       <div class="hint text-center bg-red1 box-shadow" ng-show="withdrawForm.amount.$dirty && withdrawForm.amount.$error.pattern">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入数字(最多精确到小数点后两位)</span>
       </div>
       <div class="hint text-center bg-red1 box-shadow" ng-show="simpleWithdraw.amountDraw>availableCashRealNo || simpleWithdraw.amountDraw<1">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入一个介于 1 -- {{availableCash | number:2}}之间的值</span>
       </div>
+
       <div class="hint text-center bg-red1 box-shadow" ng-show="simpleWithdraw.account.reward  > 0 && availableCashRealNo - simpleWithdraw.account.reward < 1">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>需要投资100元之后才能提现奖金哦</span>
       </div>
+      <div class="padding-l-2 padding-r-2">
       <input type="text" name="amount" class="u-full-width padding-t-1 padding-b-1 padding-l-1 padding-r-1 margin-t-1" min="1" max="{{availableCash }}" ng-model="simpleWithdraw.amountDraw" ng-pattern="/^[0-9]*(\.[0-9]{1,2})?$/" placeholder="请输入提现金额" ng-disabled="availableCashRealNo  < 1" required>
       <button type="submit" class="u-full-width button button-primary margin-t-0p5 {{withdrawForm.$invalid ? 'button-disabled' : 'button-shadow'}}" ng-disabled="withdrawForm.$invalid || simpleWithdraw.amountDraw>availableCashRealNo || simpleWithdraw.amountDraw<1 || (simpleWithdraw.account.reward  > 0 && availableCashRealNo - simpleWithdraw.account.reward < 1) || availableCashRealNo < 1" ng-show="!(simpleWithdraw.account.reward  > 0 && availableCashRealNo - simpleWithdraw.account.reward < 1)" ng-click="toWithdraw(simpleWithdraw)" >
         申请提现
       </button>
+      </div>
 
       <button type="text" class="u-full-width button button-primary margin-t-0p5 {{withdrawForm.$invalid ? 'button-disabled' : 'button-shadow'}}"  ng-show="simpleWithdraw.account.reward  > 0 && availableCashRealNo - simpleWithdraw.account.reward < 1" ng-click="toInvestCurrentDeposit()">
         去投资
@@ -28,21 +37,21 @@
 
     </form>
     <hr class="margin-0">
-    <div class="ft-grey2 margin-t-0p5">
+    <div class="ft-grey4 margin-t-0p5 padding-2" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
       <h7>温馨提示：</h7>
-      <div>
+      <div class="margin-b-1 margin-t-1">
         <span class="u-pull-left"><small>1.</small></span>
         <p class="padding-l-1 margin-0"><small>目前提现是由三方支付平台收取2元每笔的提现费用。提现金额的最小额度为1元，即额度大于或等于1元。宏财网平台不收取任何提现费用；</small></p>
       </div>
-      <div>
+      <div class="margin-b-1">
         <span class="u-pull-left"><small>2.</small></span>
         <p class="padding-l-1 margin-0"><small>由于宏财网平台不接触投资人资金，投资人资金完全通过第三方支付（易宝支付）来完成资金划拨。由于银行与易宝支付之间的划拨需要(T+1)日，所以当天充值金额（未投资），需要次日才能提现；</small></p>
       </div>
-      <div>
+      <div class="margin-b-1">
         <span class="u-pull-left"><small>3.</small></span>
         <p class="padding-l-1 margin-0"><small>三方支付平台收到用户提现申请即对提现进行转账操作，由于不同银行处理速度不同，提现资金将会当天或下个工作日到账（如遇双休日或法定节假日顺延）。</small></p>
       </div>
-      <div>
+      <div class="margin-b-1">
         <span class="u-pull-left"><small>4.</small></span>
         <p class="padding-l-1 margin-0"><small>如果用户迟迟未收到提现资金，可能为银行卡信息填写有误，银行做正在退票操作，预计会在7个工作日内完成退票，请用户耐心等候。用户还可以联系客服（400-990-7626），寻求帮助；</small></p>
       </div>

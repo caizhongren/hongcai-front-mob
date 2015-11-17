@@ -125,7 +125,7 @@ module.exports = function(grunt) {
           middleware: function(connect) {
             return [
               require('grunt-connect-proxy/lib/utils').proxyRequest,
-              // modRewrite(['^[^\\.]*$ /index.html [L]']),
+              modRewrite(['^[^\\.]*$ /index.html [L]']),
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',

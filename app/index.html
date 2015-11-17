@@ -42,6 +42,7 @@ var _hmt = _hmt || [];
   <link rel="stylesheet" href="styles/safe.css">
   <link rel="stylesheet" href="styles/issue.css">
   <link rel="stylesheet" href="styles/account.css">
+  <link rel="stylesheet" href="styles/activity.css">
   <!-- endbuild -->
   <link rel="stylesheet" href="styles/box-flex.css">
   <link rel="stylesheet" href="styles/weui.min.css">
@@ -55,7 +56,7 @@ var _hmt = _hmt || [];
   <!-- Add your site or application content here -->
   <div class="padding-0">
     <section ui-view="header"></section>
-    <section ui-view autoscroll="true"></section>
+    <section ui-view autoscroll="true" class="margin-b-7"></section>
     <section ui-view="footer"></section>
     <section ui-view="landingPage"></section>
   </div>
@@ -97,7 +98,10 @@ var _hmt = _hmt || [];
   <script src="bower_components/angular-moment/angular-moment.js"></script>
   <script src="bower_components/lodash/lodash.js"></script>
   <script src="bower_components/restangular/dist/restangular.js"></script>
+  <script src="bower_components/angular-svg-round-progressbar/build/roundProgress.min.js"></script>
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
+  <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
   <!-- endbower -->
   <script src="bower_components/famous/dist/famous-global.js"></script>
   <!-- endbuild -->
@@ -115,6 +119,7 @@ var _hmt = _hmt || [];
   <script src="scripts/directives/ng-focus.js"></script>
   <script src="scripts/directives/auto-focus.js"></script>
   <script src="scripts/directives/my-click-once.js"></script>
+  <script src="scripts/directives/check-password.js"></script>
 
   <!-- servies -->
   <script src="scripts/services/users.js"></script>
@@ -136,6 +141,9 @@ var _hmt = _hmt || [];
   <script src="scripts/services/DateUtils.js"></script>
   <script src="scripts/services/DialogService.js"></script>
 
+  <script src="scripts/services/DialogService.js"></script>
+  <script src="scripts/services/URLService.js"></script>
+
   <!-- controller -->
   <script src="scripts/controllers/main.js"></script>
   <script src="scripts/controllers/about.js"></script>
@@ -152,6 +160,7 @@ var _hmt = _hmt || [];
   <script src="scripts/controllers/user-center/user-center.js"></script>
   <script src="scripts/controllers/user-center/credit.js"></script>
   <script src="scripts/controllers/user-center/account.js"></script>
+  <script src="scripts/controllers/user-center/settings.js"></script>
   <script src="scripts/controllers/user-center/investments-stat.js"></script>
   <script src="scripts/controllers/user-center/order.js"></script>
   <script src="scripts/controllers/user-center/recharge.js"></script>
@@ -161,6 +170,11 @@ var _hmt = _hmt || [];
   <script src="scripts/controllers/user-center/message.js"></script>
   <script src="scripts/controllers/user-center/deal.js"></script>
   <script src="scripts/controllers/user-center/info.js"></script>
+
+  <script src="scripts/controllers/share/share-detail-ctrl.js"></script>
+  <script src="scripts/controllers/share/share-home-ctrl.js"></script>
+  <script src="scripts/services/orders.js"></script>
+  <script src="scripts/jweixin-1.0.0.js"></script>
   <script src="scripts/controllers/root-ctrl.js"></script>
   <script src="scripts/controllers/share/share-home-ctrl.js"></script>
   <script src="scripts/controllers/share/share-detail-ctrl.js"></script>

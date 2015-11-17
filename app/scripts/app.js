@@ -18,7 +18,9 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'angularMoment',
   'infinite-scroll',
   'angular-md5',
-  'ui.bootstrap',
+  'restangular',
+  'angular-svg-round-progress',
+  // 'ui.bootstrap',
   'restangular'
 ]);
 
@@ -146,6 +148,28 @@ p2pSiteMobApp
           }
         }
       })
+      // 宏金保详情页
+      .state('root.project-detail', {
+        url: '/project-detail',
+        views: {
+          '': {
+            templateUrl: 'views/project/project-detail.html',
+            //controller: 'FundsProjectDetailCtrl',
+            //controllerUrl: 'scripts/controllers/project/funds-project-detail'
+          }
+        }
+      })
+      // 宏金保详情页更多详情
+      .state('root.project-detail-more', {
+        url: '/project-detail-more',
+        views: {
+          '': {
+            templateUrl: 'views/project/project-detail-more.html',
+            //controller: 'FundsProjectDetailCtrl',
+            //controllerUrl: 'scripts/controllers/project/funds-project-detail'
+          }
+        }
+      })
       .state('root.registration-agreement', {
         url: '/registration-agreement',
         views: {
@@ -179,6 +203,17 @@ p2pSiteMobApp
             templateUrl: 'views/user-center/account.html',
             controller: 'AccountCtrl',
             controllerUrl: 'scripts/controllers/user-center/account'
+          }
+        }
+      })
+      //个人设置
+      .state('root.user-center.setting', {
+        url: '/setting',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/setting.html',
+            controller: 'SettingsCtrl',
+            controllerUrl: 'scripts/controllers/user-center/settings'
           }
         }
       })
@@ -370,6 +405,31 @@ p2pSiteMobApp
           }
         }
       })
+
+          //体验金活动页
+      .state('root.experience-activity', {
+        url: '/experience-activity',
+        views: {
+          '': {
+            templateUrl: 'views/activity/experience-activity.html',
+            //controller: 'ShareHomeCtrl',
+            //controllerUrl: 'scripts/controllers/share/share-home-ctrl'
+          }
+        }
+      })
+
+      .state('root.rate-activity', {
+        url: '/rate-activity',
+        views: {
+          '': {
+            templateUrl: 'views/activity/rate-activity.html',
+            //controller: 'ShareHomeCtrl',
+            //controllerUrl: 'scripts/controllers/share/share-home-ctrl'
+          }
+        }
+      })
+
+
     ;
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
@@ -405,6 +465,7 @@ p2pSiteMobApp
           $rootScope.nickName = response.user.nickName;
           $rootScope.headImgUrl = response.user.headImgUrl;
           $rootScope.userInfo = response.user;
+          $rootScope.voucher = response.voucher;
 
           $rootScope.checkSession.resolve(response);
 

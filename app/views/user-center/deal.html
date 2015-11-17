@@ -1,29 +1,31 @@
 <div class="deal bg-white">
+  <div class=" margin-0 padding-1">您好，亲爱的&nbsp;<strong class="ft-orange">{{ hasLoggedUser.name }}</strong>&nbsp;<i class="fa fa-newspaper-o"></i>
+    <span class="pull-right" ui-sref="root.user-center.setting">基本资料></span></div>
   <h6 class="border-grey text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>交易记录</strong></h6>
   <div class="row text-center margin-t-5" ng-hide="deals">
     <img src="images/user-center/deal-list.png" width="50%">
     <p class="padding-2-t">亲，您还没有产生任何交易呢...</p>
     <input type="button" class="half margin-0 padding-t-0p5 padding-b-0p5 bg-blue3 ft-white ft-1p8 button button-primary" ui-sref="root.main" value="浏览理财产品">
   </div>
-  <div class="padding-t-2 padding-b-2" ng-show="deals.length > 0" >
+  <div class="padding-t-2 padding-b-2" ng-show="deals.length > 0">
     <table class="u-full-width">
-      <thead class="bg-blue2">
-        <th class="ft-grey3">时间</th>
-        <th class="ft-grey3">交易类型</th>
-        <th class="ft-grey3">收支描述</th>
-        <th class="ft-grey3">收入(元)</th>
-        <th class="ft-grey3">支出(元)</th>
-        <th class="ft-grey3">账户现金(元)</th>
+      <thead class="bg-orange2">
+        <th class="ft-grey4">时间</th>
+        <th class="ft-grey4">交易类型</th>
+        <!-- <th class="ft-grey3">收支描述</th> -->
+        <!-- <th class="ft-grey4">收入(元)</th> -->
+        <th class="ft-grey4">交易金额(元)</th>
+        <th class="ft-grey4">账户现金(元)</th>
       </thead>
-      <tbody >
-        <div  infinite-scroll="loadDealMuch()" infinite-scroll-distance="3">
+      <tbody>
+        <div infinite-scroll="loadDealMuch()" infinite-scroll-distance="3">
           <tr ng-repeat="item in deals">
             <td>{{item.createTime | date: 'yy-MM-dd'}}</td>
             <td>{{ dealMap[item.type] }}</td>
-            <td><strong class="ft-orange">{{ item.description }}</strong></td>
-            <td class="ft-orange">{{item.getAmount |currency:"":1 || 0}}</td>
-            <td class="ft-orange">{{item.payAmount |currency:"":1 || 0}}</td>
-            <td><strong class="ft-orange">{{item.balance |currency:"":1 || 0}}</strong></td>
+            <!-- <td><strong class="ft-orange">{{ item.description }}</strong></td> -->
+            <!-- <td class="ft-orange">{{item.getAmount |currency:"":1 || 0}}</td> -->
+            <td class="ft-orange"><span ng-show="item.getAmount > 0">+</span><span ng-show="item.payAmount > 0">-</span>{{item.amount |currency:"":2 || 0}}</td>
+            <td><strong class="ft-orange">{{item.balance |currency:"":2 || 0}}</strong></td>
           </tr>
         </div>
       </tbody>
@@ -33,5 +35,4 @@
       <div ng-show="DealBusy"><img src="/images/ajax-loader1.gif">加载更多...</div>
     </div>
   </div>
-
 </div>
