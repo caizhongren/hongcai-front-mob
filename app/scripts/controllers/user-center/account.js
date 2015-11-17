@@ -14,15 +14,13 @@ angular.module('p2pSiteMobApp')
     $rootScope.checkSession.promise.then(function() {
       if (!$rootScope.isLogged) {
         $state.go('root.login');
+        return;
       }
 
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/account').$then(function(response) {
-        if (response.$status === 'ok') {
           // 获取用户金额信息
           $scope.userAccount = response;
-        } else {
           // 获取信息失败。
-        }
       });
 
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/increaseRateCoupon').$then(function(response) {
