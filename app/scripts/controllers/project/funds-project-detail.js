@@ -69,10 +69,32 @@ angular.module('p2pSiteMobApp')
     };
 
     $scope.rewardFlag = false;
+    $scope.selectReward = function(project){
+      if(project.investAmount > 0){
+        if($rootScope.account.experienceAmount > 0 || $scope.selectCoupon != null){
+          $scope.rewardFlag = true;
+        }
+      }else{
+        alert('请先输入投资金额');
+      }
+    }
+
+    $scope.experienceAmount = 0;
+    $scope.confirmUseReward = function(project, selectCoupon){
+      if(project.useExperience){
+        $scope.experienceAmount = parseInt($rootScope.account.experienceAmount/100) * 100;
+        if($scope.experienceAmount > project.investAmount){
+          project.investAmount = $scope.experienceAmount;
+        }
+      }
+      $scope.couponNumber = selectCoupon == null ? "" : selectCoupon.number;
+      $scope.rewardFlag = false;
+    }
 
     $scope.checkLargeUserCanAmount = function(project) {
       if ($rootScope.account) {
-        if ($rootScope.account.balance < project.investAmount) {
+        var availableAmount = project.product.type !== 1 ? $rootScope.account.balance : $rootScope.account.balance + $rootScope.account.experienceAmount;
+        if (availableAmount < project.investAmount) {
           return true;
         } else {
           return false;
@@ -130,6 +152,10 @@ angular.module('p2pSiteMobApp')
         $scope.isRepeat = 2;
       }
       $scope.investAmount = simpleFundsProject.investAmount;
+      var payAmount = $scope.investAmount - $scope.experienceAmount;
+      var couponNumber = $scope.couponNumber;
+      
+      alert(payAmount + "=======" + couponNumber);
       if ($scope.fundsFlag === 0) {
         $state.go('root.login');
       } else if ($scope.fundsFlag === 1) {
@@ -137,40 +163,68 @@ angular.module('p2pSiteMobApp')
       } else if ($scope.checkLargeUserCanAmount(simpleFundsProject)) {
         $state.go('root.yeepay-transfer', {
               type: 'recharge',
-              number: $scope.investAmount - $rootScope.account.balance + ($rootScope.account.reward == null ? 0 : $rootScope.account.reward)
+              number: $scope.payAmount - $rootScope.account.balance + ($rootScope.account.reward == null ? 0 : $rootScope.account.reward)
         });
         // $state.go('root.user-center.recharge');
       } else if ($scope.fundsFlag === 2 || $scope.fundsFlag === 3) {
         // how to bulid investment path restmod.model
         // restmod.model(DEFAULT_DOMAIN + '/projects')
-        restmod.model(DEFAULT_DOMAIN + '/fundsProjects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
-          // fundsProjects.$find(number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
-          amount: simpleFundsProject.investAmount,
-          projectId: simpleFundsProject.id,
-          isRepeat: $scope.isRepeat
-        }).$then(function(response) {
-          // 重复下单后，response.number为undefined
-          if (response.$status === 'ok') {
-            if (response.number !== null && response.number !== undefined) {
-              restmod.model(DEFAULT_DOMAIN + '/orders/' + response.number + '/users/' + $rootScope.hasLoggedUser.id + '/payment').$create().$then(function(response) {
-                if (response.$status === 'ok') {
-                  var req = response.req;
-                  var sign = response.sign;
-                  var _f = newForm(); //创建一个form表单
-                  createElements(_f, 'req', req); //创建form中的input对象
-                  createElements(_f, 'sign', sign);
-                  _f.action = config.YEEPAY_ADDRESS + 'toTransfer'; //form提交地址
-                  _f.submit(); //提交
-                }
-                // $state.go('');
-              })
-            } else if (response.ret === -1) {
-              $scope.msg = response.msg;
+        if(payAmount > 0){
+          restmod.model(DEFAULT_DOMAIN + '/fundsProjects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
+            // fundsProjects.$find(number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
+            amount: simpleFundsProject.investAmount,
+            projectId: simpleFundsProject.id,
+            isRepeat: $scope.isRepeat,
+            payAmount : payAmount,
+            couponNumber : couponNumber
+          }).$then(function(response) {
+            // 重复下单后，response.number为undefined
+            if (response.$status === 'ok') {
+              if (response.number !== null && response.number !== undefined) {
+                restmod.model(DEFAULT_DOMAIN + '/orders/' + response.number + '/users/' + $rootScope.hasLoggedUser.id + '/payment').$create().$then(function(response) {
+                  if (response.$status === 'ok') {
+                    var req = response.req;
+                    var sign = response.sign;
+                    var _f = newForm(); //创建一个form表单
+                    createElements(_f, 'req', req); //创建form中的input对象
+                    createElements(_f, 'sign', sign);
+                    _f.action = config.YEEPAY_ADDRESS + 'toTransfer'; //form提交地址
+                    _f.submit(); //提交
+                  }
+                  // $state.go('');
+                })
+              } else if (response.ret === -1) {
+                $scope.msg = response.msg;
+              }
+            } else {
+              $scope.msg = "服务器累瘫了，请稍后访问。";
             }
-          } else {
-            $scope.msg = "服务器累瘫了，请稍后访问。";
-          }
-        })
+          })
+        }else{
+          restmod.model(DEFAULT_DOMAIN + '/fundsProjects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/investmentByExperience').$create({
+            // fundsProjects.$find(number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
+            amount: simpleFundsProject.investAmount,
+            projectId: simpleFundsProject.id,
+            isRepeat: $scope.isRepeat,
+            payAmount : payAmount,
+            couponNumber : couponNumber
+          }).$then(function(response) {
+            // 重复下单后，response.number为undefined
+            if (response.$status === 'ok') {
+              if (response.number !== null && response.number !== undefined) {
+                $state.go('root.yeepay-callback', {
+                  business: 'TRANSFER',
+                  status: 'SUCCESS',
+                  amount: response.amount
+                });
+              } else if (response.ret === -1) {
+                $scope.msg = response.msg;
+              }
+            } else {
+              $scope.msg = "服务器累瘫了，请稍后访问。";
+            }
+          })
+        }
       }
     };
 
@@ -178,21 +232,21 @@ angular.module('p2pSiteMobApp')
      * 加息券统计信息
      */
      Restangular.one('users', $rootScope.hasLoggedUser.id).one('unUsedIncreaseRateCoupons').get().then(function(response){
-          $scope.increaseRateCoupons = response;
-          $scope.selectCoupon = null;
-          if($scope.increaseRateCoupons.length > 0){
-            for(var i=0; i < $scope.increaseRateCoupons.length; i++){
-              var rateText = '加息券 +' + $scope.increaseRateCoupons[i].rate + '%';
-              $scope.increaseRateCoupons[i].rateText = rateText;
-            }
-            var increaseRateCoupon = {
-              number: "",
-              rate: 0,
-              rateText: "不使用加息券"
-            }
-            $scope.increaseRateCoupons.push(increaseRateCoupon);
-
-            $scope.selectCoupon = $scope.increaseRateCoupons[0];
+        $scope.increaseRateCoupons = response;
+        $scope.selectCoupon = null;
+        if($scope.increaseRateCoupons.length > 0 && $scope.simpleFundsProject.product.type !== 1){
+          for(var i=0; i < $scope.increaseRateCoupons.length; i++){
+            var rateText = '加息券 +' + $scope.increaseRateCoupons[i].rate + '%';
+            $scope.increaseRateCoupons[i].rateText = rateText;
           }
-        });
+          var increaseRateCoupon = {
+            number: "",
+            rate: 0,
+            rateText: "不使用加息券"
+          }
+          $scope.increaseRateCoupons.push(increaseRateCoupon);
+
+          $scope.selectCoupon = $scope.increaseRateCoupons[0];
+        }
+      });
   });
