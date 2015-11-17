@@ -51,6 +51,27 @@ angular.module('p2pSiteMobApp')
                $scope.fundsFlag = 0;
              }
            }
+           /**
+           * 加息券统计信息
+           */
+           Restangular.one('users', $rootScope.hasLoggedUser.id).one('unUsedIncreaseRateCoupons').get().then(function(response){
+              $scope.increaseRateCoupons = response;
+              $scope.selectCoupon = null;
+              if($scope.increaseRateCoupons.length > 0 && $scope.simpleFundsProject.product.type !== 1){
+                for(var i=0; i < $scope.increaseRateCoupons.length; i++){
+                  var rateText = '加息券 +' + $scope.increaseRateCoupons[i].rate + '%';
+                  $scope.increaseRateCoupons[i].rateText = rateText;
+                }
+                var increaseRateCoupon = {
+                  number: "",
+                  rate: 0,
+                  rateText: "不使用加息券"
+                }
+                $scope.increaseRateCoupons.push(increaseRateCoupon);
+
+                $scope.selectCoupon = $scope.increaseRateCoupons[0];
+              }
+            });
          } else {
            // do anything?
            // 请求数据失败，请重新加载该页面
@@ -89,6 +110,7 @@ angular.module('p2pSiteMobApp')
       }
       $scope.couponNumber = selectCoupon == null ? "" : selectCoupon.number;
       $scope.rewardFlag = false;
+      $scope.selectCoupon = selectCoupon;
     }
 
     $scope.checkLargeUserCanAmount = function(project) {
@@ -227,26 +249,4 @@ angular.module('p2pSiteMobApp')
         }
       }
     };
-
-    /**
-     * 加息券统计信息
-     */
-     Restangular.one('users', $rootScope.hasLoggedUser.id).one('unUsedIncreaseRateCoupons').get().then(function(response){
-        $scope.increaseRateCoupons = response;
-        $scope.selectCoupon = null;
-        if($scope.increaseRateCoupons.length > 0 && $scope.simpleFundsProject.product.type !== 1){
-          for(var i=0; i < $scope.increaseRateCoupons.length; i++){
-            var rateText = '加息券 +' + $scope.increaseRateCoupons[i].rate + '%';
-            $scope.increaseRateCoupons[i].rateText = rateText;
-          }
-          var increaseRateCoupon = {
-            number: "",
-            rate: 0,
-            rateText: "不使用加息券"
-          }
-          $scope.increaseRateCoupons.push(increaseRateCoupon);
-
-          $scope.selectCoupon = $scope.increaseRateCoupons[0];
-        }
-      });
   });
