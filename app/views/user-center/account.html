@@ -22,8 +22,8 @@
     <!-- 体验金 -->
     <div class="padding-0p5 bg-experience margin-2">
       <div class="text-center padding-l-9">
-        <p class="margin-b-0 margin-t-1">体验金</p>
-        <p class="ft-orange margin-b-1">￥<span class="ft-2p5">{{userAccount.experienceAmount | number:0}}</span></p>
+        <p class="margin-b-0 margin-t-1">体验金:<span class="ft-orange">&nbsp;￥<span class="ft-2p5">{{userAccount.experienceAmount | number:0}}</span></span></p>
+        <p class="margin-b-0 margin-t-1"><button class="button button-primary border-tb-5 btn-focus" ng-click="quickInvest()">快速投资</button></p>
       </div>
     </div>
     <!-- 加息券 -->
@@ -66,4 +66,19 @@
 </div>
 <!-- 实名认证 toRealNameAuth-->
 <div ng-include src="'views/user-center/realname-auth.html'" ng-show="toRealNameAuth">
+</div>
+
+<!-- 快速投资蒙层 -->
+<div class="project-mask" ng-show="useExperience">
+  <div class="bg-white email-mask project-mask-inner">
+    <p class="margin-b-0 text-center ft-1p8">
+      您将投资&nbsp;<strong class="ft-orange">{{userAccount.experienceAmount | number:0}}</strong>&nbsp;元体验金到零存宝
+    </p>
+    <p class="margin-b-0 text-center ft-1p8">
+      并获得&nbsp;<strong class="ft-orange">{{userAccount.experienceAmount * 6 * 7 /36500 | number:2}}</strong>&nbsp;元收益
+    </p>
+    <p class="project-mask-btn2">
+      <span ng-click="useExperience=false;">取消</span>
+      <span ng-click="toInvest()">确定</span></p>
+  </div>
 </div>

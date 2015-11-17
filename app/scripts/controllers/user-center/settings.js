@@ -36,6 +36,9 @@ angular.module('p2pSiteMobApp')
           $scope.changePasswordMsg = response.msg;
         } else {
           $scope.checkPwdFlag = false;
+          $scope.oldPassword = null;
+          $scope.newPassword1 = null;
+          $scope.newPassword2 = null;
         }
       });
     }

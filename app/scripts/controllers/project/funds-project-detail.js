@@ -116,7 +116,7 @@ angular.module('p2pSiteMobApp')
     $scope.checkLargeUserCanAmount = function(project) {
       if ($rootScope.account) {
         var availableAmount = project.product.type !== 1 ? $rootScope.account.balance : $rootScope.account.balance + $rootScope.account.experienceAmount;
-        if (availableAmount < project.investAmount) {
+        if ($rootScope.account.balance < project.investAmount) {
           return true;
         } else {
           return false;
