@@ -23,13 +23,14 @@ angular.module('p2pSiteMobApp')
     $scope.pageSize = 10;
     //$scope.creditsDetail = [];
 
-    if ($rootScope.hasLoggedUser) {
+    $rootScope.checkSession.promise.then(function(){
+      $scope.getCredits('1,2');
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/totalProfit').$then(function(response){
         if (response.$status === 'ok') {
           $scope.totalProfit = response;
         }
       });
-    }
+    });
     $scope.toggle.switchTab = function(tabIndex) {
       $scope.toggle.activeTab = tabIndex;
       console.log(tabIndex);
@@ -45,14 +46,12 @@ angular.module('p2pSiteMobApp')
 
 
     $scope.getCredits = function(status) {
-      if ($rootScope.hasLoggedUser) {
         $scope.creditStatus = status;
         $scope.credits = HongcaiUser.$find($rootScope.hasLoggedUser.id + '/credits', {
           status: $scope.creditStatus,
           page: $scope.page,
           pageSize: $scope.pageSize
         });
-      }
     };
 
     $scope.loadCreditMore = function() {
@@ -60,7 +59,7 @@ angular.module('p2pSiteMobApp')
       $scope.getCredits($scope.creditStatus);
     };
 
-    $scope.getCredits('1,2');
+    
 
     //以下为自动加载代码
 
