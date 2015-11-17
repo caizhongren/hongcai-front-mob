@@ -53,6 +53,9 @@ angular.module('p2pSiteMobApp')
     $scope.toWithdraw = function(simpleWithdraw) {
       // $scope.msg = '3';
       var amount = simpleWithdraw.amountDraw;
+      if(!amount || amount < 1){
+        return;
+      }
 
       $state.go('root.yeepay-transfer', {
         type: 'withdraw',
