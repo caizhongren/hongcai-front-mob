@@ -24,8 +24,8 @@
             <td>{{ dealMap[item.type] }}</td>
             <!-- <td><strong class="ft-orange">{{ item.description }}</strong></td> -->
             <!-- <td class="ft-orange">{{item.getAmount |currency:"":1 || 0}}</td> -->
-            <td class="ft-orange"><span ng-show="item.getAmount > 0">+</span><span ng-show="item.payAmount > 0">-</span>{{item.amount |currency:"":1 || 0}}</td>
-            <td><strong class="ft-orange">{{item.balance |currency:"":1 || 0}}</strong></td>
+            <td class="ft-orange"><span ng-show="item.getAmount > 0">+</span><span ng-show="item.payAmount > 0">-</span>{{item.amount |currency:"":2 || 0}}</td>
+            <td><strong class="ft-orange">{{item.balance |currency:"":2 || 0}}</strong></td>
           </tr>
         </div>
       </tbody>
