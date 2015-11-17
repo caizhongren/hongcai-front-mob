@@ -140,9 +140,25 @@ angular.module('p2pSiteMobApp')
       if ($scope.fundsFlag !== 3) {
         $scope.simpleFundsProject.isRepeatFlag = false;
         simpleFundsProject.isRepeatFlag = false;
+        $scope.authAutoTransferFlag = true;
         $scope.msg = "您还没有开通自动续投";
       }
     };
+
+    $scope.cancelAuthAutoTransfer = function(){
+      $scope.authAutoTransferFlag = false;
+    }
+
+    /**
+     * 开通自动投标权限
+     */
+    $scope.toAuthAutoTransfer = function(){
+      $state.go('root.yeepay-transfer', {
+        type: 'autoTransfer',
+        number: "null"
+      });
+    }
+
     function newForm() {
       var f = document.createElement('form');
       document.body.appendChild(f);
