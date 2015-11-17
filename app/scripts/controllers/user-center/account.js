@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('AccountCtrl', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN) {
+  .controller('AccountCtrl', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5) {
 
     $rootScope.checkSession.promise.then(function(){
       if(!$rootScope.isLogged){
@@ -44,15 +44,19 @@ angular.module('p2pSiteMobApp')
 
       if (newP1 !== newP2){
         $scope.changePasswordMsg = "两次密码输入不一致";
+        return;
       }
 
-      HongcaiUser.$create($rootScope.hasLoggedUser.id + '/changePassword', {
-        oldPassword: oldP,
-        newPassword: newP2,
+      restmod.model(DEFAULT_DOMAIN + '/users/' + $rootScope.hasLoggedUser.id + '/changePassword')
+      .$create({
+        oldPassword: md5.createHash(oldP),
+        newPassword: md5.createHash(newP2)
       }).$then(function(response){
         if (response.ret === -1){
           $scope.changePasswordMsg = response.msg;
-        } 
+        } else {
+          $scope.checkPwdFlag = false;
+        }
       });
     }
 
