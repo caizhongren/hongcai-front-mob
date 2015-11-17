@@ -8,34 +8,14 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('AccountCtrl', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5) {
+  .controller('SettingsCtrl', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5) {
 
     $rootScope.checkSession.promise.then(function(){
       if(!$rootScope.isLogged){
         $state.go('root.login');
       }
 
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/account').$then(function(response) {
-        if (response.$status === 'ok') {
-          // 获取用户金额信息
-          $scope.userAccount = response;
-        } else {
-          // 获取信息失败。
-        }
-      });
-
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/increaseRateCoupon').$then(function(response) {
-        if (response.$status === 'ok') {
-          // 获取用户金额信息
-          $scope.couponStatis = response;
-        } else {
-          // 获取信息失败。
-        }
-      });
     });
-
-    $rootScope.selectedSide =  'account';
-
 
     $scope.changePassword = function(oldP, newP1, newP2){
       if (!oldP || !newP2 || !newP1){
@@ -91,23 +71,6 @@ angular.module('p2pSiteMobApp')
       $scope.toRealNameAuth = true;
     }
 
-
-    $scope.goWithdraw = function(){
-      $state.go("root.user-center.withdraw");
-    }
-
-    $scope.goRecharge = function(){
-      $state.go("root.user-center.recharge");
-    }
-
-
-    // tab
-    $scope.toggle = {};
-    $scope.tabs = [{
-      title: '账户总览',
-    }, {
-      title: '我的投资'
-    }];
 
     $scope.handleMobileNum = function(phoneNum) {
         if(phoneNum == null || phoneNum == 'undefined'){
