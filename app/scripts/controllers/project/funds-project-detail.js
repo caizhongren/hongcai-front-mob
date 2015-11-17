@@ -137,7 +137,7 @@ angular.module('p2pSiteMobApp')
     };
 
     $scope.checkAutoTransfer = function(simpleFundsProject) {
-      alert('点击自动续投');
+      // alert('点击自动续投');
       if ($scope.fundsFlag !== 3) {
         $scope.simpleFundsProject.isRepeatFlag = false;
         simpleFundsProject.isRepeatFlag = false;
