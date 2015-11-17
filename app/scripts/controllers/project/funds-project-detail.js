@@ -190,6 +190,11 @@ angular.module('p2pSiteMobApp')
       } else {
         $scope.isRepeat = 2;
       }
+
+      if (!simpleFundsProject.investAmount){
+        $scope.msg = '投资金额有误，请重新输入';
+      }
+
       $scope.investAmount = simpleFundsProject.investAmount;
       var payAmount = $scope.investAmount - $scope.experienceAmount;
       var couponNumber = $scope.couponNumber;
