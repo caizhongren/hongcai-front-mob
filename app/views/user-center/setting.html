@@ -24,7 +24,7 @@
       <span ng-show="hasLoggedUser.mobile == null"><i class="fa fa-check-circle-o"></i>&nbsp;未绑定</span>
     </p>
   </div>
-<!--   <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
+  <!--   <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
     <p>邮箱：</p>
     <p class="p-block">
       <span class="ft-grey4">aaa***@163.com</span>
@@ -74,11 +74,10 @@
     </p>
     <p class="text-center ft-red margin-b-0" ng-show="changePasswordMsg">{{changePasswordMsg}}</p>
     <p class="project-mask-btn">
-    	<span ng-click="checkPwdFlag=false">取消</span>
+      <span ng-click="checkPwdFlag=false">取消</span>
       <span ng-click="changePassword(oldPassword, newPassword1, newPassword2)">修改</span></p>
   </div>
 </div>
-
 <!-- 修改邮箱蒙层 -->
 <!-- <div ng-show="checkEmailFlag" class="project-mask">
   <div class="bg-white email-mask project-mask-inner">
@@ -91,11 +90,9 @@
       <span>修改</span></p>
   </div>
 </div> -->
-
 <!-- 实名认证 toRealNameAuth-->
 <div ng-include src="'views/user-center/realname-auth.html'" ng-show="toRealNameAuth">
 </div>
-
 <!-- 开通自动投标权限蒙层 -->
 <div ng-show="checkAutoFlag" class="project-mask">
   <div class="bg-white email-mask project-mask-inner">
@@ -107,3 +104,4 @@
       <span ng-click="toAuthAutoTransfer()">确定</span></p>
   </div>
 </div>
+
