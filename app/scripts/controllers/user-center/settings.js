@@ -39,9 +39,7 @@ angular.module('p2pSiteMobApp')
           $scope.oldPassword = null;
           $scope.newPassword1 = null;
           $scope.newPassword2 = null;
-          DialogService.alert('修改密码', '密码已修改成功!', function(){
-            $rootScope.alert = null;
-          });
+          $scope.correctCheck = true;
         }
       });
     }

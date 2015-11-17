@@ -8,11 +8,8 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-<<<<<<< HEAD
-  .controller('AccountCtrl', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5) {
-=======
+
   .controller('AccountCtrl', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, fundsProjects) {
->>>>>>> a70bcb3e23520767ae4fa73b524efb25fd9ea0e5
 
     $rootScope.checkSession.promise.then(function() {
       if (!$rootScope.isLogged) {
