@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('CreditCtrl', ['$scope', '$rootScope', '$state', 'HongcaiUser', 'restmod', 'DEFAULT_DOMAIN', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN) {
+  .controller('CreditCtrl', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN) {
 
     // tab
     $scope.toggle = {};
@@ -22,11 +22,12 @@ angular.module('p2pSiteMobApp')
     $scope.page = 1;
     $scope.pageSize = 10;
     //$scope.creditsDetail = [];
+    $scope.credits = [];
 
     $rootScope.checkSession.promise.then(function(){
       $scope.getCredits('1,2');
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/totalProfit').$then(function(response){
-        if (response.$status === 'ok') {
+        if (response.ret !== -1) {
           $scope.totalProfit = response;
         }
       });
@@ -39,6 +40,8 @@ angular.module('p2pSiteMobApp')
       } else {
         $scope.creditStatus = '3';
       }
+      $scope.credits = [];
+      $scope.page = 1;
       $scope.getCredits($scope.creditStatus);
       //$scope.getCreditList($scope.creditStatus);
     };
@@ -47,48 +50,26 @@ angular.module('p2pSiteMobApp')
 
     $scope.getCredits = function(status) {
         $scope.creditStatus = status;
-        $scope.credits = HongcaiUser.$find($rootScope.hasLoggedUser.id + '/credits', {
+        HongcaiUser.$find($rootScope.hasLoggedUser.id + '/credits', {
           status: $scope.creditStatus,
           page: $scope.page,
           pageSize: $scope.pageSize
+        }).$then(function(response){
+          $scope.totalPage = response.totalPage;
+          var credits = response.data;
+          for (var i = 0; i <= credits.length - 1; i++) {
+            $scope.credits.push(credits[i]);
+          };
         });
     };
 
+    /**
+     * 加载更多
+     */
     $scope.loadCreditMore = function() {
-      $scope.pageSize = $scope.pageSize + 10;
+      $scope.page = $scope.page + 1;
       $scope.getCredits($scope.creditStatus);
     };
 
     
-
-    //以下为自动加载代码
-
-    //  $scope.getCreditList = function(status){
-    //    if ($rootScope.hasLoggedUser) {
-    //     $scope.creditStatus = status;
-    //     var creditsReq = HongcaiUser.$find($rootScope.hasLoggedUser.id + '/credits', {
-    //       status: $scope.creditStatus,
-    //       page: $scope.page,
-    //       pageSize: $scope.pageSize
-    //     });
-    //     creditsReq.$then(function(response){
-    //       console.log(response.$status);
-    //       if(response.$status === 'ok'){
-    //           for (var i = 0; i < response.data.length; i++) {
-    //             $scope.creditsDetail.push(response.data[i]);
-    //             console.log($scope.creditsDetail);
-    //           };
-    //       }
-    //     });
-    //   }
-    //  }
-
-    // $scope.loadCreditMuch = function(){
-    //   $scope.creditsBusy = true;
-    //   //$scope.page = $scope.page + 1;
-    //   $scope.pageSize = $scope.pageSize + 10;
-    //   $scope.getCreditList();
-    //   $scope.creditsBusy = false;
-    // }
-    // $scope.getCreditList('1,2');
-  }]);
+  });

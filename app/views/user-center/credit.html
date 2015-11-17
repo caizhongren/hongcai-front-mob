@@ -7,24 +7,23 @@
     <li class="column text-center margin-0 padding-t-0p5 padding-b-0p5" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)" my-click-once>{{tab.title}}</li>
   </ul>
   <div class="tab-content u-full-width bg-white overflow-hid text-center" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-show="credits">
-    <div ng-repeat="item in credits.data" ng-include src='"views/user-center/_credit-detail.html"'>
+    <div ng-repeat="item in credits" ng-include src='"views/user-center/_credit-detail.html"'>
     </div>
-    <div class="text-center" ng-show="credits.data.length >= pageSize">
+    <div class="text-center" ng-show="totalPage > page">
       <p><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a ng-click="loadCreditMore();" style="cursor:pointer;color:black;">查看更多债权信息</a></p>
-    </div>
-    <!-- <div infinite-scroll="loadCreditMuch()" infinite-scroll-distance="3">
+      <!-- <div infinite-scroll="loadCreditMuch()" infinite-scroll-distance="3">
       <div ng-repeat="item in credits.data" ng-include src='"views/user-center/_credit-detail.html"'>
       </div>
     </div>
     <div class="text-center" ng-show="credits.data.length >= 10">
       <p><a ng-show='creditsBusy' style="cursor:pointer;"><img src="/images/ajax-loader1.gif">加载更多...</a></p>
     </div> -->
-    <!-- <i class="fa fa-list"></i>&nbsp 查看更多债权信息... -->
+      <!-- <i class="fa fa-list"></i>&nbsp 查看更多债权信息... -->
+    </div>
   </div>
-</div>
-<div class="row text-center margin-t-5 padding-l-1 padding-r-1" ng-show="credits.data.length <= 0">
-  <img src="images/user-center/deal-list.png" width="35%">
-  <p class="padding-2-t margin-t-2">亲，您尚未在宏财网购买过债权...</p>
-  <!-- <input type="button" class="u-full-width padding-t-0p5 padding-b-0p5 ft-1p8 button button-primary button-shadow margin-b-2" ui-sref="root.main" value="浏览理财产品"> -->
-  <button type="button" class="u-full-width ft-1p8 button button-primary button-shadow" ui-sref="root.main">浏览理财产品</button>
-</div>
+  <div class="row text-center margin-t-5 padding-l-1 padding-r-1" ng-show="credits.data.length <= 0">
+    <img src="images/user-center/deal-list.png" width="35%">
+    <p class="padding-2-t margin-t-2">亲，您尚未在宏财网购买过债权...</p>
+    <!-- <input type="button" class="u-full-width padding-t-0p5 padding-b-0p5 ft-1p8 button button-primary button-shadow margin-b-2" ui-sref="root.main" value="浏览理财产品"> -->
+    <button type="button" class="u-full-width ft-1p8 button button-primary button-shadow" ui-sref="root.main">浏览理财产品</button>
+  </div>
