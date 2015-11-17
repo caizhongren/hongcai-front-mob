@@ -37,6 +37,26 @@ angular.module('p2pSiteMobApp')
     $rootScope.selectedSide =  'account';
 
 
+    $scope.changePassword = function(oldP, newP1, newP2){
+      if (!oldP || !newP2 || !newP1){
+        return;
+      }
+
+      if (newP1 !== newP2){
+        $scope.changePasswordMsg = "两次密码输入不一致";
+      }
+
+      HongcaiUser.$create($rootScope.hasLoggedUser.id + '/changePassword', {
+        oldPassword: oldP,
+        newPassword: newP2,
+      }).$then(function(response){
+        if (response.ret === -1){
+          $scope.changePasswordMsg = response.msg;
+        } 
+      });
+    }
+
+
     /**
      * 开通自动投标权限
      */
