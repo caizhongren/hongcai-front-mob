@@ -1,5 +1,5 @@
-<div styLe="position:fixed;top:0;bottom:0;left:0;bottom:0;right:0;background-color:rgba(0,0,0,0.15);z-index:999999;">
-  <div class="bg-white realname-mask" style="margin:10rem 2rem 0 2rem;border-radius:0.5rem;">
+<div class="project-mask">
+  <div class="bg-white realname-mask project-mask-inner">
     <form autocomplete="on" id="realNameAuthForm" name="realNameAuthForm" class="margin-b-0">
       <p class="ft-grey2">身份认证</p>
       <p>
@@ -13,7 +13,7 @@
       <p class="ft-red text-center margin-t-1 margin-b-1 ft-1p2">
         {{errMsg}}
       </p>
-      <p style="margin-top:5rem;border-top:0.1rem solid #bbb;clear:both;">
+      <p class="project-mask-btn3">
         <span class="ft-grey2" ng-click="$parent.toRealNameAuth=false;" my-click-once>取消</span>
         <span ng-disabled="realNameAuthForm.$invalid" ng-click="realNameAuth(user)" my-click-once ng-class="{active: !realNameAuthForm.$invalid}">点击认证</span>
       </p>
