@@ -8,7 +8,11 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
+<<<<<<< HEAD
   .controller('AccountCtrl', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5) {
+=======
+  .controller('AccountCtrl', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, fundsProjects) {
+>>>>>>> a70bcb3e23520767ae4fa73b524efb25fd9ea0e5
 
     $rootScope.checkSession.promise.then(function() {
       if (!$rootScope.isLogged) {
@@ -160,4 +164,50 @@ angular.module('p2pSiteMobApp')
       }
       return emailADArray.join('') + emailEnd
     }
+
+    $scope.useExperience = false;
+    $scope.quickInvest = function(){
+      if($scope.userAccount.experienceAmount > 100){
+        $scope.useExperience = true;
+      }
+    }
+
+    $scope.toInvest = function() {
+      $scope.useExperience = false;
+      fundsProjects.$find('recommendations', {
+        productType: 1
+      }).$then(function(response) {
+        if (response.$status === 'ok') {
+          $scope.fundsProject = response;
+
+          restmod.model(DEFAULT_DOMAIN + '/fundsProjects/' + response.number + '/users/' + $rootScope.hasLoggedUser.id + '/investmentByExperience').$create({
+            // fundsProjects.$find(number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
+            amount: $scope.userAccount.experienceAmount,
+            projectId: response.id,
+            isRepeat: 2,
+            payAmount : 0,
+            couponNumber : ""
+          }).$then(function(response) {
+            // 重复下单后，response.number为undefined
+            if (response.$status === 'ok') {
+              if (response.number !== null && response.number !== undefined) {
+                $state.go('root.yeepay-callback', {
+                  business: 'TRANSFER',
+                  status: 'SUCCESS',
+                  amount: response.amount
+                });
+              } else if (response.ret === -1) {
+                $scope.msg = response.msg;
+              }
+            } else {
+              $scope.msg = "服务器累瘫了，请稍后访问。";
+            }
+          })
+        } else {
+          // 访问接口失败；
+        }
+      });
+      
+      
+    };
   });
