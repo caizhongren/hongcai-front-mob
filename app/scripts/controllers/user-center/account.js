@@ -55,8 +55,10 @@ angular.module('p2pSiteMobApp')
         $scope.errMsg = '请输入姓名或身份证号';
       }
       $state.go('root.yeepay-transfer', {
-        type: 'autoTransfer',
-        number: "null"
+        type: 'register',
+        number: "null",
+        realName: user.realName,
+        idNo: user.idNo
       });
     }
 
