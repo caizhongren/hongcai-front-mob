@@ -80,6 +80,7 @@ angular.module('p2pSiteMobApp')
 
     $scope.toggle.switchTab = function(tabIndex) {
       $scope.toggle.activeTab = tabIndex;
+      console.log($scope.toggle.activeTab);
       var type = tabIndex + 1;
       if (tabIndex !== 1) {
         $scope.switchFundsProjects(type);
@@ -87,7 +88,7 @@ angular.module('p2pSiteMobApp')
       //初始化第二层Tab数据
       tabIndex === 1 ? $scope.toggle.switchSubTab(1) : '';
       $scope.tabClassIndex = $scope.toggle.activeTab;
-      console.info($scope.tabClassIndex);
+      // console.info($scope.tabClassIndex);
     };
 
     $scope.toggle.switch = function(tabIndex, subTab) {
@@ -95,8 +96,10 @@ angular.module('p2pSiteMobApp')
       if (tabIndex !== 1) {
         $scope.switchFundsProjects(1);
       } else {
+        $scope.tabClassIndex = 1;
         //初始化第二层Tab数据
         $scope.toggle.switchSubTab(subTab);
+
       }
 
     };
@@ -117,4 +120,6 @@ angular.module('p2pSiteMobApp')
     $scope.tab = $stateParams.tab || 0;
     $scope.subTab = $stateParams.subTab || 0;
     $scope.toggle.switch(+$scope.tab, +$scope.subTab);
+
+    
   });
