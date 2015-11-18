@@ -61,7 +61,7 @@ angular.module('p2pSiteMobApp')
       title: '半年盈',
     }];
     // 默认调用七日盈。
-    $scope.switchFundsProjects(1);
+    // $scope.switchFundsProjects(1);
 
     // 查看详情 通过activeTab判断  值为0 是零存宝 ;值为1  是宏金盈; 值为2  是宏金保;
     $scope.goDetail = function(project) {
@@ -129,6 +129,12 @@ angular.module('p2pSiteMobApp')
     $scope.subTab = $stateParams.subTab || 0;
     $scope.toggle.switch(+$scope.tab, +$scope.subTab);
 
-    
+    // 判断是否有参数，有参数执行if中。没有参数执行else中。
+    if (window.location.search) {
+      $scope.toggle.switch(+$scope.tab, +$scope.subTab);
+    } else {
+      $scope.switchFundsProjects(1);
+
+    }
 
   });
