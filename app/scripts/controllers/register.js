@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RegisterCtrl', ['$rootScope', '$scope', '$state', '$stateParams', 'md5', 'register', 'wechat', 'mobileCaptcha', function($rootScope, $scope, $state, $stateParams, md5, register, wechat, mobileCaptcha) {
+  .controller('RegisterCtrl', function($rootScope, $scope, $state, $stateParams, md5, register, wechat, mobileCaptcha) {
     // 注册链接上是否有邀请码
     if ($stateParams.inviteCode) {
       $scope.user = {
@@ -21,15 +21,8 @@ angular.module('p2pSiteMobApp')
       $scope.showRegistrationAgreement = !$scope.showRegistrationAgreement;
     };
 
-    var openId = $stateParams.openId;
-    var signUpBe;
-    if (openId === undefined || openId === '' || openId === null) {
-      // 直接走注册流程
-      signUpBe = register;
-    } else {
-      // wechat路线
-      signUpBe = register;
-    }
+    var openId = $rootScope.openId;
+    var signUpBe = register;
     
     $scope.signUp = function(user) {
       signUpBe.$create({
@@ -64,4 +57,4 @@ angular.module('p2pSiteMobApp')
       });
     };
 
-  }]);
+  });
