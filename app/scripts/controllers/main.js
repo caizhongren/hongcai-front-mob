@@ -179,25 +179,4 @@ angular.module('p2pSiteMobApp')
     }
 
 
-
-    if ($scope.subTab === 0) {
-      $subtabClassIndex = 0;
-      $scope.subTabTitle.splice(0, 3);
-      $scope.subTabTitle.push(" ", "月月盈", "季度盈");
-      console.log($scope.subTabTitle);
-
-    } else if ($scope.subTab === 1) {
-      $subtabClassIndex = 1;
-      $scope.subTabTitle.splice(0, 3);
-      $scope.subTabTitle.push("月月盈", "季度盈", "半年盈");
-      console.log($scope.subTabTitle);
-
-    } else if ($scope.subTab === 2) {
-      $subtabClassIndex = 2;
-      $scope.subTabTitle.splice(0, 3);
-      $scope.subTabTitle.push("季度盈", "半年盈", " ");
-      console.log($scope.subTabTitle);
-
-    }
-
   });
