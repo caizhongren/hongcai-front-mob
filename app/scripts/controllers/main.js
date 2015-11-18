@@ -112,6 +112,36 @@ angular.module('p2pSiteMobApp')
         $scope.tabClassIndex = 1;
         $scope.toggle.activeSubTab = subTab;
         $scope.subtabClassIndex = subTab;
+        if (subTab === 0) {
+          $scope.subTabTitle = [];
+          $scope.subTabTitle = [{
+            title: '',
+          }, {
+            title: '月月盈',
+          }, {
+            title: '季度盈',
+          }];
+        } else if (subTab === 1) {
+          $scope.subTabTitle = [];
+
+          $scope.subTabTitle = [{
+            title: '月月盈',
+          }, {
+            title: '季度盈',
+          }, {
+            title: '半年盈',
+          }];
+        } else if (subTab === 2) {
+          $scope.subTabTitle = [];
+          $scope.subTabTitle = [{
+            title: '季度盈',
+          }, {
+            title: '半年盈',
+          }, {
+            title: '',
+          }];
+        }
+
         //初始化第二层Tab数据
         // $scope.toggle.switchSubTab(subTab);
 
