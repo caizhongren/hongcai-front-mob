@@ -45,7 +45,7 @@ angular.module('p2pSiteMobApp')
     $scope.partners = [
       {name: '政府支持', eName: 'Government Support', fa: 'fa-university', title: '工信部下设网站战略合作伙伴', introduction: '宏财网与工信部下设中国中小企业信息网（www.sme.gov.cn）达成战略合作协议。成为首个与中小企业信息网合作的互联网金融平台'},
       {name: '媒体合作', eName: 'Media Cooperation', fa: 'fa-bullhorn', title: '四大门户网站合作伙伴', introduction: '宏财网与新浪、搜狐、网易、腾讯等门户网站进行合作并进行相关业务洽谈。'},
-      {name: '商务伙伴', eName: 'Bussiness Partners', fa: 'fa-bullhorn', title: '优质担保公司，易宝支付，天畅律师', introduction: '宏财网只与最优质的担保公司合作，资金托管由易宝支付进行托管，并与天畅律师事务所达成战略合作协议。全面确保客户资金安全。'}
+      {name: '商务伙伴', eName: 'Bussiness Partners', fa: 'fa-bullhorn', title: '优质金融机构，易宝支付，天畅律师', introduction: '宏财网只与最优质的金融机构合作，资金托管由易宝支付进行托管，并与天畅律师事务所达成战略合作协议。全面确保客户资金安全。'}
     ];
 
   }]);
