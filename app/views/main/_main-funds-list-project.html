@@ -13,7 +13,8 @@
   <li class="columns margin-0 padding-t-0p5 padding-b-0p5 ft-bule" ng-class="{active: subtabClassIndex === 1}" ng-click="toggle.switchSubTab($index)">半年盈</li>
   <li class="columns margin-0 padding-t-0p5 padding-b-0p5 ft-bule"></li>
 </ul> -->
-<ul class="main-tab2 nav-ul columns twelve mainsubtab3 margin-b-0 margin-top-2">
+
+<!-- <ul class="main-tab2 nav-ul columns twelve mainsubtab3 margin-b-0 margin-top-2">
   <li class="columns margin-0 padding-t-0p5 padding-b-0p5 ft-bule" ng-class="{active: subtabClassIndex === 0}" ng-click="toggle.switchSubTab($index)">
     <span ng-show="subtabClassIndex === 0"></span>
     <span ng-show="subtabClassIndex === 1">月月盈</span>
@@ -28,6 +29,12 @@
     <span ng-show="subtabClassIndex === 0">季度盈</span>
     <span ng-show="subtabClassIndex === 1">半年盈</span>
     <span ng-show="subtabClassIndex === 2"></span>
+  </li>
+</ul> -->
+
+<ul class="main-tab2 nav-ul columns twelve mainsubtab3 margin-b-0 margin-top-2">
+  <li class="columns margin-0 padding-t-0p5 padding-b-0p5 ft-bule" ng-class="{active: subtabClassIndex === 0}" ng-click="toggle.switchSubTab($index)"  ng-repeat="subitem in subTabTitle">
+    {{subitem.title}}
   </li>
 </ul>
 <div class="tab-content columns twelve bg-white overflow-hid padding-t-2 padding-b-2 text-center" ng-class="{active: toggle.activeSubTab===$index}" ng-repeat="subTab in subTabs">

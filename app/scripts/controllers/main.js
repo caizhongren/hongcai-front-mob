@@ -19,7 +19,7 @@ angular.module('p2pSiteMobApp')
     // $scope.projectsRecommendations = projects.$find('recommendations');
     // 获取宏金盈投资列表
     $scope.switchFundsProjects = function(type) {
-      console.log(type);
+      // console.log(type);
       fundsProjects.$find('recommendations', {
         productType: type
       }).$then(function(response) {
@@ -54,6 +54,13 @@ angular.module('p2pSiteMobApp')
       title: '宏金盈'
     }];
     $scope.subTabs = [{
+      title: '月月盈',
+    }, {
+      title: '季度盈',
+    }, {
+      title: '半年盈',
+    }];
+    $scope.subTabTitle = [{
       title: '月月盈',
     }, {
       title: '季度盈',
@@ -113,6 +120,39 @@ angular.module('p2pSiteMobApp')
     };
 
     $scope.toggle.switchSubTab = function(subTabIndex) {
+      if (subTabIndex === 0) {
+        $scope.subTabTitle = [];
+        $scope.subTabTitle = [{
+          title: '',
+        }, {
+          title: '月月盈',
+        }, {
+          title: '季度盈',
+        }];
+        console.log($scope.subTabTitle);
+      } else if (subTabIndex === 1) {
+        $scope.subTabTitle = [];
+
+        $scope.subTabTitle = [{
+          title: '月月盈',
+        }, {
+          title: '季度盈',
+        }, {
+          title: '半年盈',
+        }];
+        console.log($scope.subTabTitle);
+      } else if (subTabIndex === 2) {
+        $scope.subTabTitle = [];
+        $scope.subTabTitle = [{
+          title: '季度盈',
+        }, {
+          title: '半年盈',
+        }, {
+          title: '',
+        }];
+        console.log($scope.subTabTitle);
+      }
+
       if (subTabIndex < 0 || subTabIndex > 2) {
         return;
       }
@@ -121,6 +161,8 @@ angular.module('p2pSiteMobApp')
       var subType = subTabIndex + 2;
       $scope.switchFundsProjects(subType);
       $scope.subtabClassIndex = subTabIndex;
+
+
       // console.log($scope.subtabClassIndex);
     };
 
@@ -134,6 +176,27 @@ angular.module('p2pSiteMobApp')
       $scope.toggle.switch(+$scope.tab, +$scope.subTab);
     } else {
       $scope.switchFundsProjects(1);
+    }
+
+
+
+    if ($scope.subTab === 0) {
+      $subtabClassIndex = 0;
+      $scope.subTabTitle.splice(0, 3);
+      $scope.subTabTitle.push(" ", "月月盈", "季度盈");
+      console.log($scope.subTabTitle);
+
+    } else if ($scope.subTab === 1) {
+      $subtabClassIndex = 1;
+      $scope.subTabTitle.splice(0, 3);
+      $scope.subTabTitle.push("月月盈", "季度盈", "半年盈");
+      console.log($scope.subTabTitle);
+
+    } else if ($scope.subTab === 2) {
+      $subtabClassIndex = 2;
+      $scope.subTabTitle.splice(0, 3);
+      $scope.subTabTitle.push("季度盈", "半年盈", " ");
+      console.log($scope.subTabTitle);
 
     }
 
