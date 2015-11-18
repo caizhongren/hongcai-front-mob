@@ -15,6 +15,13 @@ angular.module('p2pSiteMobApp')
         $state.go('root.login');
       }
 
+      /**
+       * 邀请码
+       */
+      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/voucher').$then(function(response) {
+          $scope.voucher = response;
+      });
+
     });
 
     $scope.changePassword = function(oldP, newP1, newP2){
