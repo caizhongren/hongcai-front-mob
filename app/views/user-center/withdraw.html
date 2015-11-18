@@ -9,7 +9,7 @@
     <!-- 已经绑定银行卡 simpleWithdraw.cardStatus == 'VERIFIED'-->
     <form class="margin-b-1p5 ft-1p5" name="withdrawForm" ng-submit="toWithdraw(simpleWithdraw)" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
       <div class="bank-span">
-        <span>交通银行：&nbsp;</span><span>6222************1213</span>
+        <span>{{simpleBankcard.openBank || '交通银行'}}：&nbsp;</span><span>{{simpleBankcard.cardNo || '6222************1213'}}</span>
       </div>
       <label class="margin-t-1"><span>可用余额：&nbsp;</span><span><b class="ft-orange">{{ simpleWithdraw.account.balance | number:2}}&nbsp;</b>元</span></label>
       <label><span>手续费：&nbsp;</span><span><b class="ft-orange">2.00&nbsp;</b>元<b class="ft-grey3">&nbsp;(第三方支付收取)</b></span></label>
