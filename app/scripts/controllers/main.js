@@ -9,7 +9,7 @@
 angular.module('p2pSiteMobApp')
   .controller('MainCtrl', function($scope, $stateParams, $state, projects, fundsProjects) {
     // 宏金保列表页百分比值
-    
+
     $scope.curr = 27;
 
     $scope.tabClassIndex = "";
@@ -19,6 +19,7 @@ angular.module('p2pSiteMobApp')
     // $scope.projectsRecommendations = projects.$find('recommendations');
     // 获取宏金盈投资列表
     $scope.switchFundsProjects = function(type) {
+      console.log(type);
       fundsProjects.$find('recommendations', {
         productType: type
       }).$then(function(response) {
@@ -63,18 +64,18 @@ angular.module('p2pSiteMobApp')
     $scope.switchFundsProjects(1);
 
     // 查看详情 通过activeTab判断  值为0 是零存宝 ;值为1  是宏金盈; 值为2  是宏金保;
-    $scope.goDetail = function(project) { 
+    $scope.goDetail = function(project) {
       if ($scope.toggle.activeTab === 0) {
         $state.go('root.current-deposit-detail', {
           number: project.number
         });
-      } else if ($scope.toggle.activeTab === 1){
+      } else if ($scope.toggle.activeTab === 1) {
         $state.go('root.funds-project-detail', {
           number: project.number
         });
-      }else if ($scope.toggle.activeTab === 2){
+      } else if ($scope.toggle.activeTab === 2) {
         // $state.go('root.project-detail');
-        console.log($scope.toggle.activeTab);
+        // console.log($scope.toggle.activeTab);
       }
     }
 
@@ -96,24 +97,31 @@ angular.module('p2pSiteMobApp')
       if (tabIndex !== 1) {
         $scope.switchFundsProjects(1);
       } else {
+        if (subTab < 0 || subTab > 2) {
+          return;
+        }
+        var subType = subTab + 2;
+        $scope.switchFundsProjects(subType);
         $scope.tabClassIndex = 1;
+        $scope.toggle.activeSubTab = subTab;
+        $scope.subtabClassIndex = subTab;
         //初始化第二层Tab数据
-        $scope.toggle.switchSubTab(subTab);
+        // $scope.toggle.switchSubTab(subTab);
 
       }
 
     };
 
     $scope.toggle.switchSubTab = function(subTabIndex) {
-      if (subTabIndex < 0 || subTabIndex > 2){
+      if (subTabIndex < 0 || subTabIndex > 2) {
         return;
       }
-      
+
       $scope.toggle.activeSubTab = subTabIndex;
       var subType = subTabIndex + 2;
       $scope.switchFundsProjects(subType);
       $scope.subtabClassIndex = subTabIndex;
-      console.log($scope.subtabClassIndex);
+      // console.log($scope.subtabClassIndex);
     };
 
 
@@ -122,4 +130,5 @@ angular.module('p2pSiteMobApp')
     $scope.toggle.switch(+$scope.tab, +$scope.subTab);
 
     
+
   });
