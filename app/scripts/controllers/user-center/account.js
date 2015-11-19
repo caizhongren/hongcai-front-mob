@@ -9,11 +9,11 @@
  */
 angular.module('p2pSiteMobApp')
 
-  .controller('AccountCtrl', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, fundsProjects) {
+  .controller('AccountCtrl', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, fundsProjects, $location) {
 
     $rootScope.checkSession.promise.then(function() {
-      if (!$rootScope.isLogged) {
-        $state.go('root.login');
+      if (!$rootScope.hasLoggedUser.mobile && !$rootScope.hasLoggedUser.email) {
+        $location.path('/login');
         return;
       }
 
