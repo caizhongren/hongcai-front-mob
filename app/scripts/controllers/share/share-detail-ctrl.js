@@ -288,15 +288,17 @@ angular.module('p2pSiteMobApp')
         userId: $rootScope.userInfo.id
       }).then(function(response){
           if(response.ret === -1){
-            var msgTitle = '不能点赞了哦';
+            var msg = '不能点赞了哦';
             if (response.code == -1217){
-              msgTitle = '2015年最佳大好人';
+              msg = "讨厌啦，大好人！你的点赞次数已经用完咯！";
+            }else{
+              msg = msg + " " + response.msg;
             }
             // DialogService.alert(msgTitle, response.msg, function(){
             //   $rootScope.alert = null;
             // });
 
-            alert(msgTitle + " " + response.msg);
+            alert(msg);
             return;
           }
           var cheerRecord = response;
