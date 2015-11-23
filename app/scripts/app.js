@@ -417,12 +417,23 @@ p2pSiteMobApp
           }
         }
       })
-
+      //加息券活动页
       .state('root.rate-activity', {
         url: '/rate-activity',
         views: {
           '': {
             templateUrl: 'views/activity/rate-activity.html',
+            //controller: 'ShareHomeCtrl',
+            //controllerUrl: 'scripts/controllers/share/share-home-ctrl'
+          }
+        }
+      })
+      //体验金落地页
+      .state('root.experience-landing', {
+        url: '/experience-landing',
+        views: {
+          '': {
+            templateUrl: 'views/activity/experience-landing.html',
             //controller: 'ShareHomeCtrl',
             //controllerUrl: 'scripts/controllers/share/share-home-ctrl'
           }
@@ -443,7 +454,10 @@ p2pSiteMobApp
     // 不需要显示footer的path
     var notShowFooterRoute = [
       'share-home',
-      'share-detail'
+      'share-detail',
+      'experience-landing',
+      'experience-activity',
+      'rate-activity'
     ];
 
     var routespermission = [

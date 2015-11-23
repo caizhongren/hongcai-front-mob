@@ -89,6 +89,17 @@ angular.module('p2pSiteMobApp')
               $scope.firstMsg = '好友已成功领取奖金，';
               $scope.secondMsg = '领取你自己的宏财现金吧！';
           }
+      }else if($scope.freeWish.status === 6){
+          $scope.buttonValue = '亲爱滴，你已经领过奖金了哦~';
+          $scope.buttonFlag = 6;
+
+          if($scope.freeWish.praiseCount === 0){
+              $scope.firstMsg = '邀10位好友点赞，才能领取哦';
+              $scope.secondMsg = '快请好友帮忙吧~';
+          }else{
+              $scope.firstMsg = $scope.freeWish.praiseCount + '位好友为你点赞';
+              $scope.secondMsg = '人品不错呦~';
+          }
       }else{
           if($scope.viewerFlag === 1){
               $scope.buttonValue = '邀好友点赞';
@@ -277,15 +288,17 @@ angular.module('p2pSiteMobApp')
         userId: $rootScope.userInfo.id
       }).then(function(response){
           if(response.ret === -1){
-            var msgTitle = '不能点赞了哦';
+            var msg = '不能点赞了哦';
             if (response.code == -1217){
-              msgTitle = '2015年最佳大好人';
+              msg = "讨厌啦，大好人！你的点赞次数已经用完咯！";
+            }else{
+              msg = msg + " " + response.msg;
             }
             // DialogService.alert(msgTitle, response.msg, function(){
             //   $rootScope.alert = null;
             // });
 
-            alert(msgTitle + " " + response.msg);
+            alert(msg);
             return;
           }
           var cheerRecord = response;

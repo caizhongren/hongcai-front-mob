@@ -6,7 +6,7 @@ angular.module('p2pSiteMobApp')
     $rootScope.showButton = false;
     $scope.test = config.test;
 
-    $scope.buttonFlag = true;
+    $scope.buttonFlag = 1;
     $scope.coverLayerFlag = false;
     $rootScope.checkSession.promise.then(function(){
         if($rootScope.userInfo.id > 0){
@@ -14,7 +14,10 @@ angular.module('p2pSiteMobApp')
             if(response !== undefined){
               if(response.id > 0){
                   $scope.myFreeWish = response;
-                  $scope.buttonFlag = false;
+                  $scope.buttonFlag = 2;
+                  if($scope.myFreeWish.status === 6){
+                    $scope.buttonFlag = 3;
+                  }
               }
             }
           });
