@@ -2,6 +2,7 @@
 
 angular.module('p2pSiteMobApp')
   .controller('ShareHomeCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, Restangular, config, DialogService) {
+    $rootScope.showFooter = false;
     
     $rootScope.showButton = false;
     $scope.test = config.test;

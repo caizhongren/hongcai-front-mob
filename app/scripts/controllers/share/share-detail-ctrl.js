@@ -3,6 +3,7 @@
 angular.module('p2pSiteMobApp')
   .controller('ShareDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, $location, register1, mobileCaptcha, Restangular, config, DialogService) {
     $rootScope.showButton = false;
+    $rootScope.showFooter = false;
 
     $scope.test = config.test;
     $scope.activityDetailFlag = false;
