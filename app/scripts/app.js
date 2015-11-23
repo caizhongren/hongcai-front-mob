@@ -454,7 +454,10 @@ p2pSiteMobApp
     // 不需要显示footer的path
     var notShowFooterRoute = [
       'share-home',
-      'share-detail'
+      'share-detail',
+      'experience-landing',
+      'experience-activity',
+      'rate-activity'
     ];
 
     var routespermission = [
