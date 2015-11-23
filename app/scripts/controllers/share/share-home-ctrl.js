@@ -10,7 +10,6 @@ angular.module('p2pSiteMobApp')
     $scope.coverLayerFlag = false;
     $rootScope.checkSession.promise.then(function(){
         if($rootScope.userInfo.id > 0){
-          console.log($rootScope.userInfo.id);
           Restangular.one('freeWishes', $rootScope.userInfo.id).one('myFreeWish').get().then(function(response){
             if(response !== undefined){
               if(response.id > 0){
@@ -23,10 +22,14 @@ angular.module('p2pSiteMobApp')
             }
           });
         }
-        $scope.freeWishes = Restangular.one('freeWishes').getList().$object;
 
-        
+        Restangular.one('freeWishes').post('channel', {
+          openId: $rootScope.openid, 
+          act: $stateParams.act,
+          channelCode: $stateParams.f
+        });
     });
+    $scope.freeWishes = Restangular.one('freeWishes').getList().$object;
 
     /**
      * 领取免费愿望
