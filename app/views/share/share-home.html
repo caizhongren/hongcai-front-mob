@@ -458,11 +458,14 @@
     <div class="more-enter ft-bold" ng-click="isActiveDetail = !isActiveDetail">活动详情>></div>
   </div>
   <div class="foot-wrapper">
-    <div class="share-btn" ng-show="buttonFlag" ng-click="openFreeWish()" my-click-once>
+    <div class="share-btn" ng-show="buttonFlag === 1" ng-click="openFreeWish()" my-click-once>
       <p><span class="main-btn-thumb-icon" style="display:none;"></span><span class="main-btn-get-icon"></span>我要拿钱</p>
     </div>
-    <div class="share-btn" ng-show="!buttonFlag" ng-click="goShareDetail()">
+    <div class="share-btn" ng-show="buttonFlag === 2" ng-click="goShareDetail()">
       <p><span class="main-btn-thumb-icon" style="display:none;"></span>我的宏财现金</p>
+    </div>
+    <div class="share-btn" ng-show="buttonFlag === 3">
+      <p><span class="main-btn-thumb-icon" style="display:none;"></span>亲爱滴，你已经领过奖金了哦~</p>
     </div>
     <div class="words-list-wrapper">
       <div class="foot-head">
