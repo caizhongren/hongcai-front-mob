@@ -458,6 +458,8 @@ p2pSiteMobApp
 
       if (notShowFooterRoute.indexOf($location.path().split('/')[1]) === -1){
         $rootScope.showFooter = true;
+      } else {
+        $rootScope.showFooter = false;
       }
 
       // $rootScope.showTitle = titleMap[path];
