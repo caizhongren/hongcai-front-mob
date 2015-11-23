@@ -383,7 +383,7 @@ p2pSiteMobApp
         }
       })
 
-      //分享页
+      //点赞活动详情页
       .state('root.share-detail', {
         url: '/share-detail/:number',
         views: {
@@ -394,9 +394,9 @@ p2pSiteMobApp
           }
         }
       })  
-          //分享页
+          //点赞活动首页
       .state('root.share-home', {
-        url: '/share-home',
+        url: '/share-home?act&f',//f 表示渠道,act 表示活动
         views: {
           '': {
             templateUrl: 'views/share/share-home.html',
@@ -451,6 +451,12 @@ p2pSiteMobApp
     Restangular.setBaseUrl('/hongcai/rest');
     Restangular.setDefaultHeaders({'Content-Type': 'application/json'})
 
+    // 不需要显示footer的path
+    var notShowFooterRoute = [
+      'share-home',
+      'share-detail'
+    ];
+
     var routespermission = [
       '/user-center'
     ];
@@ -460,6 +466,10 @@ p2pSiteMobApp
       $timeout(function(){
           $rootScope.timeout = true;
       }, 400);
+
+      if (notShowFooterRoute.indexOf($location.path().split('/')[1]) === -1){
+        $rootScope.showFooter = true;
+      }
 
       // $rootScope.showTitle = titleMap[path];
       $rootScope.showMe = false;
