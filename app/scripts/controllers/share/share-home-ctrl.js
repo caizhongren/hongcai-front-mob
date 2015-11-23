@@ -2,28 +2,35 @@
 
 angular.module('p2pSiteMobApp')
   .controller('ShareHomeCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, Restangular, config, DialogService) {
+    $rootScope.showFooter = false;
     
     $rootScope.showButton = false;
     $scope.test = config.test;
 
-    $scope.buttonFlag = true;
+    $scope.buttonFlag = 1;
     $scope.coverLayerFlag = false;
     $rootScope.checkSession.promise.then(function(){
         if($rootScope.userInfo.id > 0){
-          console.log($rootScope.userInfo.id);
           Restangular.one('freeWishes', $rootScope.userInfo.id).one('myFreeWish').get().then(function(response){
             if(response !== undefined){
               if(response.id > 0){
                   $scope.myFreeWish = response;
-                  $scope.buttonFlag = false;
+                  $scope.buttonFlag = 2;
+                  if($scope.myFreeWish.status === 6){
+                    $scope.buttonFlag = 3;
+                  }
               }
             }
           });
         }
-        $scope.freeWishes = Restangular.one('freeWishes').getList().$object;
 
-        
+        Restangular.one('freeWishes').post('channel', {
+          openId: $rootScope.openid, 
+          act: $stateParams.act,
+          channelCode: $stateParams.f
+        });
     });
+    $scope.freeWishes = Restangular.one('freeWishes').getList().$object;
 
     /**
      * 领取免费愿望

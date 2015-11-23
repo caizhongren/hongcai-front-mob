@@ -383,7 +383,7 @@ p2pSiteMobApp
         }
       })
 
-      //分享页
+      //点赞活动详情页
       .state('root.share-detail', {
         url: '/share-detail/:number',
         views: {
@@ -394,9 +394,9 @@ p2pSiteMobApp
           }
         }
       })  
-          //分享页
+          //点赞活动首页
       .state('root.share-home', {
-        url: '/share-home',
+        url: '/share-home?act&f',//f 表示渠道,act 表示活动
         views: {
           '': {
             templateUrl: 'views/share/share-home.html',
@@ -417,12 +417,23 @@ p2pSiteMobApp
           }
         }
       })
-
+      //加息券活动页
       .state('root.rate-activity', {
         url: '/rate-activity',
         views: {
           '': {
             templateUrl: 'views/activity/rate-activity.html',
+            //controller: 'ShareHomeCtrl',
+            //controllerUrl: 'scripts/controllers/share/share-home-ctrl'
+          }
+        }
+      })
+      //体验金落地页
+      .state('root.experience-landing', {
+        url: '/experience-landing',
+        views: {
+          '': {
+            templateUrl: 'views/activity/experience-landing.html',
             //controller: 'ShareHomeCtrl',
             //controllerUrl: 'scripts/controllers/share/share-home-ctrl'
           }
@@ -440,6 +451,15 @@ p2pSiteMobApp
     Restangular.setBaseUrl('/hongcai/rest');
     Restangular.setDefaultHeaders({'Content-Type': 'application/json'})
 
+    // 不需要显示footer的path
+    var notShowFooterRoute = [
+      'share-home',
+      'share-detail',
+      'experience-landing',
+      'experience-activity',
+      'rate-activity'
+    ];
+
     var routespermission = [
       '/user-center'
     ];
@@ -449,6 +469,12 @@ p2pSiteMobApp
       $timeout(function(){
           $rootScope.timeout = true;
       }, 400);
+
+
+      $rootScope.showFooter = false;
+      if (notShowFooterRoute.indexOf($location.path().split('/')[1]) === -1){
+        $rootScope.showFooter = true;
+      } 
 
       // $rootScope.showTitle = titleMap[path];
       $rootScope.showMe = false;
