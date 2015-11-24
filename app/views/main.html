@@ -18,6 +18,6 @@
       <li class="column text-center margin-0 padding-t-0p5 padding-b-0p5 ft-black" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
     </ul> -->
   </div>
-  <div class="tab-content columns twelve bg-white overflow-hid padding-t-2 padding-b-2 text-center" ng-include src='"views/main/_main-project.html"' ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" style="-webkit-tap-highlight-color:transparent;">
+  <div class="tab-content columns twelve bg-white overflow-hid padding-t-2 padding-b-2 text-center ios-highlights" ng-include src='"views/main/_main-project.html"' ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs">
   </div>
 </div>
