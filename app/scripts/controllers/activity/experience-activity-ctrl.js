@@ -4,6 +4,7 @@ angular.module('p2pSiteMobApp')
   .controller('ExperienceActivityCtrl', function($rootScope, $scope, $state, $stateParams) {
     
     $scope.number = $stateParams.number;
+    $scope.imgSrc = "activity0071.png";
 
     if ($scope.number === "1") {
       $scope.imgSrc = "activity0071.png";
