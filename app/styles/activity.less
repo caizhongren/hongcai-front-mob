@@ -9,28 +9,33 @@
       margin-bottom: 0;
     }
     input[type="number"] {
-      width: 70%;
-      margin-bottom: 1rem;
+      width: 60.5%;
+      margin-bottom: 0rem;
       box-sizing: border-box;
       border-radius: 0;
       border: none;
+      float: left;
     }
     input[type="tel"] {
       width: 100%;
       margin-bottom: 1rem;
       box-sizing: border-box;
-      border: none;
-      border-radius: 0;
     }
     label {
-      width: 30%;
+      width: 39.5%;
       box-sizing: border-box;
-      margin-bottom: 1rem;
+      margin-bottom: 0rem;
       float: right;
       text-align: center;
       height: 38px;
       line-height: 38px;
       background-color: #f0f0f0;
+      color: #fd8f3f;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none !important;
+      margin: 0;
     }
   }
   .button-experience {
@@ -40,14 +45,18 @@
     height: 5rem;
     line-height: 5rem;
     border: none;
+    margin-top: 1rem;
     img {
-      width: 100%;
-      height: 4rem;
+      width: 69%;
+      height: 3rem;
       vertical-align: middle;
     }
   }
   .button-experience:focus {
     border: none;
+  }
+  .button-shadow-rate {
+    box-shadow: 0rem 0.5rem 0rem 0rem #9e2d00 !important;
   }
   .activity-rule {
     padding: 1rem 1rem 0 1rem;
@@ -101,6 +110,7 @@
   padding: 0 !important;
   img {
     width: 101%;
+    margin-bottom: -0.5rem;
     margin-left: -0.1rem;
   }
 }
@@ -112,6 +122,7 @@
   img {
     width: 101%;
     margin-left: -0.1rem;
+    margin-bottom: -0.5rem;
   }
 }
 
@@ -139,6 +150,29 @@
     }
   }
 }
+
+.border-ra-full {
+  border-radius: 0.5rem !important;
+}
+
+.border-ra-left {
+  border-top-left-radius: 0.5rem !important;
+  border-bottom-left-radius: 0.5rem !important;
+}
+
+.border-ra-right {
+  border-top-right-radius: 0.5rem !important;
+  border-bottom-right-radius: 0.5rem !important;
+}
+
+.border-red {
+  border: 2px solid #e34c0f !important;
+}
+
+.width-full {
+  width: 100%;
+}
+
 .bg-main {
   background-color: #F0602C;
 }
@@ -152,7 +186,7 @@
   text-align: center;
   font-size: 2.5rem;
   color: #ffea00;
-  p{
+  p {
     margin-bottom: -1rem !important;
   }
 }
@@ -166,28 +200,101 @@
   height: 9rem;
   color: #fc0000;
   font-size: 2.5rem;
-  p{
+  p {
     margin-bottom: -1rem !important;
   }
 }
 
-.landing-rule{
+.landing-rule {
   background-image: url("/images/activity/12.jpg");
   background-size: 100% 100%;
   position: absolute;
-  left:0%;
+  left: 0%;
   right: 0%;
-  h4{
-    margin-top:12%;
+  h4 {
+    margin-top: 12%;
     margin-bottom: 1rem !important;
     margin-left: 25%;
   }
-  p{
+  p {
     margin-bottom: 0 !important;
     padding-left: 10%;
     padding-right: 10%;
   }
-  p:last-child{
+  p:last-child {
     padding-bottom: 25%;
   }
+}
+
+.button-code {
+  width: 100%;
+  height: 5rem;
+  line-height: 5rem;
+  border: none;
+  margin-top: 1rem;
+  padding: 0;
+  img {
+    width: 100%;
+    height: 5rem;
+    vertical-align: middle;
+  }
+}
+
+.button-code:focus {
+  border: none;
+}
+
+.bg-code {
+  background-image: url("/images/activity/code02.jpg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 10rem;
+}
+
+.input-code {
+  position: absolute;
+  top: 8%;
+  left: 20%;
+  width: 76%;
+  img{
+    height:50px;
+    float: left;
+    margin-left:10px;
+  }
+  input {
+    margin-left:10px;
+    padding: 0 0 0 10px;
+    background-color: none;
+    border: none;
+    float: left;
+    margin-bottom: 0;
+    height: 50px;;
+    line-height: 50px;;
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none !important;
+      margin: 0;
+    }
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0;
+}
+
+.code-grade {
+  position: absolute;
+  top: 66.5%;
+  left: 35.2%;
+  right: 38.9%;
+  color: #f93131;
+  width: 31%;
+  height: 26px;
+  line-height: 26px;
+  background-image: url("/images/activity/code04.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  text-align: center;
 }

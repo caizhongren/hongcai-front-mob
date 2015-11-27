@@ -1,13 +1,14 @@
-<div class="activity">
-  <img src="/images/activity/activity-001.jpg" alt="" width="100%">
-  <div class="bg-offred padding-l-1 padding-r-1 input-msg">
+<div class="activity bg-offred">
+  <img src="/images/activity/activity-007.jpg" alt="" width="100%">
+  <img ng-src="{{imgSrc}}" width="100%" >
+  <div class="bg-offred padding-l-2 padding-r-2 input-msg">
     <div class="margin-0 activity-input clear">
       <!-- <label for="username">  </label> -->
-      <input id="username" class="border-grey" name="username" required="required" type="tel" ng-model="user.account" placeholder="请输入手机号" autofocus>
+      <input id="username" class="border-ra-full border-red" name="username" required="required" type="tel" ng-model="user.account" placeholder="请输入手机号" autofocus>
       <br>
-      <p>
-        <input type="number" placeholder="请输入验证码">
-        <label for="">获取验证码</label>
+      <p class="border-red border-ra-full fl width-full">
+        <input type="number" placeholder="请输入验证码" class="border-ra-left">
+        <label for="" class="border-ra-right">获取验证码</label>
       </p>
       <button class="button-experience"><img src="/images/activity/activity-003.png"></button>
     </div>
@@ -16,13 +17,12 @@
     <div class="rule">
       <img src="/images/activity/activity-005.jpg" width="100%">
       <h4>新手体验金活动规则</h4>
-      <p>1.活动时间：2015年10月24日-11月30日；</p>
-      <p>2.使用限制：活动时间内注册的新用户，限“新手标”投资使用；</p>
-      <p>3.赠送金额：1000元/人，用户中心“红包”进行查看；</p>
-      <p>4.收益说明：1000元*（年化收益/365）*7日=预计收益；</p>
-      <p>5.赎回说明：到期当日，宏财网收回赠金，用户利益返还至余额账户；</p>
-      <p>6.提现说明：预计T+1到账。具体时间请咨询您绑定卡所属银行；</p>
-      <p class="padding-b-3">7.本活动最终解释权归宏财网所有，如有疑问，欢迎咨询官方客服电话：400-990-7626（客服工作时间：9:00-18:00）</p>
+      <p>1.注册即送4000元体验金；充入任意金额现金，再送 {{moneyTest}} 元体验金；</p>
+      <p>2.赠送体验金，仅限活动期间内注册的新用户；</p>
+      <p>3.体验金仅限“零存宝”投资使用。到期后体验金收回，收益用户可直接提现。提现后，预计第二个工作日24点前到帐；</p>
+      <p>4.活动有效期：2015年12月1日——2015年12月31日；</p>
+      <p>5.本活动最终解释权归宏财网所有；</p>
+      <p class="padding-b-3">6.官方客服电话：400-990-7626。（客服工作时间：9:00—18:00）。</p>
     </div>
     <p class="bg-exinner"><img src="/images/activity/activity-006.png" width="100%"></p>
   </div>
