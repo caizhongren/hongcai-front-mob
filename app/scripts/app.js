@@ -439,6 +439,17 @@ p2pSiteMobApp
           }
         }
       })
+      //串码活动页
+      .state('root.exchange-code', {
+        url: '/exchange-code',
+        views: {
+          '': {
+            templateUrl: 'views/activity/exchange-code.html',
+            //controller: 'ShareHomeCtrl',
+            //controllerUrl: 'scripts/controllers/share/share-home-ctrl'
+          }
+        }
+      })
 
 
     ;
@@ -457,7 +468,8 @@ p2pSiteMobApp
       'share-detail',
       'experience-landing',
       'experience-activity',
-      'rate-activity'
+      'rate-activity',
+      'exchange-code'
     ];
 
     var routespermission = [
