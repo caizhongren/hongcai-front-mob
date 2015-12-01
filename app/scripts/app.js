@@ -408,7 +408,7 @@ p2pSiteMobApp
 
           //体验金活动页
       .state('root.experience-activity', {
-        url: '/experience-activity/:number',
+        url: '/experience-activity/:number?c',
         views: {
           '': {
             templateUrl: 'views/activity/experience-activity.html',
