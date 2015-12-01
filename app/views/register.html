@@ -30,7 +30,7 @@
       <input id="mobilesignup" name="mobile" ensure-unique ng-model="user.mobile" ng-pattern="/^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678])|(14[0-9]))\d{8}$/" type="tel" placeholder="11位长度手机号码" required/>
     </p>
     <p class="ft-red" ng-if="registerForm.mobile.$dirty && registerForm.mobile.$invalid && !registerForm.mobile.$focused">
-      <small ng-if="registerForm.mobile.$error.unique">手机号码已被占用</small>
+      <small ng-if="registerForm.mobile.$error.unique">手机号码已注册</small>
       <small ng-if="registerForm.mobile.$error.pattern">手机号码格式不正确</small>
     </p>
     <p class="margin-0 border-grey margin-b-1p5 u-pull-left" style="width: 65%;">
