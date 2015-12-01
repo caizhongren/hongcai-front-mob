@@ -25,7 +25,7 @@ angular.module('p2pSiteMobApp')
       return e;
     }
     // 
-    function redirectToYeepay(business, encrpyMsg){
+    function redirectToYeepay(business, encrpyMsg) {
       if (encrpyMsg.ret !== -1) {
         var req = encrpyMsg.req;
         var sign = encrpyMsg.sign;
@@ -44,7 +44,7 @@ angular.module('p2pSiteMobApp')
     $scope.realName = $stateParams.realName;
     $scope.idNo = $stateParams.idNo;
 
-    $rootScope.checkSession.promise.then(function(){
+    $rootScope.checkSession.promise.then(function() {
       $scope.HongcaiUser = DEFAULT_DOMAIN + '/users/' + $rootScope.hasLoggedUser.id;
       // 跳转较慢并且认证用户失败的判断。
       if ($scope.type === 'recharge') {
@@ -59,7 +59,7 @@ angular.module('p2pSiteMobApp')
         });
 
       } else if ($scope.type === 'withdraw') { //提现
-        
+
         var withdrawModel = restmod.model($scope.HongcaiUser + '/withdraw');
         withdrawModel.$create({
           'amount': $scope.number,
@@ -69,7 +69,7 @@ angular.module('p2pSiteMobApp')
         });
 
       } else if ($scope.type === 'BIND_BANK_CARD') { //绑卡
-        
+
         var bindBankcardModel = restmod.model($scope.HongcaiUser + '/bindBankcard');
         bindBankcardModel.$create({
           'from': 2
@@ -87,13 +87,13 @@ angular.module('p2pSiteMobApp')
           redirectToYeepay('toRegister', response);
         });
       } else if ($scope.type === 'transfer') { //投资
-        
+
         restmod.model(DEFAULT_DOMAIN + '/orders/' + $scope.number + '/users/' + $rootScope.hasLoggedUser.id + '/payment').$create().$then(function(response) {
           redirectToYeepay('toTransfer', response);
         });
 
-      } else if ($scope.type === 'autoTransfer'){ // 自动投标
-        
+      } else if ($scope.type === 'autoTransfer') { // 自动投标
+
         var autoTransfer = restmod.model($scope.HongcaiUser + '/authorizeAutoTransfer');
         autoTransfer.$create({
           'from': 2
@@ -101,9 +101,17 @@ angular.module('p2pSiteMobApp')
           redirectToYeepay('toAuthorizeAutoTransfer', response);
         });
 
+      } else if ($scope.type === 'RESET_MOBILE') { //修改手机号码（已绑定）      
+        var resetMobile = restmod.model($scope.HongcaiUser + '/resetMobile');
+        resetMobile.$create({
+          'from': 2,
+          'mobile': $stateParams.number
+        }).$then(function(response){
+          redirectToYeepay('toResetMobile',response);
+        });
       }
 
-  });
+    });
 
 
   });
