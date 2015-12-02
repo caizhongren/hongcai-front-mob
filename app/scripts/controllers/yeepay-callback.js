@@ -21,6 +21,8 @@ angular.module('p2pSiteMobApp')
     	$scope.page = 3;
     } else if (business === 'BIND_BANK_CARD'){
         $scope.page = 4;
+    }else if(business === 'RESET_MOBILE'){
+        $scope.page = 5;
     }
 
   });
