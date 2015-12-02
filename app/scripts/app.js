@@ -423,8 +423,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/activity/rate-activity.html',
-            //controller: 'ShareHomeCtrl',
-            //controllerUrl: 'scripts/controllers/share/share-home-ctrl'
+            controller: 'RateActivityCtrl',
+            controllerUrl: 'scripts/controllers/share/rate-activity-ctrl'
           }
         }
       })
