@@ -20,7 +20,8 @@
     <p>手机号码</p>
     <p class="p-block">
       <span class="ft-grey4">{{handleMobileNum(hasLoggedUser.mobile) || '无'}}</span>
-      <span ng-show="hasLoggedUser.mobile !== null"><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已绑定</span>
+      <!-- <span ng-show="hasLoggedUser.mobile !== null"><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已绑定</span> -->
+      <span ng-click="checkMobileFlag=true"><a>修改></a></span>
       <span ng-show="hasLoggedUser.mobile == null"><i class="fa fa-check-circle-o"></i>&nbsp;未绑定</span>
     </p>
   </div>
@@ -52,7 +53,7 @@
     <p>我的邀请码</p>
     <p class="ft-grey4">{{voucher.inviteCode}}</p>
   </div>
-<!--   <div class="padding-1 margin-1 ft-grey2 ft-1p4">
+  <!--   <div class="padding-1 margin-1 ft-grey2 ft-1p4">
     <p class="margin-b-1">温馨提示：</p>
     <p class="margin-b-1">暂时不提供手机号码的修改服务，请联系客服400-990-7626进行修改</p>
   </div> -->
@@ -102,5 +103,33 @@
     <p class="project-mask-btn2">
       <span ng-click="checkAutoFlag=false">取消</span>
       <span ng-click="toAuthAutoTransfer()">确定</span></p>
+  </div>
+</div>
+<!-- 手机号码蒙层 -->
+<div ng-show="checkMobileFlag" class="project-mask">
+  <div class="bg-white email-mask project-mask-inner">
+    <form name="resetMobileForm">
+      <p class="margin-b-0 text-center">
+        <span>手机号码&nbsp;&nbsp;</span>
+        <input type="text" id="mobileNum" name="mobileNum" ng-model="mobileNum" ng-pattern="/^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678])|(14[0-9]))\d{8}$/" ensure-unique-mobile="mobileNum" placeholder="请输入手机号码" ng-focus required autofocus/>
+        <!-- <input type="password" placeholder="请输入手机号码" ng-model="mobile"> -->
+      </p>
+      <div ng-show="resetMobileForm.mobileNum.$dirty && resetMobileForm.mobileNum.$invalid && !resetMobileForm.mobileNum.$focused" class="text-center">
+        <div class="user-tips-area row" ng-show="resetMobileForm.mobileNum.$error.required &&
+                    !resetMobileForm.mobileNum.$focused">
+          <p class="input-tips user-input-tips security-stl"><i class="fa fa-times-circle-o login-check-img"></i>不能为空</p>
+        </div>
+        <div class="user-tips-area row" ng-show="resetMobileForm.mobileNum.$error.pattern &&
+                      !resetMobileForm.mobileNum.$focused">
+          <p class="input-tips user-input-tips security-stl"><i class="fa fa-times-circle-o login-check-img"></i>格式错误</p>
+        </div>
+        <div class="user-tips-area row" ng-show="resetMobileForm.mobileNum.$error.unique">
+          <p class="input-tips user-input-tips security-stl"><i class="fa fa-times-circle-o login-check-img"></i>已被占用</p>
+        </div>
+      </div>
+    </form>
+    <p class="project-mask-btn2">
+      <span ng-click="checkMobileFlag=false">取消</span>
+      <span ng-click="resetMobile(mobileNum)">确定</span></p>
   </div>
 </div>

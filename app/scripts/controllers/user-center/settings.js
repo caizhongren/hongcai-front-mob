@@ -62,6 +62,18 @@ angular.module('p2pSiteMobApp')
     }
 
     /**
+     * 修改手机号码（针对已绑定手机号）
+     */
+     $scope.resetMobile = function(mobileNum){
+      console.log(mobileNum);
+      $state.go('root.yeepay-transfer', {
+        type: 'RESET_MOBILE',
+        number: mobileNum
+      });
+     }
+
+
+    /**
      * 实名认证，即开通易宝
      */
     $scope.realNameAuth = function(user){

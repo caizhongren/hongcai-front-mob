@@ -1,19 +1,9 @@
 'use strict';
 
 angular.module('p2pSiteMobApp')
-  .controller('ExperienceActivityCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, mobileCaptcha) {
+  .controller('RateActivityCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, mobileCaptcha) {
     
-    $scope.channel = $stateParams.c; // 推广渠道
-    $scope.number = $stateParams.number;
-    $scope.imgSrc = "/images/activity/activity0071.png";
-
-    if ($scope.number === "1") {
-      $scope.imgSrc = "/images/activity/activity0071.png";
-      $scope.money = "2000";
-    } else if ($scope.number === "2") {
-      $scope.imgSrc = "/images/activity/activity0072.png";
-      $scope.money = "4000";
-    }
+    $scope.channel = "jiaxi"; // 推广渠道
 
     $scope.register = function(user) {
       if(!user || !user.mobile || !user.captcha){

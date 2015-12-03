@@ -408,7 +408,7 @@ p2pSiteMobApp
 
           //体验金活动页
       .state('root.experience-activity', {
-        url: '/experience-activity/:number',
+        url: '/experience-activity/:number?c',
         views: {
           '': {
             templateUrl: 'views/activity/experience-activity.html',
@@ -423,8 +423,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/activity/rate-activity.html',
-            //controller: 'ShareHomeCtrl',
-            //controllerUrl: 'scripts/controllers/share/share-home-ctrl'
+            controller: 'RateActivityCtrl',
+            controllerUrl: 'scripts/controllers/share/rate-activity-ctrl'
           }
         }
       })
