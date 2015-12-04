@@ -17,6 +17,7 @@ angular.module('p2pSiteMobApp')
     $scope.buttonValue = '';
     // buttonFlag  1:邀请好友帮忙，2：帮TA点赞，3：领取我的奖金(免费愿望)，4：立即领取(奖励)，5：查看我的账户
     $scope.buttonFlag = 1;
+    $scope.isReceived = false;
 
     /**
      * 设置用户分享的标题以及描述以及图片等。
@@ -137,31 +138,7 @@ angular.module('p2pSiteMobApp')
       }
     }
 
-    /**
-     * 加载当前页的免费愿望详情
-     */
-    $rootScope.checkSession.promise.then(function(){
-        Restangular.one('freeWishes', $stateParams.number).one('freeWishWithCheerRecords').get().then(function(response){
-          $scope.freeWish = response.freeWish;
-          $scope.freeWishCheerRecords = response.cheerRecords; 
-          $scope.progress = $scope.freeWish.wishAmount * 100 / $scope.freeWish.amount;
-
-          if($rootScope.userInfo.id !== $scope.freeWish.userId){
-            $scope.viewerFlag = 2;
-            $scope.sloganClass = 'slogan send-ta';
-            // 登录用户是否已经领取
-            Restangular.one('freeWishes', $rootScope.userInfo.id).one('isReceived').get().then(function(response){
-              $scope.isReceived = response;
-              $scope.initPageMsg();
-              // $scope.onMenuShareAppMessage($scope.freeWish.number);
-            });
-            
-          } else {
-            $scope.initPageMsg();
-            // $scope.onMenuShareAppMessage($scope.freeWish.number);
-          }
-        });
-    });
+  
 
 
 
@@ -402,5 +379,31 @@ angular.module('p2pSiteMobApp')
     });
 
     $scope.configJsApi();
+
+      /**
+     * 加载当前页的免费愿望详情
+     */
+    $rootScope.checkSession.promise.then(function(){
+        Restangular.one('freeWishes', $stateParams.number).one('freeWishWithCheerRecords').get().then(function(response){
+          $scope.freeWish = response.freeWish;
+          $scope.freeWishCheerRecords = response.cheerRecords; 
+          $scope.progress = $scope.freeWish.wishAmount * 100 / $scope.freeWish.amount;
+
+          if($rootScope.userInfo.id !== $scope.freeWish.userId){
+            $scope.viewerFlag = 2;
+            $scope.sloganClass = 'slogan send-ta';
+            // 登录用户是否已经领取
+            Restangular.one('freeWishes', $rootScope.userInfo.id).one('isReceived').get().then(function(response){
+              $scope.isReceived = response;
+              $scope.initPageMsg();
+              // $scope.onMenuShareAppMessage($scope.freeWish.number);
+            });
+            
+          } else {
+            $scope.initPageMsg();
+            // $scope.onMenuShareAppMessage($scope.freeWish.number);
+          }
+        });
+    });
 
   });
