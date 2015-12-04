@@ -24,11 +24,14 @@ angular.module('p2pSiteMobApp')
           });
         }
 
-        Restangular.one('freeWishes').post('channel', {
-          openId: $rootScope.openid, 
-          act: $stateParams.act,
-          channelCode: $stateParams.f
-        });
+        if (!channelCode){
+          Restangular.one('freeWishes').post('channel', {
+            openId: $rootScope.openid, 
+            act: $stateParams.act,
+            channelCode: $stateParams.f
+          });
+        }
+ 
     });
     $scope.freeWishes = Restangular.one('freeWishes').getList().$object;
 
@@ -52,10 +55,12 @@ angular.module('p2pSiteMobApp')
             // });
             alert(response.msg);
           }else{
-            $scope.freeWish = response;
-            $state.go("root.share-detail",{
-              number: response.number
-            });
+            // $scope.freeWish = response;
+            window.location.href = config.domain + '/share-detail/' + response.number
+            // $location.path('/share-detail/' + response.number );
+            // $state.go("root.share-detail",{
+            //   number: response.number
+            // });
           }
       });
     }
