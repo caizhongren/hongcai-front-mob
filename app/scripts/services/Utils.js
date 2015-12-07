@@ -8,7 +8,7 @@ angular.module('p2pSiteMobApp')
        */
       isWeixin: function(){
           var ua = navigator.userAgent.toLowerCase();
-          return ua.match(/MicroMessenger/i)=="micromessenger");
+          return ua.match(/MicroMessenger/i)=="micromessenger";
       }
     };
   });
