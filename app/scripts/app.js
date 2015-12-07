@@ -66,7 +66,30 @@ p2pSiteMobApp
         }
       })
 
-      
+      // 忘记密码流程
+      .state('root.getPwd1', {
+        url: '/getPwd1',
+        views: {
+          '': {
+            templateUrl: 'views/getPwd1.html',
+            controller: 'GetPwdCtrl',
+            controllerUrl: 'scripts/controllers/get-pwd-back'
+
+          }
+        }
+      })
+      // 忘记密码流程
+      .state('root.getPwd2', {
+        url: '/getPwd2/:mobile/:captcha',
+        views: {
+          '': {
+            templateUrl: 'views/getPwd2.html',
+            controller: 'GetPwdCtrl',
+            controllerUrl: 'scripts/controllers/get-pwd-back'
+
+          }
+        }
+      })
       // 注册登录流程
       .state('root.login', {
         url: '/login',
@@ -575,4 +598,6 @@ p2pSiteMobApp
     });
   })
 
-  .constant('DEFAULT_DOMAIN', '/hongcai/rest');
+  .constant('DEFAULT_DOMAIN', '/hongcai/rest')
+
+  .constant('WEB_DEFAULT_DOMAIN', '/hongcai/api/v1');
