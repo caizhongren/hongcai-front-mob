@@ -458,7 +458,7 @@ p2pSiteMobApp
     $locationProvider.hashPrefix('!');
 
 }])
-  .run(function($rootScope, DEFAULT_DOMAIN,  $q, $timeout, $state, $location, $http, restmod, config, Restangular, URLService) {
+  .run(function($rootScope, DEFAULT_DOMAIN,  $q, $timeout, $state, $location, $http, restmod, config, Restangular, URLService, Utils) {
     Restangular.setBaseUrl('/hongcai/rest');
     Restangular.setDefaultHeaders({'Content-Type': 'application/json'})
 
@@ -513,6 +513,11 @@ p2pSiteMobApp
         } 
 
         else if(response.ret === -1) { //用户未登录，。
+
+          if(!Utils.isWeixin()){
+            return;
+          }
+
           var wechat_code = $location.search().code;
           var redirect_uri = location.href;
           if (wechat_code){ // 用户未登录但已经有code，去登录
