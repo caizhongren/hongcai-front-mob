@@ -5,13 +5,13 @@
       <strong class="ft-2">{{simpleFundsProject.product.name}}{{simpleFundsProject.name}}</strong>
       <span class="ft-1p8 border-blue2 bg-blue5 ft-white padding-l-2 padding-r-2 border-ra-20">{{statusMap[simpleFundsProject.status]}}</span>
     </p>
-    <div class="padding-b-1 border-ra-50 circle-rate-outside-blue big-circle-outer">
-      <div class="border-ra-50 text-center ft-blue5 circle-rate-blue big-circle">
+    <div class="padding-b-1 border-ra-50 circle-rate-outside-red big-circle-outer">
+      <div class="border-ra-50 text-center ft-red1 circle-rate-red big-circle">
       <br>
         <p class="margin-0 padding-t-2 padding-b-1 ios-nowarp"><strong class="ft-2p8">{{simpleFundsProject.product.baseRate |currency:"":1 || 0}}</strong>%<strong class="ft-2p8">-{{simpleFundsProject.product.maxRate |currency:"":1 || 0}}</strong>%</p>
-        <hr class="border-blue3">
+        <hr class="border-red1">
         <p class="margin-0 padding-t-0p5 padding-b-0p5">年化收益率</p>
-        <hr class="border-blue3">
+        <hr class="border-red1">
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
       <tbody>
         <tr>
           <td>递增方式</td>
-          <td>递增收益，每期递增&nbsp;<span class="ft-blue6">{{simpleFundsProject.product.riseRate |currency:"":1 || 0}} %</span></td>
+          <td>递增收益，每期递增&nbsp;<span class="ft-red1">{{simpleFundsProject.product.riseRate |currency:"":1 || 0}} %</span></td>
         </tr>
         <tr>
           <td>续投次数</td>
