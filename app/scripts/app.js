@@ -80,7 +80,7 @@ p2pSiteMobApp
       })
       // 忘记密码流程
       .state('root.getPwd2', {
-        url: '/getPwd2/:mobile/:captcha',
+        url: '/getPwd2/:captcha/:mobile',
         views: {
           '': {
             templateUrl: 'views/getPwd2.html',

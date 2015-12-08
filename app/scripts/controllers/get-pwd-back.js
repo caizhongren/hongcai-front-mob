@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('GetPwdCtrl', function($rootScope, $scope, $state, $stateParams, md5, register, wechat, mobileCaptcha, HongcaiUser, restmod, DEFAULT_DOMAIN) {
+  .controller('GetPwdCtrl', function($rootScope, $scope, $state, $stateParams, $location, md5, register, wechat, mobileCaptcha, HongcaiUser, restmod, DEFAULT_DOMAIN) {
 
     // 用户获取手机验证码
     $scope.sendMobileCaptcha = function(user) {
@@ -26,28 +26,24 @@ angular.module('p2pSiteMobApp')
 
     //获取验证码进行下一步
     $scope.newPwd = function(mobile, captcha) {
-      console.log(mobile, captcha);
       HongcaiUser.$find('/checkMobileCaptcha', {
         mobile: mobile,
         captcha: captcha
       }).$then(function(response) {
-        if (response.ret !== -1) {
-          console.log(response);
+        if (response.ret === -1) {
+          $scope.getCaptchaErr = response.msg;
+        } else {
           $state.go('root.getPwd2', {
             mobile: mobile,
             captcha: captcha
           });
-          return;
-        } else {
-          // TODO
-          // console.log('');
         }
       });
     };
 
-    $scope.$watch('getPwdMobileForm.usermobile.$focused' , function(newVal, oldVal){
-      console.log(newVal);
-    })
+    $scope.$watch('user.captcha', function(newVal, oldVal){
+      $scope.getCaptchaErr = null;
+    });
 
     //确认找回并修改密码
     $scope.changePwd = function(pwd1, pwd2) {
