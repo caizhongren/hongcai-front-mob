@@ -26,6 +26,10 @@ angular.module('p2pSiteMobApp')
 
     //获取验证码进行下一步
     $scope.newPwd = function(mobile, captcha) {
+      if(!mobile || !captcha){
+        return;
+      }
+
       HongcaiUser.$find('/checkMobileCaptcha', {
         mobile: mobile,
         captcha: captcha

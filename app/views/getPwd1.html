@@ -3,8 +3,8 @@
     <div class="margin-0 activity-getpwd clear">
       <!-- <label for="username">  </label> -->
       <p>请输入您的手机号，并发送验证码</p>
-      <form action="" name="getPwdMobileForm">
-        <input id="usermobile" class="" name="usermobile" required="required" type="tel" ng-model="user.mobile" placeholder="请输入手机号" ng-pattern="/^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678])|(14[0-9]))\d{8}$/" ensure-mobile-exist autofocus>
+      <form  name="getPwdMobileForm">
+        <input id="usermobile" name="usermobile" required="required" type="tel" ng-model="user.mobile" placeholder="请输入手机号" ng-pattern="/^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678])|(14[0-9]))\d{8}$/" ensure-mobile-exist autofocus>
         <br>
         <p class="ft-red" ng-if="getPwdMobileForm.usermobile.$dirty && getPwdMobileForm.usermobile.$invalid">
           <small ng-if="getPwdMobileForm.usermobile.$error.unique">账户不存在</small>
