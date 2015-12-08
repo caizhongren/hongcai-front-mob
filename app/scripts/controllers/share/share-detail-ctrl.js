@@ -2,6 +2,9 @@
 
 angular.module('p2pSiteMobApp')
   .controller('ShareDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, $location, register1, mobileCaptcha, Restangular, config, DialogService) {
+    $scope.act = $stateParams.act;
+    $scope.channelCode = $stateParams.f;
+
     $rootScope.showButton = false;
     $rootScope.showFooter = false;
 
@@ -19,14 +22,22 @@ angular.module('p2pSiteMobApp')
     $scope.buttonFlag = 1;
     $scope.isReceived = false;
 
+
+
+
     /**
      * 设置用户分享的标题以及描述以及图片等。
      */
     $scope.onMenuShareAppMessage = function(wishNumber){
+      var shareLink = config.domain + '/share-detail/' + wishNumber;
+      if ($scope.channelCode){
+        shareLink = shareLink + '?f=' + $scope.channelCode + '&act=' + $scope.act;
+      }
+
       wx.onMenuShareAppMessage({
         title: '亲 这次一定要帮我呢',
         desc: '没有什么比现金更实在的。帮我点赞，你也一起来拿钱！',
-        link: config.domain + '/share-detail/' + wishNumber,
+        link: shareLink,
         imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/KuGEE3Ins1Oc1gSxsWNG7hnKVzX83nWM3rQsiaPNUdqWoR7DddJAW7H7Iico9rad9armXmH9UM8veRvicaoBEpeTA/0?wx_fmt=png',
         trigger: function (res) {
         },
@@ -404,6 +415,15 @@ angular.module('p2pSiteMobApp')
             // $scope.onMenuShareAppMessage($scope.freeWish.number);
           }
         });
+
+        // 渠道统计
+        if ($scope.channelCode){
+          Restangular.one('freeWishes').post('channel', {
+            openId: $rootScope.openid, 
+            act: $scope.act,
+            channelCode: $scope.channelCode
+          });
+        }
     });
 
   });

@@ -66,7 +66,30 @@ p2pSiteMobApp
         }
       })
 
-      
+      // 忘记密码流程
+      .state('root.getPwd1', {
+        url: '/getPwd1',
+        views: {
+          '': {
+            templateUrl: 'views/getPwd1.html',
+            controller: 'GetPwdCtrl',
+            controllerUrl: 'scripts/controllers/get-pwd-back'
+
+          }
+        }
+      })
+      // 忘记密码流程
+      .state('root.getPwd2', {
+        url: '/getPwd2/:captcha/:mobile',
+        views: {
+          '': {
+            templateUrl: 'views/getPwd2.html',
+            controller: 'GetPwdCtrl',
+            controllerUrl: 'scripts/controllers/get-pwd-back'
+
+          }
+        }
+      })
       // 注册登录流程
       .state('root.login', {
         url: '/login',
@@ -385,7 +408,7 @@ p2pSiteMobApp
 
       //点赞活动详情页
       .state('root.share-detail', {
-        url: '/share-detail/:number',
+        url: '/share-detail/:number?act&f',//f 表示渠道,act 表示活动
         views: {
           '': {
             templateUrl: 'views/share/share-detail.html',
@@ -458,7 +481,7 @@ p2pSiteMobApp
     $locationProvider.hashPrefix('!');
 
 }])
-  .run(function($rootScope, DEFAULT_DOMAIN,  $q, $timeout, $state, $location, $http, restmod, config, Restangular, URLService) {
+  .run(function($rootScope, DEFAULT_DOMAIN,  $q, $timeout, $state, $location, $http, restmod, config, Restangular, URLService, Utils) {
     Restangular.setBaseUrl('/hongcai/rest');
     Restangular.setDefaultHeaders({'Content-Type': 'application/json'})
 
@@ -513,6 +536,11 @@ p2pSiteMobApp
         } 
 
         else if(response.ret === -1) { //用户未登录，。
+
+          if(!Utils.isWeixin()){
+            return;
+          }
+
           var wechat_code = $location.search().code;
           var redirect_uri = location.href;
           if (wechat_code){ // 用户未登录但已经有code，去登录
@@ -570,4 +598,6 @@ p2pSiteMobApp
     });
   })
 
-  .constant('DEFAULT_DOMAIN', '/hongcai/rest');
+  .constant('DEFAULT_DOMAIN', '/hongcai/rest')
+
+  .constant('WEB_DEFAULT_DOMAIN', '/hongcai/api/v1');

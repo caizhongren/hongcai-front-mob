@@ -8,7 +8,7 @@
 
       <input id="username" class="border-grey" name="username" required="required" type="text" ng-model="user.account" placeholder="用户名/手机号/邮箱"  autofocus>
     </div>
-    <div class="margin-0 border-grey margin-b-1p5">
+    <div class="margin-0 border-grey margin-b-0">
       <label for="password" class="test1"> 密&nbsp;&nbsp;&nbsp;码 </label>
       <input id="password" class="border-grey" name="password" ng-model="user.password" required="required" type="password" placeholder="输入登录密码" />
     </div>
@@ -19,6 +19,9 @@
     <!-- <p class="login margin-0 text-center">
       <input type="submit" class="button button-primary button-shadow column" value="立即登录" />
     </p> -->
+    <p class="change_link margin-0 text-right margin-b-1p5">
+      <a ui-sref="root.getPwd1" class="to-register ft-1p2">忘记密码？</a>
+    </p>
     <p class="login margin-0 text-center">
     <button type="submit" class="button button-primary button-shadow column">立即登录</button>
     </p>
