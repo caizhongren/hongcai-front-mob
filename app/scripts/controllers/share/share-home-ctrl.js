@@ -3,6 +3,8 @@
 angular.module('p2pSiteMobApp')
   .controller('ShareHomeCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, Restangular, config, DialogService) {
     $rootScope.showFooter = false;
+    $scope.act = $stateParams.act;
+    $scope.channelCode = $stateParams.f;
     
     $rootScope.showButton = false;
     $scope.test = config.test;
@@ -24,11 +26,11 @@ angular.module('p2pSiteMobApp')
           });
         }
 
-        if (!channelCode){
+        if ($scope.channelCode){
           Restangular.one('freeWishes').post('channel', {
             openId: $rootScope.openid, 
-            act: $stateParams.act,
-            channelCode: $stateParams.f
+            act: $scope.act,
+            channelCode: $scope.channelCode
           });
         }
  
@@ -56,7 +58,11 @@ angular.module('p2pSiteMobApp')
             alert(response.msg);
           }else{
             // $scope.freeWish = response;
-            window.location.href = config.domain + '/share-detail/' + response.number
+            var rediretUrl = config.domain + '/share-detail/' + response.number;
+            if (scope.channelCode){
+              rediretUrl = rediretUrl + '?f=' + $scope.channelCode + '&act=' + $scope.act;
+            }
+            window.location.href = rediretUrl;
             // $location.path('/share-detail/' + response.number );
             // $state.go("root.share-detail",{
             //   number: response.number
@@ -67,7 +73,9 @@ angular.module('p2pSiteMobApp')
 
     $scope.goShareDetail = function(){
       $state.go("root.share-detail",{
-        number: $scope.myFreeWish.number
+        number: $scope.myFreeWish.number,
+        act: $scope.act,
+        f: $scope.channelCode
       });
     }
 });

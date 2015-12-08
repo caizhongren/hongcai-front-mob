@@ -408,7 +408,7 @@ p2pSiteMobApp
 
       //点赞活动详情页
       .state('root.share-detail', {
-        url: '/share-detail/:number',
+        url: '/share-detail/:number?act&f',//f 表示渠道,act 表示活动
         views: {
           '': {
             templateUrl: 'views/share/share-detail.html',
