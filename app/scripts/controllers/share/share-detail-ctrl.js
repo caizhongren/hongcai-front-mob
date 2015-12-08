@@ -30,7 +30,7 @@ angular.module('p2pSiteMobApp')
      */
     $scope.onMenuShareAppMessage = function(wishNumber){
       var shareLink = config.domain + '/share-detail/' + wishNumber;
-      if (scope.channelCode){
+      if ($scope.channelCode){
         shareLink = shareLink + '?f=' + $scope.channelCode + '&act=' + $scope.act;
       }
 

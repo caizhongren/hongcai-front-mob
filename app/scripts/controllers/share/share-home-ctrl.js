@@ -59,7 +59,7 @@ angular.module('p2pSiteMobApp')
           }else{
             // $scope.freeWish = response;
             var rediretUrl = config.domain + '/share-detail/' + response.number;
-            if (scope.channelCode){
+            if ($scope.channelCode){
               rediretUrl = rediretUrl + '?f=' + $scope.channelCode + '&act=' + $scope.act;
             }
             window.location.href = rediretUrl;
