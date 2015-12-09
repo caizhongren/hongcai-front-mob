@@ -1,21 +1,17 @@
 <!-- 宏金盈详情页 -->
 <div class="funds-project bg-white">
-  <div class="row padding-l-2 padding-r-2">
-    <p class="text-center margin-0 padding-t-2 padding-b-2">
-      <strong class="ft-2">{{simpleFundsProject.product.name}}{{simpleFundsProject.name}}</strong>
-      <span class="ft-1p8 border-blue2 bg-blue5 ft-white padding-l-2 padding-r-2 border-ra-20">{{statusMap[simpleFundsProject.status]}}</span>
+  <div class="row funds-detail-bg ft-white padding-t-2 padding-b-2">
+    <p class="text-center margin-0 padding-b-2">
+      <strong class="ft-2 ft-white">{{simpleFundsProject.product.name}}{{simpleFundsProject.name}}</strong>
+      <span class="ft-1p8 bg-white ft-red1 padding-l-2 padding-r-2 border-ra-20">{{statusMap[simpleFundsProject.status]}}</span>
     </p>
-    <div class="padding-b-1 border-ra-50 circle-rate-outside-red big-circle-outer">
-      <div class="border-ra-50 text-center ft-red1 circle-rate-red big-circle">
-      <br>
-        <p class="margin-0 padding-t-2 padding-b-1 ios-nowarp"><strong class="ft-2p8">{{simpleFundsProject.product.baseRate |currency:"":1 || 0}}</strong>%<strong class="ft-2p8">-{{simpleFundsProject.product.maxRate |currency:"":1 || 0}}</strong>%</p>
-        <hr class="border-red1">
-        <p class="margin-0 padding-t-0p5 padding-b-0p5">年化收益率</p>
-        <hr class="border-red1">
-      </div>
-    </div>
+    <p class="margin-0 padding-b-1 text-center">
+      <strong class="ft-3">{{simpleFundsProject.product.baseRate |currency:"":1 || 0}}</strong>%
+      <strong class="ft-3">- {{simpleFundsProject.product.maxRate |currency:"":1 || 0}}</strong>%
+    </p>
+    <p class="margin-0 padding-t-0p5 text-center padding-b-0p5 ft-1p8">年化收益率</p>
   </div>
-  <div class="padding-t-2 padding-l-2 padding-r-2">
+  <div class="tab-arrow">
     <table class="u-full-width" border-collapse = "collapse">
       <tbody>
         <tr>
