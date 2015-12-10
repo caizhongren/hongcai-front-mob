@@ -1,7 +1,7 @@
 <div class="about" ng-init="toggle.activeTab=0;">
   <div class="bg-offWhite overflow-hid">
-    <ul class="about-tab1 columns ten offset-by-one border-ra-0p5 margin-t-2 mainblue">
-      <li class="column text-center margin-0 padding-t-0p5 padding-b-0p5 ft-blue" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
+    <ul class="about-tab1 columns ten offset-by-one mainorange  margin-b-0">
+      <li class="column text-center margin-0 padding-t-1 padding-b-1" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
     </ul>
   </div>
 
@@ -11,37 +11,40 @@
     <section ng-if="tab.title==='战略伙伴'" class="margin-b-7 bg-offWhite">
       <div class="safe bg-white text-left" ng-repeat="item in partners">
         <div class="border-bottom-safe ft-1p8 item-style">
-          <i class="fa {{item.fa}} ft-blue5"></i>
-          <span class="ft-blue5">&nbsp {{ item.name }} &nbsp</span>
+          <i class="fa {{item.fa}} ft-orange padding-l-2"></i>
+          <span class="ft-orange">&nbsp {{ item.name }} &nbsp</span>
            <span class="font-sub-bule">{{ item.eName }}</span>
+           <hr class="hr-orange">
         </div>
-        <div class="ft-1p5">
+        <div class="ft-1p5 padding-l-2 padding-r-2">
           <p><strong>{{ item.title }}</strong>
           </p>
-          <p class="text-left">{{ item.introduction }}</p>
+          <p class="text-justify">{{ item.introduction }}</p>
         </div>
       </div>
     </section>
     <section class="base-background margin-b-7" ng-if="tab.title==='宏财简介'">
       <div class="safe bg-white text-left">
         <div class="border-bottom-safe ft-1p8 item-style">
-          <i class="fa fa-rocket ft-blue5"></i>
-          <span class="ft-blue5">&nbsp 成立背景  &nbsp</span>
+          <i class="fa fa-rocket ft-orange padding-l-2"></i>
+          <span class="ft-orange">&nbsp 成立背景  &nbsp</span>
           <small class="font-sub-bule">Background</small>
+          <hr class="hr-orange">
         </div>
         <div class="ft-1p5">
-          <p class="padding-l-1 padding-r-1"> 北京竞财投资服务有限公司创建于2015年1月23日，注册资金1000万，是专业从事P2F业务的互联网金融公司，办公地址位于北京奥运村核心区的国家会议中心。公司致力于发展普惠金融，搭建广大普通投资者与传统金融机构互通的桥梁，并通过系列产品设计，使高大上金融回归普通大众。公司员工毕业于北京大学、中国人民大学、墨尔本大学等国内外名校，有政府机关，腾讯、新浪等互联网公司，中国银行、中信证券等金融机构工作背景。公司设有研发部、网络安全部、运营部、商务部、市场部、投资部、客服部等部门。</p>
+          <p class="padding-l-2 padding-r-2 text-justify"> 北京竞财投资服务有限公司创建于2015年1月23日，注册资金1000万，是专业从事P2F业务的互联网金融公司，办公地址位于北京奥运村核心区的国家会议中心。公司致力于发展普惠金融，搭建广大普通投资者与传统金融机构互通的桥梁，并通过系列产品设计，使高大上金融回归普通大众。公司员工毕业于北京大学、中国人民大学、墨尔本大学等国内外名校，有政府机关，腾讯、新浪等互联网公司，中国银行、中信证券等金融机构工作背景。公司设有研发部、网络安全部、运营部、商务部、市场部、投资部、客服部等部门。</p>
         </div>
       </div>
       <div class="safe bg-white text-left">
         <div class="border-bottom-safe ft-2 item-style">
-          <i class="fa fa-gift ft-blue5"></i>
-          <span class="ft-blue5">&nbsp 业务范围  &nbsp</span>
+          <i class="fa fa-gift ft-orange padding-l-2"></i>
+          <span class="ft-orange">&nbsp 业务范围  &nbsp</span>
           <span class="font-sub-bule">Business</span>
+          <hr class="hr-orange">
         </div>
-        <div class="ft-1p5">
+        <div class="ft-1p5 padding-l-2 padding-r-2 text-justify">
           <!-- <p>业务范围涵盖：</p> -->
-          <ol style="padding-left: 2rem;">
+          <ol>
             <li>金融创新产品的咨询、开发、设计、交易等服务；</li>
             <li>金融类应用软件开发、电子商务；</li>
             <li>金融市场调研及数据分析。</li>
@@ -50,9 +53,10 @@
       </div>
       <div class="safe bg-white text-left overflow-hid">
         <div class="border-bottom-safe ft-2 item-style">
-          <i class="fa fa-cubes ft-blue5"></i>
-          <span class="ft-blue5">&nbsp 组织架构  &nbsp</span>
+          <i class="fa fa-cubes ft-orange padding-l-2"></i>
+          <span class="ft-orange">&nbsp 组织架构  &nbsp</span>
           <span class="font-sub-bule">Structure</span>
+          <hr class="hr-orange">
         </div>
         <div class="ft-1p5">
           <img src="/images/about-structure.png" width="100%">
@@ -60,12 +64,12 @@
       </div>
     </section>
     <section ng-if="tab.title==='顾问团队'" class="margin-b-7">
-      <div class="row border-solidf5-bottom bg-white padding-t-1" ng-class="{'margin-t-0p5': $index !== 0}" ng-repeat="item in consultants">
+      <div class="row border-solidf5-bottom bg-white padding-t-1 person" ng-class="{'margin-t-0p5': $index !== 0}" ng-repeat="item in consultants">
         <div class="two columns padding-1">
-          <img ng-src="{{ item.img }}" width="30%" class="fl">
-          <div class="pull-right about-right">
-          <p class="text-left ft-1p5 margin-b-0"><strong >{{ item.name }}</strong><small>{{ item.title }}</small></p>
-          <p class="text-left ft-1p5 ft-grey3"><small>{{ item.introduction }}</small></p>
+          <p class="margin-b-1"><img ng-src="{{ item.img }}" width="30%" class="text-center"></p>
+          <div class="about-right">
+          <p class="text-center ft-1p8 margin-b-1 ft-orange"><strong >{{ item.name }}</strong><small>{{ item.title }}</small></p>
+          <p class="text-justify ft-1p5 ft-grey4"><small>{{ item.introduction }}</small></p>
         </div>
         </div>
         

@@ -1,26 +1,22 @@
 <!-- 宏金盈详情页 -->
 <div class="funds-project bg-white">
-  <div class="row padding-l-2 padding-r-2">
-    <p class="text-center margin-0 padding-t-2 padding-b-2">
-      <strong class="ft-2">{{simpleFundsProject.product.name}}{{simpleFundsProject.name}}</strong>
-      <span class="ft-1p8 border-blue2 bg-blue5 ft-white padding-l-2 padding-r-2 border-ra-20">{{statusMap[simpleFundsProject.status]}}</span>
+  <div class="row funds-detail-bg ft-white padding-t-2 padding-b-2">
+    <p class="text-center margin-0 padding-b-2">
+      <strong class="ft-2 ft-white">{{simpleFundsProject.product.name}}{{simpleFundsProject.name}}</strong>
+      <span class="ft-1p8 bg-white ft-red1 padding-l-2 padding-r-2 border-ra-20">{{statusMap[simpleFundsProject.status]}}</span>
     </p>
-    <div class="padding-b-1 border-ra-50 circle-rate-outside-blue big-circle-outer">
-      <div class="border-ra-50 text-center ft-blue5 circle-rate-blue big-circle">
-      <br>
-        <p class="margin-0 padding-t-2 padding-b-1 ios-nowarp"><strong class="ft-2p8">{{simpleFundsProject.product.baseRate |currency:"":1 || 0}}</strong>%<strong class="ft-2p8">-{{simpleFundsProject.product.maxRate |currency:"":1 || 0}}</strong>%</p>
-        <hr class="border-blue3">
-        <p class="margin-0 padding-t-0p5 padding-b-0p5">年化收益率</p>
-        <hr class="border-blue3">
-      </div>
-    </div>
+    <p class="margin-0 padding-b-1 text-center">
+      <strong class="ft-3">{{simpleFundsProject.product.baseRate |currency:"":1 || 0}}</strong>%
+      <strong class="ft-3">- {{simpleFundsProject.product.maxRate |currency:"":1 || 0}}</strong>%
+    </p>
+    <p class="margin-0 padding-t-0p5 text-center padding-b-0p5 ft-1p8">年化收益率</p>
   </div>
-  <div class="padding-t-2 padding-l-2 padding-r-2">
-    <table class="u-full-width" border-collapse = "collapse">
+  <div class="tab-arrow">
+    <table class="u-full-width margin-b-0" border-collapse = "collapse">
       <tbody>
         <tr>
           <td>递增方式</td>
-          <td>递增收益，每期递增&nbsp;<span class="ft-blue6">{{simpleFundsProject.product.riseRate |currency:"":1 || 0}} %</span></td>
+          <td>递增收益，每期递增&nbsp;<span class="ft-red1">{{simpleFundsProject.product.riseRate |currency:"":1 || 0}}%</span></td>
         </tr>
         <tr>
           <td>续投次数</td>
@@ -32,15 +28,14 @@
         </tr>
         <tr>
           <td>退出时间</td>
-          <td>{{simpleFundsProject.repaymentDate | amDateFormat:'YYYY.MM.DD日'}}</td>
+          <td>{{simpleFundsProject.repaymentDate | amDateFormat:'YYYY年MM月DD日'}}</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div class="text-center padding-b-2">
-    <a href="javascript:;" ng-click="toggle();" class="ft-grey2" style="text-decoration:underline;">《宏金盈协议范本》</a>
+  <div class="text-right padding-b-1 padding-r-1">
+    <a href="javascript:;" ng-click="toggle();" class="ft-grey4 ft-1p2" style="text-decoration:underline;">宏金盈协议范本</a>
   </div>
-
   <!-- 投资模块 -->
   <div ng-include src="'views/project/_funds-project-investment.html'">
   </div>
