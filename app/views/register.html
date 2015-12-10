@@ -53,7 +53,7 @@
       <input type="checkbox" checked><small>我已阅读并同意<a href="javascript:;" ng-click="toggle();">《注册协议》</a></small>
     </p>
     <p class="signin margin-0 text-center">
-      <button type="submit" class="button button-primary column {{registerForm.$invalid ? 'button-disabled button-shadow-grey' : 'button-shadow'}}" ng-disabled="registerForm.$invalid">立即注册</button>
+      <button type="submit" class="button button-primary column {{registerForm.$invalid ? 'button-disabled' : ''}}" ng-disabled="registerForm.$invalid">立即注册</button>
     </p>
     <p class="change_link margin-0 text-center clear">
       <small>已有账号 ?
