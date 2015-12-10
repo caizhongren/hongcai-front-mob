@@ -92,7 +92,7 @@ angular.module('p2pSiteMobApp')
     $scope.rewardFlag = false;
     $scope.selectReward = function(project){
       if(project.investAmount > 0){
-        if($rootScope.account.experienceAmount > 0 || $scope.selectCoupon != null){
+        if($scope.selectCoupon != null){
           $scope.rewardFlag = true;
         }
       }else{

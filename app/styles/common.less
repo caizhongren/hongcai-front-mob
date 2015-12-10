@@ -75,6 +75,37 @@ input[type="button"].button-primary-blue:focus {
   box-shadow: 0rem 0.5rem 0rem 0rem #2ca9d8;
 }
 
+//西瓜红色按钮
+.button.button-primary-red,
+button.button-primary-red,
+input[type="submit"].button-primary-red,
+input[type="reset"].button-primary-red,
+input[type="button"].button-primary-red {
+  color: #fff;
+  background-color: #ff705d;
+  border-color: #ff705d;
+}
+
+.button.button-primary-red:hover,
+button.button-primary-red:hover,
+input[type="submit"].button-primary-red:hover,
+input[type="reset"].button-primary-red:hover,
+input[type="button"].button-primary-red:hover,
+.button.button-primary-red:focus,
+button.button-primary-red:focus,
+input[type="submit"].button-primary-red:focus,
+input[type="reset"].button-primary-red:focus,
+input[type="button"].button-primary-red:focus {
+  color: #FFF;
+  background-color: #ff705d;
+  border-color: #ff705d;
+}
+
+.button-red-shadow {
+  font-size: 2rem;
+  box-shadow: 0rem 0.8rem 0rem 0rem #d25a4a;
+}
+
 .button-shadow {
   font-size: 2rem;
   box-shadow: 0rem 0.5rem 0rem 0rem #dc6d1c;
@@ -199,7 +230,12 @@ input[type="button"].button-primary-blue:focus {
 .border-red {
   border: 0.1rem solid red;
 }
-
+.border-red1 {
+  border: 0.1rem solid #ffdcd7;
+}
+.border-red2{
+  border: 0.1rem solid #f1b6ae;
+}
 .border-ra-50 {
   border-radius: 50%;
 }
@@ -237,6 +273,9 @@ input[type="button"].button-primary-blue:focus {
   text-align: right;
 }
 
+.text-justify{
+  text-align: justify;
+}
 
 /* font */
 
@@ -344,6 +383,10 @@ input[type="button"].button-primary-blue:focus {
   color: #eb5c3f;
 }
 
+.ft-red1{
+  color: #ff705d;
+}
+
 .ft-green {
   color: #95c966;
 }
@@ -422,7 +465,9 @@ input[type="button"].button-primary-blue:focus {
 .bg-red1 {
   background-color: #ff7a7a;
 }
-
+.bg-red2{
+  background-color: #ffe3df;
+}
 .bg-blue {
   background-color: #6da9f3;
 }
@@ -784,6 +829,22 @@ Opera
   overflow: hidden;
 }
 
+.circle-rate-red {
+  margin: 0 auto;
+  border: 0.8rem solid #ffdcd7;
+  // box-shadow: 0rem 0rem 1.5rem #ffe8c7 inset;
+  overflow: hidden;
+  hr {
+    margin: 0;
+  }
+}
+
+.circle-rate-outside-red {
+  margin: 0 auto;
+  border: 0.2rem solid #ff705d;
+  overflow: hidden;
+}
+
 .small-circle {
   width: 17rem;
   height: 17rem;
@@ -894,8 +955,7 @@ Opera
 }
 
 .about-right {
-  width: 65%;
-  padding-right: 0.5rem;
+  padding: 0 2rem;
   text-align: justify;
 }
 
@@ -905,4 +965,25 @@ Opera
 
 .ios-nowarp {
   white-space: nowrap !important;
+}
+.button{
+  display: inline-block;
+  // padding: 1rem;
+  text-align: center;
+  color: #555;
+  font-size: 2rem;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border-radius: 4px;
+  border:1px solid #bbb;
+  cursor: pointer;
+  box-sizing: border-box;
+  height: 50px;
+  line-height: 50px;
+}
+input[type="email"], input[type="number"], input[type="search"], input[type="text"], input[type="tel"], input[type="url"], input[type="password"], textarea, select{
+  font-size: 1.6rem;
 }

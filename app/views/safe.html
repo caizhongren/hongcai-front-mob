@@ -1,15 +1,15 @@
 <div class="bg-offWhite margin-b-7">
   <div class="safe bg-white" ng-repeat="item in safes">
     <div class="border-bottom-safe ft-1p8 item-style">
-      <i class="fa {{item.fa}} ft-blue5"></i>
-      <span class="ft-blue5">&nbsp {{ item.name }} &nbsp</span>
-      <span class="font-sub-bule">{{ item.eName }}</span>
+      <i class="fa {{item.fa}} ft-orange padding-l-2"></i>
+      <span class="ft-orange">&nbsp {{ item.name }} &nbsp</span>
+      <!-- <span class="font-sub-bule">{{ item.eName }}</span> -->
+      <hr class="hr-orange">
     </div>
-    <div class="ft-1p5">
+    <div class="ft-1p5 padding-l-2 padding-r-2">
       <p><strong>{{ item.title }}</strong>
       </p>
-      <p class="text-left">{{ item.content }}</p>
+      <p class="text-justify">{{ item.content }}</p>
     </div>
   </div>
 </div>
-
