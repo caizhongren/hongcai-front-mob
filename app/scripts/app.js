@@ -155,6 +155,7 @@ p2pSiteMobApp
       })
       .state('root.funds-project-detail', {
         url: '/funds-projects/:number',
+        data: { title: '宏金盈' },
         views: {
           '': {
             templateUrl: 'views/project/funds-project-detail.html',
@@ -163,8 +164,10 @@ p2pSiteMobApp
           }
         }
       })
+      // 零存宝详情
       .state('root.current-deposit-detail', {
         url: '/current-deposit/:number',
+        data: { title: '零存宝' },
         views: {
           '': {
             templateUrl: 'views/project/current-deposit-detail.html',
@@ -387,6 +390,7 @@ p2pSiteMobApp
       // 安全保障
       .state('root.safe', {
         url: '/safe',
+        data: { title: '安全保障' },
         views: {
           '': {
             templateUrl: 'views/safe.html',
@@ -398,6 +402,7 @@ p2pSiteMobApp
       // 宏财简介
       .state('root.about', {
         url: '/about',
+        data: { title: '宏财介绍' },
         views: {
           '': {
             templateUrl: 'views/about.html',
@@ -541,6 +546,7 @@ p2pSiteMobApp
         else if(response.ret === -1) { //用户未登录，。
 
           if(!Utils.isWeixin()){
+            $rootScope.checkSession.resolve(response);
             return;
           }
 
