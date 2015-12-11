@@ -93,6 +93,7 @@ p2pSiteMobApp
       // 注册登录流程
       .state('root.login', {
         url: '/login',
+        data: {title: '登录'},
         views: {
           '': {
             templateUrl: 'views/login.html',
@@ -431,7 +432,7 @@ p2pSiteMobApp
 
           //体验金活动页
       .state('root.experience-activity', {
-        url: '/experience-activity/:number?c',
+        url: '/experience-activity/:number?act&c',
         views: {
           '': {
             templateUrl: 'views/activity/experience-activity.html',
@@ -500,6 +501,8 @@ p2pSiteMobApp
     ];
     var titleMap = {'issue': '常见问题', 'about': '帮助中心', 'safe': '安全保障', 'account': '账户总览'};
     $rootScope.$on('$stateChangeStart', function() {
+      $rootScope.headerTitle = '宏财理财';
+
       $rootScope.timeout = false;
       $timeout(function(){
           $rootScope.timeout = true;
