@@ -93,7 +93,7 @@ p2pSiteMobApp
       // 注册登录流程
       .state('root.login', {
         url: '/login',
-        data: {title: '登录'},
+        data: { title: '登录' },
         views: {
           '': {
             templateUrl: 'views/login.html',
@@ -116,6 +116,7 @@ p2pSiteMobApp
       })
       .state('root.register', {
         url: '/register/:openId/:inviteCode',
+        data: { title: '注册' },
         views: {
           '': {
             templateUrl: 'views/register.html',
@@ -501,8 +502,7 @@ p2pSiteMobApp
     ];
     var titleMap = {'issue': '常见问题', 'about': '帮助中心', 'safe': '安全保障', 'account': '账户总览'};
     $rootScope.$on('$stateChangeStart', function() {
-      $rootScope.headerTitle = '宏财理财';
-
+      
       $rootScope.timeout = false;
       $timeout(function(){
           $rootScope.timeout = true;
@@ -595,6 +595,11 @@ p2pSiteMobApp
       });
     });
     $rootScope.$on('$stateChangeSuccess', function() {
+      var title = '宏财理财';
+      if($state.current.data && $state.current.data.title){
+        title = $state.current.data.title;
+      }
+      $rootScope.headerTitle = title;
       var path = $location.path().split('/')[1];
       $rootScope.showPath = path;
       $rootScope.showTitle = titleMap[path];

@@ -9,7 +9,6 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('LoginCtrl', function($scope, $state, $rootScope, $stateParams, md5, ipCookie, wechat, HongcaiLogin) {
-    $rootScope.headerTitle = '登录';
     // 如果已经登录，自动跳转到首页。
     // if ($rootScope.hasLoggedUser) {
     //   $state.go('root.main');
