@@ -51,6 +51,9 @@ angular.module('p2pSiteMobApp')
                $scope.fundsFlag = 0;
              }
            }
+           if (!$rootScope.hasLoggedUser || !$rootScope.hasLoggedUser.id){
+            return;
+           }
            /**
            * 加息券统计信息
            */

@@ -8,17 +8,25 @@
       <strong ng-switch-when="3">恭喜您，成功投资{{amount | number:2}}元！</strong>
       <strong ng-switch-when="4">恭喜您，成功绑定银行卡！</strong>
       <strong ng-switch-when="5">恭喜您，成功修改手机号！</strong>
-
     </p>
     <div class="column twelve padding-l-1 padding-r-1 margin-b-1 padding-b-2 margin-t-2">
-      <div class="one-half column button button-primary u-pull-left border-none">
-        <span ng-switch-default ui-sref="root.main">浏览项目</span>
-        <span ng-switch-when="1" ui-sref="root.main">浏览项目</span>
-        <span ng-switch-when="2" ui-sref="root.main">浏览项目</span>
-        <span ng-switch-when="3" ui-sref="root.user-center.credits">浏览债权</span>
-        <span ng-switch-when="4" ui-sref="root.main">浏览项目</span>
-        <span ng-switch-when="5" ui-sref="root.main">浏览项目</span>
-
+      <div class="one-half column button button-primary u-pull-left border-none" ng-switch-default ui-sref="root.main">
+        <span>浏览项目</span>
+      </div>
+      <div class="one-half column button button-primary u-pull-left border-none" ng-switch-when="1" ui-sref="root.main">
+        <span>浏览项目</span>
+      </div>
+      <div class="one-half column button button-primary u-pull-left border-none" ng-switch-when="2" ui-sref="root.main">
+        <span>浏览项目</span>
+      </div>
+      <div class="one-half column button button-primary u-pull-left border-none" ng-switch-when="3" ui-sref="root.user-center.credits">
+        <span>浏览债权</span>
+      </div>
+      <div class="one-half column button button-primary u-pull-left border-none" ng-switch-when="4" ui-sref="root.main">
+        <span>浏览项目</span>
+      </div>
+      <div class="one-half column button button-primary u-pull-left border-none" ng-switch-when="5" ui-sref="root.main">
+        <span>浏览项目</span>
       </div>
     </div>
   </div>

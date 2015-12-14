@@ -93,6 +93,7 @@ p2pSiteMobApp
       // 注册登录流程
       .state('root.login', {
         url: '/login',
+        data: { title: '登录' },
         views: {
           '': {
             templateUrl: 'views/login.html',
@@ -115,6 +116,7 @@ p2pSiteMobApp
       })
       .state('root.register', {
         url: '/register/:openId/:inviteCode',
+        data: { title: '注册' },
         views: {
           '': {
             templateUrl: 'views/register.html',
@@ -153,6 +155,7 @@ p2pSiteMobApp
       })
       .state('root.funds-project-detail', {
         url: '/funds-projects/:number',
+        data: { title: '宏金盈' },
         views: {
           '': {
             templateUrl: 'views/project/funds-project-detail.html',
@@ -161,8 +164,10 @@ p2pSiteMobApp
           }
         }
       })
+      // 零存宝详情
       .state('root.current-deposit-detail', {
         url: '/current-deposit/:number',
+        data: { title: '零存宝' },
         views: {
           '': {
             templateUrl: 'views/project/current-deposit-detail.html',
@@ -221,6 +226,7 @@ p2pSiteMobApp
       //我的账户
       .state('root.user-center.account', {
         url: '/account',
+        data: { title: '账户' },
         views: {
           '': {
             templateUrl: 'views/user-center/account.html',
@@ -254,6 +260,7 @@ p2pSiteMobApp
       // 基本资料
       .state('root.user-center.info', {
         url: '/info',
+        data: { title: '基本资料' },
         views: {
           '': {
             templateUrl: 'views/user-center/info.html',
@@ -265,6 +272,7 @@ p2pSiteMobApp
       // 我的债权
       .state('root.user-center.credits', {
         url: '/credits',
+        data: { title: '我的债权' },
         views: {
           '': {
             templateUrl: 'views/user-center/credit.html',
@@ -276,6 +284,7 @@ p2pSiteMobApp
       // 我的订单
       .state('root.user-center.orders', {
         url: '/orders',
+        data: { title: '我的订单' },
         views: {
           '': {
             templateUrl: 'views/user-center/order.html',
@@ -287,6 +296,7 @@ p2pSiteMobApp
       // 充值
       .state('root.user-center.recharge', {
         url: '/recharge?amount',
+        data: { title: '充值' },
         views: {
           '': {
             templateUrl: 'views/user-center/recharge.html',
@@ -298,6 +308,7 @@ p2pSiteMobApp
       // 提现
       .state('root.user-center.withdraw', {
         url: '/withdraw',
+        data: { title: '提现' },
         views: {
           '': {
             templateUrl: 'views/user-center/withdraw.html',
@@ -342,6 +353,7 @@ p2pSiteMobApp
       // 交易记录
       .state('root.user-center.deals', {
         url: '/deals',
+        data: { title: '交易记录' },
         views: {
           '': {
             templateUrl: 'views/user-center/deal.html',
@@ -374,6 +386,7 @@ p2pSiteMobApp
       // 常见问题
       .state('root.issue', {
         url: '/issue',
+        data: { title: '常见问题' },
         views: {
           '': {
             templateUrl: 'views/issue.html',
@@ -385,6 +398,7 @@ p2pSiteMobApp
       // 安全保障
       .state('root.safe', {
         url: '/safe',
+        data: { title: '安全保障' },
         views: {
           '': {
             templateUrl: 'views/safe.html',
@@ -396,6 +410,7 @@ p2pSiteMobApp
       // 宏财简介
       .state('root.about', {
         url: '/about',
+        data: { title: '宏财介绍' },
         views: {
           '': {
             templateUrl: 'views/about.html',
@@ -431,7 +446,7 @@ p2pSiteMobApp
 
           //体验金活动页
       .state('root.experience-activity', {
-        url: '/experience-activity/:number?c',
+        url: '/experience-activity/:number?act&c',
         views: {
           '': {
             templateUrl: 'views/activity/experience-activity.html',
@@ -499,7 +514,13 @@ p2pSiteMobApp
       '/user-center'
     ];
     var titleMap = {'issue': '常见问题', 'about': '帮助中心', 'safe': '安全保障', 'account': '账户总览'};
-    $rootScope.$on('$stateChangeStart', function() {
+    $rootScope.$on('$stateChangeStart', function(event, toState) {
+      var title = '宏财理财';
+      if(toState.data && toState.data.title){
+        title = toState.data.title;
+      }
+      $rootScope.headerTitle = title;
+      
       $rootScope.timeout = false;
       $timeout(function(){
           $rootScope.timeout = true;
@@ -538,6 +559,7 @@ p2pSiteMobApp
         else if(response.ret === -1) { //用户未登录，。
 
           if(!Utils.isWeixin()){
+            $rootScope.checkSession.resolve(response);
             return;
           }
 
@@ -592,6 +614,7 @@ p2pSiteMobApp
       });
     });
     $rootScope.$on('$stateChangeSuccess', function() {
+      
       var path = $location.path().split('/')[1];
       $rootScope.showPath = path;
       $rootScope.showTitle = titleMap[path];
