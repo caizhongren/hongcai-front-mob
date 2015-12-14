@@ -22,6 +22,10 @@ angular.module('p2pSiteMobApp')
           $scope.voucher = response;
       });
 
+      HongcaiUser.$find($rootScope.hasLoggedUser.id).$then(function(response) {
+         console.log(response);
+      });
+
     });
 
     $scope.changePassword = function(oldP, newP1, newP2){
