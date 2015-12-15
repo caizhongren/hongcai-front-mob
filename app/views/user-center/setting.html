@@ -1,62 +1,64 @@
-<div class="setting">
-  <div class="text-center ft-black2 margin-t-0p5 ft-1p8 border-b-grey padding-b-1">
-    基本资料
-  </div>
-  <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
-    <p>用户名：</p>
-    <p class="p-block">
-      <span class="ft-grey4">{{hasLoggedUser.name}}</span>
-      <span><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已设置</span>
+<div class="setting bg-offWhite">
+  <div class="text-center ft-black2 margin-t-0p5 ft-1p8 padding-b-1">
+    <p class="margin-b-0 text-center padding-t-2">
+      <div class="border-pull"><img ng-src="{{userHeadImgUrl}}" class="border-half"></div>
     </p>
+    {{hasLoggedUser.name || handleMobileNum(hasLoggedUser.mobile)}}
   </div>
-  <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
-    <p>登录密码：</p>
-    <p class="p-block">
-      <span class="ft-grey4">用于登录宏财网</span>
-      <span ng-click="checkPwdFlag=true"><a>修改></a></span>
-    </p>
+  <div class="content-main">
+    <div>
+      <img src="/images/user-center/01.png" alt="">
+    </div>
+    <div>
+      <p>登录密码：</p>
+      <p>用于登录宏财网<span ng-click="checkPwdFlag=true"><a>修改></a></span></p>
+    </div>
   </div>
-  <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
-    <p>手机号码</p>
-    <p class="p-block">
-      <span class="ft-grey4">{{handleMobileNum(hasLoggedUser.mobile) || '无'}}</span>
-      <!-- <span ng-show="hasLoggedUser.mobile !== null"><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已绑定</span> -->
-      <span ng-click="checkMobileFlag=true"><a>修改></a></span>
-      <span ng-show="hasLoggedUser.mobile == null"><i class="fa fa-check-circle-o"></i>&nbsp;未绑定</span>
-    </p>
+  <div class="content-main">
+    <div>
+      <img src="/images/user-center/02.png" alt="">
+    </div>
+    <div>
+      <p>手机号码：</p>
+      <p>{{handleMobileNum(hasLoggedUser.mobile) || '无'}}
+        <span ng-click="checkMobileFlag=true"><a>修改></a></span>
+        <span ng-show="hasLoggedUser.mobile == null"><i class="fa fa-check-circle-o"></i>&nbsp;未绑定</span>
+      </p>
+    </div>
   </div>
-  <!--   <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
-    <p>邮箱：</p>
-    <p class="p-block">
-      <span class="ft-grey4">aaa***@163.com</span>
-      <span><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已绑定</span>
-      <span ng-click="checkEmailFlag=true"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;修改</span>
-    </p>
-  </div> -->
-  <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
-    <p>第三方托管账户</p>
-    <p class="p-block">
-      <span class="ft-grey4">保证您的资金安全</span>
-      <span ng-show="securityStatus.trusteeshipAccountStatus === 1"><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已开通</span>
-      <span ng-click="toRealNameAuth=true" ng-show="securityStatus.trusteeshipAccountStatus !== 1"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通<small class="ft-orange">(立即开通)</small></span>
-    </p>
+  <div class="content-main">
+    <div>
+      <img src="/images/user-center/03.png" alt="">
+    </div>
+    <div>
+      <p>第三方托管账户：</p>
+      <p>保证您的资金安全
+        <span ng-show="securityStatus.trusteeshipAccountStatus === 1"><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已开通</span>
+        <span ng-click="toRealNameAuth=true" ng-show="securityStatus.trusteeshipAccountStatus !== 1"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通<small class="ft-orange">(立即开通)</small></span>
+      </p>
+    </div>
   </div>
-  <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
-    <p>自动投标权限</p>
-    <p class="p-block">
-      <span class="ft-grey4">方便您续投、预约项目</span>
-      <span ng-show="securityStatus.autoTransfer === 1"><i class="fa fa-check-circle-o ft-green" ></i>&nbsp;已开通</span>
-      <span ng-click="checkAutoFlag=true" ng-show="securityStatus.autoTransfer !== 1"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通<small class="ft-orange">(立即开通)</small></span>
-    </p>
+  <div class="content-main">
+    <div>
+      <img src="/images/user-center/04.png" alt="">
+    </div>
+    <div>
+      <p>自动投标权限：</p>
+      <p>方便您续投
+        <span ng-show="securityStatus.autoTransfer === 1"><i class="fa fa-check-circle-o ft-green" ></i>&nbsp;已开通</span>
+        <span ng-click="checkAutoFlag=true" ng-show="securityStatus.autoTransfer !== 1"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通<small class="ft-orange">(立即开通)</small></span>
+      </p>
+    </div>
   </div>
-  <div class="padding-1 border-b-grey margin-1 ft-black2 ft-1p6">
-    <p>我的邀请码</p>
-    <p class="ft-grey4">{{voucher.inviteCode}}</p>
+  <div class="contain-last">
+    <div>
+      <img src="/images/user-center/05.png" alt="">
+    </div>
+    <div>
+      <p>我的邀请码<span>{{voucher.inviteCode}}</span>
+      </p>
+    </div>
   </div>
-  <!--   <div class="padding-1 margin-1 ft-grey2 ft-1p4">
-    <p class="margin-b-1">温馨提示：</p>
-    <p class="margin-b-1">暂时不提供手机号码的修改服务，请联系客服400-990-7626进行修改</p>
-  </div> -->
 </div>
 <!-- 修改密码蒙层 -->
 <div ng-show="checkPwdFlag" class="project-mask">
@@ -79,18 +81,6 @@
       <span ng-click="changePassword(oldPassword, newPassword1, newPassword2)">修改</span></p>
   </div>
 </div>
-<!-- 修改邮箱蒙层 -->
-<!-- <div ng-show="checkEmailFlag" class="project-mask">
-  <div class="bg-white email-mask project-mask-inner">
-    <p>
-      <label for="">邮箱&nbsp;&nbsp;</label>
-      <input type="eamil" placeholder="请输入邮箱">
-    </p>
-    <p class="project-mask-btn">
-      <span ng-click="checkEmailFlag=false">取消</span>
-      <span>修改</span></p>
-  </div>
-</div> -->
 <!-- 实名认证 toRealNameAuth-->
 <div ng-include src="'views/user-center/realname-auth.html'" ng-show="toRealNameAuth">
 </div>

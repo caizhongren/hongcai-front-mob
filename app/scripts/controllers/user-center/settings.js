@@ -10,16 +10,27 @@
 angular.module('p2pSiteMobApp')
   .controller('SettingsCtrl', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5) {
 
+    $scope.userHeadImgUrl = '/images/user-center/head.png';
+
     $rootScope.checkSession.promise.then(function(){
       if(!$rootScope.isLogged){
         $state.go('root.login');
       }
+
+      if ($rootScope.hasLoggedUser.headImgUrl){
+        $scope.userHeadImgUrl = $rootScope.hasLoggedUser.headImgUrl
+      }
+      
 
       /**
        * 邀请码
        */
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/voucher').$then(function(response) {
           $scope.voucher = response;
+      });
+
+      HongcaiUser.$find($rootScope.hasLoggedUser.id).$then(function(response) {
+         console.log(response);
       });
 
     });

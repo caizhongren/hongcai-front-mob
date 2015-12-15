@@ -87,7 +87,88 @@
 }
 
 .setting {
-  margin-bottom: 7rem;
+  padding-bottom: 7rem;
+  float: left;
+  .border-pull {
+    width: 11rem;
+    height: 11rem;
+    border-radius: 5.5rem;
+    border: 0.5rem solid #fcc69f;
+    margin: 0 auto;
+  }
+  .border-half {
+    border-radius: 5rem;
+    width: 10rem;
+    height: 10rem;
+  }
+  .content-main {
+    margin: 1rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    background-color: white;
+    border: 0.1rem solid #d8d8d8;
+    float: left;
+    width: 94%;
+    div:nth-child(1) {
+      float: left;
+      width: 8%;
+      img {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-top: 1rem;
+      }
+    }
+    div:nth-child(2) {
+      float: left;
+      width: 90%;
+      font-size: 1.6rem;
+      p:nth-child(1) {
+        border-bottom: 0.1rem solid #e7e7e7;
+        margin-bottom: 0;
+        padding: 0.5rem 0;
+      }
+      p:nth-child(2) {
+        margin-bottom: 0;
+        padding: 0.5rem 0;
+        color: #7a7a7a;
+        font-size: 1.6rem;
+        span {
+          float: right;
+        }
+      }
+    }
+  }
+  .contain-last {
+    margin: 1rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    background-color: white;
+    border: 0.1rem solid #d8d8d8;
+    float: left;
+    width: 94%;
+    div:nth-child(1) {
+      float: left;
+      width: 8%;
+      img {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-top: 1rem;
+      }
+    }
+    div:nth-child(2) {
+      float: left;
+      width: 90%;
+      font-size: 1.6rem;
+      p:nth-child(1) {
+        margin-bottom: 0;
+        padding: 0.5rem 0;
+        span {
+          float: right;
+          color: #8cce51;
+        }
+      }
+    }
+  }
   .border-b-grey {
     border-bottom: 0.1rem solid #ddd;
   }
@@ -306,8 +387,9 @@
   font-family: "microsoft yahei";
   p:nth-child(1) {
     padding: 1rem 2rem;
-    span{
-      height: 38px;line-height: 38px;
+    span {
+      height: 38px;
+      line-height: 38px;
     }
     label {
       display: inline-block;
@@ -356,7 +438,8 @@
   padding-left: 1rem;
   font-weight: bold;
 }
-.border-tb-5{
+
+.border-tb-5 {
   border-top-left-radius: 19px;
   border-top-right-radius: 19px;
   border-bottom-left-radius: 19px;
