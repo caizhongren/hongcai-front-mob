@@ -107,7 +107,7 @@ angular.module('p2pSiteMobApp')
           $scope.buttonFlag = 6;
 
           if($scope.freeWish.praiseCount === 0){
-              $scope.firstMsg = '邀10位好友点赞，才能领取哦';
+              $scope.firstMsg = '邀6位好友点赞，才能领取哦';
               $scope.secondMsg = '快请好友帮忙吧~';
           }else{
               $scope.firstMsg = $scope.freeWish.praiseCount + '位好友为你点赞';
@@ -119,7 +119,7 @@ angular.module('p2pSiteMobApp')
               $scope.buttonFlag = 1;
 
               if($scope.freeWish.praiseCount === 0){
-                  $scope.firstMsg = '邀10位好友点赞，才能领取哦';
+                  $scope.firstMsg = '邀6位好友点赞，才能领取哦';
                   $scope.secondMsg = '快请好友帮忙吧~';
               }else{
                   $scope.firstMsg = $scope.freeWish.praiseCount + '位好友为你点赞';
