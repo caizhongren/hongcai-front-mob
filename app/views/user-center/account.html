@@ -18,9 +18,9 @@
     </div>
   </div>
   <!-- 已开通易宝时展示 充值/提现提示 !==0-->
-  <div >
+  <div ng-if="securityStatus.trusteeshipAccountStatus === 1">
     <!-- 体验金 -->
-    <div class="padding-0p5 bg-experience margin-2" ng-if="securityStatus.trusteeshipAccountStatus === 1">
+    <div class="padding-0p5 bg-experience margin-2">
       <div class="text-center padding-l-9">
         <p class="margin-b-0 margin-t-1">体验金:<span class="ft-orange">&nbsp;￥<span class="ft-2p5">{{userAccount.experienceAmount | number:0}}</span></span></p>
         <p class="margin-b-0 margin-t-1"><button class="button button-primary border-tb-5 btn-focus" ng-click="quickInvest()">快速投资</button></p>
@@ -49,7 +49,7 @@
     <!-- 体验金 -->
     <div class="padding-0p5 bg-experience margin-2">
       <div class="text-center padding-l-9">
-        <p class="margin-b-0 margin-t-1">体验金:<span class="ft-orange">&nbsp;￥<span class="ft-2p5">{{userAccount.experienceAmount | number:0}}</span></span></p>
+        <p class="margin-b-1 margin-t-2">体验金:<span class="ft-orange">&nbsp;￥<span class="ft-2p5">{{userAccount.experienceAmount | number:0}}</span></span></p>
       </div>
     </div>
   </div>
