@@ -63,25 +63,25 @@
 <!-- 修改密码蒙层 checkPwdFlag-->
 <div ng-show="checkPwdFlag" class="project-mask">
   <div class="bg-white setting-mask project-mask-inner">
-    <form name="passwordForm">
+    <form name="passwordResetForm" class="margin-b-0">
       <p class="margin-b-1p5">
         <span>旧密码&nbsp;&nbsp;</span>
-        <input type="password" placeholder="请输入旧密码" ng-model="oldPassword">
+        <input type="password" placeholder="请输入旧密码" ng-model="oldPassword" name="oldPassword" id="oldPassword">
       </p>
       <p class="margin-b-1p5">
         <span>新密码&nbsp;&nbsp;</span>
-        <input type="password" placeholder="请输入新密码" ng-model="newPassword1">
+        <input type="password" placeholder="请输入新密码" ng-model="newPassword1" name="newPassword1" id="newPassword1">
       </p>
       <p class="margin-b-1p5">
         <span>确认密码&nbsp;&nbsp;</span>
-        <input type="password" placeholder="再次输入新密码" ng-model="newPassword2">
+        <input type="password" placeholder="再次输入新密码" ng-model="newPassword2" name="newPassword2" id="newPassword2">
       </p>
-      <p class="text-center ft-red margin-b-0" ng-show="changePasswordMsg">{{changePasswordMsg}}</p>
-      <p class="project-mask-btn">
-        <span ng-click="checkPwdFlag=false">取消</span>
-        <span ng-click="changePassword(oldPassword, newPassword1, newPassword2)" ng-class="{'active-span': !passwordForm.$invalid}">修改</span>
-      </p>
+      <p class="margin-b-0 text-center ft-red margin-b-0" ng-show="changePasswordMsg">{{changePasswordMsg}}</p>
     </form>
+    <p class="project-mask-btn">
+      <span ng-click="checkPwdFlag=false">取消</span>
+      <span ng-disabled="passwordResetForm.$invalid" my-click-once ng-class="{'active-span': passwordResetForm.$valid}" ng-click="changePassword(oldPassword, newPassword1, newPassword2)">修改</span>
+    </p>
   </div>
 </div>
 <!-- 实名认证 toRealNameAuth-->
