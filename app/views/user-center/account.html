@@ -18,7 +18,7 @@
     </div>
   </div>
   <!-- 已开通易宝时展示 充值/提现提示 !==0-->
-  <div ng-if="securityStatus.trusteeshipAccountStatus === 1">
+  <div >
     <!-- 体验金 -->
     <div class="padding-0p5 bg-experience margin-2">
       <div class="text-center padding-l-9">
@@ -27,19 +27,19 @@
       </div>
     </div>
     <!-- 加息券 -->
-    <div class="padding-0p5 bg-ratemoney margin-2 clear" ng-if="couponStatis.couponTypes.length > 0">
+    <div class="padding-0p5 bg-ratemoney margin-2 clear" ng-if="couponStatis.couponTypes.length > 0 && securityStatus.trusteeshipAccountStatus === 1">
       <div class="text-center padding-l-9 clear">
         <p class="margin-b-0 margin-t-1">加息券</p>
         <p class="margin-b-1 rate-span" ng-repeat="couponType in couponStatis.couponTypes"><span></span><span>+{{couponType.rate}}%</span> <span>{{couponType.couponNum}}张</span></p>
       </div>
     </div>
-    <div class="padding-0p5 bg-ratemoney margin-2 clear" ng-if="couponStatis.couponTypes.length <= 0">
+    <div class="padding-0p5 bg-ratemoney margin-2 clear" ng-if="couponStatis.couponTypes.length <= 0 && securityStatus.trusteeshipAccountStatus === 1">
       <div class="text-center padding-l-9 clear">
         <p class="margin-b-0 margin-t-1">加息券</p>
         <p class="ft-orange margin-b-1"><span class="ft-2p5">无</span></p>
       </div>
     </div>
-    <div class="padding-l-2 padding-r-2 text-center overflow-hid margin-t-2 margin-b-7">
+    <div class="padding-l-2 padding-r-2 text-center overflow-hid margin-t-2 margin-b-7" ng-if="securityStatus.trusteeshipAccountStatus === 1">
       <button class="margin-0 half u-pull-left button btn-orange-border" ng-click="!timeout || goWithdraw()">提现</button>
       <button class="margin-0 half u-pull-right button button-primary" ng-click="!timeout || goRecharge()">充值</button>
     </div>
