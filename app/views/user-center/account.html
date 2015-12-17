@@ -45,6 +45,14 @@
     </div>
   </div>
   <!-- 尚未开通易宝提示 -->
+  <div ng-if="securityStatus.trusteeshipAccountStatus !== 1">
+    <!-- 体验金 -->
+    <div class="padding-0p5 bg-experience margin-2">
+      <div class="text-center padding-l-9">
+        <p class="margin-b-1 margin-t-2">体验金:<span class="ft-orange">&nbsp;￥<span class="ft-2p5">{{userAccount.experienceAmount | number:0}}</span></span></p>
+      </div>
+    </div>
+  </div>
   <div ng-include src="'views/yeepayless-hint.html'" ng-if="securityStatus.trusteeshipAccountStatus !== 1">
   </div>
   <!-- 细分页面入口 -->
