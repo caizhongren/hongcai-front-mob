@@ -31,7 +31,9 @@ angular.module('p2pSiteMobApp')
           $scope.msg = response.msg;
           alert(response.msg);
         } else {
+          alert('领取成功！');
           $rootScope.user = response;
+
         }
       });
       
