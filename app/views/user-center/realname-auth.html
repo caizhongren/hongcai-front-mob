@@ -8,14 +8,14 @@
       </p>
       <p>
         <label for="">身份证号：</label>
-        <input id="idNo" name="idNo" type="text" ng-model="user.idNo" placeholder="身份证号码" ng-pattern="/^([0-9]{17}[0-9X]{1})|([0-9]{15})$/" ng-disabled="!timeout" required>
+        <input id="idNo" name="idNo" type="text" ng-model="user.idNo" placeholder="身份证号码" ng-pattern="/^([0-9]{17}[0-9xX]{1})$|^([0-9]{15})$/" ng-disabled="!timeout" required>
       </p>
       <p class="ft-red text-center margin-t-1 margin-b-1 ft-1p2">
         {{errMsg}}
       </p>
       <p class="project-mask-btn3">
         <span class="ft-grey2" ng-click="$parent.toRealNameAuth=false;" my-click-once>取消</span>
-        <span ng-disabled="realNameAuthForm.$invalid" ng-click="realNameAuth(user)" my-click-once ng-class="{active: !realNameAuthForm.$invalid}">点击认证</span>
+        <span ng-disabled="realNameAuthForm.$invalid" ng-click="realNameAuth(user)" my-click-once ng-class="{'active-span': !realNameAuthForm.$invalid}">点击认证</span>
       </p>
     </form>
   </div>
