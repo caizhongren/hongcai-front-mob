@@ -244,8 +244,8 @@
   }
   p:last-child {
     //padding: 1rem 0 !important;
-    height: 5rem;
-    line-height: 5rem;
+    height: 4rem;
+    line-height: 4rem;
     font-size: 1.6rem;
     span {
       display: inline-block;
@@ -260,6 +260,11 @@
     span:last-child {
       color: #fd8f3f;
       text-align: center;
+    }
+   span:last-child .active-span {
+      background-color: #fd8f3f;
+      color: white !important;
+      border-bottom-right-radius: 0.5rem;
     }
   }
 }
@@ -324,12 +329,12 @@
 }
 
 .realname-mask {
-  padding-top: 2rem;
+  padding-top: 0rem;
   font-family: "microsoft yahei";
   p:nth-child(1) {
     width: 100%;
     border-bottom: 0.1rem solid #bbb;
-    padding: 1rem 2rem;
+    padding: 0.8rem 2rem;
     font-size: 2rem;
     margin-bottom: 1rem;
   }
@@ -358,13 +363,16 @@
   }
   p:last-child {
     //padding: 1rem 0 !important;
-    height: 5rem;
-    line-height: 5rem;
+    height: 4rem;
+    line-height: 4rem;
     font-size: 1.6rem;
+    border-bottom: white solid 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
     span {
       display: inline-block;
       float: left;
-      width: 49.5%;
+      width: 49.8%;
       text-align: center;
     }
     span:nth-child(1) {
@@ -375,9 +383,10 @@
       color: #fd8f3f;
       text-align: center;
     }
-    .active {
+    .active-span {
       background-color: #fd8f3f;
       color: white !important;
+      border-bottom-right-radius: 0.5rem;
     }
   }
 }
