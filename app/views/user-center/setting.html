@@ -60,25 +60,28 @@
     </div>
   </div>
 </div>
-<!-- 修改密码蒙层 -->
+<!-- 修改密码蒙层 checkPwdFlag-->
 <div ng-show="checkPwdFlag" class="project-mask">
   <div class="bg-white setting-mask project-mask-inner">
-    <p>
-      <span>旧密码&nbsp;&nbsp;</span>
-      <input type="password" placeholder="请输入旧密码" ng-model="oldPassword">
-    </p>
-    <p>
-      <span>新密码&nbsp;&nbsp;</span>
-      <input type="password" placeholder="请输入新密码" ng-model="newPassword1">
-    </p>
-    <p>
-      <span>确认密码&nbsp;&nbsp;</span>
-      <input type="password" placeholder="再次输入新密码" ng-model="newPassword2">
-    </p>
-    <p class="text-center ft-red margin-b-0" ng-show="changePasswordMsg">{{changePasswordMsg}}</p>
-    <p class="project-mask-btn">
-      <span ng-click="checkPwdFlag=false">取消</span>
-      <span ng-click="changePassword(oldPassword, newPassword1, newPassword2)">修改</span></p>
+    <form name="passwordForm">
+      <p class="margin-b-1p5">
+        <span>旧密码&nbsp;&nbsp;</span>
+        <input type="password" placeholder="请输入旧密码" ng-model="oldPassword">
+      </p>
+      <p class="margin-b-1p5">
+        <span>新密码&nbsp;&nbsp;</span>
+        <input type="password" placeholder="请输入新密码" ng-model="newPassword1">
+      </p>
+      <p class="margin-b-1p5">
+        <span>确认密码&nbsp;&nbsp;</span>
+        <input type="password" placeholder="再次输入新密码" ng-model="newPassword2">
+      </p>
+      <p class="text-center ft-red margin-b-0" ng-show="changePasswordMsg">{{changePasswordMsg}}</p>
+      <p class="project-mask-btn">
+        <span ng-click="checkPwdFlag=false">取消</span>
+        <span ng-click="changePassword(oldPassword, newPassword1, newPassword2)" ng-class="{'active-span': !passwordForm.$invalid}">修改</span>
+      </p>
+    </form>
   </div>
 </div>
 <!-- 实名认证 toRealNameAuth-->
@@ -98,7 +101,7 @@
 <!-- 手机号码蒙层 -->
 <div ng-show="checkMobileFlag" class="project-mask">
   <div class="bg-white email-mask project-mask-inner">
-    <form name="resetMobileForm">
+    <form name="resetMobileForm" class="margin-b-0">
       <p class="margin-b-0 text-center">
         <span>手机号码&nbsp;&nbsp;</span>
         <input type="text" id="mobileNum" name="mobileNum" ng-model="mobileNum" ng-pattern="/^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678])|(14[0-9]))\d{8}$/" ensure-unique-mobile="mobileNum" placeholder="请输入手机号码" ng-focus required autofocus/>
@@ -120,6 +123,6 @@
     </form>
     <p class="project-mask-btn2">
       <span ng-click="checkMobileFlag=false">取消</span>
-      <span ng-click="resetMobile(mobileNum)">确定</span></p>
+      <span ng-disabled="resetMobileForm.$invalid" ng-click="resetMobile(mobileNum)" my-click-once ng-class="{'active-span': !resetMobileForm.$invalid}">确定</span></p>
   </div>
 </div>
