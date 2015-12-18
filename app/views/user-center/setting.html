@@ -66,15 +66,15 @@
     <form name="passwordResetForm" class="margin-b-0">
       <p class="margin-b-1p5">
         <span>旧密码&nbsp;&nbsp;</span>
-        <input type="password" placeholder="请输入旧密码" ng-model="oldPassword" name="oldPassword" id="oldPassword">
+        <input type="password" placeholder="请输入旧密码" ng-model="oldPassword" name="oldPassword" id="oldPassword" required>
       </p>
       <p class="margin-b-1p5">
         <span>新密码&nbsp;&nbsp;</span>
-        <input type="password" placeholder="请输入新密码" ng-model="newPassword1" name="newPassword1" id="newPassword1">
+        <input type="password" placeholder="请输入新密码" ng-model="newPassword1" name="newPassword1" id="newPassword1" required>
       </p>
       <p class="margin-b-1p5">
         <span>确认密码&nbsp;&nbsp;</span>
-        <input type="password" placeholder="再次输入新密码" ng-model="newPassword2" name="newPassword2" id="newPassword2">
+        <input type="password" placeholder="再次输入新密码" ng-model="newPassword2" name="newPassword2" id="newPassword2" required>
       </p>
       <p class="margin-b-0 text-center ft-red margin-b-0" ng-show="changePasswordMsg">{{changePasswordMsg}}</p>
     </form>
