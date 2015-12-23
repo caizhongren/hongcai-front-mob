@@ -27,6 +27,10 @@ angular.module('p2pSiteMobApp')
         if (response.$status === 'ok') {
           // 获取用户金额信息
           $scope.couponStatis = response;
+          if(response.couponTypes.length <= 0){
+            $scope.couponFlag = true;
+          }
+          console.log(response.couponTypes.length);
         } else {
           // 获取信息失败。
         }
