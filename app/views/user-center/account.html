@@ -1,17 +1,14 @@
 <!-- 我的账户 -->
-<div class="account-userInfo bg-white">
+<div class="account-userInfo bg-accountcolor margin-b-7">
   <div>
     <div class=" margin-0 padding-1">您好，亲爱的&nbsp;<strong class="ft-orange">{{ hasLoggedUser.name }}</strong>&nbsp;<i class="fa fa-newspaper-o"></i>
       <span class="pull-right" ui-sref="root.user-center.setting">基本资料></span></div>
-    <div class="account-bg padding-t-1 padding-b-3 padding-l-1 position-re">
-      <div class="padding-l-0p5 money-info">
-        <p>
-          <span class="ft-black">账户资产(元)</span>
-          <span class="ft-white ft-2p5">&nbsp;&nbsp;&nbsp;{{ userAccount.tTotalAssets | number:2}}</span>
-          <span class="ft-white">&nbsp;元</span>
-        </p>
+    <div class="padding-2 position-re bg-orange">
+      <div class="money-info">
+        <p>账户余额：</p>
+        <p>￥<strong class="ft-3">{{ userAccount.tTotalAssets | number:2}}</strong>元</p>
       </div>
-      <div class="touzi-product"><a class="ft-white" ui-sref="root.user-center.investments-stat">投资项目</a></div>
+      <div class="touzi-product"><a class="ft-white" ui-sref="root.user-center.investments-stat">我的投资&nbsp;<i class="fa fa-angle-right"></i></a></div>
     </div>
     <!-- 已开通易宝时展示 账户资金详情-->
     <div ng-include src="'views/user-center/_account-assets-info.html'">
@@ -19,15 +16,43 @@
   </div>
   <!-- 已开通易宝时展示 充值/提现提示 !==0-->
   <div ng-if="securityStatus.trusteeshipAccountStatus === 1">
-    <!-- 体验金 -->
-    <div class="padding-0p5 bg-experience margin-2">
-      <div class="text-center padding-l-9">
-        <p class="margin-b-0 margin-t-1">体验金:<span class="ft-orange">&nbsp;￥<span class="ft-2p5">{{userAccount.experienceAmount | number:0}}</span></span></p>
-        <p class="margin-b-0 margin-t-1"><button class="button button-primary border-tb-5 btn-focus" ng-click="quickInvest()">快速投资</button></p>
-      </div>
+    <div class="padding-l-1 padding-r-1 text-center overflow-hid margin-t-1 margin-b-2">
+      <button class="margin-0 half u-pull-left button btn-orange-border bg-white" style="background:white;" ng-click="!timeout || goWithdraw()">提现</button>
+      <button class="margin-0 half u-pull-right button button-primary" ng-click="!timeout || goRecharge()">充值</button>
     </div>
+    <div class="grade-owner">
+      <p class="title">我的奖励</p>
+      <p>
+        <img src="/images/user-center/balance5.png" alt="">我的体验金
+        <span class="u-pull-right"><i class="fa fa-chevron-right ft-97"></i></span>
+      </p>
+      <p>
+        <span><strong class="ft-orange">{{userAccount.experienceAmount | number:0}}</strong>
+        &nbsp;元</span>
+        <span>快速投资</span>
+      </p>
+      <hr>
+      <p>
+        <img src="/images/user-center/balance6.png" alt="">我的加息券
+        <span class="u-pull-right ft-1p4 ft-7a">查看所有加息券&nbsp;<i class="fa fa-chevron-right ft-97"></i></span>
+      </p>
+      <p>
+        <span><strong class="ft-orange">+1</strong>%<sup>1</sup></span>
+        <span><strong class="ft-orange">+1</strong>%<sup>1</sup></span>
+      </p>
+    </div>
+    <!-- 体验金 -->
+    <!-- <div class="padding-0p5 bg-experience margin-2">
+      <div class="text-center padding-l-9">
+        <p class="margin-b-0 margin-t-1">体验金:<span class="ft-orange">&nbsp;￥<span class="ft-2p5">{{userAccount.experienceAmount | number:0}}</span></span>
+        </p>
+        <p class="margin-b-0 margin-t-1">
+          <button class="button button-primary border-tb-5 btn-focus" ng-click="quickInvest()">快速投资</button>
+        </p>
+      </div>
+    </div> -->
     <!-- 加息券 -->
-    <div class="padding-0p5 bg-ratemoney margin-2 clear" ng-if="couponStatis.couponTypes.length > 0">
+    <!-- <div class="padding-0p5 bg-ratemoney margin-2 clear" ng-if="couponStatis.couponTypes.length > 0">
       <div class="text-center padding-l-9 clear">
         <p class="margin-b-0 margin-t-1">加息券</p>
         <p class="margin-b-1 rate-span" ng-repeat="couponType in couponStatis.couponTypes"><span></span><span>+{{couponType.rate}}%</span> <span>{{couponType.couponNum}}张</span></p>
@@ -38,18 +63,15 @@
         <p class="margin-b-0 margin-t-1">加息券</p>
         <p class="ft-orange margin-b-1"><span class="ft-2p5">无</span></p>
       </div>
-    </div>
-    <div class="padding-l-2 padding-r-2 text-center overflow-hid margin-t-2 margin-b-7">
-      <button class="margin-0 half u-pull-left button btn-orange-border" ng-click="!timeout || goWithdraw()">提现</button>
-      <button class="margin-0 half u-pull-right button button-primary" ng-click="!timeout || goRecharge()">充值</button>
-    </div>
+    </div> -->
   </div>
   <!-- 尚未开通易宝提示 -->
   <div ng-if="securityStatus.trusteeshipAccountStatus !== 1">
     <!-- 体验金 -->
     <div class="padding-0p5 bg-experience margin-2">
       <div class="text-center padding-l-9">
-        <p class="margin-b-1 margin-t-2">体验金:<span class="ft-orange">&nbsp;￥<span class="ft-2p5">{{userAccount.experienceAmount | number:0}}</span></span></p>
+        <p class="margin-b-1 margin-t-2">体验金:<span class="ft-orange">&nbsp;￥<span class="ft-2p5">{{userAccount.experienceAmount | number:0}}</span></span>
+        </p>
       </div>
     </div>
   </div>
@@ -75,7 +97,6 @@
 <!-- 实名认证 toRealNameAuth-->
 <div ng-include src="'views/user-center/realname-auth.html'" ng-show="toRealNameAuth">
 </div>
-
 <!-- 快速投资蒙层 -->
 <div class="project-mask" ng-show="useExperience">
   <div class="bg-white email-mask project-mask-inner">
