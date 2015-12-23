@@ -14,6 +14,10 @@
     <div ng-include src="'views/user-center/_account-assets-info.html'">
     </div>
   </div>
+  <!-- 未开通易宝 ng-if="securityStatus.trusteeshipAccountStatus !== 1"-->
+  <div class="padding-l-1 padding-r-1" ng-if="securityStatus.trusteeshipAccountStatus !== 1">
+    <button class="margin-0 margin-t-0p5 button button-primary button-shadwo ft-1p5" ng-click="openYeepay()" style="width:100%">立即开通</button>
+  </div>
   <!-- 已开通易宝时展示 充值/提现提示 !==0-->
   <div ng-if="securityStatus.trusteeshipAccountStatus === 1">
     <div class="padding-l-1 padding-r-1 text-center overflow-hid margin-t-1 margin-b-2">
@@ -36,9 +40,10 @@
         <img src="/images/user-center/balance6.png" alt="">我的加息券
         <span class="u-pull-right ft-1p4 ft-7a">查看所有加息券&nbsp;<i class="fa fa-chevron-right ft-97"></i></span>
       </p>
+       <!-- ng-if="couponType.rate === 1" -->
       <p ng-repeat="couponType in couponStatis.couponTypes">
-        <span ng-if="couponType.rate === 0.5"><strong class="ft-orange">+0.5</strong>%<sup>{{couponType.couponNum || 0}}</sup></span>
-        <span ng-if="couponType.rate === 1"><strong class="ft-orange">+1</strong>%<sup>{{couponType.couponNum || 0}}</sup></span>
+        <span><strong class="ft-orange">+0.5</strong>%<sup>{{sNum}}</sup></span>
+        <span><strong class="ft-orange">+1</strong>%<sup>{{couponType.couponNum || 0}}</sup></span>
       </p>
       <p ng-show="couponFlag">
         <span><strong class="ft-orange">+0.5</strong>%<sup>0</sup></span>
@@ -90,8 +95,6 @@
         </p>
       </div>
     </div> -->
-  </div>
-  <div ng-include src="'views/yeepayless-hint.html'" ng-if="securityStatus.trusteeshipAccountStatus !== 1">
   </div>
   <!-- 细分页面入口 -->
   <div class="overflow-hid padding-t-2 padding-b-2">
