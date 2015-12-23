@@ -42,8 +42,8 @@
       </p>
        <!-- ng-if="couponType.rate === 1" -->
       <p ng-repeat="couponType in couponStatis.couponTypes">
-        <span><strong class="ft-orange">+0.5</strong>%<sup>{{sNum}}</sup></span>
-        <span><strong class="ft-orange">+1</strong>%<sup>{{couponType.couponNum || 0}}</sup></span>
+        <span><strong class="ft-orange">+0.5</strong>%<!-- <sup></sup> <--><span>{{sNum}}</span></span>
+        <span><strong class="ft-orange">+1</strong>%<!-- <sup>{{couponType.couponNum || 0}}</sup> --><span>{{couponType.couponNum || 0}}</span></span>
       </p>
       <p ng-show="couponFlag">
         <span><strong class="ft-orange">+0.5</strong>%<sup>0</sup></span>
