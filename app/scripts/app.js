@@ -206,6 +206,15 @@ p2pSiteMobApp
           }
         }
       })
+      // 投资确认页
+      .state('root.investment-confirmation',{
+        url: '/investment-confirmation',
+        views :{
+          '':{
+            templateUrl: 'views/project/_investment-confirmation.html'
+          }
+        }
+      })
       // 个人中心
       .state('root.user-center', {
         abstract: true,

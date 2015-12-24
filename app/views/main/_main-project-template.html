@@ -1,5 +1,5 @@
 <div class="padding-b-1">
-  <div class="margin-b-2 border-ra-50 text-center circle-rate-outside small-circle-outer">
+  <div class="margin-b-2 border-ra-50 text-center circle-rate-outside small-circle-outer" ng-click="!timeout || goDetail(recFundsProjects)">
     <div class="margin-b-2 border-ra-50 text-center ft-orange circle-rate small-circle">
       <p class="margin-0 padding-t-0p8"><span class="ft-5p5">{{recFundsProjects.product.maxRate |currency:"":1 || 0}}</span>%</p>
       <hr class="border-orange1">
@@ -14,7 +14,7 @@
 </div>
 <hr>
 <div class="padding-l-2 padding-r-2">
-  <a ng-click="!timeout || goDetail(recFundsProjects)" class="u-full-width button button-primary margin-t-2">查看详情</a>
+  <a class="u-full-width button button-primary margin-t-2">立即投资</a>
 </div>
 
 <div class="columns twelve margin-b-2" style="font-size:1.4rem;">

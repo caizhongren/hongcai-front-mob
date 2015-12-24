@@ -5,7 +5,7 @@
   }
   td:first-child {
     color: #908f8f;
-    text-align: center; 
+    text-align: center;
   }
   .investForm {
     .investAmount {
@@ -24,22 +24,98 @@
 }
 
 //新版详情页
-.current-detail-bg{
+.current-detail-bg {
   background-image: url(/images/current-bg.png);
   background-size: 100% 100%;
 }
-.funds-detail-bg{
+
+.funds-detail-bg {
   background-image: url(/images/funds-bg.png);
   background-size: 100% 100%;
 }
-.tab-arrow{
+
+.tab-arrow {
   font-size: 1.6rem;
-  tr td:nth-child(1){
+  tr td:nth-child(1) {
     background-color: #f4f3f3;
     width: 33.6%;
   }
-  tr td:nth-child(2){
+  tr td:nth-child(2) {
     background-color: #fafafa;
     width: 66.4%;
+  }
+}
+
+.invest-confirm {
+  background-color: white;
+  p {
+    padding: 0.5rem 2rem;
+    font-size: 1.6rem;
+    margin-bottom: 0;
+    border-bottom: 1px solid #e3e3e3;
+    color: #333333;
+    strong {
+      font-size: 2.4rem;
+      color: #fd8f3f;
+    }
+  }
+}
+
+.invest-form {
+  background-color: white;
+  margin-top: 1rem;
+  font-size: 1.6rem;
+  border-top:1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+  .form-main {
+    width: 100%;
+    height: 48px;
+    margin-top:0.5rem;
+    div:nth-child(1) {
+      height: 48px;
+      line-height: 42px;
+      border-top-left-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
+      background-color: #fd8f3f;
+      color: white;
+      padding: 0;
+      width: 20%;
+      text-align: center;
+      float: left;
+      font-size: 5rem;
+    }
+    div:nth-child(2) {
+      line-height: 46px;
+      border-top: 1px solid #e3e3e3;
+      border-bottom: 1px solid #e3e3e3;
+      width: 60%;
+      float: left;
+      text-align: center;
+      background-color: white;
+      input {
+        height: 46px;
+        line-height: 46px;
+        width: 100%;
+        text-align: center;
+        background-color: white;
+        border-radius: none;
+        padding:0;margin:0;
+        border:none;
+        font-family: "微软雅黑";
+      }
+    }
+    div:nth-child(3) {
+      line-height: 42px;
+      height: 48px;
+      font-size: 5rem;
+      border-top-right-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+      background-color: #fd8f3f;
+      color: white;
+      padding: 0;
+      width: 20%;
+      text-align: center;
+      float: left;
+    }
   }
 }
