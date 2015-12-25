@@ -20,11 +20,11 @@
     <div class="padding-l-2 padding-r-2 overflow-hid bg-white border-bot-e3">
       <p class="margin-b-0 padding-t-1">投资金额</p>
       <div class="form-main">
-        <div ng-click="subMoney(simpleFundsProject.investAmount)">-</div>
+        <div ng-click="subMoney()">-</div>
         <div>
           <input type="number" min="{{ simpleFundsProject.minInvest }}" max="{{fundsProjectInvestNum}}" name="investAmount" step="{{simpleFundsProject.increaseAmount}}" placeholder="请输入投资金额" class="investAmount u-pull-left padding-t-1 padding-b-1" ng-model="simpleFundsProject.investAmount" required>
         </div>
-        <div ng-click="plusMoney(simpleFundsProject.investAmount)">+</div>
+        <div ng-click="plusMoney()">+</div>
       </div>
       <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="msg">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>{{msg}}</span>
@@ -32,13 +32,13 @@
       <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="investForm.investAmount.$error.number">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>输入金额格式不对，只能输入数字</span>
       </div>
-      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="investForm.investAmount.$dirty && checkLargeUserCanAmount(simpleFundsProject)">
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="checkLargeUserCanAmount(simpleFundsProject)">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>余额不足，请充值</span>
       </div>
       <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="investForm.investAmount.$error.max || investForm.investAmount.$error.min">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入一个介于{{ simpleFundsProject.minInvest }}-{{ fundsProjectInvestNum }}之间的值</span>
       </div>
-      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="fundsFlag >= 1 && investForm.investAmount.$dirty && checkStepAmount(simpleFundsProject)">
+      <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="fundsFlag >= 1 && checkStepAmount(simpleFundsProject)">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>输入值必须是100的整数倍</span>
       </div>
       <p class="margin-t-1 text-center margin-b-0 padding-0">

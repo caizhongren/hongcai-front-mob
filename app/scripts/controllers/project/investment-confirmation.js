@@ -19,6 +19,7 @@ angular.module('p2pSiteMobApp')
 
     $scope.isInvestmentFlag = false;
     $rootScope.checkSession.promise.then(function() {
+
       // simple project
       fundsProjects.$find(number).$then(function(response) {
         if (response.$status === 'ok') {
@@ -55,6 +56,8 @@ angular.module('p2pSiteMobApp')
               $scope.userCanCreditInvestNum = 0;
               $scope.fundsFlag = 0;
             }
+
+            $scope.simpleFundsProject.investAmount = $rootScope.account ? Math.floor($rootScope.account.balance / 100) * 100 : 100;
           }
           if (!$rootScope.hasLoggedUser || !$rootScope.hasLoggedUser.id) {
             return;
@@ -87,7 +90,8 @@ angular.module('p2pSiteMobApp')
       });
     });
 
-    $scope.subMoney = function(oldValue) {
+    $scope.subMoney = function() {
+      var oldValue = $scope.simpleFundsProject.investAmount;
       oldValue = oldValue - 100;
       if(oldValue <= 100){
         oldValue = 100;
@@ -95,7 +99,11 @@ angular.module('p2pSiteMobApp')
       $scope.simpleFundsProject.investAmount = oldValue;
     }
 
-    $scope.plusMoney = function(oldValue) {
+    $scope.plusMoney = function() {
+      var oldValue = $scope.simpleFundsProject.investAmount;
+      if(!oldValue){
+        oldValue = 0;
+      }
       oldValue = oldValue + 100;
       $scope.simpleFundsProject.investAmount = oldValue;
     }
@@ -212,7 +220,6 @@ angular.module('p2pSiteMobApp')
     };
 
     $scope.checkLargeUserCanAmount = function(project) {
-      console.log(project);
       if ($rootScope.account) {
         // var availableAmount = project.product.type !== 1 ? $rootScope.account.balance : $rootScope.account.balance + $rootScope.account.experienceAmount;
         if ($rootScope.account.balance < project.investAmount) {
