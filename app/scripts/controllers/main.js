@@ -211,6 +211,7 @@ angular.module('p2pSiteMobApp')
     $scope.goInvest = function(){
       if (!$rootScope.isLogged){
         $location.path('/login');
+        return;
       }
 
       $state.go('root.investment-confirmation',{
