@@ -208,5 +208,10 @@ angular.module('p2pSiteMobApp')
       $scope.switchFundsProjects(1);
     }
 
+    $scope.goInvest = function(){
+      $state.go('root.investment-confirmation',{
+        number:$scope.recFundsProjects.number
+      })
+    }
 
   });

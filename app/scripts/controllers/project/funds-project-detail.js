@@ -26,6 +26,7 @@ angular.module('p2pSiteMobApp')
          if (response.$status === 'ok') {
            // 项目详情
            $scope.simpleFundsProject = response;
+           console.log($scope.simpleFundsProject);
            // 可投资金额
            $scope.fundsProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
            // 当status===1可融资状态的时候，判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。
@@ -117,6 +118,7 @@ angular.module('p2pSiteMobApp')
     }
 
     $scope.checkLargeUserCanAmount = function(project) {
+      console.log(project);
       if ($rootScope.account) {
         var availableAmount = project.product.type !== 1 ? $rootScope.account.balance : $rootScope.account.balance + $rootScope.account.experienceAmount;
         if ($rootScope.account.balance < project.investAmount) {

@@ -1,6 +1,6 @@
 <!-- ng-show="simpleFundsProject.status === 1" -->
-<div class="investment bg-grey4 overflow-hid" ng-switch="fundsFlag">
-  <div class="invest-confirm" ng-switch-default>
+<div class="investment bg-grey4 overflow-hid">
+<!--   <div class="invest-confirm" ng-switch-default>
     <p>参投人数：<strong>{{simpleFundsProject.investNumber || 0}}</strong>人</p>
     <p>可投金额：<strong>{{fundsProjectInvestNum | currency:"":0 || 0}}</strong>元</p>
   </div>
@@ -11,24 +11,20 @@
   <div class="invest-confirm" ng-switch-when=1>
     <p>参投人数：<strong>{{simpleFundsProject.investNumber || 0}}</strong>人</p>
     <p>可投金额：<strong>{{fundsProjectInvestNum | currency:"":0 || 0}}</strong>元</p>
-  </div>
-  <div class="invest-confirm" ng-switch-when=2>
-    <p>账户余额：<strong>{{ account.balance | currency:"":2 || 0}}</strong>元</p>
-    <p>可投金额：<strong>{{fundsProjectInvestNum | currency:"":0 || 0}}</strong>元</p>
-  </div>
-  <div class="invest-confirm" ng-switch-when=3>
+  </div> -->
+  <div class="invest-confirm">
     <p>账户余额：<strong>{{ account.balance | currency:"":2 || 0}}</strong>元</p>
     <p>可投金额：<strong>{{fundsProjectInvestNum | currency:"":0 || 0}}</strong>元</p>
   </div>
   <form name="investForm" class="invest-form overflow-hid" ng-submit="toInvest(simpleFundsProject)">
-    <div class="padding-l-2 padding-r-2 overflow-hid">
+    <div class="padding-l-2 padding-r-2 overflow-hid bg-white border-bot-e3">
       <p class="margin-b-0 padding-t-1">投资金额</p>
-      <div class="form-main ">
-        <div>-</div>
+      <div class="form-main">
+        <div ng-click="subMoney(simpleFundsProject.investAmount)">-</div>
         <div>
           <input type="number" min="{{ simpleFundsProject.minInvest }}" max="{{fundsProjectInvestNum}}" name="investAmount" step="{{simpleFundsProject.increaseAmount}}" placeholder="请输入投资金额" class="investAmount u-pull-left padding-t-1 padding-b-1" ng-model="simpleFundsProject.investAmount" required>
         </div>
-        <div>+</div>
+        <div ng-click="plusMoney(simpleFundsProject.investAmount)">+</div>
       </div>
       <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="msg">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>{{msg}}</span>
@@ -45,7 +41,10 @@
       <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="fundsFlag >= 1 && investForm.investAmount.$dirty && checkStepAmount(simpleFundsProject)">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>输入值必须是100的整数倍</span>
       </div>
-      <input type="checkbox" class="margin-t-1 text-center" ng-model="simpleFundsProject.isRepeatFlag" ng-click="checkAutoTransfer(simpleFundsProject);">自动续投
+      <p class="margin-t-1 text-center margin-b-0 padding-0">
+      	<input type="checkbox" class="margin-r-1" ng-model="simpleFundsProject.isRepeatFlag" ng-click="checkAutoTransfer(simpleFundsProject);">自动续投
+      	<span class="ft-orange margin-l-1">使用奖励</span>
+      </p>
       <!-- <input type="number" min="{{ simpleFundsProject.minInvest }}" max="{{fundsProjectInvestNum}}" name="investAmount" step="{{simpleFundsProject.increaseAmount}}" placeholder="100元起投" class="investAmount u-pull-left padding-t-1 padding-b-1" ng-model="simpleFundsProject.investAmount" required>
       <button class="button button-primary border-ra-0p5 u-pull-left" ng-show="checkLargeUserCanAmount(simpleFundsProject)">充值</button>
       <button class="button button-primary border-ra-0p5 u-pull-left" ng-hide="checkLargeUserCanAmount(simpleFundsProject)">投资</button>
@@ -55,12 +54,19 @@
         <p class="ft-grey2">本期理财到期后，所投本金自动续投到下期{{simpleFundsProject.product.name}}项目中。
           <br>自动续投可以提高理财收益率，并节省您的时间。</p> -->
     </div>
+    <div class="form-btn">
+    	<div><button ui-sref="root.main">取消</button></div>
+    	<div>
+    		<button ng-show="checkLargeUserCanAmount(simpleFundsProject)">立即充值</button>
+    		<button ng-hide="checkLargeUserCanAmount(simpleFundsProject)">确认投资</button>
+    	</div>
+    </div>
   </form>
 </div>
 <!-- ng-show="simpleFundsProject.status !== 1" -->
-<div class="investment bg-grey4 overflow-hid">
+<!-- <div class="investment bg-grey4 overflow-hid">
   <div class="invest-confirm">
     <p>参投人数：<strong>{{simpleFundsProject.investNumber || 0}}</strong>人</p>
     <p>可投金额：<strong>{{fundsProjectInvestNum | currency:"":0 || 0}}</strong>元</p>
   </div>
-</div>
+</div> -->
