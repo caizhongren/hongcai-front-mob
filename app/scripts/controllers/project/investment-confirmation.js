@@ -87,14 +87,17 @@ angular.module('p2pSiteMobApp')
       });
     });
 
-    $scope.subMoney = function(oldValue1) {
-      oldValue1 = oldValue1 - 100;
-      $scope.simpleFundsProject.investAmount = oldValue1;
+    $scope.subMoney = function(oldValue) {
+      oldValue = oldValue - 100;
+      if(oldValue <= 100){
+        oldValue = 100;
+      }
+      $scope.simpleFundsProject.investAmount = oldValue;
     }
 
-    $scope.plusMoney = function(oldValue2) {
-      oldValue2 = oldValue2 + 100;
-      $scope.simpleFundsProject.investAmount = oldValue2;
+    $scope.plusMoney = function(oldValue) {
+      oldValue = oldValue + 100;
+      $scope.simpleFundsProject.investAmount = oldValue;
     }
 
     $scope.rewardFlag = false;
