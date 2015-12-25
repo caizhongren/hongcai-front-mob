@@ -7,7 +7,7 @@
  * Controller of the p2pSiteMobApp
 + */
 angular.module('p2pSiteMobApp')
-  .controller('MainCtrl', function($scope, $stateParams, $state, $rootScope, projects, fundsProjects) {
+  .controller('MainCtrl', function($scope, $stateParams, $state, $rootScope, $location, projects, fundsProjects) {
     // 宏金保列表页百分比值
 
     $scope.curr = 27;
@@ -212,7 +212,7 @@ angular.module('p2pSiteMobApp')
       if (!$rootScope.isLogged){
         $location.path('/login');
       }
-      
+
       $state.go('root.investment-confirmation',{
         number:$scope.recFundsProjects.number
       })
