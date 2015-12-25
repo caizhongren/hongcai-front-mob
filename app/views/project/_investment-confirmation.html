@@ -16,7 +16,7 @@
     <p>账户余额：<strong>{{ account.balance | currency:"":2 || 0}}</strong>元</p>
     <p>可投金额：<strong>{{fundsProjectInvestNum | currency:"":0 || 0}}</strong>元</p>
   </div>
-  <form name="investForm" class="invest-form overflow-hid" ng-submit="toInvest(simpleFundsProject)">
+  <form name="investForm" class="invest-form overflow-hid" >
     <div class="padding-l-2 padding-r-2 overflow-hid bg-white border-bot-e3">
       <p class="margin-b-0 padding-t-1">投资金额</p>
       <div class="form-main">
@@ -57,8 +57,8 @@
     <div class="form-btn">
     	<div><button ui-sref="root.main">取消</button></div>
     	<div>
-    		<button ng-show="isInvestmentFlag">立即充值</button>
-    		<button ng-hide="isInvestmentFlag">确认投资</button>
+    		<button ng-show="isInvestmentFlag" ui-sref="root.user-center.recharge">立即充值</button>
+    		<button ng-hide="isInvestmentFlag" ng-click="toInvest(simpleFundsProject)">确认投资</button>
     	</div>
     </div>
   </form>
