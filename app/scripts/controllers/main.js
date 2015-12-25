@@ -88,7 +88,7 @@ angular.module('p2pSiteMobApp')
 
     $scope.toggle.switchTab = function(tabIndex) {
       $scope.toggle.activeTab = tabIndex;
-      console.log($scope.toggle.activeTab);
+      // console.log($scope.toggle.activeTab);
       var type = tabIndex + 1;
       if (tabIndex !== 1) {
         $scope.switchFundsProjects(type);
@@ -159,7 +159,7 @@ angular.module('p2pSiteMobApp')
         }, {
           title: '季度盈',
         }];
-        console.log($scope.subTabTitle);
+        // console.log($scope.subTabTitle);
       } else if (subTabIndex === 1) {
         $scope.subTabTitle = [];
 
@@ -170,7 +170,7 @@ angular.module('p2pSiteMobApp')
         }, {
           title: '半年盈',
         }];
-        console.log($scope.subTabTitle);
+        // console.log($scope.subTabTitle);
       } else if (subTabIndex === 2) {
         $scope.subTabTitle = [];
         $scope.subTabTitle = [{
@@ -180,7 +180,7 @@ angular.module('p2pSiteMobApp')
         }, {
           title: '',
         }];
-        console.log($scope.subTabTitle);
+        // console.log($scope.subTabTitle);
       }
 
       if (subTabIndex < 0 || subTabIndex > 2) {

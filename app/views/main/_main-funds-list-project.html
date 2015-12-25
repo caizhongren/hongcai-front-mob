@@ -3,7 +3,7 @@
     {{subitem.title}}
   </li>
 </ul>
-<div class="tab-content columns twelve bg-white overflow-hid padding-t-2 padding-b-2 text-center" ng-class="{active: toggle.activeSubTab===$index}" ng-repeat="subTab in subTabs">
+<div class="tab-content columns twelve bg-white overflow-hid padding-t-1 padding-b-2 text-center" ng-class="{active: toggle.activeSubTab===$index}" ng-repeat="subTab in subTabs">
   <!-- 宏金盈 -->
   <section ng-include src='"views/main/_main-funds-project-template.html"' ng-swipe-left="toggle.switchSubTab($index+1)" ng-swipe-right="toggle.switchSubTab($index-1)">
   </section>

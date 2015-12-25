@@ -14,13 +14,23 @@ angular.module('p2pSiteMobApp')
     if (!number) {
       $state.go('root.main');
     }
+
+    $scope.gradeFlag = "";
+
+    $scope.isInvestmentFlag = false;
     $rootScope.checkSession.promise.then(function() {
       // simple project
       fundsProjects.$find(number).$then(function(response) {
         if (response.$status === 'ok') {
           // 项目详情
           $scope.simpleFundsProject = response;
-          // console.log($scope.simpleFundsProject);
+          console.log($scope.simpleFundsProject);
+          if($scope.simpleFundsProject.product.type === 1){
+            $scope.gradeFlag = false;
+          }
+          else{
+            $scope.gradeFlag = true;
+          }
           // 可投资金额
           $scope.fundsProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
           // 当status===1可融资状态的时候，判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。
@@ -87,7 +97,29 @@ angular.module('p2pSiteMobApp')
       $scope.simpleFundsProject.investAmount = oldValue2;
     }
 
+    $scope.rewardFlag = false;
+    $scope.selectReward = function(project){
+      if(project.investAmount > 0){
+        if($scope.selectCoupon != null){
+          $scope.rewardFlag = true;
+        }
+      }else{
+        alert('请先输入投资金额');
+      }
+    }
 
+    $scope.experienceAmount = 0;
+    $scope.confirmUseReward = function(project, selectCoupon){
+      if(project.useExperience){
+        $scope.experienceAmount = parseInt($rootScope.account.experienceAmount/100) * 100;
+        if($scope.experienceAmount > project.investAmount){
+          project.investAmount = $scope.experienceAmount;
+        }
+      }
+      $scope.couponNumber = selectCoupon == null ? "" : selectCoupon.number;
+      $scope.rewardFlag = false;
+      $scope.selectCoupon = selectCoupon;
+    }
 
     $scope.toInvest = function(simpleFundsProject) {
       if (simpleFundsProject.isRepeatFlag && $scope.fundsFlag === 3) {
@@ -181,11 +213,14 @@ angular.module('p2pSiteMobApp')
       if ($rootScope.account) {
         // var availableAmount = project.product.type !== 1 ? $rootScope.account.balance : $rootScope.account.balance + $rootScope.account.experienceAmount;
         if ($rootScope.account.balance < project.investAmount) {
+          $scope.isInvestmentFlag = true;
           return true;
         } else {
+          $scope.isInvestmentFlag = false;
           return false;
         }
       } else {
+        $scope.isInvestmentFlag = false;
         return false;
       }
     };
