@@ -597,8 +597,11 @@ p2pSiteMobApp
           $rootScope.voucher = response.voucher;
 
           $rootScope.checkSession.resolve(response);
+          if (!response.user.mobile && !response.user.email) {
+            $rootScope.isLogged = false;
+          }
 
-          if (!response.user.mobile && !response.user.email && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
+          if (!$rootScope.isLogged && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
             $location.path('/login');
           }
         } else if (response.ret === -1) { //用户未登录，。
@@ -620,7 +623,11 @@ p2pSiteMobApp
               $rootScope.headImgUrl = response.headImgUrl;
 
               $rootScope.checkSession.resolve(response);
-              if ($rootScope.openid && !response.user.mobile && !response.user.email && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) { // 未注册，且访问的url需要注册，则需要跳转到注册页
+              if (!response.user.mobile && !response.user.email) {
+                $rootScope.isLogged = false;
+              }
+
+              if (!$rootScope.isLogged && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
                 $location.path('/login');
               } else if (response.ret == -1) { // 未拿到openid再次请求授权
                 var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechatAppid +
