@@ -27,48 +27,20 @@ angular.module('p2pSiteMobApp')
         $state.go('root.main');
       }
     });
-    function newForm() {
-      var f = document.createElement('form');
-      document.body.appendChild(f);
-      f.method = 'post';
-      // f.target = '_blank';
-      return f;
-    }
-
-    function createElements(eForm, eName, eValue) {
-      var e = document.createElement('input');
-      eForm.appendChild(e);
-      e.type = 'text';
-      e.name = eName;
-      if (!document.all) {
-        e.style.display = 'none';
-      } else {
-        e.style.display = 'block';
-        e.style.width = '0px';
-        e.style.height = '0px';
-      }
-      e.value = eValue;
-      return e;
-    }
-
 
     // 注册易宝POST
     $scope.signUpYeepay = function(user) {
-      registerYeepay.$create({email: user.email,realName: user.realName,idCardNo: user.idCardNo}).$then(function(response){
-        if (response.ret === -1) {
-          $scope.msg = response.msg;
-          console.log($scope.msg);
-        } else {
-          var sign = response.sign;
-          var req = response.req;
-          console.log(sign,req);
-          var _f = newForm();
-          createElements(_f, 'req', req);
-          createElements(_f, 'sign', sign);
-          _f.action = config.YEEPAY_ADDRESS + 'toRegister';
-          _f.submit();
-        }
+
+      if (!user.realName || !user.idCardNo) {
+        $scope.errMsg = '请输入姓名或身份证号';
+      }
+      $state.go('root.yeepay-transfer', {
+        type: 'register',
+        number: "null",
+        realName: user.realName,
+        idNo: user.idCardNo
       });
     };
+    
 
   }]);

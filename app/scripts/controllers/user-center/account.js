@@ -12,7 +12,7 @@ angular.module('p2pSiteMobApp')
   .controller('AccountCtrl', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, fundsProjects, $location) {
 
     $rootScope.checkSession.promise.then(function() {
-      if (!$rootScope.hasLoggedUser.mobile && !$rootScope.hasLoggedUser.email) {
+      if (!$rootScope.isLogged) {
         $location.path('/login');
         return;
       }
@@ -27,6 +27,22 @@ angular.module('p2pSiteMobApp')
         if (response.$status === 'ok') {
           // 获取用户金额信息
           $scope.couponStatis = response;
+          if(response.couponTypes.length <= 0){
+            $scope.couponFlag = true;
+          }
+          else if(response.couponTypes.length > 0){
+            console.log(response.coupons[0].rate);
+            $scope.sNum = 0;
+            $scope.bNum = 0;
+            for(var i=0;i < response.coupons.length;i++){
+              if(response.coupons[i].rate === 0.5){
+                $scope.sNum += 1;
+              }else if(response.coupons[i].rate === 1){
+                $scope.bNum += 1;
+              }
+            }       
+          }
+          console.log(response);
         } else {
           // 获取信息失败。
         }

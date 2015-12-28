@@ -1,4 +1,5 @@
 /* header */
+
 #header {
   li {
     width: 25%;
@@ -7,6 +8,7 @@
     left: 45%
   }
 }
+
 .footer {
   a {
     box-sizing: border-box;
@@ -16,6 +18,87 @@
   .footer-up {
     a {
       width: 25%;
+      padding: 0.5rem 0 0 0;
+      background-color: #f7f6f6;
+      color: #898989;
+      font-size: 1.2rem;
+    }
+    a:nth-child(1) {
+      span {
+        display: block;
+        width: 22.5px;
+        height: 20px;
+        margin: 0.1rem auto;
+        background: url(/images/head/about1.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+      }
+      span.active {
+        background: url(/images/head/about2.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        color: #fd8f3f;
+        background-color: #fcfcfc;
+      }
+    }
+    a:nth-child(2) {
+      span {
+        display: block;
+        width: 20px;
+        height: 20px;
+        margin: 0.1rem auto;
+        background: url(/images/head/safe1.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+      }
+      span.active {
+        background: url(/images/head/safe2.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        color: #fd8f3f;
+        background-color: #fcfcfc;
+      }
+    }
+    a:nth-child(3) {
+      span {
+        display: block;
+        width: 20.5px;
+        height: 20px;
+        margin: 0.1rem auto;
+        background: url(/images/head/project1.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+      }
+      span.active {
+        background: url(/images/head/project2.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        color: #fd8f3f;
+        background-color: #fcfcfc;
+      }
+    }
+    a:nth-child(4),
+    a:nth-child(5) {
+      span {
+        display: block;
+        width: 17px;
+        height: 20px;
+        margin: 0.1rem auto;
+        background: url(/images/head/account1.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+      }
+      span.active {
+        background: url(/images/head/account2.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        color: #fd8f3f;
+        background-color: #fcfcfc;
+      }
+    }
+    a.active {
+      color: #fd8f3f;
+      background-color: #fcfcfc;
     }
   }
   .footer-down {
