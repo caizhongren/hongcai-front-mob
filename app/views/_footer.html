@@ -32,5 +32,6 @@
 <script>
   $(".footer-up a").click(function(){
     $(this).find("span").addClass('active').parents('a').siblings().find("span").removeClass('active');
+    $(this).addClass('active').siblings().removeClass('active');
   });
 </script>
