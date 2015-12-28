@@ -23,7 +23,7 @@ angular.module('p2pSiteMobApp')
 
 
     $scope.canUseFlag = false;
-    $scope.isInvestmentFlag = false;
+    $scope.needRecharge = false;
     $rootScope.checkSession.promise.then(function() {
 
       fundsProjects.$find(number).$then(function(project) {
@@ -174,12 +174,12 @@ angular.module('p2pSiteMobApp')
 
     $scope.checkLargeUserCanAmount = function(project) {
       if(!$rootScope.account || !project){
-        $scope.isInvestmentFlag = false;
+        $scope.needRecharge = false;
         return false;
       }
 
-      $scope.isInvestmentFlag =  $rootScope.account.balance <= project.investAmount
-      return  $scope.isInvestmentFlag;       
+      $scope.needRecharge =  $rootScope.account.balance < project.investAmount
+      return  $scope.needRecharge;       
     };
 
     $scope.checkStepAmount = function(project) {
