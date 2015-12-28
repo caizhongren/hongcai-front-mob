@@ -35,7 +35,7 @@ angular.module('p2pSiteMobApp')
         
         $scope.canUseFlag = $scope.project.product.type !== 1;
         $scope.project.projectInvestAmount = project.currentStock * project.increaseAmount;
-        $scope.project.investAmount = $rootScope.account >= 100 ? Math.floor($rootScope.account.balance / 100) * 100 : 100;
+        $scope.project.investAmount = $rootScope.account.balance >= 100 ? Math.floor($rootScope.account.balance / 100) * 100 : 100;
         $scope.project.investAmount = $scope.project.investAmount >= $scope.project.projectInvestAmount ? $scope.project.projectInvestAmount: $scope.project.investAmount;
         $scope.project.isRepeatFlag = false;
         
@@ -114,6 +114,10 @@ angular.module('p2pSiteMobApp')
       }
       $scope.rewardFlag = $scope.selectCoupon != null;
     }
+
+    $scope.$watch('project.isRepeatFlag', function(newVal, oldVal){
+      
+    })
 
     /**
      * 确认使用奖励

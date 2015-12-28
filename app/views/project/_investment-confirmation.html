@@ -2,7 +2,7 @@
 <div class="investment bg-grey4 overflow-hid">
   <div class="invest-confirm">
     <p>账户余额：<strong>{{ account.balance | currency:"":2 || 0}}</strong>元</p>
-    <p>可投金额：<strong>{{project.projectInvestAmount | currency:"":0 || 0}}</strong>元</p>
+    <p>可投金额：<strong>{{project.projectInvestAmount | currency:"":2 || 0}}</strong>元</p>
   </div>
   <form name="investForm" class="invest-form overflow-hid" >
     <div class="padding-l-2 padding-r-2 overflow-hid bg-white border-bot-e3">
