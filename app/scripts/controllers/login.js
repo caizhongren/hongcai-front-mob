@@ -8,13 +8,14 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('LoginCtrl', function($scope, $state, $rootScope, $stateParams, md5, ipCookie, wechat, HongcaiLogin) {
+  .controller('LoginCtrl', function($scope, $state, $rootScope, $stateParams, $location, md5, ipCookie, wechat, HongcaiLogin) {
     // 如果已经登录，自动跳转到首页。
     // if ($rootScope.hasLoggedUser) {
     //   $state.go('root.main');
     // }
     // 获取用户的openId
     var openId = $stateParams.openId;
+    var redirectUrl = $stateParams.redirectUrl;
     var loginBe;
 
     if (ipCookie('userName')) {
@@ -42,6 +43,11 @@ angular.module('p2pSiteMobApp')
         if (response.ret === -1) {
           $scope.msg = response.msg;
         } else {
+
+          if(redirectUrl){
+            $location.path(decodeURIComponent(redirectUrl));
+          }
+
           $rootScope.isLogged = true;
           $rootScope.hasLoggedUser = response.user;
           $state.go('root.main');

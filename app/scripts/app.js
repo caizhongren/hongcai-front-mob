@@ -92,7 +92,7 @@ p2pSiteMobApp
       })
       // 注册登录流程
       .state('root.login', {
-        url: '/login',
+        url: '/login?redirectUrl',
         data: {
           title: '登录'
         },
