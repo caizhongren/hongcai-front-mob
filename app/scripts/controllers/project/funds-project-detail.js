@@ -26,6 +26,7 @@ angular.module('p2pSiteMobApp')
          if (response.$status === 'ok') {
            // 项目详情
            $scope.simpleFundsProject = response;
+           $scope.simpleFundsProject.isRepeatFlag = false;
            console.log($scope.simpleFundsProject);
            // 可投资金额
            $scope.fundsProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
