@@ -187,6 +187,8 @@ angular.module('p2pSiteMobApp')
     };
 
     $scope.checkAutoTransfer = function(project) {
+      $scope.project.isRepeatFlag = !$scope.project.isRepeatFlag;
+      
       if ($scope.fundsFlag !== 3) {
         $scope.project.isRepeatFlag = false;
         project.isRepeatFlag = false;

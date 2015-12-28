@@ -30,7 +30,7 @@
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>输入值必须是100的整数倍</span>
       </div>
       <p class="margin-t-1 text-center margin-b-0 padding-0">
-      	<input type="checkbox" class="margin-r-1" ng-model="project.isRepeatFlag" ng-change="checkAutoTransfer(project);" my-click-once>自动续投
+      	<input type="checkbox" class="margin-r-1" ng-click="checkAutoTransfer(project);" my-click-once>自动续投
       	<span class="ft-orange margin-l-1" ng-show="canUseFlag" ng-click="selectReward(project)">使用奖励</span>
       </p>
       <!-- <input type="number" min="{{ project.minInvest }}" max="{{project.projectInvestAmount}}" name="investAmount" step="{{project.increaseAmount}}" placeholder="100元起投" class="investAmount u-pull-left padding-t-1 padding-b-1" ng-model="project.investAmount" required>
