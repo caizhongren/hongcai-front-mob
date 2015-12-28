@@ -1,12 +1,16 @@
 <footer class="footer bg-offWhite columns twelve text-center footer-pos" style="border-top:0.1rem solid #ddd;" ng-show="showFooter">
-  <div class="footer-up columns twelve ft-grey4 bg-offWhite padding-t-0p5 padding-b-0p5">
+  <div class="footer-up columns twelve ft-grey4 bg-offWhite">
     <!-- <a ng-click="!timeout || go('root.issue')" class="border-grey-right-footer padding-t-1 padding-b-1 ">&nbsp;常见问题</a>  && showPath === ''"-->
-    <a ng-click="!timeout || go('root.main')" class="border-grey-right-footer padding-t-1 padding-b-1 ">&nbsp;宏财产品</a>
-
-    <a ng-click="!timeout || go('root.safe')" class="border-grey-right-footer padding-t-1 padding-b-1 ">&nbsp;安全保障</a>
-    <a ng-click="!timeout || go('root.about')" class="padding-t-1 padding-b-1  border-grey-right-footer">&nbsp;宏财介绍</a>
-    <a ng-click="!timeout || go('root.login')" class="padding-t-1 padding-b-1  none-border" ng-show="!isLogged">&nbsp;注册/登录</a>
-    <a ng-click="!timeout || go('root.user-center.account')" class="padding-t-1 padding-b-1  none-border" ng-show="isLogged">&nbsp;我的账户</a>
+    <a ng-click="!timeout || go('root.about')">
+    <span></span>简介</a>
+    <a ng-click="!timeout || go('root.safe')">
+    <span></span>保障</a>
+    <a ng-click="!timeout || go('root.main')">
+    <span></span>投资</a>
+    <a ng-click="!timeout || go('root.login')" ng-show="!isLogged">
+    <span></span>注册/登录</a>
+    <a ng-click="!timeout || go('root.user-center.account')" ng-show="isLogged">
+    <span></span>我的</a>
   </div>
   <!-- <p class="footer-tip">北京竞财投资服务有限公司</p> -->
   <!-- 当用户进入详情页不显示 -->
