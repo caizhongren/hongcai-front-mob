@@ -623,7 +623,7 @@ p2pSiteMobApp
               $rootScope.headImgUrl = response.headImgUrl;
 
               $rootScope.checkSession.resolve(response);
-              if (!response.user.mobile && !response.user.email) {
+              if (!response.mobile && !response.email) {
                 $rootScope.isLogged = false;
               }
 
