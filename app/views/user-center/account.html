@@ -16,7 +16,7 @@
   </div>
   <!-- 未开通易宝 ng-if="securityStatus.trusteeshipAccountStatus !== 1"-->
   <div class="padding-l-1 padding-r-1" ng-if="securityStatus.trusteeshipAccountStatus !== 1">
-    <button class="margin-0 margin-t-0p5 button button-primary button-shadwo ft-1p5" ng-click="openYeepay()" style="width:100%">立即开通</button>
+    <button class="margin-0 margin-t-0p5 button button-primary button-shadwo ft-1p5" ng-click="openYeepay()" style="width:100%">立即开通托管账户</button>
   </div>
   <!-- 已开通易宝时展示 充值/提现提示 !==0-->
   <div ng-if="securityStatus.trusteeshipAccountStatus === 1">
