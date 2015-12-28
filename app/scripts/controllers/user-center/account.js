@@ -12,7 +12,7 @@ angular.module('p2pSiteMobApp')
   .controller('AccountCtrl', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, fundsProjects, $location) {
 
     $rootScope.checkSession.promise.then(function() {
-      if (!$rootScope.hasLoggedUser.mobile && !$rootScope.hasLoggedUser.email) {
+      if (!$rootScope.isLogged) {
         $location.path('/login');
         return;
       }
