@@ -116,9 +116,11 @@ angular.module('p2pSiteMobApp')
     }
 
     $scope.$watch('project.isRepeatFlag', function(newVal, oldVal){
-      // if($scope.project){
-      //   alert($scope.project.isRepeatFlag);
-      // }
+      if($scope.project){
+        alert($scope.project.isRepeatFlag);
+        $scope.checkAutoTransfer($scope.project);
+      }
+      
       
     })
 
@@ -190,7 +192,6 @@ angular.module('p2pSiteMobApp')
     };
 
     $scope.checkAutoTransfer = function(project) {
-      $scope.project.isRepeatFlag = !$scope.project.isRepeatFlag;
 
       if ($scope.fundsFlag !== 3) {
         $scope.project.isRepeatFlag = false;
