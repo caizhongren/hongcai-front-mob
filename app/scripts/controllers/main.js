@@ -209,16 +209,17 @@ angular.module('p2pSiteMobApp')
     }
 
     $scope.goInvest = function(){
+
+      if (!$rootScope.isLogged){
+        $location.path('/login');
+        return;
+      }
+
       if($rootScope.securityStatus.realNameAuthStatus !== 1){
         if(confirm('您还未开通托管账户，请到个人中心开通')){
           $state.go('root.user-center.account');
           return;
         }
-      }
-
-      if (!$rootScope.isLogged){
-        $state.go('root.login', {redirectUrl: '/investment-confirmation/' + '$scope.recFundsProjects.number'});
-        return;
       }
 
       $state.go('root.investment-confirmation',{
