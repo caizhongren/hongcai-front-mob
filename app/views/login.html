@@ -1,33 +1,38 @@
-<p class="margin-b-0 margin-t-0 padding-t-0p5 padding-b-0p5 bg-yellow2 padding-l-1" ng-hide="closeInfo">宏财网与东兴证券合作，开启P2F模式！<i class="fa fa-times fr fa-2x padding-r-2 ft-grey" ng-click="closeInfo=true"></i></p>
-<div class="bg-white padding-l-1 padding-r-1 padding-t-3 padding-b-3 text-center">
-  <img src="/images/login-2.png" width="65%">
-  <form class="login margin-0 padding-l-1 padding-r-1 padding-b-2 padding-t-2 ft-grey text-left" autocomplete="on" ng-submit="toLogin(user)">
-    <p ng-show="msg" class="ft-red"><i class="fa fa-times-circle"></i>&nbsp;&nbsp;{{msg}}</p>
-    <div class="margin-0 border-grey margin-b-1p5">
-      <label for="username" class="test1"> 用户名 </label>
-
-      <input id="username" class="border-grey" name="username" required="required" type="text" ng-model="user.account" placeholder="用户名/手机号/邮箱"  autofocus>
+<p class="margin-b-0 margin-t-0 padding-t-0p5 padding-b-0p5 bg-yellow2 padding-l-1" ng-hide="closeInfo">宏财网与东兴证券合作，开启P2F模式！<i class="fa fa-times fr fa-2x padding-r-1 ft-grey" ng-click="closeInfo=true"></i></p>
+<div class="bg-grey4 padding-l-1 padding-r-1 padding-t-3 padding-b-3 text-center" style="min-height:627px;">
+  <!-- <img src="/images/login-2.png" width="65%"> -->
+  <p class="ft-2p5 ft-89">宏财账号登录</p>
+  <form class="login-form ft-grey text-left" autocomplete="on" ng-submit="toLogin(user)">
+    <div class="to-login">
+      <input id="username" name="username" required="required" type="text" ng-model="user.account" placeholder="用户名/手机号/邮箱" autofocus><br>
+      <input id="password" name="password" ng-model="user.password" required="required" type="password" placeholder="输入登录密码" />
+    </div>
+    <!-- <div class="margin-0 border-grey margin-b-1p5">
+      <input id="username" class="border-grey" name="username" required="required" type="text" ng-model="user.account" placeholder="用户名/手机号/邮箱" autofocus>
     </div>
     <div class="margin-0 border-grey margin-b-0">
-      <label for="password" class="test1"> 密&nbsp;&nbsp;&nbsp;码 </label>
       <input id="password" class="border-grey" name="password" ng-model="user.password" required="required" type="password" placeholder="输入登录密码" />
-    </div>
-<!--     <p class="keeplogin margin-0">
+    </div> -->
+    <p ng-show="msg" class="ft-red margin-b-0 margin-t-2 text-center"><i class="fa fa-times-circle"></i>&nbsp;&nbsp;{{msg}}</p>
+    <!--     <p class="keeplogin margin-0">
       <input type="checkbox" name="loginkeeping" id="loginkeeping" ng-model="rememberUserName" value="loginkeeping" />
       <span for="loginkeeping">记住账户</span>
     </p> -->
     <!-- <p class="login margin-0 text-center">
       <input type="submit" class="button button-primary button-shadow column" value="立即登录" />
     </p> -->
-    <p class="change_link margin-0 text-right margin-b-1p5">
+  <!--   <p class="change_link margin-0 text-right margin-b-1p5">
       <a ui-sref="root.getPwd1" class="to-register ft-1p2">忘记密码？</a>
-    </p>
-    <p class="login margin-0 text-center">
-    <button type="submit" class="button button-primary column">立即登录</button>
+    </p> -->
+    <p class="login margin-0 text-center margin-t-2">
+      <button type="submit" class="button button-primary column">立即登录</button>
     </p>
     <p class="change_link margin-0 text-center">
+      <a ui-sref="root.register" class="to-register ft-orange">注册宏财账号</a><span class="padding-l-1 padding-r-1">|</span><a ui-sref="root.getPwd1" class="to-register ft-black">忘记密码？</a>
+    </p>
+    <!-- <p class="change_link margin-0 text-center">
       还没有注册 ?
       <a ui-sref="root.register" class="to-register">立即注册</a>
-    </p>
+    </p> -->
   </form>
 </div>
