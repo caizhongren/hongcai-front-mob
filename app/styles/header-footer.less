@@ -21,12 +21,6 @@
       padding: 0.5rem 0;
       background-color: #f7f6f6;
       color:#898989;
-      span {
-        display: block;
-        width: 25px;
-        height: 30px;
-        margin: 0 auto;
-      }
     }
     a:nth-child(1) {
       span {
@@ -38,16 +32,7 @@
         background-size: 100% 100%;
         background-repeat: no-repeat;
       }
-    }
-    a:nth-child(1):hover {
-      span {
-        background: url(/images/head/about2.png);
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-      }
-    }
-    a:nth-child(1):active {
-      span {
+      span.active{
         background: url(/images/head/about2.png);
         background-size: 100% 100%;
         background-repeat: no-repeat;
@@ -63,16 +48,7 @@
         background-size: 100% 100%;
         background-repeat: no-repeat;
       }
-    }
-    a:nth-child(2):hover {
-      span {
-        background: url(/images/head/safe2.png);
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-      }
-    }
-    a:nth-child(2):active {
-      span {
+      span.active{
         background: url(/images/head/safe2.png);
         background-size: 100% 100%;
         background-repeat: no-repeat;
@@ -88,21 +64,13 @@
         background-size: 100% 100%;
         background-repeat: no-repeat;
       }
-    }
-    a:nth-child(3):hover {
-      span {
+      span.active {
         background: url(/images/head/project2.png);
         background-size: 100% 100%;
         background-repeat: no-repeat;
       }
     }
-    a:nth-child(3):active {
-      span {
-        background: url(/images/head/project2.png);
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-      }
-    }
+
     a:nth-child(4),a:nth-child(5) {
       span {
         display: block;
@@ -113,24 +81,14 @@
         background-size: 100% 100%;
         background-repeat: no-repeat;
       }
-    }
-    a:nth-child(4):hover,a:nth-child(5):hover {
-      span {
-        background: url(/images/head/account2.png);
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-      }
-    }
-    a:nth-child(4):active,a:nth-child(5):active {
-      span {
+      span.active {
         background: url(/images/head/account2.png);
         background-size: 100% 100%;
         background-repeat: no-repeat;
       }
     }
     
-    a:hover,a:active,
-    a:visited {
+    a:hover,a:active{
       color: #fd8f3f;
       background-color: #fcfcfc;
     }

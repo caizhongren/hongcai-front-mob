@@ -29,3 +29,8 @@
     </p>
   </div> -->
 </footer>
+<script>
+  $(".footer-up a").click(function(){
+    $(this).find("span").addClass('active').parents('a').siblings().find("span").removeClass('active');
+  });
+</script>
