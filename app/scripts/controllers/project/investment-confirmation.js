@@ -116,7 +116,7 @@ angular.module('p2pSiteMobApp')
     }
 
     $scope.$watch('project.isRepeatFlag', function(newVal, oldVal){
-      
+      alert($scope.project.isRepeatFlag);
     })
 
     /**
