@@ -210,7 +210,7 @@ angular.module('p2pSiteMobApp')
 
     $scope.goInvest = function(){
       if (!$rootScope.isLogged){
-        $location.path('/login');
+        $state.go('root.login', {redirectUrl: '/investment-confirmation/' + '$scope.recFundsProjects.number'});
         return;
       }
 

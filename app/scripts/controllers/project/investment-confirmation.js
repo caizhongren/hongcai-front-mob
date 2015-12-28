@@ -34,9 +34,10 @@ angular.module('p2pSiteMobApp')
         $scope.project = project;
         
         $scope.canUseFlag = $scope.project.product.type !== 1;
-        $scope.project.investAmount = $rootScope.account ? Math.floor($rootScope.account.balance / 100) * 100 : 100;
-        // 可投资金额
         $scope.project.projectInvestAmount = project.currentStock * project.increaseAmount;
+        $scope.project.investAmount = $rootScope.account >= 100 ? Math.floor($rootScope.account.balance / 100) * 100 : 100;
+        $scope.project.investAmount = $scope.project.investAmount >= $scope.project.projectInvestAmount ? $scope.project.projectInvestAmount: $scope.project.investAmount;
+        
         
         // 当status===1可融资状态的时候，判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。
         if ($scope.project.status === 1) {
