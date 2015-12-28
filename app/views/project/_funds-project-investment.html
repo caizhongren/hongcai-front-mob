@@ -87,7 +87,7 @@
         <button class="button button-primary-red border-ra-0p5 u-pull-left" ng-show="checkLargeUserCanAmount(simpleFundsProject)">充值</button>
         <button class="button button-primary-red border-ra-0p5 u-pull-left" ng-hide="checkLargeUserCanAmount(simpleFundsProject)">投资</button>
         <hr class="margin-0 clear">
-        <input type="checkbox" class="margin-t-1" ng-click="checkAutoTransfer(simpleFundsProject);" my-click-once>自动续投
+        <input type="checkbox" class="margin-t-1" ng-model="simpleFundsProject.clickRepeat" ng-click="checkAutoTransfer(simpleFundsProject);" my-click-once>自动续投
         <span class="padding-l-1 ft-blue6" ng-click="selectReward(simpleFundsProject)">使用奖励</span>
          <!--<p class="ft-grey2">本期理财到期后，所投本金自动续投到下期{{simpleFundsProject.product.name}}项目中。
           <br>自动续投可以提高理财收益率，并节省您的时间。</p> -->
@@ -120,7 +120,7 @@
         <button class="button button-primary-red border-ra-0p5 u-pull-left" ng-show="checkLargeUserCanAmount(simpleFundsProject)">充值</button>
         <button class="button button-primary-red border-ra-0p5 u-pull-left" ng-hide="checkLargeUserCanAmount(simpleFundsProject)">投资</button>
         <hr class="margin-0 clear">
-        <input type="checkbox" class="margin-t-1" ng-click="checkAutoTransfer(simpleFundsProject);" my-click-once>自动续投
+        <input type="checkbox" class="margin-t-1" ng-model="simpleFundsProject.clickRepeat" ng-change="checkAutoTransfer(simpleFundsProject);" my-click-once>自动续投
         <span class="padding-l-1 ft-blue6" ng-click="selectReward(simpleFundsProject)">使用奖励</span>
          <!--<p class="ft-grey2">本期理财到期后，所投本金自动续投到下期{{simpleFundsProject.product.name}}项目中。
           <br>自动续投可以提高理财收益率，并节省您的时间。</p> -->

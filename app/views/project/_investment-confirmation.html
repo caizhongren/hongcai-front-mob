@@ -30,14 +30,14 @@
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>输入值必须是100的整数倍</span>
       </div>
       <p class="margin-t-1 text-center margin-b-0 padding-0">
-      	<input type="checkbox" class="margin-r-1" ng-click="checkAutoTransfer(project);" my-click-once>自动续投
+      	<input type="checkbox" class="margin-r-1" ng-model="project.clickRepeat" ng-change="checkAutoTransfer(project);" my-click-once>自动续投
       	<span class="ft-orange margin-l-1" ng-show="canUseFlag" ng-click="selectReward(project)">使用奖励</span>
       </p>
       <!-- <input type="number" min="{{ project.minInvest }}" max="{{project.projectInvestAmount}}" name="investAmount" step="{{project.increaseAmount}}" placeholder="100元起投" class="investAmount u-pull-left padding-t-1 padding-b-1" ng-model="project.investAmount" required>
       <button class="button button-primary border-ra-0p5 u-pull-left" ng-show="checkLargeUserCanAmount(project)">充值</button>
       <button class="button button-primary border-ra-0p5 u-pull-left" ng-hide="checkLargeUserCanAmount(project)">投资</button>
       <hr class="margin-0 clear">
-      <input type="checkbox" class="margin-t-1" ng-model="project.isRepeatFlag" ng-change="checkAutoTransfer(project);">自动续投 -->
+      <input type="checkbox" class="margin-t-1" ng-model="project.isRepeatFlag" ng-click="checkAutoTransfer(project);">自动续投 -->
       <!-- <span class="padding-l-1 ft-orange" ng-click="selectReward(project)">使用奖励</span><small class="padding-l-1 ft-1">体验金1000元</small>
         <p class="ft-grey2">本期理财到期后，所投本金自动续投到下期{{project.product.name}}项目中。
           <br>自动续投可以提高理财收益率，并节省您的时间。</p> -->
