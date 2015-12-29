@@ -18,7 +18,7 @@
     </p>
     <div class="to-invite">
       <input id="captchasignup" name="captchasignup" ng-model="user.captcha" required="required" type="text" placeholder="验证码" />
-      <span><button ng-click="sendMobileCaptcha(user);" ng-disabled="registerForm.mobile.$invalid" onclick="countDown(this,60,'out');">获取验证码</button></span><br>
+      <span><button ng-click="sendMobileCaptcha(user);" ng-disabled="registerForm.mobile.$invalid || registerForm.password.$invalid" onclick="countDown(this,60,'out');">获取验证码</button></span><br>
       <input class="invitationCode input-invitecode" name="invitationCode" type="text" placeholder="邀请码(选填)" style="border-radius:0;" />
     </div>
     <p class="ft-red2 margin-b-1 margin-t-1" ng-show="captchaShow">{{msgCaptcha}}</p>
