@@ -19,7 +19,7 @@
 </div>
 <hr>
 <div class="padding-l-2 padding-r-2">
-  <a class="u-full-width button button-primary-red" ng-click="!timeout || goInvest()" > {{recFundsProjects.currentStock <= 0 || recFundsProjects.status !== 1 ? '查看详情' : '立即投资'}}</a>
+  <a class="u-full-width button button-primary-red" ng-click="!timeout || goInvest()" > {{(recFundsProjects.currentStock > 0 && recFundsProjects.status === 1) ? '立即投资' : '查看详情'}}</a>
 </div>
 
 <div class="columns twelve margin-b-2" style="font-size:1.4rem;">
