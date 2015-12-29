@@ -105,6 +105,7 @@
     }
   }
 }
+
 .register-form {
   font-family: "微软雅黑";
   padding: 2rem 1rem;
@@ -150,19 +151,29 @@
     input:nth-child(1) {
       border-radius: 0.8rem 0.8rem 0 0;
       border-bottom: 1px solid #cecece;
-      width:2/3*100%;
+      width: 2/3*100%;
     }
     input:nth-child(2) {
       border-top: 1px solid #cecece;
       border-radius: 0 0 0.8rem 0.8rem;
     }
-    span{
-      width: 33%;
+    span {
+      width: 32%;
       display: inline-block;
-      padding: 1rem 0;
+      padding: 0.4rem 0;
       border-bottom: 1px solid #cecece;
       border-left: 1px solid #cecece;
-      color: #ff705d;
+      float: right;
+      button {
+        width: 100%;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: normal;
+        color: #ff705d;
+      }
     }
   }
 }
