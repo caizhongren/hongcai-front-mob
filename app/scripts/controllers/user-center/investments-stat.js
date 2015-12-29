@@ -14,13 +14,11 @@ angular.module('p2pSiteMobApp')
       if(!$rootScope.isLogged){
         $state.go('root.login');
       }
+      
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/investments/stat').$then(function(response) {
-        if (response.$status === 'ok') {
-          $scope.investmentsStat = response;
-          if(response.notPayOrder){
-            $scope.investmentsStat.notPayOrder.dueTime = ($scope.investmentsStat.notPayOrder.createTime  + 5 * 60 * 1000 - $scope.investmentsStat.serverTime)/(1000* 60);
-          }
-        } else {
+        $scope.investmentsStat = response;
+        if(response.notPayOrder){
+          $scope.investmentsStat.notPayOrder.dueTime = ($scope.investmentsStat.notPayOrder.createTime  + 5 * 60 * 1000 - $scope.investmentsStat.serverTime)/(1000* 60);
         }
       });
       

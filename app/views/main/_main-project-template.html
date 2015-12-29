@@ -14,8 +14,7 @@
 </div>
 <hr>
 <div class="padding-l-2 padding-r-2">
-  <a class="u-full-width button button-primary" ng-click="!timeout || goInvest()" ng-show="recFundsProjects.currentStock > 0">立即投资</a>
-  <a class="u-full-width button button-primary" ng-click="!timeout || goDetail(recFundsProjects)" ng-show="recFundsProjects.currentStock <= 0">查看详情</a>
+  <a class="u-full-width button button-primary" ng-click="!timeout || goInvest()">{{recFundsProjects.currentStock <= 0 || recFundsProjects.status !== 1 ? '查看详情' : '立即投资'}}</a>
 </div>
 
 <div class="columns twelve margin-b-2" style="font-size:1.4rem;">

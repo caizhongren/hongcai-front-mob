@@ -208,7 +208,13 @@ angular.module('p2pSiteMobApp')
       $scope.switchFundsProjects(1);
     }
 
+    /**
+     * 点击立即投资
+     */
     $scope.goInvest = function(){
+      if($scope.recFundsProjects.currentStock <= 0 || $scope.recFundsProjects.status !== 1){
+        $scope.goDetail($scope.recFundsProjects);
+      }
 
       if (!$rootScope.isLogged){
         $location.path('/login');
