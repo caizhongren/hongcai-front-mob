@@ -214,6 +214,7 @@ angular.module('p2pSiteMobApp')
     $scope.goInvest = function(){
       if($scope.recFundsProjects.currentStock <= 0 || $scope.recFundsProjects.status !== 1){
         $scope.goDetail($scope.recFundsProjects);
+        return;
       }
 
       if (!$rootScope.isLogged){
