@@ -1,4 +1,4 @@
-<p class="margin-b-0 margin-t-0 padding-t-0p5 padding-b-0p5 bg-yellow2 padding-l-1" ng-hide="closeInfo">宏财网与东兴证券合作，开启P2F模式！<b class="fr fa-2x padding-r-1 ft-grey" ng-click="closeInfo=true" style="line-height:21px;">×</b></p>
+<p class="margin-b-0 margin-t-0 padding-t-0p5 padding-b-0p5 bg-yellow2 padding-l-1" ng-hide="closeInfo">宏财网与东兴证券合作，开启P2F模式！<b class="fr fa-2x padding-r-1 ft-grey" ng-click="closeInfo=true" style="line-height:36px;margin-top:-8px;">×</b></p>
 <div class="bg-grey4 padding-l-1 padding-r-1 padding-t-1 text-center margin-b-7" style="min-height:655px;">
   <!-- <img src="/images/login-2.png" width="65%"> -->
   <p class="ft-2p5 ft-89 margin-b-1 margin-t-1">注册宏财账号</p>
@@ -23,15 +23,15 @@
     </div>
     <p class="ft-red2 margin-b-1 margin-t-1" ng-show="captchaShow">{{msgCaptcha}}</p>
     <p class="clear margin-0 margin-b-0p5 text-center">
-      <input type="checkbox" checked><small>我已阅读并同意<a href="javascript:;" ng-click="toggle();" class="ft-black2" style="text-decoration:underline;">《注册协议》</a></small>
+      <input type="checkbox" checked>我已阅读并同意<a href="javascript:;" ng-click="toggle();" class="ft-black2" style="text-decoration:underline;">《注册协议》</a>
     </p>
     <p class="signin margin-0 text-center">
       <button type="submit" class="button button-primary column {{registerForm.$invalid ? 'button-disabled' : ''}}" ng-disabled="registerForm.$invalid" ng-click="signUp(user);">立即注册</button>
     </p>
     <p class="change_link margin-0 text-center clear">
-      <small>已有账号 ?
+      已有账号 ?
         <a ui-sref="root.login" class="to_login ft-red2"> 立即登录 >></a>
-      </small>
+      
     </p>
   </form>
 </div>
