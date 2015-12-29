@@ -26,7 +26,7 @@ angular.module('p2pSiteMobApp')
     
     $scope.signUp = function(user) {
       signUpBe.$create({
-        name: user.name,
+        // name: user.name,
         password: md5.createHash(user.password),
         mobile: user.mobile,
         captcha: user.captcha,
@@ -46,12 +46,14 @@ angular.module('p2pSiteMobApp')
       });
     };
 
+    $scope.captchaShow = false;
     // 用户获取手机验证码
     $scope.sendMobileCaptcha = function(user) {
       mobileCaptcha.$create({
         mobile: user.mobile
       }).$then(function(response) {
         if (response.ret === -1) {
+          $scope.captchaShow = true;
           $scope.msg = response.msg;
         }
       });
