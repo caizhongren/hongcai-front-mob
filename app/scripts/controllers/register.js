@@ -34,6 +34,7 @@ angular.module('p2pSiteMobApp')
         openId: openId
       }).$then(function(response) {
         if (response.ret === -1) {
+          console.log(response.msg);
           $scope.msg = response.msg;
         } else {
           $rootScope.user = {
@@ -54,7 +55,7 @@ angular.module('p2pSiteMobApp')
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.captchaShow = true;
-          $scope.msg = response.msg;
+          $scope.msgCaptcha = response.msg;
         }
       });
     };
