@@ -88,20 +88,25 @@
     border-radius: 0.5rem;
     padding: 0;
     margin: 0;
-    input {
+    input:nth-child(1) {
       margin-bottom: 0;
       width: 100%;
       border: none;
       font-family: "微软雅黑";
-      padding: 2rem 1rem;
-    }
-    input:nth-child(1) {
       border-radius: 0.8rem 0.8rem 0 0;
       border-bottom: 1px solid #cecece;
+      height: 48px;
+      line-height: 48px;
     }
-    input:nth-child(2) {
-      border-top: 1px solid #cecece;
+    .input-pwd {
+      margin-bottom: 0;
+      width: 100%;
+      border: none;
+      font-family: "微软雅黑";
+      // border-top: 1px solid #cecece;
       border-radius: 0 0 0.8rem 0.8rem;
+      height: 48px;
+      line-height: 48px;
     }
   }
 }
@@ -118,21 +123,26 @@
     border-radius: 0.5rem;
     padding: 0;
     margin: 0;
-    input {
+    input:nth-child(1) {
       margin-bottom: 0;
       width: 100%;
       border: none;
       font-family: "微软雅黑";
-      padding: 2rem 1rem;
-    }
-    input:nth-child(1) {
       border-radius: 0.5rem 0.5rem 0 0;
       border-bottom: 1px solid #cecece;
       box-shadow: inset 0px 2px 1px #e9e9e9;
+      height: 48px;
+      line-height: 48px;
     }
-    input:nth-child(2) {
-      border-top: 1px solid #cecece;
+    .input-pwd {
+      margin-bottom: 0;
+      width: 100%;
+      border: none;
+      font-family: "微软雅黑";
+      // border-top: 1px solid #cecece;
       border-radius: 0 0 0.8rem 0.8rem;
+      height: 48px;
+      line-height: 48px;
     }
   }
   .to-invite {
@@ -141,29 +151,35 @@
     border-radius: 0.5rem;
     padding: 0;
     margin: 1rem 0;
-    input {
-      margin-bottom: 0;
-      width: 100%;
-      border: none;
-      font-family: "微软雅黑";
-      padding: 2rem 1rem;
-    }
     input:nth-child(1) {
       border-radius: 0.8rem 0.8rem 0 0;
-      border-bottom: 1px solid #cecece;
+      border: none;
+      // border-bottom: 1px solid #cecece;
       width: 2/3*100%;
+      margin-bottom: 0;
+      font-family: "微软雅黑";
+      height: 48px;
+      line-height: 48px;
     }
-    input:nth-child(2) {
+    .input-invitecode {
+      border: none;
       border-top: 1px solid #cecece;
       border-radius: 0 0 0.8rem 0.8rem;
+      margin-bottom: 0;
+      font-family: "微软雅黑";
+      height: 48px;
+      line-height: 48px;
+      width: 100%;
     }
     span {
       width: 32%;
       display: inline-block;
-      padding: 0.4rem 0;
-      border-bottom: 1px solid #cecece;
+      height: 48px;
+      line-height: 48px;
+      // border-bottom: 1px solid #cecece;
       border-left: 1px solid #cecece;
       float: right;
+      box-sizing: border-box;
       button {
         width: 100%;
         border: none;
