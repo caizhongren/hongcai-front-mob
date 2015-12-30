@@ -34,7 +34,6 @@ angular.module('p2pSiteMobApp')
     });
     $scope.toggle.switchTab = function(tabIndex) {
       $scope.toggle.activeTab = tabIndex;
-      console.log(tabIndex);
       if (tabIndex === 0) {
         $scope.creditStatus = '1,2';
       } else {
