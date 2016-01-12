@@ -528,6 +528,20 @@ p2pSiteMobApp
           }
         }
       })
+      //分享朋友圈活动案例页（固定案例页）
+      .state('root.activity-example', {
+        url: '/activity-example',
+        data: {
+          title: '活动案例页'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/activity/activity-example.html',
+            //controller: 'ShareHomeCtrl',
+            //controllerUrl: 'scripts/controllers/share/share-home-ctrl'
+          }
+        }
+      })
 
 
     ;
@@ -549,7 +563,8 @@ p2pSiteMobApp
       'experience-landing',
       'experience-activity',
       'rate-activity',
-      'exchange-code'
+      'exchange-code',
+      'activity-example'
     ];
 
     var routespermission = [
