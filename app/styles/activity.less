@@ -396,7 +396,7 @@ input::-webkit-inner-spin-button {
         position: relative;
         background: #eeeeee;
         border: 10px solid #eeeeee;
-        border-bottom: 1px solid #eeeeee;
+        border-bottom: 0.5rem solid #eeeeee;
         line-height: 1.5rem;
       }
       .arrow_box:after,
@@ -459,6 +459,41 @@ input::-webkit-inner-spin-button {
       margin-top: 1rem;
       margin-bottom: 1rem;
       font-weight: bold;
+    }
+  }
+}
+
+.choice-font {
+  padding: 1rem;
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+  font-size: 1.8rem;
+  margin-bottom: 0;
+}
+
+.flex-container {
+  padding: 0 0.5rem;
+  width: 100%;
+  overflow: auto;
+  .flex-item {
+    padding: 0 0.5rem 0.5rem;
+    width: 25%;
+    box-sizing: border-box;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+    .img-hover {
+      position: absolute;
+      top: 0;
+      left: 0.5rem;
+      right: 0.5rem;
+      bottom: 3rem;
+      background: black;
+      opacity: 0.8;
+      filter: alpha(opacity=80);
+      color：red;
     }
   }
 }

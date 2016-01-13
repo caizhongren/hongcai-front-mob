@@ -542,6 +542,20 @@ p2pSiteMobApp
           }
         }
       })
+      //分享朋友圈活动场景选择页
+      .state('root.activity-scene', {
+        url: '/activity-scene',
+        data: {
+          title: '选择场景'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/activity/activity-scene.html',
+            //controller: 'ShareHomeCtrl',
+            //controllerUrl: 'scripts/controllers/share/share-home-ctrl'
+          }
+        }
+      })
 
 
     ;
@@ -564,7 +578,8 @@ p2pSiteMobApp
       'experience-activity',
       'rate-activity',
       'exchange-code',
-      'activity-example'
+      'activity-example',
+      'activity-scene'
     ];
 
     var routespermission = [
