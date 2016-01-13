@@ -472,28 +472,48 @@ input::-webkit-inner-spin-button {
   margin-bottom: 0;
 }
 
-.flex-container {
+.scene-container {
   padding: 0 0.5rem;
   width: 100%;
   overflow: auto;
-  .flex-item {
+  .scene-item {
     padding: 0 0.5rem 0.5rem;
     width: 25%;
     box-sizing: border-box;
     float: left;
     text-align: center;
+    font-size: 1.3rem;
     font-weight: bold;
-    position: relative;
-    .img-hover {
-      position: absolute;
-      top: 0;
-      left: 0.5rem;
-      right: 0.5rem;
-      bottom: 3rem;
-      background: black;
-      opacity: 0.8;
-      filter: alpha(opacity=80);
-      color:red;
+    p{
+      margin:0.5rem 0 0;
+    }
+    .img-area {
+      width: 100%;
+      height: 0;
+      padding-bottom: 100%;
+      position: relative;
+      img {
+        max-width: 100%;
+        height: auto;
+        overflow: hidden;
+      }
+      .icon-checked {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: black;
+        opacity: 0.8;
+        filter:alpha(opacity=80);
+        span {
+          display: block;
+          width:100%;
+          margin-top:40%;
+          color:red;
+        }
+      }
     }
   }
 }
