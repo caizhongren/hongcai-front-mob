@@ -7,10 +7,11 @@ angular.module('p2pSiteMobApp')
     $scope.baseFileUrl = config.base_file_url;
     $scope.wechat = config.wechat_id;
     $scope.BaseWechatUrl = "weixin://profile/";
-
-    if ($rootScope.hasLoggedUser.headImgUrl) {
-      $scope.userHeadImgUrl = $rootScope.hasLoggedUser.headImgUrl;
-    }
+    $rootScope.checkSession.promise.then(function() {
+      if ($rootScope.hasLoggedUser.headImgUrl) {
+        $scope.userHeadImgUrl = $rootScope.hasLoggedUser.headImgUrl;
+      }
+    });
     Restangular.one('sceneActivity').post('userScene', {
       sceneId: $stateParams.sceneId
     }).then(function(response) {
