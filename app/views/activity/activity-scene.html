@@ -2,8 +2,8 @@
 <div class="scene-container">
   <div class="scene-item" ng-repeat="item in scenesData">
     <div class="img-area">
-      <img src="{{item.url}}" alt="" width="100%">
-      <div class="icon-checked"><span><i class="fa fa-check-circle fa-2x ft-white"></i></span></div>
+      <img src="{{baseFileUrl + item.url}}" alt="" width="100%" ng-click="goSceneDetail(item.id)">
+      <!-- <div class="icon-checked"><span><i class="fa fa-check-circle fa-2x ft-white"></i></span></div> -->
     </div>
     <p>{{item.name}}</p>
   </div>
@@ -11,14 +11,3 @@
 <div class="activity-us">
 	<img src="images/activity/US.png" alt="" width="100%" ui-sref="http://a.app.qq.com/o/simple.jsp?pkgname=com.hoolai.us&g_f=991653">
 </div>
-<script>
-$(document).ready(function() {
-  $(".scene-item").find(".img-area img").on('click', function() {
-    $(".scene-item").siblings().find(".icon-checked").hide();
-     $(".scene-item").css("color","black");
-    $(this).parent().find(".icon-checked").show();
-    $(this).parent().parent().css("color","red");
-
-  });
-});
-</script>

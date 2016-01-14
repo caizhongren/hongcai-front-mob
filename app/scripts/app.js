@@ -558,15 +558,15 @@ p2pSiteMobApp
       })
       //分享朋友圈活动生成页
       .state('root.activity-real', {
-        url: '/activity-real',
+        url: '/activity-real/:sceneId',
         data: {
           title: '活动场景页'
         },
         views: {
           '': {
             templateUrl: 'views/activity/activity-real.html',
-            // controller: 'SceneActivityCtrl',
-            // controllerUrl: 'scripts/controllers/share/scene-activity-ctrl'
+            controller: 'RealSceneActivityCtrl',
+            controllerUrl: 'scripts/controllers/share/realscene-activity-ctrl'
           }
         }
       })
