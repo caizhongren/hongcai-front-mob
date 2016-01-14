@@ -10,6 +10,6 @@
   "debug": false,
   "test": false,
   "domain":"http://m.hongcai.com",
-  "base_file_url":"http://www.hongcai.com/uploads/"
-
+  "base_file_url":"http://www.hongcai.com/uploads/",
+  "wechat_id": "gh_9eddaa04a222"
 }

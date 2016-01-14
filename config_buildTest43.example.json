@@ -1,3 +1,4 @@
 {
-  "YEEPAY_ADDRESS": "http://test321.hongcai.com:7000/yeepay/2.0.3/member/bha/"
+  "YEEPAY_ADDRESS": "http://test321.hongcai.com:7000/yeepay/2.0.3/member/bha/",
+  "base_file_url":"http://192.168.1.43:8100/uploads/"
 }
