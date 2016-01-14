@@ -2,7 +2,7 @@
   <div class="user-head"><img src="{{userHeadImgUrl}}" alt=""></div>
   <div class="user-main">
     <div class="user-topic">
-      <p class="margin-b-0 name-font">{{ hasLoggedUser.name }}</p>
+      <p class="margin-b-0 name-font">{{ userNickName || "danny"}}</p>
       <p class="margin-b-1 content-font">{{commentData.words}}</p>
       <img src="{{baseFileUrl + commentData.picUrl}}" alt="" width="100%;">
       <p class="margin-b-0 address-font">{{commentData.location}}</p>
