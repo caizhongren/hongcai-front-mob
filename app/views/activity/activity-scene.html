@@ -1,109 +1,11 @@
 <p class="choice-font">请选择任意场景完成你自己的旅程</p>
 <div class="scene-container">
-  <div class="scene-item">
+  <div class="scene-item" ng-repeat="item in scenesData">
     <div class="img-area">
-      <img src="/images/activity/dubai.png" alt="" width="100%">
+      <img src="{{item.url}}" alt="" width="100%">
       <div class="icon-checked"><span><i class="fa fa-check-circle fa-2x ft-white"></i></span></div>
     </div>
-    <p>迪拜</p>
-  </div>
-  <div class="scene-item">
-    <div class="img-area">
-      <img src="/images/activity/dubai2.png" alt="" width="100%">
-      <div class="icon-checked"><span><i class="fa fa-check-circle fa-2x ft-white"></i></span></div>
-    </div>
-    <p>国际空间站</p>
-  </div>
-  <div class="scene-item">
-    <div class="img-area">
-      <img src="/images/activity/dubai3.png" alt="" width="100%">
-      <div class="icon-checked"><span><i class="fa fa-check-circle fa-2x ft-white"></i></span></div>
-    </div>
-    <p>巴塞罗那</p>
-  </div>
-  <div class="scene-item">
-    <div class="img-area">
-      <img src="/images/activity/dubai4.png" alt="" width="100%">
-      <div class="icon-checked"><span><i class="fa fa-check-circle fa-2x ft-white"></i></span></div>
-    </div>
-    <p>白宫</p>
-  </div>
-  <div class="scene-item">
-    <div class="img-area">
-      <img src="/images/activity/dubai5.png" alt="" width="100%">
-      <div class="icon-checked"><span><i class="fa fa-check-circle fa-2x ft-white"></i></span></div>
-    </div>
-    <p>赌城</p>
-  </div>
-  <div class="scene-item">
-    <div class="img-area">
-      <img src="/images/activity/dubai6.png" alt="" width="100%">
-      <div class="icon-checked"><span><i class="fa fa-check-circle fa-2x ft-white"></i></span></div>
-    </div>
-    <p>钻戒</p>
-  </div>
-  <div class="scene-item">
-    <div class="img-area">
-      <img src="/images/activity/dubai7.png" alt="" width="100%">
-      <div class="icon-checked"><span><i class="fa fa-check-circle fa-2x ft-white"></i></span></div>
-    </div>
-    <p>哈佛大学</p>
-  </div>
-  <div class="scene-item">
-    <div class="img-area">
-      <img src="/images/activity/dubai8.png" alt="" width="100%">
-      <div class="icon-checked"><span><i class="fa fa-check-circle fa-2x ft-white"></i></span></div>
-    </div>
-    <p>战国古墓</p>
-  </div>
-  <div class="scene-item">
-    <div class="img-area">
-      <img src="/images/activity/dubai9.png" alt="" width="100%">
-      <div class="icon-checked"><span><i class="fa fa-check-circle fa-2x ft-white"></i></span></div>
-    </div>
-    <p>戛纳红毯</p>
-  </div>
-  <div class="scene-item">
-    <div class="img-area">
-      <img src="/images/activity/dubai10.png" alt="" width="100%">
-      <div class="icon-checked"><span><i class="fa fa-check-circle fa-2x ft-white"></i></span></div>
-    </div>
-    <p>监狱</p>
-  </div>
-  <div class="scene-item">
-    <div class="img-area">
-      <img src="/images/activity/dubai11.png" alt="" width="100%">
-      <div class="icon-checked"><span><i class="fa fa-check-circle fa-2x ft-white"></i></span></div>
-    </div>
-    <p>热气球</p>
-  </div>
-  <div class="scene-item">
-    <div class="img-area">
-      <img src="/images/activity/dubai12.png" alt="" width="100%">
-      <div class="icon-checked"><span><i class="fa fa-check-circle fa-2x ft-white"></i></span></div>
-    </div>
-    <p>私人飞机</p>
-  </div>
-  <div class="scene-item">
-    <div class="img-area">
-      <img src="/images/activity/dubai13.png" alt="" width="100%">
-      <div class="icon-checked"><span><i class="fa fa-check-circle fa-2x ft-white"></i></span></div>
-    </div>
-    <p>演唱会</p>
-  </div>
-  <div class="scene-item">
-    <div class="img-area">
-      <img src="/images/activity/dubai14.png" alt="" width="100%">
-      <div class="icon-checked"><span><i class="fa fa-check-circle fa-2x ft-white"></i></span></div>
-    </div>
-    <p>整容</p>
-  </div>
-  <div class="scene-item">
-    <div class="img-area">
-      <img src="/images/activity/dubai15.png" alt="" width="100%">
-      <div class="icon-checked"><span><i class="fa fa-check-circle fa-2x ft-white"></i></span></div>
-    </div>
-    <p>女儿国</p>
+    <p>{{item.name}}</p>
   </div>
 </div>
 <div class="activity-us">

@@ -537,7 +537,7 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/activity/activity-example.html',
-            //controller: 'ShareHomeCtrl',
+            //controller: 'SceneActivityCtrl',
             //controllerUrl: 'scripts/controllers/share/share-home-ctrl'
           }
         }
@@ -551,8 +551,22 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/activity/activity-scene.html',
-            //controller: 'ShareHomeCtrl',
-            //controllerUrl: 'scripts/controllers/share/share-home-ctrl'
+            controller: 'SceneActivityCtrl',
+            controllerUrl: 'scripts/controllers/activity/scene-activity-ctrl'
+          }
+        }
+      })
+      //分享朋友圈活动生成页
+      .state('root.activity-real', {
+        url: '/activity-real',
+        data: {
+          title: '活动场景页'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/activity/activity-real.html',
+            // controller: 'SceneActivityCtrl',
+            // controllerUrl: 'scripts/controllers/share/scene-activity-ctrl'
           }
         }
       })
@@ -579,7 +593,8 @@ p2pSiteMobApp
       'rate-activity',
       'exchange-code',
       'activity-example',
-      'activity-scene'
+      'activity-scene',
+      'activity-real'
     ];
 
     var routespermission = [
