@@ -15,9 +15,11 @@
       <div class="arrow_box">♡&nbsp;<span ng-repeat="item in commenters">{{item}}{{$last ? '' :'，'}}</span></div>
       <div class="comment-main">
         <div class="comment-parent" ng-repeat="item in comments">
-          <p><span class="font-name">{{item.commenter}}</span>:&nbsp;{{item.message}}</p>
+          <p ng-show="item.commentType = 1">
+          <span class="font-name">{{item.commenter}}</span>
+          <span ng-show="item.beCommenter !== null">回复</span><span ng-show="item.beCommenter !== null" class="font-name">{{item.beCommenter}}</span>
+          :&nbsp;{{item.message}}</p>
         </div>
-        
       </div>
     </div>
     <div class="share-travel">
@@ -27,5 +29,5 @@
   </div>
 </div>
 <div class="activity-us">
-	<img src="images/activity/US.png" alt="" width="100%" ui-sref="http://a.app.qq.com/o/simple.jsp?pkgname=com.hoolai.us&g_f=991653">
+  <img src="images/activity/US.png" alt="" width="100%" ui-sref="http://a.app.qq.com/o/simple.jsp?pkgname=com.hoolai.us&g_f=991653">
 </div>

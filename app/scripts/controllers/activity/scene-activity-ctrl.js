@@ -16,13 +16,19 @@ angular.module('p2pSiteMobApp')
         sceneId: sceneId
       }).then(function(response) {
         if (response.ret !== -1) {
-          $state.go("root.share-scene", {
-            sceneId: response.id
-          });
+          var shareUrl = config.domain + '/share-scene/' + response.id;
+          console.log(shareUrl);
+          window.location.href = shareUrl;
+          // window.location.href("root.share-scene", {
+          //   sceneId: response.id
+          // });
+          // $state.go("root.share-scene", {
+          //   sceneId: response.id
+          // });
         }
       });
     }
 
-    
+
 
   });

@@ -24,24 +24,12 @@ angular.module('p2pSiteMobApp')
       $scope.commenters = [];
       for (var i = 0; i < $scope.comments.length; i++) {
         if ($scope.comments[i].commentType === 2) {
-          $scope.comments[i].commenter = "danny";
+          $scope.comments[i].commenter = $rootScope.hasLoggedUser.nickName || "danny";
         }
         $scope.commenters[i] = $scope.comments[i].commenter;
         $scope.commenters.push();
-
       }
       $scope.commenters = $.unique($scope.commenters);
-
-      // for (var i = 0; i < $scope.comments.length; i++) {
-      //   for (var j = 0; i < $scope.comments.length; j++) {
-      //     if ($scope.comments[i].parentId > 0) {
-      //       if ($scope.comments[i].parentId === $scope.comments[j].sceneCommentId) {
-      //         console.log(i+"回复" + j);
-      //       }
-      //     }
-      //   }
-      // }
-
 
     });
 
@@ -63,6 +51,9 @@ angular.module('p2pSiteMobApp')
           // 分享成功后隐藏分享引导窗口
           // $scope.inviteFlag = false;
           // $scope.$apply();
+          Restangular.one('sceneActivity', 'shareSuccess').one($stateParams.sceneId).get().then(function(response) {
+            alert(response.ret);
+          });
 
         },
         cancel: function(res) {},
