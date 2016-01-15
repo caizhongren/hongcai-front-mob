@@ -24,7 +24,8 @@
     </div>
     <div class="share-travel">
       <p><a href="{{BaseWechatUrl + wechat}}">戳此关注</a></p>
-      <img src="/images/activity/share-later.png" alt="" width="100%" ng-click="configJsApi()">
+      <img src="/images/activity/share-later.png" alt="" width="100%" ng-if="commentData.userId === hasLoggedUser.id">
+      <img src="/images/activity/share-before@2x.png" alt="" width="100%" ng-if="commentData.userId !== hasLoggedUser.id" ui-sref="root.activity-scene">
     </div>
   </div>
 </div>
