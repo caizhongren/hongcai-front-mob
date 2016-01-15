@@ -12,7 +12,7 @@
       </p>
     </div>
     <div class="comment-spectial">
-      <div class="arrow_box">♡&nbsp;<span ng-repeat="item in comments">{{item.commenter}}{{$last ? '' :'，'}}</span></div>
+      <div class="arrow_box">♡&nbsp;<span ng-repeat="item in commenters">{{item}}{{$last ? '' :'，'}}</span></div>
       <div class="comment-main">
         <div class="comment-parent" ng-repeat="item in comments">
           <p><span class="font-name">{{item.commenter}}</span>:&nbsp;{{item.message}}</p>

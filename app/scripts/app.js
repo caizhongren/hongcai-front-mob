@@ -594,7 +594,7 @@ p2pSiteMobApp
       'exchange-code',
       'share-scene-example',
       'activity-scene',
-      'activity-real'
+      'share-scene'
     ];
 
     var routespermission = [

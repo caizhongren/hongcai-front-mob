@@ -20,6 +20,27 @@ angular.module('p2pSiteMobApp')
 
       $scope.commentData = response;
       $scope.comments = response.comments;
+      console.log($scope.comments);
+      $scope.commenters = [];
+      for (var i = 0; i < $scope.comments.length; i++) {
+        if ($scope.comments[i].commentType === 2) {
+          $scope.comments[i].commenter = "danny";
+        }
+        $scope.commenters[i] = $scope.comments[i].commenter;
+        $scope.commenters.push();
+
+      }
+      $scope.commenters = $.unique($scope.commenters);
+
+      // for (var i = 0; i < $scope.comments.length; i++) {
+      //   for (var j = 0; i < $scope.comments.length; j++) {
+      //     if ($scope.comments[i].parentId > 0) {
+      //       if ($scope.comments[i].parentId === $scope.comments[j].sceneCommentId) {
+      //         console.log(i+"回复" + j);
+      //       }
+      //     }
+      //   }
+      // }
 
 
     });
