@@ -10,7 +10,7 @@ angular.module('p2pSiteMobApp')
 
 
     $rootScope.checkSession.promise.then(function() {
-
+      
     });
 
     Restangular.one('sceneActivity', 'userScene').one($stateParams.sceneId).get().then(function(response) {
