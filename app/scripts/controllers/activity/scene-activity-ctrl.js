@@ -15,16 +15,14 @@ angular.module('p2pSiteMobApp')
       Restangular.one('sceneActivity').post('userScene', {
         sceneId: sceneId
       }).then(function(response) {
-
-        if (response.ret !== -1){
+        if (response.ret !== -1) {
           $state.go("root.share-scene", {
             sceneId: response.id
           });
         }
-        
       });
-      
     }
 
+    
 
   });
