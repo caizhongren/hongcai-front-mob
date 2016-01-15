@@ -20,7 +20,7 @@ angular.module('p2pSiteMobApp')
 
       $scope.commentData = response;
       $scope.comments = response.comments;
-      console.log($scope.comments);
+      // console.log($scope.comments);
       $scope.commenters = [];
       for (var i = 0; i < $scope.comments.length; i++) {
         if ($scope.comments[i].commentType === 2) {
@@ -29,7 +29,8 @@ angular.module('p2pSiteMobApp')
         $scope.commenters[i] = $scope.comments[i].commenter;
         $scope.commenters.push();
       }
-      $scope.commenters = $.unique($scope.commenters);
+      $scope.commenters = $.unique($scope.commenters).join();
+      // console.log($scope.commenters);
 
     });
 
