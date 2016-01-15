@@ -10,10 +10,7 @@ angular.module('p2pSiteMobApp')
 
 
     $rootScope.checkSession.promise.then(function() {
-      if ($rootScope.hasLoggedUser.headImgUrl) {
-        $scope.userHeadImgUrl = $rootScope.hasLoggedUser.headImgUrl;
-        $scope.userNickName = $rootScope.hasLoggedUser.nickName;
-      }
+
     });
 
     Restangular.one('sceneActivity', 'userScene').one($stateParams.sceneId).get().then(function(response) {
@@ -39,6 +36,8 @@ angular.module('p2pSiteMobApp')
         }
       }
       
+
+      Restangular.one();
 
     });
 
