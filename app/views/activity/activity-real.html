@@ -24,7 +24,7 @@
     </div>
     <div class="share-travel">
       <p><a href="{{BaseWechatUrl + wechat}}">戳此关注</a></p>
-      <img src="/images/activity/share-later.png" alt="" width="100%" ng-if="commentData.userId === hasLoggedUser.id">
+      <img src="/images/activity/share-later.png" alt="" width="100%" ng-if="commentData.userId === hasLoggedUser.id" ng-click="showinviteFlag()">
       <img src="/images/activity/share-before@2x.png" alt="" width="100%" ng-if="commentData.userId !== hasLoggedUser.id" ui-sref="root.activity-scene">
     </div>
   </div>
@@ -36,5 +36,12 @@
     <p class="margin-b-0">If not now,when?If not us,who?</p>
   </div>
   <div class="down-btn"><a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.hoolai.us&g_f=991653">下载US</a></div>
+</div>
+
+<!-- 分享给好友蒙层 可以用ng-show控制-->
+<div ng-show="inviteFlag"  class="share-page-breakWishLayer width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-click="hideinviteFlag()" my-click-once>
+  <div class="margin-l-1 margin-r-1 ft-1p2 padding-1" style="border-radius:0.5rem;">
+    <img src="/images/share/share-activity1.png" alt="" width="100%">
+  </div>
 </div>
 

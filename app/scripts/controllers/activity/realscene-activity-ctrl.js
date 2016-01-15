@@ -7,7 +7,13 @@ angular.module('p2pSiteMobApp')
     $scope.baseFileUrl = config.base_file_url;
     $scope.wechat = config.wechat_id;
     $scope.BaseWechatUrl = "weixin://profile/";
-
+    $scope.inviteFlag = false;
+    $scope.showinviteFlag = function(){
+      $scope.inviteFlag = true;
+    }
+    $scope.hideinviteFlag = function(){
+      $scope.inviteFlag = false;
+    }
 
     $rootScope.checkSession.promise.then(function() {
       
