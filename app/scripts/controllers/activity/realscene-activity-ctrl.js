@@ -8,6 +8,7 @@ angular.module('p2pSiteMobApp')
     $scope.wechat = config.wechat_id;
     $scope.BaseWechatUrl = "weixin://profile/";
 
+
     $rootScope.checkSession.promise.then(function() {
       if ($rootScope.hasLoggedUser.headImgUrl) {
         $scope.userHeadImgUrl = $rootScope.hasLoggedUser.headImgUrl;

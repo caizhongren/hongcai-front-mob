@@ -2,7 +2,7 @@
   <div class="user-head"><img src="{{userHeadImgUrl}}" alt=""></div>
   <div class="user-main">
     <div class="user-topic">
-      <p class="margin-b-0 name-font">{{ hasLoggedUser.name }}</p>
+      <p class="margin-b-0 name-font">{{ userNickName || "danny"}}</p>
       <p class="margin-b-1 content-font">{{commentData.words}}</p>
       <img src="{{baseFileUrl + commentData.picUrl}}" alt="" width="100%;">
       <p class="margin-b-0 address-font">{{commentData.location}}</p>
@@ -12,7 +12,7 @@
       </p>
     </div>
     <div class="comment-spectial">
-      <div class="arrow_box">♡&nbsp;<span ng-repeat="item in comments">{{item.commenter}}，</span></div>
+      <div class="arrow_box">♡&nbsp;<span ng-repeat="item in comments">{{item.commenter}}{{$last ? '' :'，'}}</span></div>
       <div class="comment-main">
         <div class="comment-parent" ng-repeat="item in comments">
           <p><span class="font-name">{{item.commenter}}</span>:&nbsp;{{item.message}}</p>
