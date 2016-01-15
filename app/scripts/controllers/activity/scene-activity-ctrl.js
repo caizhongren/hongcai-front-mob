@@ -7,6 +7,13 @@ angular.module('p2pSiteMobApp')
     $scope.BaseWechatUrl = "weixin://profile/";
 
     $scope.baseFileUrl = config.base_file_url;
+
+    $rootScope.checkSession.promise.then(function() {
+        if(!$rootScope.hasLoggedUser || $rootScope.hasLoggedUser.id <=0){
+          $state.go('root.share-scene-example');
+        }
+    });
+
     Restangular.one('sceneActivity', 'scenes').getList().then(function(response) {
       $scope.scenesData = response;
     });
