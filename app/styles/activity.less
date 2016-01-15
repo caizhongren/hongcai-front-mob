@@ -398,6 +398,14 @@ input::-webkit-inner-spin-button {
         border: 10px solid #eeeeee;
         border-bottom: 0.5rem solid #eeeeee;
         line-height: 1.5rem;
+        .heart{
+          display: inline-block;
+          width: 1.5rem;
+          height: 1.5rem;
+          img{
+            vertical-align: middle;
+          }
+        }
       }
       .arrow_box:after,
       .arrow_box:before {
@@ -523,7 +531,37 @@ input::-webkit-inner-spin-button {
 .activity-us{
   width: 100%;
   position: fixed;
-  bottom:-1rem;
+  bottom:0rem;
   left: 0;
   right: 0;
+  background: black;
+  color:white;
+  padding-top:1rem;
+  .icon{
+    width: 15%;
+    float: left;
+    margin-left: 5%;
+  }
+  .p-text{
+    width: 50%;
+    float: left;
+    p:nth-child(1){
+      font-size: 1.6rem;
+    }
+    p:nth-child(2){
+      font-size: 1.2rem;
+    }
+  }
+  .down-btn{
+    width: 30%;
+    float: left;
+    margin-top: 0.8rem;
+    a{
+      width: 100%;
+      background-color: white;
+      border-radius: 0.5rem;
+      color:black;
+      padding: 1rem 2rem;
+    }
+  }
 }

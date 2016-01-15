@@ -26,8 +26,16 @@ angular.module('p2pSiteMobApp')
         $scope.commenters[i] = $scope.comments[i].commenter;
         $scope.commenters.push();
       }
-      $scope.commenters = $.unique($scope.commenters).join();
-      // console.log($scope.commenters);
+      $scope.commenters = $.unique($scope.commenters);
+      $scope.commentersData = "";
+      for(var j=0;j<$scope.commenters.length;j++){
+        if(j<$scope.commenters.length-1){
+          $scope.commentersData += $scope.commenters[j]+"，";
+        }else{
+          $scope.commentersData += $scope.commenters[j];
+        }
+      }
+      
 
       Restangular.one();
 
