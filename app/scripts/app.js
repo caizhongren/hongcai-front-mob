@@ -529,16 +529,16 @@ p2pSiteMobApp
         }
       })
       //分享朋友圈活动案例页（固定案例页）
-      .state('root.activity-example', {
-        url: '/activity-example',
+      .state('root.share-scene-example', {
+        url: '/share-scene-example',
         data: {
-          title: '活动案例页'
+          title: '分享案例页'
         },
         views: {
           '': {
-            templateUrl: 'views/activity/activity-example.html',
-            //controller: 'SceneActivityCtrl',
-            //controllerUrl: 'scripts/controllers/share/share-home-ctrl'
+            templateUrl: 'views/activity/share-scene-example.html',
+            // controller: 'ShareSceneExampleCtrl',
+            // controllerUrl: 'scripts/controllers/share/share-scene-example-ctrl'
           }
         }
       })
@@ -557,8 +557,8 @@ p2pSiteMobApp
         }
       })
       //分享朋友圈活动生成页
-      .state('root.activity-real', {
-        url: '/activity-real/:sceneId',
+      .state('root.share-scene', {
+        url: '/share-scene/:sceneId',
         data: {
           title: '活动场景页'
         },
@@ -592,7 +592,7 @@ p2pSiteMobApp
       'experience-activity',
       'rate-activity',
       'exchange-code',
-      'activity-example',
+      'share-scene-example',
       'activity-scene',
       'activity-real'
     ];

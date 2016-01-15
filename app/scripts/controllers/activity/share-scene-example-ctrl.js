@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('p2pSiteMobApp')
-  .controller('SceneActivityCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, config) {
+  .controller('ShareSceneExampleCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, config) {
 
     $scope.wechat = config.wechat_id;
     $scope.BaseWechatUrl = "weixin://profile/";
@@ -12,18 +12,9 @@ angular.module('p2pSiteMobApp')
     });
 
     $scope.goSceneDetail = function(sceneId) {
-      Restangular.one('sceneActivity').post('userScene', {
+      $state.go("root.activity-real", {
         sceneId: sceneId
-      }).then(function(response) {
-
-        if (response.ret !== -1){
-          $state.go("root.share-scene", {
-            sceneId: response.id
-          });
-        }
-        
       });
-      
     }
 
 

@@ -15,12 +15,12 @@ angular.module('p2pSiteMobApp')
       }
     });
 
-    Restangular.one('sceneActivity').post('userScene', {
-      sceneId: $stateParams.sceneId
-    }).then(function(response) {
-      console.log(response);
+    Restangular.one('sceneActivity', 'userScene').one($stateParams.sceneId).get().then(function(response) {
+
       $scope.commentData = response;
       $scope.comments = response.comments;
+
+
     });
 
 
