@@ -3,6 +3,7 @@
 angular.module('p2pSiteMobApp')
   .controller('ShareSceneExampleCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, config) {
 
+    $scope.test = config.test;
     $scope.wechat = config.wechat_id;
     $scope.BaseWechatUrl = "weixin://profile/";
 

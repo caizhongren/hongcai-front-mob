@@ -3,6 +3,7 @@
 angular.module('p2pSiteMobApp')
   .controller('RealSceneActivityCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, config) {
 
+    $scope.test = config.test;
     $scope.userHeadImgUrl = '/images/activity/head@2x.png';
     $scope.baseFileUrl = config.base_file_url;
     $scope.wechat = config.wechat_id;
