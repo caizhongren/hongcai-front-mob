@@ -26,12 +26,13 @@ angular.module('p2pSiteMobApp')
     $scope.onMenuShareAppMessage = function() {
       var shareLink = config.domain + '/share-scene/' + $stateParams.sceneId;
       var words = $scope.commentData.words;
+      var desc = $scope.comments[0].commenter + ':&nbsp;' + $scope.comments[0].message;
       if ($scope.channelCode) {
         // shareLink = shareLink + '?f=' + $scope.channelCode + '&act=' + $scope.act;
       }
       wx.onMenuShareAppMessage({
-        title: $scope.commentData.scene.name,
-        desc: words,
+        title: words,
+        desc: desc,
         link: shareLink,
         imgUrl: $scope.baseFileUrl + $scope.commentData.scene.url,
         trigger: function(res) {},
