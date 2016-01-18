@@ -26,7 +26,7 @@ angular.module('p2pSiteMobApp')
     $scope.onMenuShareAppMessage = function() {
       var shareLink = config.domain + '/share-scene/' + $stateParams.sceneId;
       var words = $scope.commentData.words;
-      var desc = $scope.comments[0].commenter + ':&nbsp;' + $scope.comments[0].message;
+      var desc = $scope.comments[0].commenter + ':' + $scope.comments[0].message;
       if ($scope.channelCode) {
         // shareLink = shareLink + '?f=' + $scope.channelCode + '&act=' + $scope.act;
       }
@@ -117,6 +117,14 @@ angular.module('p2pSiteMobApp')
 
     });
 
+    $scope.showFollowFlag = false;
+    $scope.goActivityScene = function(){
+      if(!$rootScope.hasLoggedUser || $rootScope.hasLoggedUser.id <= 0){
+        $scope.showFollowFlag = true;
+        return;
+      }
 
+      $state.go('root.activity-scene');
+    }
 
   });
