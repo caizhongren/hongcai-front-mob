@@ -30,10 +30,10 @@ angular.module('p2pSiteMobApp')
         // shareLink = shareLink + '?f=' + $scope.channelCode + '&act=' + $scope.act;
       }
       wx.onMenuShareAppMessage({
-        title: '测试',
+        title: $scope.commentData.scene.name,
         desc: words,
         link: shareLink,
-        imgUrl: $scope.baseFileUrl + $scope.commentData.picUrl,
+        imgUrl: $scope.baseFileUrl + $scope.commentData.scene.url,
         trigger: function(res) {},
         success: function(res) {
           // 分享成功后隐藏分享引导窗口
