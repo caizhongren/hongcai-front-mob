@@ -19,45 +19,19 @@ angular.module('p2pSiteMobApp')
       
     });
 
-    Restangular.one('sceneActivity', 'userScene').one($stateParams.sceneId).get().then(function(response) {
-
-      $scope.commentData = response;
-      $scope.comments = response.comments;
-      // console.log($scope.comments);
-      $scope.commenters = [];
-      for (var i = 0; i < $scope.comments.length; i++) {
-        if ($scope.comments[i].commentType === 2) {
-          $scope.comments[i].commenter = $rootScope.hasLoggedUser.nickName || "danny";
-        }
-        $scope.commenters[i] = $scope.comments[i].commenter;
-        $scope.commenters.push();
-      }
-      $scope.commenters = $.unique($scope.commenters);
-      $scope.commentersData = "";
-      for(var j=0;j<$scope.commenters.length;j++){
-        if(j<$scope.commenters.length-1){
-          $scope.commentersData += $scope.commenters[j]+"，";
-        }else{
-          $scope.commentersData += $scope.commenters[j];
-        }
-      }
-      
-
-      Restangular.one();
-
-    });
 
     /**
      * 设置用户分享的标题以及描述以及图片等。
      */
-    $scope.onMenuShareAppMessage = function(sceneId) {
-      var shareLink = config.domain + '/share-scene/' + sceneId;
+    $scope.onMenuShareAppMessage = function() {
+      var shareLink = config.domain + '/share-scene/' + $stateParams.sceneId;
+      var words = $scope.commentData.words;
       if ($scope.channelCode) {
         // shareLink = shareLink + '?f=' + $scope.channelCode + '&act=' + $scope.act;
       }
       wx.onMenuShareAppMessage({
         title: '测试',
-        desc: '测试测试测试',
+        desc: words,
         link: shareLink,
         imgUrl: $scope.baseFileUrl + $scope.commentData.picUrl,
         trigger: function(res) {},
@@ -100,6 +74,7 @@ angular.module('p2pSiteMobApp')
         });
       });
     };
+
     wx.error(function(res) {
       window.location.reload();
       // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
@@ -107,13 +82,39 @@ angular.module('p2pSiteMobApp')
     });
 
     wx.ready(function() {
-      $scope.onMenuShareAppMessage($stateParams.sceneId);
+      $scope.onMenuShareAppMessage();
       // wx.hideMenuItems({
       //   menuList: ['menuItem:share:timeline'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
       // });
     });
 
-    $scope.configJsApi();
+    
+    Restangular.one('sceneActivity', 'userScene').one($stateParams.sceneId).get().then(function(response) {
+
+      $scope.commentData = response;
+      $scope.comments = response.comments;
+      // console.log($scope.comments);
+      $scope.commenters = [];
+      for (var i = 0; i < $scope.comments.length; i++) {
+        if ($scope.comments[i].commentType === 2) {
+          $scope.comments[i].commenter = $rootScope.hasLoggedUser.nickName || "danny";
+        }
+        $scope.commenters[i] = $scope.comments[i].commenter;
+        $scope.commenters.push();
+      }
+      $scope.commenters = $.unique($scope.commenters);
+      $scope.commentersData = "";
+      for(var j=0;j<$scope.commenters.length;j++){
+        if(j<$scope.commenters.length-1){
+          $scope.commentersData += $scope.commenters[j]+"，";
+        }else{
+          $scope.commentersData += $scope.commenters[j];
+        }
+      }
+      
+      $scope.configJsApi();
+
+    });
 
 
 
