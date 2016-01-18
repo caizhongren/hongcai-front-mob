@@ -59,7 +59,7 @@ angular.module('p2pSiteMobApp')
         title: '测试',
         desc: '测试测试测试',
         link: shareLink,
-        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/KuGEE3Ins1Oc1gSxsWNG7hnKVzX83nWM3rQsiaPNUdqWoR7DddJAW7H7Iico9rad9armXmH9UM8veRvicaoBEpeTA/0?wx_fmt=png',
+        imgUrl: $scope.baseFileUrl + $scope.commentData.picUrl,
         trigger: function(res) {},
         success: function(res) {
           // 分享成功后隐藏分享引导窗口
