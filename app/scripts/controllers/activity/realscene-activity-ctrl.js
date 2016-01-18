@@ -119,13 +119,13 @@ angular.module('p2pSiteMobApp')
     });
 
     $scope.showFollowFlag = false;
-    $scope.goActivityScene = function(){
+    $scope.goActivityScenes = function(){
       if(!$rootScope.hasLoggedUser || $rootScope.hasLoggedUser.id <= 0){
         $scope.showFollowFlag = true;
         return;
       }
 
       $state.go('root.activity-scene');
-    }
+    };
 
   });

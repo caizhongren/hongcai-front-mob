@@ -534,8 +534,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/activity/share-scene-example.html',
-            // controller: 'ShareSceneExampleCtrl',
-            // controllerUrl: 'scripts/controllers/share/share-scene-example-ctrl'
+            controller: 'ShareSceneExampleCtrl',
+            controllerUrl: 'scripts/controllers/share/share-scene-example-ctrl'
           }
         }
       })
