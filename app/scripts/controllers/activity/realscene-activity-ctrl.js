@@ -3,6 +3,9 @@
 angular.module('p2pSiteMobApp')
   .controller('RealSceneActivityCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, config) {
 
+    $scope.act = $stateParams.act;
+    $scope.channelCode = $stateParams.f;
+
     $scope.test = config.test;
     $scope.userHeadImgUrl = '/images/activity/head@2x.png';
     $scope.baseFileUrl = config.base_file_url;
@@ -17,7 +20,13 @@ angular.module('p2pSiteMobApp')
     }
 
     $rootScope.checkSession.promise.then(function() {
-      
+      if ($scope.channelCode){
+          Restangular.one('freeWishes').post('channel', {
+            openId: $rootScope.openid, 
+            act: $scope.act,
+            channelCode: $scope.channelCode
+          });
+        }
     });
 
 
@@ -29,7 +38,7 @@ angular.module('p2pSiteMobApp')
       var words = $scope.commentData.words;
       var desc = $scope.comments[0].commenter + ':' + $scope.comments[0].message;
       if ($scope.channelCode) {
-        // shareLink = shareLink + '?f=' + $scope.channelCode + '&act=' + $scope.act;
+        shareLink = shareLink + '?f=' + $scope.channelCode + '&act=' + $scope.act;
       }
       wx.onMenuShareAppMessage({
         title: words,
@@ -39,10 +48,9 @@ angular.module('p2pSiteMobApp')
         trigger: function(res) {},
         success: function(res) {
           // 分享成功后隐藏分享引导窗口
-          // $scope.inviteFlag = false;
-          // $scope.$apply();
           Restangular.one('sceneActivity', 'shareSuccess').one($stateParams.sceneId).get().then(function(response) {
-            alert(response.ret);
+            $scope.inviteFlag = false;
+            $scope.$apply();
           });
 
         },
@@ -125,7 +133,10 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
-      $state.go('root.activity-scene');
+      $state.go('root.activity-scene', {
+        act: $scope.act,
+        f: $scope.channelCode
+      });
     };
 
   });
