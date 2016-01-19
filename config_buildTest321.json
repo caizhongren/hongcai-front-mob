@@ -9,5 +9,7 @@
 	"sysUpdateUrl": "http://m.test321.hongcai.com/sys-update.html",
 	"debug": true,
 	"test": true,
-	"domain":"http://m.test321.hongcai.com"
+	"domain":"http://m.test321.hongcai.com",
+  	"base_file_url":"http://test321.hongcai.com/uploads/",
+  	"wechat_id": "gh_34771f7f6e08"
 }

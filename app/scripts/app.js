@@ -528,6 +528,39 @@ p2pSiteMobApp
           }
         }
       })
+      //分享朋友圈活动案例页（固定案例页）
+      .state('root.share-scene-example', {
+        url: '/share-scene-example?act&f',
+        views: {
+          '': {
+            templateUrl: 'views/activity/share-scene-example.html',
+            controller: 'ShareSceneExampleCtrl',
+            controllerUrl: 'scripts/controllers/share/share-scene-example-ctrl'
+          }
+        }
+      })
+      //分享朋友圈活动场景选择页
+      .state('root.activity-scene', {
+        url: '/activity-scene?act&f',
+        views: {
+          '': {
+            templateUrl: 'views/activity/activity-scene.html',
+            controller: 'SceneActivityCtrl',
+            controllerUrl: 'scripts/controllers/activity/scene-activity-ctrl'
+          }
+        }
+      })
+      //分享朋友圈活动生成页
+      .state('root.share-scene', {
+        url: '/share-scene/:sceneId?act&f',
+        views: {
+          '': {
+            templateUrl: 'views/activity/activity-real.html',
+            controller: 'RealSceneActivityCtrl',
+            controllerUrl: 'scripts/controllers/share/realscene-activity-ctrl'
+          }
+        }
+      })
 
 
     ;
@@ -549,7 +582,10 @@ p2pSiteMobApp
       'experience-landing',
       'experience-activity',
       'rate-activity',
-      'exchange-code'
+      'exchange-code',
+      'share-scene-example',
+      'activity-scene',
+      'share-scene'
     ];
 
     var routespermission = [

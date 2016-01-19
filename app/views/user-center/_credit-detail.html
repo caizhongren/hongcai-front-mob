@@ -15,10 +15,15 @@
       <br>
       <span class="ft-grey2">本期利率(%)</span>
     </div>
-    <div class="credit-item-info u-pull-left text-center ft-1p4">
+    <div class="credit-item-info u-pull-left text-center ft-1p4" ng-show="toggle.activeTab === 0">
       <strong class="ft-orange ft-1p6">{{ item.profit - item.returnProfit |currency:"":2 || 0}}</strong>
       <br>
-      <span class="ft-grey2">待收金额(元)</span>
+      <span class="ft-grey2">待收利息(元)</span>
+    </div>
+    <div class="credit-item-info u-pull-left text-center ft-1p4" ng-show="toggle.activeTab === 1">
+      <strong class="ft-orange ft-1p6">{{ item.returnProfit |currency:"":2 || 0}}</strong>
+      <br>
+      <span class="ft-grey2">已收利息(元)</span>
     </div>
   </div>
 </div>
