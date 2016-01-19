@@ -12,21 +12,21 @@ angular.module('p2pSiteMobApp')
     $scope.wechat = config.wechat_id;
     $scope.BaseWechatUrl = "weixin://profile/";
     $scope.inviteFlag = false;
-    $scope.showinviteFlag = function(){
+    $scope.showinviteFlag = function() {
       $scope.inviteFlag = true;
     }
-    $scope.hideinviteFlag = function(){
+    $scope.hideinviteFlag = function() {
       $scope.inviteFlag = false;
     }
 
     $rootScope.checkSession.promise.then(function() {
-      if ($scope.channelCode){
-          Restangular.one('freeWishes').post('channel', {
-            openId: $rootScope.openid, 
-            act: $scope.act,
-            channelCode: $scope.channelCode
-          });
-        }
+      if ($scope.channelCode) {
+        Restangular.one('freeWishes').post('channel', {
+          openId: $rootScope.openid,
+          act: $scope.act,
+          channelCode: $scope.channelCode
+        });
+      }
     });
 
 
@@ -98,7 +98,7 @@ angular.module('p2pSiteMobApp')
       // });
     });
 
-    
+
     Restangular.one('sceneActivity', 'userScene').one($stateParams.sceneId).get().then(function(response) {
 
       $scope.commentData = response;
@@ -112,23 +112,37 @@ angular.module('p2pSiteMobApp')
         $scope.commenters[i] = $scope.comments[i].commenter;
         $scope.commenters.push();
       }
-      $scope.commenters = $.unique($scope.commenters);
+      // $scope.commenters = $.unique($scope.commenters);
+      Array.prototype.unique3 = function() {
+        var res = [];
+        var json = {};
+        for (var i = 0; i < this.length; i++) {
+          if (!json[this[i]]) {
+            res.push(this[i]);
+            json[this[i]] = 1;
+          }
+        }
+        return res;
+      }
+      $scope.commenters = $scope.commenters.unique3();
       $scope.commentersData = "";
-      for(var j=0;j<$scope.commenters.length;j++){
-        if(j<$scope.commenters.length-1){
-          $scope.commentersData += $scope.commenters[j]+"，";
-        }else{
+      for (var j = 0; j < $scope.commenters.length; j++) {
+        if (j < $scope.commenters.length - 1) {
+          $scope.commentersData += $scope.commenters[j] + "，";
+        } else {
           $scope.commentersData += $scope.commenters[j];
         }
       }
-      console.log($scope.commentersData);
+
+
+      console.log($scope.commenters);
       $scope.configJsApi();
 
     });
 
     $scope.showFollowFlag = false;
-    $scope.goActivityScenes = function(){
-      if(!$rootScope.hasLoggedUser || $rootScope.hasLoggedUser.id <= 0){
+    $scope.goActivityScenes = function() {
+      if (!$rootScope.hasLoggedUser || $rootScope.hasLoggedUser.id <= 0) {
         $scope.showFollowFlag = true;
         return;
       }
