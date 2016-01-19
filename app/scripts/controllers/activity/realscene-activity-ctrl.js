@@ -146,10 +146,11 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
-      $state.go('root.activity-scene', {
-        act: $scope.act,
-        f: $scope.channelCode
-      });
+      var shareUrl = config.domain + '/activity-scene';
+      if ($scope.channelCode){
+        shareUrl = shareUrl + '?f=' + $scope.channelCode + '&act=' + $scope.act;
+      }
+      window.location.href = shareUrl;
     };
 
   });
