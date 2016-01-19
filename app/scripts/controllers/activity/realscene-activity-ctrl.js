@@ -39,6 +39,8 @@ angular.module('p2pSiteMobApp')
       if ($scope.channelCode) {
         shareLink = shareLink + '?f=' + $scope.channelCode + '&act=' + $scope.act;
       }
+
+      // 分享到朋友
       wx.onMenuShareAppMessage({
         title: words,
         desc: desc,
@@ -55,6 +57,23 @@ angular.module('p2pSiteMobApp')
         },
         cancel: function(res) {},
         fail: function(res) {}
+      });
+
+      // 分享到朋友圈
+      wx.onMenuShareTimeline({
+          title: words, // 分享标题
+          link: shareLink, // 分享链接
+          imgUrl: $scope.baseFileUrl + $scope.commentData.scene.url, // 分享图标
+          success: function () { 
+              // 用户确认分享后执行的回调函数
+            Restangular.one('sceneActivity', 'shareSuccess').one($stateParams.sceneId).get().then(function(response) {
+              $scope.inviteFlag = false;
+              $scope.$apply();
+            });
+          },
+          cancel: function () { 
+              // 用户取消分享后执行的回调函数
+          }
       });
     }
 
@@ -78,7 +97,8 @@ angular.module('p2pSiteMobApp')
           signature: apiConfig.signature, // 必填，签名，见附录1
           jsApiList: [
             'onMenuShareAppMessage',
-            'hideMenuItems'
+            'hideMenuItems',
+            'onMenuShareTimeline'
           ]
         });
       });
