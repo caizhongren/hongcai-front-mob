@@ -107,7 +107,7 @@ angular.module('p2pSiteMobApp')
       $scope.commenters = [];
       for (var i = 0; i < $scope.comments.length; i++) {
         if ($scope.comments[i].commentType === 2) {
-          $scope.comments[i].commenter = $rootScope.hasLoggedUser.nickName || "danny";
+          $scope.comments[i].commenter = $scope.commentData.nickName || "danny";
         }
         $scope.commenters[i] = $scope.comments[i].commenter;
         $scope.commenters.push();
