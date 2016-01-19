@@ -10,7 +10,6 @@ angular.module('p2pSiteMobApp')
     $scope.userHeadImgUrl = '/images/activity/head@2x.png';
     $scope.baseFileUrl = config.base_file_url;
     $scope.wechat = config.wechat_id;
-    $scope.BaseWechatUrl = "weixin://profile/";
     $scope.inviteFlag = false;
     $scope.showinviteFlag = function() {
       $scope.inviteFlag = true;

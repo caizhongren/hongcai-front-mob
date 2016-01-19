@@ -530,7 +530,7 @@ p2pSiteMobApp
       })
       //分享朋友圈活动案例页（固定案例页）
       .state('root.share-scene-example', {
-        url: '/share-scene-example',
+        url: '/share-scene-example?act&f',
         views: {
           '': {
             templateUrl: 'views/activity/share-scene-example.html',
@@ -541,7 +541,7 @@ p2pSiteMobApp
       })
       //分享朋友圈活动场景选择页
       .state('root.activity-scene', {
-        url: '/activity-scene',
+        url: '/activity-scene?act&f',
         views: {
           '': {
             templateUrl: 'views/activity/activity-scene.html',
@@ -552,7 +552,7 @@ p2pSiteMobApp
       })
       //分享朋友圈活动生成页
       .state('root.share-scene', {
-        url: '/share-scene/:sceneId',
+        url: '/share-scene/:sceneId?act&f',
         views: {
           '': {
             templateUrl: 'views/activity/activity-real.html',
