@@ -121,7 +121,7 @@ angular.module('p2pSiteMobApp')
           $scope.commentersData += $scope.commenters[j];
         }
       }
-      
+      console.log($scope.commentersData);
       $scope.configJsApi();
 
     });
