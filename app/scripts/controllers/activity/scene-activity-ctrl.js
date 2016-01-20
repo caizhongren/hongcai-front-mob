@@ -30,7 +30,8 @@ angular.module('p2pSiteMobApp')
 
     $scope.goSceneDetail = function(sceneId) {
       Restangular.one('sceneActivity').post('userScene', {
-        sceneId: sceneId
+        sceneId: sceneId,
+        size: 5
       }).then(function(response) {
         if (response.ret !== -1) {
           var shareUrl = config.domain + '/share-scene/' + response.id;
