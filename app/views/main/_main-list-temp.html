@@ -1,19 +1,44 @@
-<div class="padding-b-1 bg-offWhite" style="border-top: 4.5rem solid #f2f2f2;margin-top: -3rem;min-height: 640px;">
-  <!-- 在下面的div class="main-list-temp"上面添加ng-repeat即可  start list-->
-  <div class="main-list-temp clear" ui-sref="root.project-detail">
-    <p class="text-left padding-l-1 margin-b-1"><span class="ft-1p6">级联担保推荐标150127期</span>&nbsp;<span class="ft-1 ft-grey2">按月付息，到期还本</span></p>
-    <div class="text-left padding-l-1 ft-1p6 margin-b-1">
-      <span class="ft-blue4">12</span>%&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-grey2">┇</span>&nbsp;&nbsp;
-      <span class="ft-blue4">12</span>个月&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-grey2">┇</span>&nbsp;&nbsp;
-      <span class="ft-blue4">300</span>万元
-      <!-- 引用angular-svg-round-progressbar -->
-      <!-- max为最大100份 curr为当前占了几份也即是百分比值  -->
-      <div class="fr padding-r-1 ft-blue4 circle-outer">
-        <div class="circle-inner">投资</div>
-        <div class="" round-progress max="100" current="curr" color="#45ccce" bgcolor="#eaeaea" radius="24" stroke="4" semi="false" rounded="true" clockwise="true" responsive="false" duration="800" animation="easeInOutQuart">
+<!-- 在下面的div class="main-list-temp"上面添加ng-repeat即可  start list-->
+<div class="main-list-temp clear" ui-sref="root.project-detail">
+  <div class="title">
+    <span class="height-line">&nbsp;</span>
+    <img src="/images/logo-jigou.png" alt="">
+    <span class="title-text ">首单担保2016010001期</span>
+    <span class="title-status-orange">融资中</span>
+  </div>
+  <div class="pro-info">
+    <ul>
+      <li>
+        <p class="ft-orange"><span class="ft-2">12</span>%</p>
+        <p>年化收益</p>
+      </li>
+      <li>
+        <p class="ft-black"><span class="ft-2">90</span>天</p>
+        <p>投资期限</p>
+      </li>
+      <li>
+        <p class="ft-black"><span class="ft-2">230</span>万元</p>
+        <p>投资金额</p>
+      </li>
+    </ul>
+    <div class="pro-info2">
+      <div class="progress">
+        <div class="progress-bar" ng-class="{'progress-bar-warning': item.status === 8 || item.status === 9 || item.status === 10, 'progress-bar-success progree-bar-green': item.status === 5, 'progress-bar-info': item.status === 11}" role="progressbar" aria-valuenow="{{item.progress || 0 }}" aria-valuemin="0" aria-valuemax="100" style="width: {{item.progress||0 }}%">
+        </div>
+      </div>
+      <div class="info1 margin-b-0">
+        <div class="left fl text-left">
+          <span>可投金额：</span>
+          <span>150万元</span>
+        </div>
+        <div class="right fr text-right">
+          <span>已加入</span>
+          <span>60.5%</span>
         </div>
       </div>
     </div>
   </div>
-  <!-- ending list -->
+  <div class="operation-btn">
+    <button class="button-primary button">查看详情</button>
+  </div>
 </div>

@@ -52,6 +52,8 @@ angular.module('p2pSiteMobApp')
       title: '零存宝',
     }, {
       title: '宏金盈'
+    }, {
+      title: '宏金保'
     }];
     $scope.subTabs = [{
       title: '月月盈',
