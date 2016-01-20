@@ -49,9 +49,9 @@ angular.module('p2pSiteMobApp')
         trigger: function(res) {},
         success: function(res) {
           // 分享成功后隐藏分享引导窗口
-          Restangular.one('sceneActivity').one('shareSuccess').post(
+          Restangular.one('sceneActivity').post('shareSuccess', {
             userSceneId: $scope.commentData.id
-          ).then(function(response) {
+          }).then(function(response) {
             $scope.inviteFlag = false;
             $scope.$apply();
           });
@@ -67,9 +67,9 @@ angular.module('p2pSiteMobApp')
           imgUrl: $scope.baseFileUrl + $scope.commentData.scene.url, // 分享图标
           success: function () { 
               // 用户确认分享后执行的回调函数
-            Restangular.one('sceneActivity').one('shareSuccess').post(
+            Restangular.one('sceneActivity').post('shareSuccess', {
               userSceneId: $scope.commentData.id
-            ).then(function(response) {
+            }).then(function(response) {
               $scope.inviteFlag = false;
               $scope.$apply();
             });
