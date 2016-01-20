@@ -1,67 +1,51 @@
 <!-- 宏金保详情页 -->
-<div class="bg-white">
-  <div class="padding-l-1 margin-b-1 padding-r-1 margin-t-1">
-    <span class="text-left ft-1p6">级联担保推荐标150127期</span><span class="ft-orange ft-1 text-right padding-l-2">宏金保协议范本</span>
+<div class="funds-project bg-white">
+  <div class="row current-detail-bg ft-white padding-t-2 padding-b-2">
+    <p class="text-center margin-b-1">
+      <strong class="ft-2 ft-white">首单担保2016010001期</strong>
+      <span class="ft-1p8 bg-white ft-orange padding-l-2 padding-r-2 border-ra-20">正常还款中</span>
+    </p>
+    <p class="margin-b-0 text-center">
+      <strong class="ft-3">12%</strong>
+      <!-- <strong class="ft-3">- {{simpleFundsProject.product.maxRate |currency:"":1 || 0}}</strong>% -->
+    </p>
+    <p class="margin-0 text-center ft-1p8">年化收益率</p>
   </div>
-  <div class="main-hongjinbao">
-    <ul>
-      <li>
-        <div class="text-center">
-          <i class="fa fa-jpy"></i>
-          <br>
-          <p class="margin-b-0p5 ft-1p8">500万</p>
-          <p class="margin-b-0p5 ft-1p5">融资金额</p>
-        </div>
-      </li>
-      <li>
-        <div class="text-center">
-          <i class="fa fa-line-chart"></i>
-          <br>
-          <p class="margin-b-0p5 ft-1p8">12%</p>
-          <p class="margin-b-0p5 ft-1p5">年化收益率</p>
-        </div>
-      </li>
-      <li>
-        <div class="text-center">
-          <i class="fa fa-clock-o"></i>
-          <br>
-          <p class="margin-b-0p5 ft-1p8">3个月</p>
-          <p class="margin-b-0p5 ft-1p5">投资期限</p>
-        </div>
-      </li>
-    </ul>
-    <div class="progress-hongjinbao">
-      <p class="text-center ft-1p8">按月付息，到期还本&nbsp;&nbsp;100%本息保障</p>
-      <p>progressbar</p>
-      <p class="ft-1p6"><span class="text-left">投资进度30%</span><span class="text-right">可投金额31万</span></p>
-    </div>
+  <div class="tab-arrow">
+    <table class="u-full-width margin-b-0" border-collapse="collapse">
+      <tbody>
+        <tr>
+          <td>递增方式</td>
+          <td>递增收益，每期递增<span class="ft-orange">{{simpleFundsProject.product.riseRate |currency:"":1 || 0}}%</span></td>
+        </tr>
+        <tr>
+          <td>续投次数</td>
+          <td>最高{{simpleFundsProject.product.repeatInvestMaxCount}}次</td>
+        </tr>
+        <tr>
+          <td>锁定期限</td>
+          <td>{{simpleFundsProject.product.sealingDays || 0}}日</td>
+        </tr>
+        <tr>
+          <td>退出日期</td>
+          <td>{{simpleFundsProject.repaymentDate | amDateFormat:'YYYY年MM月DD日'}}</td>
+        </tr>
+        <tr>
+          <td>投资上限</td>
+          <td>累积投资不超过<span class="ft-orange">{{simpleFundsProject.product.maxInvest | number : 0}}</span>元</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <div class="hongjinbao-list-detail">
-    <p>
-      <span>项目名称</span>
-      <span >担保推荐标150127期</span>
-    </p>
-    <p>
-      <span>推荐机构</span>
-      <span >北京融资担保有限公司</span>
-    </p>
-    <p>
-      <span>发布日期</span>
-      <span >2015-12-28</span>
-    </p>
-    <p>
-      <span>还款日期</span>
-      <span >2015-12-28</span>
-    </p>
-    <p>
-      <span>起投金额</span>
-      <span >100元</span>
-    </p>
-  </div>
-  <div class="detail-more" ui-sref="root.project-detail-more">
-    更多详情&nbsp;&nbsp;>
+  <div class="text-right padding-b-1 padding-r-1">
+    <a href="javascript:;" ng-click="toggle();" class="ft-grey4 ft-1p2" style="text-decoration:underline;">零存宝协议范本</a>
   </div>
   <!-- 投资模块 -->
-  <div ng-include src="'views/project/_funds-project-investment.html'">
+  <div ng-include src="'views/project/_current-project-investment.html'">
+  </div>
+  <!-- 开通自动投标权限 -->
+  <div ng-include src="'views/user-center/auto-auto-transfer.html'" ng-show="authAutoTransferFlag">
+  </div>
+  <div class="alert-agreement" ng-show="showFundsAgreement" ng-include src="'views/_current_deposit-agreement.html'">
   </div>
 </div>
