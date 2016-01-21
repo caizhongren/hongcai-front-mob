@@ -14,12 +14,18 @@ angular.module('p2pSiteMobApp')
 
     $scope.tabClassIndex = "";
     $scope.subtabClassIndex = "";
+    $scope.page = 1;
+    $scope.pageSize = 20;
 
     // 获取宏金宝投资列表
     // $scope.projectsRecommendations = projects.$find('recommendations');
     // 获取宏金盈投资列表
-    Restangular.one('projects').get().then(function(response) {
+    Restangular.one('projects').get({
+      page: $scope.page,
+      pageSize: $scope.pageSize
+    }).then(function(response) {
       $scope.jigoubaoData = response.projectList;
+      console.log($scope.jigoubaoData);
     });
     $scope.goProjectInvest = function() {
       if ($scope.jigoubaoData.currentStock <= 0 || $scope.jigoubaoData.status !== 1) {
