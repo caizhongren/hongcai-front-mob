@@ -15,7 +15,7 @@ angular.module('p2pSiteMobApp')
     $scope.tabClassIndex = "";
     $scope.subtabClassIndex = "";
     $scope.page = 1;
-    $scope.pageSize = 20;
+    $scope.pageSize = 5;
 
     // 获取宏金宝投资列表
     // $scope.projectsRecommendations = projects.$find('recommendations');
