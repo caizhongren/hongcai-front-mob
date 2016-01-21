@@ -190,8 +190,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/project/project-detail.html',
-            //controller: 'FundsProjectDetailCtrl',
-            //controllerUrl: 'scripts/controllers/project/funds-project-detail'
+            //controller: 'ProjectDetailCtrl',
+            //controllerUrl: 'scripts/controllers/project/project-detail'
           }
         }
       })
