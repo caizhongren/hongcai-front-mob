@@ -1,23 +1,25 @@
 <!-- 宏金保首页 在下面的div class="main-list-temp"上面添加ng-repeat即可  start list   ui-sref="root.project-detail"-->
-<div class="main-list-temp clear" ui-sref="root.project-detail">
+<div class="main-list-temp clear" ui-sref="root.project-detail" ng-repeat = "item in jigoubaoData">
   <div class="title">
     <span class="height-line">&nbsp;</span>
     <img src="/images/logo-jigou.png" alt="">
-    <span class="title-text ">首单担保2016010001期</span>
-    <span class="title-status-orange">融资中</span>
+    <span class="title-text">{{item.name}}</span>
+    <span ng-show="item.status === 7" class="title-status-orange">融资中</span>
+    <span ng-show="item.status === 9" class="title-status-green">还款中</span>
+    <span ng-show="item.status === 10" class="title-status-grey">已完成</span>
   </div>
   <div class="pro-info">
     <ul>
       <li>
-        <p class="ft-orange"><span class="ft-2">12</span>%</p>
+        <p class="ft-orange"><span class="ft-2">{{item.annualEarnings}}</span>%</p>
         <p>年化收益</p>
       </li>
       <li>
-        <p class="ft-black"><span class="ft-2">90</span>天</p>
+        <p class="ft-black"><span class="ft-2">{{item.projectDays}}</span>天</p>
         <p>投资期限</p>
       </li>
       <li>
-        <p class="ft-black"><span class="ft-2">230</span>万元</p>
+        <p class="ft-black"><span class="ft-2">{{item.total/10000}}</span>万元</p>
         <p>投资金额</p>
       </li>
     </ul>
@@ -34,11 +36,11 @@
       <div class="info1 margin-b-0">
         <div class="left fl text-left">
           <span>可投金额：</span>
-          <span>150万元</span>
+          <span>{{item.total - (item.soldStock + item.occupancyStock) * item.increaseAmount | number:0}}元</span>
         </div>
         <div class="right fr text-right">
           <span>已加入</span>
-          <span>60.5%</span>
+          <span>{{(item.soldStock + item.occupancyStock) * item.increaseAmount / item.total * 100| number:1}}%</span>
         </div>
       </div>
     </div>

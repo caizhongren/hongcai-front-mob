@@ -7,7 +7,7 @@
  * Controller of the p2pSiteMobApp
 + */
 angular.module('p2pSiteMobApp')
-  .controller('MainCtrl', function($scope, $stateParams, $state, $rootScope, $location, projects, fundsProjects) {
+  .controller('MainCtrl', function($scope, $stateParams, $state, $rootScope, $location, Restangular, projects, fundsProjects) {
     // 宏金保列表页百分比值
 
     $scope.curr = 27;
@@ -18,6 +18,10 @@ angular.module('p2pSiteMobApp')
     // 获取宏金宝投资列表
     // $scope.projectsRecommendations = projects.$find('recommendations');
     // 获取宏金盈投资列表
+    Restangular.one('projects').get().then(function(response) {
+      $scope.jigoubaoData = response.projectList;
+      console.log($scope.jigoubaoData);
+    });
     $scope.switchFundsProjects = function(type) {
       // console.log(type);
       fundsProjects.$find('recommendations', {
@@ -213,26 +217,26 @@ angular.module('p2pSiteMobApp')
     /**
      * 点击立即投资
      */
-    $scope.goInvest = function(){
-      if($scope.recFundsProjects.currentStock <= 0 || $scope.recFundsProjects.status !== 1){
+    $scope.goInvest = function() {
+      if ($scope.recFundsProjects.currentStock <= 0 || $scope.recFundsProjects.status !== 1) {
         $scope.goDetail($scope.recFundsProjects);
         return;
       }
 
-      if (!$rootScope.isLogged){
+      if (!$rootScope.isLogged) {
         $location.path('/login');
         return;
       }
 
-      if($rootScope.securityStatus.realNameAuthStatus !== 1){
-        if(confirm('您还未开通托管账户，请到个人中心开通')){
+      if ($rootScope.securityStatus.realNameAuthStatus !== 1) {
+        if (confirm('您还未开通托管账户，请到个人中心开通')) {
           $state.go('root.user-center.account');
         }
         return;
       }
 
-      $state.go('root.investment-confirmation',{
-        number:$scope.recFundsProjects.number
+      $state.go('root.investment-confirmation', {
+        number: $scope.recFundsProjects.number
       })
     }
 
