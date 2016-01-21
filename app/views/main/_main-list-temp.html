@@ -1,5 +1,5 @@
 <!-- 宏金保首页 在下面的div class="main-list-temp"上面添加ng-repeat即可  start list   ui-sref="root.project-detail"-->
-<div class="main-list-temp clear" ui-sref="root.project-detail" ng-repeat = "item in jigoubaoData">
+<div class="main-list-temp clear" ng-repeat = "item in jigoubaoData">
   <div class="title">
     <span class="height-line">&nbsp;</span>
     <img src="/images/logo-jigou.png" alt="">
@@ -46,7 +46,9 @@
     </div>
   </div>
   <div class="operation-btn">
-    <button class="button-primary button">我要投资</button>
+    <button ng-show="item.status === 7" class="button-primary button" ng-click="goProjectInvest();">我要投资</button>
+    <button ng-show="item.status === 9" class="button-grey button" ng-click="goProjectInvest();">查看详情</button>
+    <button ng-show="item.status === 10" class="button-grey button" ng-click="goProjectInvest();">查看详情</button>
   </div>
 </div>
 <!--ending repeat-->

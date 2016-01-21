@@ -186,7 +186,7 @@ p2pSiteMobApp
       })
       // 宏金保详情页
       .state('root.project-detail', {
-        url: '/project-detail',
+        url: '/project-detail/:number',
         views: {
           '': {
             templateUrl: 'views/project/project-detail.html',

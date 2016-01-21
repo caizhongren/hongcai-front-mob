@@ -20,8 +20,29 @@ angular.module('p2pSiteMobApp')
     // 获取宏金盈投资列表
     Restangular.one('projects').get().then(function(response) {
       $scope.jigoubaoData = response.projectList;
-      console.log($scope.jigoubaoData);
     });
+    $scope.goProjectInvest = function() {
+      if ($scope.jigoubaoData.currentStock <= 0 || $scope.jigoubaoData.status !== 1) {
+        $scope.goDetail($scope.jigoubaoData);
+        return;
+      }
+
+      if (!$rootScope.isLogged) {
+        $location.path('/login');
+        return;
+      }
+
+      if ($rootScope.securityStatus.realNameAuthStatus !== 1) {
+        if (confirm('您还未开通托管账户，请到个人中心开通')) {
+          $state.go('root.user-center.account');
+        }
+        return;
+      }
+
+      $state.go('root.project-detail', {
+        number: $scope.jigoubaoData.number
+      })
+    }
     $scope.switchFundsProjects = function(type) {
       // console.log(type);
       fundsProjects.$find('recommendations', {
@@ -87,8 +108,9 @@ angular.module('p2pSiteMobApp')
           number: project.number
         });
       } else if ($scope.toggle.activeTab === 2) {
-        // $state.go('root.project-detail');
-        // console.log($scope.toggle.activeTab);
+        $state.go('root.project-detail', {
+          number: project.number
+        });
       }
     }
 
