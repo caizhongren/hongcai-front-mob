@@ -3,7 +3,7 @@
   <div class="title">
     <span class="height-line">&nbsp;</span>
     <img src="/images/logo-jigou.png" alt="">
-    <span class="title-text">{{item.name | limitTo:14}}……</span>
+    <span class="title-text">{{item.name | limitTo:9}}...</span>
     <span ng-show="item.status === 7" class="title-status-orange">融资中</span>
     <span ng-show="item.status === 9" class="title-status-green">还款中</span>
     <span ng-show="item.status === 10" class="title-status-grey">已完成</span>
