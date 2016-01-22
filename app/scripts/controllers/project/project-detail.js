@@ -10,7 +10,7 @@
 angular.module('p2pSiteMobApp')
   .controller('ProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, fundsProjects, Restangular, restmod, DEFAULT_DOMAIN, config) {
     // 宏金盈详情页面
-    // var number = $stateParams.number;
+    var number = $stateParams.number;
     if (!$stateParams.number) {
       $state.go('root.main');
     }
@@ -19,13 +19,14 @@ angular.module('p2pSiteMobApp')
       $scope.jigoubaoDetailData = response;
       $scope.jigoubaoDataMore = $scope.jigoubaoDetailData.projectInfo;
       console.log($scope.jigoubaoDetailData);
+      // 可投资金额
       $scope.jigoubaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
       // 当status===1可融资状态的时候，判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。
       if ($scope.jigoubaoDetailData.status === 7) {
         if ($rootScope.account) {
           // 用户可投资金额
           var plusNum = $rootScope.securityStatus.realNameAuthStatus;
-          console.log(plusNum);
+          // console.log(plusNum);
           switch (plusNum) {
             case 1:
               $scope.fundsFlag = 2;
@@ -51,7 +52,8 @@ angular.module('p2pSiteMobApp')
     }
     $scope.checkLargeUserCanAmount = function(project) {
       if ($rootScope.account) {
-        var availableAmount = project.status !== 7 ? $rootScope.account.balance : $rootScope.account.balance + $rootScope.account.experienceAmount;
+        // console.log(project);
+        // var availableAmount = project.status !== 7 ? $rootScope.account.balance : $rootScope.account.balance + $rootScope.account.experienceAmount;
         if ($rootScope.account.balance < project.investAmount) {
           return true;
         } else {
@@ -71,31 +73,7 @@ angular.module('p2pSiteMobApp')
       }
     };
 
-    $scope.checkAutoTransfer = function(jigoubaoDetailData) {
-      $scope.project.isRepeatFlag = !$scope.project.isRepeatFlag;
 
-      // alert('点击自动续投');
-      if ($scope.fundsFlag !== 3) {
-        $scope.jigoubaoDetailData.isRepeatFlag = false;
-        jigoubaoDetailData.isRepeatFlag = false;
-        $scope.authAutoTransferFlag = true;
-        $scope.msg = "您还没有开通自动续投";
-      }
-    };
-
-    $scope.cancelAuthAutoTransfer = function() {
-      $scope.authAutoTransferFlag = false;
-    }
-
-    /**
-     * 开通自动投标权限
-     */
-    $scope.toAuthAutoTransfer = function() {
-      $state.go('root.yeepay-transfer', {
-        type: 'autoTransfer',
-        number: "null"
-      });
-    }
     $scope.experienceAmount = 0;
     $scope.confirmUseReward = function(project, selectCoupon) {
       if (project.useExperience) {
@@ -108,8 +86,32 @@ angular.module('p2pSiteMobApp')
       $scope.rewardFlag = false;
       $scope.selectCoupon = selectCoupon;
     }
-    $scope.toInvest = function(project) {
 
+    function newForm() {
+      var f = document.createElement('form');
+      document.body.appendChild(f);
+      f.method = 'post';
+      // f.target = '_blank';
+      return f;
+    }
+
+    function createElements(eForm, eName, eValue) {
+      var e = document.createElement('input');
+      eForm.appendChild(e);
+      e.type = 'text';
+      e.name = eName;
+      if (!document.all) {
+        e.style.display = 'none';
+      } else {
+        e.style.display = 'block';
+        e.style.width = '0px';
+        e.style.height = '0px';
+      }
+      e.value = eValue;
+      return e;
+    }
+    $scope.toInvest = function(project) {
+      // console.log(project);
       if (!project.investAmount) {
         $scope.msg = '投资金额有误，请重新输入';
         return;
@@ -122,23 +124,19 @@ angular.module('p2pSiteMobApp')
         $state.go('root.login');
       } else if ($scope.fundsFlag === 1) {
         // 需要跳到实名认证页面
-      } else if ($scope.checkLargeUserCanAmount(simpleFundsProject)) {
+      } else if ($scope.checkLargeUserCanAmount(project)) {
         // $state.go('root.yeepay-transfer', {
         //       type: 'recharge',
         //       number: payAmount - $rootScope.account.balance + ($rootScope.account.reward == null ? 0 : $rootScope.account.reward)
         // });
         $state.go('root.user-center.recharge');
-      } else if ($scope.fundsFlag === 2 || $scope.fundsFlag === 3) {
+      } else if ($scope.fundsFlag === 2) {
         // how to bulid investment path restmod.model
         // restmod.model(DEFAULT_DOMAIN + '/projects')
         if (payAmount > 0) {
-          restmod.model(DEFAULT_DOMAIN + '/fundsProjects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
+          restmod.model(DEFAULT_DOMAIN + '/projects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
             // fundsProjects.$find(number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
-            amount: simpleFundsProject.investAmount,
-            projectId: simpleFundsProject.id,
-            isRepeat: $scope.isRepeat,
-            payAmount: payAmount,
-            couponNumber: couponNumber
+            investAmount: project.investAmount
           }).$then(function(response) {
             // 重复下单后，response.number为undefined
             if (response.$status === 'ok') {
@@ -163,13 +161,9 @@ angular.module('p2pSiteMobApp')
             }
           })
         } else {
-          restmod.model(DEFAULT_DOMAIN + '/fundsProjects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/investmentByExperience').$create({
+          restmod.model(DEFAULT_DOMAIN + '/projects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/investmentByExperience').$create({
             // fundsProjects.$find(number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
-            amount: simpleFundsProject.investAmount,
-            projectId: simpleFundsProject.id,
-            isRepeat: $scope.isRepeat,
-            payAmount: payAmount,
-            couponNumber: couponNumber
+            investAmount: project.investAmount
           }).$then(function(response) {
             // 重复下单后，response.number为undefined
             if (response.$status === 'ok') {
