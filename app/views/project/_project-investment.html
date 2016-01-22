@@ -1,6 +1,6 @@
 <div class="row margin-t-2"  ng-show="jigoubaoDetailData.status === 7" ng-switch="fundsFlag">
   <!-- 判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户 -->
-  <!-- {{fundsFlag}} -->
+  {{fundsFlag}}
   <div ng-switch-when=0>
     <div class="width-pull overflow-hid bg-orange1 padding-l-1 padding-r-1 padding-t-1 padding-b-1 border-orange3 ft-1p5">
       <span class="u-pull-left"><i class="fa fa-users ft-orange"></i>&nbsp;参投人数:<strong class="ft-orange">{{jigoubaoDetailData.investNumber || 0}}</strong>人</span>
@@ -89,7 +89,7 @@
 <div class="row" ng-show="jigoubaoDetailData.status !== 7">
   <div class="width-pull overflow-hid bg-orange1 padding-l-1 padding-r-1 padding-t-1 padding-b-1 border-orange3 ft-1p5">
     <span class="u-pull-left"><i class="fa fa-users ft-orange"></i>&nbsp;参投人数&nbsp;<strong class="ft-orange">{{jigoubaoDetailData.investNumber || 0}}</strong>人</span>
-    <span class="u-pull-right"><i class="fa fa-pie-chart ft-orange"></i>&nbsp;可投金额&nbsp;<strong class="ft-orange">12000{{jigoubaoProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
+    <span class="u-pull-right"><i class="fa fa-pie-chart ft-orange"></i>&nbsp;可投金额&nbsp;<strong class="ft-orange">{{jigoubaoProjectInvestNum | currency:"":0 || 0}}</strong> 元</span>
   </div>
   <form name="investForm" class="investForm overflow-hid" ng-submit="toInvest(jigoubaoDetailData)">
     <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="msg">
