@@ -49,11 +49,11 @@
     </div>
   </div>
   <div class="operation-btn">
-    <button ng-show="item.status === 6" class="button-grey button" ng-click="goProjectInvest();">查看详情</button>
-    <button ng-show="item.status === 7" class="button-primary button" ng-click="goProjectInvest();">我要投资</button>
-    <button ng-show="item.status === 9" class="button-grey button" ng-click="goProjectInvest();">查看详情</button>
-    <button ng-show="item.status === 10" class="button-grey button" ng-click="goProjectInvest();">查看详情</button>
-    <button ng-show="item.status === 11" class="button-primary button" ng-click="goProjectInvest();">我要预约</button>
+    <button ng-show="item.status === 6" class="button-grey button" ng-click="goProjectInvest(item);">查看详情</button>
+    <button ng-show="item.status === 7" class="button-primary button" ng-click="goProjectInvest(item);">我要投资</button>
+    <button ng-show="item.status === 9" class="button-grey button" ng-click="goProjectInvest(item);">查看详情</button>
+    <button ng-show="item.status === 10" class="button-grey button" ng-click="goProjectInvest(item);">查看详情</button>
+    <button ng-show="item.status === 11" class="button-primary button" ng-click="goProjectInvest(item);">我要预约</button>
   </div>
 </div>
 <!--ending repeat-->

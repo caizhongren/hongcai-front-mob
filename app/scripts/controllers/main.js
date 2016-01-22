@@ -24,12 +24,15 @@ angular.module('p2pSiteMobApp')
       page: $scope.page,
       pageSize: $scope.pageSize
     }).then(function(response) {
+      $scope.jigoubao = response;
       $scope.jigoubaoData = response.projectList;
-      console.log($scope.jigoubaoData);
+      // console.log($scope.jigoubaoData);
     });
-    $scope.goProjectInvest = function() {
+    $scope.goProjectInvest = function(project) {
       if ($scope.jigoubaoData.currentStock <= 0 || $scope.jigoubaoData.status !== 1) {
-        $scope.goDetail($scope.jigoubaoData);
+        $state.go('root.project-detail', {
+          number: project.number
+        });
         return;
       }
 

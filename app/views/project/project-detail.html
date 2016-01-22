@@ -2,11 +2,11 @@
 <div class="funds-project bg-white margin-b-7">
   <div class="row current-detail-bg ft-white padding-t-2 padding-b-2">
     <p class="text-center margin-b-1">
-      <strong class="ft-1p6 ft-white ft-bold">首单担保2016010001期</strong>
+      <strong class="ft-1p6 ft-white ft-bold">{{jigoubaoDetailData.name}}</strong>
       <span class="ft-1p8 bg-white ft-orange padding-l-1 padding-r-1 border-ra-20">正常还款中</span>
     </p>
     <p class="margin-b-0 text-center">
-      <strong class="ft-4">12%</strong>
+      <strong class="ft-4">{{jigoubaoDetailData.annualEarnings}}%</strong>
       <!-- <strong class="ft-3">- {{simpleFundsProject.product.maxRate |currency:"":1 || 0}}</strong>% -->
     </p>
     <p class="margin-0 text-center ft-1p8">年化收益率</p>
@@ -16,19 +16,26 @@
       <tbody>
         <tr>
           <td>推荐机构</td>
-          <td>北京收单融资担保有限公司</td>
+          <td>{{jigoubaoDetailData.guaranteeName}}</td>
         </tr>
         <tr>
           <td>投资日期</td>
-          <td><span class="ft-orange">120</span>天</td>
+          <td><span class="ft-orange">{{jigoubaoDetailData.projectDays}}</span>天</td>
         </tr>
         <tr>
           <td>还款日期</td>
-          <td>2015-12-29</td>
+          <td>{{jigoubaoDetailData.repaymentDate | amDateFormat:'YYYY-MM-DD'}}</td>
         </tr>
         <tr>
           <td>还款方式</td>
-          <td>按月付息&nbsp;到期还本</td>
+          <td>
+          <span ng-show="jigoubaoDetailData.repaymentType===1">按月付息&nbsp;到期还本</span>
+          <span ng-show="jigoubaoDetailData.repaymentType===2">按月返还&nbsp;等额本息</span>
+          <span ng-show="jigoubaoDetailData.repaymentType===3">按季付息&nbsp;到期还本</span>
+          <span ng-show="jigoubaoDetailData.repaymentType===4">半年付息&nbsp;到期还本</span>
+          <span ng-show="jigoubaoDetailData.repaymentType===5">到期还本付息</span>
+
+          </td>
         </tr>
       </tbody>
     </table>
