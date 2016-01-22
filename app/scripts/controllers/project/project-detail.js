@@ -137,11 +137,13 @@ angular.module('p2pSiteMobApp')
           restmod.model(DEFAULT_DOMAIN + '/projects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
             // fundsProjects.$find(number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
             investAmount: project.investAmount
-          }).$then(function(response) {
+          }).$then(function(order) {
             // 重复下单后，response.number为undefined
-            if (response.$status === 'ok') {
-              if (response.number !== null && response.number !== undefined) {
-                restmod.model(DEFAULT_DOMAIN + '/orders/' + response.number + '/users/' + $rootScope.hasLoggedUser.id + '/payment').$create().$then(function(response) {
+            if (order.ret !== -1) {
+              if (order.number !== null && order.number !== undefined) {
+                restmod.model(DEFAULT_DOMAIN + '/projects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/payment').$create({
+                  orderNumber: order.number
+                }).$then(function(response) {
                   if (response.$status === 'ok') {
                     var req = response.req;
                     var sign = response.sign;
@@ -160,27 +162,7 @@ angular.module('p2pSiteMobApp')
               $scope.msg = "服务器累瘫了，请稍后访问。";
             }
           })
-        } else {
-          restmod.model(DEFAULT_DOMAIN + '/projects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/investmentByExperience').$create({
-            // fundsProjects.$find(number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
-            investAmount: project.investAmount
-          }).$then(function(response) {
-            // 重复下单后，response.number为undefined
-            if (response.$status === 'ok') {
-              if (response.number !== null && response.number !== undefined) {
-                $state.go('root.yeepay-callback', {
-                  business: 'TRANSFER',
-                  status: 'SUCCESS',
-                  amount: response.amount
-                });
-              } else if (response.ret === -1) {
-                $scope.msg = response.msg;
-              }
-            } else {
-              $scope.msg = "服务器累瘫了，请稍后访问。";
-            }
-          })
-        }
+        } 
       }
     };
 
