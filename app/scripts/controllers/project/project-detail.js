@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('ProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, fundsProjects, Restangular, restmod, DEFAULT_DOMAIN, config) {
+  .controller('ProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams,fundsProjects, Restangular, restmod, DEFAULT_DOMAIN, config) {
     // 宏金盈详情页面
     // var number = $stateParams.number;
     if (!$stateParams.number) {
@@ -17,7 +17,8 @@ angular.module('p2pSiteMobApp')
 
     Restangular.one('projects').one($stateParams.number).get().then(function(response) {
       $scope.jigoubaoDetailData = response;
-      console.log($scope.jigoubaoDetailData);
+      $scope.jigoubaoDataMore = $scope.jigoubaoDetailData.projectInfo;
+      console.log($scope.jigoubaoDataMore);
       $scope.jigoubaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
       // 当status===1可融资状态的时候，判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。
       if ($scope.jigoubaoDetailData.status === 7) {
@@ -45,6 +46,12 @@ angular.module('p2pSiteMobApp')
         return;
       }
     });
+    
+    $scope.goMoreDetail = function(project){
+      $state.go('root.project-detail-more', {
+        number:project.number
+      });
+    }
     $scope.checkLargeUserCanAmount = function(project) {
       if ($rootScope.account) {
         var availableAmount = project.product.type !== 1 ? $rootScope.account.balance : $rootScope.account.balance + $rootScope.account.experienceAmount;

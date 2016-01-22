@@ -21,7 +21,8 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'restangular',
   'angular-svg-round-progress',
   // 'ui.bootstrap',
-  'restangular'
+  'restangular',
+  'textAngular'
 ]);
 
 p2pSiteMobApp
@@ -197,12 +198,12 @@ p2pSiteMobApp
       })
       // 宏金保详情页更多详情
       .state('root.project-detail-more', {
-        url: '/project-detail-more',
+        url: '/project-detail-more/:number',
         views: {
           '': {
             templateUrl: 'views/project/project-detail-more.html',
-            //controller: 'FundsProjectDetailCtrl',
-            //controllerUrl: 'scripts/controllers/project/funds-project-detail'
+            controller: 'ProjectDetailCtrl',
+            controllerUrl: 'scripts/controllers/project/project-detail'
           }
         }
       })
