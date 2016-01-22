@@ -3,7 +3,11 @@
   <div class="row current-detail-bg ft-white padding-t-2 padding-b-2">
     <p class="text-center margin-b-1">
       <strong class="ft-1p6 ft-white ft-bold">{{jigoubaoDetailData.name}}</strong>
-      <span class="ft-1p8 bg-white ft-orange padding-l-1 padding-r-1 border-ra-20">正常还款中</span>
+      <span ng-show="jigoubaoDetailData.status === 6" class="ft-1p8 bg-white ft-orange padding-l-1 padding-r-1 border-ra-20">预发布</span>
+      <span ng-show="jigoubaoDetailData.status === 11" class="ft-1p8 bg-white ft-orange padding-l-1 padding-r-1 border-ra-20">预约中</span>
+      <span ng-show="jigoubaoDetailData.status === 7" class="ft-1p8 bg-white ft-orange padding-l-1 padding-r-1 border-ra-20">融资中</span>
+      <span ng-show="jigoubaoDetailData.status === 9" class="ft-1p8 bg-white ft-orange padding-l-1 padding-r-1 border-ra-20">还款中</span>
+      <span ng-show="jigoubaoDetailData.status === 10" class="ft-1p8 bg-white ft-orange padding-l-1 padding-r-1 border-ra-20">已完成</span>
     </p>
     <p class="margin-b-0 text-center">
       <strong class="ft-4">{{jigoubaoDetailData.annualEarnings}}%</strong>
@@ -29,12 +33,11 @@
         <tr>
           <td>还款方式</td>
           <td>
-          <span ng-show="jigoubaoDetailData.repaymentType===1">按月付息&nbsp;到期还本</span>
-          <span ng-show="jigoubaoDetailData.repaymentType===2">按月返还&nbsp;等额本息</span>
-          <span ng-show="jigoubaoDetailData.repaymentType===3">按季付息&nbsp;到期还本</span>
-          <span ng-show="jigoubaoDetailData.repaymentType===4">半年付息&nbsp;到期还本</span>
-          <span ng-show="jigoubaoDetailData.repaymentType===5">到期还本付息</span>
-
+            <span ng-show="jigoubaoDetailData.repaymentType===1">按月付息&nbsp;到期还本</span>
+            <span ng-show="jigoubaoDetailData.repaymentType===2">按月返还&nbsp;等额本息</span>
+            <span ng-show="jigoubaoDetailData.repaymentType===3">按季付息&nbsp;到期还本</span>
+            <span ng-show="jigoubaoDetailData.repaymentType===4">半年付息&nbsp;到期还本</span>
+            <span ng-show="jigoubaoDetailData.repaymentType===5">到期还本付息</span>
           </td>
         </tr>
       </tbody>
