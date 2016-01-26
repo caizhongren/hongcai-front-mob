@@ -24,7 +24,7 @@ angular.module('p2pSiteMobApp')
       $scope.jigoubaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
       // 当status===1可融资状态的时候，判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。
       $rootScope.checkSession.promise.then(function() {
-        if ($rootScope.account) {
+        if ($rootScope.isLogged) {
           // 用户可投资金额
           var plusNum = $rootScope.securityStatus.realNameAuthStatus;
 
@@ -51,7 +51,7 @@ angular.module('p2pSiteMobApp')
       });
     }
     $scope.checkLargeUserCanAmount = function(project) {
-      if ($rootScope.account) {
+      if ($rootScope.isLogged) {
         // console.log(project);
         // var availableAmount = project.status !== 7 ? $rootScope.account.balance : $rootScope.account.balance + $rootScope.account.experienceAmount;
         if ($rootScope.account.balance < project.investAmount) {
