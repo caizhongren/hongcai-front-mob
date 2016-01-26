@@ -122,6 +122,9 @@ angular.module('p2pSiteMobApp')
       //  window.location.href = locationUrl;
 
     }
+    $scope.showRealName = function() {
+      $scope.toRealNameAuth = true;
+    }
     $scope.toInvest = function(project) {
       // console.log(project);
       if (!project.investAmount) {
