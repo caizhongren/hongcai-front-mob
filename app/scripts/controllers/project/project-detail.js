@@ -14,7 +14,6 @@ angular.module('p2pSiteMobApp')
     if (!$stateParams.number) {
       $state.go('root.main');
     }
-    $scope.toRealNameAuth = false;
 
     Restangular.one('projects').one($stateParams.number).get().then(function(response) {
       $scope.jigoubaoDetailData = response;
@@ -122,9 +121,6 @@ angular.module('p2pSiteMobApp')
       //  window.location.href = locationUrl;
 
     }
-    $scope.showRealName = function() {
-      $scope.toRealNameAuth = true;
-    }
     /**
      * 实名认证，即开通易宝
      */
@@ -140,12 +136,7 @@ angular.module('p2pSiteMobApp')
       });
     }
 
-    $scope.toRealNameAuth = false;
-    $scope.openYeepay = function(){
-      $scope.toRealNameAuth = true;
-    }
 
-    
     $scope.toInvest = function(project) {
       // console.log(project);
       if (!project.investAmount) {
