@@ -111,10 +111,16 @@ angular.module('p2pSiteMobApp')
       return e;
     }
     $scope.toLog = function() {
+      var redirectUrl = $location.path();
       $state.go('root.login', {
-        redirectUrl: $location.path()
+        redirectUrl: redirectUrl
+
       });
+
       return;
+      // var locationUrl = $location.path();
+      //  window.location.href = locationUrl;
+
     }
     $scope.toInvest = function(project) {
       // console.log(project);

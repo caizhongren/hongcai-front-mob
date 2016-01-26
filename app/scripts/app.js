@@ -106,17 +106,6 @@ p2pSiteMobApp
           }
         }
       })
-      .state('root.loginByWechat', {
-        url: '/login/:openId',
-        views: {
-          '': {
-            templateUrl: 'views/login.html',
-            controller: 'LoginCtrl',
-            controllerUrl: 'scripts/controllers/login'
-
-          }
-        }
-      })
       .state('root.register', {
         url: '/register/:openId/:inviteCode',
         data: {
@@ -640,6 +629,7 @@ p2pSiteMobApp
 
           if (!$rootScope.isLogged && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
             $location.path('/login');
+            return;
           }
         } else if (response.ret === -1) { //用户未登录，。
 
