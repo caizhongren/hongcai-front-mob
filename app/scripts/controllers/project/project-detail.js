@@ -14,6 +14,7 @@ angular.module('p2pSiteMobApp')
     if (!$stateParams.number) {
       $state.go('root.main');
     }
+    $scope.toRealNameAuth = false;
 
     Restangular.one('projects').one($stateParams.number).get().then(function(response) {
       $scope.jigoubaoDetailData = response;
@@ -22,29 +23,26 @@ angular.module('p2pSiteMobApp')
       // 可投资金额
       $scope.jigoubaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
       // 当status===1可融资状态的时候，判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。
-      if ($scope.jigoubaoDetailData.status === 7) {
-        if ($rootScope.account) {
-          // 用户可投资金额
-          var plusNum = $rootScope.securityStatus.realNameAuthStatus;
-          // console.log(plusNum);
-          switch (plusNum) {
-            case 1:
-              $scope.fundsFlag = 2;
-              break;
-            case 0:
-              $scope.fundsFlag = 1;
-              break;
-          }
-        } else {
-          $scope.userCanCreditInvestNum = 0;
-          $scope.fundsFlag = 0;
+      if ($rootScope.account) {
+        // 用户可投资金额
+        var plusNum = $rootScope.securityStatus.realNameAuthStatus;
+
+        switch (plusNum) {
+          case 1:
+            $scope.fundsFlag = 2;
+            break;
+          case 0:
+            $scope.fundsFlag = 1;
+            break;
         }
+      } else {
+        $scope.userCanCreditInvestNum = 0;
+        $scope.fundsFlag = 0;
       }
       if (!$rootScope.hasLoggedUser || !$rootScope.hasLoggedUser.id) {
         return;
       }
     });
-
     $scope.goMoreDetail = function(project) {
       $state.go('root.project-detail-more', {
         number: project.number
@@ -110,6 +108,12 @@ angular.module('p2pSiteMobApp')
       e.value = eValue;
       return e;
     }
+    $scope.toLog = function() {
+      $state.go('root.login', {
+        redirectUrl: $location.path()
+      });
+      return;
+    }
     $scope.toInvest = function(project) {
       // console.log(project);
       if (!project.investAmount) {
@@ -121,9 +125,9 @@ angular.module('p2pSiteMobApp')
       var payAmount = $scope.investAmount - $scope.experienceAmount;
       var couponNumber = $scope.couponNumber;
       if ($scope.fundsFlag === 0) {
-        $state.go('root.login', {
-          redirectUrl: $location.path()
-        });
+        // $state.go('root.login', {
+        //   redirectUrl: $location.path()
+        // });
       } else if ($scope.fundsFlag === 1) {
         // 需要跳到实名认证页面
       } else if ($scope.checkLargeUserCanAmount(project)) {
@@ -164,7 +168,7 @@ angular.module('p2pSiteMobApp')
               $scope.msg = "服务器累瘫了，请稍后访问。";
             }
           })
-        } 
+        }
       }
     };
 

@@ -38,8 +38,10 @@ angular.module('p2pSiteMobApp')
           $scope.msg = response.msg;
         } else {
 
-          if(redirectUrl){
+          if (redirectUrl) {
             $location.path(decodeURIComponent(redirectUrl));
+            console.log($location.path(decodeURIComponent(redirectUrl)));
+            return;
           }
 
           $rootScope.isLogged = true;
