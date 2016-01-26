@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('ProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, fundsProjects, Restangular, restmod, DEFAULT_DOMAIN, config) {
+  .controller('ProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects, Restangular, restmod, DEFAULT_DOMAIN, config) {
     // 宏金盈详情页面
     var number = $stateParams.number;
     if (!$stateParams.number) {
@@ -121,7 +121,9 @@ angular.module('p2pSiteMobApp')
       var payAmount = $scope.investAmount - $scope.experienceAmount;
       var couponNumber = $scope.couponNumber;
       if ($scope.fundsFlag === 0) {
-        $state.go('root.login');
+        $state.go('root.login', {
+          redirectUrl: $location.path()
+        });
       } else if ($scope.fundsFlag === 1) {
         // 需要跳到实名认证页面
       } else if ($scope.checkLargeUserCanAmount(project)) {
