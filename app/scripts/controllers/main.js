@@ -16,6 +16,21 @@ angular.module('p2pSiteMobApp')
     $scope.subtabClassIndex = "";
     $scope.page = 1;
     $scope.pageSize = 10;
+    $scope.widthFlag = "";
+
+    function screenWidth() {
+      $scope.width = document.body.scrollWidth; //用系统返回宽度除以分辨率
+      if ($scope.width >= 320 && $scope.width < 375) {
+        $scope.widthFlag = 0;
+      } else if ($scope.width >= 375 && $scope.width < 414) {
+        $scope.widthFlag = 1;
+      }else if ($scope.width >= 414) {
+        $scope.widthFlag = 2;
+      }
+      return $scope.widthFlag;
+    }
+
+    screenWidth();
 
     // 获取宏金宝投资列表
     // $scope.projectsRecommendations = projects.$find('recommendations');

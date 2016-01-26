@@ -3,8 +3,11 @@
   <div class="title">
     <span class="height-line">&nbsp;</span>
     <img src="/images/logo-jigou.png" alt="">
-    <span class="title-text" ng-show="item.name.length > 10">{{item.name | limitTo:9}}...</span>
-    <span class="title-text" ng-show="item.name.length <= 10">{{item.name}}</span>
+    <span class="title-text" ng-show="widthFlag===0 && item.name.length <= 10">{{item.name}}</span>
+    <span class="title-text" ng-show="widthFlag===0 && item.name.length > 10">{{item.name | limitTo:9}}...</span>
+    <span class="title-text" ng-show="widthFlag===1 || widthFlag===2">{{item.name}}</span>
+    <!-- <span class="title-text" ng-show="item.name.length > 10">{{item.name | limitTo:9}}...</span>
+    <span class="title-text" ng-show="item.name.length <= 10">{{item.name}}</span> -->
     <span ng-show="item.status === 6" class="title-status-orange">预发布</span>
     <span ng-show="item.status === 11" class="title-status-orange">预约中</span>
     <span ng-show="item.status === 7" class="title-status-orange">融资中</span>
