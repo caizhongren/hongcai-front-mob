@@ -27,7 +27,7 @@ angular.module('p2pSiteMobApp')
           // 项目详情
           $scope.simpleFundsProject = response;
           $scope.simpleFundsProject.isRepeatFlag = false;
-          console.log($scope.simpleFundsProject);
+          // console.log($scope.simpleFundsProject);
           // 可投资金额
           $scope.fundsProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
           // 当status===1可融资状态的时候，判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。
@@ -117,7 +117,7 @@ angular.module('p2pSiteMobApp')
     }
 
     $scope.checkLargeUserCanAmount = function(project) {
-      console.log(project);
+      // console.log(project);
       if ($rootScope.isLogged) {
         var availableAmount = project.product.type !== 1 ? $rootScope.account.balance : $rootScope.account.balance + $rootScope.account.experienceAmount;
         if ($rootScope.account.balance < project.investAmount) {
@@ -141,14 +141,13 @@ angular.module('p2pSiteMobApp')
     };
 
     $scope.checkAutoTransfer = function(simpleFundsProject) {
-      $scope.project.isRepeatFlag = !$scope.project.isRepeatFlag;
-
-      // alert('点击自动续投');
-      if ($scope.fundsFlag !== 3) {
+      simpleFundsProject.isRepeatFlag = !simpleFundsProject.isRepeatFlag;
+      if ($scope.fundsFlag === 2) {
         $scope.simpleFundsProject.isRepeatFlag = false;
         simpleFundsProject.isRepeatFlag = false;
         $scope.authAutoTransferFlag = true;
         $scope.msg = "您还没有开通自动续投";
+        // console.log($scope.msg);
       }
     };
 
