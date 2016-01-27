@@ -14,9 +14,11 @@ angular.module('p2pSiteMobApp')
 
     $scope.tabClassIndex = "";
     $scope.subtabClassIndex = "";
+    $scope.widthFlag = "";
+
     $scope.page = 1;
     $scope.pageSize = 10;
-    $scope.widthFlag = "";
+    $scope.pageCount = 1;
 
     function screenWidth() {
       $scope.width = document.body.scrollWidth; //用系统返回宽度除以分辨率
@@ -24,7 +26,7 @@ angular.module('p2pSiteMobApp')
         $scope.widthFlag = 0;
       } else if ($scope.width >= 375 && $scope.width < 414) {
         $scope.widthFlag = 1;
-      }else if ($scope.width >= 414) {
+      } else if ($scope.width >= 414) {
         $scope.widthFlag = 2;
       }
       return $scope.widthFlag;
@@ -34,15 +36,40 @@ angular.module('p2pSiteMobApp')
 
     // 获取宏金宝投资列表
     // $scope.projectsRecommendations = projects.$find('recommendations');
-    // 获取宏金盈投资列表
-    Restangular.one('projects').get({
-      page: $scope.page,
-      pageSize: $scope.pageSize
-    }).then(function(response) {
-      $scope.jigoubao = response;
-      $scope.jigoubaoData = response.projectList;
-      // console.log($scope.jigoubaoData);
-    });
+
+    // Restangular.one('projects').get({
+    //   page: $scope.page,
+    //   pageSize: $scope.pageSize
+    // }).then(function(response) {
+    //   $scope.jigoubao = response;
+    //   $scope.jigoubaoData = response.projectList;
+    // });
+  $scope.jigoubaoData = [];
+    $scope.getTempData = function() {
+      if ($scope.pageCount < $scope.page) {
+        return;
+      }
+      Restangular.one('projects').get({
+        page: $scope.page,
+        pageSize: $scope.pageSize
+      }).then(function(response) {
+        $scope.jigoubao = response;
+        $scope.pageCount = response.pageCount;
+        for (var i = 0; i < response.projectList.length; i++) {
+            $scope.jigoubaoData.push(response.projectList[i]);
+          };
+      });
+    }
+
+    $scope.loadDealMuch = function() {
+      $scope.DealBusy = true;
+      $scope.page = $scope.page+1;
+      $scope.pageCount = $scope.pageCount + 1;
+      $scope.pageSize = $scope.pageSize;
+      $scope.getTempData();
+      
+      $scope.DealBusy = false;
+    };
     $scope.goProjectInvest = function(project) {
       if ($scope.jigoubaoData.currentStock <= 0 || $scope.jigoubaoData.status !== 1) {
         $state.go('root.project-detail', {
