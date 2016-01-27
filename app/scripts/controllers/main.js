@@ -44,7 +44,7 @@ angular.module('p2pSiteMobApp')
     //   $scope.jigoubao = response;
     //   $scope.jigoubaoData = response.projectList;
     // });
-  $scope.jigoubaoData = [];
+    $scope.jigoubaoData = [];
     $scope.getTempData = function() {
       if ($scope.pageCount < $scope.page) {
         return;
@@ -56,18 +56,18 @@ angular.module('p2pSiteMobApp')
         $scope.jigoubao = response;
         $scope.pageCount = response.pageCount;
         for (var i = 0; i < response.projectList.length; i++) {
-            $scope.jigoubaoData.push(response.projectList[i]);
-          };
+          $scope.jigoubaoData.push(response.projectList[i]);
+        };
       });
     }
 
     $scope.loadDealMuch = function() {
       $scope.DealBusy = true;
-      $scope.page = $scope.page+1;
+      $scope.getTempData();
+      $scope.page = $scope.page + 1;
       $scope.pageCount = $scope.pageCount + 1;
       $scope.pageSize = $scope.pageSize;
-      $scope.getTempData();
-      
+
       $scope.DealBusy = false;
     };
     $scope.goProjectInvest = function(project) {
