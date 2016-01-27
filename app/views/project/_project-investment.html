@@ -1,8 +1,8 @@
 <div class="row margin-t-2" ng-switch="fundsFlag">
   <!-- 未登录状态下 -->
   <div ng-switch-when=0>
-    <div class="padding-t-2 padding-b-2 text-center bg-grey4 border-grey-top border-grey-bottom">
-      <p class="margin-b-1">您的账号未登录</p>
+    <div class="padding-t-1p5 padding-b-1p5 text-center bg-grey4 border-grey-top border-grey-bottom ft-1p6">
+      <p class="margin-b-0">您的账号未登录</p>
       <p class="margin-b-0">投资请<span class="ft-red" ng-click="toLog()">登录</span></p>
     </div>
   </div>
@@ -10,8 +10,8 @@
   <div ng-switch-when=1>
     <!-- 可融资状态下 -->
     <div ng-show="jigoubaoDetailData.status === 7">
-      <div class="padding-t-2 padding-b-2 text-center bg-grey4 border-grey-top border-grey-bottom">
-        <p class="margin-b-1">您的账号未开通第三方托管</p>
+      <div class="padding-t-1p5 padding-b-1p5 text-center bg-grey4 border-grey-top border-grey-bottom ft-1p6">
+        <p class="margin-b-0">您的账号未开通第三方托管</p>
         <p class="margin-b-0"><span class="ft-red" ng-click="$parent.toRealNameAuth=true">点击这里</span>开通</p>
       </div>
     </div>
@@ -59,7 +59,7 @@
     <div ng-show="jigoubaoDetailData.status !== 7">
       <!-- 不可投资时 -->
       <div class="width-pull overflow-hid bg-orange1 padding-l-1 padding-r-1 padding-t-1 padding-b-1 border-orange3 ft-1p5">
-        <span class="u-pull-left"><i class="fa fa-users ft-orange"></i>&nbsp;参投人数&nbsp;<strong class="ft-orange">{{jigoubaoDetailData.soldStock || 0}}</strong>人</span>
+        <span class="u-pull-left"><i class="fa fa-users ft-orange"></i>&nbsp;账户余额&nbsp;<strong class="ft-orange">{{ account.balance | currency:"":2 || 0}}</strong>人</span>
         <span class="u-pull-right"><i class="fa fa-pie-chart ft-orange"></i>&nbsp;可投金额&nbsp;<strong class="ft-orange">{{jigoubaoProjectInvestNum/10000 | currency:"":2 || 0}}</strong>万元</span>
       </div>
     </div>
