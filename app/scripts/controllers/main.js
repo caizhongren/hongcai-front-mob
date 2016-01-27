@@ -7,17 +7,93 @@
  * Controller of the p2pSiteMobApp
 + */
 angular.module('p2pSiteMobApp')
-  .controller('MainCtrl', function($scope, $stateParams, $state, $rootScope, $location, projects, fundsProjects) {
+  .controller('MainCtrl', function($scope, $stateParams, $state, $rootScope, $location, Restangular, projects, fundsProjects) {
     // 宏金保列表页百分比值
 
     $scope.curr = 27;
 
     $scope.tabClassIndex = "";
     $scope.subtabClassIndex = "";
+    $scope.widthFlag = "";
+
+    $scope.page = 1;
+    $scope.pageSize = 3;
+    $scope.pageCount = 1;
+
+    function screenWidth() {
+      $scope.width = document.body.scrollWidth; //用系统返回宽度除以分辨率
+      if ($scope.width >= 320 && $scope.width < 375) {
+        $scope.widthFlag = 0;
+      } else if ($scope.width >= 375 && $scope.width < 414) {
+        $scope.widthFlag = 1;
+      } else if ($scope.width >= 414) {
+        $scope.widthFlag = 2;
+      }
+      return $scope.widthFlag;
+    }
+
+    screenWidth();
 
     // 获取宏金宝投资列表
     // $scope.projectsRecommendations = projects.$find('recommendations');
-    // 获取宏金盈投资列表
+
+    // Restangular.one('projects').get({
+    //   page: $scope.page,
+    //   pageSize: $scope.pageSize
+    // }).then(function(response) {
+    //   $scope.jigoubao = response;
+    //   $scope.jigoubaoData = response.projectList;
+    // });
+  $scope.jigoubaoData = [];
+    $scope.getTempData = function() {
+      if ($scope.pageCount < $scope.page) {
+        return;
+      }
+      Restangular.one('projects').get({
+        page: $scope.page,
+        pageSize: $scope.pageSize
+      }).then(function(response) {
+        $scope.jigoubao = response;
+        $scope.pageCount = response.pageCount;
+        for (var i = 0; i < response.projectList.length; i++) {
+            $scope.jigoubaoData.push(response.projectList[i]);
+          };
+      });
+    }
+
+    $scope.loadDealMuch = function() {
+      $scope.DealBusy = true;
+      $scope.page = $scope.page+1;
+      $scope.pageCount = $scope.pageCount + 1;
+      $scope.pageSize = $scope.pageSize;
+      $scope.getTempData();
+      
+      $scope.DealBusy = false;
+    };
+    $scope.goProjectInvest = function(project) {
+      if ($scope.jigoubaoData.currentStock <= 0 || $scope.jigoubaoData.status !== 1) {
+        $state.go('root.project-detail', {
+          number: project.number
+        });
+        return;
+      }
+
+      if (!$rootScope.isLogged) {
+        $location.path('/login');
+        return;
+      }
+
+      if ($rootScope.securityStatus.realNameAuthStatus !== 1) {
+        if (confirm('您还未开通托管账户，请到个人中心开通')) {
+          $state.go('root.user-center.account');
+        }
+        return;
+      }
+
+      $state.go('root.project-detail', {
+        number: $scope.jigoubaoData.number
+      })
+    }
     $scope.switchFundsProjects = function(type) {
       // console.log(type);
       fundsProjects.$find('recommendations', {
@@ -52,6 +128,8 @@ angular.module('p2pSiteMobApp')
       title: '零存宝',
     }, {
       title: '宏金盈'
+    }, {
+      title: '宏金保'
     }];
     $scope.subTabs = [{
       title: '月月盈',
@@ -81,8 +159,9 @@ angular.module('p2pSiteMobApp')
           number: project.number
         });
       } else if ($scope.toggle.activeTab === 2) {
-        // $state.go('root.project-detail');
-        // console.log($scope.toggle.activeTab);
+        $state.go('root.project-detail', {
+          number: project.number
+        });
       }
     }
 
@@ -211,26 +290,26 @@ angular.module('p2pSiteMobApp')
     /**
      * 点击立即投资
      */
-    $scope.goInvest = function(){
-      if($scope.recFundsProjects.currentStock <= 0 || $scope.recFundsProjects.status !== 1){
+    $scope.goInvest = function() {
+      if ($scope.recFundsProjects.currentStock <= 0 || $scope.recFundsProjects.status !== 1) {
         $scope.goDetail($scope.recFundsProjects);
         return;
       }
 
-      if (!$rootScope.isLogged){
+      if (!$rootScope.isLogged) {
         $location.path('/login');
         return;
       }
 
-      if($rootScope.securityStatus.realNameAuthStatus !== 1){
-        if(confirm('您还未开通托管账户，请到个人中心开通')){
+      if ($rootScope.securityStatus.realNameAuthStatus !== 1) {
+        if (confirm('您还未开通托管账户，请到个人中心开通')) {
           $state.go('root.user-center.account');
         }
         return;
       }
 
-      $state.go('root.investment-confirmation',{
-        number:$scope.recFundsProjects.number
+      $state.go('root.investment-confirmation', {
+        number: $scope.recFundsProjects.number
       })
     }
 

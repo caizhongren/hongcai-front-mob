@@ -1,31 +1,30 @@
 <!-- 宏金保更多详情页 -->
 <div class="bg-white more-info hongjinbao-detail-more">
   <p class="padding-t-1 padding-b-1 padding-l-2 bg-orange ft-white"><i class="fa fa-arrow-circle-right ft-1p6"></i>&nbsp;<b class="ft-1p6">项目信息</b></p>
-  <div class="padding-l-2 padding-r-2 bg-white ">
+  <div class="padding-l-2 padding-r-2 bg-white margin-b-5">
     <div class="border-bottom-safe ft-1p8 item-style">
       <span class="ft-orange">项目简介</span>
       <!-- <span class="font-sub-bule">{{ item.eName }}</span> -->
       <hr class="hr-orange">
     </div>
-    <pre>借款企业为北京某大药房，该药房成立于2007年，注册资金500万，主营中成药、中药饮片、化学药制剂、抗生素、生化药品、保健品、医疗器械等，目前在北京有9家店面，年主营业务收入超过1300万元，其关联公司北京某科技发展有限公司，年主营业务收入超过一千万元，两家企业年净利润总额可达400万，借款企业为医药零售行业，收经济大环境影响较小，企业经营比较稳定。
-	</pre>
+    <pre ta-bind ng-model="jigoubaoDataMore.description"></pre>
 	<div class="border-bottom-safe ft-1p8 item-style">
       <span class="ft-orange">资金用途</span>
       <!-- <span class="font-sub-bule">{{ item.eName }}</span> -->
       <hr class="hr-orange">
     </div>
-    <pre>经营性资金周转。</pre>
+    <pre ta-bind ng-model="jigoubaoDataMore.financingPurpose"></pre>
 	<div class="border-bottom-safe ft-1p8 item-style">
       <span class="ft-orange">还款来源</span>
       <!-- <span class="font-sub-bule">{{ item.eName }}</span> -->
       <hr class="hr-orange">
     </div>
-    <pre>正常营业收入。</pre>
+    <pre ta-bind ng-model="jigoubaoDataMore.repaymentSource"></pre>
 	<div class="border-bottom-safe ft-1p8 item-style">
       <span class="ft-orange">项目评级</span>
       <!-- <span class="font-sub-bule">{{ item.eName }}</span> -->
       <hr class="hr-orange">
     </div>
-    <pre>企业财务实力强，经营管理状况稳定，发展潜力大，盈利能力好，企业信誉度高，具有较强的债务清偿与支付能力。</pre>
+    <pre ta-bind ng-model="jigoubaoDataMore.riskManagementInfo"></pre>
   </div>
 </div>

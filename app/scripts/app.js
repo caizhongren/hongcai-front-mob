@@ -21,7 +21,8 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'restangular',
   'angular-svg-round-progress',
   // 'ui.bootstrap',
-  'restangular'
+  'restangular',
+  'textAngular'
 ]);
 
 p2pSiteMobApp
@@ -105,17 +106,6 @@ p2pSiteMobApp
           }
         }
       })
-      .state('root.loginByWechat', {
-        url: '/login/:openId',
-        views: {
-          '': {
-            templateUrl: 'views/login.html',
-            controller: 'LoginCtrl',
-            controllerUrl: 'scripts/controllers/login'
-
-          }
-        }
-      })
       .state('root.register', {
         url: '/register/:openId/:inviteCode',
         data: {
@@ -186,23 +176,23 @@ p2pSiteMobApp
       })
       // 宏金保详情页
       .state('root.project-detail', {
-        url: '/project-detail',
+        url: '/project/:number',
         views: {
           '': {
             templateUrl: 'views/project/project-detail.html',
-            //controller: 'FundsProjectDetailCtrl',
-            //controllerUrl: 'scripts/controllers/project/funds-project-detail'
+            controller: 'ProjectDetailCtrl',
+            controllerUrl: 'scripts/controllers/project/project-detail'
           }
         }
       })
       // 宏金保详情页更多详情
       .state('root.project-detail-more', {
-        url: '/project-detail-more',
+        url: '/project-detail-more/:number',
         views: {
           '': {
             templateUrl: 'views/project/project-detail-more.html',
-            //controller: 'FundsProjectDetailCtrl',
-            //controllerUrl: 'scripts/controllers/project/funds-project-detail'
+            controller: 'ProjectDetailCtrl',
+            controllerUrl: 'scripts/controllers/project/project-detail'
           }
         }
       })
@@ -639,6 +629,7 @@ p2pSiteMobApp
 
           if (!$rootScope.isLogged && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
             $location.path('/login');
+            return;
           }
         } else if (response.ret === -1) { //用户未登录，。
 
