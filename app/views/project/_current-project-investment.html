@@ -2,18 +2,18 @@
 <div class="row margin-b-7" ng-switch="fundsFlag">
   <!-- 未登录状态下 -->
   <div ng-switch-when=0>
-    <div class="padding-t-1p5 padding-b-1p5 text-center bg-grey4 border-grey-top border-grey-bottom ft-1p6">
+    <div class="padding-t-1p5 padding-b-1p5 text-center bg-grey4 border-grey-top border-grey-bottom ft-1p6"  ng-click="toLog()">
       <p class="margin-b-0">您的账号未登录</p>
-      <p class="margin-b-0">投资请<span class="ft-red" ng-click="toLog()">登录</span></p>
+      <p class="margin-b-0">投资请<span class="ft-red">登录</span></p>
     </div>
   </div>
   <!-- 普通用户 -->
   <div ng-switch-when=1>
     <!-- 可融资状态下 -->
     <div ng-show="simpleFundsProject.status === 1">
-      <div class="padding-t-1p5 padding-b-1p5 text-center bg-grey4 border-grey-top border-grey-bottom ft-1p6">
+      <div class="padding-t-1p5 padding-b-1p5 text-center bg-grey4 border-grey-top border-grey-bottom ft-1p6"  ng-click="$parent.toRealNameAuth=true">
         <p class="margin-b-0">您的账号未开通第三方托管</p>
-        <p class="margin-b-0"><span class="ft-red" ng-click="$parent.toRealNameAuth=true">点击这里</span>开通</p>
+        <p class="margin-b-0"><span class="ft-red">点击这里</span>开通</p>
       </div>
     </div>
     <!-- 不可融资中 -->
