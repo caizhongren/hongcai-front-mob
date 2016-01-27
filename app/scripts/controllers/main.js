@@ -17,7 +17,7 @@ angular.module('p2pSiteMobApp')
     $scope.widthFlag = "";
 
     $scope.page = 1;
-    $scope.pageSize = 10;
+    $scope.pageSize = 3;
     $scope.pageCount = 1;
 
     function screenWidth() {
