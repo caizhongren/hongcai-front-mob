@@ -54,6 +54,8 @@ angular.module('p2pSiteMobApp')
         pageSize: $scope.pageSize
       }).then(function(response) {
         $scope.jigoubao = response;
+        // $scope.baseFileUrl = response.baseFileUrl;
+        console.log(response);
         $scope.pageCount = response.pageCount;
         for (var i = 0; i < response.projectList.length; i++) {
           $scope.jigoubaoData.push(response.projectList[i]);
