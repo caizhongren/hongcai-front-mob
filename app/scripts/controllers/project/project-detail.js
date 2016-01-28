@@ -158,7 +158,7 @@ angular.module('p2pSiteMobApp')
         //       type: 'recharge',
         //       number: payAmount - $rootScope.account.balance + ($rootScope.account.reward == null ? 0 : $rootScope.account.reward)
         // });
-        $state.go('root.user-center.recharge');
+        $state.go('root.userCenter.recharge');
       } else if ($scope.fundsFlag === 2) {
         // how to bulid investment path restmod.model
         // restmod.model(DEFAULT_DOMAIN + '/projects')

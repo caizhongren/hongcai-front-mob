@@ -150,7 +150,7 @@ angular.module('p2pSiteMobApp')
       } else if ($scope.fundsFlag === 1) {
         // 需要跳到实名认证页面
       } else if ($scope.checkLargeUserCanAmount(project)) {
-        $state.go('root.user-center.recharge');
+        $state.go('root.userCenter.recharge');
       } else if ($scope.fundsFlag === 2 || $scope.fundsFlag === 3) {
           restmod.model(DEFAULT_DOMAIN + '/fundsProjects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
             amount: project.investAmount,
