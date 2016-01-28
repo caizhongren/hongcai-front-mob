@@ -157,7 +157,7 @@ $scope.getTempData();
           number: project.number
         });
       } else if ($scope.toggle.activeTab === 1) {
-        $state.go('root.funds-project-detail', {
+        $state.go('root.investmentplan-details', {
           number: project.number
         });
       } else if ($scope.toggle.activeTab === 2) {
@@ -310,7 +310,7 @@ $scope.getTempData();
         return;
       }
 
-      $state.go('root.investment-confirmation', {
+      $state.go('root.invplan-verify', {
         number: $scope.recFundsProjects.number
       })
     }

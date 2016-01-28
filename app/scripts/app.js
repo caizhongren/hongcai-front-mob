@@ -147,8 +147,8 @@ p2pSiteMobApp
           }
         }
       })
-      .state('root.funds-project-detail', {
-        url: '/funds-projects/:number',
+      .state('root.investmentplan-details', {
+        url: '/investmentplan-details/:number',
         data: {
           title: '宏金盈'
         },
@@ -205,8 +205,8 @@ p2pSiteMobApp
         }
       })
       // 投资确认页
-      .state('root.investment-confirmation', {
-        url: '/investment-confirmation/:number',
+      .state('root.invplan-verify', {
+        url: '/invplan-verify/:number',
         views: {
           '': {
             templateUrl: 'views/project/_investment-confirmation.html',
