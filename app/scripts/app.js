@@ -21,7 +21,7 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'restangular',
   'angular-svg-round-progress',
   // 'ui.bootstrap',
-  'restangular',
+  //'restangular',
   'textAngular'
 ]);
 
