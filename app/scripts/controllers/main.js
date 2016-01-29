@@ -182,9 +182,10 @@ $scope.getTempData();
 
     $scope.toggle.switch = function(tabIndex, subTab) {
       $scope.toggle.activeTab = tabIndex;
-      if (tabIndex !== 1) {
+      //if (tabIndex !== 1) {
+      if (tabIndex === 0) {
         $scope.switchFundsProjects(1);
-      } else {
+      } else if (tabIndex === 1){
         if (subTab < 0 || subTab > 2) {
           return;
         }
