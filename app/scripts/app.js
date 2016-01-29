@@ -552,6 +552,34 @@ p2pSiteMobApp
         }
       })
 
+      //媒体公告
+      .state('root.media-reports', {
+        url: '/media-reports',
+        views: {
+          '': {
+            templateUrl: 'views/activity/activity-real.html',
+          }
+        }
+      })
+      //网站公告
+      .state('root.web-site-notice', {
+        url: '/web-site-notice',
+        views: {
+          '': {
+            templateUrl: 'views/activity/activity-real.html',
+          }
+        }
+      })
+      //宏财动态
+      .state('root.hongcai-trends', {
+        url: '/hongcai-trends',
+        views: {
+          '': {
+            templateUrl: 'views/activity/activity-real.html',
+          }
+        }
+      })
+
 
     ;
     $urlRouterProvider.otherwise('/');
