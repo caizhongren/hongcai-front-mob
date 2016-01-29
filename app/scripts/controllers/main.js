@@ -62,7 +62,7 @@ angular.module('p2pSiteMobApp')
         };
       });
     }
-$scope.getTempData();
+//$scope.getTempData();
     $scope.loadDealMuch = function() {
       $scope.DealBusy = true;
       $scope.getTempData();
