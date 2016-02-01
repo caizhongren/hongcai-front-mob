@@ -21,7 +21,7 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'restangular',
   'angular-svg-round-progress',
   // 'ui.bootstrap',
-  'restangular',
+  //'restangular',
   'textAngular'
 ]);
 
@@ -147,8 +147,8 @@ p2pSiteMobApp
           }
         }
       })
-      .state('root.funds-project-detail', {
-        url: '/funds-projects/:number',
+      .state('root.investmentplan-details', {
+        url: '/investmentplan-details/:number',
         data: {
           title: '宏金盈'
         },
@@ -205,8 +205,8 @@ p2pSiteMobApp
         }
       })
       // 投资确认页
-      .state('root.investment-confirmation', {
-        url: '/investment-confirmation/:number',
+      .state('root.invplan-verify', {
+        url: '/invplan-verify/:number',
         views: {
           '': {
             templateUrl: 'views/project/_investment-confirmation.html',
@@ -216,7 +216,7 @@ p2pSiteMobApp
         }
       })
       // 个人中心
-      .state('root.user-center', {
+      .state('root.userCenter', {
         abstract: true,
         url: '/user-center',
         views: {
@@ -234,7 +234,7 @@ p2pSiteMobApp
         }
       })
       //我的账户
-      .state('root.user-center.account', {
+      .state('root.userCenter.account', {
         url: '/account',
         data: {
           title: '账户'
@@ -248,7 +248,7 @@ p2pSiteMobApp
         }
       })
       //个人设置
-      .state('root.user-center.setting', {
+      .state('root.userCenter.setting', {
         url: '/setting',
         views: {
           '': {
@@ -259,7 +259,7 @@ p2pSiteMobApp
         }
       })
       // 投资统计
-      .state('root.user-center.investments-stat', {
+      .state('root.userCenter.investments-stat', {
         url: '/investments-stat',
         views: {
           '': {
@@ -270,7 +270,7 @@ p2pSiteMobApp
         }
       })
       // 基本资料
-      .state('root.user-center.info', {
+      .state('root.userCenter.info', {
         url: '/info',
         data: {
           title: '基本资料'
@@ -284,7 +284,7 @@ p2pSiteMobApp
         }
       })
       // 我的债权
-      .state('root.user-center.credits', {
+      .state('root.userCenter.credits', {
         url: '/credits',
         data: {
           title: '我的债权'
@@ -298,7 +298,7 @@ p2pSiteMobApp
         }
       })
       // 我的订单
-      .state('root.user-center.orders', {
+      .state('root.userCenter.orders', {
         url: '/orders',
         data: {
           title: '我的订单'
@@ -312,7 +312,7 @@ p2pSiteMobApp
         }
       })
       // 充值
-      .state('root.user-center.recharge', {
+      .state('root.userCenter.recharge', {
         url: '/recharge?amount',
         data: {
           title: '充值'
@@ -326,7 +326,7 @@ p2pSiteMobApp
         }
       })
       // 提现
-      .state('root.user-center.withdraw', {
+      .state('root.userCenter.withdraw', {
         url: '/withdraw',
         data: {
           title: '提现'
@@ -340,7 +340,7 @@ p2pSiteMobApp
         }
       })
       // 银行卡管理
-      .state('root.user-center.bankcard', {
+      .state('root.userCenter.bankcard', {
         url: '/bankcard',
         views: {
           '': {
@@ -351,7 +351,7 @@ p2pSiteMobApp
         }
       })
       // 回款计划
-      .state('root.user-center.payment-collection', {
+      .state('root.userCenter.payment-collection', {
         url: '/payment-collection',
         views: {
           '': {
@@ -362,7 +362,7 @@ p2pSiteMobApp
         }
       })
       // 站内消息
-      .state('root.user-center.messages', {
+      .state('root.userCenter.messages', {
         url: '/messages',
         views: {
           '': {
@@ -373,7 +373,7 @@ p2pSiteMobApp
         }
       })
       // 交易记录
-      .state('root.user-center.deals', {
+      .state('root.userCenter.deals', {
         url: '/deals',
         data: {
           title: '交易记录'
@@ -548,6 +548,34 @@ p2pSiteMobApp
             templateUrl: 'views/activity/activity-real.html',
             controller: 'RealSceneActivityCtrl',
             controllerUrl: 'scripts/controllers/share/realscene-activity-ctrl'
+          }
+        }
+      })
+
+      //媒体公告
+      .state('root.media-reports', {
+        url: '/media-reports',
+        views: {
+          '': {
+            templateUrl: 'views/activity/activity-real.html',
+          }
+        }
+      })
+      //网站公告
+      .state('root.web-site-notice', {
+        url: '/web-site-notice',
+        views: {
+          '': {
+            templateUrl: 'views/activity/activity-real.html',
+          }
+        }
+      })
+      //宏财动态
+      .state('root.hongcai-trends', {
+        url: '/hongcai-trends',
+        views: {
+          '': {
+            templateUrl: 'views/activity/activity-real.html',
           }
         }
       })

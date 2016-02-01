@@ -3,9 +3,9 @@
   <div class="main-list-temp clear" ng-repeat="item in jigoubaoData">
     <div class="title">
       <span class="height-line">&nbsp;</span>
-      <img src="/images/logo-jigou.png" alt="">
-      <span class="title-text" ng-show="widthFlag===0 && item.name.length <= 10">{{item.name}}</span>
-      <span class="title-text" ng-show="widthFlag===0 && item.name.length > 10">{{item.name | limitTo:9}}...</span>
+      <!--<img src="{{baseFileUrl}}{{item.guarantee.url}}" alt="">-->
+      <span class="title-text" ng-show="widthFlag===0 && item.name.length <= 12">{{item.name}}</span>
+      <span class="title-text" ng-show="widthFlag===0 && item.name.length > 12">{{item.name | limitTo:14}}...</span>
       <span class="title-text" ng-show="widthFlag===1 || widthFlag===2">{{item.name}}</span>
       <!-- <span class="title-text" ng-show="item.name.length > 10">{{item.name | limitTo:9}}...</span>
     <span class="title-text" ng-show="item.name.length <= 10">{{item.name}}</span> -->

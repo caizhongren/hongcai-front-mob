@@ -111,11 +111,11 @@ angular.module('p2pSiteMobApp')
 
 
     $scope.goWithdraw = function() {
-      $state.go("root.user-center.withdraw");
+      $state.go("root.userCenter.withdraw");
     }
 
     $scope.goRecharge = function() {
-      $state.go("root.user-center.recharge");
+      $state.go("root.userCenter.recharge");
     }
 
 

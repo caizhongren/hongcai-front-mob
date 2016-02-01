@@ -54,13 +54,15 @@ angular.module('p2pSiteMobApp')
         pageSize: $scope.pageSize
       }).then(function(response) {
         $scope.jigoubao = response;
+         $scope.baseFileUrl = response.baseFileUrl;
+        console.log(response);  
         $scope.pageCount = response.pageCount;
         for (var i = 0; i < response.projectList.length; i++) {
           $scope.jigoubaoData.push(response.projectList[i]);
         };
       });
     }
-
+//$scope.getTempData();
     $scope.loadDealMuch = function() {
       $scope.DealBusy = true;
       $scope.getTempData();
@@ -85,7 +87,7 @@ angular.module('p2pSiteMobApp')
 
       if ($rootScope.securityStatus.realNameAuthStatus !== 1) {
         if (confirm('您还未开通托管账户，请到个人中心开通')) {
-          $state.go('root.user-center.account');
+          $state.go('root.userCenter.account');
         }
         return;
       }
@@ -155,7 +157,7 @@ angular.module('p2pSiteMobApp')
           number: project.number
         });
       } else if ($scope.toggle.activeTab === 1) {
-        $state.go('root.funds-project-detail', {
+        $state.go('root.investmentplan-details', {
           number: project.number
         });
       } else if ($scope.toggle.activeTab === 2) {
@@ -180,9 +182,10 @@ angular.module('p2pSiteMobApp')
 
     $scope.toggle.switch = function(tabIndex, subTab) {
       $scope.toggle.activeTab = tabIndex;
-      if (tabIndex !== 1) {
+      //if (tabIndex !== 1) {
+      if (tabIndex === 0) {
         $scope.switchFundsProjects(1);
-      } else {
+      } else if (tabIndex === 1){
         if (subTab < 0 || subTab > 2) {
           return;
         }
@@ -303,12 +306,12 @@ angular.module('p2pSiteMobApp')
 
       if ($rootScope.securityStatus.realNameAuthStatus !== 1) {
         if (confirm('您还未开通托管账户，请到个人中心开通')) {
-          $state.go('root.user-center.account');
+          $state.go('root.userCenter.account');
         }
         return;
       }
 
-      $state.go('root.investment-confirmation', {
+      $state.go('root.invplan-verify', {
         number: $scope.recFundsProjects.number
       })
     }

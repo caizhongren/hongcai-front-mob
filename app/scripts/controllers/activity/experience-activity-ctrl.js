@@ -32,7 +32,7 @@ angular.module('p2pSiteMobApp')
           alert(response.msg);
         } else {
           alert('领取成功！');
-          $state.go('root.user-center.account');
+          $state.go('root.userCenter.account');
           $rootScope.user = response;
 
         }
