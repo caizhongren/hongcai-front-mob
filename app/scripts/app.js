@@ -148,7 +148,7 @@ p2pSiteMobApp
         }
       })
       .state('root.investmentplan-details', {
-        url: '/investmentplan-details/:number',
+        url: '/investmentplan/:number',
         data: {
           title: '宏金盈'
         },
