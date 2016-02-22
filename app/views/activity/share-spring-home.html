@@ -1,5 +1,5 @@
 <div class="spring-activity">
-  <div class="head">
+  <div class="head" ng-click="showMask=true">
     <img src="/images/activity/index-001.jpg" alt="" width="100%">
     <div class="detail-tip">活动详情>></div>
   </div>
@@ -87,11 +87,11 @@
   	</div>
   </div>
 </div>
-<div class="share-detail-Layer" ng-show="true">
+<div class="share-detail-Layer" ng-show="showMask">
 	<div class="monkey">
 		<div class="monkey-head">
 			<img src="/images/activity/index-006.png" alt="" width="50%" class="monkey-img">
-			<i class="fa fa-times-circle-o ft-white ft-3 tip-close"></i>
+			<i class="fa fa-times-circle-o ft-white ft-3 tip-close" ng-click="showMask=false"></i>
 		</div>
 		<div class="monkey-detail">
 			<div class="border-inner">
