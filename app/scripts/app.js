@@ -580,6 +580,25 @@ p2pSiteMobApp
         }
       })
 
+      //定义root.share-spring
+      .state('root.share-spring', {
+        abstract: true,
+        views: {
+          '': {
+            templateUrl: 'views/root-share.html'
+          }
+        }
+      })
+      //新年点赞活动首页
+      .state('root.share-spring.home', {
+        url: '/share-spring-home',
+        views: {
+          '': {
+            templateUrl: 'views/activity/share-spring-home.html',
+          }
+        }
+      })
+
 
     ;
     $urlRouterProvider.otherwise('/');
@@ -603,7 +622,8 @@ p2pSiteMobApp
       'exchange-code',
       'share-scene-example',
       'activity-scene',
-      'share-scene'
+      'share-scene',
+      'share-spring-home'
     ];
 
     var routespermission = [
