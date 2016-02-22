@@ -624,7 +624,7 @@ p2pSiteMobApp
       'share-scene-example',
       'activity-scene',
       'share-scene',
-      'share-spring-home'
+      'share-spring'
     ];
 
     var routespermission = [
