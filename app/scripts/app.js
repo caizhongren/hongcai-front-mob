@@ -583,6 +583,7 @@ p2pSiteMobApp
       //定义root.share-spring
       .state('root.share-spring', {
         abstract: true,
+        url:'/share-spring',
         views: {
           '': {
             templateUrl: 'views/root-share.html'
@@ -591,7 +592,7 @@ p2pSiteMobApp
       })
       //新年点赞活动首页
       .state('root.share-spring.home', {
-        url: '/share-spring-home',
+        url: '/home',
         views: {
           '': {
             templateUrl: 'views/activity/share-spring-home.html',
