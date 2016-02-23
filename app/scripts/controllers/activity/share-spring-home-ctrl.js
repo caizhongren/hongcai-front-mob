@@ -51,6 +51,8 @@ angular.module('p2pSiteMobApp')
                 }
             }
           });
+        }else{
+          $scope.coverLayerFlag = true;
         }
 
         if ($scope.channelCode){
@@ -115,7 +117,7 @@ angular.module('p2pSiteMobApp')
           level : $scope.level
         }).then(function(response){
         if(response !== undefined && response.id > 0){
-          $state.go($scope.getShareDetailUrl($scope.level),{
+          $state.go($scope.getShareDetailState($scope.level),{
             number: response.number,
             act: $scope.act,
             f: $scope.channelCode
@@ -124,14 +126,27 @@ angular.module('p2pSiteMobApp')
       });
     }
 
-    $scope.getShareDetailUrl = function(level){
-      var url = "root.share-spring-detail";
+    $scope.getShareDetailState = function(level){
+      var stateStr = "root.share-spring-detail";
       if(level == 1){
-        url = "root.share-spring.mydetail";
+        stateStr = "root.share-spring.mydetail";
       }else if(level == 2){
-        url = "root.share-spring.mydetail";
+        stateStr = "root.share-spring.mydetail";
       }else if(level == 3){
-        url = "root.share-spring.mydetail";
+        stateStr = "root.share-spring.mydetail";
+      }
+
+      return stateStr;
+    }
+
+    $scope.getShareDetailUrl = function(level){
+      var url = "share-spring/mydetail";
+      if(level == 1){
+        url = "share-spring/mydetail";
+      }else if(level == 2){
+        url = "share-spring/mydetail";
+      }else if(level == 3){
+        url = "share-spring/mydetail";
       }
 
       return url;
