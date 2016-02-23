@@ -608,6 +608,7 @@ input::-webkit-inner-spin-button {
       }
     }
   }
+  
   .content{
     background: url("/images/activity/index-003.jpg") no-repeat;
     background-position: top center;
@@ -724,6 +725,167 @@ input::-webkit-inner-spin-button {
               }
             }
           }
+        }
+      }
+    }
+  }
+  .head-mydetail{
+    position: relative;
+    width: 100%;
+    overflow:auto;
+    background-color:#f1482b;
+    .head-user{
+      position: absolute;
+      top:56%;
+      left:23%;
+      width: 54px;
+      height:54px;
+      border:3px solid #cd7f00;
+      border-radius:50%;
+      img{
+        border-radius:50%;
+      }
+    }
+    .head-username{
+      position: absolute;
+      top:56%;
+      left:40%;
+      color:#ff0009;
+      font-size:1.8rem;
+      font-weight:bold;
+    }
+    .head-money{
+      position: absolute;
+      top:60%;
+      left:38%;
+      color:#ff0009;
+      font-size:8rem;
+      font-weight:bold;
+      text-shadow:0 2px 2px #c98e13;
+    }
+    .head-btn{
+      position:absolute;
+      bottom:4%;
+      width: 100%;
+      text-align:center;
+      font-size:2.5rem;
+      color:#ffe319;
+      text-shadow:1px 1px 2px #e94606;
+    }
+  }
+  .content-mydetail{
+    background: #f1482b;
+    background-position: center center;
+    background-size: 100% 100%;
+    width: 100%;
+    padding: 1rem 0;
+    margin-top: -1rem;
+    min-height: 500px;
+    .qimo-left{
+      height:30px;
+      width: 18%;
+      img{
+        vertical-align:middle;
+      }
+    }
+    .qimo8{ overflow:hidden; width:100%;float: left;}
+    .qimo8 .qimo {/*width:99999999px;*/width:8000%; height:30px;}
+    .qimo8 .qimo div{ float:left;}
+    .qimo8 .qimo ul{float:left; height:30px; overflow:hidden; zoom:1;margin-bottom:1rem; }
+    .qimo8 .qimo ul li{float:left; line-height:30px; list-style:none;margin-right:5rem;margin-bottom:0;color:#ffe6a7;}
+    @media (min-width: 375px) {
+      .qimo8 .qimo ul li{
+        margin-right:7rem;
+      }
+    }
+    @media (min-width: 414px) {
+      .qimo8 .qimo ul li{
+        margin-right:9rem;
+      }
+    }
+    .list-content{
+      display: table;
+      width: 100%;
+      .row{
+        display: table-row;
+        .table-cell{
+          display: table-cell;
+          width: 16.6%;
+          .img-border{
+            border:3px solid #fff;
+            border-radius:50%;
+            text-align:center;
+            position: relative;
+            width: 100%;
+            height:0;
+            padding-bottom:100%;
+            img{
+              width: 100%;
+              border-radius:50%;
+            }
+            .img-untip{
+              background-color:rgba(222, 89, 24, 0.6) !important;
+            }
+            .img-tip{
+              width: 100%;
+              background-color:rgba(0, 0, 0, 0.5);
+              border-radius:50%;
+              position: absolute;
+              top:0px;
+              bottom: 0px;
+              text-align:center;
+              color:#fff;
+              p{
+                margin-bottom:0;
+              }
+              @media (min-width: 320px){
+                p:nth-child(1){
+                  height:42px;
+                  line-height:42px;
+                }
+              }
+              @media (min-width: 375px){
+                p:nth-child(1){
+                  height:56px;
+                  line-height:56px;
+                }
+              }
+              @media (min-width: 414px){
+                p:nth-child(1){
+                  height:62px;
+                  line-height:62px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .list-tips{
+      width: 100%;
+      height: 36px;
+      line-height: 36px;
+      text-align: center;
+      overflow:auto;
+      .left-line,.right-line{
+        height: 0;
+        width: 35%;
+        border-bottom:1px solid #ffe6a7;
+        display: inline-block;
+        zoom: 1;
+        vertical-align: middle;
+        margin-top: 18px;
+      }
+      .tips-content{
+        font-size: 1.6rem;
+        color:#ffe6a7;
+        display: inline-block;
+        width: 30%;
+        text-align:center;
+      }
+      @media (min-width: 320px){
+        .left-line,.right-line{
+          width: 30%;
         }
       }
     }
