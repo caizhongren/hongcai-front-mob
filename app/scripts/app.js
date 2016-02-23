@@ -596,6 +596,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/activity/share-spring-home.html',
+            controller: 'ShareSpringHomeCtrl',
+            controllerUrl: 'scripts/controllers/activity/share-spring-home-ctrl'
           }
         }
       })
