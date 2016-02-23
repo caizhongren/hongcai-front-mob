@@ -22,7 +22,7 @@ angular.module('p2pSiteMobApp')
                 if($scope.freeWishStatics.status == 1){
                   //正在进行第一关任务，点击按钮进入第一关任务
                   $scope.level = 1;
-                  $scope.buttonFlag = 2
+                  $scope.buttonFlag = 2;
                 }else if($scope.freeWishStatics.status == 2){
                   //第一关完成，点击按钮开启第二关
                   $scope.level = 2;
@@ -47,7 +47,7 @@ angular.module('p2pSiteMobApp')
             }
           });
         }
-
+        
         if ($scope.channelCode){
           Restangular.one('freeWishes').post('channel', {
             openId: $rootScope.openid, 
@@ -62,7 +62,6 @@ angular.module('p2pSiteMobApp')
     Restangular.one('freeWishes').one('totalReward').get().then(function(response){
       $scope.totalReward = response;
     });
-    console.log($scope.totalReward);
 
     /**
      * 领取免费愿望
