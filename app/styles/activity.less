@@ -736,7 +736,7 @@ input::-webkit-inner-spin-button {
     background-color:#f1482b;
     .head-user{
       position: absolute;
-      top:56%;
+      top:58%;
       left:23%;
       width: 54px;
       height:54px;
@@ -746,18 +746,30 @@ input::-webkit-inner-spin-button {
         border-radius:50%;
       }
     }
+    @media (min-width: 375px){
+      .head-user{
+        width: 60px;
+        height:60px;
+      }
+    }
+    @media (min-width: 375px){
+      .head-user{
+        width: 66px;
+        height:66px;
+      }
+    }
     .head-username{
       position: absolute;
-      top:56%;
-      left:40%;
+      top:61%;
+      left:45%;
       color:#ff0009;
       font-size:1.8rem;
       font-weight:bold;
     }
     .head-money{
       position: absolute;
-      top:60%;
-      left:38%;
+      top:63%;
+      left:41%;
       color:#ff0009;
       font-size:8rem;
       font-weight:bold;
@@ -811,51 +823,43 @@ input::-webkit-inner-spin-button {
         .table-cell{
           display: table-cell;
           width: 16.6%;
+          box-sizing:content-box;
           .img-border{
-            border:3px solid #fff;
-            border-radius:50%;
             text-align:center;
             position: relative;
-            width: 100%;
-            height:0;
-            padding-bottom:100%;
             img{
               width: 100%;
               border-radius:50%;
+              border:3px solid #fff;
+              box-sizing:border-box;
             }
             .img-untip{
               background-color:rgba(222, 89, 24, 0.6) !important;
-            }
-            .img-tip{
-              width: 100%;
-              background-color:rgba(0, 0, 0, 0.5);
-              border-radius:50%;
-              position: absolute;
-              top:0px;
-              bottom: 0px;
+              margin-bottom:0;
+              position:absolute;
+              left:0;
+              top: 0;
+              right: 0;
+              bottom: 0;
               text-align:center;
+              box-sizing:border-box;
+              border-radius:50%;
+              width: 100%;
+              height:0;
+              padding-bottom:100%;
               color:#fff;
-              p{
-                margin-bottom:0;
-              }
-              @media (min-width: 320px){
-                p:nth-child(1){
-                  height:42px;
-                  line-height:42px;
-                }
-              }
-              @media (min-width: 375px){
-                p:nth-child(1){
-                  height:56px;
-                  line-height:56px;
-                }
-              }
-              @media (min-width: 414px){
-                p:nth-child(1){
-                  height:62px;
-                  line-height:62px;
-                }
-              }
+            }
+            @media (min-width: 320px){
+              height:49px;
+              line-height:49px;
+            }
+            @media (min-width: 375px){
+              height:58px;
+              line-height:58px;
+            }
+            @media (min-width: 414px){
+              height:64px;
+              line-height:64px;
             }
           }
         }

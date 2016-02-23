@@ -12,7 +12,7 @@
 			  <div class="qimo">
 			    <div id="demo1">
 			      <ul>
-			        <li>宏财网已发放现金总额<span class="ft-2 ft-red3 ft-bold">700,000</span>元</li>
+			        <li>宏财网已发放现金总额<span class="ft-2 ft-red3 ft-bold">{{totalReward | number : 2}}</span>元</li>
 			      </ul>
 			    </div>
 			    <div id="demo2"></div>
@@ -20,7 +20,7 @@
 			</div>
 
   	</div>
-  	<div class="padding-l-2 padding-r-2"><img src="/images/activity/index-005.png" alt="" width="100%"></div>
+  	<div class="padding-l-2 padding-r-2" ng-click="openFreeWish()"><img src="/images/activity/index-005.png" alt="" width="100%"></div>
   	<div class="padding-l-2 padding-r-2">
   		<div class="list-tips">
   			<div class="left-line fl"></div>
@@ -29,7 +29,20 @@
   		</div>	
   	</div>
   	<div class="padding-l-1 padding-r-1">
-  		<div class="list-content">
+      <div class="list-content" ng-show="freeWishes.length > 0 ">
+        <div class="row">
+          <div class="table-cell" ng-repeat="freeWish in freeWishes">
+            <div class="img-border">
+              <img ng-src="{{ freeWish.user.headImgUrl || '/images/share/4head.jpg'}}" alt="" width="100%">
+              <div class="img-tip">
+                <p class="ft-1">已领</p>
+                <p>{{freeWish.amount | number:1}}元</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  		<div class="list-content" ng-show="freeWishes.length <=0 ">
   			<div class="row">
   				<div class="table-cell">
   					<div class="img-border">
