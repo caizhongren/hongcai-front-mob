@@ -51,6 +51,8 @@ angular.module('p2pSiteMobApp')
                 }
             }
           });
+        }else{
+          $scope.coverLayerFlag = true;
         }
 
         if ($scope.channelCode){
