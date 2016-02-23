@@ -127,11 +127,11 @@ angular.module('p2pSiteMobApp')
     $scope.getShareDetailUrl = function(level){
       var url = "root.share-spring-detail";
       if(level == 1){
-        url = "root.share-spring-detail";
+        url = "root.share-spring.mydetail";
       }else if(level == 2){
-        url = "root.share-spring-detail2";
+        url = "root.share-spring.mydetail";
       }else if(level == 3){
-        url = "root.share-spring-detail3";
+        url = "root.share-spring.mydetail";
       }
 
       return url;

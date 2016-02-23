@@ -19,10 +19,10 @@
 			  </div>
 			</div>
   	</div>
-  	<div class="padding-l-2 padding-r-2 open-wish" ng-click="openFreeWish()">
+  	<div class="padding-l-2 padding-r-2 open-wish" ng-click="!timeout || buttonClick(buttonFlag)" my-click-once>
   		<img src="/images/activity/index-005.png" alt="" width="100%">
   		<div class="open-btn">
-  			我要现金
+  			{{buttonValue}}
   		</div>
   	</div>
   	<div class="padding-l-2 padding-r-2">
