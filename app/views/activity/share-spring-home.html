@@ -19,12 +19,20 @@
 			  </div>
 			</div>
   	</div>
-  	<div class="padding-l-2 padding-r-2 open-wish" ng-click="!timeout || buttonClick(buttonFlag)" my-click-once>
-  		<img src="/images/activity/index-005.png" alt="" width="100%">
-  		<div class="open-btn">
-  			{{buttonValue}}
-  		</div>
-  	</div>
+    <a ng-show="coverLayerFlag" href="share-spring/home#attention" title="">
+    	<div class="padding-l-2 padding-r-2 open-wish" ng-click="!timeout || buttonClick(buttonFlag)" my-click-once>
+    		<img src="/images/activity/index-005.png" alt="" width="100%">
+    		<div class="open-btn">
+    			{{buttonValue}}
+    		</div>
+    	</div>
+    </a>
+    <div ng-show="!coverLayerFlag" class="padding-l-2 padding-r-2 open-wish" ng-click="!timeout || buttonClick(buttonFlag)" my-click-once>
+      <img src="/images/activity/index-005.png" alt="" width="100%">
+      <div class="open-btn">
+        {{buttonValue}}
+      </div>
+    </div>
   	<div class="padding-l-2 padding-r-2">
   		<div class="list-tips">
   			<div class="left-line fl"></div>
@@ -96,7 +104,7 @@
   			</div>
   		</div>
   	</div>
-  	<div class="text-center ft-red4 ft-1p6 ft-bold margin-t-2">
+  	<div class="text-center ft-red4 ft-1p6 ft-bold margin-t-2" id="attention">
   		长按二维码&nbsp;领取现金
   	</div>
   	<div class="text-center margin-t-1">
