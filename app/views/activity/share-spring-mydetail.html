@@ -103,7 +103,44 @@
 				<p class="text-center"><img src="/images/activity/take-more.png" alt="" class="img-height"></p>
 			</div>
 		</div>
-	</div> 
+	</div>
+</div>
+<!-- 注册的蒙层 -->
+<div class="share-detail-Layer" ng-show="false">
+	<div class="monkey">
+		<div class="monkey-head">
+			<img src="/images/activity/index-006.png" alt="" width="50%" class="monkey-img">
+			<i class="fa fa-times-circle-o ft-white ft-3 tip-close" ng-click="showMask=false"></i>
+		</div>
+		<div class="monkey-detail">
+			<div class="border-form">
+				<form autocomplete="on" id="realNameAuthForm" name="realNameAuthForm" class="margin-b-0">
+		      <div class="form-mask">
+		        <label class="label-tip">真实手机号:</label>
+		        <input id="realName" class="input-tip1" name="realName" type="text" ng-model="user.realName" placeholder="请输入您的手机号码" ng-disabled="!timeout" required>
+		      </div>
+		      <div class="form-mask">
+		        <label class="label-tip">图片验证码:</label>
+		        <input id="idNo" class="input-tip2" name="idNo" type="text" ng-model="user.idNo" placeholder="图片验证码" ng-pattern="/^([0-9]{17}[0-9xX]{1})$|^([0-9]{15})$/" ng-disabled="!timeout" required>
+		        <div class="img-tip">
+		        	<img src="/images/activity/test.png" alt="" width="100%">
+		        </div>
+		      </div>
+		      <div class="form-mask">
+		        <label class="label-tip">短信验证码:</label>
+		        <input id="idNo" class="input-tip2" name="idNo" type="text" ng-model="user.idNo" placeholder="请输入手机验证码" ng-pattern="/^([0-9]{17}[0-9xX]{1})$|^([0-9]{15})$/" ng-disabled="!timeout" required>
+		        <div class="btn-sendtip">发送</div>
+		      </div>
+		      <div class="ft-red text-center margin-t-1 margin-b-1 ft-1p2 form-mask">
+		        {{errMsg}}
+		      </div>
+		      <div class="form-mask margin-b-1">
+		      	<img src="/images/activity/get-money.png" alt="" width="100%">
+		      </div>
+		    </form>
+			</div>
+		</div>
+	</div>
 </div>
 <script type="text/javascript">
 var demo = document.getElementById("demo");
