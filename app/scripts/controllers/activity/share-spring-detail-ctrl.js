@@ -5,6 +5,17 @@ angular.module('p2pSiteMobApp')
     $rootScope.showFooter = false;
     $scope.act = $stateParams.act;
     $scope.channelCode = $stateParams.f;
+    console.log($rootScope.nickName);
+    if($rootScope.nickName){
+      if($rootScope.nickName.length < 9){
+        $scope.showText = true;
+      }
+      else{
+        $scope.showText = false;
+      }
+    }else{
+      $scope.showText = true;
+    }
 
     $scope.test = config.test;
     // $scope.coverLayerFlag = false;
