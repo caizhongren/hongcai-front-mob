@@ -686,6 +686,7 @@ p2pSiteMobApp
 
         if (response.user) { // 已经授权过，1、登录 2未注册
           $rootScope.isLogged = true;
+          $rootScope.bindWechat = false;
           $rootScope.hasLoggedUser = response.user;
           $rootScope.securityStatus = response.securityStatus;
           $rootScope.account = response.account;
@@ -698,6 +699,10 @@ p2pSiteMobApp
           $rootScope.checkSession.resolve(response);
           if (!response.user.mobile && !response.user.email) {
             $rootScope.isLogged = false;
+          }
+
+          if ($rootScope.userInfo && $rootScope.userInfo.id > 0 && $rootScope.openid){
+            $rootScope.bindWechat = true;
           }
 
           if (!$rootScope.isLogged && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
@@ -716,6 +721,7 @@ p2pSiteMobApp
           if (wechat_code) { // 用户未登录但已经有code，去登录
             restmod.model(DEFAULT_DOMAIN + '/desireUsers/').$find(wechat_code + '/openid').$then(function(response) {
               $rootScope.isLogged = true;
+              $rootScope.bindWechat = false;
               $rootScope.hasLoggedUser = response;
               $rootScope.userInfo = response;
               $rootScope.openid = response.openid;
@@ -725,6 +731,10 @@ p2pSiteMobApp
               $rootScope.checkSession.resolve(response);
               if (!response.mobile && !response.email) {
                 $rootScope.isLogged = false;
+              }
+
+              if ($rootScope.userInfo && $rootScope.userInfo.id > 0 && $rootScope.openid){
+                $rootScope.bindWechat = true;
               }
 
               if (!$rootScope.isLogged && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
