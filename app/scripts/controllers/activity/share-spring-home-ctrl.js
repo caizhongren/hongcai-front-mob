@@ -86,7 +86,7 @@ angular.module('p2pSiteMobApp')
      * @return freeWish
      */
     $scope.openFreeWish = function(){
-      if (!$rootScope.isLogged{
+      if (!$rootScope.isLogged){
         //引导用户关注
         $scope.coverLayerFlag = true;
         return;
