@@ -610,6 +610,15 @@ p2pSiteMobApp
           }
         }
       })
+      //新年点赞活动他人任务页
+      .state('root.share-spring.otherdetail', {
+        url: '/otherdetail',
+        views: {
+          '': {
+            templateUrl: 'views/activity/share-spring-otherdetail.html',
+          }
+        }
+      })
 
 
     ;
