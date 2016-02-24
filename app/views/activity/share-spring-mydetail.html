@@ -2,10 +2,10 @@
   <div class="head-mydetail">
   	<img src="/images/activity/index-007.jpg" alt="" width="100%">
   	<div class="head-user">
-  		<img src="/images/activity/dubai.png" alt="" width="100%">
+  		<img ng-src="{{headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%">
   	</div>
   	<div class="head-username">
-  		金鱼公主
+  		{{ nickName || '金鱼公主'}}
   	</div>
   	<div class="head-money">
   		40<span class="ft-2 ft-bold">元</span>
@@ -20,7 +20,7 @@
 			  <div class="qimo">
 			    <div id="demo1">
 			      <ul>
-			        <li>宏财网已发放现金总额<span class="ft-2 ft-bold">700,000</span>元</li>
+			        <li>宏财网已发放现金总额<span class="ft-2 ft-bold">{{totalReward | number:0}}</span>元</li>
 			      </ul>
 			    </div>
 			    <div id="demo2"></div>
@@ -119,6 +119,4 @@ else{
 }
 }
 var myvar=setInterval(Marquee,30);
-demo.onmouseout=function (){myvar=setInterval(Marquee,30);}
-demo.onmouseover=function(){clearInterval(myvar);}
 </script>

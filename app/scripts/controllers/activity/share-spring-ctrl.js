@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('p2pSiteMobApp')
-  .controller('ShareSpringHomeCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, Restangular, config, DialogService) {
+  .controller('ShareSpringCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, Restangular, config, DialogService) {
     $rootScope.showFooter = false;
     $scope.act = $stateParams.act;
     $scope.channelCode = $stateParams.f;
@@ -62,95 +62,11 @@ angular.module('p2pSiteMobApp')
             channelCode: $scope.channelCode
           });
         }
- 
+    });
+
+    Restangular.one('freeWishes').one('totalReward').get().then(function(response){
+      $scope.totalReward = response;
     });
     
-    $scope.freeWishes = Restangular.one('freeWishes').getList().$object;
-
-    $scope.buttonClick = function(buttonFlag){
-      if(buttonFlag == 1 || buttonFlag == 3 || buttonFlag == 4){
-        $scope.openFreeWish();
-      }else if(buttonFlag == 2){
-        $scope.goShareDetail();
-      }else if(buttonFlag == 5){
-        $scope.goAccount();
-      }
-    }
-
-    /**
-     * 领取免费愿望
-     * @return freeWish
-     */
-    $scope.openFreeWish = function(){
-      if (!$rootScope.isLogged){
-        //引导用户关注
-        $scope.coverLayerFlag = true;
-        return;
-      }
-      
-      Restangular.one('freeWishes').post('addFreeWish', {
-        userId: $rootScope.userInfo.id,
-        level: $scope.level
-      }).then(function(response){
-          console.log(response);
-          if(response.ret === -1){
-            // DialogService.alert('领取出错', response.msg, function(){
-            //   $rootScope.alert = null;
-            // });
-            alert(response.msg);
-          }else{
-            var rediretUrl = config.domain + '/'+ $scope.getShareDetailUrl($scope.level)  +'/' + response.number;
-            alert(rediretUrl);
-            if ($scope.channelCode){
-              rediretUrl = rediretUrl + '?f=' + $scope.channelCode + '&act=' + $scope.act;
-            }
-            alert(rediretUrl);
-            window.location.href = rediretUrl;
-          }
-      });
-    }
-
-    $scope.goShareDetail = function(){
-      Restangular.one('freeWishes', $rootScope.userInfo.id).one('myFreeWish').get({
-          level : $scope.level
-        }).then(function(response){
-        if(response !== undefined && response.id > 0){
-          $state.go($scope.getShareDetailState($scope.level),{
-            number: response.number,
-            act: $scope.act,
-            f: $scope.channelCode
-          });
-        }
-      });
-    }
-
-    $scope.getShareDetailState = function(level){
-      var stateStr = "root.share-spring-detail";
-      if(level == 1){
-        stateStr = "root.share-spring.mydetail";
-      }else if(level == 2){
-        stateStr = "root.share-spring.mydetail";
-      }else if(level == 3){
-        stateStr = "root.share-spring.mydetail";
-      }
-
-      return stateStr;
-    }
-
-    $scope.getShareDetailUrl = function(level){
-      var url = "share-spring/mydetail";
-      if(level == 1){
-        url = "share-spring/mydetail";
-      }else if(level == 2){
-        url = "share-spring/mydetail";
-      }else if(level == 3){
-        url = "share-spring/mydetail";
-      }
-
-      return url;
-    }
-
-    $scope.goAccount = function(){
-      window.location.href = config.domain + '/user-center/account'
-    }
+    
 });
