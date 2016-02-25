@@ -623,6 +623,15 @@ p2pSiteMobApp
           }
         }
       })
+      //新年点赞活动结束页
+      .state('root.share-spring.ending', {
+        url: '/ending',
+        views: {
+          '': {
+            templateUrl: 'views/activity/share-spring-ending.html',
+          }
+        }
+      })
 
 
     ;
