@@ -137,15 +137,9 @@ angular.module('p2pSiteMobApp')
     }
 
     $scope.goOn = function(){
-      var level = 1;
-      if ($scope.freeWishStatics.status === 3){
-        level = 2;
-      } else if ($scope.freeWishStatics.status === 5){
-        level = 3;
-      }
 
-      Restangular.one('freeWishes').one($rootScope.userInfo.id).one('myFreeWish').get({
-        level: level
+      Restangular.one('freeWishes', $rootScope.userInfo.id).one('myFreeWish').get({
+        level: $scope.level
       }).then(function(response){
         $scope.goOnMyWay = false;
         var rediretUrl = config.domain + '/'+ $scope.getShareDetailUrl($scope.level)  +'/' + response.number;
