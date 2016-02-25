@@ -14,7 +14,7 @@ angular.module('p2pSiteMobApp')
     $scope.buttonFlag = 1;
     $scope.buttonValue = "我要现金";
     $rootScope.checkSession.promise.then(function(){
-        if($rootScope.bindWechat){
+        if($rootScope.bindWechat || $rootScope.isLogged){
           Restangular.one('freeWishes').one('freeWishStatics').get().then(function(response){
             if(response !== undefined && response.userId > 0){
                 $scope.freeWishStatics = response;
@@ -66,6 +66,10 @@ angular.module('p2pSiteMobApp')
 
     Restangular.one('freeWishes').one('totalReward').get().then(function(response){
       $scope.totalReward = response;
+    });
+
+    Restangular.one('activitys').one('freeWish').get().then(function(response){
+      $scope.activity = response;
     });
     
     

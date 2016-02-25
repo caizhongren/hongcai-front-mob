@@ -75,6 +75,12 @@ angular.module('p2pSiteMobApp')
     //     }
  
     // });
+    // 
+    
+    Restangular.one('freeWishes').one($stateParams.number).one('freeWishWithCheerRecords').get().then(function(response){
+      $scope.freeWish = response;
+    });
+
     
 
 
@@ -93,7 +99,7 @@ angular.module('p2pSiteMobApp')
      * @return freeWish
      */
     $scope.openFreeWish = function(){
-      if (!$rootScope.bindWechat){
+      if (!($rootScope.bindWechat || $rootScope.isLogged)){
         //引导用户关注
         $scope.coverLayerFlag = true;
         return;
