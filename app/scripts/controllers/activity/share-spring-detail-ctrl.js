@@ -100,11 +100,11 @@ angular.module('p2pSiteMobApp')
             alert(response.msg);
           }else{
             var rediretUrl = config.domain + '/'+ $scope.getShareDetailUrl($scope.level)  +'/' + response.number;
-            alert(rediretUrl);
+            // alert(rediretUrl);
             if ($scope.channelCode){
               rediretUrl = rediretUrl + '?f=' + $scope.channelCode + '&act=' + $scope.act;
             }
-            alert(rediretUrl);
+            // alert(rediretUrl);
             window.location.href = rediretUrl;
           }
       });
