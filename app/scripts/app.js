@@ -603,6 +603,17 @@ p2pSiteMobApp
           }
         }
       })
+      //新年点赞活动任务页
+      .state('root.share-spring.detail', {
+        url: '/detail/:number',
+        views: {
+          '': {
+            templateUrl: 'views/activity/share-spring-detail.html',
+            controller: 'ShareSpringDetailCtrl',
+            controllerUrl: 'scripts/controllers/activity/share-spring-detail-ctrl'
+          }
+        }
+      })
       //新年点赞活动自己任务页
       .state('root.share-spring.mydetail', {
         url: '/mydetail/:number',

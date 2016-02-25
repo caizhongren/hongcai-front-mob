@@ -1,0 +1,14 @@
+
+<div ng-switch="userInfo && userInfo.id === freeWish.userId">
+  <!-- 自己看到的任务页 -->
+  <div ng-switch-when="true">
+    <section  ng-include src='"views/activity/share-spring-mydetail.html"'>
+    </section>
+  </div>
+
+  <!-- 他人看到的任务页 -->
+  <div ng-switch-default>
+    <section ng-include src='"views/activity/share-spring-otherdetail.html"'>
+    </section>
+  </div>
+</div>

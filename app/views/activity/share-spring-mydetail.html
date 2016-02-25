@@ -5,20 +5,39 @@
   		<img ng-src="{{headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%">
   	</div>
   	<div class="head-username">
-  		{{ nickName || '金鱼公主'}}&nbsp;<span ng-show="showText">获得</span>
+  		{{ nickName || '金鱼公主'}}&nbsp;<span ng-show="!nickName || nickName.length < 9">获得</span>
   	</div>
   	<div class="head-money">
   		40<span class="ft-2 ft-bold">元</span>
   	</div>
-  	<div class="head-btn" ng-switch="freeWishStatics.status">
+    <div ng-switch="freeWishStatics.status">
+        <div ng-switch-when="1" >
+          <div class="head-btn" ng-click="$parent.inviteFlag = true" ng-show="cheerRecords.length < 6">
+            找{{6 - freeWish.cheerRecords.length}}个人&nbsp;帮你砸罐拿现金
+          </div>
+          <div class="head-btn" ng-click="$parent.showMask = true" ng-show="cheerRecords.length === 6">
+            找{{6 - freeWish.cheerRecords.length}}个人&nbsp;帮你砸罐拿现金
+          </div>
+        </div>
+        
 
-      <span ng-switch-when="1">找{{6 - freeWish.cheerRecords.length}}个人&nbsp;帮你砸罐拿现金</span>
-      <span ng-switch-when="2">已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.FreeWishActivityRules.secondReward| number:0}}元</span>
-      <span ng-switch-when="3">已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.FreeWishActivityRules.thirdReward| number:0}}元</span>
-      <span ng-switch-when="4">已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.FreeWishActivityRules.thirdReward| number:0}}元</span>
-      <span ng-switch-when="5">我的账号</span>
+        <div class="head-btn" ng-switch-when="2" >
+          已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.FreeWishActivityRules.secondReward| number:0}}元
+        </div>
 
-  	</div>
+        <div class="head-btn" ng-switch-when="3" >
+          已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.FreeWishActivityRules.thirdReward| number:0}}元
+        </div>
+
+        <div class="head-btn" ng-switch-when="4" >
+          已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.FreeWishActivityRules.thirdReward| number:0}}元
+        </div>
+
+        <div class="head-btn" ng-switch-when="5" >
+          我的账号
+        </div>
+    </div>
+  	
   </div>
   <div class="content-mydetail">
   	<div class="padding-l-2 padding-r-2 ft-1p5 ft-black3 text-center">
@@ -77,6 +96,7 @@
     <img src="/images/activity/share-001.png" alt="" width="100%">
   </div>
 </div>
+
 <!-- 完成第一关的蒙层 -->
 <div class="share-detail-Layer" ng-show="false">
 	<div class="monkey">
@@ -98,7 +118,7 @@
 	</div>
 </div>
 <!-- 注册的蒙层 -->
-<div class="share-detail-Layer" ng-show="false">
+<div class="share-detail-Layer" ng-show="showMask">
 	<div class="monkey">
 		<div class="monkey-head">
 			<img src="/images/activity/index-006.png" alt="" width="50%" class="monkey-img">

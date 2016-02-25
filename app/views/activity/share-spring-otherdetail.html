@@ -5,14 +5,21 @@
   		<img src="/images/activity/dubai.png" alt="" width="100%">
   	</div>
   	<div class="head-username">
-  		金鱼公主
+  		{{freeWish.user.nickName || '金鱼公主'}}
   	</div>
   	<div class="head-money">
   		40<span class="ft-2 ft-bold">元</span>
   	</div>
-  	<div class="head-btn">
-  		&nbsp;
-  	</div>
+
+    <div ng-switch="needSubscribe" >
+      <a class="head-btn" ng-switch-default ng-href="{{'share-spring/detail/' + freeWish.number+ '#attention' }}">
+        &nbsp;
+      </a>
+      <div class="head-btn" ng-switch-when="false" ng-click="cheerFreeWish(freeWish)">
+        &nbsp;
+      </div>
+    </div>
+
   </div>
   <div class="content-otherdetail">
   	<div class="padding-l-2 padding-r-2 ft-1p5 ft-black3 text-center">
@@ -20,7 +27,7 @@
 			  <div class="qimo">
 			    <div id="demo1">
 			      <ul>
-			        <li><img src="/images/activity/money1.png" alt="">宏财网已发放现金总额<span class="ft-2 ft-bold">700,000</span>元</li>
+			        <li><img src="/images/activity/money1.png" alt="">宏财网已发放现金总额<span class="ft-2 ft-bold">{{totalReward | number:0}}</span>元</li>
 			      </ul>
 			    </div>
 			    <div id="demo2"></div>
@@ -38,43 +45,25 @@
   	<div class="padding-l-1 padding-r-1 margin-t-1">
   		<div class="list-content">
   			<div class="row">
-  				<div class="table-cell">
-  					<div class="img-border">
-  						<img src="/images/activity/index-grey.png" alt="" width="100%">
-  						<div class="img-untip ft-1p2">
-  							未点亮
-  						</div>
-  					</div>
-  				</div>
-  				<div class="table-cell">
-  					<div class="img-border">
-  						<img src="/images/activity/dubai.png" alt="" width="100%">
-  					</div>
-  				</div>
-  				<div class="table-cell">
-  					<div class="img-border">
-  						<img src="/images/activity/dubai.png" alt="" width="100%">
-  					</div>
-  				</div>
-  				<div class="table-cell">
-  					<div class="img-border">
-  						<img src="/images/activity/dubai.png" alt="" width="100%">
-  					</div>
-  				</div>
-  				<div class="table-cell">
-  					<div class="img-border">
-  						<img src="/images/activity/dubai.png" alt="" width="100%">
-  					</div>
-  				</div>
-  				<div class="table-cell">
-  					<div class="img-border">
-  						<img src="/images/activity/dubai.png" alt="" width="100%">
-  					</div>
-  				</div>
+            <div class="table-cell" ng-repeat="item in freeWish.cheerRecords">
+              <div class="img-border">
+                <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%">
+              </div>
+            </div>
+
+            <div class="table-cell" ng-repeat="item in [1,2,3,4,5,6] | limitTo : 6 - freeWish.cheerRecords.length">
+              <div class="img-border">
+                <img src="/images/activity/index-grey.png" alt="" width="100%">
+                <div class="img-untip ft-1p2">
+                  未点亮
+                </div>
+              </div>
+            </div>
+
   			</div>
   		</div>
   	</div>
-  	<div class="text-center ft-red5 ft-1p6 ft-bold margin-t-2">
+  	<div class="text-center ft-red5 ft-1p6 ft-bold margin-t-2" id="attention">
   		长按二维码&nbsp;领取现金
   	</div>
   	<div class="text-center margin-t-1">

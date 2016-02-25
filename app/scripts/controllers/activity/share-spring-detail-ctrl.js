@@ -5,80 +5,11 @@ angular.module('p2pSiteMobApp')
     $rootScope.showFooter = false;
     $scope.act = $stateParams.act;
     $scope.channelCode = $stateParams.f;
-    console.log($rootScope.nickName);
-    if($rootScope.nickName){
-      if($rootScope.nickName.length < 9){
-        $scope.showText = true;
-      }
-      else{
-        $scope.showText = false;
-      }
-    }else{
-      $scope.showText = true;
-    }
-
     $scope.test = config.test;
-    // $scope.coverLayerFlag = false;
-    // $scope.level = 1;
-    // //freeWishStatics.status:1.第一关，2.第一关结束，3第二关，4第二关结束，5第三关，6第三关结束
-    // //buttonFlag:1.我要现金2.我的任务3.开启第二关4.开启第三关5.我的账户
-    // $scope.buttonFlag = 1;
-    // $scope.buttonValue = "我要现金";
-    // $rootScope.checkSession.promise.then(function(){
-    //     if($rootScope.isLogged){
-    //       Restangular.one('freeWishes').one('freeWishStatics').get().then(function(response){
-    //         if(response !== undefined && response.userId > 0){
-    //             $scope.freeWishStatics = response;
-    //             if($scope.freeWishStatics.status == 1){
-    //               //正在进行第一关任务，点击按钮进入第一关任务
-    //               $scope.level = 1;
-    //               $scope.buttonFlag = 2;
-    //               $scope.buttonValue = "我要现金";
-    //             }else if($scope.freeWishStatics.status == 2){
-    //               //第一关完成，点击按钮开启第二关
-    //               $scope.level = 2;
-    //               $scope.buttonFlag = 3;
-    //               $scope.buttonValue = "到账" +freeWishStatics.receiveAmount+"元，再拿30元";
-    //             }else if($scope.freeWishStatics.status == 3){
-    //               //正在进行第二关任务，点击按钮进入第二关任务
-    //               $scope.level = 2;
-    //               $scope.buttonFlag = 2;
-    //               $scope.buttonValue = "到账" +freeWishStatics.receiveAmount+"元，再拿30元";
-    //             }else if($scope.freeWishStatics.status == 4){
-    //               //第二关完成，点击按钮开启第三关任务
-    //               $scope.level = 3;
-    //               $scope.buttonFlag = 4;
-    //               $scope.buttonValue = "到账" +freeWishStatics.receiveAmount+"元，再拿100元";
-    //             }else if($scope.freeWishStatics.status == 5){
-    //               //正在进行第三关任务，点击按钮进入第三关任务
-    //               $scope.level = 3;
-    //               $scope.buttonFlag = 2;
-    //               $scope.buttonValue = "到账" +freeWishStatics.receiveAmount+"元，再拿100元";
-    //             }else if($scope.freeWishStatics.status == 6){
-    //               //全部通关，点击按钮进入我的账户
-    //               $scope.level = 3;
-    //               $scope.buttonFlag = 5;
-    //               $scope.buttonValue = "查看我的账户";
-    //             }
-    //         }
-    //       });
-    //     }else{
-    //       $scope.coverLayerFlag = true;
-    //     }
-
-    //     if ($scope.channelCode){
-    //       Restangular.one('freeWishes').post('channel', {
-    //         openId: $rootScope.openid, 
-    //         act: $scope.act,
-    //         channelCode: $scope.channelCode
-    //       });
-    //     }
- 
-    // });
-    // 
     
     Restangular.one('freeWishes').one($stateParams.number).one('freeWishWithCheerRecords').get().then(function(response){
-      $scope.freeWish = response;
+      $scope.freeWish = response.freeWish;
+      $scope.freeWish.cheerRecords = response.cheerRecords;
     });
 
     
@@ -141,6 +72,42 @@ angular.module('p2pSiteMobApp')
       });
     }
 
+
+    /**
+     * 助力
+     */
+    $scope.cheerFreeWish = function(freeWish){
+      if (!($rootScope.bindWechat || $rootScope.isLogged)){
+        $scope.needSubscribe = true;
+        return;
+      }
+
+
+      Restangular.one('freeWishes', $stateParams.number).post('cheerFreeWish', {
+        userId: $rootScope.userInfo.id
+      }).then(function(response){
+          if(response.ret === -1){
+            var msg = '不能点赞了哦';
+            if (response.code == -1217){
+              msg = "讨厌啦，大好人！你的点赞次数已经用完咯！";
+            }else{
+              msg = msg + " " + response.msg;
+            }
+
+            alert(msg);
+            return;
+          }
+          var cheerRecord = response;
+          cheerRecord.user = $rootScope.userInfo;
+          var wishAmount = $scope.freeWish.wishAmount + cheerRecord.amount;
+          $scope.freeWish.praiseCount = $scope.freeWish.praiseCount + 1;
+          $scope.freeWish.cheerRecords.push(cheerRecord);
+
+      });
+
+    }
+
+
     $scope.getShareDetailState = function(level){
       var stateStr = "root.share-spring-detail";
       if(level == 1){
@@ -166,6 +133,74 @@ angular.module('p2pSiteMobApp')
 
       return url;
     }
+
+    /**
+     * 调用微信接口，申请此页的分享接口调用
+     * @param  
+     * @return 
+     */
+    $scope.configJsApi = function(){
+      var url = location.href.split('#')[0];
+
+      Restangular.one("wechat").one("jsApiConfig").get({
+        requestUrl : url
+      }).then(function(apiConfig){
+        console.log('apiConfig: ' + apiConfig);
+        wx.config({
+            debug: true,
+            appId: config.wechatAppid, // 必填，公众号的唯一标识
+            timestamp: apiConfig.timestamp, // 必填，生成签名的时间戳
+            nonceStr: apiConfig.nonceStr, // 必填，生成签名的随机串
+            signature: apiConfig.signature,// 必填，签名，见附录1
+            jsApiList: 
+                [
+                'onMenuShareAppMessage',
+                'hideMenuItems'
+                ]
+        });
+      });
+    };
+
+    /**
+     * 设置用户分享的标题以及描述以及图片等。
+     */
+    $scope.onMenuShareAppMessage = function(wishNumber){
+      var shareLink = config.domain + '/share-spring/detail/' + wishNumber;
+      if ($scope.channelCode){
+        shareLink = shareLink + '?f=' + $scope.channelCode + '&act=' + $scope.act;
+      }
+
+      wx.onMenuShareAppMessage({
+        title: '亲 这次一定要帮我呢',
+        desc: '没有什么比现金更实在的。帮我点赞，你也一起来拿钱！',
+        link: shareLink,
+        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/KuGEE3Ins1Oc1gSxsWNG7hnKVzX83nWM3rQsiaPNUdqWoR7DddJAW7H7Iico9rad9armXmH9UM8veRvicaoBEpeTA/0?wx_fmt=png',
+        trigger: function (res) {
+        },
+        success: function (res) {
+          // 分享成功后隐藏分享引导窗口
+          $scope.inviteFlag = false;
+          $scope.$apply();
+        },
+        cancel: function (res) {
+        },
+        fail: function (res) {
+        }
+      });
+    }
+
+    $scope.configJsApi();
+
+
+    wx.error(function(res){
+        // window.location.reload();
+        // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+        $scope.configJsApi();
+    });
+
+    wx.ready(function(){
+      $scope.onMenuShareAppMessage($stateParams.number);
+    });
 
     $scope.goAccount = function(){
       window.location.href = config.domain + '/user-center/account'
