@@ -103,8 +103,52 @@ angular.module('p2pSiteMobApp')
           $scope.freeWish.praiseCount = $scope.freeWish.praiseCount + 1;
           $scope.freeWish.cheerRecords.push(cheerRecord);
 
+          if (!$scope.freeWishStatics){ // 未参加过活动
+            Restangular.one('freeWishes').post('addFreeWish', {
+              userId: $rootScope.userInfo.id,
+              level: 1
+            }).then(function(response){
+                console.log(response);
+                if(response.ret === -1){
+                  // alert(response.msg);
+                }else{
+                  $scope.cheerFreeSuccess = true;
+                  $scope.myFreeWish = response;
+                  // var rediretUrl = config.domain + '/'+ $scope.getShareDetailUrl($scope.level)  +'/' + response.number;
+                  // alert(rediretUrl);
+                  // if ($scope.channelCode){
+                  //   rediretUrl = rediretUrl + '?f=' + $scope.channelCode + '&act=' + $scope.act;
+                  // }
+                  // alert(rediretUrl);
+                  // window.location.href = rediretUrl;
+                }
+            });
+          } else {
+            $scope.goOnMyWay = true;
+          }
+
       });
 
+    }
+
+    $scope.goDetail = function(freeWish){
+      var rediretUrl = config.domain + '/share-spring/detail/' + freeWish.number;
+      window.location.href = rediretUrl;
+    }
+
+    $scope.goOn = function(){
+      var level = 1;
+      if ($scope.freeWishStatics.status === 3){
+        level = 2;
+      } else if ($scope.freeWishStatics.status === 5){
+        level = 3;
+      }
+
+      Restangular.one('freeWishes').one($rootScope.userInfo.id).one('myFreeWish').get({
+        level: level
+      }).then(function(response){
+        var rediretUrl = config.domain + '/'+ $scope.getShareDetailUrl($scope.level)  +'/' + response.number;
+      });
     }
 
 
@@ -122,7 +166,7 @@ angular.module('p2pSiteMobApp')
     }
 
     $scope.getShareDetailUrl = function(level){
-      var url = "share-spring/mydetail";
+      var url = "share-spring/detail";
       if(level == 1){
         url = "share-spring/mydetail";
       }else if(level == 2){
@@ -147,7 +191,7 @@ angular.module('p2pSiteMobApp')
       }).then(function(apiConfig){
         console.log('apiConfig: ' + apiConfig);
         wx.config({
-            debug: true,
+            debug: false,
             appId: config.wechatAppid, // 必填，公众号的唯一标识
             timestamp: apiConfig.timestamp, // 必填，生成签名的时间戳
             nonceStr: apiConfig.nonceStr, // 必填，生成签名的随机串

@@ -8,7 +8,7 @@
   		{{freeWish.user.nickName || '金鱼公主'}}
   	</div>
   	<div class="head-money">
-  		40<span class="ft-2 ft-bold">元</span>
+  		{{freeWish.amount || 0}}<span class="ft-2 ft-bold">元</span>
   	</div>
 
     <div ng-switch="needSubscribe" >
@@ -79,26 +79,26 @@
   </div>
 </div>
 <!-- 为别人砸罐后弹出的蒙层 -->
-<div class="share-detail-Layer" ng-show="false">
+<div class="share-detail-Layer" ng-show="cheerFreeSuccess">
 	<div class="monkey">
 		<div class="monkey-head padding-r-2">
-			<i class="fa fa-times-circle-o ft-white ft-3 tip-close fr" ng-click="showMask=false"></i>
+			<i class="fa fa-times-circle-o ft-white ft-3 tip-close fr" ng-click="goDetail(myFreeWish)"></i>
 		</div>
 		<div class="monkey-tipdetail">
 			<img src="/images/activity/share-003.png" alt="" width="100%">
       <div class="text-tip">
         <p class="ft-red6 ft-3">恭喜您！</p>
-        <p class="ft-1p6 ft-black">获得<span class="ft-5 ft-red6">28元</span>现金！</p>
+        <p class="ft-1p6 ft-black">获得<span class="ft-5 ft-red6">{{myFreeWish.amount || 0}}元</span>现金！</p>
         <p class="ft-1p6 ft-black">已成功帮好友砸罐！</p>
       </div>
 		</div>
 	</div>
 </div>
 <!-- 砸罐成功弹出已进行任务弹出的蒙层 -->
-<div class="share-detail-Layer" ng-show="false">
+<div class="share-detail-Layer" ng-show="goOnMyWay">
   <div class="monkey">
     <div class="monkey-head padding-r-2">
-      <i class="fa fa-times-circle-o ft-white ft-3 tip-close fr" ng-click="showMask=false"></i>
+      <i class="fa fa-times-circle-o ft-white ft-3 tip-close fr" ng-click="goOn()"></i>
     </div>
     <div class="monkey-tipdetail">
       <img src="/images/activity/share-003.png" alt="" width="100%">

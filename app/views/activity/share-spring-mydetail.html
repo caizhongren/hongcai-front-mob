@@ -8,7 +8,7 @@
   		{{ nickName || '金鱼公主'}}&nbsp;<span ng-show="!nickName || nickName.length < 9">获得</span>
   	</div>
   	<div class="head-money">
-  		40<span class="ft-2 ft-bold">元</span>
+  		{{freeWish.amount || 0}}<span class="ft-2 ft-bold">元</span>
   	</div>
     <div ng-switch="freeWishStatics.status">
         <div ng-switch-when="1" >
