@@ -12,10 +12,10 @@
   	</div>
 
     <div ng-switch="needSubscribe" >
-      <a class="head-btn" ng-switch-default ng-href="{{'share-spring/detail/' + freeWish.number+ '#attention' }}">
+      <a class="head-btn" ng-switch-when="true" ng-href="{{'share-spring/detail/' + freeWish.number+ '#attention' }}">
         &nbsp;
       </a>
-      <div class="head-btn" ng-switch-when="false" ng-click="cheerFreeWish(freeWish)">
+      <div class="head-btn" ng-switch-default ng-click="cheerFreeWish(freeWish)">
         &nbsp;
       </div>
     </div>
