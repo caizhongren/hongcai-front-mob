@@ -147,7 +147,9 @@ angular.module('p2pSiteMobApp')
       Restangular.one('freeWishes').one($rootScope.userInfo.id).one('myFreeWish').get({
         level: level
       }).then(function(response){
+        $scope.goOnMyWay = false;
         var rediretUrl = config.domain + '/'+ $scope.getShareDetailUrl($scope.level)  +'/' + response.number;
+        window.location.href = rediretUrl;
       });
     }
 
