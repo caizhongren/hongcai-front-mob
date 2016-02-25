@@ -78,34 +78,37 @@
     <img src="/images/activity/share-002.png" alt="" width="100%">
   </div>
 </div>
-<!-- 为别人砸罐后弹出的蒙层 -->
-<div class="share-detail-Layer" ng-show="cheerFreeSuccess">
+<!-- 为别人砸罐后弹出的蒙层cheerFreeSuccess -->
+<div class="share-detail-Layer" ng-show="cheerFreeSuccess" ng-click="goDetail(myFreeWish)">
 	<div class="monkey">
-		<div class="monkey-head padding-r-2">
+		<!-- <div class="monkey-head padding-r-2">
 			<i class="fa fa-times-circle-o ft-white ft-3 tip-close fr" ng-click="goDetail(myFreeWish)"></i>
-		</div>
+		</div> -->
 		<div class="monkey-tipdetail">
 			<img src="/images/activity/share-003.png" alt="" width="100%">
       <div class="text-tip">
-        <p class="ft-red6 ft-3">恭喜您！</p>
-        <p class="ft-1p6 ft-black">获得<span class="ft-5 ft-red6">{{myFreeWish.amount || 0}}元</span>现金！</p>
-        <p class="ft-1p6 ft-black">已成功帮好友砸罐！</p>
+        <p class="ft-red6 ft-3 ft-bold">恭喜您！</p>
+        <div class="ft-1p6 ft-black clear text-center over-auto mid-white">
+        <div class="spectical-masktip text-right">
+          获得
+        </div><div class="ft-5 ft-red6 ft-bold spectical-masktip text-center">{{myFreeWish.amount || 0}}元</div><div class="spectical-masktip text-left">现金！</div></div>
+        <p class="ft-1p6 ft-black bottom-white">已成功帮好友砸罐！</p>
       </div>
 		</div>
 	</div>
 </div>
-<!-- 砸罐成功弹出已进行任务弹出的蒙层 -->
-<div class="share-detail-Layer" ng-show="goOnMyWay">
+<!-- 砸罐成功弹出已进行任务弹出的蒙层 goOnMyWay-->
+<div class="share-detail-Layer" ng-show="goOnMyWay" ng-click="goOn()">
   <div class="monkey">
-    <div class="monkey-head padding-r-2">
+    <!-- <div class="monkey-head padding-r-2">
       <i class="fa fa-times-circle-o ft-white ft-3 tip-close fr" ng-click="goOn()"></i>
-    </div>
+    </div> -->
     <div class="monkey-tipdetail">
       <img src="/images/activity/share-003.png" alt="" width="100%">
       <div class="text-tip">
-        <p class="ft-red6 ft-3">恭喜您</p>
-        <p class="ft-1p6 ft-black">已成功帮好友砸罐！</p>
-        <p class="ft-red6 ft-3 margin-t-1">继续我的淘金之旅</p>
+        <p class="ft-red6 ft-3 margin-t-1">恭喜您</p>
+        <p class="ft-1p6 ft-black  mid-white">已成功帮好友砸罐！</p>
+        <p class="ft-red6 ft-3 bottom-white">继续我的淘金之旅</p>
       </div>
     </div>
   </div>
