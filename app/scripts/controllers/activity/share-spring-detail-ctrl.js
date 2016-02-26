@@ -7,11 +7,20 @@ angular.module('p2pSiteMobApp')
     $scope.channelCode = $stateParams.f;
     $scope.test = config.test;
     
-    Restangular.one('freeWishes').one($stateParams.number).one('freeWishWithCheerRecords').get().then(function(response){
-      $scope.freeWish = response.freeWish;
-      $scope.freeWish.cheerRecords = response.cheerRecords;
+    Restangular.one('freeWishes', $stateParams.number).one('freeWishWithCheerRecords').get().then(function(response){
+      $scope.freeWish = response;
     });
 
+
+    /**
+     * 保存未关注用户点赞信息
+     */
+    $scope.addFreeWishPraise = function(freeWishId){
+      Restangular.one('freeWishes', freeWishId).post('addFreeWishPraise', {
+        userId: $rootScope.userInfo.id,
+        openId: $rootScope.userInfo.openid
+      });
+    }
     
 
 
@@ -97,35 +106,27 @@ angular.module('p2pSiteMobApp')
             alert(msg);
             return;
           }
+
           var cheerRecord = response;
           cheerRecord.user = $rootScope.userInfo;
           var wishAmount = $scope.freeWish.wishAmount + cheerRecord.amount;
           $scope.freeWish.praiseCount = $scope.freeWish.praiseCount + 1;
           $scope.freeWish.cheerRecords.push(cheerRecord);
 
-          if (!$scope.freeWishStatics){ // 未参加过活动
-            Restangular.one('freeWishes').post('addFreeWish', {
-              userId: $rootScope.userInfo.id,
-              level: 1
-            }).then(function(response){
-                console.log(response);
-                if(response.ret === -1){
-                  // alert(response.msg);
-                }else{
-                  $scope.cheerFreeSuccess = true;
-                  $scope.myFreeWish = response;
-                  // var rediretUrl = config.domain + '/'+ $scope.getShareDetailUrl($scope.level)  +'/' + response.number;
-                  // alert(rediretUrl);
-                  // if ($scope.channelCode){
-                  //   rediretUrl = rediretUrl + '?f=' + $scope.channelCode + '&act=' + $scope.act;
-                  // }
-                  // alert(rediretUrl);
-                  // window.location.href = rediretUrl;
-                }
-            });
-          } else {
+          if ($scope.freeWishStatics){
             $scope.goOnMyWay = true;
+            return;
           }
+
+          Restangular.one('freeWishes').post('addFreeWish', {
+            userId: $rootScope.userInfo.id,
+            level: 1
+          }).then(function(response){
+              if(response.ret !== -1){
+                $scope.cheerFreeSuccess = true;
+                $scope.myFreeWish = response;
+              }
+          });
 
       });
 
