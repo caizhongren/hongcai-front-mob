@@ -14,14 +14,15 @@
   		{{freeWish.amount || 0}}<span class="ft-2 ft-bold">元</span>
   	</div>
 
-    <div ng-switch="needSubscribe" >
-      <a class="head-btn" ng-switch-when="true" ng-href="{{'share-spring/detail/' + freeWish.number+ '#attention' }}" ng-click="addFreeWishPraise(freeWish.id)">
-        &nbsp;
+    <div ng-switch="bindWechat || isLogged" >
+      <a class="btn-write ft-2p5 ft-bold text-center" ng-switch-default ng-href="{{'share-spring/detail/' + freeWish.number+ '#attention' }}" ng-click="addFreeWishPraise(freeWish.id)">
+        <div class="textcopy">帮TA砸罐</div>
       </a>
+
       <!-- <div class="head-btn">
         <img src="/images/activity/other3.png" alt="">
       </div> -->
-      <div class="btn-write ft-2p5 ft-bold text-center" ng-switch-default ng-click="cheerFreeWish(freeWish)">
+      <div class="btn-write ft-2p5 ft-bold text-center" ng-switch-when="true" ng-click="cheerFreeWish(freeWish)">
           <div class="textcopy">帮TA砸罐</div>
       </div>
     </div>
