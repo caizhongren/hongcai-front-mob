@@ -2,7 +2,7 @@
   <div class="head-otherdetail">
   	<img src="/images/activity/other-za.png" alt="" width="100%">
   	<div class="head-user">
-  		<img src="/images/activity/dubai.png" alt="" width="100%">
+  		<img ng-src="{{ freeWish.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%">
   	</div>
   	<div class="head-username">
   		{{freeWish.user.nickName || '金鱼公主'}}
@@ -12,7 +12,7 @@
   	</div>
 
     <div ng-switch="needSubscribe" >
-      <a class="head-btn" ng-switch-when="true" ng-href="{{'share-spring/detail/' + freeWish.number+ '#attention' }}">
+      <a class="head-btn" ng-switch-when="true" ng-href="{{'share-spring/detail/' + freeWish.number+ '#attention' }}" ng-click="addFreeWishPraise(freeWish.id)">
         &nbsp;
       </a>
       <div class="head-btn" ng-switch-default ng-click="cheerFreeWish(freeWish)">
