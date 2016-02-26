@@ -72,7 +72,7 @@ angular.module('p2pSiteMobApp')
           level : $scope.level
         }).then(function(response){
         if(response !== undefined && response.id > 0){
-          $state.go($scope.getShareDetailState($scope.level),{
+          $state.go('root.share-spring.detail',{
             number: response.number,
             act: $scope.act,
             f: $scope.channelCode
@@ -145,20 +145,6 @@ angular.module('p2pSiteMobApp')
         var rediretUrl = config.domain + '/share-spring/detail/' + response.number;
         window.location.href = rediretUrl;
       });
-    }
-
-
-    $scope.getShareDetailState = function(level){
-      var stateStr = "root.share-spring.mydetail";
-      if(level == 1){
-        stateStr = "root.share-spring.mydetail";
-      }else if(level == 2){
-        stateStr = "root.share-spring.mySecondDetail";
-      }else if(level == 3){
-        stateStr = "root.share-spring.myThirdDetail";
-      }
-
-      return stateStr;
     }
 
     /**
