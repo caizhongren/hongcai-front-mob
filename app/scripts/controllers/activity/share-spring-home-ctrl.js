@@ -99,7 +99,7 @@ angular.module('p2pSiteMobApp')
             // });
             alert(response.msg);
           }else{
-            var rediretUrl = config.domain + '/'+ $scope.getShareDetailUrl($scope.level)  +'/' + response.number;
+            var rediretUrl = config.domain + '/share-spring/detail/' + response.number;
             // alert(rediretUrl);
             if ($scope.channelCode){
               rediretUrl = rediretUrl + '?f=' + $scope.channelCode + '&act=' + $scope.act;
@@ -125,29 +125,9 @@ angular.module('p2pSiteMobApp')
     }
 
     $scope.getShareDetailState = function(level){
-      var stateStr = "root.share-spring.mydetail";
-      if(level == 1){
-        stateStr = "root.share-spring.mydetail";
-      }else if(level == 2){
-        stateStr = "root.share-spring.mySecondDetail";
-      }else if(level == 3){
-        stateStr = "root.share-spring.myThirdDetail";
-      }
+      var stateStr = "root.share-spring.detail";
 
       return stateStr;
-    }
-
-    $scope.getShareDetailUrl = function(level){
-      var url = "share-spring/detail";
-      if(level == 1){
-        url = "share-spring/mydetail";
-      }else if(level == 2){
-        url = "share-spring/mySecondDetail";
-      }else if(level == 3){
-        url = "share-spring/myThirdDetail";
-      }
-
-      return url;
     }
 
     $scope.goAccount = function(){
