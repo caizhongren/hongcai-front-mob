@@ -1,6 +1,9 @@
 <div class="spring-activity">
   <div class="head-otherdetail">
-  	<img src="/images/activity/other-za.png" alt="" width="100%">
+  	<img src="/images/activity/other2.png" alt="" width="100%">
+    <div class="copywriter ft-bold ft-2p5 text-center">
+      领现金&nbsp;每人都有&nbsp;&nbsp;最高50元
+    </div>
   	<div class="head-user">
   		<img ng-src="{{ freeWish.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%">
   	</div>
@@ -15,8 +18,11 @@
       <a class="head-btn" ng-switch-when="true" ng-href="{{'share-spring/detail/' + freeWish.number+ '#attention' }}" ng-click="addFreeWishPraise(freeWish.id)">
         &nbsp;
       </a>
-      <div class="head-btn" ng-switch-default ng-click="cheerFreeWish(freeWish)">
-        &nbsp;
+      <div class="head-btn">
+        <img src="/images/activity/other3.png" alt="">
+      </div>
+      <div class="btn-write ft-2p5 ft-bold text-center" ng-switch-default ng-click="cheerFreeWish(freeWish)">
+          帮TA砸罐
       </div>
     </div>
 
