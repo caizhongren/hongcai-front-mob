@@ -133,12 +133,11 @@ angular.module('p2pSiteMobApp')
     }
 
     $scope.goDetail = function(freeWish){
-      var rediretUrl = config.domain + '/share-spring/detail/' + freeWish.number;
+      var rediretUrl = config.domain + '/' + $scope.getShareDetailUrl($scope.level) + '/' + freeWish.number;
       window.location.href = rediretUrl;
     }
 
     $scope.goOn = function(){
-
       Restangular.one('freeWishes', $rootScope.userInfo.id).one('myFreeWish').get({
         level: $scope.level
       }).then(function(response){
@@ -150,13 +149,13 @@ angular.module('p2pSiteMobApp')
 
 
     $scope.getShareDetailState = function(level){
-      var stateStr = "root.share-spring-detail";
+      var stateStr = "root.share-spring.mydetail";
       if(level == 1){
         stateStr = "root.share-spring.mydetail";
       }else if(level == 2){
-        stateStr = "root.share-spring.mydetail";
+        stateStr = "root.share-spring.mySecondDetail";
       }else if(level == 3){
-        stateStr = "root.share-spring.mydetail";
+        stateStr = "root.share-spring.myThirdDetail";
       }
 
       return stateStr;
@@ -167,9 +166,9 @@ angular.module('p2pSiteMobApp')
       if(level == 1){
         url = "share-spring/mydetail";
       }else if(level == 2){
-        url = "share-spring/mydetail";
+        url = "share-spring/mySecondDetail";
       }else if(level == 3){
-        url = "share-spring/mydetail";
+        url = "share-spring/myThirdDetail";
       }
 
       return url;
@@ -206,7 +205,7 @@ angular.module('p2pSiteMobApp')
      * 设置用户分享的标题以及描述以及图片等。
      */
     $scope.onMenuShareAppMessage = function(wishNumber){
-      var shareLink = config.domain + '/share-spring/detail/' + wishNumber;
+      var shareLink = config.domain + '/' + $scope.getShareDetailUrl($scope.level) + '/' + wishNumber;
       if ($scope.channelCode){
         shareLink = shareLink + '?f=' + $scope.channelCode + '&act=' + $scope.act;
       }

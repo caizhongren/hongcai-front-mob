@@ -125,13 +125,13 @@ angular.module('p2pSiteMobApp')
     }
 
     $scope.getShareDetailState = function(level){
-      var stateStr = "root.share-spring-detail";
+      var stateStr = "root.share-spring.mydetail";
       if(level == 1){
-        stateStr = "root.share-spring.detail";
+        stateStr = "root.share-spring.mydetail";
       }else if(level == 2){
-        stateStr = "root.share-spring.mydetail";
+        stateStr = "root.share-spring.mySecondDetail";
       }else if(level == 3){
-        stateStr = "root.share-spring.mydetail";
+        stateStr = "root.share-spring.myThirdDetail";
       }
 
       return stateStr;
@@ -142,9 +142,9 @@ angular.module('p2pSiteMobApp')
       if(level == 1){
         url = "share-spring/mydetail";
       }else if(level == 2){
-        url = "share-spring/mydetail";
+        url = "share-spring/mySecondDetail";
       }else if(level == 3){
-        url = "share-spring/mydetail";
+        url = "share-spring/myThirdDetail";
       }
 
       return url;

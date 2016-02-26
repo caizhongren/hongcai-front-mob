@@ -2,13 +2,25 @@
 <div ng-switch="userInfo && userInfo.id === freeWish.userId">
   <!-- 自己看到的任务页 -->
   <div ng-switch-when="true">
-    <section  ng-include src='"views/activity/share-spring-mydetail.html"'>
-    </section>
+    <div ng-switch="freeWish.level">
+        <section ng-switch-when="1" ng-include src='"views/activity/share-spring-mydetail.html"'>
+        </section>
+        <section ng-switch-when="2" ng-include src='"views/activity/_mysecond-detail.html"'>
+        </section>
+        <section ng-switch-when="3" ng-include src='"views/activity/_mythird-detail.html"'>
+        </section>
+    </div>
   </div>
 
   <!-- 他人看到的任务页 -->
   <div ng-switch-default>
-    <section ng-include src='"views/activity/share-spring-otherdetail.html"'>
-    </section>
+    <div ng-switch="freeWish.level">
+        <section ng-switch-when="1" ng-include src='"views/activity/share-spring-otherdetail.html"'>
+        </section>
+        <section ng-switch-when="2" ng-include src='""'>
+        </section>
+        <section ng-switch-when="3" ng-include src='""'>
+        </section>
+    </div>
   </div>
 </div>
