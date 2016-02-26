@@ -643,6 +643,15 @@ p2pSiteMobApp
           }
         }
       })
+      //新年点赞活动第二关自己任务页
+      .state('root.share-spring.mySecondDetail', {
+        url: '/mySecondDetail',
+        views: {
+          '': {
+            templateUrl: 'views/activity/_mysecond-detail.html',
+          }
+        }
+      })
 
 
     ;
