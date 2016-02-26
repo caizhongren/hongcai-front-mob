@@ -115,19 +115,13 @@ angular.module('p2pSiteMobApp')
           level : $scope.level
         }).then(function(response){
         if(response !== undefined && response.id > 0){
-          $state.go($scope.getShareDetailState($scope.level),{
+          $state.go('root.share-spring.detail',{
             number: response.number,
             act: $scope.act,
             f: $scope.channelCode
           });
         }
       });
-    }
-
-    $scope.getShareDetailState = function(level){
-      var stateStr = "root.share-spring.detail";
-
-      return stateStr;
     }
 
     $scope.goAccount = function(){
