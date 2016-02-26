@@ -49,11 +49,27 @@
   						</div>
   					</div>
   				</div>
-
   			</div>
+        <div class="row">
+          <div class="table-cell" ng-repeat="item in freeWish.cheerRecords">
+            <div class="img-border">
+              <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%">
+            </div>
+          </div>
+
+          <div class="table-cell" ng-repeat="item in [1,2,3,4,5,6] | limitTo : 6 - freeWish.cheerRecords.length">
+            <div class="img-border">
+              <img src="/images/activity/index-grey.png" alt="" width="100%">
+              <div class="img-untip ft-1p2">
+                未点亮
+              </div>
+            </div>
+          </div>
+        </div>
   		</div>
+      <div class="ft-white ft-1p4 text-center margin-t-1 margin-b-0">查看更多&nbsp;<i class="fa fa-angle-double-down"></i></div>
   	</div>
-  	<div class="text-center ft-yellow2 ft-1p6 ft-bold margin-t-2">
+  	<div class="text-center ft-yellow2 ft-1p6 ft-bold margin-t-1">
   		长按二维码&nbsp;领取现金
   	</div>
   	<div class="text-center margin-t-1">
