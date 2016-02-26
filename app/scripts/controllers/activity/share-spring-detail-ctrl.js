@@ -212,8 +212,8 @@ angular.module('p2pSiteMobApp')
       }
 
       wx.onMenuShareAppMessage({
-        title: '亲 这次一定要帮我呢',
-        desc: '没有什么比现金更实在的。帮我点赞，你也一起来拿钱！',
+        title: '帮我砸罐！你也能拿现金哦~',
+        desc: '领现金，每人都有，最高50元！帮好友砸罐，你也能拿现金！',
         link: shareLink,
         imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/KuGEE3Ins1Oc1gSxsWNG7hnKVzX83nWM3rQsiaPNUdqWoR7DddJAW7H7Iico9rad9armXmH9UM8veRvicaoBEpeTA/0?wx_fmt=png',
         trigger: function (res) {
