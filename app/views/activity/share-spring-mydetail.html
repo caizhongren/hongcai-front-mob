@@ -21,19 +21,19 @@
         </div>
         
 
-        <div class="head-btn" ng-switch-when="2" ng-clicl="">
+        <div class="head-btn" ng-switch-when="2" ng-clicl="goOn()">
           已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.FreeWishActivityRules.secondReward| number:0}}元
         </div>
 
-        <div class="head-btn" ng-switch-when="3" ng-clicl="">
+        <div class="head-btn" ng-switch-when="3" ng-clicl="goOn()">
           已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.FreeWishActivityRules.thirdReward| number:0}}元
         </div>
 
-        <div class="head-btn" ng-switch-when="4" ng-clicl="">
+        <div class="head-btn" ng-switch-when="4" ng-clicl="goOn()">
           已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.FreeWishActivityRules.thirdReward| number:0}}元
         </div>
 
-        <div class="head-btn" ng-switch-when="5" ng-clicl="">
+        <div class="head-btn" ng-switch-when="5" ng-clicl="goOn()">
           我的账户
         </div>
     </div>
@@ -129,19 +129,19 @@
 				<form autocomplete="on" id="realNameAuthForm" name="realNameAuthForm" class="margin-b-0">
 		      <div class="form-mask">
 		        <label class="label-tip">真实手机号:</label>
-		        <input id="realName" class="input-tip1" name="realName" type="text" ng-model="user.realName" placeholder="请输入您的手机号码" ng-disabled="!timeout" required>
+		        <input id="realName" class="input-tip1" name="realName" type="text" ng-model="user.realName" placeholder="请输入您的手机号码" required>
 		      </div>
 		      <div class="form-mask">
 		        <label class="label-tip">图片验证码:</label>
-		        <input id="idNo" class="input-tip2" name="idNo" type="text" ng-model="user.idNo" placeholder="图片验证码" ng-pattern="/^([0-9]{17}[0-9xX]{1})$|^([0-9]{15})$/" ng-disabled="!timeout" required>
-		        <div class="img-tip">
-		        	<img src="/images/activity/test.png" alt="" width="100%">
+		        <input id="picCaptcha" class="input-tip2" name="picCaptcha" type="text" ng-model="user.picCaptcha" placeholder="图片验证码" ng-pattern="/^([0-9]{17}[0-9xX]{1})$|^([0-9]{15})$/" required>
+		        <div class="img-tip" ng-click="refreshCode()">
+		        	<img ng-src="{{getPicCaptcha}}" alt="" width="100%">
 		        </div>
 		      </div>
 		      <div class="form-mask">
 		        <label class="label-tip">短信验证码:</label>
-		        <input id="idNo" class="input-tip2" name="idNo" type="text" ng-model="user.idNo" placeholder="请输入手机验证码" ng-pattern="/^([0-9]{17}[0-9xX]{1})$|^([0-9]{15})$/" ng-disabled="!timeout" required>
-		        <div class="btn-sendtip">发送</div>
+		        <input id="mobileCaptcha" class="input-tip2" name="mobileCaptcha" type="text" ng-model="user.mobileCaptcha" placeholder="请输入手机验证码" ng-pattern="/^([0-9]{17}[0-9xX]{1})$|^([0-9]{15})$/" required>
+		        <div class="btn-sendtip" ng-click="sendMobileCaptcha(user)">发送</div>
 		      </div>
 		      <div class="ft-red text-center margin-t-1 margin-b-1 ft-1p2 form-mask">
 		        {{errMsg}}

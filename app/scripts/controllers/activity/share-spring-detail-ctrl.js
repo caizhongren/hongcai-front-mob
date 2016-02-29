@@ -5,7 +5,7 @@ angular.module('p2pSiteMobApp').filter('slice', function() {
   };
 });
 angular.module('p2pSiteMobApp')
-  .controller('ShareSpringDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, Restangular, config, DialogService) {
+  .controller('ShareSpringDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, Restangular, config, register, WEB_DEFAULT_DOMAIN, mobileCaptcha) {
     $rootScope.showFooter = false;
     $scope.act = $stateParams.act;
     $scope.channelCode = $stateParams.f;
@@ -232,6 +232,9 @@ angular.module('p2pSiteMobApp')
       window.location.href = config.domain + '/user-center/account'
     }
 
+
+
+
     /**
      * 领取奖励
      */
@@ -250,4 +253,53 @@ angular.module('p2pSiteMobApp')
         }
       });
     }
+
+    $scope.getPicCaptcha = WEB_DEFAULT_DOMAIN + '/siteUser/getPicCaptcha?';
+    $scope.refreshCode = function() {
+      angular.element('#checkCaptcha').attr('src', angular.element('#checkCaptcha').attr('src').substr(0, angular.element('#checkCaptcha').attr('src').indexOf('?')) + '?code=' + Math.random());
+    };
+
+    $scope.sendMobileCaptcha = function(user) {
+      if (!user.picCaptcha){
+        $scope.showPicCaptchaError = true;
+        return;
+      } else {
+        $scope.showPicCaptchaError = false;
+      }
+
+
+      mobileCaptcha.$create({
+        mobile: user.mobile
+      }).$then(function(response) {
+        if (response.ret === -1) {
+          $scope.captchaShow = true;
+          $scope.msg = response.msg;
+        }
+      });
+    };
+
+    $scope.signUp = function(user) {
+      register.$create({
+        // name: user.name,
+        password: md5.createHash(user.password),
+        mobile: user.mobile,
+        captcha: user.captcha,
+        inviteCode: user.inviteCode,
+        openId: openId
+      }).$then(function(response) {
+        if (response.ret === -1) {
+          $scope.captchaShow = true;
+          $scope.msg = response.msg;
+        } else {
+          $rootScope.user = {
+            id: response.id
+          };
+          $state.go('root.register-success', {
+            userId: $rootScope.user.id
+          });
+        }
+      });
+    };
+
+    
 });
