@@ -15,14 +15,14 @@
   	</div>
 
     <div ng-switch="bindWechat || isLogged" >
-      <a class="btn-write ft-2p5 ft-bold text-center" ng-switch-default ng-href="{{'share-spring/detail/' + freeWish.number+ '#attention' }}" ng-click="addFreeWishPraise(freeWish.id)">
+      <a class="btn-write ft-2p5 ft-bold text-center btn-shadownone" ng-switch-default ng-href="{{'share-spring/detail/' + freeWish.number+ '#attention' }}" ng-click="addFreeWishPraise(freeWish.id)">
         <div class="textcopy">帮TA砸罐</div>
       </a>
 
       <!-- <div class="head-btn">
         <img src="/images/activity/other3.png" alt="">
       </div> -->
-      <div class="btn-write ft-2p5 ft-bold text-center" ng-switch-when="true" ng-click="cheerFreeWish(freeWish)">
+      <div class="btn-write ft-2p5 ft-bold text-center btn-shadownone" ng-switch-when="true" ng-click="cheerFreeWish(freeWish)">
           <div class="textcopy">帮TA砸罐</div>
       </div>
     </div>
@@ -54,14 +54,14 @@
         <div class="row" ng-show="cheerInt > 0" ng-repeat="repeatNum in repeatNums | limitTo : initLimit">
           <div class="table-cell" ng-repeat="item in freeWish.cheerRecords | slice:repeatNum * 6 - 6:repeatNum*6">
             <div class="img-border">
-              <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%">
+              <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%" class="img-test">
             </div>
           </div>
         </div>
         <div class="row" ng-show="cheerInt <= 0">
           <div class="table-cell" ng-repeat="item in freeWish.cheerRecords">
             <div class="img-border">
-              <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%">
+              <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%" class="img-test">
             </div>
           </div>
 

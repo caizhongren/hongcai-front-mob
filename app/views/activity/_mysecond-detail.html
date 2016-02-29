@@ -21,13 +21,10 @@
           <button class="second-btn ft-red7 ft-2p5 ft-bold" ng-click="$parent.inviteFlag = true" ng-show="freeWish.cheerRecords.length < activity.freeWishActivityRules.secondPersonNum">
             找{{activity.freeWishActivityRules.secondPersonNum - freeWish.cheerRecords.length}}个人&nbsp;帮你砸罐拿现金
           </button>
-          <button class="second-btn ft-red7 ft-2p5 ft-bold" ng-click="receiveReward();$parent.showMask = true;" ng-show="freeWish.cheerRecords.length === activity.freeWishActivityRules.secondPersonNum">
-            砸罐完成 马上提现
-          </button>
         </div>
         <div ng-switch-when="4">
-          <button class="second-btn ft-red7 ft-2p5 ft-bold" ng-click="openFreeWish()">
-            再拿{{activity.FreeWishActivityRules.thirdReward| number:0}}元
+          <button class="second-btn ft-red7 ft-2p5 ft-bold" ng-click="$parent.showMask = true;" ng-show="freeWish.cheerRecords.length === activity.freeWishActivityRules.secondPersonNum">
+            砸罐完成 马上提现
           </button>
         </div>
         <div ng-switch-when="5">
