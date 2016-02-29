@@ -16,25 +16,25 @@
             找{{6 - freeWish.cheerRecords.length}}个人&nbsp;帮你砸罐拿现金
           </div>
           <div class="head-btn" ng-click="$parent.showMask = true" ng-show="freeWish.cheerRecords.length === 6">
-            找{{6 - freeWish.cheerRecords.length}}个人&nbsp;帮你砸罐拿现金
+            砸罐完成&nbsp;马上提现
           </div>
         </div>
         
 
-        <div class="head-btn" ng-switch-when="2" >
+        <div class="head-btn" ng-switch-when="2" ng-clicl="">
           已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.FreeWishActivityRules.secondReward| number:0}}元
         </div>
 
-        <div class="head-btn" ng-switch-when="3" >
+        <div class="head-btn" ng-switch-when="3" ng-clicl="">
           已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.FreeWishActivityRules.thirdReward| number:0}}元
         </div>
 
-        <div class="head-btn" ng-switch-when="4" >
+        <div class="head-btn" ng-switch-when="4" ng-clicl="">
           已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.FreeWishActivityRules.thirdReward| number:0}}元
         </div>
 
-        <div class="head-btn" ng-switch-when="5" >
-          我的账号
+        <div class="head-btn" ng-switch-when="5" ng-clicl="">
+          我的账户
         </div>
     </div>
   	
@@ -45,7 +45,7 @@
 			  <div class="qimo">
 			    <div id="demo1">
 			      <ul>
-			        <li><img src="/images/activity/money2.png" alt="">宏财网已发放现金总额<span class="ft-2 ft-bold">{{totalReward | number:0}}</span>元</li>
+			        <li class="ft-yellow"><img src="/images/activity/money2.png" alt="">宏财网已发放现金总额<span class="ft-2 ft-bold">{{totalReward | number:0}}</span>元</li>
 			      </ul>
 			    </div>
 			    <div id="demo2"></div>
@@ -65,7 +65,7 @@
   			<div class="row">
           <div class="table-cell" ng-repeat="item in freeWish.cheerRecords">
             <div class="img-border">
-              <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%">
+              <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%" class="img-test">
             </div>
           </div>
 

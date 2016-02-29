@@ -1105,10 +1105,12 @@ input::-webkit-inner-spin-button {
     .head-username {
         position: absolute;
         top: 51%;
-        left: 40%;
         color: #fff;
         font-size: 1.8rem;
         font-weight: bold;
+        width: 50%;
+        margin-left: 24%;
+        text-align: center;
     }
     .head-money {
         position: absolute;
@@ -1149,6 +1151,15 @@ input::-webkit-inner-spin-button {
           margin-left:8%;
         }
     }
+    .btn-shadownone{
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+          -webkit-appearance: none !important;
+          margin: 0;
+      }
+      -webkit-appearance: none !important;
+      margin: 0;
+    }
     .btn-write{
       position: absolute;
       bottom: 11%;
@@ -1159,16 +1170,16 @@ input::-webkit-inner-spin-button {
       margin-left:23%;
       color:#ffe319;
       -webkit-text-stroke: 0.5px #e94606;
-      .textcopy{height: 40px;line-height: 34px;}
+      .textcopy{height: 46px;line-height: 38px;}
     }
     @media (min-width: 320px) {
-      .btn-write{bottom: 9%;}
+      .btn-write{bottom: 8%;}
     }
     @media (min-width: 375px) {
-      .btn-write{bottom: 11%;}
+      .btn-write{bottom: 9%;}
     }
     @media (min-width: 414px) {
-      .btn-write{bottom: 11%;}
+      .btn-write{bottom: 10%;}
     }
     .copywriter{
       position: absolute;
@@ -1277,17 +1288,26 @@ input::-webkit-inner-spin-button {
                             height: 44px;
                             line-height: 44px;
                         }
+                        .img-test{
+                          height: 44px;
+                        }
                     }
                     @media (min-width: 375px) {
                         .img-untip {
                             height: 53px;
                             line-height: 53px;
                         }
+                        .img-test{
+                          height: 53px;
+                        }
                     }
                     @media (min-width: 414px) {
                         .img-untip {
                             height: 59px;
                             line-height: 59px;
+                        }
+                        .img-test{
+                          height: 60px;
                         }
                     }
                 }
@@ -1564,6 +1584,9 @@ margin-top:6px;}
   .mid-white{margin-top: 0;}
   .btn-write{bottom: 10%;}
   .third-user{bottom: 16%;}
+  .img-test{
+    height: 44px;
+  }
 }
 @media (min-width: 375px) {
   .end-minheight{min-height: 90px;}
@@ -1571,10 +1594,16 @@ margin-top:6px;}
   .mid-white{margin-top: 1rem;}
   .btn-write{bottom: 11%;}
   .third-user{bottom: 17%;}
+  .img-test{
+    height:53px;
+  }
 }
 @media (min-width: 414px) {
   .end-minheight{min-height: 120px;}
   .mid-white,.bottom-white{margin-top: 2rem;}
   .btn-write{bottom: 12%;}
   .third-user{bottom: 18%;}
+  .img-test{
+    height: 60px;
+  }
 }
