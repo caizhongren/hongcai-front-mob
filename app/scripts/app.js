@@ -650,6 +650,15 @@ p2pSiteMobApp
           }
         }
       })
+      //新年点赞活动第三关自己任务页
+      .state('root.share-spring.myThirdDetail', {
+        url: '/myThirdDetail',
+        views: {
+          '': {
+            templateUrl: 'views/activity/_mythird-detail.html',
+          }
+        }
+      })
 
 
     ;

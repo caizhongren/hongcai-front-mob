@@ -1,0 +1,117 @@
+<div class="spring-activity bg-yellow3">
+    <div class="head-mydetail  bg-yellow3">
+        <img src="/images/activity/third01.png" alt="" width="100%">
+        <div class="third-head position-ab text-center ft-4 ft-bold ft-deepred1">我要再拿100元</div>
+        <div class="position-ab third-user">
+            <div class="img-outerdiv fl"><img ng-src="{{ freeWish.user.headImgUrl || '/images/activity/dubai.png'}}"></div>
+            <div class="fl img-nickname ft-white ft-1p8 text-center">{{freeWish.user.nickName || '金鱼公主'}}</div>
+        </div>
+    </div>
+    <div class="padding-l-1 padding-r-1 bg-yellow3">
+        <button class="third-btn ft-yellow3 ft-2p5 ft-bold">找100人 帮你砸罐拿现金</button>
+    </div>
+    <div class="content-mydetail  bg-yellow3">
+        <div class="padding-l-2 padding-r-2 ft-1p5 ft-black3 text-center">
+            <div id="demo" class="qimo8">
+                <div class="qimo">
+                    <div id="demo1">
+                        <ul>
+                            <li class="ft-red9"><img src="/images/activity/money4.png" alt="">宏财网已发放现金总额<span class="ft-2 ft-bold">{{totalReward | number:0}}</span>元</li>
+                        </ul>
+                    </div>
+                    <div id="demo2"></div>
+                </div>
+            </div>
+        </div>
+        <div class="padding-l-2 padding-r-2">
+            <div class="list-tips">
+                <div class="left-line fl border-deepred"></div>
+                <div class="tips-content ft-black">砸罐小能手</div>
+                <div class="right-line fr border-deepred"></div>
+            </div>
+        </div>
+        <div class="padding-l-1 padding-r-1 margin-t-1">
+            <div class="list-content">
+                <div class="row">
+                    <div class="table-cell" ng-repeat="item in freeWish.cheerRecords">
+                        <div class="img-border">
+                            <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%">
+                        </div>
+                    </div>
+                    <div class="table-cell" ng-repeat="item in [1,2,3,4,5,6] | limitTo : 6 - freeWish.cheerRecords.length">
+                        <div class="img-border">
+                            <img src="/images/activity/index-grey.png" alt="" width="100%">
+                            <div class="img-untip ft-1p2">
+                                未点亮
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="table-cell" ng-repeat="item in freeWish.cheerRecords">
+                        <div class="img-border">
+                            <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%">
+                        </div>
+                    </div>
+                    <div class="table-cell" ng-repeat="item in [1,2,3,4,5,6] | limitTo : 6 - freeWish.cheerRecords.length">
+                        <div class="img-border">
+                            <img src="/images/activity/index-grey.png" alt="" width="100%">
+                            <div class="img-untip ft-1p2">
+                                未点亮
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ft-white ft-1p4 text-center margin-t-1 margin-b-0">查看更多&nbsp;<i class="fa fa-angle-double-down"></i></div>
+        </div>
+        <div class="text-center ft-yellow2 ft-1p6 ft-bold margin-t-1">
+            长按二维码&nbsp;领取现金
+        </div>
+        <div class="text-center margin-t-1">
+            <img src="/images/activity/index-wxin2.png" alt="" width="50%" ng-show="!test">
+            <img src="/images/activity/index-wxin-test.png" alt="" width="50%" ng-show="test">
+        </div>
+    </div>
+</div>
+<!-- 分享给好友蒙层 可以用ng-show控制-->
+<div class="share-page-breakWishLayer width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-click="inviteFlag = false;" ng-show="inviteFlag" my-click-once>
+    <div class="margin-l-1 margin-r-1 ft-1p2 padding-1" style="border-radius:0.5rem;">
+        <img src="/images/activity/share-001.png" alt="" width="100%">
+    </div>
+</div>
+<!-- 完成第一关的蒙层 -->
+<div class="share-detail-Layer" ng-show="false">
+    <div class="monkey">
+        <div class="monkey-head">
+            <img src="/images/activity/index-006.png" alt="" width="50%" class="monkey-img">
+            <i class="fa fa-times-circle-o ft-white ft-3 tip-close" ng-click="showMask=false"></i>
+        </div>
+        <div class="monkey-detail">
+            <div class="border-inner">
+                <p class="text-center ft-black">23元现金已到账&nbsp;可随时提现！</p>
+                <div class="btn-outer margin-t-1p5">
+                    <button class="btn-inner">马上提现</button>
+                </div>
+                <div class="btn-outer">
+                    <button class="btn-inner">再拿30元</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+var demo = document.getElementById("demo");
+var demo1 = document.getElementById("demo1");
+var demo2 = document.getElementById("demo2");
+demo2.innerHTML = document.getElementById("demo1").innerHTML;
+
+function Marquee() {
+    if (demo.scrollLeft - demo2.offsetWidth >= 0) {
+        demo.scrollLeft -= demo1.offsetWidth;
+    } else {
+        demo.scrollLeft++;
+    }
+}
+var myvar = setInterval(Marquee, 30);
+</script>
