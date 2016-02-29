@@ -291,15 +291,11 @@ angular.module('p2pSiteMobApp')
           $scope.captchaShow = true;
           $scope.msg = response.msg;
         } else {
-          $rootScope.user = {
-            id: response.id
-          };
-          $state.go('root.register-success', {
-            userId: $rootScope.user.id
-          });
+          $rootScope.userInfo = response.user;
+          $scope.receiveReward();
         }
       });
     };
 
-    
+
 });

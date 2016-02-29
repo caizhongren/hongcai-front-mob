@@ -134,8 +134,8 @@
 		      <div class="form-mask">
 		        <label class="label-tip">图片验证码:</label>
 		        <input id="picCaptcha" class="input-tip2" name="picCaptcha" type="text" ng-model="user.picCaptcha" placeholder="图片验证码" ng-pattern="/^([0-9]{17}[0-9xX]{1})$|^([0-9]{15})$/" required>
-		        <div class="img-tip" ng-click="refreshCode()">
-		        	<img ng-src="{{getPicCaptcha}}" alt="" width="100%">
+		        <div class="img-tip" >
+		        	<img ng-src="{{getPicCaptcha}}" alt="" width="100%" ng-click="refreshCode()" id="checkCaptcha">
 		        </div>
 		      </div>
 		      <div class="form-mask">
@@ -146,7 +146,7 @@
 		      <div class="ft-red text-center margin-t-1 margin-b-1 ft-1p2 form-mask">
 		        {{errMsg}}
 		      </div>
-		      <div class="form-mask margin-b-1">
+		      <div class="form-mask margin-b-1" ng-click="signUp(user)">
 		      	<img src="/images/activity/get-money.png" alt="" width="100%">
 		      </div>
 		    </form>
