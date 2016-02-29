@@ -2,16 +2,26 @@
     <div class="head-mydetail  bg-yellow3">
         <img src="/images/activity/third01.png" alt="" width="100%">
         <!-- 进入自己任务首页 -->
-        <!-- <div class="third-head position-ab text-center ft-4 ft-bold ft-deepred1">我要再拿100元</div> -->
+        <div ng-show="freeWishStatics.status <= 5" class="third-head position-ab text-center ft-4 ft-bold ft-deepred1">我要再拿{{activity.freeWishActivityRules.thirdReward |number:0 || 0}}元</div>
         <!-- 回看自己第三关文案 -->
-        <div class="third-head2 position-ab text-center ft-3 ft-bold ft-black">已累计获得<span class="ft-red9">170</span>元</div>
+        <div ng-show="freeWishStatics.status > 5" class="third-head2 position-ab text-center ft-3 ft-bold ft-black">已累计获得<span class="ft-red9">{{freeWishStatics.receiveAmount |number:0 || 0}}</span>元</div>
+        
         <div class="position-ab third-user">
             <div class="img-outerdiv fl"><img ng-src="{{ freeWish.user.headImgUrl || '/images/activity/dubai.png'}}"></div>
             <div class="fl img-nickname ft-white ft-1p6 text-center">{{freeWish.user.nickName || '金鱼公主'}}</div>
         </div>
     </div>
     <div class="third-btn2 padding-l-1 padding-r-1 bg-yellow3">
-        <button class="third-btn ft-yellow3 ft-2p5 ft-bold">找100人 帮你砸罐拿现金</button>
+        <div ng-switch-when="5" >
+          <button class="third-btn ft-yellow3 ft-2p5 ft-bold" ng-click="$parent.inviteFlag = true" ng-show="freeWish.cheerRecords.length < activity.freeWishActivityRules.secondPersonNum">
+            找{{activity.freeWishActivityRules.thirdPersonNum - freeWish.cheerRecords.length}}个人&nbsp;帮你砸罐拿现金
+          </button>
+        </div>
+        <div ng-switch-when="6">
+          <button class="third-btn ft-yellow3 ft-2p5 ft-bold" ng-click="goAccount()">
+            查看我的账户
+          </button>
+        </div>
     </div>
     <div class="content-mydetail  bg-yellow3 margin-t-1">
         <div class="padding-l-2 padding-r-2 ft-1p5 ft-black3 text-center">
@@ -34,40 +44,33 @@
             </div>
         </div>
         <div class="padding-l-1 padding-r-1 margin-t-1">
-            <div class="list-content">
-                <div class="row">
-                    <div class="table-cell" ng-repeat="item in freeWish.cheerRecords">
-                        <div class="img-border">
-                            <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%">
-                        </div>
-                    </div>
-                    <div class="table-cell" ng-repeat="item in [1,2,3,4,5,6] | limitTo : 6 - freeWish.cheerRecords.length">
-                        <div class="img-border">
-                            <img src="/images/activity/index-grey.png" alt="" width="100%">
-                            <div class="img-untip ft-1p2">
-                                未点亮
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="table-cell" ng-repeat="item in freeWish.cheerRecords">
-                        <div class="img-border">
-                            <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%">
-                        </div>
-                    </div>
-                    <div class="table-cell" ng-repeat="item in [1,2,3,4,5,6] | limitTo : 6 - freeWish.cheerRecords.length">
-                        <div class="img-border">
-                            <img src="/images/activity/index-grey.png" alt="" width="100%">
-                            <div class="img-untip ft-1p2">
-                                未点亮
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="list-content">
+            <div class="row" ng-show="cheerInt > 0" ng-repeat="repeatNum in repeatNums | limitTo : initLimit">
+          <div class="table-cell" ng-repeat="item in freeWish.cheerRecords | slice:repeatNum * 6 - 6:repeatNum*6">
+            <div class="img-border">
+              <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%">
             </div>
-            <div class="ft-white ft-1p4 text-center margin-t-1 margin-b-0">查看更多&nbsp;<i class="fa fa-angle-double-down"></i></div>
+          </div>
+            </div>
+        <div class="row" ng-show="cheerInt <= 0">
+          <div class="table-cell" ng-repeat="item in freeWish.cheerRecords">
+            <div class="img-border">
+              <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%">
+            </div>
+          </div>
+
+          <div class="table-cell" ng-repeat="item in [1,2,3,4,5,6] | limitTo : 6 - freeWish.cheerRecords.length">
+            <div class="img-border">
+              <img src="/images/activity/index-grey.png" alt="" width="100%">
+              <div class="img-untip ft-1p2">
+                未点亮
+              </div>
+            </div>
+          </div>
         </div>
+        </div>
+      <div class="ft-white ft-1p4 text-center margin-t-1 margin-b-0" ng-show="cheerInt > initLimit" ng-click="viewMore()">查看更多&nbsp;<i class="fa fa-angle-double-down"></i></div>
+    </div>
         <div class="text-center ft-yellow2 ft-1p6 ft-bold margin-t-1">
             长按二维码&nbsp;领取现金
         </div>
@@ -83,26 +86,7 @@
         <img src="/images/activity/share-001.png" alt="" width="100%">
     </div>
 </div>
-<!-- 完成第一关的蒙层 -->
-<div class="share-detail-Layer" ng-show="false">
-    <div class="monkey">
-        <div class="monkey-head">
-            <img src="/images/activity/index-006.png" alt="" width="50%" class="monkey-img">
-            <i class="fa fa-times-circle-o ft-white ft-3 tip-close" ng-click="showMask=false"></i>
-        </div>
-        <div class="monkey-detail">
-            <div class="border-inner">
-                <p class="text-center ft-black">23元现金已到账&nbsp;可随时提现！</p>
-                <div class="btn-outer margin-t-1p5">
-                    <button class="btn-inner">马上提现</button>
-                </div>
-                <div class="btn-outer">
-                    <button class="btn-inner">再拿30元</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <script type="text/javascript">
 var demo = document.getElementById("demo");
 var demo1 = document.getElementById("demo1");
