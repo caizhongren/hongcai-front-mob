@@ -27,22 +27,22 @@ angular.module('p2pSiteMobApp')
                   //第一关完成，点击按钮开启第二关
                   $scope.level = 2;
                   $scope.buttonFlag = 3;
-                  $scope.buttonValue = "到账" +freeWishStatics.receiveAmount+"元，再拿30元";
+                  $scope.buttonValue = "到账" + $scope.freeWishStatics.receiveAmount+"元，再拿30元";
                 }else if($scope.freeWishStatics.status == 3){
                   //正在进行第二关任务，点击按钮进入第二关任务
                   $scope.level = 2;
                   $scope.buttonFlag = 2;
-                  $scope.buttonValue = "到账" +freeWishStatics.receiveAmount+"元，再拿30元";
+                  $scope.buttonValue = "到账" + $scope.freeWishStatics.receiveAmount+"元，再拿30元";
                 }else if($scope.freeWishStatics.status == 4){
                   //第二关完成，点击按钮开启第三关任务
                   $scope.level = 3;
                   $scope.buttonFlag = 4;
-                  $scope.buttonValue = "到账" +freeWishStatics.receiveAmount+"元，再拿100元";
+                  $scope.buttonValue = "到账" + $scope.freeWishStatics.receiveAmount+"元，再拿100元";
                 }else if($scope.freeWishStatics.status == 5){
                   //正在进行第三关任务，点击按钮进入第三关任务
                   $scope.level = 3;
                   $scope.buttonFlag = 2;
-                  $scope.buttonValue = "到账" +freeWishStatics.receiveAmount+"元，再拿100元";
+                  $scope.buttonValue = "到账" + $scope.freeWishStatics.receiveAmount+"元，再拿100元";
                 }else if($scope.freeWishStatics.status == 6){
                   //全部通关，点击按钮进入我的账户
                   $scope.level = 3;

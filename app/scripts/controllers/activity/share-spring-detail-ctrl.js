@@ -1,5 +1,9 @@
 'use strict';
-
+angular.module('p2pSiteMobApp').filter('slice', function() {
+  return function(arr, start, end) {
+    return arr.slice(start, end);
+  };
+});
 angular.module('p2pSiteMobApp')
   .controller('ShareSpringDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, Restangular, config, DialogService) {
     $rootScope.showFooter = false;
@@ -7,9 +11,18 @@ angular.module('p2pSiteMobApp')
     $scope.channelCode = $stateParams.f;
     $scope.test = config.test;
     
+    $scope.repeatNums = [];
+    $scope.initLimit = 2;
     Restangular.one('freeWishes', $stateParams.number).one('freeWishWithCheerRecords').get().then(function(response){
       $scope.freeWish = response;
+      $scope.cheerInt = $scope.freeWish.cheerRecords.length / 6;
+      $scope.cheerInt = $scope.cheerInt > parseInt($scope.cheerInt) && $scope.cheerInt > 1 ? parseInt($scope.cheerInt) + 1 : parseInt($scope.cheerInt);
+      for (var i = 1; i <= $scope.cheerInt; i++) $scope.repeatNums.push(i);
     });
+
+    $scope.viewMore = function(){
+      $scope.initLimit = $scope.initLimit > $scope.cheerInt ? $scope.cheerInt : $scope.initLimit + 1;
+    }
 
 
     /**
@@ -21,8 +34,6 @@ angular.module('p2pSiteMobApp')
         openId: $rootScope.userInfo.openid
       });
     }
-    
-
 
     $scope.buttonClick = function(buttonFlag){
       if(buttonFlag == 1 || buttonFlag == 3 || buttonFlag == 4){
@@ -219,5 +230,24 @@ angular.module('p2pSiteMobApp')
 
     $scope.goAccount = function(){
       window.location.href = config.domain + '/user-center/account'
+    }
+
+    /**
+     * 领取奖励
+     */
+    $scope.receiveReward = function(){
+      if($rootScope.userInfo.mobile == null){
+        return;
+      }
+
+      Restangular.one('freeWishes', $stateParams.number).post('receiveReward', {}).then(function(response){
+        if (response.ret == -1){
+          alert(response.msg);
+        } else {
+          $scope.freeWish = response;
+          alert('领取成功，' + $scope.freeWish.amount + '元已经打入您的账户，请到账户查看。');
+          window.location.href = config.domain + '/user-center/account';
+        }
+      });
     }
 });
