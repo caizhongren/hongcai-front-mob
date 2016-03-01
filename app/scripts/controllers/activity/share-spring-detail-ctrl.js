@@ -30,7 +30,6 @@ angular.module('p2pSiteMobApp')
      */
     $scope.addFreeWishPraise = function(freeWishId){
       Restangular.one('freeWishes', freeWishId).post('addFreeWishPraise', {
-        userId: $rootScope.userInfo.id,
         openId: $rootScope.userInfo.openid
       });
     }
