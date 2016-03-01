@@ -30,7 +30,6 @@ angular.module('p2pSiteMobApp')
      */
     $scope.addFreeWishPraise = function(freeWishId){
       Restangular.one('freeWishes', freeWishId).post('addFreeWishPraise', {
-        userId: $rootScope.userInfo.id,
         openId: $rootScope.userInfo.openid
       });
     }
@@ -291,15 +290,11 @@ angular.module('p2pSiteMobApp')
           $scope.captchaShow = true;
           $scope.msg = response.msg;
         } else {
-          $rootScope.user = {
-            id: response.id
-          };
-          $state.go('root.register-success', {
-            userId: $rootScope.user.id
-          });
+          $rootScope.userInfo = response.user;
+          $scope.receiveReward();
         }
       });
     };
 
-    
+
 });
