@@ -284,7 +284,7 @@ angular.module('p2pSiteMobApp')
         mobile: user.mobile,
         captcha: user.captcha,
         inviteCode: user.inviteCode,
-        openId: openId
+        openId: $rootScope.openid
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.captchaShow = true;
