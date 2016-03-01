@@ -15,7 +15,7 @@
           <div class="head-btn" ng-click="$parent.inviteFlag = true" ng-show="freeWish.cheerRecords.length < 6">
             找{{6 - freeWish.cheerRecords.length}}个人&nbsp;帮你砸罐拿现金
           </div>
-          <div class="head-btn" ng-click="$parent.showMask = true" ng-show="freeWish.cheerRecords.length === 6">
+          <div class="head-btn" ng-click="$parent.registFlag = true" ng-show="freeWish.cheerRecords.length === 6">
             砸罐完成&nbsp;马上提现
           </div>
         </div>
@@ -97,32 +97,35 @@
   </div>
 </div>
 
-<!-- 完成第一关的蒙层 -->
-<div class="share-detail-Layer" ng-show="false">
+<!-- 完成某一关的蒙层 -->
+<div class="share-detail-Layer" ng-show="receiveRewardFlag">
 	<div class="monkey">
 		<div class="monkey-head">
 			<img src="/images/activity/index-006.png" alt="" width="50%" class="monkey-img">
-			<i class="fa fa-times-circle-o ft-white ft-3 tip-close" ng-click="showMask=false"></i>
+			<i class="fa fa-times-circle-o ft-white ft-3 tip-close" ng-click="receiveRewardFlag=false"></i>
 		</div>
 		<div class="monkey-detail">
 			<div class="border-inner">
-				<p class="text-center ft-black">23元现金已到账&nbsp;可随时提现！</p>
+				<p class="text-center ft-black">{{freeWish.amount || 0}}元现金已到账&nbsp;可随时提现！</p>
 				<div class="btn-outer margin-t-1p5">
-          <button class="btn-inner">马上提现</button>
+          <button class="btn-inner" ui-sref="root.account">马上提现</button>
         </div>
         <div class="btn-outer">
-          <button class="btn-inner">再拿30元</button>
+          <button class="btn-inner" ng-click="openFreeWish()">
+              <span >再拿{{activity.freeWishActivityRules.secondReward || 0}}元</span>
+          </button>
         </div>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- 注册的蒙层 showMask-->
-<div class="share-detail-Layer" ng-show="showMask">
+
+<!-- 注册的蒙层 registFlag-->
+<div class="share-detail-Layer" ng-show="registFlag">
 	<div class="monkey">
 		<div class="monkey-head">
 			<img src="/images/activity/index-006.png" alt="" width="50%" class="monkey-img">
-			<i class="fa fa-times-circle-o ft-white ft-3 tip-close" ng-click="showMask=false"></i>
+			<i class="fa fa-times-circle-o ft-white ft-3 tip-close" ng-click="registFlag=false"></i>
 		</div>
 		<div class="monkey-detail">
 			<div class="border-form">
@@ -140,7 +143,7 @@
 		      </div>
 		      <div class="form-mask">
 		        <label class="label-tip">短信验证码:</label>
-		        <input id="mobileCaptcha" class="input-tip2" name="mobileCaptcha" type="text" ng-model="user.mobileCaptcha" placeholder="请输入手机验证码" ng-pattern="/^([0-9]{17}[0-9xX]{1})$|^([0-9]{15})$/" required>
+		        <input id="mobileCaptcha" class="input-tip2" name="mobileCaptcha" type="text" ng-model="user.mobileCaptcha" placeholder="请输入手机验证码" ng-pattern="/^[0-9]{6}$/" required>
 		        <button class="btn-sendtip" ng-click="sendMobileCaptcha(user)" onclick="countDown(this,60,'out');">发送</button>
 		      </div>
 		      <div class="ft-red text-center margin-t-1 margin-b-1 ft-1p2 form-mask">
