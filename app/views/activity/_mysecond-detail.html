@@ -1,15 +1,15 @@
 <div class="spring-activity bg-second">
   <div class="head-mydetail  bg-second">
-  	<img src="/images/activity/index-second.png" alt="" width="100%" class="margin-t-2">
+  	<img src="/images/activity/index-second.png" alt="" width="100%" class="margin-t-1">
   	<div class="second-head text-center">
       <div ng-show="freeWishStatics.status <= 3">
           <p class="margin-b-0 ft-3 ft-red7 ft-bold">我要再拿{{freeWish.amount || 0}}元现金</p>
           <p class="margin-b-1 ft-1p6 ft-red8">拉{{activity.freeWishActivityRules.secondPersonNum || 20}}个好友帮你砸罐</p>
         </div>
-        <div ng-show="freeWishStatics.status > 3">
+        <div ng-show="true">
           <p class="margin-b-0 ft-3 ft-red7 ft-bold">已累计获得{{freeWishStatics.receiveAmount || 0}}元</p>
         </div>
-      <div class="margin-b-0 img-outer">
+      <div class="img-outer">
         <img ng-src="{{headImgUrl || '/images/activity/dubai.png'}}" alt="" class="img-user">
       </div>
       <p class="mid-white ft-1p6 ft-red7 ft-bold">{{ nickName || '金鱼公主'}}</p>
