@@ -5,7 +5,7 @@ angular.module('p2pSiteMobApp').filter('slice', function() {
   };
 });
 angular.module('p2pSiteMobApp')
-  .controller('ShareSpringDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, Restangular, config, register, WEB_DEFAULT_DOMAIN, mobileCaptcha, md5) {
+  .controller('ShareSpringDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, Restangular, config, register1, WEB_DEFAULT_DOMAIN, mobileCaptcha, md5) {
     $rootScope.showFooter = false;
     $scope.act = $stateParams.act;
     $scope.channelCode = $stateParams.f;
@@ -278,22 +278,24 @@ angular.module('p2pSiteMobApp')
     };
 
     $scope.signUp = function(user) {
-      register.$create({
-        // name: user.name,
-        password: md5.createHash(user.password),
+      register1.$create({
         mobile: user.mobile,
         captcha: user.captcha,
         inviteCode: user.inviteCode,
-        openId: $rootScope.openid
+        openId: $rootScope.openid,
+        nickName: $rootScope.nickName || '无',
+        headImgUrl: $rootScope.headImgUrl || '无'
       }).$then(function(response) {
         if (response.ret === -1) {
-          $scope.captchaShow = true;
-          $scope.msg = response.msg;
+          $scope.errorMobileMsg = response.msg;
+          console.log($scope.errorMobileMsg);
         } else {
           $rootScope.userInfo = response.user;
           $scope.receiveReward();
+          $scope.registFlag = false;
         }
       });
+
     };
 
 
