@@ -140,7 +140,7 @@
 		      </div>
 		      <div class="form-mask">
 		        <label class="label-tip">短信验证码:</label>
-		        <input id="mobileCaptcha" class="input-tip2" name="mobileCaptcha" type="text" ng-model="user.mobileCaptcha" placeholder="请输入手机验证码" ng-pattern="/^([0-9]{6}$/" required>
+		        <input id="mobileCaptcha" class="input-tip2" name="mobileCaptcha" type="text" ng-model="user.mobileCaptcha" placeholder="请输入手机验证码" ng-pattern="/^[0-9]{6}$/" required>
 		        <button class="btn-sendtip" ng-click="sendMobileCaptcha(user)" onclick="countDown(this,60,'out');">发送</button>
 		      </div>
 		      <div class="ft-red text-center margin-t-1 margin-b-1 ft-1p2 form-mask">

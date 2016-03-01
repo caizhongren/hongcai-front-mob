@@ -280,7 +280,7 @@ angular.module('p2pSiteMobApp')
     $scope.signUp = function(user) {
       register1.$create({
         mobile: user.mobile,
-        captcha: user.captcha,
+        captcha: user.mobileCaptcha,
         inviteCode: user.inviteCode,
         openId: $rootScope.openid,
         nickName: $rootScope.nickName || '无',
