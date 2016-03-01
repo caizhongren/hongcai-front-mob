@@ -117,7 +117,7 @@
 		</div>
 	</div>
 </div>
-<!-- 注册的蒙层 -->
+<!-- 注册的蒙层 showMask-->
 <div class="share-detail-Layer" ng-show="showMask">
 	<div class="monkey">
 		<div class="monkey-head">
@@ -141,7 +141,7 @@
 		      <div class="form-mask">
 		        <label class="label-tip">短信验证码:</label>
 		        <input id="mobileCaptcha" class="input-tip2" name="mobileCaptcha" type="text" ng-model="user.mobileCaptcha" placeholder="请输入手机验证码" ng-pattern="/^([0-9]{17}[0-9xX]{1})$|^([0-9]{15})$/" required>
-		        <div class="btn-sendtip" ng-click="sendMobileCaptcha(user)">发送</div>
+		        <button class="btn-sendtip" ng-click="sendMobileCaptcha(user)" onclick="countDown(this,60,'out');">发送</button>
 		      </div>
 		      <div class="ft-red text-center margin-t-1 margin-b-1 ft-1p2 form-mask">
 		        {{errMsg}}
@@ -168,4 +168,50 @@ else{
 }
 }
 var myvar=setInterval(Marquee,30);
+</script>
+<script>
+function countDown(obj, second, inOrOut) {
+  var getMobile = document.getElementById("realName");
+  var mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678])|(14[0-9]))\d{8}$/;
+
+  if (inOrOut === 'out' && window.buttonFlag == 0) {
+    return;
+  }
+
+  // 如果秒数还是大于0，则表示倒计时还没结束
+  if (mobilePattern.test(getMobile.value)) {
+    if (second >= 0) {
+      // 获取默认按钮上的文字
+
+      if (typeof buttonDefaultValue === 'undefined') {
+        buttonDefaultValue = obj.defaultValue;
+      }
+      // 按钮置为不可点击状态
+      obj.disabled = true;
+      window.buttonFlag = 0;
+      // 按钮里的内容呈现倒计时状态
+      //obj.value = buttonDefaultValue + '(' + second + ')';
+      console.log(obj.innerHTML);
+      obj.innerHTML = second + "s后发送";
+      obj.className = 'btn-sendtip';
+      // 时间减一
+      second--;
+      // 一秒后重复执行
+      setTimeout(function() {
+        countDown(obj, second, 'in');
+      }, 1000);
+      // 否则，按钮重置为初始状态
+    } else {
+      // 按钮置为可点击状态
+      obj.disabled = false;
+      window.buttonFlag = 1;
+      // 按钮里的内容恢复初始状态
+      obj.className = 'btn-sendtip';
+      obj.innerHTML = "重新发送";
+    }
+  } else {
+    obj.disabled = true;
+    window.buttonFlag = 0;
+  }
+}
 </script>

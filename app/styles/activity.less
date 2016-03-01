@@ -1509,6 +1509,16 @@ input::-webkit-inner-spin-button {
                 font-size: 1.4rem;
                 color: #472c05;
                 text-align: center;
+                padding: 0;
+                border-radius: 0;
+                font-family: "微软雅黑";
+                letter-spacing: 0;
+            }
+            @media (min-width: 320px) {
+              .btn-sendtip{font-size: 1.2rem;}
+            }
+            @media (min-width: 375px) {
+              .btn-sendtip{font-size: 1.4rem;}
             }
         }
     }
@@ -1590,7 +1600,7 @@ margin-top:6px;}
 }
 @media (min-width: 360px) {
   .img-test{
-    height: 51px;
+    height: 51px !important;
   }
 }
 @media (min-width: 375px) {
