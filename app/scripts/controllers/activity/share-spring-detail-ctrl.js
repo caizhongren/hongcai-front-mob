@@ -246,9 +246,12 @@ angular.module('p2pSiteMobApp')
         if (response.ret == -1){
           alert(response.msg);
         } else {
+          var cheerRecords = $scope.freeWish.cheerRecords;
           $scope.freeWish = response;
-          alert('领取成功，' + $scope.freeWish.amount + '元已经打入您的账户，请到账户查看。');
-          window.location.href = config.domain + '/user-center/account';
+          $scope.freeWish.cheerRecords = cheerRecords;
+          $scope.receiveRewardFlag = true;
+
+          $scope.freeWishStatics = Restangular.one('freeWishes').one('freeWishStatics').get();
         }
       });
     }
