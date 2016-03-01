@@ -118,7 +118,7 @@
 	</div>
 </div>
 <!-- 注册的蒙层 -->
-<div class="share-detail-Layer" ng-show="showMask">
+<div class="share-detail-Layer" ng-show="true">
 	<div class="monkey">
 		<div class="monkey-head">
 			<img src="/images/activity/index-006.png" alt="" width="50%" class="monkey-img">
@@ -133,7 +133,7 @@
 		      </div>
 		      <div class="form-mask">
 		        <label class="label-tip">图片验证码:</label>
-		        <input id="picCaptcha" class="input-tip2" name="picCaptcha" type="text" ng-model="user.picCaptcha" placeholder="图片验证码" ng-pattern="/^([0-9]{17}[0-9xX]{1})$|^([0-9]{15})$/" required>
+		        <input id="picCaptcha" class="input-tip2" name="picCaptcha" type="text" ng-model="user.picCaptcha" placeholder="图片验证码" ng-pattern="/^[0-9a-z]{4}$/" required>
 		        <div class="img-tip" >
 		        	<img ng-src="{{getPicCaptcha}}" alt="" width="100%" ng-click="refreshCode()" id="checkCaptcha">
 		        </div>
