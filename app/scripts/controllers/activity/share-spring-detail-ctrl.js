@@ -92,6 +92,8 @@ angular.module('p2pSiteMobApp')
     }
 
 
+    $scope.notCheer = false;
+    $scope.notCheerStatus = 1;
     /**
      * 助力
      */
@@ -106,14 +108,15 @@ angular.module('p2pSiteMobApp')
         userId: $rootScope.userInfo.id
       }).then(function(response){
           if(response.ret === -1){
-            var msg = '不能点赞了哦';
-            if (response.code == -1217){
-              msg = "讨厌啦，大好人！你的点赞次数已经用完咯！";
-            }else{
-              msg = msg + " " + response.msg;
+            $scope.notCheer = true;
+            if (response.code == -1216){
+              $scope.notCheerStatus = 1;
+            }else if(response.code = -1217){
+              $scope.notCheerStatus = 2;
+            }else if(response.code = -1218){
+              $scope.notCheerStatus = 3;
             }
-
-            alert(msg);
+            
             return;
           }
 
