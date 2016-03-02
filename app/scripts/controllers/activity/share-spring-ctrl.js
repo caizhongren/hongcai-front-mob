@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('p2pSiteMobApp')
-  .controller('ShareSpringCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, Restangular, config, DialogService) {
+  .controller('ShareSpringCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, $location, $anchorScroll, Restangular, config, DialogService) {
     $rootScope.showFooter = false;
     $scope.act = $stateParams.act;
     $scope.channelCode = $stateParams.f;
@@ -72,7 +72,7 @@ angular.module('p2pSiteMobApp')
       $location.hash('attention');
       $anchorScroll();
     }
-    
+
 
     Restangular.one('freeWishes').one('totalReward').get().then(function(response){
       $scope.totalReward = response;
