@@ -996,28 +996,13 @@ input::-webkit-inner-spin-button {
                 box-sizing: content-box;
                 padding-left: 5px;
                 .img-border {
-                    border: 3px solid #fff;
-                    border-radius: 50%;
                     text-align: center;
                     position: relative;
                     img {
                         width: 100%;
                         border-radius: 50%;
-                    }
-                    @media (min-width: 320px) {
-                        img {
-                            min-height: 54px;
-                        }
-                    }
-                    @media (min-width: 375px) {
-                        img {
-                            min-height: 65px;
-                        }
-                    }
-                    @media (min-width: 414px) {
-                        img {
-                            min-height: 72px;
-                        }
+                        border: 2px solid #fff;
+                        box-sizing: border-box;
                     }
                     .img-untip {
                         //background-color:rgba(222, 89, 24, 0.6) !important;
@@ -1277,28 +1262,13 @@ input::-webkit-inner-spin-button {
                 box-sizing: content-box;
                 padding-left: 5px;
                 .img-border {
-                    border: 3px solid #fff;
-                    border-radius: 50%;
                     text-align: center;
                     position: relative;
                     img {
                         width: 100%;
                         border-radius: 50%;
-                    }
-                    @media (min-width: 320px) {
-                        img {
-                            min-height: 54px;
-                        }
-                    }
-                    @media (min-width: 375px) {
-                        img {
-                            min-height: 65px;
-                        }
-                    }
-                    @media (min-width: 414px) {
-                        img {
-                            min-height: 72px;
-                        }
+                        border: 2px solid #fff;
+                        box-sizing: border-box;
                     }
                     .img-untip {
                         //background-color:rgba(222, 89, 24, 0.6) !important;
@@ -1316,32 +1286,35 @@ input::-webkit-inner-spin-button {
                         padding-bottom: 100%;
                         color: #fff;
                     }
+                    .img-test{
+                      height: 100%;
+                    }
                     @media (min-width: 320px) {
                         .img-untip {
                             height: 44px;
                             line-height: 44px;
                         }
-                        .img-test{
-                          height: 44px;
-                        }
+                        // .img-test{
+                        //   height: 44px;
+                        // }
                     }
                     @media (min-width: 375px) {
                         .img-untip {
                             height: 53px;
                             line-height: 53px;
                         }
-                        .img-test{
-                          height: 53px;
-                        }
+                        // .img-test{
+                        //   height: 53px;
+                        // }
                     }
                     @media (min-width: 414px) {
                         .img-untip {
                             height: 59px;
                             line-height: 59px;
                         }
-                        .img-test{
-                          height: 60px;
-                        }
+                        // .img-test{
+                        //   height: 60px;
+                        // }
                     }
                 }
             }
@@ -1633,7 +1606,6 @@ margin-top:6px;}
   color: #000 !important;
 }
 .border-deepred{border-bottom: 1px solid #db1519 !important;}
-.img-test{height: 51px;}
 @media (min-width: 320px) {
   .end-minheight{min-height: 90px;}
   .bottom-white{margin-top: 1rem;}
