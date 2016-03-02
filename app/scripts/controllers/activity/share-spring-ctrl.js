@@ -10,18 +10,18 @@ angular.module('p2pSiteMobApp')
     $scope.coverLayerFlag = false;
     $scope.level = 1;
     //freeWishStatics.status:1.第一关，2.第一关结束，3第二关，4第二关结束，5第三关，6第三关结束
-    //buttonFlag:1.我要现金2.我的任务3.开启第二关4.开启第三关5.我的账户
-    $scope.buttonFlag = 1;
-    $scope.buttonValue = "我要现金";
-    $rootScope.checkSession.promise.then(function(){
 
-        $scope.freeWishStatics = Restangular.one('freeWishes').one('freeWishStatics').get();
-
+    Restangular.one('freeWishes').one('freeWishStatics').get().then(function(response){
+      $scope.freeWishStatics = response;
     });
 
+    Restangular.one('freeWishes').one('totalReward').get().then(function(response){
+      $scope.totalReward = response;
+    });
 
-    $scope.totalReward = Restangular.one('freeWishes').one('totalReward').get();
-    $scope.activity = Restangular.one('activitys').one('freeWish').get();
+    Restangular.one('activitys').one('freeWish').get().then(function(response){
+      $scope.activity = response;
+    });
 
     if ($scope.channelCode){
       Restangular.one('freeWishes').post('channel', {
