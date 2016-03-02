@@ -14,56 +14,22 @@ angular.module('p2pSiteMobApp')
     $scope.buttonFlag = 1;
     $scope.buttonValue = "我要现金";
     $rootScope.checkSession.promise.then(function(){
-        if($rootScope.bindWechat || $rootScope.isLogged){
-          Restangular.one('freeWishes').one('freeWishStatics').get().then(function(response){
-            if(response !== undefined && response.userId > 0){
-                $scope.freeWishStatics = response;
-                if($scope.freeWishStatics.status == 1){
-                  //正在进行第一关任务，点击按钮进入第一关任务
-                  $scope.level = 1;
-                  $scope.buttonFlag = 2;
-                  $scope.buttonValue = "我要现金";
-                }else if($scope.freeWishStatics.status == 2){
-                  //第一关完成，点击按钮开启第二关
-                  $scope.level = 2;
-                  $scope.buttonFlag = 3;
-                  $scope.buttonValue = "到账" + $scope.freeWishStatics.receiveAmount+"元，再拿30元";
-                }else if($scope.freeWishStatics.status == 3){
-                  //正在进行第二关任务，点击按钮进入第二关任务
-                  $scope.level = 2;
-                  $scope.buttonFlag = 2;
-                  $scope.buttonValue = "到账" + $scope.freeWishStatics.receiveAmount+"元，再拿30元";
-                }else if($scope.freeWishStatics.status == 4){
-                  //第二关完成，点击按钮开启第三关任务
-                  $scope.level = 3;
-                  $scope.buttonFlag = 4;
-                  $scope.buttonValue = "到账" + $scope.freeWishStatics.receiveAmount+"元，再拿100元";
-                }else if($scope.freeWishStatics.status == 5){
-                  //正在进行第三关任务，点击按钮进入第三关任务
-                  $scope.level = 3;
-                  $scope.buttonFlag = 2;
-                  $scope.buttonValue = "到账" + $scope.freeWishStatics.receiveAmount+"元，再拿100元";
-                }else if($scope.freeWishStatics.status == 6){
-                  //全部通关，点击按钮进入我的账户
-                  $scope.level = 3;
-                  $scope.buttonFlag = 5;
-                  $scope.buttonValue = "查看我的账户";
-                }
-            }
-          });
-        }else{
-          $scope.coverLayerFlag = true;
-        }
 
-        if ($scope.channelCode){
-          Restangular.one('freeWishes').post('channel', {
-            openId: $rootScope.openid, 
-            act: $scope.act,
-            channelCode: $scope.channelCode
-          });
-        }
+        $scope.freeWishStatics = Restangular.one('freeWishes').one('freeWishStatics').get();
+
     });
 
+
+    $scope.totalReward = Restangular.one('freeWishes').one('totalReward').get();
+    $scope.activity = Restangular.one('activitys').one('freeWish').get();
+
+    if ($scope.channelCode){
+      Restangular.one('freeWishes').post('channel', {
+        openId: $rootScope.openid, 
+        act: $scope.act,
+        channelCode: $scope.channelCode
+      });
+    }
 
     /**
      * 跳转到二维码位置
@@ -74,13 +40,46 @@ angular.module('p2pSiteMobApp')
     }
 
 
-    Restangular.one('freeWishes').one('totalReward').get().then(function(response){
-      $scope.totalReward = response;
-    });
+    /**
+     * 继续我的砸罐之旅
+     */
+    $scope.goOn = function(){
+      Restangular.one('freeWishes', $rootScope.userInfo.id).one('myFreeWish').get({
+        level: $scope.level
+      }).then(function(response){
+        $scope.goOnMyWay = false;
+        var rediretUrl = config.domain + '/share-spring/detail/' + response.number;
+        window.location.href = rediretUrl;
+      });
+    }
 
-    Restangular.one('activitys').one('freeWish').get().then(function(response){
-      $scope.activity = response;
-    });
+    /**
+     * 领取免费愿望
+     * @return freeWish
+     */
+    $scope.openFreeWish = function(){
+      if (!($rootScope.bindWechat || $rootScope.isLogged)){
+        //引导用户关注
+        $scope.goToAttention();
+        return;
+      }
+      
+      Restangular.one('freeWishes').post('addFreeWish', {
+        userId: $rootScope.userInfo.id,
+        level: $scope.level
+      }).then(function(response){
+          if(response.ret === -1){
+            alert(response.msg);
+          }else{
+            var rediretUrl = config.domain + '/share-spring/detail/' + response.number;
+            if ($scope.channelCode){
+              rediretUrl = rediretUrl + '?f=' + $scope.channelCode + '&act=' + $scope.act;
+            }
+            window.location.href = rediretUrl;
+          }
+      });
+    }
+
     
     
 });

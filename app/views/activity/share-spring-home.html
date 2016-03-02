@@ -19,20 +19,44 @@
 			  </div>
 			</div>
   	</div>
-    <a ng-show="coverLayerFlag" ng-click= "goToAttention()" title="">
+    <a ng-show="!freeWishStatics" ng-click= "goToAttention()" title="">
     	<div class="padding-l-2 padding-r-2 open-wish" my-click-once>
     		<img src="/images/activity/index-005.png" alt="" width="100%">
     		<div class="open-btn">
-    			{{buttonValue}}
+    			我要现金
     		</div>
     	</div>
     </a>
-    <div ng-show="!coverLayerFlag" class="padding-l-2 padding-r-2 open-wish" ng-click="!timeout || buttonClick(buttonFlag)" my-click-once>
+
+    <div ng-show="freeWishStatics" class="padding-l-2 padding-r-2 open-wish" my-click-once>
       <img src="/images/activity/index-005.png" alt="" width="100%">
-      <div class="open-btn">
-        {{buttonValue}}
+
+      <div ng-switch="freeWishStatics.status">
+        <div class="open-btn" ng-switch-default ng-click="openFreeWish()">
+          我要现金
+        </div>
+        <div class="open-btn" ng-switch-when="2" ng-click="openFreeWish()">
+          已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.freeWishActivityRules.secondReward | number:0}}元
+        </div>
+
+        <div class="open-btn" ng-switch-when="3" ng-click="goOn()">
+          已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.freeWishActivityRules.secondReward | number:0}}元
+        </div>
+
+        <div class="open-btn" ng-switch-when="4" ng-click="openFreeWish()">
+          已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.freeWishActivityRules.thirdReward | number:0}}元
+        </div>
+
+        <div class="open-btn" ng-switch-when="5" ng-click="goOn()">
+          已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.freeWishActivityRules.thirdReward | number:0}}元
+        </div>
+
+        <div class="open-btn" ng-switch-when="6" ui-sref="root.userCenter.account">
+          我的账户
+        </div>
       </div>
     </div>
+
   	<div class="padding-l-2 padding-r-2">
   		<div class="list-tips">
   			<div class="left-line fl"></div>

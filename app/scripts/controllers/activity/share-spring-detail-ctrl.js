@@ -34,64 +34,6 @@ angular.module('p2pSiteMobApp')
       });
     }
 
-    $scope.buttonClick = function(buttonFlag){
-      if(buttonFlag == 1 || buttonFlag == 3 || buttonFlag == 4){
-        $scope.openFreeWish();
-      }else if(buttonFlag == 2){
-        $scope.goShareDetail();
-      }else if(buttonFlag == 5){
-        $scope.goAccount();
-      }
-    }
-
-    /**
-     * 领取免费愿望
-     * @return freeWish
-     */
-    $scope.openFreeWish = function(){
-      if (!($rootScope.bindWechat || $rootScope.isLogged)){
-        //引导用户关注
-        $scope.coverLayerFlag = true;
-        return;
-      }
-      
-      Restangular.one('freeWishes').post('addFreeWish', {
-        userId: $rootScope.userInfo.id,
-        level: $scope.level
-      }).then(function(response){
-          console.log(response);
-          if(response.ret === -1){
-            // DialogService.alert('领取出错', response.msg, function(){
-            //   $rootScope.alert = null;
-            // });
-            alert(response.msg);
-          }else{
-            var rediretUrl = config.domain + '/share-spring/detail/' + response.number;
-            // alert(rediretUrl);
-            if ($scope.channelCode){
-              rediretUrl = rediretUrl + '?f=' + $scope.channelCode + '&act=' + $scope.act;
-            }
-            // alert(rediretUrl);
-            window.location.href = rediretUrl;
-          }
-      });
-    }
-
-
-
-    $scope.goShareDetail = function(){
-      Restangular.one('freeWishes', $rootScope.userInfo.id).one('myFreeWish').get({
-          level : $scope.level
-        }).then(function(response){
-        if(response !== undefined && response.id > 0){
-          $state.go('root.share-spring.detail',{
-            number: response.number,
-            act: $scope.act,
-            f: $scope.channelCode
-          });
-        }
-      });
-    }
 
 
     $scope.notCheer = false;
@@ -157,15 +99,7 @@ angular.module('p2pSiteMobApp')
       window.location.href = rediretUrl;
     }
 
-    $scope.goOn = function(){
-      Restangular.one('freeWishes', $rootScope.userInfo.id).one('myFreeWish').get({
-        level: $scope.level
-      }).then(function(response){
-        $scope.goOnMyWay = false;
-        var rediretUrl = config.domain + '/share-spring/detail/' + response.number;
-        window.location.href = rediretUrl;
-      });
-    }
+
 
     /**
      * 调用微信接口，申请此页的分享接口调用
