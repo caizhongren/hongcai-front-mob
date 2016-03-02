@@ -8,9 +8,14 @@ angular.module('p2pSiteMobApp')
 
     $scope.test = config.test;
     $scope.coverLayerFlag = false;
+    $scope.level = 1;
     //freeWishStatics.status:1.第一关，2.第一关结束，3第二关，4第二关结束，5第三关，6第三关结束
 
     Restangular.one('freeWishes').one('freeWishStatics').get().then(function(response){
+      if (response.ret == -1){
+        return;
+      }
+
       $scope.freeWishStatics = response;
       if (!$scope.freeWishStatics){
         return;
