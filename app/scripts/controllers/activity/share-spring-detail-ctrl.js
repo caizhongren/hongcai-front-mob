@@ -5,7 +5,7 @@ angular.module('p2pSiteMobApp').filter('slice', function() {
   };
 });
 angular.module('p2pSiteMobApp')
-  .controller('ShareSpringDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, Restangular, config, register1, WEB_DEFAULT_DOMAIN, mobileCaptcha, md5) {
+  .controller('ShareSpringDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout,$anchorScroll, $location, Restangular, config, register1, WEB_DEFAULT_DOMAIN, mobileCaptcha, md5) {
     $rootScope.showFooter = false;
     $scope.act = $stateParams.act;
     $scope.channelCode = $stateParams.f;
@@ -75,6 +75,15 @@ angular.module('p2pSiteMobApp')
             window.location.href = rediretUrl;
           }
       });
+    }
+
+
+    /**
+     * 跳转到二维码位置
+     */
+    $scope.goToAttention = function(){
+      $location.hash('attention');
+      $anchorScroll();
     }
 
     $scope.goShareDetail = function(){

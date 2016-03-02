@@ -15,7 +15,7 @@
   	</div>
 
     <div ng-switch="bindWechat || isLogged" >
-      <a class="btn-write ft-2p5 ft-bold text-center btn-shadownone" ng-switch-default ng-href="{{'share-spring/detail/' + freeWish.number+ '#attention' }}" ng-click="addFreeWishPraise(freeWish.id)">
+      <a class="btn-write ft-2p5 ft-bold text-center btn-shadownone" ng-switch-default ng-click="goToAttention();addFreeWishPraise(freeWish.id);">
         <div class="textcopy">帮TA砸罐</div>
       </a>
 
