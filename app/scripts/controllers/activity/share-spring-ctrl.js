@@ -65,7 +65,7 @@ angular.module('p2pSiteMobApp')
       
       Restangular.one('freeWishes').post('addFreeWish', {
         userId: $rootScope.userInfo.id,
-        level: $scope.freeWishStatics.level
+        level: $scope.freeWishStatics.level + 1
       }).then(function(response){
           if(response.ret === -1){
             alert(response.msg);
