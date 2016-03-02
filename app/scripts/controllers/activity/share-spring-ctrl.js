@@ -8,7 +8,6 @@ angular.module('p2pSiteMobApp')
 
     $scope.test = config.test;
     $scope.coverLayerFlag = false;
-    $scope.level = 1;
     //freeWishStatics.status:1.第一关，2.第一关结束，3第二关，4第二关结束，5第三关，6第三关结束
 
     Restangular.one('freeWishes').one('freeWishStatics').get().then(function(response){
@@ -45,7 +44,7 @@ angular.module('p2pSiteMobApp')
      */
     $scope.goOn = function(){
       Restangular.one('freeWishes', $rootScope.userInfo.id).one('myFreeWish').get({
-        level: $scope.level
+        level: $scope.freeWishStatics.level
       }).then(function(response){
         $scope.goOnMyWay = false;
         var rediretUrl = config.domain + '/share-spring/detail/' + response.number;
@@ -66,7 +65,7 @@ angular.module('p2pSiteMobApp')
       
       Restangular.one('freeWishes').post('addFreeWish', {
         userId: $rootScope.userInfo.id,
-        level: $scope.level
+        level: $scope.freeWishStatics.level
       }).then(function(response){
           if(response.ret === -1){
             alert(response.msg);
