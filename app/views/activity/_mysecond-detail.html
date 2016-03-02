@@ -29,7 +29,7 @@
         </div>
         <div ng-switch-when="5">
           <button class="second-btn ft-red7 ft-2p5 ft-bold" ng-click="goOn()">
-            再拿{{activity.FreeWishActivityRules.thirdReward| number:0}}元
+            再拿{{activity.freeWishActivityRules.thirdReward| number:0 || 0}}元
           </button>
         </div>
         <div ng-switch-when="6">
@@ -45,7 +45,7 @@
 			  <div class="qimo">
 			    <div id="demo1">
 			      <ul>
-			        <li class="ft-yellow2"><img src="/images/activity/money3.png" alt="">宏财网已发放现金总额<span class="ft-2 ft-bold">{{totalReward | number:0}}</span>元</li>
+			        <li class="ft-yellow2"><img src="/images/activity/money3.png" alt="">宏财网已发放现金总额<span class="ft-2 ft-bold">{{totalReward | number:0 || 0}}</span>元</li>
 			      </ul>
 			    </div>
 			    <div id="demo2"></div>
