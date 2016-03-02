@@ -12,6 +12,24 @@ angular.module('p2pSiteMobApp')
 
     Restangular.one('freeWishes').one('freeWishStatics').get().then(function(response){
       $scope.freeWishStatics = response;
+      if (!$scope.freeWishStatics){
+        return;
+      }
+
+      if ($scope.freeWishStatics.status == 1){
+        $scope.level = 1;
+      } else if ($scope.freeWishStatics.status == 2){
+        $scope.level = 2;
+      } else if ($scope.freeWishStatics.status == 3){
+        $scope.level = 2;
+      } else if ($scope.freeWishStatics.status == 4){
+        $scope.level = 3;
+      } else if ($scope.freeWishStatics.status == 5){
+        $scope.level = 3;
+      } else if ($scope.freeWishStatics.status == 6){
+        $scope.level = 3;
+      }
+
     });
 
     Restangular.one('freeWishes').one('totalReward').get().then(function(response){
@@ -44,7 +62,7 @@ angular.module('p2pSiteMobApp')
      */
     $scope.goOn = function(){
       Restangular.one('freeWishes', $rootScope.userInfo.id).one('myFreeWish').get({
-        level: $scope.freeWishStatics.level
+        level: $scope.level
       }).then(function(response){
         $scope.goOnMyWay = false;
         var rediretUrl = config.domain + '/share-spring/detail/' + response.number;
@@ -65,7 +83,7 @@ angular.module('p2pSiteMobApp')
       
       Restangular.one('freeWishes').post('addFreeWish', {
         userId: $rootScope.userInfo.id,
-        level: $scope.freeWishStatics.level + 1
+        level: $scope.level + 1
       }).then(function(response){
           if(response.ret === -1){
             alert(response.msg);
