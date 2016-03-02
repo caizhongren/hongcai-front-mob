@@ -64,6 +64,16 @@ angular.module('p2pSiteMobApp')
         }
     });
 
+
+    /**
+     * 跳转到二维码位置
+     */
+    $scope.goToAttention = function(){
+      $location.hash('attention');
+      $anchorScroll();
+    }
+    
+
     Restangular.one('freeWishes').one('totalReward').get().then(function(response){
       $scope.totalReward = response;
     });

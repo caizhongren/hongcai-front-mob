@@ -78,13 +78,6 @@ angular.module('p2pSiteMobApp')
     }
 
 
-    /**
-     * 跳转到二维码位置
-     */
-    $scope.goToAttention = function(){
-      $location.hash('attention');
-      $anchorScroll();
-    }
 
     $scope.goShareDetail = function(){
       Restangular.one('freeWishes', $rootScope.userInfo.id).one('myFreeWish').get({
