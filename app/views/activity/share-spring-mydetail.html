@@ -21,7 +21,7 @@
         </div>
         
 
-        <div class="head-btn" ng-switch-when="2" ng-click="goOn()">
+        <div class="head-btn" ng-switch-when="2" ng-click="openFreeWish()">
           已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.freeWishActivityRules.secondReward | number:0}}元
         </div>
 
@@ -29,7 +29,7 @@
           已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.freeWishActivityRules.secondReward | number:0}}元
         </div>
 
-        <div class="head-btn" ng-switch-when="4" ng-click="goOn()">
+        <div class="head-btn" ng-switch-when="4" ng-click="openFreeWish()">
           已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.freeWishActivityRules.thirdReward | number:0}}元
         </div>
 
@@ -37,7 +37,7 @@
           已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.freeWishActivityRules.thirdReward | number:0}}元
         </div>
 
-        <div class="head-btn" ng-switch-when="6" ui-sref="root.user-center.account">
+        <div class="head-btn" ng-switch-when="6" ui-sref="root.userCenter.account">
           我的账户
         </div>
     </div>
