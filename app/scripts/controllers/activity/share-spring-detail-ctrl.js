@@ -94,6 +94,11 @@ angular.module('p2pSiteMobApp')
 
     $scope.notCheer = false;
     $scope.notCheerStatus = 1;
+
+    $scope.hideNotCheer = function(){
+      $scope.notCheer = false;
+    }
+
     /**
      * 助力
      */
@@ -111,12 +116,12 @@ angular.module('p2pSiteMobApp')
             $scope.notCheer = true;
             if (response.code == -1216){
               $scope.notCheerStatus = 1;
-            }else if(response.code = -1217){
+            }else if(response.code == -1217){
               $scope.notCheerStatus = 2;
-            }else if(response.code = -1218){
+            }else if(response.code == -1218){
               $scope.notCheerStatus = 3;
             }
-            
+
             return;
           }
 
