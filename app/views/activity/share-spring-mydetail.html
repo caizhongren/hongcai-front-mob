@@ -101,7 +101,7 @@
   </div>
 </div>
 
-<!-- 完成某一关的蒙层 -->
+<!-- 完成某一关的蒙层 receiveRewardFlag-->
 <div class="share-detail-Layer" ng-show="receiveRewardFlag">
 	<div class="monkey">
 		<div class="monkey-head">
@@ -135,24 +135,27 @@
 			<div class="border-form">
 				<form autocomplete="on" id="realNameAuthForm" name="realNameAuthForm" class="margin-b-0">
 		      <div class="form-mask">
-		        <label class="label-tip">真实手机号:</label>
-		        <input id="mobile" class="input-tip1" name="mobile" type="text" ng-model="user.mobile" placeholder="真实手机号" required>
+		        <label class="label-tip margin-b-0">真实手机号:</label>
+		        <input id="mobile" class="input-tip1 margin-b-0" name="mobile" type="text" ng-model="user.mobile" placeholder="真实手机号" required>
 		      </div>
+          <p class="margin-t-0 text-left msg-tip">输入有误</p>
 		      <div class="form-mask">
-		        <label class="label-tip">图片验证码:</label>
-		        <input id="picCaptcha" class="input-tip2" name="picCaptcha" type="text" ng-model="user.picCaptcha" placeholder="图片验证码" ng-pattern="/^[0-9a-z]{4}$/" required>
+		        <label class="label-tip margin-b-0">图片验证码:</label>
+		        <input id="picCaptcha" class="input-tip2 margin-b-0" name="picCaptcha" type="text" ng-model="user.picCaptcha" placeholder="图片验证码" ng-pattern="/^[0-9a-z]{4}$/" required>
 		        <div class="img-tip" >
 		        	<img ng-src="{{getPicCaptcha}}" alt="" width="100%" ng-click="refreshCode()" id="checkCaptcha">
 		        </div>
 		      </div>
+          <p class="margin-t-0 text-left msg-tip">msg</p>
 		      <div class="form-mask">
-		        <label class="label-tip">短信验证码:</label>
-		        <input id="mobileCaptcha" class="input-tip2" name="mobileCaptcha" type="text" ng-model="user.mobileCaptcha" placeholder="短信验证码" ng-pattern="/^[0-9]{6}$/" required>
-		        <button class="btn-sendtip" ng-click="sendMobileCaptcha(user)" onclick="countDown(this,60,'out');">发送</button>
+		        <label class="label-tip margin-b-0">短信验证码:</label>
+		        <input id="mobileCaptcha" class="input-tip2 margin-b-0" name="mobileCaptcha" type="text" ng-model="user.mobileCaptcha" placeholder="短信验证码" ng-pattern="/^[0-9]{6}$/" required>
+		        <button class="btn-sendtip margin-b-0" ng-click="sendMobileCaptcha(user)" onclick="countDown(this,60,'out');">发送</button>
 		      </div>
-		      <div class="ft-red text-center margin-t-1 margin-b-1 ft-1p2 form-mask">
+<!-- 		      <div class="ft-red text-center margin-t-1 margin-b-1 ft-1p2 form-mask">
 		        {{errMsg}}
-		      </div>
+		      </div> -->
+          <p class="margin-t-0 text-left msg-tip">{{errMsg}}</p>
 		      <div class="form-mask margin-b-1" ng-click="signUp(user)">
 		      	<img src="/images/activity/get-money.png" alt="" width="100%">
 		      </div>
