@@ -10,30 +10,33 @@ angular.module('p2pSiteMobApp')
     $scope.coverLayerFlag = false;
     $scope.level = 1;
     //freeWishStatics.status:1.第一关，2.第一关结束，3第二关，4第二关结束，5第三关，6第三关结束
+    $rootScope.checkSession.promise.then(function() {
 
-    Restangular.one('freeWishes').one('freeWishStatics').get().then(function(response){
-      if (response.ret == -1){
-        return;
-      }
+      Restangular.one('freeWishes').one('freeWishStatics').get().then(function(response){
+        if (response.ret == -1){
+          return;
+        }
 
-      $scope.freeWishStatics = response;
-      if (!$scope.freeWishStatics){
-        return;
-      }
+        $scope.freeWishStatics = response;
+        if (!$scope.freeWishStatics){
+          return;
+        }
 
-      if ($scope.freeWishStatics.status == 1){
-        $scope.level = 1;
-      } else if ($scope.freeWishStatics.status == 2){
-        $scope.level = 2;
-      } else if ($scope.freeWishStatics.status == 3){
-        $scope.level = 2;
-      } else if ($scope.freeWishStatics.status == 4){
-        $scope.level = 3;
-      } else if ($scope.freeWishStatics.status == 5){
-        $scope.level = 3;
-      } else if ($scope.freeWishStatics.status == 6){
-        $scope.level = 3;
-      }
+        if ($scope.freeWishStatics.status == 1){
+          $scope.level = 1;
+        } else if ($scope.freeWishStatics.status == 2){
+          $scope.level = 2;
+        } else if ($scope.freeWishStatics.status == 3){
+          $scope.level = 2;
+        } else if ($scope.freeWishStatics.status == 4){
+          $scope.level = 3;
+        } else if ($scope.freeWishStatics.status == 5){
+          $scope.level = 3;
+        } else if ($scope.freeWishStatics.status == 6){
+          $scope.level = 3;
+        }
+
+      });
 
     });
 
