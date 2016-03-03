@@ -4,7 +4,7 @@
         <!-- 进入自己任务首页 -->
         <div ng-show="freeWishStatics.status <= 5" class="third-head position-ab text-center ft-4 ft-bold ft-deepred1">我要再拿{{activity.freeWishActivityRules.thirdReward |number:0 || 0}}元</div>
         <!-- 回看自己第三关文案 -->
-        <div ng-show="freeWishStatics.status > 5" class="third-head2 position-ab text-center ft-3 ft-bold ft-black">已累计获得<span class="ft-red9">{{freeWishStatics.receiveAmount |number:0 || 0}}</span>元</div>
+        <div ng-show="freeWishStatics.status > 5" class="third-head2 position-ab text-center ft-3 ft-bold ft-black">已累计获得<span class="ft-red9 ft-bold">{{freeWishStatics.receiveAmount |number:0 || 0}}</span>元</div>
         
         <div class="position-ab third-user">
             <div class="img-outerdiv fl"><img ng-src="{{ freeWish.user.headImgUrl || '/images/activity/dubai.png'}}"></div>
@@ -73,7 +73,7 @@
         </div>
       <div class="ft-white ft-1p4 text-center margin-t-1 margin-b-0" ng-show="cheerInt > initLimit" ng-click="viewMore()">查看更多&nbsp;<i class="fa fa-angle-double-down"></i></div>
     </div>
-        <div class="text-center ft-yellow2 ft-1p6 ft-bold margin-t-1">
+        <div class="text-center ft-red9 ft-1p6 ft-bold margin-t-1">
             长按二维码&nbsp;领取现金
         </div>
         <div class="text-center margin-t-1">
