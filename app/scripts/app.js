@@ -690,12 +690,14 @@ p2pSiteMobApp
     var routespermission = [
       '/user-center'
     ];
+
     var titleMap = {
       'issue': '常见问题',
       'about': '帮助中心',
       'safe': '安全保障',
       'account': '账户总览'
     };
+
     $rootScope.$on('$stateChangeStart', function(event, toState) {
       var title = '宏财理财';
       if (toState.data && toState.data.title) {
@@ -756,6 +758,14 @@ p2pSiteMobApp
           var redirect_uri = location.href;
           if (wechat_code) { // 用户未登录但已经有code，去登录
             restmod.model(DEFAULT_DOMAIN + '/desireUsers/').$find(wechat_code + '/openid').$then(function(response) {
+              if (response.ret == -1){
+                var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechatAppid +
+                  "&redirect_uri=" + encodeURIComponent(URLService.removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
+                window.location.href = wechatRedirectUrl;
+                return;
+              }
+
+
               $rootScope.isLogged = true;
               $rootScope.bindWechat = false;
               $rootScope.hasLoggedUser = response;
@@ -783,6 +793,7 @@ p2pSiteMobApp
                 $rootScope.checkSession.resolve(response);
               }
 
+
             });
           } else { // 未登录且还未授权
 
@@ -793,6 +804,7 @@ p2pSiteMobApp
           }
 
         }
+
 
 
         // $rootScope.checkSession.resolve(response);

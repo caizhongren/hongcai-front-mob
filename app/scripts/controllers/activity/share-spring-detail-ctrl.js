@@ -209,7 +209,9 @@ angular.module('p2pSiteMobApp')
           $scope.freeWish.cheerRecords = cheerRecords;
           $scope.receiveRewardFlag = true;
 
-          $scope.freeWishStatics = Restangular.one('freeWishes').one('freeWishStatics').get();
+          Restangular.one('freeWishes').one('freeWishStatics').get(function(response){
+            $scope.freeWishStatics = response;
+          });
         }
       });
     }
