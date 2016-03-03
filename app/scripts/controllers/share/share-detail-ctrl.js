@@ -28,8 +28,8 @@ angular.module('p2pSiteMobApp')
     /**
      * 设置用户分享的标题以及描述以及图片等。
      */
-    $scope.onMenuShareAppMessage = function(wishNumber){
-      var shareLink = config.domain + '/share-detail/' + wishNumber;
+    $scope.onMenuShareAppMessage = function(wishId){
+      var shareLink = config.domain + '/share-detail/' + wishId;
       if ($scope.channelCode){
         shareLink = shareLink + '?f=' + $scope.channelCode + '&act=' + $scope.act;
       }
@@ -245,10 +245,10 @@ angular.module('p2pSiteMobApp')
 
           $scope.freeWish = response;
 
-          window.location.href = config.domain + '/share-detail/' + response.number;
-          // $location.path('/share-detail/' + response.number); 
+          window.location.href = config.domain + '/share-detail/' + response.id;
+          // $location.path('/share-detail/' + response.id); 
           // $state.go("root.share-detail",{
-          //   number: response.number
+          //   id: response.id
           // });
       });
     }
@@ -273,7 +273,7 @@ angular.module('p2pSiteMobApp')
    * @return {[type]} [description]
    */
     $scope.cheerFreeWish = function(){
-      Restangular.one('freeWishes', $stateParams.number).post('cheerFreeWish', {
+      Restangular.one('freeWishes', $stateParams.id).post('cheerFreeWish', {
         userId: $rootScope.userInfo.id
       }).then(function(response){
           if(response.ret === -1){
@@ -357,7 +357,7 @@ angular.module('p2pSiteMobApp')
      * 领取奖励
      */
     $scope.receiveReward = function(){
-      Restangular.one('freeWishes', $stateParams.number).post('receiveReward', {
+      Restangular.one('freeWishes', $stateParams.id).post('receiveReward', {
         userId: $rootScope.userInfo.id
       }).then(function(response){
         if (response.ret == -1){
@@ -383,7 +383,7 @@ angular.module('p2pSiteMobApp')
     
 
     wx.ready(function(){
-      $scope.onMenuShareAppMessage($scope.freeWish.number);
+      $scope.onMenuShareAppMessage($scope.freeWish.id);
       wx.hideMenuItems({
           menuList: ['menuItem:share:timeline'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
       });
@@ -395,7 +395,7 @@ angular.module('p2pSiteMobApp')
      * 加载当前页的免费愿望详情
      */
     $rootScope.checkSession.promise.then(function(){
-        Restangular.one('freeWishes', $stateParams.number).one('freeWishWithCheerRecords').get().then(function(response){
+        Restangular.one('freeWishes', $stateParams.id).one('freeWishWithCheerRecords').get().then(function(response){
           $scope.freeWish = response.freeWish;
           $scope.freeWishCheerRecords = response.cheerRecords; 
           $scope.progress = $scope.freeWish.wishAmount * 100 / $scope.freeWish.amount;
