@@ -72,7 +72,7 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
-      var level = 1;
+      var level = 0;
       if($scope.freeWishStatics){
         level = $scope.freeWishStatics.level;
       }
