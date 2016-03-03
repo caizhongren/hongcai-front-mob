@@ -56,7 +56,7 @@ angular.module('p2pSiteMobApp')
         level: $scope.freeWishStatics.level
       }).then(function(response){
         $scope.goOnMyWay = false;
-        var rediretUrl = config.domain + '/share-spring/detail/' + response.number;
+        var rediretUrl = config.domain + '/share-spring/detail/' + response.id;
         window.location.href = rediretUrl;
       });
     }
@@ -84,7 +84,7 @@ angular.module('p2pSiteMobApp')
           if(response.ret === -1){
             alert(response.msg);
           }else{
-            var rediretUrl = config.domain + '/share-spring/detail/' + response.number;
+            var rediretUrl = config.domain + '/share-spring/detail/' + response.id;
             if ($scope.channelCode){
               rediretUrl = rediretUrl + '?f=' + $scope.channelCode + '&act=' + $scope.act;
             }

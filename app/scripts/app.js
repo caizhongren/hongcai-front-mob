@@ -453,7 +453,7 @@ p2pSiteMobApp
 
     //点赞活动详情页
     .state('root.share-detail', {
-        url: '/share-detail/:number?act&f', //f 表示渠道,act 表示活动
+        url: '/share-detail/:id?act&f', //f 表示渠道,act 表示活动
         views: {
           '': {
             templateUrl: 'views/share/share-detail.html',
@@ -605,7 +605,7 @@ p2pSiteMobApp
       })
       //新年点赞活动任务页
       .state('root.share-spring.detail', {
-        url: '/detail/:number',
+        url: '/detail/:id',
         views: {
           '': {
             templateUrl: 'views/activity/share-spring-detail.html',

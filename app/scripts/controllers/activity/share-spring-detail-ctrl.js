@@ -13,7 +13,7 @@ angular.module('p2pSiteMobApp')
     
     $scope.repeatNums = [];
     $scope.initLimit = 2;
-    Restangular.one('freeWishes', $stateParams.number).one('freeWishWithCheerRecords').get().then(function(response){
+    Restangular.one('freeWishes', $stateParams.id).one('freeWishWithCheerRecords').get().then(function(response){
       $scope.freeWish = response;
       $scope.cheerInt = $scope.freeWish.cheerRecords.length / 6;
       $scope.cheerInt = $scope.cheerInt > parseInt($scope.cheerInt) && $scope.cheerInt > 1 ? parseInt($scope.cheerInt) + 1 : parseInt($scope.cheerInt);
@@ -67,7 +67,7 @@ angular.module('p2pSiteMobApp')
       }
 
 
-      Restangular.one('freeWishes', $stateParams.number).post('cheerFreeWish', {
+      Restangular.one('freeWishes', $stateParams.id).post('cheerFreeWish', {
         userId: $rootScope.userInfo.id
       }).then(function(response){
           if(response.ret === -1){
@@ -109,7 +109,7 @@ angular.module('p2pSiteMobApp')
     }
 
     $scope.goDetail = function(freeWish){
-      var rediretUrl = config.domain + '/share-spring/detail/' + freeWish.number;
+      var rediretUrl = config.domain + '/share-spring/detail/' + freeWish.id;
       window.location.href = rediretUrl;
     }
 
@@ -145,8 +145,8 @@ angular.module('p2pSiteMobApp')
     /**
      * 设置用户分享的标题以及描述以及图片等。
      */
-    $scope.onMenuShareAppMessage = function(wishNumber){
-      var shareLink = config.domain + '/share-spring/detail/' + wishNumber;
+    $scope.onMenuShareAppMessage = function(wishId){
+      var shareLink = config.domain + '/share-spring/detail/' + wishId;
       if ($scope.channelCode){
         shareLink = shareLink + '?f=' + $scope.channelCode + '&act=' + $scope.act;
       }
@@ -163,7 +163,7 @@ angular.module('p2pSiteMobApp')
           $scope.inviteFlag = false;
           $scope.$apply();
 
-          Restangular.one('freeWishes', wishNumber).one('shareCount').get();
+          Restangular.one('freeWishes', wishId).one('shareCount').get();
         },
         cancel: function (res) {
         },
@@ -182,7 +182,7 @@ angular.module('p2pSiteMobApp')
     });
 
     wx.ready(function(){
-      $scope.onMenuShareAppMessage($stateParams.number);
+      $scope.onMenuShareAppMessage($stateParams.id);
     });
 
     $scope.goAccount = function(){
@@ -200,7 +200,7 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
-      Restangular.one('freeWishes', $stateParams.number).post('receiveReward', {}).then(function(response){
+      Restangular.one('freeWishes', $stateParams.id).post('receiveReward', {}).then(function(response){
         if (response.ret == -1){
           alert(response.msg);
         } else {
