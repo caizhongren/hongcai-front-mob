@@ -41,6 +41,20 @@ angular.module('p2pSiteMobApp')
 
     $scope.hideNotCheer = function(){
       $scope.notCheer = false;
+
+      if (!$scope.freeWishStatics){
+          Restangular.one('freeWishes').post('addFreeWish', {
+            userId: $rootScope.userInfo.id,
+            level: 1
+          }).then(function(response){
+              if(response.ret !== -1){
+                $scope.cheerFreeSuccess = true;
+                $scope.myFreeWish = response;
+              }
+          });
+        }
+
+        $scope.goOn();
     }
 
     /**

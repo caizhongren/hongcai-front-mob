@@ -2,17 +2,23 @@
   <div class="head-mydetail  bg-second">
   	<img src="/images/activity/index-second.png" alt="" width="100%" class="margin-t-1">
   	<div class="second-head text-center">
+    <!-- ng-show="freeWishStatics.status <= 3" ng-show="freeWishStatics.status > 3" -->
       <div ng-show="freeWishStatics.status <= 3">
-          <p class="margin-b-0 ft-3 ft-red7 ft-bold">我要再拿{{freeWish.amount || 0}}元现金</p>
-          <p class="margin-b-1 ft-1p6 ft-red8">拉{{activity.freeWishActivityRules.secondPersonNum || 20}}个好友帮你砸罐</p>
-        </div>
-        <div ng-show="freeWishStatics.status > 3">
-          <p class="margin-b-0 ft-3 ft-red7 ft-bold">已累计获得{{freeWishStatics.receiveAmount || 0}}元</p>
-        </div>
-      <div class="img-outer">
+        <p class="margin-b-0 ft-3 ft-red7 ft-bold">我要再拿{{freeWish.amount || 0}}元现金</p>
+        <p class="margin-b-1 ft-1p6 ft-red8">拉{{activity.freeWishActivityRules.secondPersonNum || 20}}个好友帮你砸罐</p>
+      </div>
+      <div ng-show="freeWishStatics.status > 3">
+        <p class="margin-b-0 ft-3 ft-red7 ft-bold">已累计获得{{freeWishStatics.receiveAmount || 0}}元</p>
+      </div>
+      <div class="img-outer mid-white" ng-show="freeWishStatics.status <= 3">
         <img ng-src="{{headImgUrl || '/images/activity/dubai.png'}}" alt="" class="img-user">
       </div>
-      <p class="ft-1p6 ft-red7 ft-bold mid-white">{{ nickName || '金鱼公主'}}</p>
+      <p class="ft-1p6 ft-red7 ft-bold mid-white" ng-show="freeWishStatics.status <= 3">{{ nickName || '金鱼公主'}}</p>
+
+      <div class="img-outer sedond-white" ng-show="freeWishStatics.status > 3">
+        <img ng-src="{{headImgUrl || '/images/activity/dubai.png'}}" alt="" class="img-user">
+      </div>
+      <p class="ft-1p6 ft-red7 ft-bold sedond-white" ng-show="freeWishStatics.status > 3">{{ nickName || '金鱼公主'}}</p>
     </div>
   </div>
   <div class="padding-l-1 padding-r-1">
@@ -29,7 +35,7 @@
         </div>
         <div ng-switch-when="5">
           <button class="second-btn ft-red7 ft-2p5 ft-bold" ng-click="goOn()">
-            再拿{{activity.FreeWishActivityRules.thirdReward| number:0}}元
+            再拿{{activity.freeWishActivityRules.thirdReward| number:0 || 0}}元
           </button>
         </div>
         <div ng-switch-when="6">
@@ -45,7 +51,7 @@
 			  <div class="qimo">
 			    <div id="demo1">
 			      <ul>
-			        <li class="ft-yellow2"><img src="/images/activity/money3.png" alt="">宏财网已发放现金总额<span class="ft-2 ft-bold">{{totalReward | number:0}}</span>元</li>
+			        <li class="ft-yellow2"><img src="/images/activity/money3.png" alt="">宏财网已发放现金总额<span class="ft-2 ft-bold">{{totalReward | number:0 || 0}}</span>元</li>
 			      </ul>
 			    </div>
 			    <div id="demo2"></div>
@@ -105,7 +111,7 @@
 </div>
 
 <!-- 完成第二关的蒙层 -->
-<div class="share-detail-Layer" ng-show="false">
+<div class="share-detail-Layer" ng-show="showMask">
 	<div class="monkey">
 		<div class="monkey-head">
 			<img src="/images/activity/index-006.png" alt="" width="50%" class="monkey-img">
