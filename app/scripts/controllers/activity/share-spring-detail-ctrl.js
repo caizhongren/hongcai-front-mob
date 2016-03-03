@@ -250,8 +250,7 @@ angular.module('p2pSiteMobApp')
         headImgUrl: $rootScope.headImgUrl || '无'
       }).$then(function(response) {
         if (response.ret === -1) {
-          $scope.errorMobileMsg = response.msg;
-          console.log($scope.errorMobileMsg);
+          $scope.msg = response.msg;
         } else {
           $rootScope.userInfo = response.user;
           $scope.receiveReward();
