@@ -71,10 +71,15 @@ angular.module('p2pSiteMobApp')
         $scope.goToAttention();
         return;
       }
+
+      var level = 1;
+      if($scope.freeWishStatics){
+        level = $scope.freeWishStatics.level;
+      }
       
       Restangular.one('freeWishes').post('addFreeWish', {
         userId: $rootScope.userInfo.id,
-        level: $scope.freeWishStatics.level + 1
+        level: level + 1
       }).then(function(response){
           if(response.ret === -1){
             alert(response.msg);
