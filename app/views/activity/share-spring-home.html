@@ -83,43 +83,7 @@
       </div>
   		<div class="list-content" ng-show="freeWishes.length <=0 ">
   			<div class="row">
-  				<div class="table-cell">
-  					<div class="img-border">
-  						<img src="/images/activity/dubai.png" alt="" width="100%">
-  						<div class="img-tip">
-  							<p class="ft-1">已领</p>
-  							<p>50元</p>
-  						</div>
-  					</div>
-  				</div>
-  				<div class="table-cell">
-  					<div class="img-border">
-  						<img src="/images/activity/dubai.png" alt="" width="100%">
-  						<div class="img-tip">
-  							<p class="ft-1">已领</p>
-  							<p>50元</p>
-  						</div>
-  					</div>
-  				</div>
-  				<div class="table-cell">
-  					<div class="img-border">
-  						<img src="/images/activity/dubai.png" alt="" width="100%">
-  						<div class="img-tip">
-  							<p class="ft-1">已领</p>
-  							<p>50元</p>
-  						</div>
-  					</div>
-  				</div>
-  				<div class="table-cell">
-  					<div class="img-border">
-  						<img src="/images/activity/dubai.png" alt="" width="100%">
-  						<div class="img-tip">
-  							<p class="ft-1">已领</p>
-  							<p>50元</p>
-  						</div>
-  					</div>
-  				</div>
-  				<div class="table-cell">
+  				<div class="table-cell" ng-repeat="item in [1,2,3,4,5]">
   					<div class="img-border">
   						<img src="/images/activity/dubai.png" alt="" width="100%">
   						<div class="img-tip">
@@ -133,7 +97,7 @@
   	</div>
   	<div class="text-center ft-red4 ft-2 ft-bold margin-t-2" id="attention">
   		<p class="margin-b-0">长按扫码</p>
-      <p class="margin-b-1">关注宏财网帮TA砸罐</p>
+      <p class="margin-b-1">领取现金</p>
   	</div>
   	<div class="text-center margin-t-1">
   		<img src="/images/share-spring/index-wxin.png" alt="" width="50%" ng-show="!test">
