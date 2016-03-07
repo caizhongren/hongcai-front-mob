@@ -588,7 +588,7 @@ p2pSiteMobApp
           '': {
             templateUrl: 'views/root-share.html',
             controller: 'ShareSpringCtrl',
-            controllerUrl: 'scripts/controllers/activity/share-spring-ctrl'
+            controllerUrl: 'scripts/controllers/share-spring/share-spring-ctrl'
           }
         }
       })
@@ -597,9 +597,9 @@ p2pSiteMobApp
         url: '/home',
         views: {
           '': {
-            templateUrl: 'views/activity/share-spring-home.html',
+            templateUrl: 'views/share-spring/share-spring-home.html',
             controller: 'ShareSpringHomeCtrl',
-            controllerUrl: 'scripts/controllers/activity/share-spring-home-ctrl'
+            controllerUrl: 'scripts/controllers/share-spring/share-spring-home-ctrl'
           }
         }
       })
@@ -608,9 +608,9 @@ p2pSiteMobApp
         url: '/detail/:id',
         views: {
           '': {
-            templateUrl: 'views/activity/share-spring-detail.html',
+            templateUrl: 'views/share-spring/share-spring-detail.html',
             controller: 'ShareSpringDetailCtrl',
-            controllerUrl: 'scripts/controllers/activity/share-spring-detail-ctrl'
+            controllerUrl: 'scripts/controllers/share-spring/share-spring-detail-ctrl'
           }
         }
       })
@@ -619,7 +619,7 @@ p2pSiteMobApp
         url: '/mydetail/:number',
         views: {
           '': {
-            templateUrl: 'views/activity/share-spring-mydetail.html',
+            templateUrl: 'views/share-spring/share-spring-mydetail.html',
           }
         }
       })
@@ -628,7 +628,7 @@ p2pSiteMobApp
         url: '/otherdetail',
         views: {
           '': {
-            templateUrl: 'views/activity/share-spring-otherdetail.html',
+            templateUrl: 'views/share-spring/share-spring-otherdetail.html',
           }
         }
       })
@@ -637,7 +637,7 @@ p2pSiteMobApp
         url: '/ending',
         views: {
           '': {
-            templateUrl: 'views/activity/share-spring-ending.html',
+            templateUrl: 'views/share-spring/share-spring-ending.html',
           }
         }
       })
@@ -646,7 +646,7 @@ p2pSiteMobApp
         url: '/mySecondDetail',
         views: {
           '': {
-            templateUrl: 'views/activity/_mysecond-detail.html',
+            templateUrl: 'views/share-spring/_mysecond-detail.html',
           }
         }
       })
