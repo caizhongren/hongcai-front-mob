@@ -138,8 +138,8 @@
       <div class="border-form">
         <form autocomplete="on" id="signUpForm" name="signUpForm" class="margin-b-0">
           <div class="form-mask">
-            <label class="label-tip margin-b-0">输入手机号:</label>
-            <input id="mobile" class="input-tip1 margin-b-0" name="mobile" type="text" ng-model="user.mobile" placeholder="真实手机号" ng-pattern="/^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678])|(14[0-9]))\d{8}$/" required>
+            <label class="label-tip margin-b-0">真实手机号:</label>
+            <input id="mobile" class="input-tip1 margin-b-0" name="mobile" type="text" ng-model="user.mobile" placeholder="输入手机号" ng-pattern="/^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678])|(14[0-9]))\d{8}$/" required>
           </div>
           <p class="margin-t-0 text-left msg-tip" ng-if="signUpForm.mobile.$dirty && signUpForm.mobile.$invalid && !signUpForm.mobile.$focused">输入有误
           </p>
