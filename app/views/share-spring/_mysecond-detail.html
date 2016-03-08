@@ -67,7 +67,9 @@
       </div>  
     </div>
     <div class="padding-l-1 padding-r-1 margin-t-1">
-      <div class="list-content">
+      <div ng-include src='"views/share-spring/_head-tmpl.html"'>
+      </div>
+      <!-- <div class="list-content">
         <div class="row" ng-show="cheerInt > 0" ng-repeat="repeatNum in repeatNums | limitTo : initLimit">
           <div class="table-cell" ng-repeat="item in freeWish.cheerRecords | slice:repeatNum * 6 - 6:repeatNum*6">
             <div class="img-border">
@@ -91,7 +93,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="ft-white ft-1p4 text-center margin-t-1 margin-b-0" ng-show="cheerInt > initLimit" ng-click="viewMore()">查看更多&nbsp;<i class="fa fa-angle-double-down"></i></div>
     </div>
     <div class="text-center ft-yellow2 ft-2 ft-bold margin-t-1">
