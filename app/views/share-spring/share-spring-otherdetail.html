@@ -1,18 +1,18 @@
 <div class="spring-activity">
   <div class="head-otherdetail">
-  	<img src="/images/share-spring/other2.png" alt="" width="90%">
+    <img src="/images/share-spring/other2.png" alt="" width="90%">
     <div class="copywriter ft-bold ft-2p5 text-center">
       领现金&nbsp;每人都有&nbsp;&nbsp;最高50元
     </div>
-  	<div class="head-user">
-  		<img ng-src="{{ freeWish.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%">
-  	</div>
-  	<div class="head-username">
-  		{{freeWish.user.nickName || '金鱼公主'}}
-  	</div>
-  	<div class="head-money">
-  		{{freeWish.amount || 0}}<span class="ft-2 ft-bold">元</span>
-  	</div>
+    <div class="head-user">
+      <img ng-src="{{ freeWish.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%">
+    </div>
+    <!-- <div class="head-username">
+      {{freeWish.user.nickName || '金鱼公主'}}
+    </div> -->
+    <div class="head-money">
+      {{freeWish.amount || 0}}<span class="ft-2 ft-bold">元</span>
+    </div>
 
     <div ng-switch="bindWechat || isLogged" >
       <a class="btn-write ft-2p5 ft-bold text-center btn-shadownone" ng-switch-default ng-click="goToAttention();addFreeWishPraise(freeWish.id);">
@@ -29,27 +29,27 @@
 
   </div>
   <div class="content-otherdetail">
-  	<div class="padding-l-2 padding-r-2 ft-1p5 ft-black3 text-center">
-  		<div id="demo" class="qimo8">
-			  <div class="qimo">
-			    <div id="demo1">
-			      <ul>
-			        <li><img src="/images/share-spring/money1.png" alt="">宏财网已发放现金总额<span class="ft-2 ft-bold">{{totalReward | number:0}}</span>元</li>
-			      </ul>
-			    </div>
-			    <div id="demo2"></div>
-			  </div>
-			</div>
+    <div class="padding-l-2 padding-r-2 ft-1p5 ft-black3 text-center">
+      <div id="demo" class="qimo8">
+        <div class="qimo">
+          <div id="demo1">
+            <ul>
+              <li><img src="/images/share-spring/money1.png" alt="">宏财网已发放现金总额<span class="ft-2 ft-bold">{{totalReward | number:0}}</span>元</li>
+            </ul>
+          </div>
+          <div id="demo2"></div>
+        </div>
+      </div>
 
-  	</div>
-  	<div class="padding-l-2 padding-r-2">
-  		<div class="list-tips">
-  			<div class="left-line fl"></div>
-  			<div class="tips-content">砸罐小能手</div>
-  			<div class="right-line fr"></div>
-  		</div>	
-  	</div>
-  	<div class="padding-l-1 padding-r-1 margin-t-1">
+    </div>
+    <div class="padding-l-2 padding-r-2">
+      <div class="list-tips">
+        <div class="left-line fl"></div>
+        <div class="tips-content">砸罐小能手</div>
+        <div class="right-line fr"></div>
+      </div>  
+    </div>
+    <div class="padding-l-1 padding-r-1 margin-t-1">
       <div class="list-content">
         <div class="row" ng-show="cheerInt > 0" ng-repeat="repeatNum in repeatNums | limitTo : initLimit">
           <div class="table-cell" ng-repeat="item in freeWish.cheerRecords | slice:repeatNum * 6 - 6:repeatNum*6">
@@ -78,14 +78,14 @@
       <div class="ft-white ft-1p4 text-center margin-t-1 margin-b-0" ng-show="cheerInt > initLimit" ng-click="viewMore()">查看更多&nbsp;<i class="fa fa-angle-double-down"></i></div>
     </div>
     <!-- ft-red5 -->
-  	<div class="text-center ft-black ft-2 ft-bold margin-t-2" id="attention">
-  		<p class="margin-b-0">长按扫码</p>
+    <div class="text-center ft-black ft-2 ft-bold margin-t-2" id="attention">
+      <p class="margin-b-0">长按扫码</p>
       <p class="margin-b-1">关注宏财网帮TA砸罐</p>
-  	</div>
-  	<div class="text-center margin-t-1">
-  		<img src="/images/share-spring/index-wxin.png" alt="" width="50%" ng-show="!test">
+    </div>
+    <div class="text-center margin-t-1">
+      <img src="/images/share-spring/index-wxin.png" alt="" width="50%" ng-show="!test">
       <img src="/images/share-spring/index-wxin-test.png" alt="" width="50%" ng-show="test">
-  	</div>
+    </div>
   </div>
 </div>
 <!-- 没资格帮忙蒙层 可以用ng-show控制-->
@@ -102,7 +102,7 @@
       <div ng-switch="notCheerStatus">
         <div class="text-tip2" ng-switch-when="1">
           <p class="ft-3 ft-red6 ft-bold mid-white">亲，TA已砸罐成功~</p>
-          <p class="ft-black ft-1p4 bottom-white">快去领自己的现金吧</p>
+          <p class="ft-black ft-1p4 bottom-white">点我领取自己的现金</p>
         </div>
         <div class="text-tip2" ng-switch-when="2">
           <p class="ft-2p5 ft-red6 ft-bold">呜呜呜~~</p>
@@ -118,12 +118,12 @@
 </div>
 <!-- 为别人砸罐后弹出的蒙层 cheerFreeSuccess -->
 <div class="share-detail-Layer" ng-show="cheerFreeSuccess" ng-click="goDetail(myFreeWish)">
-	<div class="monkey">
-		<!-- <div class="monkey-head padding-r-2">
-			<i class="fa fa-times-circle-o ft-white ft-3 tip-close fr" ng-click="goDetail(myFreeWish)"></i>
-		</div> -->
-		<div class="monkey-tipdetail">
-			<img src="/images/share-spring/share-003.png" alt="" width="100%">
+  <div class="monkey">
+    <!-- <div class="monkey-head padding-r-2">
+      <i class="fa fa-times-circle-o ft-white ft-3 tip-close fr" ng-click="goDetail(myFreeWish)"></i>
+    </div> -->
+    <div class="monkey-tipdetail">
+      <img src="/images/share-spring/share-003.png" alt="" width="100%">
       <div class="text-tip">
         <p class="ft-red6 ft-3 ft-bold">恭喜您！</p>
         <div class="ft-1p6 ft-black clear text-center over-auto mid-white">
@@ -133,8 +133,8 @@
         <div class="ft-5 ft-red6 ft-bold spectical-masktip text-center width-half">{{myFreeWish.amount || 0}}元</div><div class="spectical-masktip text-left">现金！</div></div>
         <p class="ft-1p6 ft-black bottom-white">已成功帮好友砸罐！</p>
       </div>
-		</div>
-	</div>
+    </div>
+  </div>
 </div>
 <!-- 砸罐成功弹出已进行任务弹出的蒙层 goOnMyWay-->
 <div class="share-detail-Layer" ng-show="goOnMyWay" ng-click="goOn()">

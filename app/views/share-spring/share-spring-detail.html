@@ -4,19 +4,19 @@
   <div ng-switch-when="true">
     <div ng-switch="freeWish.level">
         <div ng-switch-when="1">
-           <section ng-include src='"views/activity/share-spring-mydetail.html"'></section>
+           <section ng-include src='"views/share-spring/share-spring-mydetail.html"'></section>
         </div>
         <div ng-switch-when="2">
-           <section ng-include src='"views/activity/_mysecond-detail.html"'></section>
+           <section ng-include src='"views/share-spring/_mysecond-detail.html"'></section>
         </div>
         <div ng-switch-when="3">
-           <section ng-include src='"views/activity/_mythird-detail.html"'></section>
+           <section ng-include src='"views/share-spring/_mythird-detail.html"'></section>
         </div>
     </div>
   </div>
 
   <!-- 他人看到的任务页 -->
   <div ng-switch-default>
-    <section ng-include src='"views/activity/share-spring-otherdetail.html"'></section>
+    <section ng-include src='"views/share-spring/share-spring-otherdetail.html"'></section>
   </div>
 </div>

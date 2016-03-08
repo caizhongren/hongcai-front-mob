@@ -5,7 +5,6 @@
         <div ng-show="freeWishStatics.status <= 5" class="third-head position-ab text-center ft-4 ft-bold ft-deepred1">我要再拿{{activity.freeWishActivityRules.thirdReward |number:0 || 0}}元</div>
         <!-- 回看自己第三关文案 -->
         <div ng-show="freeWishStatics.status > 5" class="third-head2 position-ab text-center ft-3 ft-bold ft-black">已累计获得<span class="ft-red9 ft-bold">{{freeWishStatics.receiveAmount |number:0 || 0}}</span>元</div>
-        
         <div class="position-ab third-user">
             <div class="img-outerdiv fl"><img ng-src="{{ freeWish.user.headImgUrl || '/images/activity/dubai.png'}}"></div>
             <div class="fl img-nickname ft-white ft-1p6 text-center">{{freeWish.user.nickName || '金鱼公主'}}</div>
@@ -13,15 +12,15 @@
     </div>
     <div class="third-btn2 padding-l-1 padding-r-1 bg-yellow3">
         <div ng-switch="freeWishStatics.status">
-            <div ng-switch-when="5" >
-              <button class="third-btn ft-yellow3 ft-2p5 ft-bold" ng-click="$parent.inviteFlag = true" ng-show="freeWish.cheerRecords.length < activity.freeWishActivityRules.thirdPersonNum">
-                找{{activity.freeWishActivityRules.thirdPersonNum - freeWish.cheerRecords.length}}个人&nbsp;帮你砸罐拿现金
-              </button>
+            <div ng-switch-when="5">
+                <button class="third-btn ft-yellow3 ft-2p5 ft-bold" ng-click="$parent.inviteFlag = true" ng-show="freeWish.cheerRecords.length < activity.freeWishActivityRules.thirdPersonNum">
+                    找{{activity.freeWishActivityRules.thirdPersonNum - freeWish.cheerRecords.length}}个人&nbsp;帮你砸罐拿现金
+                </button>
             </div>
             <div ng-switch-when="6">
-              <button class="third-btn ft-yellow3 ft-2p5 ft-bold" ng-click="goAccount()">
-                查看我的账户
-              </button>
+                <button class="third-btn ft-yellow3 ft-2p5 ft-bold" ng-click="goAccount()">
+                    查看我的账户
+                </button>
             </div>
         </div>
     </div>
@@ -46,36 +45,35 @@
             </div>
         </div>
         <div class="padding-l-1 padding-r-1 margin-t-1">
-        <div class="list-content">
-            <div class="row" ng-show="cheerInt > 0" ng-repeat="repeatNum in repeatNums | limitTo : initLimit">
-          <div class="table-cell" ng-repeat="item in freeWish.cheerRecords | slice:repeatNum * 6 - 6:repeatNum*6">
-            <div class="img-border">
-              <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%" class="img-test">
+            <div class="list-content">
+                <div class="row" ng-show="cheerInt > 0" ng-repeat="repeatNum in repeatNums | limitTo : initLimit">
+                    <div class="table-cell" ng-repeat="item in freeWish.cheerRecords | slice:repeatNum * 6 - 6:repeatNum*6">
+                        <div class="img-border">
+                            <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%" class="img-test">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-show="cheerInt <= 0">
+                    <div class="table-cell" ng-repeat="item in freeWish.cheerRecords">
+                        <div class="img-border">
+                            <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%" class="img-test">
+                        </div>
+                    </div>
+                    <div class="table-cell" ng-repeat="item in [1,2,3,4,5,6] | limitTo : 6 - freeWish.cheerRecords.length">
+                        <div class="img-border">
+                            <img src="/images/share-spring/index-grey.png" alt="" width="100%">
+                            <div class="img-untip ft-1p2">
+                                未点亮
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-            </div>
-        <div class="row" ng-show="cheerInt <= 0">
-          <div class="table-cell" ng-repeat="item in freeWish.cheerRecords">
-            <div class="img-border">
-              <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%" class="img-test">
-            </div>
-          </div>
-
-          <div class="table-cell" ng-repeat="item in [1,2,3,4,5,6] | limitTo : 6 - freeWish.cheerRecords.length">
-            <div class="img-border">
-              <img src="/images/share-spring/index-grey.png" alt="" width="100%">
-              <div class="img-untip ft-1p2">
-                未点亮
-              </div>
-            </div>
-          </div>
+            <div class="ft-white ft-1p4 text-center margin-t-1 margin-b-0" ng-show="cheerInt > initLimit" ng-click="viewMore()">查看更多&nbsp;<i class="fa fa-angle-double-down"></i></div>
         </div>
-        </div>
-      <div class="ft-white ft-1p4 text-center margin-t-1 margin-b-0" ng-show="cheerInt > initLimit" ng-click="viewMore()">查看更多&nbsp;<i class="fa fa-angle-double-down"></i></div>
-    </div>
         <div class="text-center ft-red9 ft-2 ft-bold margin-t-1">
             <p class="margin-b-0">长按扫码</p>
-            <p class="margin-b-1">关注宏财网帮TA砸罐</p>
+            <p class="margin-b-1">领取现金</p>
         </div>
         <div class="text-center margin-t-1">
             <img src="/images/share-spring/index-wxin2.png" alt="" width="50%" ng-show="!test">
@@ -89,7 +87,6 @@
         <img src="/images/share-spring/share-001.png" alt="" width="100%">
     </div>
 </div>
-
 <script type="text/javascript">
 var demo = document.getElementById("demo");
 var demo1 = document.getElementById("demo1");

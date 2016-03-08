@@ -1,0 +1,121 @@
+<!-- home页 -->
+<div class="list-content" ng-show="freeWishes.length > 0 ">
+  <div class="row">
+    <div class="table-cell" ng-repeat="freeWish in freeWishes">
+      <div class="img-border">
+        <img ng-src="{{ freeWish.user.headImgUrl || '/images/share/4head.jpg'}}" alt="" width="100%">
+        <div class="img-tip">
+          <p class="ft-1">已领</p>
+          <p>{{freeWish.amount | number:1}}元</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="list-content" ng-show="freeWishes.length <=0 ">
+	<div class="row">
+		<div class="table-cell" ng-repeat="item in [1,2,3,4,5]">
+			<div class="img-border">
+				<img src="/images/activity/dubai.png" alt="" width="100%">
+				<div class="img-tip">
+					<p class="ft-1">已领</p>
+					<p>50元</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- mydetail -->
+<div class="list-content">
+  <div class="row">
+    <div class="table-cell" ng-repeat="item in freeWish.cheerRecords">
+      <div class="img-border">
+        <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%" class="img-test">
+      </div>
+    </div>
+    <div class="table-cell" ng-repeat="item in [1,2,3,4,5,6] | limitTo : activity.freeWishActivityRules.personNum - freeWish.cheerRecords.length">
+      <div class="img-border">
+        <img src="/images/share-spring/index-grey.png" alt="" width="100%">
+        <div class="img-untip ft-1p2">
+          未点亮
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- otherdetail -->
+<div class="list-content">
+  <div class="row" ng-show="cheerInt > 0" ng-repeat="repeatNum in repeatNums | limitTo : initLimit">
+    <div class="table-cell" ng-repeat="item in freeWish.cheerRecords | slice:repeatNum * 6 - 6:repeatNum*6">
+      <div class="img-border">
+        <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%" class="img-test">
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-show="cheerInt <= 0">
+    <div class="table-cell" ng-repeat="item in freeWish.cheerRecords">
+      <div class="img-border">
+        <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%" class="img-test">
+      </div>
+    </div>
+    <div class="table-cell" ng-repeat="item in [1,2,3,4,5,6] | limitTo : 6 - freeWish.cheerRecords.length">
+      <div class="img-border">
+        <img src="/images/share-spring/index-grey.png" alt="" width="100%">
+        <div class="img-untip ft-1p2">
+          未点亮
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- second-detail -->
+<div class="list-content">
+  <div class="row" ng-show="cheerInt > 0" ng-repeat="repeatNum in repeatNums | limitTo : initLimit">
+    <div class="table-cell" ng-repeat="item in freeWish.cheerRecords | slice:repeatNum * 6 - 6:repeatNum*6">
+      <div class="img-border">
+        <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%"  class="img-test">
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-show="cheerInt <= 0">
+    <div class="table-cell" ng-repeat="item in freeWish.cheerRecords">
+      <div class="img-border">
+        <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%"  class="img-test">
+      </div>
+    </div>
+
+    <div class="table-cell" ng-repeat="item in [1,2,3,4,5,6] | limitTo : 6 - freeWish.cheerRecords.length">
+      <div class="img-border">
+        <img src="/images/share-spring/index-grey.png" alt="" width="100%">
+        <div class="img-untip ft-1p2">
+          未点亮
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- third-detail -->
+<div class="list-content">
+  <div class="row" ng-show="cheerInt > 0" ng-repeat="repeatNum in repeatNums | limitTo : initLimit">
+    <div class="table-cell" ng-repeat="item in freeWish.cheerRecords | slice:repeatNum * 6 - 6:repeatNum*6">
+      <div class="img-border">
+        <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%" class="img-test">
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-show="cheerInt <= 0">
+    <div class="table-cell" ng-repeat="item in freeWish.cheerRecords">
+      <div class="img-border">
+        <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%" class="img-test">
+      </div>
+    </div>
+    <div class="table-cell" ng-repeat="item in [1,2,3,4,5,6] | limitTo : 6 - freeWish.cheerRecords.length">
+      <div class="img-border">
+        <img src="/images/share-spring/index-grey.png" alt="" width="100%">
+        <div class="img-untip ft-1p2">
+          未点亮
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
