@@ -35,7 +35,10 @@ angular.module('p2pSiteMobApp')
      * 加载更多点赞记录
      */
     $scope.loadMoreCheerRecords = function(page, pageSize){
-      Restangular.one('freeWishes', $stateParams.id).one('freeWishCheerRecords').get().then(function(response){
+      Restangular.one('freeWishes', $stateParams.id).one('freeWishCheerRecords').get({
+        page: page, 
+        pageSize: pageSize
+      }).then(function(response){
 
         if(response.ret !== -1){
           var cheerRecords = response;
