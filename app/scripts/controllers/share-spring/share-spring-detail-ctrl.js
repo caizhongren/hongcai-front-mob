@@ -15,13 +15,20 @@ angular.module('p2pSiteMobApp')
     $scope.initLimit = 2;
     Restangular.one('freeWishes', $stateParams.id).one('freeWishWithCheerRecords').get().then(function(response){
       $scope.freeWish = response;
-      $scope.cheerInt = $scope.freeWish.cheerRecords.length / 6;
-      $scope.cheerInt = $scope.cheerInt > parseInt($scope.cheerInt) && $scope.cheerInt > 1 ? parseInt($scope.cheerInt) + 1 : parseInt($scope.cheerInt);
+      $scope.cheerInt = Math.ceil($scope.freeWish.cheerRecords.length / 6);
       for (var i = 1; i <= $scope.cheerInt; i++) $scope.repeatNums.push(i);
+
+      if($scope.cheerInt === 0){
+        $scope.repeatNums = [1];
+      }
     });
 
     $scope.viewMore = function(){
       $scope.initLimit = $scope.initLimit > $scope.cheerInt ? $scope.cheerInt : $scope.initLimit + 1;
+    }
+
+    $scope.getNumberArray = function(number){
+      return new Array(number);
     }
 
 

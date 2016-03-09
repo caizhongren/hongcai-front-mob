@@ -1,18 +1,14 @@
 <div class="list-content">
-  <div class="row" ng-show="cheerInt > 0" ng-repeat="repeatNum in repeatNums | limitTo : initLimit">
-    <div class="table-cell" ng-repeat="item in freeWish.cheerRecords | slice:repeatNum * 6 - 6:repeatNum*6">
+
+  <!-- 有人助力时 -->
+  <div class="row"  ng-repeat="i in  repeatNums track by $index | limitTo : initLimit">
+    <div class="table-cell" ng-repeat="item in freeWish.cheerRecords | slice:i * 6 - 6:i*6">
       <div class="img-border">
         <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%" class="img-test">
       </div>
     </div>
-  </div>
-  <div class="row" ng-show="cheerInt <= 0">
-    <div class="table-cell" ng-repeat="item in freeWish.cheerRecords">
-      <div class="img-border">
-        <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%" class="img-test">
-      </div>
-    </div>
-    <div class="table-cell" ng-repeat="item in [1,2,3,4,5,6] | limitTo : 6 - freeWish.cheerRecords.length">
+
+    <div class="table-cell" ng-repeat="item in getNumberArray(6 * i - freeWish.cheerRecords.length) track by $index">
       <div class="img-border">
         <img src="/images/share-spring/index-grey.png" alt="" width="100%">
         <div class="img-untip ft-1p2">
@@ -20,5 +16,18 @@
         </div>
       </div>
     </div>
+
   </div>
+
+  <!-- 没有助力时，最多显示6个，只考虑第一关，第二关三关直接显示6个 -->
+<!--   <div class="row" ng-show="cheerInt <= 0">
+    <div class="table-cell" ng-repeat="item in getNumberArray(6) track by $index">
+      <div class="img-border">
+        <img src="/images/share-spring/index-grey.png" alt="" width="100%">
+        <div class="img-untip ft-1p2">
+          未点亮
+        </div>
+      </div>
+    </div>
+  </div> -->
 </div>
