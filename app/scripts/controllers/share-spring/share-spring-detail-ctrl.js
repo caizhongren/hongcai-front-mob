@@ -15,7 +15,7 @@ angular.module('p2pSiteMobApp')
     $scope.initLimit = 2;
     Restangular.one('freeWishes', $stateParams.id).one('freeWishWithCheerRecords').get().then(function(response){
       $scope.freeWish = response;
-      $scope.cheerInt = Math.ceil($scope.freeWish.cheerRecords.length / 6);
+      $scope.cheerInt = Math.ceil($scope.freeWish.praiseCount / 6);
       for (var i = 1; i <= $scope.cheerInt; i++) $scope.repeatNums.push(i);
 
       if($scope.cheerInt === 0){
@@ -24,7 +24,27 @@ angular.module('p2pSiteMobApp')
     });
 
     $scope.viewMore = function(){
+      if ($scope.initLimit + 1 > $scope.cheerInt){
+        return;
+      }
       $scope.initLimit = $scope.initLimit > $scope.cheerInt ? $scope.cheerInt : $scope.initLimit + 1;
+      $scope.loadMoreCheerRecords($scope.initLimit, 6);
+    }
+
+    /**
+     * 加载更多点赞记录
+     */
+    $scope.loadMoreCheerRecords = function(page, pageSize){
+      Restangular.one('freeWishes', $stateParams.id).one('freeWishCheerRecords').get().then(function(response){
+
+        if(response.ret !== -1){
+          var cheerRecords = response;
+          for (var i = cheerRecords.length - 1; i >= 0; i--) {
+            $scope.freeWish.cheerRecords.push(cheerRecords[i]);
+          }
+        }
+
+      });
     }
 
     $scope.getNumberArray = function(number){
