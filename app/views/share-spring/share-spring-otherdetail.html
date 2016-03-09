@@ -96,7 +96,7 @@
     <img src="/images/share-spring/share-002.png" alt="" width="100%">
   </div>
 </div>
-<!-- 砸罐没次数弹窗、已砸的弹窗、别人已砸罐成功的弹窗-->
+<!-- 砸罐没次数弹窗、已砸的弹窗、别人已砸罐成功的弹窗 notCheer-->
 <div class="share-detail-Layer" ng-show="notCheer" ng-click="hideNotCheer()">
   <div class="monkey">
     <div class="monkey-tipdetail">
@@ -104,7 +104,7 @@
       <div ng-switch="notCheerStatus">
         <div class="text-tip2" ng-switch-when="1">
           <p class="ft-3 ft-red6 ft-bold mid-white">亲，TA已砸罐成功~</p>
-          <p class="ft-black ft-1p4 bottom-white">点我领取自己的现金</p>
+          <p class="ft-red6 ft-1p4 bottom-white text-line">点击领取自己的现金</p>
         </div>
         <div class="text-tip2" ng-switch-when="2">
           <p class="ft-2p5 ft-red6 ft-bold">呜呜呜~~</p>
@@ -126,14 +126,15 @@
     </div> -->
     <div class="monkey-tipdetail">
       <img src="/images/share-spring/share-003.png" alt="" width="100%">
-      <div class="text-tip">
-        <p class="ft-red6 ft-3 ft-bold">恭喜您！</p>
-        <div class="ft-1p6 ft-black clear text-center over-auto mid-white">
+      <div class="text-tip ft-bold">
+        <p class="ft-black ft-1p8 margin-t-2">已成功帮好友砸罐！</p>
+        <p class="ft-1p8 ft-black bottom-white">恭喜您！获得&nbsp;<span class="ft-red6">{{myFreeWish.amount || 0}}元</span>&nbsp;现金！</p>
+        <!-- <div class="ft-1p8 ft-black clear text-center over-auto mid-white">
         <div class="spectical-masktip text-right">
           获得
         </div>
-        <div class="ft-5 ft-red6 ft-bold spectical-masktip text-center width-half">{{myFreeWish.amount || 0}}元</div><div class="spectical-masktip text-left">现金！</div></div>
-        <p class="ft-1p6 ft-black bottom-white">已成功帮好友砸罐！</p>
+        <div class="ft-5 ft-red6 ft-bold spectical-masktip text-center width-half">{{myFreeWish.amount || 0}}元</div><div class="spectical-masktip text-left">现金！</div></div> -->
+        <p class="ft-1p8 ft-red6 bottom-white text-line">点击领取自己的现金</p>
       </div>
     </div>
   </div>
