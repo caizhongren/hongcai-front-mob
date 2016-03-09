@@ -12,10 +12,10 @@
     </div>
     <div ng-switch="freeWishStatics.status">
         <div ng-switch-when="1" >
-          <div class="head-btn" ng-click="$parent.inviteFlag = true" ng-show="freeWish.cheerRecords.length < activity.freeWishActivityRules.personNum">
-            找{{activity.freeWishActivityRules.personNum - freeWish.cheerRecords.length}}个人&nbsp;帮你砸罐拿现金
+          <div class="head-btn" ng-click="$parent.inviteFlag = true" ng-show="freeWish.status === 1 || freeWish.status === 2">
+            找{{activity.freeWishActivityRules.personNum - freeWish.praiseCount}}个人&nbsp;帮你砸罐拿现金
           </div>
-          <div class="head-btn" ng-click="$parent.registFlag = true" ng-show="freeWish.cheerRecords.length === activity.freeWishActivityRules.personNum">
+          <div class="head-btn" ng-click="$parent.registFlag = true" ng-show="freeWish.status === 3">
             砸罐完成&nbsp;马上提现
           </div>
         </div>

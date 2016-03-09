@@ -1,8 +1,8 @@
 <div class="list-content">
 
   <!-- 有人助力时 -->
-  <div class="row"  ng-repeat="i in  repeatNums track by $index | limitTo : initLimit">
-  
+  <div class="row"  ng-repeat="i in repeatNums | limitTo : initLimit">
+
     <div class="table-cell" ng-repeat="item in freeWish.cheerRecords | slice:i * 6 - 6:i*6">
       <div class="img-border">
         <img ng-src="{{ item.user.headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%" class="img-test">
