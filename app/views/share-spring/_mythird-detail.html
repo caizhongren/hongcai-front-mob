@@ -13,8 +13,8 @@
     <div class="third-btn2 padding-l-1 padding-r-1 bg-yellow3">
         <div ng-switch="freeWishStatics.status">
             <div ng-switch-when="5">
-                <button class="third-btn ft-yellow3 ft-2p5 ft-bold" ng-click="$parent.inviteFlag = true" ng-show="freeWish.cheerRecords.length < activity.freeWishActivityRules.thirdPersonNum">
-                    找{{activity.freeWishActivityRules.thirdPersonNum - freeWish.cheerRecords.length}}个人&nbsp;帮你砸罐拿现金
+                <button class="third-btn ft-yellow3 ft-2p5 ft-bold" ng-click="$parent.inviteFlag = true" ng-show="freeWish.praiseCount < activity.freeWishActivityRules.thirdPersonNum">
+                    找{{activity.freeWishActivityRules.thirdPersonNum - freeWish.praiseCount}}个人&nbsp;帮你砸罐拿现金
                 </button>
             </div>
             <div ng-switch-when="6">
