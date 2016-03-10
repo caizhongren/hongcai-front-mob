@@ -110,6 +110,9 @@ angular.module('p2pSiteMobApp')
               $scope.notCheerStatus = 3;
             }
 
+            $timeout(function() {
+              $scope.hideNotCheer();
+            }, 2000);
             return;
           }
 
@@ -121,6 +124,11 @@ angular.module('p2pSiteMobApp')
 
           if ($scope.freeWishStatics){
             $scope.goOnMyWay = true;
+
+            $timeout(function() {
+              $scope.goOn();
+            }, 2000);
+
             return;
           }
 
@@ -131,6 +139,10 @@ angular.module('p2pSiteMobApp')
               if(response.ret !== -1){
                 $scope.cheerFreeSuccess = true;
                 $scope.myFreeWish = response;
+
+                $timeout(function() {
+                  $scope.goDetail(myFreeWish);
+                }, 2000);
               }
           });
 
