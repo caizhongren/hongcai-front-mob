@@ -141,7 +141,7 @@ angular.module('p2pSiteMobApp')
                 $scope.myFreeWish = response;
 
                 $timeout(function() {
-                  $scope.goDetail(myFreeWish);
+                  $scope.goDetail($scope.myFreeWish);
                 }, 2000);
               }
           });
