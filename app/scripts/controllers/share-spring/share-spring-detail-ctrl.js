@@ -202,7 +202,9 @@ angular.module('p2pSiteMobApp')
         },
         success: function (res) {
           // 分享成功后隐藏分享引导窗口
-          $scope.inviteFlag = false;
+          // 
+          delete $scope.inviteFlag;
+          // $scope.inviteFlag = false;
           $scope.$apply();
 
           Restangular.one('freeWishes', wishId).one('shareCount').get();
