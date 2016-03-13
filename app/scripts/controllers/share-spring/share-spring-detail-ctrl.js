@@ -5,7 +5,7 @@ angular.module('p2pSiteMobApp').filter('slice', function() {
   };
 });
 angular.module('p2pSiteMobApp')
-  .controller('ShareSpringDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout,$anchorScroll, $location, Restangular, config, register1, WEB_DEFAULT_DOMAIN, mobileCaptcha, md5) {
+  .controller('ShareSpringDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout,$anchorScroll, $location, $timeout, Restangular, config, register1, WEB_DEFAULT_DOMAIN, mobileCaptcha, md5) {
     $rootScope.showFooter = false;
     $scope.act = $stateParams.act;
     $scope.channelCode = $stateParams.f;
@@ -273,7 +273,6 @@ angular.module('p2pSiteMobApp')
         $scope.showPicCaptchaError = false;
       }
 
-
       mobileCaptcha.$create({
         mobile: user.mobile
       }).$then(function(response) {
@@ -284,7 +283,15 @@ angular.module('p2pSiteMobApp')
       });
     };
 
+    $scope.hasSignUp = false;
+    /**
+     * 注册，成功后领取第一关奖金
+     */
     $scope.signUp = function(user) {
+      if ($scope.hasSignUp){
+        return;
+      }
+
       register1.$create({
         mobile: user.mobile,
         captcha: user.mobileCaptcha,
@@ -301,6 +308,12 @@ angular.module('p2pSiteMobApp')
           $scope.registFlag = false;
         }
       });
+
+      // 防止重复点击，3秒钟之内只能点击一次
+      $scope.hasSignUp = true;
+      $timeout(function() {
+        $scope.hasSignUp = false;
+      }, 3000);
 
     };
 
