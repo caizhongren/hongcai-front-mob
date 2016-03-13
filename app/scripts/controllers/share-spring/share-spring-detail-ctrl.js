@@ -5,7 +5,7 @@ angular.module('p2pSiteMobApp').filter('slice', function() {
   };
 });
 angular.module('p2pSiteMobApp')
-  .controller('ShareSpringDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout,$anchorScroll, $location, $timeout, Restangular, config, register1, WEB_DEFAULT_DOMAIN, mobileCaptcha, md5) {
+  .controller('ShareSpringDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout,$anchorScroll, $location, Restangular, config, register1, WEB_DEFAULT_DOMAIN, mobileCaptcha, md5) {
     $rootScope.showFooter = false;
     $scope.act = $stateParams.act;
     $scope.channelCode = $stateParams.f;
@@ -203,8 +203,8 @@ angular.module('p2pSiteMobApp')
         success: function (res) {
           // 分享成功后隐藏分享引导窗口
           // 
-          delete $scope.inviteFlag;
-          // $scope.inviteFlag = false;
+          // delete $scope.inviteFlag;
+          $scope.inviteFlag = false;
           $scope.$apply();
 
           Restangular.one('freeWishes', wishId).one('shareCount').get();
