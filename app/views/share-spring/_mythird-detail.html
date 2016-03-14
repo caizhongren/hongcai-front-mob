@@ -13,7 +13,7 @@
     <div class="third-btn2 padding-l-1 padding-r-1 bg-yellow3">
         <div ng-switch="freeWishStatics.status">
             <div ng-switch-when="5">
-                <button class="third-btn ft-yellow3 ft-2p5 ft-bold" ng-click="$parent.inviteFlag = true" ng-show="freeWish.praiseCount < activity.freeWishActivityRules.thirdPersonNum">
+                <button class="third-btn ft-yellow3 ft-2p5 ft-bold" ng-click="showInviteMask()" ng-show="freeWish.praiseCount < activity.freeWishActivityRules.thirdPersonNum">
                     找{{activity.freeWishActivityRules.thirdPersonNum - freeWish.praiseCount}}个人&nbsp;帮你砸罐拿现金
                 </button>
             </div>
@@ -84,7 +84,7 @@
     </div>
 </div>
 <!-- 分享给好友蒙层 可以用ng-show控制-->
-<div class="share-page-breakWishLayer width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-click="inviteFlag = false;" ng-show="inviteFlag" my-click-once>
+<div class="share-page-breakWishLayer width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-click="hideInviteMask()" ng-show="showInviteMaskFlag" my-click-once>
     <div class="margin-l-1 margin-r-1 ft-1p2 padding-1" style="border-radius:0.5rem;">
         <img src="/images/share-spring/share-001.png" alt="" width="100%">
     </div>

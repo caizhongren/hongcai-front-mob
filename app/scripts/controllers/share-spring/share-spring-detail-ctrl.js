@@ -203,8 +203,8 @@ angular.module('p2pSiteMobApp')
         success: function (res) {
           // 分享成功后隐藏分享引导窗口
           // 
-          delete $scope.inviteFlag;
-          // $scope.inviteFlag = false;
+          // delete $scope.inviteFlag;
+          $scope.inviteFlag = false;
           $scope.$apply();
 
           Restangular.one('freeWishes', wishId).one('shareCount').get();
@@ -282,6 +282,22 @@ angular.module('p2pSiteMobApp')
         }
       });
     };
+
+
+    /**
+     * 显示分享朦层
+     */
+    $scope.showInviteMask = function(){
+      $scope.showInviteMaskFlag = true;
+    }
+
+    /**
+     * 隐藏分享朦层
+     */
+    $scope.hideInviteMask = function(){
+      $scope.showInviteMaskFlag = false;
+    }
+
 
     $scope.hasSignUp = false;
     /**

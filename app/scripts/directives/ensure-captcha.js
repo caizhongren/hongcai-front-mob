@@ -1,5 +1,5 @@
 'use strict';
-angular.module('hongcaiApp').directive('ensureCaptcha', ['$http', 'DEFAULT_DOMAIN', function($http, DEFAULT_DOMAIN) {
+angular.module('p2pSiteMobApp').directive('ensureCaptcha', ['$http', 'DEFAULT_DOMAIN', function($http, DEFAULT_DOMAIN) {
 	return {
 		require: 'ngModel',
 		link: function(scope, elem, attrs, ctrl) {
