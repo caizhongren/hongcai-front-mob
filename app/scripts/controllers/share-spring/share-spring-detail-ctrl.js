@@ -51,7 +51,12 @@ angular.module('p2pSiteMobApp')
     }
 
     $scope.getNumberArray = function(number){
-      return new Array(number);
+      var numberArray = [];
+
+      for (var i = 0; i < number; i++) { 
+        numberArray.push(i) 
+      } 
+      return numberArray;
     }
 
 
