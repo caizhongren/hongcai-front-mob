@@ -3,12 +3,19 @@ angular.module('p2pSiteMobApp').directive('ensureCaptcha', ['$http', 'DEFAULT_DO
 	return {
 		require: 'ngModel',
 		link: function(scope, elem, attrs, ctrl) {
+			
 			scope.$watch(attrs.ngModel, function() {
+				var captcha = angular.element('#' + attrs.ensureCaptcha).val();
+
+				if (!captcha){
+					return;
+				}
+
 				$http({
 					method: 'POST',
-					url: DEFAULT_DOMAIN + '/siteUser/checkPicCaptcha?captcha=' + angular.element('#' + attrs.ensureCaptcha).val()
+					url: DEFAULT_DOMAIN + '/captchas/checkPic?captcha=' + captcha
 				}).success(function(data) {
-					if(data.ret === 1) {
+					if(data == true) {
 						ctrl.$setValidity('check', true);
 					} else {
 						ctrl.$setValidity('check', false);

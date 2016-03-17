@@ -106,7 +106,7 @@
 </div>
 
 <!-- 注册的蒙层 registFlag-->
-<div class="share-detail-Layer" ng-show="registFlag">
+<div class="share-detail-Layer" ng-show="true">
   <div class="monkey">
     <div class="monkey-head">
       <img src="/images/share-spring/index-006.png" alt="" width="50%" class="monkey-img">
@@ -123,7 +123,7 @@
           </p>
           <div class="form-mask">
             <label class="label-tip margin-b-0">图片验证码:</label>
-            <input id="picCaptcha" class="input-tip2 margin-b-0" name="picCaptcha" type="text" ng-model="user.picCaptcha" placeholder="图片验证码" ng-pattern="/^[0-9a-z]{4}$/" required>
+            <input id="picCaptcha" class="input-tip2 margin-b-0" name="picCaptcha" type="text" ensure-captcha="picCaptcha" ng-model="user.picCaptcha" placeholder="图片验证码" ng-pattern="/^[0-9a-z]{4}$/" required>
             <div class="img-tip" >
               <img ng-src="{{getPicCaptcha}}" alt="" width="100%" ng-click="refreshCode()" id="checkCaptcha">
             </div>
@@ -131,7 +131,7 @@
           <div class="form-mask">
             <label class="label-tip margin-b-0">短信验证码:</label>
             <input id="mobileCaptcha" class="input-tip2 margin-b-0" name="mobileCaptcha" type="text" ng-model="user.mobileCaptcha" placeholder="短信验证码" ng-pattern="/^[0-9]{6}$/" required>
-            <button class="btn-sendtip margin-b-0" ng-click="sendMobileCaptcha(user)" onclick="countDown(this,60,'out');">发送</button>
+            <button class="btn-sendtip margin-b-0" ng-click="sendMobileCaptcha(user)" onclick="countDown(this,60,'out');" ng-disabled="signUpForm.mobile.$invalid || signUpForm.picCaptcha.$error.required || signUpForm.picCaptcha.$error" >发送</button>
           </div>
 <!--          <div class="ft-red text-center margin-t-1 margin-b-1 ft-1p2 form-mask">
             {{errMsg}}

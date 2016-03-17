@@ -277,6 +277,7 @@ angular.module('p2pSiteMobApp')
       } else {
         $scope.showPicCaptchaError = false;
       }
+      
 
       mobileCaptcha.$create({
         mobile: user.mobile
