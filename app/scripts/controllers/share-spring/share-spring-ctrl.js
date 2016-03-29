@@ -45,6 +45,7 @@ angular.module('p2pSiteMobApp')
     $scope.goToAttention = function(){
       $location.hash('attention');
       $anchorScroll();
+      $scope.showQRcode = true;
     }
 
 

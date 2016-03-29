@@ -90,6 +90,20 @@
     </div>
   </div>
 </div>
+<!-- 未关注时点击弹窗二维码提示关注 -->
+<div class="share-detail-Layer" ng-show="showQRcode" ng-click="goDetail(myFreeWish);showQRcode=false;">
+  <div class="position-ab text-center share-mask1"><img src="/images/share-spring/share-monkey.png" alt=""></div>
+  <div class="monkey bg-white margin-l-1 margin-r-1 border-ra-0p5 share-top">
+    <div class="text-center ft-black ft-2 ft-bold margin-t-5">
+      <p class="margin-b-0 margin-t-2">长按扫码</p>
+      <p class="margin-b-1">关注宏财网帮TA砸罐</p>
+    </div>
+    <div class="text-center margin-t-1 margin-b-1">
+      <img src="/images/share-spring/index-wxin2.png" alt="" width="50%" ng-show="!test">
+      <img src="/images/share-spring/index-wxin-test.png" alt="" width="50%" ng-show="test">
+    </div>
+  </div>
+</div>
 <!-- 没资格帮忙蒙层 可以用ng-show控制-->
 <div class="share-page-breakWishLayer width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="false" my-click-once>
   <div class="margin-l-1 margin-r-1 ft-1p2 padding-1" style="border-radius:0.5rem;">
