@@ -69,7 +69,14 @@ angular.module('p2pSiteMobApp')
       });
     }
 
-
+    /**
+     * 跳转到二维码位置
+     */
+    $scope.goToAttention = function(){
+      $location.hash('attention');
+      $anchorScroll();
+      $scope.showQRcode = true;
+    }
 
     $scope.notCheer = false;
     $scope.notCheerStatus = 1;
