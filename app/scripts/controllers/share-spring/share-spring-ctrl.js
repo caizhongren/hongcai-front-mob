@@ -43,8 +43,8 @@ angular.module('p2pSiteMobApp')
      * 跳转到二维码位置
      */
     $scope.goToAttention = function(){
-      $location.hash('attention');
-      $anchorScroll();
+      // $location.hash('attention');
+      // $anchorScroll();
       $scope.showQRcode = true;
     }
 
