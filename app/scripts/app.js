@@ -655,7 +655,16 @@ p2pSiteMobApp
         url: '/myThirdDetail',
         views: {
           '': {
-            templateUrl: 'views/activity/_mythird-detail.html',
+            templateUrl: 'views/share-spring/_mythird-detail.html',
+          }
+        }
+      })
+      //邀请落地页
+      .state('root.share-spring.landing', {
+        url: '/landing',
+        views: {
+          '': {
+            templateUrl: 'views/share-spring/share-spring-landing.html',
           }
         }
       })

@@ -1197,3 +1197,75 @@ padding-left: 0.5rem;
 .share-top{
     margin-top: 45% !important;
 }
+.landing {
+  background-color: #ff572a;
+  .head {
+    position: relative;
+    background-color: #ff572a;
+    .detail-tip {
+      color: white;
+      font-size: 2rem;
+      font-weight: bolder;
+      width: 100%;
+      text-align: center;
+      position: absolute;
+      bottom: 3%;
+    }
+  }
+  .step{
+    background-color: #ff572a;
+    overflow: auto;
+    padding: 0 1rem;
+    .step-one{
+      position: relative;
+      .step-onemain{
+        position: absolute;
+        bottom:15%;
+        left:34%;
+        color:#131313;
+        font-size: 1.8rem;
+        p{
+          margin-bottom: 0;
+        }
+      }
+      @media (min-width: 320px)  {
+        .step-onemain{font-size: 1.5rem;}
+      }
+      @media (min-width: 375px)  {
+        .step-onemain{font-size: 1.8rem;}
+      }
+    }
+  }
+  .step-two{
+    width: 100%;
+    background-color: #ff572a;
+    overflow: auto;
+    .step-btn{
+      width: 50%;
+      float: left;
+      position: relative;
+      img{
+        width: 90%;
+        margin:0 5%;
+      }
+      .btn-text{
+        width: 100%;
+        position: absolute;
+        top:0;
+        text-align: center;
+        color: #ba0404;
+        font-size: 2.5rem;
+      }
+      @media (min-width: 320px)  {
+        .btn-text{top: 5%;}
+      }
+      @media (min-width: 375px)  {
+        .btn-text{top: 11%;}
+      }
+      @media (min-width: 414px)  {
+        .btn-text{top: 14%;}
+      }
+
+    }
+  }
+}
