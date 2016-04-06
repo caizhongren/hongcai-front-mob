@@ -1,5 +1,5 @@
 <!-- 我的账户 -->
-<div class="account-userInfo bg-accountcolor margin-b-7">
+<div class="account-userInfo bg-accountcolor padding-b-7">
   <div>
     <div class=" margin-0 padding-1">您好，亲爱的&nbsp;<strong class="ft-orange">{{ hasLoggedUser.name }}</strong>&nbsp;<i class="fa fa-newspaper-o"></i>
       <span class="pull-right" ui-sref="root.userCenter.setting">基本资料></span></div>
@@ -30,18 +30,23 @@
       </p>
       <hr>
       <p>
-        <img src="/images/user-center/balance6.png" alt="">我的加息券
-        <span class="u-pull-right ft-1p4 ft-7a"><!-- <i class="fa fa-chevron-right ft-97"></i> --></span>
+        <img src="/images/user-center/balance6.png" alt="">我的加息券<sup class="green-sup">1</sup>
+        <span class="u-pull-right ft-1p4 ft-7a"><span class="padding-t-0p4">查看所有加息券</span><i class="fa fa-chevron-right ft-97 margin-l-1"></i></span>
+      </p>
+      <hr>
+      <p>
+        <img src="/images/user-center/invite.png" alt="">我的邀请<sup class="green-sup">6</sup>
+        <span class="u-pull-right ft-1p4 ft-7a"><span class="padding-t-0p4">查看所有邀请人</span><i class="fa fa-chevron-right ft-97 margin-l-1"></i></span>
       </p>
        <!-- ng-if="couponType.rate === 1" -->
-      <p ng-repeat="couponType in couponStatis.couponTypes">
-        <span><strong class="ft-orange">+0.5</strong>%<!-- <sup></sup> <--><span>{{sNum}}</span></span>
-        <span><strong class="ft-orange">+1</strong>%<!-- <sup>{{couponType.couponNum || 0}}</sup> --><span>{{couponType.couponNum || 0}}</span></span>
+      <!-- <p ng-repeat="couponType in couponStatis.couponTypes">
+        <span><strong class="ft-orange">+0.5</strong>%<span>{{sNum}}</span></span>
+        <span><strong class="ft-orange">+1</strong>%<span>{{couponType.couponNum || 0}}</span></span>
       </p>
       <p ng-show="couponFlag">
         <span><strong class="ft-orange">+0.5</strong>%<sup>0</sup></span>
         <span><strong class="ft-orange">+1</strong>%<sup>0</sup></span>
-      </p>
+      </p> -->
     </div>
   </div>
   <!-- 已开通易宝时展示 充值/提现提示 !==0  ng-if="securityStatus.trusteeshipAccountStatus === 1"-->
@@ -54,7 +59,7 @@
       <p class="title">我的奖励</p>
       <p>
         <img src="/images/user-center/balance5.png" alt="">我的体验金
-        <span class="u-pull-right"><i class="fa fa-chevron-right ft-97" ng-click="quickInvest()"></i></span>
+        <span class="u-pull-right ft-1p4 ft-7a"><span class="padding-t-0p4">查看记录</span><i class="fa fa-chevron-right ft-97 margin-l-1" ng-click="quickInvest()"></i></span>
       </p>
       <p>
         <span><strong class="ft-orange">{{userAccount.experienceAmount | number:0}}</strong>
@@ -63,18 +68,23 @@
       </p>
       <hr>
       <p>
-        <img src="/images/user-center/balance6.png" alt="">我的加息券
-        <span class="u-pull-right ft-1p4 ft-7a"><!-- <i class="fa fa-chevron-right ft-97"></i> --></span>
+        <img src="/images/user-center/balance6.png" alt="">我的加息券<sup class="green-sup">1</sup>
+        <span class="u-pull-right ft-1p4 ft-7a"><span class="padding-t-0p4">查看所有加息券</span><i class="fa fa-chevron-right ft-97 margin-l-1"></i></span>
+      </p>
+      <hr>
+      <p>
+        <img src="/images/user-center/invite.png" alt="">我的邀请<sup class="green-sup">6</sup>
+        <span class="u-pull-right ft-1p4 ft-7a"><span class="padding-t-0p4">查看所有邀请人</span><i class="fa fa-chevron-right ft-97 margin-l-1"></i></span>
       </p>
        <!-- ng-if="couponType.rate === 1" -->
-      <p ng-repeat="couponType in couponStatis.couponTypes">
-        <span><strong class="ft-orange">+0.5</strong>%<!-- <sup></sup> <--><span>{{sNum}}</span></span>
-        <span><strong class="ft-orange">+1</strong>%<!-- <sup>{{couponType.couponNum || 0}}</sup> --><span>{{couponType.couponNum || 0}}</span></span>
+      <!-- <p ng-repeat="couponType in couponStatis.couponTypes">
+        <span><strong class="ft-orange">+0.5</strong>%<span>{{sNum}}</span></span>
+        <span><strong class="ft-orange">+1</strong>%<span>{{couponType.couponNum || 0}}</span></span>
       </p>
       <p ng-show="couponFlag">
         <span><strong class="ft-orange">+0.5</strong>%<sup>0</sup></span>
         <span><strong class="ft-orange">+1</strong>%<sup>0</sup></span>
-      </p>
+      </p> -->
     </div>
     <!-- 体验金 -->
     <!-- <div class="padding-0p5 bg-experience margin-2">
