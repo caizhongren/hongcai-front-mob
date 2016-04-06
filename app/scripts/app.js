@@ -668,6 +668,15 @@ p2pSiteMobApp
           }
         }
       })
+      //体验金新手标
+      .state('root.experience-new', {
+        url: '/experience-new',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/experience-new.html',
+          }
+        }
+      })
 
 
     ;
