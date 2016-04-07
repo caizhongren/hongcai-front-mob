@@ -26,24 +26,24 @@
       <div class="account-panel">
         <div class="icon"><img src="/images/user-center/balance5.png" alt=""></div>
         <div class="title-text">我的体验金</div>
-        <div class="more" ng-click="quickInvest()">查看记录<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
+        <div class="more" ng-click="viewMore(1)">查看记录<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
       </div>
       <div class="left-to-right">
         <span><strong class="ft-orange">{{userAccount.experienceAmount | number:0}}</strong>
         &nbsp;元</span>
-        <span ui-sref="root.experience-new">快速投资</span>
+        <span ng-click="quickInvest()">快速投资</span>
       </div>
       <hr>
       <div class="account-panel border-none">
         <div class="icon"><img src="/images/user-center/balance6.png" alt=""></div>
         <div class="title-text">我的加息券<sup class="green-sup">6</sup></div>
-        <div class="more">查看所有加息券<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
+        <div class="more" ng-click="viewMore(2)">查看所有加息券<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
       </div>
       <hr>
       <div class="account-panel border-none">
         <div class="icon"><img src="/images/user-center/invite.png" alt=""></div>
         <div class="title-text">我的邀请<sup class="green-sup">6</sup></div>
-        <div class="more">查看所有邀请人<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
+        <div class="more" ng-click="viewMore(3)">查看所有邀请人<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
       </div>
        <!-- ng-if="couponType.rate === 1" -->
       <!-- <p ng-repeat="couponType in couponStatis.couponTypes">
@@ -71,25 +71,25 @@
       <div class="account-panel">
         <div class="icon"><img src="/images/user-center/balance5.png" alt=""></div>
         <div class="title-text">我的体验金</div>
-        <div class="more" ng-click="quickInvest()">查看记录<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
+        <div class="more" ng-click="viewMore(1)">查看记录<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
       </div>
       <div class="left-to-right">
         <span><strong class="ft-orange">{{userAccount.experienceAmount | number:0}}</strong>
         &nbsp;元</span>
         <!-- ng-click="quickInvest()" -->
-        <span ui-sref="root.experience-new">快速投资</span>
+        <span ng-click="quickInvest()">快速投资</span>
       </div>
       <hr>
       <div class="account-panel border-none">
         <div class="icon"><img src="/images/user-center/balance6.png" alt=""></div>
         <div class="title-text">我的加息券<sup class="green-sup">6</sup></div>
-        <div class="more">查看所有加息券<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
+        <div class="more" ng-click="viewMore(2)">查看所有加息券<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
       </div>
       <hr>
       <div class="account-panel border-none">
         <div class="icon"><img src="/images/user-center/invite.png" alt=""></div>
         <div class="title-text">我的邀请<sup class="green-sup">6</sup></div>
-        <div class="more">查看所有邀请人<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
+        <div class="more" ng-click="viewMore(3)">查看所有邀请人<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
       </div>
        <!-- ng-if="couponType.rate === 1" -->
       <!-- <p ng-repeat="couponType in couponStatis.couponTypes">
@@ -170,18 +170,4 @@
 </div>
 <!-- 实名认证 toRealNameAuth-->
 <div ng-include src="'views/user-center/realname-auth.html'" ng-show="toRealNameAuth">
-</div>
-<!-- 快速投资蒙层 -->
-<div class="project-mask" ng-show="useExperience">
-  <div class="bg-white email-mask project-mask-inner">
-    <p class="margin-b-0 text-center ft-1p8">
-      您将投资&nbsp;<strong class="ft-orange">{{userAccount.experienceAmount | number:0}}</strong>&nbsp;元体验金到零存宝
-    </p>
-    <p class="margin-b-0 text-center ft-1p8">
-      并获得&nbsp;<strong class="ft-orange">{{userAccount.experienceAmount * 6 * 7 /36500 | number:2}}</strong>&nbsp;元收益
-    </p>
-    <p class="project-mask-btn2">
-      <span ng-click="useExperience=false;">取消</span>
-      <span ng-click="toInvest()">确定</span></p>
-  </div>
 </div>

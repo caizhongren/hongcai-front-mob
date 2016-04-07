@@ -670,11 +670,13 @@ p2pSiteMobApp
       })
 
       //体验金新手标
-      .state('root.experience-new', {
-        url: '/experience-new',
+      .state('root.experience-project-detail', {
+        url: '/experience-project-detail',
         views: {
           '': {
-            templateUrl: 'views/user-center/experience-new.html',
+            templateUrl: 'views/project/experience-project-detail.html',
+            controller: 'ExperienceProjectDetailCtrl',
+            controllerUrl: 'scripts/controllers/project/experience-project-detail'
           }
         }
       })
