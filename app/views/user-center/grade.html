@@ -1,0 +1,7 @@
+<div class="grade" ng-init="toggle.activeTab=0;">
+  <div class="bg-offWhite overflow-hid">
+    <ul class="grade-tab1 columns ten offset-by-one margin-b-0">
+      <li class="column text-center margin-0 padding-t-1 padding-b-1" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
+    </ul>
+  </div>
+</div>

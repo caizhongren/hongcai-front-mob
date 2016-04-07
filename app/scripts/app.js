@@ -668,12 +668,24 @@ p2pSiteMobApp
           }
         }
       })
+
       //体验金新手标
       .state('root.experience-new', {
         url: '/experience-new',
         views: {
           '': {
             templateUrl: 'views/user-center/experience-new.html',
+          }
+        }
+      })
+      //我的奖励
+      .state('root.grade', {
+        url: '/grade',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/grade.html',
+            controller: 'GradeCtrl',
+            controllerUrl: 'scripts/controllers/user-center/grade'
           }
         }
       })
@@ -702,7 +714,8 @@ p2pSiteMobApp
       'share-scene-example',
       'activity-scene',
       'share-scene',
-      'share-spring'
+      'share-spring',
+      'grade'
     ];
 
     var routespermission = [
