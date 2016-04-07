@@ -383,6 +383,27 @@
     border-bottom: 3px solid #fd8f3f !important;
     color: #fd8f3f !important;
   }
+  .grade-tab2 li {
+    width: 1/2*100%;
+    list-style: none;
+    background-color: white;
+    font-size: 1.6rem;
+    color: #7a7a7a;
+  }
+  .grade-tab2{
+    li:nth-child(1){
+      text-align: right;
+      padding-right: 1rem;
+      border-right: 1px solid #7a7a7a;
+    }
+    li:nth-child(2){
+      text-align: left;
+      padding-left: 1rem;
+    }
+  }
+  .insub{
+    color: #fd8f3f !important;
+  }
   .tiyanjin-tab{
     width: 100%;
     border-radius: 0.5rem;
@@ -414,4 +435,89 @@
 }
 .minHeight{
   min-height: 650px;
+}
+.jiaxiquan-tab{
+  padding-left: 1rem;
+  padding-right: 1rem;
+  .outer-panel{
+    position: relative;
+    img{
+      width: 100%;
+    }
+    .inner-panel-left{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1/3*100%;
+      text-align: center;
+      color:white;
+      font-size: 1.6rem;
+    }
+    .inner-panel-center{
+      position: absolute;
+      top: 10px;
+      bottom: 15px;
+      right: 16.66666%;
+      width: 50%;
+      color: #7a7a7a;
+      font-size: 1.4rem;
+      border-right:1px solid #fd8f3f;
+      text-align: left;
+    }
+    .inner-panel-right{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 16.66666%;
+      font-size: 1.8rem;
+      color: #fd8f3f;
+      font-weight: bolder;
+      span{
+        display: block;
+      }
+    }
+    @media (min-width:320px){
+      .middle-margin{
+        margin-bottom: 1rem;
+      }
+      .inner-panel-center{
+        font-size: 1.2rem;
+      }
+      .inner-panel-right{
+        margin-top: 7px;
+        span{
+          height: 20px;
+          font-size: 1.4rem;
+        }
+      }
+    }
+    @media (min-width:375px){
+      .middle-margin{
+        margin-bottom: 2rem;
+      }
+      .inner-panel-center{
+        font-size: 1.6rem;
+      }
+      .inner-panel-right{
+        margin-top: 16px;
+        span{
+          height: 20px;
+          font-size: 1.6rem;
+        }
+      }
+    }
+    @media (min-width:414px){
+      .middle-margin{
+        margin-bottom: 2.5rem;
+      }
+      .inner-panel-right{
+        margin-top: 16px;
+        span{
+          height: 20px;
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
 }

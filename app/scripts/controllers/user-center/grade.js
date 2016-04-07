@@ -20,6 +20,18 @@ angular.module('p2pSiteMobApp')
     }];
     $scope.toggle.switchTab = function(tabIndex) {
       $scope.toggle.activeTab = tabIndex;
+      if($scope.tabs[tabIndex].title === '加息券'){
+        $scope.toggle.switchsubTab(0);
+      }
+    };
+    $scope.subtabs = [{
+      titles: '未使用',
+    }, {
+      titles: '已使用',
+    }];
+    $scope.toggle.switchsubTab = function(subtabIndex) {
+      $scope.toggle.activesubTab = subtabIndex;
+      console.log(subtabIndex);
     };
 
   }]);

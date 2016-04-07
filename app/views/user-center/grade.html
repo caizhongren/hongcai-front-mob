@@ -34,9 +34,71 @@
       </div>
     </section>
     <section class="" ng-if="tab.title==='加息券'">
-      <div>
-        加息券
-      </div>
+	    <div class="padding-t-0p5 bg-white padding-b-0p5 overflow-aut">
+		    <ul class="grade-tab2 columns ten offset-by-one margin-b-0">
+		      <li class="column text-center margin-0" ng-class="{insub: toggle.activesubTab===$index}" ng-repeat="tabitem in subtabs" ng-click="toggle.switchsubTab($index)">{{tabitem.titles}}</li>
+		    </ul>
+	    </div>
+	    <div ng-class="{'ng-hide': toggle.activesubTab!==$index}" ng-repeat="item in subtabs">
+		    <div ng-if="item.titles ==='未使用'" class="jiaxiquan-tab">
+		    	<div class="margin-t-1 outer-panel">
+		    		<img src="/images/new/rate.png">
+		    		<div class="inner-panel-left">
+		    			<p class="margin-t-1 margin-b-0">活动奖励</p>
+		    			<p class="margin-b-0"><strong class="ft-4">0.5</strong>%</p>
+		    		</div>
+		    		<div class="inner-panel-center">
+		    			<p class="margin-b-0 padding-l-1">•适用于所有项目</p>
+		    			<p class="padding-l-1 middle-margin">•投资即可使用</p>
+		    			<p class="margin-b-0 padding-l-1">•有效期至2016-05-06</p>
+		    		</div>
+		    		<div class="inner-panel-right">
+		    			<span>立</span>
+		    			<span>即</span>
+		    			<span>使</span>
+		    			<span>用</span>
+		    		</div>
+		    	</div>
+		    	<div class="margin-t-1 outer-panel">
+		    		<img src="/images/new/rate.png">
+		    		<div class="inner-panel-left">
+		    			<p class="margin-t-1 margin-b-0">活动奖励</p>
+		    			<p class="margin-b-0"><strong class="ft-4">0.5</strong>%</p>
+		    		</div>
+		    		<div class="inner-panel-center">
+		    			<p class="margin-b-0 padding-l-1">•适用于所有项目</p>
+		    			<p class="padding-l-1 middle-margin">•投资即可使用</p>
+		    			<p class="margin-b-0 padding-l-1">•有效期至2016-05-06</p>
+		    		</div>
+		    		<div class="inner-panel-right">
+		    			<span>立</span>
+		    			<span>即</span>
+		    			<span>使</span>
+		    			<span>用</span>
+		    		</div>
+		    	</div>
+		    </div>
+		    <div  ng-if="item.titles ==='已使用'" class="jiaxiquan-tab">
+		    	<div class="margin-t-1 outer-panel">
+		    		<img src="/images/new/rate.png">
+		    		<div class="inner-panel-left">
+		    			<p class="margin-t-1 margin-b-0">活动奖励</p>
+		    			<p class="margin-b-0"><strong class="ft-4">0.5</strong>%</p>
+		    		</div>
+		    		<div class="inner-panel-center">
+		    			<p class="margin-b-0 padding-l-1">•适用于所有项目</p>
+		    			<p class="padding-l-1 middle-margin">•投资即可使用</p>
+		    			<p class="margin-b-0 padding-l-1">•有效期至2016-05-06</p>
+		    		</div>
+		    		<div class="inner-panel-right">
+		    			<span>立</span>
+		    			<span>即</span>
+		    			<span>使</span>
+		    			<span>用</span>
+		    		</div>
+		    	</div>
+		    </div>
+	    </div>
     </section>
     <section ng-if="tab.title==='邀请'" class="">
       <div>
