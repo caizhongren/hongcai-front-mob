@@ -11,11 +11,11 @@
       <div class="touzi-product"><a class="ft-white" ui-sref="root.userCenter.investments-stat">我的投资&nbsp;<i class="fa fa-angle-right"></i></a></div>
     </div>
     <!-- 已开通易宝时展示 账户资金详情-->
-    <div ng-include src="'views/user-center/_account-assets-info.html'">
+    <div ng-include src="'views/user-center/_account-assets-info.html'" class="margin-b-1 overflow-aut">
     </div>
   </div>
   <!-- 未开通易宝 ng-if="securityStatus.trusteeshipAccountStatus !== 1"-->
-  <div class="padding-l-1 padding-r-1" ng-if="securityStatus.trusteeshipAccountStatus !== 1">
+  <div class="padding-l-1 padding-r-1 margin-t-1" ng-if="securityStatus.trusteeshipAccountStatus !== 1">
     <button class="margin-0 margin-t-0p5 button button-primary button-shadwo ft-1p5" ng-click="openYeepay()" style="width:100%">立即开通托管账户</button>
     <div class="grade-owner">
       <p class="title">我的奖励</p>
