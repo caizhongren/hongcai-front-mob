@@ -178,8 +178,12 @@ angular.module('p2pSiteMobApp')
 
     $scope.useExperience = false;
     $scope.quickInvest = function(){
-      if($scope.userAccount.experienceAmount > 100){
-        $scope.useExperience = true;
+      if($rootScope.securityStatus.trusteeshipAccountStatus === 1){
+        if($scope.userAccount.experienceAmount > 100){
+          $state.go('root.experience-project-detail',{});
+        }
+      }else{
+        $scope.toRealNameAuth = true;
       }
     }
 
@@ -218,7 +222,5 @@ angular.module('p2pSiteMobApp')
           // 访问接口失败；
         }
       });
-      
-      
     };
   });
