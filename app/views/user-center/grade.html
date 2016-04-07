@@ -1,7 +1,47 @@
 <div class="grade" ng-init="toggle.activeTab=0;">
   <div class="bg-offWhite overflow-hid">
     <ul class="grade-tab1 columns ten offset-by-one margin-b-0">
-      <li class="column text-center margin-0 padding-t-1 padding-b-1" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
+      <li class="column text-center margin-0 padding-t-1 padding-b-1" ng-class="{in: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
     </ul>
+  </div>
+  <!-- 要展示的内容如下 -->
+  <div class="tab-content columns twelve bg-offWhite overflow-hid padding-b-2 text-center " ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs">
+    <section ng-if="tab.title==='体验金'" class="">
+      <div class="padding-1 minHeight">
+       <div class="tiyanjin-tab">
+        <div class="use-list-title">使用记录</div>
+        <div class="use-list-head">
+        	<div class="list-cell">日期</div>
+        	<div class="list-cell">金额</div>
+        	<div class="list-cell">收益</div>
+        </div>
+        <div class="use-list-head">
+        	<div class="list-cell">2015-03-09</div>
+        	<div class="list-cell">1500元</div>
+        	<div class="list-cell ft-orange">1.57元</div>
+        </div>
+        <div class="use-list-head">
+        	<div class="list-cell">2015-03-09</div>
+        	<div class="list-cell">1500元</div>
+        	<div class="list-cell ft-orange">1.57元</div>
+        </div><div class="use-list-head">
+        	<div class="list-cell">2015-03-09</div>
+        	<div class="list-cell">1500元</div>
+        	<div class="list-cell ft-orange">1.57元</div>
+        </div>
+       </div>
+       <div class="margin-t-2"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<span class="cursor-hand ft-black2 text-line">查看更多使用记录</span></div>
+      </div>
+    </section>
+    <section class="" ng-if="tab.title==='加息券'">
+      <div>
+        加息券
+      </div>
+    </section>
+    <section ng-if="tab.title==='邀请'" class="">
+      <div>
+				邀请
+      </div>
+    </section>
   </div>
 </div>
