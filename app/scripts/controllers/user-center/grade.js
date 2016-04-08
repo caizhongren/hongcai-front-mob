@@ -10,7 +10,7 @@
 angular.module('p2pSiteMobApp')
   .controller('GradeCtrl',function ($scope, $state, $rootScope, $stateParams, HongcaiUser) {
     $scope.page = 1;
-    $scope.pageSize = 20;
+    $scope.pageSize = 4;
     $scope.datas = [];
     $scope.totalPage = 1;
 
@@ -56,7 +56,7 @@ angular.module('p2pSiteMobApp')
       if ($scope.totalPage < $scope.page){
         return;
       }
-      var dealsReq = HongcaiUser.$find($rootScope.hasLoggedUser.id + '/deals', {
+      var dealsReq = HongcaiUser.$find($rootScope.hasLoggedUser.id + '/userInvestExperienceMoneyDeals', {
         page: $scope.page,
         pageSize: $scope.pageSize
       });
@@ -64,7 +64,7 @@ angular.module('p2pSiteMobApp')
         if(response.$status === 'ok'){
           $scope.totalPage = response.totalPage;
           for (var i = 0; i < response.data.length; i++) {
-            $scope.deals.push(response.data[i]);
+            $scope.datas.push(response.data[i]);
           };
        } else{
             $scope.msg = '获取信息失败';
@@ -73,6 +73,7 @@ angular.module('p2pSiteMobApp')
      //$scope.DealBusy = false;
     }
 
+    $scope.DealBusy = false;
     $scope.loadMuch = function(){
       $scope.DealBusy = true;
       $scope.page = $scope.page + 1;
@@ -81,5 +82,7 @@ angular.module('p2pSiteMobApp')
       $scope.dealList();
       $scope.DealBusy = false;
     };
+
+    $scope.dealList();
   });
 
