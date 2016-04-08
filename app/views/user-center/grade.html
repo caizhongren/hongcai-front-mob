@@ -40,11 +40,11 @@
 		    </ul>
 	    </div>
 	    <div ng-class="{'ng-hide': toggle.activesubTab!==$index}" ng-repeat="item in subtabs">
-		    <div ng-if="item.titles ==='未使用'" class="jiaxiquan-tab">
+		    <div ng-if="item.titles ==='未使用'" class="jiaxiquan-tab minHeight">
 		    	<div class="margin-t-1 outer-panel">
 		    		<img src="/images/new/rate.png">
 		    		<div class="inner-panel-left">
-		    			<p class="margin-t-1 top-margin">活动奖励</p>
+		    			<p class="top-margin">活动奖励</p>
 		    			<p class="margin-b-0"><strong class="ft-4">0.5</strong>%</p>
 		    		</div>
 		    		<div class="inner-panel-center">
@@ -62,7 +62,7 @@
 		    	<div class="margin-t-1 outer-panel">
 		    		<img src="/images/new/rate.png">
 		    		<div class="inner-panel-left">
-		    			<p class="margin-t-1 top-margin">活动奖励</p>
+		    			<p class="top-margin">活动奖励</p>
 		    			<p class="margin-b-0"><strong class="ft-4">0.5</strong>%</p>
 		    		</div>
 		    		<div class="inner-panel-center">
@@ -77,24 +77,21 @@
 		    			<span>用</span>
 		    		</div>
 		    	</div>
+		    	<div class="margin-t-2"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<span class="cursor-hand ft-black2 text-line">查看更多使用记录</span></div>
 		    </div>
-		    <div  ng-if="item.titles ==='已使用'" class="jiaxiquan-tab">
+		    <div  ng-if="item.titles ==='已使用'" class="jiaxiquan-tab minHeight">
 		    	<div class="margin-t-1 outer-panel">
 		    		<img src="/images/new/rate.png">
 		    		<div class="inner-panel-left">
-		    			<p class="margin-t-1 margin-b-0">活动奖励</p>
+		    			<p class="top-margin">活动奖励</p>
 		    			<p class="margin-b-0"><strong class="ft-4">0.5</strong>%</p>
 		    		</div>
-		    		<div class="inner-panel-center">
-		    			<p class="margin-b-0 padding-l-1">•适用于所有项目</p>
-		    			<p class="padding-l-1 middle-margin">•投资即可使用</p>
-		    			<p class="margin-b-0 padding-l-1">•有效期至2016-05-06</p>
+		    		<div class="inner-model-center">
+		    			<p class="model-margin ft-orange">收益：1.57元</p>
+		    			<p class="margin-b-0">使用日期(2016-05-06)</p>
 		    		</div>
-		    		<div class="inner-panel-right">
-		    			<span>立</span>
-		    			<span>即</span>
-		    			<span>使</span>
-		    			<span>用</span>
+		    		<div class="inner-model-right">
+		    			<img src="/images/new/used.png" alt="">
 		    		</div>
 		    	</div>
 		    </div>
