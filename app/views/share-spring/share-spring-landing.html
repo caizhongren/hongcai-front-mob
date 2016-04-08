@@ -1,4 +1,4 @@
-<div class="landing">
+<div class="landing"  id="toptip">
 	<div class="head">
 		<img src="/images/share-spring/landing1.jpg" alt="" width="100%">
     <div class="detail-tip">每位好友最高可获<span class="ft-2p5 ft-yellow4">68888</span>元体验金</div>
@@ -30,8 +30,8 @@
 		</div>
 	</div>
 	<div class="activity-rule">
-		<div class="bg-deeporange arrow_box ft-white text-center ft-1p8 cursor-hand padding-t-0p5 padding-b-0p5" ng-click="goToRule()" id="toptip">活动规则<i class="fa fa-angle-double-down margin-l-1"></i></div>
-		<div class="rule-detail">
+		<div class="bg-deeporange ft-white text-center ft-1p8 cursor-hand padding-t-0p5 padding-b-0p5" ng-class="{arrow_box:showRule===true}" ng-init="showRule===false" ng-click="goToRule();">活动规则<i class="fa fa-angle-double-down margin-l-1"></i></div>
+		<div class="rule-detail" ng-show="showRule">
 			<p>1、所有注册用户均可参与邀请。</p>
 			<p>2、每邀请1位好友注册并认证，邀请人得10元现金，好友注册得13888元体验金，认证得5000元体验金。邀请上限10人。</p>
 			<p>3、好友注册后30天内首次以真实金额投资， 邀请人再得5元现金。好友得首次投资金额20倍的体验金。体验金50000元封顶</p>
@@ -39,6 +39,6 @@
 			<p>5、现金和体验金可在我的账户查看，所得现金和收益均可提现。</p>
 			<p>6、本活动最终解释权归宏财网所有。</p>
 		</div>
-		<div class="bg-deeporange ft-white text-center ft-1p8 cursor-hand padding-t-1 padding-b-1" id="rules" ng-click="goToTip()">收起<i class="fa fa-angle-double-up margin-l-1"></i></div>
+		<div class="bg-deeporange ft-white text-center ft-1p8 cursor-hand padding-t-1 padding-b-1" id="rules" ng-click="goToTip();" ng-show="showRule">收起<i class="fa fa-angle-double-up margin-l-1"></i></div>
 	</div>
 </div>

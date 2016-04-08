@@ -83,10 +83,12 @@ angular.module('p2pSiteMobApp')
     $scope.goToRule = function(){
       $location.hash('rules');
       $anchorScroll();
+      $scope.showRule = true;
     }
     $scope.goToTip = function(){
       $location.hash('toptip');
       $anchorScroll();
+      $scope.showRule = false;
     }
 
     $scope.notCheer = false;
