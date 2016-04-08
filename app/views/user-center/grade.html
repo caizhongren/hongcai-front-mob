@@ -6,7 +6,7 @@
   </div>
   <!-- 要展示的内容如下 -->
   <div class="tab-content columns twelve bg-offWhite overflow-hid padding-b-2 text-center " ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs">
-    <section ng-if="tab.title==='体验金'" class="">
+    <section ng-if="tab.title==='体验金'">
       <div class="padding-1 minHeight">
        <div class="tiyanjin-tab">
         <div class="use-list-title">使用记录</div>
@@ -15,25 +15,27 @@
         	<div class="list-cell">金额</div>
         	<div class="list-cell">收益</div>
         </div>
-        <div class="use-list-head">
-        	<div class="list-cell">2015-03-09</div>
-        	<div class="list-cell">1500元</div>
-        	<div class="list-cell ft-orange">1.57元</div>
-        </div>
-        <div class="use-list-head">
-        	<div class="list-cell">2015-03-09</div>
-        	<div class="list-cell">1500元</div>
-        	<div class="list-cell ft-orange">1.57元</div>
-        </div><div class="use-list-head">
-        	<div class="list-cell">2015-03-09</div>
-        	<div class="list-cell">1500元</div>
-        	<div class="list-cell ft-orange">1.57元</div>
+        <div infinite-scroll="loadMuch()" infinite-scroll-distance="3">
+	        <div class="use-list-head">
+	        	<div class="list-cell">2015-03-09</div>
+	        	<div class="list-cell">1500元</div>
+	        	<div class="list-cell ft-orange">1.57元</div>
+	        </div>
+	        <div class="use-list-head">
+	        	<div class="list-cell">2015-03-09</div>
+	        	<div class="list-cell">1500元</div>
+	        	<div class="list-cell ft-orange">1.57元</div>
+	        </div><div class="use-list-head">
+	        	<div class="list-cell">2015-03-09</div>
+	        	<div class="list-cell">1500元</div>
+	        	<div class="list-cell ft-orange">1.57元</div>
+	        </div>
         </div>
        </div>
-       <div class="margin-t-2"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<span class="cursor-hand ft-black2 text-line">查看更多使用记录</span></div>
+       <div class="margin-t-2" ng-show="DealBusy"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<span class="cursor-hand ft-black2 text-line">查看更多使用记录</span></div>
       </div>
     </section>
-    <section class="" ng-if="tab.title==='加息券'">
+    <section ng-if="tab.title==='加息券'">
 	    <div class="padding-t-0p5 bg-white padding-b-0p5 overflow-aut">
 		    <ul class="grade-tab2 columns ten offset-by-one margin-b-0">
 		      <li class="column text-center margin-0" ng-class="{insub: toggle.activesubTab===$index}" ng-repeat="tabitem in subtabs" ng-click="toggle.switchsubTab($index)">{{tabitem.titles}}</li>
@@ -98,7 +100,7 @@
 		    </div>
 	    </div>
     </section>
-    <section ng-if="tab.title==='邀请'" class="">
+    <section ng-if="tab.title==='邀请'">
     	<div class="margin-t-1"><img src="/images/new/ad.png" width="100%"></div>
       <div class="padding-1 minHeight">
        <div class="tiyanjin-tab">

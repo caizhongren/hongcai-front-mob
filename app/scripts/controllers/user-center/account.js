@@ -47,6 +47,10 @@ angular.module('p2pSiteMobApp')
           // 获取信息失败。
         }
       });
+
+      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/userInviteNum').$then(function(response) {
+        $scope.inviteNum = response.inviteNum || 0;
+      });
     });
 
     $rootScope.selectedSide = 'account';
@@ -223,4 +227,11 @@ angular.module('p2pSiteMobApp')
         }
       });
     };
+
+    //查看更多 index:0体验金，1加息券，2邀请
+    $scope.viewMore = function(index){
+      $state.go('root.userCenter.grade',{
+        initIndex : index
+      });
+    }
   });
