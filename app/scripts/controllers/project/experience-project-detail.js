@@ -23,13 +23,15 @@ angular.module('p2pSiteMobApp')
       });
 
       Restangular.one('projects').one('experienceProject').get().then(function(response) {
-        if(response.ret === -1){
-          alert(response.msg);
-          $state.go('root.userCenter.account');
-        }
+        if(response.$status === 'ok'){
+            if(response.ret === -1){
+            alert(response.msg);
+            $state.go('root.userCenter.account');
+          }
 
-        $scope.experienceProject = response;
-        console.log($scope.experienceProject);
+          $scope.experienceProject = response;
+          console.log($scope.experienceProject);
+        }
       });
     });
 
