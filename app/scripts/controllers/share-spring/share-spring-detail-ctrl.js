@@ -77,6 +77,17 @@ angular.module('p2pSiteMobApp')
       $scope.showQRcode = true;
       // $anchorScroll();
     }
+    /**
+     * 跳转到规则位置
+     */
+    $scope.goToRule = function(){
+      $location.hash('rules');
+      $anchorScroll();
+    }
+    $scope.goToTip = function(){
+      $location.hash('toptip');
+      $anchorScroll();
+    }
 
     $scope.notCheer = false;
     $scope.notCheerStatus = 1;
