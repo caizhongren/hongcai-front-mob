@@ -684,7 +684,7 @@ p2pSiteMobApp
       })
       //我的奖励
       .state('root.userCenter.grade', {
-        url: '/grade/:initIndex',
+        url: '/grade?tab&subTab',
         views: {
           '': {
             templateUrl: 'views/user-center/grade.html',

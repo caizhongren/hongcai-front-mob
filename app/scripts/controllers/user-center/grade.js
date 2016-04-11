@@ -14,7 +14,8 @@ angular.module('p2pSiteMobApp')
     $scope.datas = [];
     $scope.totalPage = 1;
 
-    $scope.initIndex = parseInt($stateParams.initIndex) || 0;
+    $scope.tab = parseInt($stateParams.tab) || 0;
+    $scope.subTab = $stateParams.subTab || 0;
     // tab
     $scope.toggle = {};
     $scope.tabs = [{
@@ -43,7 +44,7 @@ angular.module('p2pSiteMobApp')
       console.log(subtabIndex);
     };
 
-    $scope.toggle.switchTab($scope.initIndex);
+    $scope.toggle.switchTab($scope.tab);
 
     $scope.investExperienceMoneyDeals = function(){
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/userInvestExperienceMoneyDeals').$then(function(response) {
