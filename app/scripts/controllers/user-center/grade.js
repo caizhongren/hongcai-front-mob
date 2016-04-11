@@ -91,10 +91,11 @@ angular.module('p2pSiteMobApp')
           }else if(subtabIndex === 1){
             $scope.unUseTotalPage = response.totalPage;
           }
-
+          $scope.totalPage = response.totalPage;
           for (var i = 0; i < response.data.length; i++) {
             $scope.datas.push(response.data[i]);
           };
+          console.log($scope.datas);
        } else{
             $scope.msg = '获取信息失败';
         }

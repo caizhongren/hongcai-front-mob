@@ -684,7 +684,7 @@ p2pSiteMobApp
       })
       //我的奖励
       .state('root.userCenter.grade', {
-        url: '/grade/:initIndex',
+        url: '/grade?tab&subTab',
         views: {
           '': {
             templateUrl: 'views/user-center/grade.html',
@@ -786,6 +786,11 @@ p2pSiteMobApp
 
           if (!Utils.isWeixin()) {
             $rootScope.checkSession.resolve(response);
+            if(routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1){
+              console.log($location.path());
+              $state.go('root.login', {redirectUrl: encodeURIComponent($location.path())});
+            }
+            
             return;
           }
 
