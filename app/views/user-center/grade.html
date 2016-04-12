@@ -53,7 +53,7 @@
 			    			<span>用</span>
 			    		</div>
 			    	</div>
-			    	<div class="margin-t-2" ng-click="loadMuch(toggle.activeTab, toggle.activesubTab)"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<span class="cursor-hand ft-black2 text-line">查看更多信息</span></div>
+			    	<div class="margin-t-2" ng-show="unUseTotalPage > page" ng-click="loadMuch(toggle.activeTab, toggle.activesubTab)"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<span class="cursor-hand ft-black2 text-line">查看更多信息</span></div>
 			    </div>
 			    <div ng-show="datas.length <= 0">
 			    	无
@@ -69,13 +69,13 @@
 			    		</div>
 			    		<div class="inner-model-center">
 			    			<p class="model-margin ft-orange">收益：{{item.profit | number:2}}元</p>
-			    			<p class="margin-b-0">使用日期({{item.endTime | date:"yyyy-MM-dd"}})</p>
+			    			<p class="margin-b-0">使用日期({{item.usedTime | date:"yyyy-MM-dd"}})</p>
 			    		</div>
 			    		<div class="inner-model-right">
 			    			<img src="/images/new/used.png" alt="">
 			    		</div>
 			    	</div>
-			    	<div class="margin-t-2" ng-show="totalPage > page" ng-click="loadMuch(toggle.activeTab, toggle.activesubTab)"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<span class="cursor-hand ft-black2 text-line">查看更多信息</span></div>
+			    	<div class="margin-t-2" ng-show="useTotalPage > page" ng-click="loadMuch(toggle.activeTab, toggle.activesubTab)"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<span class="cursor-hand ft-black2 text-line">查看更多信息</span></div>
 			    </div>
 			    <div ng-show="datas.length <= 0">
 			    	无
