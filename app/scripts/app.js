@@ -796,6 +796,10 @@ p2pSiteMobApp
 
           if (!Utils.isWeixin()) {
             $rootScope.checkSession.resolve(response);
+            if(routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1){
+              $state.go('root.login', {redirectUrl: encodeURIComponent($location.url())});
+            }
+            
             return;
           }
 
@@ -829,7 +833,7 @@ p2pSiteMobApp
               }
 
               if (!$rootScope.isLogged && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
-                $location.path('/login');
+                $state.go('root.login', {redirectUrl: encodeURIComponent($location.url())});
               } else if (response.ret == -1) { // 未拿到openid再次请求授权
                 var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechatAppid +
                   "&redirect_uri=" + encodeURIComponent(URLService.removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
