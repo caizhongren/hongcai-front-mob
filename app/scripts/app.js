@@ -693,6 +693,15 @@ p2pSiteMobApp
           }
         }
       })
+      //送现金落地页
+      .state('root.activity-landing', {
+        url: '/activity-landing',
+        views: {
+          '': {
+            templateUrl: 'views/activity/activity-landing.html',
+          }
+        }
+      })
 
 
     ;
@@ -719,7 +728,8 @@ p2pSiteMobApp
       'activity-scene',
       'share-scene',
       'share-spring',
-      'grade'
+      'grade',
+      'activity-landing'
     ];
 
     var routespermission = [
