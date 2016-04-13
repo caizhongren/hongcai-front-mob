@@ -287,7 +287,7 @@ p2pSiteMobApp
       .state('root.userCenter.credits', {
         url: '/credits',
         data: {
-          title: '我的债权'
+          title: '我的投资'
         },
         views: {
           '': {
