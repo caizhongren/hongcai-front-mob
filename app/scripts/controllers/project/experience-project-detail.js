@@ -64,7 +64,7 @@ angular.module('p2pSiteMobApp')
         if (response.$status === 'ok') {
           if (response.number !== null && response.number !== undefined) {
             $state.go('root.yeepay-callback', {
-              business: 'TRANSFER',
+              business: 'EXPERIENCE',
               status: 'SUCCESS',
               amount: response.amount
             });

@@ -23,6 +23,8 @@ angular.module('p2pSiteMobApp')
         $scope.page = 4;
     }else if(business === 'RESET_MOBILE'){
         $scope.page = 5;
+    }else if(business === 'EXPERIENCE'){
+        $scope.page = 6;
     }
 
   });
