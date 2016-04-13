@@ -20,7 +20,7 @@
 		</div>
 	</div>
 	<div class="step-two">
-		<div class="step-btn">
+		<div class="step-btn" ng-click="inviteFlag=true">
 			<img src="/images/share-spring/landing4.png" alt="">
 			<div class="btn-text">邀请好友</div>
 		</div>
@@ -41,4 +41,10 @@
 		</div>
 		<div class="bg-deeporange ft-white text-center ft-1p8 cursor-hand padding-t-1 padding-b-1" id="rules" ng-click="goToTip();" ng-show="showRule">收起<i class="fa fa-angle-double-up margin-l-1"></i></div>
 	</div>
+</div>
+<!-- 邀请好友 可以用ng-show控制-->
+<div class="share-page-breakWishLayer width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="inviteFlag" ng-click="inviteFlag=false" my-click-once>
+  <div class="margin-l-1 margin-r-1 ft-1p2 padding-1" style="border-radius:0.5rem;">
+    <img src="/images/share-spring/invite-no.png" alt="" width="100%">
+  </div>
 </div>
