@@ -659,14 +659,28 @@ p2pSiteMobApp
           }
         }
       })
-      //邀请落地页
-      .state('root.share-spring.landing', {
-        url: '/landing',
+
+      // 活动主url
+      .state('root.activity', {
+        abstract: true,
+        url:'/activity',
         views: {
           '': {
-            templateUrl: 'views/share-spring/share-spring-landing.html',
-            controller: 'ShareSpringDetailCtrl',
-            controllerUrl: 'scripts/controllers/share-spring/share-spring-detail-ctrl'
+            templateUrl: 'views/activity/root-activity.html'
+            // controller: 'ShareSpringCtrl',
+            // controllerUrl: 'scripts/controllers/share-spring/share-spring-ctrl'
+          }
+        }
+      })
+
+      //邀请活动落地落地页
+      .state('root.activity.invite', {
+        url: '/invite',
+        views: {
+          '': {
+            templateUrl: 'views/activity/invite-landing.html',
+            controller: 'InviteCtrl',
+            controllerUrl: 'scripts/controllers/activity/invite-ctrl'
           }
         }
       })
