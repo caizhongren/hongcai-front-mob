@@ -63,7 +63,7 @@ angular.module('p2pSiteMobApp')
       var shareLink = config.domain + '/register//';
       HongcaiUser.$find(0 + '/voucher').$then(function(response) {
         if (response.ret !== -1){
-          shareLink = shareLink + $scope.voucher.inviteCode;
+          shareLink = shareLink + response.inviteCode;
         }
       });
 
