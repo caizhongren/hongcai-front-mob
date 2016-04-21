@@ -63,8 +63,8 @@ angular.module('p2pSiteMobApp')
       
 
       wx.onMenuShareAppMessage({
-        title: '邀请注册，领150元现金~',
-        desc: '邀10位好友注册，拿150元现金！每位好友可获68888元体验金！',
+        title: '注册即领最高68888元体验金！',
+        desc: '注册最高可领68888元体验金！分享链接邀请10位好友注册，领150元现金！',
         link: shareLink,
         imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8AlljMIELmyVk1e6yq0sZFznUL3hosJWw2w4J4vQtVibQx8uuP8MoIEoIEEA3ZQpCLRb3dzYvYKL1OQ/0?wx_fmt=png',
         trigger: function (res) {
