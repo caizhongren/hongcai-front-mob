@@ -23,17 +23,6 @@ angular.module('p2pSiteMobApp')
       $scope.inviteFlag=true;
     }
 
-    $rootScope.checkSession.promise.then(function(){
-          /**
-           * 邀请码
-           */
-          if ($rootScope.isLogged){
-            HongcaiUser.$find($rootScope.hasLoggedUser.id + '/voucher').$then(function(response) {
-                $scope.voucher = response;
-            });
-          }
-    });
-
     /**
      * 调用微信接口，申请此页的分享接口调用
      * @param  
@@ -65,13 +54,18 @@ angular.module('p2pSiteMobApp')
      * 设置用户分享的标题以及描述以及图片等。
      */
     $scope.onMenuShareAppMessage = function(){
-      if(!$rootScope.isLogged){
-        alert('您需要先登录');
-        $state.go('root.login', {redirectUrl: encodeURIComponent($location.url())});
-        return;
-      }
+      // if(!$rootScope.isLogged){
+      //   alert('您需要先登录');
+      //   $state.go('root.login', {redirectUrl: encodeURIComponent($location.url())});
+      //   return;
+      // }
 
-      var shareLink = config.domain + '/register//' + $scope.voucher.inviteCode;
+      var shareLink = config.domain + '/register//';
+      HongcaiUser.$find(0 + '/voucher').$then(function(response) {
+        if (response.ret !== -1){
+          shareLink = shareLink + $scope.voucher.inviteCode;
+        }
+      });
 
       wx.onMenuShareAppMessage({
         title: '邀请注册，领150元现金~',
@@ -99,7 +93,7 @@ angular.module('p2pSiteMobApp')
 
 
     wx.error(function(res){
-        // window.location.reload();
+        window.location.reload();
         // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
         $scope.configJsApi();
     });
