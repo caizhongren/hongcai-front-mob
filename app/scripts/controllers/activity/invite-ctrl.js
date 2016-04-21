@@ -5,11 +5,34 @@ angular.module('p2pSiteMobApp').filter('slice', function() {
   };
 });
 angular.module('p2pSiteMobApp')
-  .controller('InviteCtrl', function($rootScope, $scope, $state, $stateParams,$anchorScroll, $location, $timeout, Restangular, config, register1, WEB_DEFAULT_DOMAIN, mobileCaptcha, md5) {
+  .controller('InviteCtrl', function($rootScope, $scope, $state, $stateParams,$anchorScroll, $location, $timeout, Restangular, config, register1, WEB_DEFAULT_DOMAIN, mobileCaptcha, md5, HongcaiUser) {
     $rootScope.showFooter = false;
     $scope.act = $stateParams.act;
     $scope.channelCode = $stateParams.f;
     $scope.test = config.test;
+
+
+
+    $scope.wantToInvite = function(){
+      if(!$rootScope.isLogged){
+        alert('您需要先登录');
+        $state.go('root.login', {redirectUrl: encodeURIComponent($location.url())});
+        return;
+      }
+
+      $scope.inviteFlag=true;
+    }
+
+    $rootScope.checkSession.promise.then(function(){
+          /**
+           * 邀请码
+           */
+          if ($rootScope.isLogged){
+            HongcaiUser.$find($rootScope.hasLoggedUser.id + '/voucher').$then(function(response) {
+                $scope.voucher = response;
+            });
+          }
+    });
 
     /**
      * 调用微信接口，申请此页的分享接口调用
@@ -42,13 +65,19 @@ angular.module('p2pSiteMobApp')
      * 设置用户分享的标题以及描述以及图片等。
      */
     $scope.onMenuShareAppMessage = function(){
-      var shareLink = config.domain + '/register//';
+      if(!$rootScope.isLogged){
+        alert('您需要先登录');
+        $state.go('root.login', {redirectUrl: encodeURIComponent($location.url())});
+        return;
+      }
+
+      var shareLink = config.domain + '/register//' + $scope.voucher.inviteCode;
 
       wx.onMenuShareAppMessage({
         title: '邀请注册，领150元现金~',
         desc: '邀10位好友注册，拿150元现金！每位好友可获68888元体验金！',
         link: shareLink,
-        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/KuGEE3Ins1MfAAzOa5yTRLicCdpS9iayncKEM6DJFVu4KiaVE0vxyQjYODExibUWJbh47GWNdlAKOma3ruO2y1Jqpg/0?wx_fmt=png',
+        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8AlljMIELmyVk1e6yq0sZFznUL3hosJWw2w4J4vQtVibQx8uuP8MoIEoIEEA3ZQpCLRb3dzYvYKL1OQ/0?wx_fmt=png',
         trigger: function (res) {
         },
         success: function (res) {
