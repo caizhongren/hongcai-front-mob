@@ -53,19 +53,14 @@ angular.module('p2pSiteMobApp')
     /**
      * 设置用户分享的标题以及描述以及图片等。
      */
-    $scope.onMenuShareAppMessage = function(){
+    $scope.onMenuShareAppMessage = function(shareLink){
       // if(!$rootScope.isLogged){
       //   alert('您需要先登录');
       //   $state.go('root.login', {redirectUrl: encodeURIComponent($location.url())});
       //   return;
       // }
 
-      var shareLink = config.domain + '/register//';
-      HongcaiUser.$find(0 + '/voucher').$then(function(response) {
-        if (response.ret !== -1){
-          shareLink = shareLink + response.inviteCode;
-        }
-      });
+      
 
       wx.onMenuShareAppMessage({
         title: '邀请注册，领150元现金~',
@@ -99,7 +94,13 @@ angular.module('p2pSiteMobApp')
     });
 
     wx.ready(function(){
-      $scope.onMenuShareAppMessage();
+      var shareLink = config.domain + '/register//';
+      HongcaiUser.$find(0 + '/voucher').$then(function(response) {
+        if (response.ret !== -1){
+          shareLink = shareLink + response.inviteCode;
+        }
+        $scope.onMenuShareAppMessage(shareLink);
+      });
     });
 
     $scope.goAccount = function(){
