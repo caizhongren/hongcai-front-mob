@@ -179,5 +179,12 @@ angular.module('p2pSiteMobApp')
       $scope.initData(tabIndex, subtabIndex);
     };
 
+    /**
+     * 跳转到邀请落地页
+     */
+    $scope.goInviteLanding = function(){
+      $location.url('/activity/invite');
+    }
+
   });
 
