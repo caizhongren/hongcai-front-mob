@@ -502,8 +502,15 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/activity/experience-landing.html',
-            //controller: 'ShareHomeCtrl',
-            //controllerUrl: 'scripts/controllers/share/share-home-ctrl'
+          }
+        }
+      })
+      //推荐页
+      .state('root.recommend', {
+        url: '/recommend',
+        views: {
+          '': {
+            templateUrl: 'views/recommend.html',
           }
         }
       })
@@ -513,8 +520,6 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/activity/exchange-code.html',
-            //controller: 'ShareHomeCtrl',
-            //controllerUrl: 'scripts/controllers/share/share-home-ctrl'
           }
         }
       })
@@ -743,7 +748,8 @@ p2pSiteMobApp
       'share-scene',
       'share-spring',
       'grade',
-      'activity-landing'
+      'activity-landing',
+      'recommend'
     ];
 
     var routespermission = [
