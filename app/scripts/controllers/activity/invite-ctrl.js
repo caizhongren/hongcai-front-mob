@@ -36,7 +36,7 @@ angular.module('p2pSiteMobApp')
       }).then(function(apiConfig){
         console.log('apiConfig: ' + apiConfig);
         wx.config({
-            debug: true,
+            debug: false,
             appId: config.wechatAppid, // 必填，公众号的唯一标识
             timestamp: apiConfig.timestamp, // 必填，生成签名的时间戳
             nonceStr: apiConfig.nonceStr, // 必填，生成签名的随机串
@@ -89,9 +89,9 @@ angular.module('p2pSiteMobApp')
 
     wx.error(function(res){
         // alert('error');
-        $window.location.reload();
+        window.location.href=config.domain + '/activity/invite?' + Math.random();
         // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
-        $scope.configJsApi();
+        // $scope.configJsApi();
     });
 
     wx.ready(function(){
