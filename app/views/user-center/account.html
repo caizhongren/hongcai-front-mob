@@ -32,13 +32,13 @@
       <hr>
       <div class="account-panel border-none">
         <div class="icon"><img src="/images/user-center/balance6.png" alt=""></div>
-        <div class="title-text">我的加息券<sup class="green-sup">6</sup></div>
+        <div class="title-text">我的加息券<sup class="green-sup">{{couponStatis.couponCount || 0}}</sup></div>
         <div class="more" ng-click="viewMore(1)">查看所有加息券<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
       </div>
       <hr>
       <div class="account-panel border-none">
         <div class="icon"><img src="/images/user-center/invite.png" alt=""></div>
-        <div class="title-text">我的邀请<sup class="green-sup">6</sup></div>
+        <div class="title-text">我的邀请<sup class="green-sup">{{inviteNum || 0}}</sup></div>
         <div class="more" ng-click="viewMore(2)">查看所有邀请人<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
       </div>
     </div>
