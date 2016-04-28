@@ -64,7 +64,7 @@ angular.module('p2pSiteMobApp')
 
       wx.onMenuShareAppMessage({
         title: '注册即领最高68888元体验金！',
-        desc: '注册最高可领68888元体验金！分享链接邀请10位好友注册，领150元现金！',
+        desc: '注册最高领68888元体验金！分享链接邀好友注册，领150元！',
         link: shareLink,
         imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8AlljMIELmyVk1e6yq0sZFznUL3hosJWw2w4J4vQtVibQx8uuP8MoIEoIEEA3ZQpCLRb3dzYvYKL1OQ/0?wx_fmt=png',
         trigger: function (res) {
@@ -89,7 +89,11 @@ angular.module('p2pSiteMobApp')
 
     wx.error(function(res){
         // alert('error');
-        document.location.href=config.domain + '/activity/invite?' + Math.random();
+        $setTimeout(function() {
+          window.location.href=config.domain + '/activity/invite?' + Math.random();
+        }, 100);
+
+        
         // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
         // $scope.configJsApi();
     });
