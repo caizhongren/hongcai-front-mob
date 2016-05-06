@@ -84,7 +84,7 @@ angular.module('p2pSiteMobApp')
       });
     }
 
-    $scope.configJsApi();
+    
 
 
     wx.error(function(res){
@@ -127,5 +127,6 @@ angular.module('p2pSiteMobApp')
       $scope.showInviteMaskFlag = false;
     }
 
+    $scope.configJsApi();
 
 });
