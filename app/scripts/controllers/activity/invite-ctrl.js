@@ -89,8 +89,8 @@ angular.module('p2pSiteMobApp')
 
     wx.error(function(res){
         // alert('error');
-        $setTimeout(function() {
-          window.location.href=config.domain + '/activity/invite?' + Math.random();
+        $timeout(function() {
+          window.location.href=config.domain + '/activity/invite?' + Math.round(Math.random()* 1000);
         }, 100);
 
         
