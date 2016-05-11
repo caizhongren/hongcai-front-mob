@@ -233,6 +233,11 @@ angular.module('p2pSiteMobApp')
           $scope.$apply();
 
           Restangular.one('freeWishes', wishId).one('shareCount').get();
+          Restangular.one('users').post('shareActivity', {
+            openId: $rootScope.openid, 
+            act: $scope.act,
+            channelCode: $scope.channelCode
+          });
         },
         cancel: function (res) {
         },

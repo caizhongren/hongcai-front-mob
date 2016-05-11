@@ -32,7 +32,7 @@ angular.module('p2pSiteMobApp')
     });
 
     if ($scope.channelCode){
-      Restangular.one('freeWishes').post('channel', {
+      Restangular.one('users').post('channel', {
         openId: $rootScope.openid, 
         act: $scope.act,
         channelCode: $scope.channelCode
