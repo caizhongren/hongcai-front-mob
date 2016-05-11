@@ -11,7 +11,13 @@ angular.module('p2pSiteMobApp')
     $scope.channelCode = $stateParams.f;
     $scope.test = config.test;
 
-
+    if ($scope.channelCode){
+      Restangular.one('users').post('channel', {
+        openId: $rootScope.openid, 
+        act: $scope.act,
+        channelCode: $scope.channelCode
+      });
+    }
 
     $scope.wantToInvite = function(){
       if(!$rootScope.isLogged){
@@ -69,7 +75,11 @@ angular.module('p2pSiteMobApp')
           // delete $scope.inviteFlag;
           $scope.hideInviteMask();
           $scope.$apply();
-
+          Restangular.one('users').post('shareActivity', {
+            openId: $rootScope.openid, 
+            act: $scope.act,
+            channelCode: $scope.channelCode
+          });
         },
         cancel: function (res) {
         },

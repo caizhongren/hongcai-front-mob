@@ -20,7 +20,7 @@ angular.module('p2pSiteMobApp')
 
     $rootScope.checkSession.promise.then(function() {
       if ($scope.channelCode) {
-        Restangular.one('freeWishes').post('channel', {
+        Restangular.one('users').post('channel', {
           openId: $rootScope.openid,
           act: $scope.act,
           channelCode: $scope.channelCode
@@ -54,6 +54,11 @@ angular.module('p2pSiteMobApp')
           }).then(function(response) {
             $scope.inviteFlag = false;
             $scope.$apply();
+          });
+          Restangular.one('users').post('shareActivity', {
+            openId: $rootScope.openid, 
+            act: $scope.act,
+            channelCode: $scope.channelCode
           });
         },
         cancel: function(res) {},

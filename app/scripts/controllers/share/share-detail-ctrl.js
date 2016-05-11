@@ -45,6 +45,11 @@ angular.module('p2pSiteMobApp')
           // 分享成功后隐藏分享引导窗口
           $scope.inviteFlag = false;
           $scope.$apply();
+          Restangular.one('users').post('shareActivity', {
+            openId: $rootScope.openid, 
+            act: $scope.act,
+            channelCode: $scope.channelCode
+          });
         },
         cancel: function (res) {
         },
@@ -418,7 +423,7 @@ angular.module('p2pSiteMobApp')
 
         // 渠道统计
         if ($scope.channelCode){
-          Restangular.one('freeWishes').post('channel', {
+          Restangular.one('users').post('channel', {
             openId: $rootScope.openid, 
             act: $scope.act,
             channelCode: $scope.channelCode
