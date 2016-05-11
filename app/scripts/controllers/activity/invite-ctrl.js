@@ -50,7 +50,8 @@ angular.module('p2pSiteMobApp')
             jsApiList: 
                 [
                 'onMenuShareAppMessage',
-                'hideMenuItems'
+                'hideMenuItems',
+                'onMenuShareTimeline'
                 ]
         });
       });
@@ -60,17 +61,10 @@ angular.module('p2pSiteMobApp')
      * 设置用户分享的标题以及描述以及图片等。
      */
     $scope.onMenuShareAppMessage = function(shareLink){
-      // if(!$rootScope.isLogged){
-      //   alert('您需要先登录');
-      //   $state.go('root.login', {redirectUrl: encodeURIComponent($location.url())});
-      //   return;
-      // }
-
-      
 
       wx.onMenuShareAppMessage({
         title: '注册即领最高68888元体验金！',
-        desc: '注册最高可领68888元体验金！分享链接邀请10位好友注册，领150元现金！',
+        desc: '注册最高领68888元体验金！分享链接邀好友注册，领150元！',
         link: shareLink,
         imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8AlljMIELmyVk1e6yq0sZFznUL3hosJWw2w4J4vQtVibQx8uuP8MoIEoIEEA3ZQpCLRb3dzYvYKL1OQ/0?wx_fmt=png',
         trigger: function (res) {
@@ -94,12 +88,42 @@ angular.module('p2pSiteMobApp')
       });
     }
 
-    $scope.configJsApi();
+    /**
+     * 设置用户分享到朋友圈的标题以及描述以及图片等。
+     */
+    $scope.onMenuShareTimeline = function(shareLink){
+
+      wx.onMenuShareTimeline({
+        title: '注册最高领68888元体验金！分享链接邀好友注册，领150元！',
+        link: shareLink,
+        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8AlljMIELmyVk1e6yq0sZFznUL3hosJWw2w4J4vQtVibQx8uuP8MoIEoIEEA3ZQpCLRb3dzYvYKL1OQ/0?wx_fmt=png',
+        trigger: function (res) {
+        },
+        success: function (res) {
+          // 分享成功后隐藏分享引导窗口
+          // 
+          // delete $scope.inviteFlag;
+          $scope.hideInviteMask();
+          $scope.$apply();
+
+        },
+        cancel: function (res) {
+        },
+        fail: function (res) {
+        }
+      });
+    }
+
+    
 
 
     wx.error(function(res){
         // alert('error');
-        window.location.href=config.domain + '/activity/invite?' + Math.random();
+        $timeout(function() {
+          window.location.href=config.domain + '/activity/invite?' + Math.round(Math.random()* 1000);
+        }, 100);
+
+        
         // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
         // $scope.configJsApi();
     });
@@ -111,6 +135,7 @@ angular.module('p2pSiteMobApp')
           shareLink = shareLink + response.inviteCode;
         }
         $scope.onMenuShareAppMessage(shareLink);
+        $scope.onMenuShareTimeline(shareLink);
       });
     });
 
@@ -133,5 +158,6 @@ angular.module('p2pSiteMobApp')
       $scope.showInviteMaskFlag = false;
     }
 
+    $scope.configJsApi();
 
 });
