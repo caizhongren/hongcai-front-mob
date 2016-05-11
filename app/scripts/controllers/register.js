@@ -30,8 +30,7 @@ angular.module('p2pSiteMobApp')
         password: md5.createHash(user.password),
         mobile: user.mobile,
         captcha: user.captcha,
-        inviteCode: user.inviteCode,
-        openId: openId
+        inviteCode: user.inviteCode
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.captchaShow = true;

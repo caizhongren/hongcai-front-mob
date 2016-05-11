@@ -47,6 +47,10 @@ angular.module('p2pSiteMobApp')
           // 获取信息失败。
         }
       });
+
+      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/userInviteNum').$then(function(response) {
+        $scope.inviteNum = response.inviteNum || 0;
+      });
     });
 
     $rootScope.selectedSide = 'account';
@@ -178,8 +182,12 @@ angular.module('p2pSiteMobApp')
 
     $scope.useExperience = false;
     $scope.quickInvest = function(){
-      if($scope.userAccount.experienceAmount > 100){
-        $scope.useExperience = true;
+      if($rootScope.securityStatus.trusteeshipAccountStatus === 1){
+        if($scope.userAccount.experienceAmount > 100){
+          $state.go('root.experience-project-detail',{});
+        }
+      }else{
+        $scope.toRealNameAuth = true;
       }
     }
 
@@ -218,7 +226,12 @@ angular.module('p2pSiteMobApp')
           // 访问接口失败；
         }
       });
-      
-      
     };
+
+    //查看更多 index:0体验金，1加息券，2邀请
+    $scope.viewMore = function(index){
+      $state.go('root.userCenter.grade',{
+        tab : index
+      });
+    }
   });

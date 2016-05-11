@@ -1,0 +1,162 @@
+<div class="spring-activity">
+  <div class="head">
+    <img src="/images/share-spring/index-001.jpg" alt="" width="100%">
+    <div class="detail-tip"><span ng-click="showMask=true">活动详情>></span></div>
+  </div>
+  <div class="content">
+    <div class="padding-l-2 padding-r-2 ft-1p5 ft-black3 text-center over-auto">
+      <div class="qimo-left fl">
+        <img src="/images/share-spring/index-004.png" alt="" width="100%">
+      </div>
+      <div id="demo" class="qimo8">
+        <div class="qimo">
+          <div id="demo1">
+            <ul>
+              <li>宏财网已发放现金总额<span class="ft-2 ft-red3 ft-bold">{{(totalReward || 0) | number : 0 }}</span>元</li>
+            </ul>
+          </div>
+          <div id="demo2"></div>
+        </div>
+      </div>
+    </div>
+    <a ng-show="!bindWechat && !isLogged" ng-click= "goToAttention()" title="">
+      <div class="padding-l-2 padding-r-2 open-wish" my-click-once>
+        <img src="/images/share-spring/index-005.png" alt="" width="100%">
+        <div class="open-btn">
+          我要现金
+        </div>
+      </div>
+    </a>
+
+    <div ng-show="bindWechat || isLogged" class="padding-l-2 padding-r-2 open-wish" my-click-once>
+      <img src="/images/share-spring/index-005.png" alt="" width="100%">
+
+      <div ng-switch="freeWishStatics.status">
+        <div class="open-btn" ng-switch-default ng-click="openFreeWish()">
+          我要现金
+        </div>
+        <div class="open-btn" ng-switch-when="1" ng-click="goOn()">
+          我要现金
+        </div>
+        <div class="open-btn" ng-switch-when="2" ng-click="openFreeWish()">
+          已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.freeWishActivityRules.secondReward | number:0}}元
+        </div>
+
+        <div class="open-btn" ng-switch-when="3" ng-click="goOn()">
+          已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.freeWishActivityRules.secondReward | number:0}}元
+        </div>
+
+        <div class="open-btn" ng-switch-when="4" ng-click="openFreeWish()">
+          已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.freeWishActivityRules.thirdReward | number:0}}元
+        </div>
+
+        <div class="open-btn" ng-switch-when="5" ng-click="goOn()">
+          已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.freeWishActivityRules.thirdReward | number:0}}元
+        </div>
+
+        <div class="open-btn" ng-switch-when="6" ui-sref="root.userCenter.account">
+          我的账户
+        </div>
+      </div>
+    </div>
+
+    <div class="padding-l-2 padding-r-2">
+      <div class="list-tips">
+        <div class="left-line fl"></div>
+        <div class="tips-content">砸罐小能手</div>
+        <div class="right-line fr"></div>
+      </div>
+    </div>
+    <div class="padding-l-1 padding-r-1">
+      <!-- <div ng-include src='"views/share-spring/_head-tmpl.html"'>
+      </div> -->
+      <div class="list-content" ng-show="freeWishes.length > 0 ">
+        <div class="row">
+          <div class="table-cell" ng-repeat="freeWish in freeWishes">
+            <div class="img-border">
+              <img ng-src="{{ freeWish.user.headImgUrl || '/images/share/4head.jpg'}}" alt="" width="100%">
+              <div class="img-tip">
+                <p class="ft-1">已领</p>
+                <p>{{freeWish.amount | number:1}}元</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="list-content" ng-show="freeWishes.length <=0 ">
+        <div class="row">
+          <div class="table-cell" ng-repeat="item in [1,2,3,4,5]">
+            <div class="img-border">
+              <img src="/images/activity/dubai.png" alt="" width="100%">
+              <div class="img-tip">
+                <p class="ft-1">已领</p>
+                <p>50元</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+     <!-- id="attention" 锚点-->
+    <div class="text-center ft-red4 ft-2 ft-bold margin-t-2">
+      <p class="margin-b-0">长按扫码</p>
+      <p class="margin-b-1">领取现金</p>
+    </div>
+    <div class="text-center margin-t-1">
+      <img src="/images/share-spring/index-wxin.png" alt="" width="50%" ng-show="!test">
+      <img src="/images/share-spring/index-wxin-test.png" alt="" width="50%" ng-show="test">
+    </div>
+  </div>
+</div>
+<!-- 未关注时点击弹窗二维码提示关注 -->
+<div class="share-detail-Layer" ng-show="showQRcode" ng-click="showQRcode = false">
+  <div class="position-ab text-center share-mask1"><img src="/images/share-spring/share-monkey.png" alt=""></div>
+  <div class="monkey bg-white margin-l-3 margin-r-3 border-ra-0p5 share-top">
+    <div class="text-center ft-black ft-2 ft-bold margin-t-5">
+      <p class="margin-b-0 margin-t-2">长按扫码</p>
+      <p class="margin-b-1">领取现金</p>
+    </div>
+    <div class="text-center margin-t-1 margin-b-1">
+      <img src="/images/share-spring/index-wxin2.png" alt="" width="50%" ng-show="!test">
+      <img src="/images/share-spring/index-wxin-test.png" alt="" width="50%" ng-show="test">
+    </div>
+  </div>
+</div>
+<!-- 活动详情蒙层 -->
+<div class="share-detail-Layer" ng-show="showMask">
+  <div class="monkey">
+    <div class="monkey-head">
+      <img src="/images/share-spring/index-006.png" alt="" width="50%" class="monkey-img">
+      <i class="fa fa-times-circle-o ft-white ft-3 tip-close" ng-click="showMask=false"></i>
+    </div>
+    <div class="monkey-detail">
+      <div class="border-inner">
+        <p>活动详情</p>
+        <p>1.成功为好友砸罐或通过其他途径参与活动的用户，均可获得10-50元现金。</p>
+        <p>2.用户需邀请6位好友帮忙砸罐，方能领取现金。</p>
+        <p>3.活动有效期为{{activity.startTime | date: 'yyyy年MM月dd日'}}上午10点-{{activity.endTime | date: 'MM月dd日'}}24点。</p>
+        <p>4.宏财现金有效期为7天。本活动结束后7天之内未领取或未领取完全，余额自动清零。</p>
+        <p>5.本活动最终解释权归宏财网所有。</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+if(myvar){
+  clearInterval(myvar);
+}
+
+var demo = document.getElementById("demo");
+var demo1 = document.getElementById("demo1");
+var demo2 = document.getElementById("demo2");
+demo2.innerHTML=document.getElementById("demo1").innerHTML;
+function Marquee(){
+if(demo.scrollLeft-demo2.offsetWidth>=0){
+ demo.scrollLeft-=demo1.offsetWidth;
+}
+else{
+ demo.scrollLeft++;
+}
+}
+var myvar=setInterval(Marquee,30);
+</script>

@@ -1,0 +1,137 @@
+<div class="grade">
+  <div class="bg-offWhite overflow-hid">
+    <ul class="grade-tab1 columns ten offset-by-one margin-b-0">
+      <li class="column text-center margin-0 padding-t-1 padding-b-1" ng-class="{in: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
+    </ul>
+  </div>
+  <!-- 要展示的内容如下 -->
+  <div class="tab-content columns twelve bg-offWhite overflow-hid padding-b-2 text-center " ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs">
+    <section ng-if="tab.title==='体验金'">
+      <div class="padding-1 minHeight">
+       <div class="tiyanjin-tab">
+        <div class="use-list-title">使用记录</div>
+        <div class="use-list-head">
+        	<div class="list-cell">日期</div>
+        	<div class="list-cell">金额</div>
+        	<div class="list-cell">收益</div>
+        </div>
+        <div>
+	        <div class="use-list-head" ng-repeat="item in datas">
+	        	<div class="list-cell">{{item.createTime | date:'yyyy-MM-dd'}}</div>
+	        	<div class="list-cell">{{item.amount | number:0}}元</div>
+	        	<div class="list-cell ft-orange">{{item.profit | number:2}}元</div>
+	        </div>
+        </div>
+       </div>
+       <div class="margin-t-2" ng-click="loadMuch(toggle.activeTab, 0)" ng-show="totalPage > page"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<span class="cursor-hand ft-black2 text-line">查看更多使用记录</span></div>
+      </div>
+    </section>
+    <section ng-if="tab.title==='加息券'">
+	    <div class="padding-t-0p5 bg-white padding-b-0p5 overflow-aut">
+		    <ul class="grade-tab2 columns ten offset-by-one margin-b-0">
+		      <li class="column text-center margin-0" ng-class="{insub: toggle.activesubTab===$index}" ng-repeat="tabitem in subtabs" ng-click="toggle.switchsubTab($index)">{{tabitem.titles}}</li>
+		    </ul>
+	    </div>
+	    <div ng-class="{'ng-hide': toggle.activesubTab!==$index}" ng-repeat="item in subtabs">
+		    <div ng-if="item.titles ==='未使用'" class="jiaxiquan-tab minHeight">
+		    	<div ng-show="datas.length > 0">
+			    	<div class="margin-t-1 outer-panel" ng-repeat="item in datas">
+			    		<img src="/images/new/rate.png">
+			    		<div class="inner-panel-left">
+			    			<p class="top-margin">活动奖励</p>
+			    			<p class="margin-b-0"><strong class="ft-4">{{item.rate | number:1}}</strong>%</p>
+			    		</div>
+			    		<div class="inner-panel-center">
+			    			<p class="margin-b-0 padding-l-1">•适用于所有项目</p>
+			    			<p class="padding-l-1 middle-margin">•投资即可使用</p>
+			    			<p class="margin-b-0 padding-l-1">•有效期至{{item.endTime | date:"yyyy-MM-dd"}}</p>
+			    		</div>
+			    		<div class="inner-panel-right">
+			    			<span>立</span>
+			    			<span>即</span>
+			    			<span>使</span>
+			    			<span>用</span>
+			    		</div>
+			    	</div>
+			    	<div class="margin-t-2" ng-show="unUseTotalPage > page" ng-click="loadMuch(toggle.activeTab, toggle.activesubTab)"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<span class="cursor-hand ft-black2 text-line">查看更多信息</span></div>
+			    </div>
+			    <div class="margin-t-2" ng-show="datas.length <= 0">
+			    	<p>无记录！</p>
+			    	<div class="one-half column button button-primary u-pull-left border-none" ui-sref="root.main">
+			        <span>浏览项目</span>
+			      </div>
+			    </div>
+		    </div>
+		    <div  ng-if="item.titles ==='已使用'" class="jiaxiquan-tab minHeight">
+		    	<div ng-show="datas.length > 0">
+			    	<div class="margin-t-1 outer-panel" ng-repeat="item in datas">
+			    		<img src="/images/new/rate.png">
+			    		<div class="inner-panel-left">
+			    			<p class="top-margin">活动奖励</p>
+			    			<p class="margin-b-0"><strong class="ft-4">{{item.rate | number:1}}</strong>%</p>
+			    		</div>
+			    		<div class="inner-model-center">
+			    			<p class="model-margin ft-orange">收益：{{item.profit | number:2}}元</p>
+			    			<p class="margin-b-0">使用日期({{item.usedTime | date:"yyyy-MM-dd"}})</p>
+			    		</div>
+			    		<div class="inner-model-right">
+			    			<img src="/images/new/used.png" alt="">
+			    		</div>
+			    	</div>
+			    	<div class="margin-t-2" ng-show="useTotalPage > page" ng-click="loadMuch(toggle.activeTab, toggle.activesubTab)"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<span class="cursor-hand ft-black2 text-line">查看更多信息</span></div>
+			    </div>
+			    <div class="margin-t-2" ng-show="datas.length <= 0">
+			    	<p>无记录！</p>
+			    	<div class="one-half column button button-primary u-pull-left border-none" ui-sref="root.main">
+			        <span>浏览项目</span>
+			      </div>
+			    </div>
+		    </div>
+	    </div>
+    </section>
+    <section ng-if="tab.title==='邀请'" class="">
+    	<div class="margin-t-1" ng-click="goInviteLanding()"><img src="/images/new/ad1.png" width="100%"></div>
+      <div class="padding-1 minHeight">
+       <div class="tiyanjin-tab">
+        <div class="use-list-title">奖励信息</div>
+        <div class="account-panel bg-white">
+			    <div class="icon"><img src="/images/new/get-grade.png" alt=""></div>
+			    <div class="title-text">已获奖金</div>
+			    <div class="more"><strong class="ft-orange ft-1p8">{{inviteStat.reward || 0 | number:2}}</strong>元</div>
+			  </div>
+			  <div class="account-panel bg-white">
+			    <div class="icon"><img src="/images/new/register-true.png" alt=""></div>
+			    <div class="title-text">注册认证</div>
+			    <div class="more"><strong class="ft-orange ft-1p8">{{inviteStat.realNameAuthNum || 0}}</strong>人</div>
+			  </div>
+			  <div class="account-panel bg-white">
+			    <div class="icon"><img src="/images/new/first-invest.png" alt=""></div>
+			    <div class="title-text">首次投资</div>
+			    <div class="more"><strong class="ft-orange ft-1p8">{{inviteStat.investNum || 0}}</strong>人</div>
+			  </div>
+       </div>
+       <div class="tiyanjin-tab margin-t-1">
+        <div class="use-list-title">邀请名单</div>
+        
+        <div class="use-list-head">
+        	<div class="list-cell">用户名</div>
+        	<div class="list-cell-title">状态</div>
+        </div>
+        <div class="use-list-head" ng-repeat="item in datas">
+        	<div class="list-cell">{{item.user.name}}</div>
+        	<div class="list-cell">
+        		<div ng-switch="item.userAuth.yeepayAccountStatus">
+        		<span ng-switch-default>未认证</span>
+        		<span class="ft-orange" ng-switch-when="1">已认证</span>
+        		</div>
+        	</div>
+        	<div class="list-cell">
+        		<span ng-show="item.account.investAmount <= 0">未投资</span>
+        		<span class="ft-orange" ng-show="item.account.investAmount > 0">已投资</span>
+        	</div>
+        </div>
+       </div>
+       <div class="margin-t-2" ng-click="loadMoreInvites()" ng-show="totalPage > page"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<span class="cursor-hand ft-black2 text-line">查看更多邀请信息</span></div>
+    </section>
+  </div>
+</div>

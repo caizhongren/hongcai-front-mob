@@ -1,0 +1,214 @@
+<div class="spring-activity">
+  <div class="head-mydetail">
+    <img src="/images/share-spring/index-009.png" alt="" width="100%">
+    <div class="head-user">
+      <img ng-src="{{headImgUrl || '/images/activity/dubai.png'}}" alt="" width="100%">
+    </div>
+    <!-- <div class="head-username">
+      {{ nickName || '金鱼公主'}}&nbsp;<span ng-show="!nickName || nickName.length < 9">获得</span>
+    </div> -->
+    <div class="head-money text-center">
+      {{freeWish.amount || 0}}<span class="ft-2 ft-bold">元</span>
+    </div>
+    <div ng-switch="freeWishStatics.status">
+        <div ng-switch-when="1" >
+          <div class="head-btn" ng-click="showInviteMask()" ng-show="freeWish.status === 1 || freeWish.status === 2">
+            找{{activity.freeWishActivityRules.personNum - freeWish.praiseCount}}个人&nbsp;帮你砸罐拿现金
+          </div>
+          <div class="head-btn" ng-click="$parent.registFlag = true" ng-show="freeWish.status === 3">
+            砸罐完成&nbsp;马上提现
+          </div>
+        </div>
+        
+
+        <div class="head-btn" ng-switch-when="2" ng-click="openFreeWish()">
+          已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.freeWishActivityRules.secondReward | number:0}}元
+        </div>
+
+        <div class="head-btn" ng-switch-when="3" ng-click="goOn()">
+          已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.freeWishActivityRules.secondReward | number:0}}元
+        </div>
+
+        <div class="head-btn" ng-switch-when="4" ng-click="openFreeWish()">
+          已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.freeWishActivityRules.thirdReward | number:0}}元
+        </div>
+
+        <div class="head-btn" ng-switch-when="5" ng-click="goOn()">
+          已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.freeWishActivityRules.thirdReward | number:0}}元
+        </div>
+
+        <div class="head-btn" ng-switch-when="6" ui-sref="root.userCenter.account">
+          我的账户
+        </div>
+    </div>
+    
+  </div>
+  <div class="content-mydetail">
+    <div class="padding-l-2 padding-r-2 ft-1p5 ft-black3 text-center">
+      <div id="demo" class="qimo8">
+        <div class="qimo">
+          <div id="demo1">
+            <ul>
+              <li class="ft-yellow"><img src="/images/share-spring/money5.png" alt="">宏财网已发放现金总额<span class="ft-2 ft-bold">{{totalReward | number:0}}</span>元</li>
+            </ul>
+          </div>
+          <div id="demo2"></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="padding-l-2 padding-r-2">
+      <div class="list-tips">
+        <div class="left-line fl"></div>
+        <div class="tips-content">砸罐小能手</div>
+        <div class="right-line fr"></div>
+      </div>  
+    </div>
+    <div class="padding-l-1 padding-r-1 margin-t-1">
+      <div ng-include src='"views/share-spring/_head-tmpl.html"'>
+      </div>
+    </div>
+    <div class="text-center ft-yellow ft-2 ft-bold margin-t-2">
+      <p class="margin-b-0">长按扫码</p>
+      <p class="margin-b-1">领取现金</p>
+    </div>
+    <div class="text-center margin-t-1">
+      <img src="/images/share-spring/index-wxin.png" alt="" width="50%" ng-show="!test">
+      <img src="/images/share-spring/index-wxin-test.png" alt="" width="50%" ng-show="test">
+    </div>
+  </div>
+</div>
+
+<!-- 分享给好友蒙层 可以用ng-show控制-->
+<div ng-include src="'views/share-spring/share-mask.html'"></div>
+
+<!-- 完成某一关的蒙层 receiveRewardFlag-->
+<div class="share-detail-Layer" ng-show="receiveRewardFlag">
+  <div class="monkey">
+    <div class="monkey-head">
+      <img src="/images/share-spring/index-006.png" alt="" width="50%" class="monkey-img">
+      <i class="fa fa-times-circle-o ft-white ft-3 tip-close" ng-click="receiveRewardFlag=false"></i>
+    </div>
+    <div class="monkey-detail">
+      <div class="border-inner">
+        <p class="text-center ft-black">{{freeWish.amount || 0}}元现金已到账&nbsp;可随时提现！</p>
+        <div class="btn-outer margin-t-1p5">
+          <button class="btn-inner" ui-sref="root.userCenter.account">马上提现</button>
+        </div>
+        <div class="btn-outer">
+          <button class="btn-inner" ng-click="openFreeWish()">
+              <span >再拿{{activity.freeWishActivityRules.secondReward || 0}}元</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 注册的蒙层 registFlag-->
+<div class="share-detail-Layer" ng-show="registFlag">
+  <div class="monkey">
+    <div class="monkey-head">
+      <img src="/images/share-spring/index-006.png" alt="" width="50%" class="monkey-img">
+      <i class="fa fa-times-circle-o ft-white ft-3 tip-close" ng-click="registFlag=false"></i>
+    </div>
+    <div class="monkey-detail">
+      <div class="border-form">
+        <form id="signUpForm" name="signUpForm" class="margin-b-0">
+          <div class="form-mask">
+            <label class="label-tip margin-b-0">真实手机号:</label>
+            <input id="mobile" class="input-tip1 margin-b-0" name="mobile" type="text" ng-model="user.mobile" placeholder="输入手机号" ng-pattern="/^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678])|(14[0-9]))\d{8}$/" required>
+          </div>
+          <p class="margin-t-0 text-left msg-tip" ng-if="signUpForm.mobile.$dirty && signUpForm.mobile.$invalid && !signUpForm.mobile.$focused">输入有误
+          </p>
+          <div class="form-mask">
+            <label class="label-tip margin-b-0">图片验证码:</label>
+            <input id="picCaptcha" class="input-tip2 margin-b-0" name="picCaptcha" type="text" ensure-captcha="picCaptcha" ng-model="user.picCaptcha" placeholder="图片验证码" ng-pattern="/^[0-9a-z]{4}$/" required>
+            <div class="img-tip" >
+              <img ng-src="{{getPicCaptcha}}" alt="" width="100%" ng-click="refreshCode()" id="checkCaptcha">
+            </div>
+          </div>
+          <div class="form-mask">
+            <label class="label-tip margin-b-0">短信验证码:</label>
+            <input id="mobileCaptcha" class="input-tip2 margin-b-0" name="mobileCaptcha" type="text" ng-model="user.mobileCaptcha" placeholder="短信验证码" ng-pattern="/^[0-9]{6}$/" required>
+            <button class="btn-sendtip margin-b-0" ng-click="sendMobileCaptcha(user)" onclick="countDown(this,60,'out');" ng-disabled="signUpForm.mobile.$invalid || signUpForm.picCaptcha.$error.required || signUpForm.picCaptcha.$error.check || signUpForm.picCaptcha.$error.pattern" >发送{{signUpForm.picCaptcha.$error.check }}</button>
+          </div>
+<!--          <div class="ft-red text-center margin-t-1 margin-b-1 ft-1p2 form-mask">
+            {{errMsg}}
+          </div> -->
+
+          <p class="margin-t-0 text-left msg-tip">{{msg}}</p>
+          <p class="margin-t-0 text-left msg-tip" ng-show="signUpForm.picCaptcha.$error.check">图片验证码错误</p>
+          <div class="form-mask margin-b-1" ng-click="signUp(user)">
+            <img src="/images/share-spring/get-money.png" alt="" width="100%">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+var demo = document.getElementById("demo");
+var demo1 = document.getElementById("demo1");
+var demo2 = document.getElementById("demo2");
+demo2.innerHTML=document.getElementById("demo1").innerHTML;
+function Marquee(){
+if(demo.scrollLeft-demo2.offsetWidth>=0){
+ demo.scrollLeft-=demo1.offsetWidth;
+}
+else{
+ demo.scrollLeft++;
+}
+}
+var myvar=setInterval(Marquee,30);
+</script>
+<script>
+function countDown(obj, second, inOrOut) {
+  var getMobile = document.getElementById("mobile");
+  var mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678])|(14[0-9]))\d{8}$/;
+
+  if (inOrOut === 'out' && window.buttonFlag == 0) {
+    return;
+  }
+
+  // 如果秒数还是大于0，则表示倒计时还没结束
+  if (mobilePattern.test(getMobile.value)) {
+    if (second >= 0) {
+      // 获取默认按钮上的文字
+
+      if (typeof buttonDefaultValue === 'undefined') {
+        buttonDefaultValue = obj.defaultValue;
+      }
+      // 按钮置为不可点击状态
+      obj.disabled = true;
+      window.buttonFlag = 0;
+      // 按钮里的内容呈现倒计时状态
+      //obj.value = buttonDefaultValue + '(' + second + ')';
+      console.log(obj.innerHTML);
+      obj.innerHTML = second + "s后发送";
+      obj.className = 'btn-sendtip';
+      // 时间减一
+      second--;
+      // 一秒后重复执行
+      setTimeout(function() {
+        countDown(obj, second, 'in');
+      }, 1000);
+      // 否则，按钮重置为初始状态
+    } else {
+      // 按钮置为可点击状态
+      obj.disabled = false;
+      window.buttonFlag = 1;
+      // 按钮里的内容恢复初始状态
+      obj.className = 'btn-sendtip';
+      obj.innerHTML = "重新发送";
+    }
+  } else {
+    obj.disabled = true;
+    window.buttonFlag = 0;
+  }
+}
+</script>

@@ -287,7 +287,7 @@ p2pSiteMobApp
       .state('root.userCenter.credits', {
         url: '/credits',
         data: {
-          title: '我的债权'
+          title: '我的投资'
         },
         views: {
           '': {
@@ -453,7 +453,7 @@ p2pSiteMobApp
 
     //点赞活动详情页
     .state('root.share-detail', {
-        url: '/share-detail/:number?act&f', //f 表示渠道,act 表示活动
+        url: '/share-detail/:id?act&f', //f 表示渠道,act 表示活动
         views: {
           '': {
             templateUrl: 'views/share/share-detail.html',
@@ -502,8 +502,15 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/activity/experience-landing.html',
-            //controller: 'ShareHomeCtrl',
-            //controllerUrl: 'scripts/controllers/share/share-home-ctrl'
+          }
+        }
+      })
+      //推荐页
+      .state('root.recommend', {
+        url: '/recommend',
+        views: {
+          '': {
+            templateUrl: 'views/recommend.html',
           }
         }
       })
@@ -513,8 +520,6 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/activity/exchange-code.html',
-            //controller: 'ShareHomeCtrl',
-            //controllerUrl: 'scripts/controllers/share/share-home-ctrl'
           }
         }
       })
@@ -580,6 +585,143 @@ p2pSiteMobApp
         }
       })
 
+      //定义root.share-spring
+      .state('root.share-spring', {
+        abstract: true,
+        url:'/share-spring',
+        views: {
+          '': {
+            templateUrl: 'views/root-share.html',
+            controller: 'ShareSpringCtrl',
+            controllerUrl: 'scripts/controllers/share-spring/share-spring-ctrl'
+          }
+        }
+      })
+      //新年点赞活动首页
+      .state('root.share-spring.home', {
+        url: '/home',
+        views: {
+          '': {
+            templateUrl: 'views/share-spring/share-spring-home.html',
+            controller: 'ShareSpringHomeCtrl',
+            controllerUrl: 'scripts/controllers/share-spring/share-spring-home-ctrl'
+          }
+        }
+      })
+      //新年点赞活动任务页
+      .state('root.share-spring.detail', {
+        url: '/detail/:id',
+        views: {
+          '': {
+            templateUrl: 'views/share-spring/share-spring-detail.html',
+            controller: 'ShareSpringDetailCtrl',
+            controllerUrl: 'scripts/controllers/share-spring/share-spring-detail-ctrl'
+          }
+        }
+      })
+      //新年点赞活动自己任务页
+      .state('root.share-spring.mydetail', {
+        url: '/mydetail/:number',
+        views: {
+          '': {
+            templateUrl: 'views/share-spring/share-spring-mydetail.html',
+          }
+        }
+      })
+      //新年点赞活动他人任务页
+      .state('root.share-spring.otherdetail', {
+        url: '/otherdetail',
+        views: {
+          '': {
+            templateUrl: 'views/share-spring/share-spring-otherdetail.html',
+          }
+        }
+      })
+      //新年点赞活动结束页
+      .state('root.share-spring.ending', {
+        url: '/ending',
+        views: {
+          '': {
+            templateUrl: 'views/share-spring/share-spring-ending.html',
+          }
+        }
+      })
+      //新年点赞活动第二关自己任务页
+      .state('root.share-spring.mySecondDetail', {
+        url: '/mySecondDetail',
+        views: {
+          '': {
+            templateUrl: 'views/share-spring/_mysecond-detail.html',
+          }
+        }
+      })
+      //新年点赞活动第三关自己任务页
+      .state('root.share-spring.myThirdDetail', {
+        url: '/myThirdDetail',
+        views: {
+          '': {
+            templateUrl: 'views/share-spring/_mythird-detail.html',
+          }
+        }
+      })
+
+      // 活动主url
+      .state('root.activity', {
+        abstract: true,
+        url:'/activity',
+        views: {
+          '': {
+            templateUrl: 'views/activity/root-activity.html'
+            // controller: 'ShareSpringCtrl',
+            // controllerUrl: 'scripts/controllers/share-spring/share-spring-ctrl'
+          }
+        }
+      })
+
+      //邀请活动落地落地页
+      .state('root.activity.invite', {
+        url: '/invite',
+        views: {
+          '': {
+            templateUrl: 'views/activity/invite-landing.html',
+            controller: 'InviteCtrl',
+            controllerUrl: 'scripts/controllers/activity/invite-ctrl'
+          }
+        }
+      })
+
+      //体验金新手标
+      .state('root.experience-project-detail', {
+        url: '/experience-project',
+        views: {
+          '': {
+            templateUrl: 'views/project/experience-project-detail.html',
+            controller: 'ExperienceProjectDetailCtrl',
+            controllerUrl: 'scripts/controllers/project/experience-project-detail'
+          }
+        }
+      })
+      //我的奖励
+      .state('root.userCenter.grade', {
+        url: '/grade?tab&subTab',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/grade.html',
+            controller: 'GradeCtrl',
+            controllerUrl: 'scripts/controllers/user-center/grade'
+          }
+        }
+      })
+      //送现金落地页
+      .state('root.activity-landing', {
+        url: '/activity-landing',
+        views: {
+          '': {
+            templateUrl: 'views/activity/activity-landing.html',
+          }
+        }
+      })
+
 
     ;
     $urlRouterProvider.otherwise('/');
@@ -603,18 +745,24 @@ p2pSiteMobApp
       'exchange-code',
       'share-scene-example',
       'activity-scene',
-      'share-scene'
+      'share-scene',
+      'share-spring',
+      'grade',
+      'activity-landing',
+      'recommend'
     ];
 
     var routespermission = [
       '/user-center'
     ];
+
     var titleMap = {
       'issue': '常见问题',
       'about': '帮助中心',
       'safe': '安全保障',
       'account': '账户总览'
     };
+
     $rootScope.$on('$stateChangeStart', function(event, toState) {
       var title = '宏财理财';
       if (toState.data && toState.data.title) {
@@ -641,6 +789,7 @@ p2pSiteMobApp
 
         if (response.user) { // 已经授权过，1、登录 2未注册
           $rootScope.isLogged = true;
+          $rootScope.bindWechat = false;
           $rootScope.hasLoggedUser = response.user;
           $rootScope.securityStatus = response.securityStatus;
           $rootScope.account = response.account;
@@ -655,6 +804,10 @@ p2pSiteMobApp
             $rootScope.isLogged = false;
           }
 
+          if ($rootScope.userInfo && $rootScope.userInfo.id > 0 && $rootScope.openid){
+            $rootScope.bindWechat = true;
+          }
+
           if (!$rootScope.isLogged && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
             $location.path('/login');
             return;
@@ -663,6 +816,10 @@ p2pSiteMobApp
 
           if (!Utils.isWeixin()) {
             $rootScope.checkSession.resolve(response);
+            if(routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1){
+              $state.go('root.login', {redirectUrl: encodeURIComponent($location.url())});
+            }
+            
             return;
           }
 
@@ -670,7 +827,16 @@ p2pSiteMobApp
           var redirect_uri = location.href;
           if (wechat_code) { // 用户未登录但已经有code，去登录
             restmod.model(DEFAULT_DOMAIN + '/desireUsers/').$find(wechat_code + '/openid').$then(function(response) {
+              if (response.ret == -1){
+                var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechatAppid +
+                  "&redirect_uri=" + encodeURIComponent(URLService.removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
+                window.location.href = wechatRedirectUrl;
+                return;
+              }
+
+
               $rootScope.isLogged = true;
+              $rootScope.bindWechat = false;
               $rootScope.hasLoggedUser = response;
               $rootScope.userInfo = response;
               $rootScope.openid = response.openid;
@@ -682,8 +848,12 @@ p2pSiteMobApp
                 $rootScope.isLogged = false;
               }
 
+              if ($rootScope.userInfo && $rootScope.userInfo.id > 0 && $rootScope.openid){
+                $rootScope.bindWechat = true;
+              }
+
               if (!$rootScope.isLogged && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
-                $location.path('/login');
+                $state.go('root.login', {redirectUrl: encodeURIComponent($location.url())});
               } else if (response.ret == -1) { // 未拿到openid再次请求授权
                 var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechatAppid +
                   "&redirect_uri=" + encodeURIComponent(URLService.removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
@@ -691,6 +861,7 @@ p2pSiteMobApp
               } else {
                 $rootScope.checkSession.resolve(response);
               }
+
 
             });
           } else { // 未登录且还未授权
@@ -702,6 +873,7 @@ p2pSiteMobApp
           }
 
         }
+
 
 
         // $rootScope.checkSession.resolve(response);
