@@ -692,7 +692,7 @@ p2pSiteMobApp
 
       //体验金新手标
       .state('root.experience-project-detail', {
-        url: '/experience-project-detail',
+        url: '/experience-project',
         views: {
           '': {
             templateUrl: 'views/project/experience-project-detail.html',
