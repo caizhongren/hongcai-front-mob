@@ -678,17 +678,17 @@ p2pSiteMobApp
         }
       })
 
-      //邀请活动落地落地页
-      .state('root.activity.invite', {
-        url: '/invite',
-        views: {
-          '': {
-            templateUrl: 'views/activity/invite-landing.html',
-            controller: 'InviteCtrl',
-            controllerUrl: 'scripts/controllers/activity/invite-ctrl'
-          }
-        }
-      })
+      // //邀请活动落地落地页
+      // .state('root.activity.invite', {
+      //   url: '/invite',
+      //   views: {
+      //     '': {
+      //       templateUrl: 'views/activity/invite-landing.html',
+      //       controller: 'InviteCtrl',
+      //       controllerUrl: 'scripts/controllers/activity/invite-ctrl'
+      //     }
+      //   }
+      // })
 
       //体验金新手标
       .state('root.experience-project-detail', {
