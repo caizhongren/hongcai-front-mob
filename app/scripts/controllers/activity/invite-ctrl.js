@@ -18,7 +18,7 @@ angular.module('p2pSiteMobApp')
         channelCode: $scope.channelCode
       });
     }
-
+   
     $scope.wantToInvite = function(){
       if(!$rootScope.isLogged){
         alert('您需要先登录');
@@ -134,8 +134,9 @@ angular.module('p2pSiteMobApp')
         if (response.ret !== -1){
           shareLink = shareLink + response.inviteCode;
         }
-        $scope.onMenuShareAppMessage(shareLink);
-        $scope.onMenuShareTimeline(shareLink);
+        alert("服务器异常，请稍后再试！");
+        // $scope.onMenuShareAppMessage(shareLink);
+        // $scope.onMenuShareTimeline(shareLink);
       });
     });
 
