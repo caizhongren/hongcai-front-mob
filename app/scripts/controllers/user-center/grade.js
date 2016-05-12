@@ -17,7 +17,7 @@ angular.module('p2pSiteMobApp')
     $scope.unUseTotalPage = 1;
 
     $scope.tab = parseInt($stateParams.tab) || 0;
-    $scope.subTab = $stateParams.subTab || 0;
+    $scope.subTab = parseInt($stateParams.subTab) || 0;
     // tab
     $scope.toggle = {};
     $scope.tabs = [{
@@ -152,12 +152,6 @@ angular.module('p2pSiteMobApp')
 
     $scope.toggle.switchTab = function(tabIndex) {
       $location.search('tab', tabIndex);
-
-      
-      $scope.initData(tabIndex, 0);
-      if($scope.tabs[tabIndex].title === '加息券'){
-        $scope.toggle.activesubTab = 0;
-      }
     };
 
     $scope.toggle.switchsubTab = function(subtabIndex) {
@@ -168,7 +162,7 @@ angular.module('p2pSiteMobApp')
     };
 
     $scope.datas = [];
-    $scope.initData($scope.tab, $scope.subTab);
+    $scope.initData(+$scope.tab, +$scope.subTab);
 
     // $scope.toggle.switchTab($scope.tab);
 

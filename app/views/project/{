@@ -1,0 +1,51 @@
+{
+        "button": [
+            {
+                "type": "view", 
+                "name": "15000元奖金", 
+                "url": "http://m.hongcai.com/experience-landing", 
+                "sub_button": [ ]
+            }, 
+            {
+                "type": "view", 
+                "name": "我要理财", 
+                "url": "http://m.hongcai.com", 
+                "sub_button": [ ]
+            }, 
+            {
+                "name": "关于宏财", 
+                "sub_button": [
+                    {
+                        "type": "view", 
+                        "name": "立即注册", 
+                        "url": "http://m.hongcai.com/#!/register//", 
+                        "sub_button": [ ]
+                    }, 
+                    {
+                        "type": "view", 
+                        "name": "宏财介绍", 
+                        "url": "http://m.hongcai.com/#!/about", 
+                        "sub_button": [ ]
+                    }, 
+                    {
+                        "type": "view", 
+                        "name": "安全保障", 
+                        "url": "http://m.hongcai.com/#!/safe", 
+                        "sub_button": [ ]
+                    }, 
+                    {
+                        "type": "view", 
+                        "name": "常见问题", 
+                        "url": "http://m.hongcai.com/#!/issue", 
+                        "sub_button": [ ]
+                    }, 
+                    {
+                        "type": "click", 
+                        "name": "联系我们", 
+                        "key": "KEY_CONTACT_US", 
+                        "sub_button": [ ]
+                    }
+                ]
+            }
+        ]
+    }

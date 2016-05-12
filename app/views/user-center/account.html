@@ -1,7 +1,7 @@
 <!-- 我的账户 -->
 <div class="account-userInfo bg-accountcolor padding-b-7">
   <div>
-    <div class=" margin-0 padding-1">您好，亲爱的&nbsp;<strong class="ft-orange">{{ hasLoggedUser.name }}</strong>&nbsp;<i class="fa fa-newspaper-o"></i>
+    <div class=" margin-0 padding-1">您好，亲爱的&nbsp;<strong class="ft-orange">{{ hasLoggedUser.nickName || (hasLoggedUser.mobile || hasLoggedUser.name) }}</strong>&nbsp;<i class="fa fa-newspaper-o"></i>
       <span class="pull-right" ui-sref="root.userCenter.setting">基本资料></span></div>
     <div class="padding-2 position-re bg-orange">
       <div class="money-info">
