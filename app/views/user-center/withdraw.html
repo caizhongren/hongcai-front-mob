@@ -11,21 +11,21 @@
       <div class="bank-span">
         <span>{{simpleBankcard.openBank || '交通银行'}}：&nbsp;</span><span>{{simpleBankcard.cardNo || '6222************1213'}}</span>
       </div>
-      <label class="margin-t-1"><span>可用余额：&nbsp;</span><span><b class="ft-orange">{{ simpleWithdraw.account.balance + simpleWithdraw.account.reward | number:2}}&nbsp;</b>元</span></label>
+      <label class="margin-t-1"><span>可用余额：&nbsp;</span><span><b class="ft-orange">{{ simpleWithdraw.account.balance | number:2}}&nbsp;</b>元</span></label>
       <label><span>手续费：&nbsp;</span><span><b class="ft-orange">2.00&nbsp;</b>元<b class="ft-grey3">&nbsp;(第三方支付收取)</b></span></label>
       <label><span>可提现金额：&nbsp;</span><span><b class="ft-orange">{{ availableCashRealNo | number:2}}&nbsp;</b>元</span></label>
       <div class="hint text-center bg-red1 box-shadow" ng-show="withdrawForm.amount.$dirty && withdrawForm.amount.$error.pattern">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入数字(最多精确到小数点后两位)</span>
       </div>
       <div class="hint text-center bg-red1 box-shadow" ng-show="simpleWithdraw.amountDraw>availableCashRealNo || simpleWithdraw.amountDraw<1">
-        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入一个介于 1 -- {{availableCashRealNo | number:2}}之间的值</span>
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入一个介于 1 -- {{availableCash | number:2}}之间的值</span>
       </div>
 
 <!--       <div class="hint text-center bg-red1 box-shadow" ng-show="simpleWithdraw.account.reward  > 0 && availableCashRealNo - simpleWithdraw.account.reward < 1">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>需要投资100元之后才能提现奖金哦</span>
       </div> -->
       <div class="padding-l-2 padding-r-2">
-      <input type="text" name="amount" class="u-full-width padding-t-1 padding-b-1 padding-l-1 padding-r-1 margin-t-1" min="1" max="{{availableCashRealNo }}" ng-model="simpleWithdraw.amountDraw" ng-pattern="/^[0-9]*(\.[0-9]{1,2})?$/" placeholder="请输入提现金额" ng-disabled="availableCashRealNo  < 1" required>
+      <input type="text" name="amount" class="u-full-width padding-t-1 padding-b-1 padding-l-1 padding-r-1 margin-t-1" min="1" max="{{availableCash }}" ng-model="simpleWithdraw.amountDraw" ng-pattern="/^[0-9]*(\.[0-9]{1,2})?$/" placeholder="请输入提现金额" ng-disabled="availableCashRealNo  < 1" required>
       <button type="submit" class="u-full-width button button-primary margin-t-0p5 {{withdrawForm.$invalid ? 'button-disabled' : ' '}}" ng-disabled="withdrawForm.$invalid || simpleWithdraw.amountDraw>availableCashRealNo || simpleWithdraw.amountDraw<1" ng-click="toWithdraw(simpleWithdraw)" >
         申请提现
       </button>
