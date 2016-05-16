@@ -6,7 +6,7 @@
     <div class="padding-2 position-re bg-orange">
       <div class="money-info">
         <p>账户总资产：</p>
-        <p>￥<strong class="ft-3">{{ userAccount.tTotalAssets | number:2}}</strong>元</p>
+        <p>￥<strong class="ft-3">{{ userAccount.tTotalAssets + userAccount.reward  | number:2}}</strong>元</p>
       </div>
       <div class="touzi-product"><a class="ft-white" ui-sref="root.userCenter.investments-stat">我的投资&nbsp;<i class="fa fa-angle-right"></i></a></div>
     </div>
