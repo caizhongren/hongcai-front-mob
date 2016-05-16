@@ -799,6 +799,11 @@ p2pSiteMobApp
           $rootScope.userInfo = response.user;
           $rootScope.voucher = response.voucher;
 
+          if($rootScope.account){
+            $rootScope.account.balance = $rootScope.account.balance + $rootScope.account.reward;
+            $rootScope.account.availableCash = $rootScope.account.availableCash + $rootScope.account.reward;
+          }
+
           $rootScope.checkSession.resolve(response);
           if (!response.user.mobile && !response.user.email) {
             $rootScope.isLogged = false;

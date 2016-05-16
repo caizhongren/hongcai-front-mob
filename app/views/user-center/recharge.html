@@ -8,7 +8,7 @@
     <!-- <div ng-include src="'views/user-center/_bankcardless-hint.html'" ng-if=""></div> -->
     <!-- 已经绑定银行卡 -->
     <form class="margin-b-1p5" name="rechargeForm" ng-submit="recharge(rechargeAmount);">
-      <label>账户余额:&nbsp;<span class="ft-orange">{{ userAccount.balance | number:2}}</span>元</label>
+      <label>账户余额:&nbsp;<span class="ft-orange">{{ userAccount.balance + userAccount.reward | number:2}}</span>元</label>
       <div class="hint text-center bg-red1 box-shadow" ng-show="rechargeForm.amount.$dirty && rechargeForm.amount.$error.pattern">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入数字(最多精确到小数点后两位)</span>
       </div>
