@@ -429,7 +429,8 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/safe.html',
+            // templateUrl: 'views/safe.html',
+            templateUrl: 'views/safe-new.html',
             controller: 'SafeCtrl',
             controllerUrl: 'scripts/controllers/safe'
           }
