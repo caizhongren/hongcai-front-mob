@@ -429,8 +429,7 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            // templateUrl: 'views/safe.html',
-            templateUrl: 'views/safe-new.html',
+            templateUrl: 'views/safe.html',
             controller: 'SafeCtrl',
             controllerUrl: 'scripts/controllers/safe'
           }
@@ -451,7 +450,15 @@ p2pSiteMobApp
           }
         }
       })
-
+      //推荐页
+      .state('root.recommend', {
+        url: '/recommend',
+        views: {
+          '': {
+            templateUrl: 'views/recommend.html',
+          }
+        }
+      })
     //点赞活动详情页
     .state('root.share-detail', {
         url: '/share-detail/:id?act&f', //f 表示渠道,act 表示活动
@@ -506,15 +513,7 @@ p2pSiteMobApp
           }
         }
       })
-      //推荐页
-      .state('root.recommend', {
-        url: '/recommend',
-        views: {
-          '': {
-            templateUrl: 'views/recommend.html',
-          }
-        }
-      })
+     
       //串码活动页
       .state('root.exchange-code', {
         url: '/exchange-code',
@@ -749,8 +748,7 @@ p2pSiteMobApp
       'share-scene',
       'share-spring',
       'grade',
-      'activity-landing',
-      'recommend'
+      'activity-landing'   
     ];
 
     var routespermission = [

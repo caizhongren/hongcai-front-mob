@@ -83,62 +83,19 @@
           <p class="text-justify ft-1p5 ft-grey4"><small>{{ item.introduction }}</small></p>
         </div>
         </div>
- -->
-      <!-- </div> -->
+      </div> -->
       <div class="bg-offWhite margin-b-7">
-  <div class="safe bg-white">
-    <div class="border-bottom-safe ft-1p8 item-style">
-      <i class="fa fa-jpy ft-orange padding-l-2"></i>
-      <span class="ft-orange">&nbsp 实力雄厚 &nbsp</span>
-      <!-- <span class="font-sub-bule">{{ item.eName }}</span> -->
-      <hr class="hr-orange">
-    </div>
-    <div class="ft-1p5 padding-l-2 padding-r-2">
-      <!-- <p><strong>{{ item.title }}</strong>
-      </p> -->
-      <p class="text-justify">宏财网是国有企业战略投资1亿元的互联网金融平台，是唯一一家在中国工信部主管的中国中小企业信息网建立战略合作和连接关系的p2p平台，是首家入选人民日报社、人民网等评选的“中小企业服务典型”。</p>
-    </div>
-  </div>
-  <div class="safe bg-white">
-    <div class="border-bottom-safe ft-1p8 item-style">
-      <i class="fa fa-briefcase ft-orange padding-l-2"></i>
-      <span class="ft-orange">&nbsp 项目可靠 &nbsp</span>
-      <!-- <span class="font-sub-bule">{{ item.eName }}</span> -->
-      <hr class="hr-orange">
-    </div>
-    <div class="ft-1p5 padding-l-2 padding-r-2">
-      <!-- <p><strong>{{ item.title }}</strong>
-      </p> -->
-      <p class="text-justify">项目由鑫融基金控集团推荐，鑫融基金控集团是新三板挂牌的首家全牌照民间金融服务商，是新三板“金控”概念第一股，股本规模全国第四；是国内首家由政府出资引导、民企主导的民间金融服务机构。投资者可以申请到现场审查项目，对于审查出弄虚作假的项目，宏财网给予10倍赔偿利息，并主动报案、网上公告等。</p>
-    </div>
-  </div>
-  <div class="safe bg-white">
-    <div class="border-bottom-safe ft-1p8 item-style">
-      <i class="fa fa-bell ft-orange padding-l-2"></i>
-      <span class="ft-orange">&nbsp 本息保障 &nbsp</span>
-      <!-- <span class="font-sub-bule">{{ item.eName }}</span> -->
-      <hr class="hr-orange">
-    </div>
-    <div class="ft-1p5 padding-l-2 padding-r-2">
-      <!-- <p><strong>{{ item.title }}</strong>
-      </p> -->
-      <p class="text-justify">项目由政府参与出资的老牌担保公司提供本息担保，如果出现项目方违约，担保公司第一时间先行垫付投资者本息。项目方具有数百亿项目经验，打造了一套完善的风控体系，十年来未出现一起担保违约事件。</p>
-    </div>
-  </div>
-  <div class="safe bg-white">
-    <div class="border-bottom-safe ft-1p8 item-style">
-      <i class="fa fa-gavel ft-orange padding-l-2"></i>
-      <span class="ft-orange">&nbsp 资金安全 &nbsp</span>
-      <!-- <span class="font-sub-bule">{{ item.eName }}</span> -->
-      <hr class="hr-orange">
-    </div>
-    <div class="ft-1p5 padding-l-2 padding-r-2">
-      <!-- <p><strong>{{ item.title }}</strong>
-      </p> -->
-      <p class="text-justify">宏财网联合知名支付平台“易宝支付”打造了一套完善的资金支付与托管账户体系，一人一户且每笔资金的流动都可追查记录。同时宏财网坚决不设虚假标，每一笔投资都有对应的真实债权，不设资金池，保障投资人的权益。</p>
-    </div>
-  </div>
-</div>
+        <div class="safe bg-white" ng-repeat="item in NewSafes">
+          <div class="border-bottom-safe ft-1p8 item-style">
+            <i class="fa {{item.fa}} ft-orange padding-l-2"></i>
+            <span class="ft-orange">&nbsp {{ item.name }} &nbsp</span>
+            <hr class="hr-orange">
+          </div>
+          <div class="ft-1p5 padding-l-2 padding-r-2">
+            <p class="text-justify">{{ item.content }}</p>
+          </div>
+        </div>
+      </div>
     </section>
   </div>
 </div>
