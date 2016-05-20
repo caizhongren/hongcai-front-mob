@@ -14,9 +14,9 @@ angular.module('p2pSiteMobApp')
     $scope.tabs = [{
       title: '宏财简介',
     }, {
-      title: '战略伙伴',
+      title: '安全保障',
     }, {
-      title: '顾问团队',
+      title: '战略伙伴',
     }];
     $scope.toggle.switchTab = function(tabIndex) {
       $scope.toggle.activeTab = tabIndex;
