@@ -450,7 +450,15 @@ p2pSiteMobApp
           }
         }
       })
-
+      //推荐页
+      .state('root.recommend', {
+        url: '/recommend',
+        views: {
+          '': {
+            templateUrl: 'views/recommend.html',
+          }
+        }
+      })
     //点赞活动详情页
     .state('root.share-detail', {
         url: '/share-detail/:id?act&f', //f 表示渠道,act 表示活动
@@ -505,15 +513,7 @@ p2pSiteMobApp
           }
         }
       })
-      //推荐页
-      .state('root.recommend', {
-        url: '/recommend',
-        views: {
-          '': {
-            templateUrl: 'views/recommend.html',
-          }
-        }
-      })
+     
       //串码活动页
       .state('root.exchange-code', {
         url: '/exchange-code',
@@ -735,22 +735,7 @@ p2pSiteMobApp
       'Content-Type': 'application/json'
     })
 
-    // 不需要显示footer的path
-    var notShowFooterRoute = [
-      'share-home',
-      'share-detail',
-      'experience-landing',
-      'experience-activity',
-      'rate-activity',
-      'exchange-code',
-      'share-scene-example',
-      'activity-scene',
-      'share-scene',
-      'share-spring',
-      'grade',
-      'activity-landing',
-      'recommend'
-    ];
+
 
     var routespermission = [
       '/user-center'
@@ -776,10 +761,7 @@ p2pSiteMobApp
       }, 400);
 
 
-      $rootScope.showFooter = false;
-      if (notShowFooterRoute.indexOf($location.path().split('/')[1]) === -1) {
-        $rootScope.showFooter = true;
-      }
+      
 
       // $rootScope.showTitle = titleMap[path];
       $rootScope.showMe = false;
@@ -892,11 +874,34 @@ p2pSiteMobApp
         // }
       });
     });
+    
     $rootScope.$on('$stateChangeSuccess', function() {
 
       var path = $location.path().split('/')[1];
       $rootScope.showPath = path;
       $rootScope.showTitle = titleMap[path];
+
+
+      // 不需要显示footer的path
+      var notShowFooterRoute = [
+        'share-home',
+        'share-detail',
+        'experience-landing',
+        'experience-activity',
+        'rate-activity',
+        'exchange-code',
+        'share-scene-example',
+        'activity-scene',
+        'share-scene',
+        'share-spring',
+        'grade',
+        'activity-landing'   
+      ];
+      $rootScope.showFooter = false;
+      if (notShowFooterRoute.indexOf($location.path().split('/')[1]) === -1) {
+        $rootScope.showFooter = true;
+      }
+
     });
   })
 
