@@ -34,56 +34,112 @@ ul,li,a,p,span {
   background-position: top;
   .rcm-activity img:nth-child(1) {
   display: block;
-  margin: 12px auto;
-  width: 60%;
+  margin: 0 auto;
+  width: 56%;
 }
 
 }
 //天天送大奖活动详情
-
-.rcm-activity p {
+.rcm-activity {
+  margin-top: .5em;
+}
+.rcm-activity{
+   .rcm-act {
   // display: inline-block;
   // margin-top: 12px;
   font-size: 1em;
   color: #fff;
   position: absolute;
   right: 3.5em;
-  top: 12px;
+  top: .5em;
+  }
 }
-.rcm-activity .rec-icon {
+.rcm-activity{
+   .rec-icon {
   // font-size: 1em;
   width: 1em;
   height: 1em;
   top:1em;
   position: absolute;
-  top: 18px;
+  top: .9em;
   right: 2em;
+  }
 }
 //签到周期
 .rec-sign{
-  margin-top: -1.5em;
-  margin-bottom: .8em;
-}
-.rec-sign span:nth-child(1){
+  margin-top: -0.5em;
+  margin-bottom: .4em;
+  span:nth-child(1){
   font-size: 1.2em;
-  margin-left: 4em;
-}
-.rec-sign span:nth-child(2){
+  margin-left: 12%;
+  }
+  span:nth-child(2){
   font-size: 1em;
-  margin-right: 4.5em;
+  margin-right: 12%;
+  }
 }
+
+
 
 .rec-sign-list {
-  width: 70px;
-  padding-top:22px;
-  margin-left:-50%;
-}
-.rec-sign-list li {
-width: 60px;
-height: 75px;
-background-color: #fff;
+  width: 86%;
+  display: block;
+  margin:auto 10%;
+  // padding-top:22px;
+  // margin-left:-50%;
+  li {
+    width: 13%;
+    height: 100%;
+    // background-color: #fff;
+    border-left: 0;
 
+  }
 }
+.rec-sign-list {
+  li:nth-child(1) {
+    border-left: 1px solid #fff390;
+  }
+}
+.rec-sign-list {
+    li .rec-p {
+    height: 30%;
+    text-align: center;
+    margin-bottom: 0;
+  // vertical-align: certer;
+  }
+}
+.rec-sign-list {
+  li {
+      img{
+    width: 67%;
+    text-align: center;
+    margin: 0 18%;
+    }
+  }
+}
+//单独设置最后一天的宝箱样式
+.rec-sign-list {
+  li .rec-box{
+    margin-bottom: 2px;
+  }
+}
+
+.li-signed{
+  border: 1px solid #fff390;
+  background-color: #fffadd;
+  // background-image: url("../images/activity/rec-signed.png");
+  background-repeat: no-repeat;
+}
+.rec-sign-list .rec-p{
+  color: ff7761;
+}
+.li-sign {
+  border:1px solid #dfdfdd;
+  background-color: #909090;
+}
+// .li-sign p {
+//   color: ff7761;
+// }
 
 
 
@@ -100,7 +156,7 @@ background-color: #fff;
 
 .rec-arrow-r {
   left: 16%;
-  top: 42%;
+  top: 53%;
   width: 12%;
 }
 .rec-disk-bottom {
@@ -109,46 +165,51 @@ background-color: #fff;
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: top;
-}
-.rec-disk-bottom img{
-  width: 100%;
-  display: block;
-  margin:-8.5% auto;
-
-}
-.rec-disk-bottom  p{
-  width: 64%;
-  left: 18%;
+  p{
+  width: 80%;
+  left: 10%;
   font-size: 1.2em;
   margin-bottom: 0;
   text-align: center;
+  color: #ffffff;
+  }
+  img{
+  width: 100%;
+  display: block;
+  margin:-9.5% auto;
 
+  }
+  .rec-date-num {
+  font-size: 1em;
+  color: #f9d302;
+  font-weight: bold;
+  }
 }
+
 
 //其他活动
 .rec-other-act{
+  .rec-other-img{
+    padding: 0 1em;
+      img {
+      display: block;
+      width: 100%;
+      padding:-2px;
+      border: 2px solid #fff;
+    }
+  }
+  p {
+    margin-top: 12%;
+    height: 2em;
+    margin-bottom: 0;
+    padding-left: 2px;
+  }
+}
 
-}
-.rec-other-act .rec-other-img{
-   padding: 0 20px;
-
-}
-.rec-other-act p {
-
-  margin-top: 69px;
-  height: 44px;
-  // line-height: 62px;
-  margin-bottom: 0;
-  padding-left: 2px;
-}
-.rec-other-act .rec-other-img img {
-  display: block;
-  width: 100%;
-  padding:-2px;
-  border: 2px solid #fff;
-}
-.rec-other-act .rec-other-img img:nth-child(1) {
-  margin-bottom: 20px;
+.rec-other-act .rec-other-img {
+  img:nth-child(1) {
+  margin-bottom: 1em;
+  }
 }
 
 
