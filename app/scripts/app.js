@@ -513,6 +513,15 @@ p2pSiteMobApp
           }
         }
       })
+      //新手引导页
+      .state('root.novice-guide', {
+        url: '/novice-guide',
+        views: {
+          '': {
+            templateUrl: 'views/novice-guide.html',
+          }
+        }
+      })
      
       //串码活动页
       .state('root.exchange-code', {
