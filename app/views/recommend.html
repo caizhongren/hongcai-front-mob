@@ -1,9 +1,94 @@
 <!-- 推荐页 -->
-<div class="recommend">
-	<div class="col-md-12 invite-height" ui-sref="root.activity.invite">
-		<img src="/images/invite-banner01.jpg" alt="" width="96%" height="95px" style="position: absolute;bottom: 11.5em;left: 2%;">
-	</div>
-	<div class="col-md-12" ui-sref="root.activity-landing">
-		<img src="/images/send-money-banner02.png" alt="" width="96%" height="95px" style="position: absolute;bottom: 4.5em;left: 2%;">
-	</div>
+<!-- 抽奖活动页面 -->
+<div class="recommend-layout clearfix ">
+<!-- 天天送大奖 -->
+  <section class="rcm-activity">
+    <img src="../images/activity/bg-words.png" alt="">
+    <p>活动详情</p>
+    <img class="rec-icon" src="../images/activity/rec-arrow.png" alt="">
+  </section>
+  <!-- 签到周期 -->
+  <section>
+    <div class="rec-sign position-re clearfix">
+      <span class="fl ">签到周期</span>
+      <span class="fr ">5.24~5.30</span>
+    </div>
+    <ul class="rec-sign-list " >
+      <li class="fl"></li>
+      <li class="fl"></li>
+      <li class="fl"></li>
+      <li class="fl"></li>
+      <li class="fl"></li>
+      <li class="fl"></li>
+      <li class="fl"></li>
+
+    </ul>
+  </section>
+  <!-- 抽奖转盘 -->
+  <section>
+    <div class="position-re">
+      <img class="rec-disk"src="../images/activity/rec-circle.png" alt="">
+      <img class="rec-arrow-r fl position-ab"src="../images/activity/rec-arrow-r.png" alt="">
+    </div>
+    <div class="rec-disk-bottom">
+      <img src="../images/activity/rec-disk-bottom.png" alt="">
+      <p class="fl position-ab">还需要&nbsp;4&nbsp;日&nbsp;周日即可抽取大奖！</p>
+    </div>
+  </section>
+  <!-- 其他活动 -->
+    <section class="rec-other-act">
+      <div class="rec-other-img">
+        <p>其他活动</p>
+        <a href=""><img src="../images/activity/rec-invite.png" alt=""></a>
+        <a href=""><img src="../images/activity/rec-return.png" alt=""></a>
+
+      </div>
+    </section>
 </div>
+<!-- 活动详情蒙层 -->
+<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="activityDetailFlag">
+  <div class="bg-white margin-t-5 margin-l-1 margin-r-1 ft-1p2 padding-1" style="border-radius:0.5rem;">
+    <div class="border-red-bottom"><span class="share-page-mask-activity">活动规则</span><span class="u-pull-right ft-red3" ng-click="activityDetailFlag=false;">关闭页面</span></div>
+    <div class="margin-t-1 ft-1 ft-black2 padding-r-1">
+      <p class="margin-t-1 margin-b-0">1、成功为好友点赞或通过其他途径参与活动的用户，最高可得50元宏财现金。</p>
+      <p class="margin-t-1 margin-b-0">2、用户通过邀请6位好友为自己“点赞”，获得宏财现金，每位好友的点赞可以贡献1-9元奖金。</p>
+      <p class="margin-t-1 margin-b-0">3、活动有效期2015年12月15日09点-2015年12月21日24点。</p>
+      <p class="margin-t-1 margin-b-0">4、宏财现金有效期为10天，10天之内未领取者，宏财现金自动清零。</p>
+      <p class="margin-t-1 margin-b-0">5、服务热线：010-59436409。</p>
+      <p class="margin-t-1 margin-b-0">6、本活动最终解释权归宏财理财所有。</p>
+    </div>
+  </div>
+</div>
+<!-- 活动弹出现金 -->
+<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="activityDetailFlag">
+
+</div>
+<!-- 活动弹出现金-兑奖 -->
+<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="activityDetailFlag">
+
+</div>
+<!-- 活动弹出流量 -->
+<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="activityDetailFlag">
+
+</div>
+<!-- 活动弹出流量-兑奖 -->
+<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="activityDetailFlag">
+
+</div>
+<!-- 活动弹出金币 -->
+<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="activityDetailFlag">
+
+</div>
+<!-- 活动弹出金币-兑奖 -->
+<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="activityDetailFlag">
+
+</div>
+<!-- 活动弹出次数用完 -->
+<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="activityDetailFlag">
+
+</div>
+<!-- 活动弹出-分享成功 -->
+<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="activityDetailFlag">
+
+</div>
+
