@@ -8,13 +8,13 @@
     <img class="rec-icon" src="../images/activity/rec-arrow.png" alt="">
   </section>
   <!-- 签到周期 -->
-  <section>
+  <section class="clearfix overflow-hid">
     <div class="rec-sign position-re clearfix">
       <span class="fl ">签到周期</span>
       <span class="fr ">5.24~5.30</span>
     </div>
     <ul class="rec-sign-list " >
-      <li class="fl li-signed"><p class="rec-p">5.24</p><img src="../images/activity/rec-signed.png" alt=""></li>
+      <li class="fl li-signed"><p class="rec-p" id="rec-color">5.24</p><img src="../images/activity/rec-signed.png" alt=""></li>
       <li class="fl li-signed"><p class="rec-p">5.24</p><img src="../images/activity/rec-signed.png" alt=""></li>
       <li class="fl li-signed"><p class="rec-p">5.24</p><img src="../images/activity/rec-signed.png" alt=""></li>
       <li class="fl li-sign"><p class="rec-p">5.24</p><img src="../images/activity/rec-sign.png" alt=""></li>
@@ -27,8 +27,9 @@
   <!-- 抽奖转盘 -->
   <section>
     <div class="position-re">
-      <img class="rec-disk"src="../images/activity/rec-circle.png" alt="">
-      <img class="rec-arrow-r fl position-ab"src="../images/activity/rec-arrow-r.png" alt="">
+      <div class=" rec-disk-section"><img class="rec-disk" src="../images/activity/rec-circle-in.png" alt=""></div>
+      <img class="rec-arrow-r rotate-bg fl position-ab"src="../images/activity/rec-arrow-r.png" alt="">
+      <img class="position-ab rec-disk-words luck-click" src="../images/activity/rec-circle-inwords.png" alt="">
     </div>
     <div class="rec-disk-bottom">
       <img src="../images/activity/rec-disk-bottom.png" alt="">
@@ -60,35 +61,112 @@
   </div>
 </div>
 <!-- 活动弹出现金 -->
-<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="activityDetailFlag">
+<div class="rec-showcash share-page-breakWishLayer position-ab width-100 height-100 tab-content" style="background-color:rgba(0,0,0,0.85);">
 
 </div>
 <!-- 活动弹出现金-兑奖 -->
-<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="activityDetailFlag">
+<div class="share-page-breakWishLayer position-ab width-100 height-100 tab-content" style="background-color:rgba(0,0,0,0.85);" >
 
 </div>
 <!-- 活动弹出流量 -->
-<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="activityDetailFlag">
+<div class="rec-showmob share-page-breakWishLayer position-ab width-100 height-100 tab-content" style="background-color:rgba(0,0,0,0.85);" >
 
 </div>
 <!-- 活动弹出流量-兑奖 -->
-<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="activityDetailFlag">
+<div class="share-page-breakWishLayer position-ab width-100 height-100 tab-content" style="background-color:rgba(0,0,0,0.85);" >
 
 </div>
 <!-- 活动弹出金币 -->
-<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="activityDetailFlag">
+<div class=" rec-showmoney share-page-breakWishLayer position-ab width-100 height-100 position-re" style="background-color:rgba(0,0,0,0.85);" >
+    <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="">
+    <div class="position-re">
+      <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
+      <img class="rec-money position-ab" src="../images/activity/rec-money.png" alt="">
+      <div class="rec-showmoney-btn position-ab">
+        <a class="fl" href=""><img src="../images/activity/rec-satisfy.png" alt=""></a>
+        <a class="fl" href=""><img src="../images/activity/rec-unsatisfy .png" alt=""></a>
+      </div>
+    </div>
+
+    <!-- <div class="rec-mbox"></div> -->
+
 
 </div>
 <!-- 活动弹出金币-兑奖 -->
-<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="activityDetailFlag">
+<div class="share-page-breakWishLayer position-ab width-100 height-100 tab-content" style="background-color:rgba(0,0,0,0.85);">
 
 </div>
 <!-- 活动弹出次数用完 -->
-<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="activityDetailFlag">
+<div class="share-page-breakWishLayer position-ab width-100 height-100 tab-content" style="background-color:rgba(0,0,0,0.85);">
 
 </div>
 <!-- 活动弹出-分享成功 -->
-<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="activityDetailFlag">
+<div class="share-page-breakWishLayer position-ab width-100 height-100 tab-content" style="background-color:rgba(0,0,0,0.85);">
 
 </div>
+
+<script>
+
+$(function (){
+  var timeOut = function (){
+    $('.rec-disk').rotate({
+      angle:0,
+      animateTo:2160,
+      duration:8000,
+      callback:function (){
+       alert('网络超时，请检查您的网络设置！');
+      }
+    });
+  };
+  // var bRotate = false;
+  var rotateFn = function (awards, angles,text){
+    // bRotate = !bRotate;
+    $('.rec-disk').stopRotate();
+    $('.rec-disk').rotate({
+      angle:0,
+      animateTo:angles+1800,
+      duration:8000,
+      callback:function(){
+        //抽中金币
+         if(awards == 0 || awards==3){
+            $(".rec-showmoney").removeClass("tab-content");
+         }else if(awards==2 || awards ==4){
+            $(".rec-showcash").removeClass("tab-content");
+         }else{
+            $(".rec-showmob").removeClass("tab-content");
+         }
+      }
+    })
+  };
+  $(".luck-click").rotate({
+       bind:
+         {
+            click: function(){
+                // console.log(1);
+                var item = Math.floor(Math.random()*5);
+                console.log(item);
+                // if(bRotate) return;
+                switch (item) {
+                  case 0:
+                    rotateFn(0, 335, '0');//金币
+                    break;
+                  case 1:
+                    rotateFn(1, 290, '1');//手机流量
+                    break;
+                  case 2:
+                    rotateFn(2, 245, '2');//现金
+                    break;
+                  case 3:
+                    rotateFn(3,155 , '3');//金币
+                    break;
+                  case 4:
+                    rotateFn(4,70 , '4'); //现金
+               }
+            }
+         }
+
+    });
+})
+
+</script>
 

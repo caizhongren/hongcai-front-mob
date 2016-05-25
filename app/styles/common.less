@@ -783,6 +783,14 @@ input[type="button"].button-primary-red:focus {
 .clear {
   clear: both;
 }
+.clearfix::after, .clearfix::before {
+    content: ".";
+    height: 0;
+    line-height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
 
 
 /* nav */
