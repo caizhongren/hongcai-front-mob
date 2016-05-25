@@ -907,9 +907,37 @@ p2pSiteMobApp
         'activity-landing'   
       ];
       $rootScope.showFooter = false;
-      if (notShowFooterRoute.indexOf($location.path().split('/')[1]) === -1) {
+      if (notShowFooterRoute.indexOf(path) === -1) {
         $rootScope.showFooter = true;
       }
+
+      var recommendPath = [
+        'recommend'
+      ];
+      var introductionPath = [
+        'safe',
+        'issue',
+        'about',
+        'novice-guide'
+      ];
+
+      var loginOrMy = [
+        'login',
+        'register',
+        'user-center'
+      ];
+
+      $rootScope.whichFooter = 3;
+      if(recommendPath.indexOf(path) !== -1){
+        $rootScope.whichFooter = 1;
+      } else if(introductionPath.indexOf(path) !== -1){
+        $rootScope.whichFooter = 2;
+      } else if(loginOrMy.indexOf(path) !== -1){
+        $rootScope.whichFooter = 4;
+      }
+
+
+
 
     });
   })
