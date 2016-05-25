@@ -513,6 +513,15 @@ p2pSiteMobApp
           }
         }
       })
+      //新手引导页
+      .state('root.novice-guide', {
+        url: '/novice-guide',
+        views: {
+          '': {
+            templateUrl: 'views/novice-guide.html',
+          }
+        }
+      })
      
       //串码活动页
       .state('root.exchange-code', {
@@ -898,9 +907,37 @@ p2pSiteMobApp
         'activity-landing'   
       ];
       $rootScope.showFooter = false;
-      if (notShowFooterRoute.indexOf($location.path().split('/')[1]) === -1) {
+      if (notShowFooterRoute.indexOf(path) === -1) {
         $rootScope.showFooter = true;
       }
+
+      var recommendPath = [
+        'recommend'
+      ];
+      var introductionPath = [
+        'safe',
+        'issue',
+        'about',
+        'novice-guide'
+      ];
+
+      var loginOrMy = [
+        'login',
+        'register',
+        'user-center'
+      ];
+
+      $rootScope.whichFooter = 3;
+      if(recommendPath.indexOf(path) !== -1){
+        $rootScope.whichFooter = 1;
+      } else if(introductionPath.indexOf(path) !== -1){
+        $rootScope.whichFooter = 2;
+      } else if(loginOrMy.indexOf(path) !== -1){
+        $rootScope.whichFooter = 4;
+      }
+
+
+
 
     });
   })
