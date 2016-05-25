@@ -232,7 +232,9 @@ angular.module('p2pSiteMobApp')
     };
 
     $scope.toggle.switchSubTab = function(subTabIndex) {
-      if (subTabIndex === 0) {
+      var subType = subTabIndex;
+      if($scope.subTabTitle[subTabIndex].title === '月月盈'){
+        subType = 2;
         $scope.subTabTitle = [];
         $scope.subTabTitle = [{
           title: '',
@@ -241,10 +243,9 @@ angular.module('p2pSiteMobApp')
         }, {
           title: '季度盈',
         }];
-        // console.log($scope.subTabTitle);
-      } else if (subTabIndex === 1) {
+      }else if($scope.subTabTitle[subTabIndex].title === '季度盈'){
+        subType = 3;
         $scope.subTabTitle = [];
-
         $scope.subTabTitle = [{
           title: '月月盈',
         }, {
@@ -252,8 +253,8 @@ angular.module('p2pSiteMobApp')
         }, {
           title: '半年盈',
         }];
-        // console.log($scope.subTabTitle);
-      } else if (subTabIndex === 2) {
+      }else if($scope.subTabTitle[subTabIndex].title === '半年盈'){
+        subType = 4;
         $scope.subTabTitle = [];
         $scope.subTabTitle = [{
           title: '季度盈',
@@ -262,7 +263,6 @@ angular.module('p2pSiteMobApp')
         }, {
           title: '',
         }];
-        // console.log($scope.subTabTitle);
       }
 
       if (subTabIndex < 0 || subTabIndex > 2) {
@@ -270,7 +270,7 @@ angular.module('p2pSiteMobApp')
       }
 
       $scope.toggle.activeSubTab = subTabIndex;
-      var subType = subTabIndex + 2;
+      
       $scope.switchFundsProjects(subType);
       $scope.subtabClassIndex = subTabIndex;
 
