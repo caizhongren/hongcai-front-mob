@@ -46,64 +46,92 @@
       </div>
     </section>
 </div>
-<!-- 活动详情蒙层 -->
-<div class="share-page-breakWishLayer position-ab width-100 height-100" style="background-color:rgba(0,0,0,0.8);" ng-show="activityDetailFlag">
-  <div class="bg-white margin-t-5 margin-l-1 margin-r-1 ft-1p2 padding-1" style="border-radius:0.5rem;">
-    <div class="border-red-bottom"><span class="share-page-mask-activity">活动规则</span><span class="u-pull-right ft-red3" ng-click="activityDetailFlag=false;">关闭页面</span></div>
-    <div class="margin-t-1 ft-1 ft-black2 padding-r-1">
-      <p class="margin-t-1 margin-b-0">1、成功为好友点赞或通过其他途径参与活动的用户，最高可得50元宏财现金。</p>
-      <p class="margin-t-1 margin-b-0">2、用户通过邀请6位好友为自己“点赞”，获得宏财现金，每位好友的点赞可以贡献1-9元奖金。</p>
-      <p class="margin-t-1 margin-b-0">3、活动有效期2015年12月15日09点-2015年12月21日24点。</p>
-      <p class="margin-t-1 margin-b-0">4、宏财现金有效期为10天，10天之内未领取者，宏财现金自动清零。</p>
-      <p class="margin-t-1 margin-b-0">5、服务热线：010-59436409。</p>
-      <p class="margin-t-1 margin-b-0">6、本活动最终解释权归宏财理财所有。</p>
-    </div>
-  </div>
-</div>
-<!-- 活动弹出现金 -->
-<div class="rec-showcash share-page-breakWishLayer position-ab width-100 height-100 tab-content" style="background-color:rgba(0,0,0,0.85);">
 
-</div>
-<!-- 活动弹出现金-兑奖 -->
-<div class="share-page-breakWishLayer position-ab width-100 height-100 tab-content" style="background-color:rgba(0,0,0,0.85);" >
-
-</div>
-<!-- 活动弹出流量 -->
-<div class="rec-showmob share-page-breakWishLayer position-ab width-100 height-100 tab-content" style="background-color:rgba(0,0,0,0.85);" >
-
-</div>
-<!-- 活动弹出流量-兑奖 -->
-<div class="share-page-breakWishLayer position-ab width-100 height-100 tab-content" style="background-color:rgba(0,0,0,0.85);" >
-
-</div>
-<!-- 活动弹出金币 -->
-<div class=" rec-showmoney share-page-breakWishLayer position-ab width-100 height-100 position-re tab-content" style="background-color:rgba(0,0,0,0.85);" >
+//公用的弹框蒙层
+<div class=" rec-showmoney share-page-breakWishLayer position-ab width-100 height-100 position-re " style="background-color:rgba(0,0,0,0.85);" >
+      <!-- 公用的关闭按钮 -->
     <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="">
-    <div class="position-re">
+<!-- 活动详情  弹出来需要去掉X号-->
+    <section class="rec-act-rule margin-t-1p5  tab-content">
+      <div class="rec-act-rule-top margin-l-1 margin-r-1">
+        <p class="margin-l-1">活动规则</p>
+      </div>
+      <div class=" rec-act-rule-btm bg-yellow5 margin-l-1 margin-r-1 ft-1p2 padding-1">
+        <!-- <div class="border-red-bottom"><span class="share-page-mask-activity">活动规则</span><span class="u-pull-right ft-red3" ng-click="activityDetailFlag=false;">关闭页面</span></div> -->
+
+          <div class="margin-t-1 ft-1 ft-black4 padding-r-1">
+            <p class="margin-t-1 margin-b-0">1、所有注册用户皆可参与。</p>
+            <p class="margin-t-1 margin-b-0">2、每周有四天参与抽奖，周日即可抽取大奖。</p>
+            <p class="margin-t-1 margin-b-0">3、每日分享链接增加一次抽奖机会，分享后第一次抽中奖品将失效。</p>
+            <p class="margin-t-1 margin-b-0">4、金币生效后，直接投资，收益即刻到账，所得现金和收益均可提现。</p>
+            <p class="margin-t-1 margin-b-0">5、本活动最终解释权归宏财网所有。</p>
+            <p class="margin-l-1 margin-b-0">服务热线：010-59436409。</p>
+            <input class="rec-rule-btn button" type="button" value="关闭页面">
+          </div>
+      </div>
+    </section>
+<!-- 活动弹出金币 -->
+    <section class=" rec-showmoney-ex tab-content" >
+      <div class="position-re">
+        <!-- 弹出金币-兑奖前 -->
+        <div class="rec-congradulations position-ab">
+          <p>超赞哟！</p>
+          <p>抽中<span>1000</span>元金币</p>
+          <p>金币投资&nbsp;收益即刻到账</p>
+        </div>
       <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
       <img class="rec-money position-ab" src="../images/activity/rec-money.png" alt="">
-      <div class="rec-showmoney-btn">
-        <a class="fl position-ab" href=""><img src="../images/activity/rec-satisfy.png" alt=""></a>
-        <a class="fl position-ab" href=""><img src="../images/activity/rec-unsatisfy .png" alt=""></a>
+        <div class="rec-showmoney-btn">
+          <a class="fl position-ab" href=""><p class="position-ab">我的奖品</p><img src="../images/activity/rec-satisfy.png" alt=""></a>
+          <a class="fl position-ab" href=""><p class="position-ab">分享朋友</p><img src="../images/activity/rec-unsatisfy .png" alt=""></a>
+        </div>
       </div>
-    </div>
-
-    <!-- <div class="rec-mbox"></div> -->
-
-
-</div>
+    </section>
 <!-- 活动弹出金币-兑奖 -->
-<div class="share-page-breakWishLayer position-ab width-100 height-100 tab-content" style="background-color:rgba(0,0,0,0.85);">
+    <section class=" rec-showmoney tab-content" >
 
-</div>
+      <div class="position-re">
+        <div class="rec-congradulations position-ab">
+          <p><span>1000元</span>金币换奖金已到账！</p>
+          <p>快去查看&nbsp;可以提现</p>
+          <p>明天再接再厉哦100%中奖</p>
+        </div>
+      <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
+      <img class="rec-money position-ab" src="../images/activity/rec-money.png" alt="">
+        <div class="rec-showmoney-btn">
+          <a class="fl position-ab" href=""><p class="position-ab">我的奖品</p><img src="../images/activity/rec-satisfy.png" alt=""></a>
+          <a class="fl position-ab" href=""><p class="position-ab">分享朋友</p><img src="../images/activity/rec-unsatisfy .png" alt=""></a>
+        </div>
+      </div>
+    </section>
+<!-- 活动弹出流量 2G提醒-->
+    <section class=" rec-showmoney " >
+
+      <div class="position-re">
+        <div class="rec-congradulations position-ab">
+          <p>遗憾哟！</p>
+          <p>不支持<span>2G手机</span>用户</p>
+        </div>
+      <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
+      <img class="rec-money position-ab" src="../images/activity/rec-wifi.png" alt="">
+        <div class="rec-showmoney-btn">
+          <a class="fl position-ab" href=""><p class="position-ab">再抽一次吧</p><img src="../images/activity/rec-satisfy.png" alt=""></a>
+        </div>
+      </div>
+    </section>
 <!-- 活动弹出次数用完 -->
-<div class="share-page-breakWishLayer position-ab width-100 height-100 tab-content" style="background-color:rgba(0,0,0,0.85);">
+    <section class="rec-gameover tab-content">
+      <img src="../images/activity/rec-gameover.png" alt="">
+      <div class="rec-gameover-div"><p>抽过奖了，请明天再来吧</p></div>
+    </section>
+ <!--  点击分享给好友  这个弹框弹出来时需要隐藏掉公用的关闭X号-->
+    <section class="tab-content">
+      <div class="rec-sharewords"><img src="../images/activity/rec-sharewords.png" alt=""></div>
+      <!-- 分享成功页面只需改一下图片名字rec-sharewords-success -->
+    </section>
 
 </div>
-<!-- 活动弹出-分享成功 -->
-<div class="share-page-breakWishLayer position-ab width-100 height-100 tab-content" style="background-color:rgba(0,0,0,0.85);">
 
-</div>
 
 <script>
 
@@ -129,11 +157,11 @@ $(function (){
       callback:function(){
         //抽中金币
          if(awards == 0 || awards==3){
-            // $(".rec-showmoney").removeClass("tab-content");
+            $(".rec-showmoney").removeClass("tab-content");
          }else if(awards==2 || awards ==4){
-            // $(".rec-showcash").removeClass("tab-content");
+            $(".rec-showcash").removeClass("tab-content");
          }else{
-            // $(".rec-showmob").removeClass("tab-content");
+            $(".rec-showmob").removeClass("tab-content");
          }
       }
     })
