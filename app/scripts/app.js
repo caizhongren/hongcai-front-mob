@@ -456,6 +456,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/recommend.html',
+            controller : 'DailyLotteryCtrl',
+            controllerUrl : 'scripts/controllers/daily-lottery/daily-lottery-ctrl'
           }
         }
       })
