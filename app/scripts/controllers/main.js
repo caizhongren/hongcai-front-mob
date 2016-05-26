@@ -9,7 +9,6 @@
 angular.module('p2pSiteMobApp')
   .controller('MainCtrl', function($scope, $stateParams, $state, $rootScope, $location, Restangular, projects, fundsProjects) {
     // 宏金保列表页百分比值
-
     $scope.curr = 27;
 
     $scope.tabClassIndex = "";
@@ -55,7 +54,7 @@ angular.module('p2pSiteMobApp')
       }).then(function(response) {
         $scope.jigoubao = response;
          $scope.baseFileUrl = response.baseFileUrl;
-        console.log(response);  
+        // console.log(response);  
         $scope.pageCount = response.pageCount;
         for (var i = 0; i < response.projectList.length; i++) {
           $scope.jigoubaoData.push(response.projectList[i]);
@@ -169,7 +168,20 @@ angular.module('p2pSiteMobApp')
 
     $scope.toggle.switchTab = function(tabIndex) {
       $scope.toggle.activeTab = tabIndex;
+      $rootScope.tab=$scope.toggle.activeTab;
+      if ($rootScope.tab === 0) {
+        $state.go('root.main',{
+          tab:0,
+          subTab:""
+        });
+      }else if ($rootScope.tab === 2) {
+        $state.go('root.main', {
+          tab: 2,
+          subTab:""
+        });
+      }
       // console.log($scope.toggle.activeTab);
+      // $rootScope.tab=$scope.toggle.activeTab;
       var type = tabIndex + 1;
       if (tabIndex !== 1) {
         $scope.switchFundsProjects(type);
@@ -270,15 +282,22 @@ angular.module('p2pSiteMobApp')
       }
 
       $scope.toggle.activeSubTab = subTabIndex;
-      
       $scope.switchFundsProjects(subType);
       $scope.subtabClassIndex = subTabIndex;
 
+      // console.log(subType);
+      $rootScope.subtab=subType-2;
+      var subtab=$rootScope.subtab;
+      if ($rootScope.tab === 1) {
+        $state.go('root.main', {
+          tab: 1,
+          subTab:subtab
+        });
+      }
 
       // console.log($scope.subtabClassIndex);
     };
-
-
+    
     $scope.tab = $stateParams.tab || 0;
     $scope.subTab = $stateParams.subTab || 0;
     $scope.toggle.switch(+$scope.tab, +$scope.subTab);
