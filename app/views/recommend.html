@@ -26,7 +26,7 @@
     <div class="position-re">
       <div class=" rec-disk-section"><img class="rec-disk" src="../images/activity/rec-circle-in.png" alt=""></div>
       <img class="rec-arrow-r rotate-bg fl position-ab"src="../images/activity/rec-arrow-r.png" alt="">
-      <img class="position-ab rec-disk-words luck-click" src="../images/activity/rec-circle-inwords.png" alt="">
+      <img class="rec-disk-words luck-click position-ab" src="../images/activity/rec-circle-inwords.png" alt="">
     </div>
     <div class="rec-disk-bottom">
       <img src="../images/activity/rec-disk-bottom.png" alt="">
@@ -74,14 +74,14 @@
 
 </div>
 <!-- 活动弹出金币 -->
-<div class=" rec-showmoney share-page-breakWishLayer position-ab width-100 height-100 position-re" style="background-color:rgba(0,0,0,0.85);" ng-show="false">
+<div class=" rec-showmoney share-page-breakWishLayer position-ab width-100 height-100 position-re tab-content" style="background-color:rgba(0,0,0,0.85);" >
     <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="">
     <div class="position-re">
       <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
       <img class="rec-money position-ab" src="../images/activity/rec-money.png" alt="">
-      <div class="rec-showmoney-btn position-ab">
-        <a class="fl" href=""><img src="../images/activity/rec-satisfy.png" alt=""></a>
-        <a class="fl" href=""><img src="../images/activity/rec-unsatisfy .png" alt=""></a>
+      <div class="rec-showmoney-btn">
+        <a class="fl position-ab" href=""><img src="../images/activity/rec-satisfy.png" alt=""></a>
+        <a class="fl position-ab" href=""><img src="../images/activity/rec-unsatisfy .png" alt=""></a>
       </div>
     </div>
 
@@ -126,11 +126,11 @@ $(function (){
       callback:function(){
         //抽中金币
          if(awards == 0 || awards==3){
-            $(".rec-showmoney").removeClass("tab-content");
+            // $(".rec-showmoney").removeClass("tab-content");
          }else if(awards==2 || awards ==4){
-            $(".rec-showcash").removeClass("tab-content");
+            // $(".rec-showcash").removeClass("tab-content");
          }else{
-            $(".rec-showmob").removeClass("tab-content");
+            // $(".rec-showmob").removeClass("tab-content");
          }
       }
     })
