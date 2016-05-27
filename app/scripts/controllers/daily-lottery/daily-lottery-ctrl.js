@@ -60,15 +60,16 @@ angular.module('p2pSiteMobApp')
             userId: $rootScope.userInfo.id
           }).then(function(response){
             if(response.ret === -1){
-              alert(response.msg);
+              
               if (response.code == -1238){
-
+                $scope.showMask = true;
+                $scope.showGameOver = true;
               }else if(response.code == -1239){
-              
+                alert(response.msg);
               }else if(response.code == -1240){
-              
+                alert(response.msg);
               }else if(response.code == -1241){
-              
+                alert(response.msg);
               }
             }else{
               $scope.userLotteryRecord = response;
@@ -83,6 +84,79 @@ angular.module('p2pSiteMobApp')
       });
     }
 
+    $scope.showShareWords = function(){
+      Restangular.one('users').post('shareActivity', {
+        openId: $rootScope.openid, 
+        act: 12,
+        channelCode: 'officeweb'
+      }).then(function(response){
+        if(response.ret !== -1){
+          $scope.giveUp();
+        }
+      });
+    }
+
+    $scope.giveUp = function(){
+      if($scope.userLotteryRecord != null){
+        Restangular.one('dailyPrizes').post('giveUpPrize', {
+          userLotteryRecordId: $scope.userLotteryRecord.id
+        }).then(function(response){
+          if(response.ret === -1){
+            alert(response.msg);
+          }else{
+            $scope.userLotteryRecord = response;
+            $scope.showOff();
+            $scope.showMask = true;
+            $scope.showShareSuccess = true;
+          }
+        });
+      }
+    }
+
+    $scope.takePrize = function(){
+      if($scope.userLotteryRecord != null){
+        Restangular.one('dailyPrizes').post('takePrize', {
+          userLotteryRecordId: $scope.userLotteryRecord.id
+        }).then(function(response){
+          if(response.ret === -1){
+            if(response.code === -1238){
+              $scope.showMask = true;
+              $scope.showGameOver = true;
+            }else{
+              alert(response.msg);
+            }
+          }else{
+            $scope.userLotteryRecord = response;
+            $scope.showOff();
+            $scope.showTakedPrizeMask($scope.userLotteryRecord.prize.type, $scope.userLotteryRecord.takeStatus);
+          }
+        });
+      }
+    }
+
+    $scope.showTakedPrizeMask = function(prizeType, takeStatus){
+      $scope.showMask = true;
+      if(prizeType === 1){
+          if(takeStatus === 1){
+            $scope.showMoney = true;
+          }else{
+            $scope.showMoneyEx = true;
+          }
+       }else if(prizeType === 2){
+          if(takeStatus === 1){
+            $scope.showCash = true;
+          }else{
+            $scope.showCashEx = true;
+          }
+       }else if(prizeType === 3){
+          if(takeStatus === 1){
+            $scope.showDataTrafficSuccess = true;
+          }else{
+            $scope.showDataTraffic = true;
+          }
+       }
+    }
+
     //prizeType 1.金幣 2.现金 3.流量
     $scope.RunRotate = function(prizeType){
       var text = "金币";
@@ -92,13 +166,11 @@ angular.module('p2pSiteMobApp')
           var angle = [155, 335];
           angles = angle[Math.floor(Math.random()*angle.length)];
           text = "金币";
-          
           break;
         case 2:
           var angle = [70, 245];
           angles = angle[Math.floor(Math.random()*angle.length)];
           text = "现金";
-
           break;
         case 3:
           angles = 290;
@@ -108,27 +180,26 @@ angular.module('p2pSiteMobApp')
       $scope.rotateFn(prizeType, angles, text);
     }
 
-   $scope.rotateFn = function (prizeType, angles, text){
-    $('.rec-disk').stopRotate();
-
-    $('.rec-disk').rotate({
-      angle: 0,
-      animateTo: angles + 1800,
-      duration: 8000,
-      callback:function(){
-        //抽中金币
-          $scope.showMask = true; 
-         if(prizeType === 1){
-            $scope.showMoneyEx = true;
-         }else if(prizeType === 2){
-            $scope.showCashEx = true;
-         }else if(prizeType === 3){
-            $scope.showDataTraffic = true;
-         }
-         $scope.$apply();
-      }
-    })
-  };
+    $scope.rotateFn = function (prizeType, angles, text){
+      $('.rec-disk').stopRotate();
+      $('.rec-disk').rotate({
+        angle: 0,
+        animateTo: angles + 1800,
+        duration: 8000,
+        callback:function(){
+          //抽中金币
+           $scope.showMask = true; 
+           if(prizeType === 1){
+              $scope.showMoneyEx = true;
+           }else if(prizeType === 2){
+              $scope.showCashEx = true;
+           }else if(prizeType === 3){
+              $scope.showDataTraffic = true;
+           }
+           $scope.$apply();
+        }
+      })
+    };
 
     /**
      * 调用微信接口，申请此页的分享接口调用
@@ -181,6 +252,10 @@ angular.module('p2pSiteMobApp')
             openId: $rootScope.openid, 
             act: $scope.act,
             channelCode: $scope.channelCode
+          }).then(function(response){
+            if(response.ret !== -1){
+              $scope.giveUp();
+            }
           });
         },
         cancel: function (res) {

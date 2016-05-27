@@ -75,8 +75,8 @@
       <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
       <img class="rec-money position-ab" src="../images/activity/rec-money.png" alt="">
         <div class="rec-showmoney-exbtn">
-          <a class="fl position-ab" href=""><p class="position-ab"><span class="rec-span">人家很满意</span><br>奖品生效</p><img src="../images/activity/rec-satisfy.png" alt=""></a>
-          <a class="fl position-ab" href=""><p class="position-ab"><span class="rec-span">人家不满意</span><br>再抽一次</p><img src="../images/activity/rec-unsatisfy .png" alt=""></a>
+          <a class="fl position-ab" ng-click="takePrize()"><p class="position-ab"><span class="rec-span">人家很满意</span><br>奖品生效</p><img src="../images/activity/rec-satisfy.png" alt=""></a>
+          <a class="fl position-ab" ng-click='showShareWords()'><p class="position-ab"><span class="rec-span">人家不满意</span><br>再抽一次</p><img src="../images/activity/rec-unsatisfy .png" alt=""></a>
         </div>
       </div>
     </section>
@@ -92,8 +92,8 @@
       <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
       <img class="rec-money position-ab" src="../images/activity/rec-money.png" alt="">
         <div class="rec-showmoney-btn">
-          <a class="fl position-ab" href=""><p class="position-ab">我的奖品</p><img src="../images/activity/rec-satisfy.png" alt=""></a>
-          <a class="fl position-ab" href=""><p class="position-ab">分享朋友</p><img src="../images/activity/rec-unsatisfy.png" alt=""></a>
+          <a class="fl position-ab" ui-sref="root.userCenter.deals"><p class="position-ab">我的奖品</p><img src="../images/activity/rec-satisfy.png" alt=""></a>
+          <a class="fl position-ab" ng-click='showShareWords()'><p class="position-ab">分享朋友</p><img src="../images/activity/rec-unsatisfy.png" alt=""></a>
         </div>
       </div>
     </section>
@@ -110,8 +110,8 @@
       <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
       <img class="rec-cash position-ab" src="../images/activity/rec-cash.png" alt="">
         <div class="rec-showcash-exbtn">
-          <a class="fl position-ab" href=""><p class="position-ab cash-p"><span class="rec-span">人家很满意</span><br>奖品生效</p><img src="../images/activity/rec-satisfy.png" alt=""></a>
-          <a class="fl position-ab" href=""><p class="position-ab "><span class="rec-span">人家不满意</span><br>再抽一次</p><img src="../images/activity/rec-unsatisfy .png" alt=""></a>
+          <a class="fl position-ab" ng-click="takePrize()"><p class="position-ab cash-p"><span class="rec-span">人家很满意</span><br>奖品生效</p><img src="../images/activity/rec-satisfy.png" alt=""></a>
+          <a class="fl position-ab" ng-click='showShareWords()'><p class="position-ab "><span class="rec-span">人家不满意</span><br>再抽一次</p><img src="../images/activity/rec-unsatisfy .png" alt=""></a>
         </div>
       </div>
     </section>
@@ -129,8 +129,8 @@
           <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
           <img class="rec-cash position-ab" src="../images/activity/rec-cash.png" alt="">
             <div class="rec-showmoney-btn">
-          <a class="fl position-ab" href=""><p class="position-ab">我的奖品</p><img src="../images/activity/rec-satisfy.png" alt=""></a>
-          <a class="fl position-ab" href=""><p class="position-ab">分享朋友</p><img src="../images/activity/rec-unsatisfy.png" alt=""></a>
+          <a class="fl position-ab" ui-sref="root.userCenter.deals"><p class="position-ab">我的奖品</p><img src="../images/activity/rec-satisfy.png" alt=""></a>
+          <a class="fl position-ab" ng-click='showShareWords()'><p class="position-ab">分享朋友</p><img src="../images/activity/rec-unsatisfy.png" alt=""></a>
             </div>
           </div>
         </div>
@@ -146,7 +146,7 @@
       <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
       <img class="rec-money position-ab" src="../images/activity/rec-wifi.png" alt="">
         <div class="rec-2Gagain-btn">
-          <a class="fl position-ab" href=""><p class="position-ab">再抽一次吧</p><img src="../images/activity/rec-gameover-btm.png" alt=""></a>
+          <a class="fl position-ab" ng-click="showOff()"><p class="position-ab">再抽一次吧</p><img src="../images/activity/rec-gameover-btm.png" alt=""></a>
         </div>
       </div>
     </section>
@@ -162,7 +162,7 @@
       <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
       <img class="rec-money position-ab" src="../images/activity/rec-wifi.png" alt="">
         <div class="rec-traffic-btn">
-          <a class="fl position-ab" href=""><p class="position-ab">人家很满意奖品生效</p><img src="../images/activity/rec-gameover-btm.png" alt=""></a>
+          <a class="fl position-ab" ng-click="takePrize()"><p class="position-ab">人家很满意奖品生效</p><img src="../images/activity/rec-gameover-btm.png" alt=""></a>
         </div>
       </div>
     </section>
@@ -177,12 +177,13 @@
       <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
       <img class="rec-money position-ab" src="../images/activity/rec-wifi.png" alt="">
         <div class="rec-recharge-btn">
-          <a class="fl position-ab" href=""><p class="position-ab">分享朋友</p><img src="../images/activity/rec-gameover-btm.png" alt=""></a>
+          <a class="fl position-ab" ng-click='showShareWords()'><p class="position-ab">分享朋友</p><img src="../images/activity/rec-gameover-btm.png" alt=""></a>
         </div>
       </div>
     </section>
 <!-- 活动弹出次数用完 -->
     <section class="rec-gameover" ng-show="showGameOver">
+      <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="" ng-click="showOff()">
       <img src="../images/activity/rec-gameover.png" alt="">
       <div class="rec-gameover-div"><p>抽过奖了，请明天再来吧</p></div>
     </section>
