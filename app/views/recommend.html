@@ -44,11 +44,8 @@
 </div>
 
 <!-- //公用的弹框蒙层 -->
-<div class=" rec-showmoney share-page-breakWishLayer position-ab width-100 height-100 position-re" style="background-color:rgba(0,0,0,0.85);" >
-
-      <!-- 公用的关闭按钮 -->
-    <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="">
-<!-- 活动详情  弹出来需要去掉X号-->
+<div class=" rec-showmoney share-page-breakWishLayer position-ab width-100 height-100 position-re bg-grey6 tab-content" >
+<!-- 活动详情 -->
     <section class="rec-act-rule margin-t-1p5  tab-content">
       <div class="rec-act-rule-top margin-l-1 margin-r-1">
         <p class="margin-l-1">活动规则</p>
@@ -68,7 +65,8 @@
       </div>
     </section>
 <!-- 活动弹出金币 -->
-    <section class="rec-showmoney-ex" >
+    <section class="rec-showmoney-ex tab-content" >
+    <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="">
       <div class="position-re">
         <!-- 弹出金币-兑奖前 -->
         <div class="rec-excongradulations position-ab">
@@ -86,7 +84,7 @@
     </section>
 <!-- 活动弹出金币-兑奖 -->
     <section class=" rec-showmoney tab-content" >
-
+    <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="">
       <div class="position-re">
         <div class="rec-congradulations position-ab">
           <p><span>1000元</span>金币换奖金已到账！</p>
@@ -101,9 +99,47 @@
         </div>
       </div>
     </section>
+<!-- 活动弹出现金 -->
+    <section class="rec-showcash-ex tab-content" >
+    <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="">
+      <div class="position-re">
+        <!-- 弹出金币-兑奖前 -->
+        <div class="rec-excongradulations position-ab">
+          <p>&nbsp;&nbsp;&nbsp;超赞哟！</p>
+          <p><span>1</span>元现金</p>
+          <p>现金生效后即刻到账</p>
+        </div>
+      <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
+      <img class="rec-cash position-ab" src="../images/activity/rec-cash.png" alt="">
+        <div class="rec-showcash-exbtn">
+          <a class="fl position-ab" href=""><p class="position-ab cash-p"><span class="rec-span">人家很满意</span><br>奖品生效</p><img src="../images/activity/rec-satisfy.png" alt=""></a>
+          <a class="fl position-ab" href=""><p class="position-ab "><span class="rec-span">人家不满意</span><br>再抽一次</p><img src="../images/activity/rec-unsatisfy .png" alt=""></a>
+        </div>
+      </div>
+    </section>
+<!-- 弹出现金-兑奖 -->
+    <section class="rec-showcash tab-content">
+        <div class="rec-showcash-ex" >
+        <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="">
+          <div class="position-re">
+        <!-- 弹出金币-兑奖前 -->
+            <div class="rec-excongradulations position-ab">
+              <p>&nbsp;&nbsp;&nbsp;超赞哟！</p>
+              <p><span>1</span>元现金</p>
+              <p>现金生效后即刻到账</p>
+            </div>
+          <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
+          <img class="rec-cash position-ab" src="../images/activity/rec-cash.png" alt="">
+            <div class="rec-showmoney-btn">
+          <a class="fl position-ab" href=""><p class="position-ab">我的奖品</p><img src="../images/activity/rec-satisfy.png" alt=""></a>
+          <a class="fl position-ab" href=""><p class="position-ab">分享朋友</p><img src="../images/activity/rec-unsatisfy .png" alt=""></a>
+            </div>
+          </div>
+        </div>
+    </section>
 <!-- 活动弹出流量 2G提醒-->
     <section class=" rec-2Gagain tab-content" >
-
+    <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="">
       <div class="position-re">
         <div class="rec-congradulations position-ab">
           <p>遗憾哟！</p>
@@ -116,17 +152,50 @@
         </div>
       </div>
     </section>
+<!-- 弹出流量 -->
+    <section class=" rec-traffic tab-content" >
+    <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="">
+      <div class="position-re">
+        <div class="rec-congradulations position-ab">
+          <p>超赞哟！</p>
+          <p>抽中<span>手机流量</span></p>
+          <p>即可送到</p>
+        </div>
+      <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
+      <img class="rec-money position-ab" src="../images/activity/rec-wifi.png" alt="">
+        <div class="rec-traffic-btn">
+          <a class="fl position-ab" href=""><p class="position-ab">人家很满意奖品生效</p><img src="../images/activity/rec-gameover-btm.png" alt=""></a>
+        </div>
+      </div>
+    </section>
+<!-- 弹出流量已充值 -->
+    <section class="rec-recharge tab-content" >
+    <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="">
+      <div class="position-re">
+        <div class="rec-congradulations position-ab">
+          <p><span>流量</span>已充&nbsp;快去使用！</p>
+          <p>明日再接再厉哦 100%中奖！</p>
+        </div>
+      <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
+      <img class="rec-money position-ab" src="../images/activity/rec-wifi.png" alt="">
+        <div class="rec-recharge-btn">
+          <a class="fl position-ab" href=""><p class="position-ab">分享朋友</p><img src="../images/activity/rec-gameover-btm.png" alt=""></a>
+        </div>
+      </div>
+    </section>
 <!-- 活动弹出次数用完 -->
     <section class="rec-gameover tab-content">
       <img src="../images/activity/rec-gameover.png" alt="">
       <div class="rec-gameover-div"><p>抽过奖了，请明天再来吧</p></div>
     </section>
- <!--  点击分享给好友  这个弹框弹出来时需要隐藏掉公用的关闭X号-->
+ <!--  点击分享给好友 -->
     <section class="tab-content">
       <div class="rec-sharewords"><img src="../images/activity/rec-sharewords.png" alt=""></div>
-      <!-- 分享成功页面只需改一下图片名字rec-sharewords-success -->
     </section>
-
+<!-- 分享成功页面 -->
+    <section class="tab-content">
+      <div class="rec-sharewords"><img src="../images/activity/rec-share-success.png" alt=""></div>
+    </section>
 </div>
 
 
