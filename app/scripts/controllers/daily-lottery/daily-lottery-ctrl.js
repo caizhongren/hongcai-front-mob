@@ -61,26 +61,29 @@ angular.module('p2pSiteMobApp')
       });
     }
 
+    //prizeType 1.金幣 2.现金 3.流量
     $scope.RunRotate = function(prizeType){
-      var item = prizeType;
-      console.log(item);
-      // if(bRotate) return;
-      switch (item) {
-        case 0:
-          $scope.rotateFn(0, 335, '0');//金币
-          break;
+      var text = "金币";
+      var angles = 155;
+      switch (prizeType) {
         case 1:
-          $scope.rotateFn(1, 290, '1');//手机流量
+          var angle = [155, 335];
+          angles = angle[Math.floor(Math.random()*angle.length)];
+          text = "金币";
+          
           break;
         case 2:
-          $scope.rotateFn(2, 245, '2');//现金
+          var angle = [70, 245];
+          angles = angle[Math.floor(Math.random()*angle.length)];
+          text = "现金";
+
           break;
         case 3:
-          $scope.rotateFn(3,155 , '3');//金币
-          break;
-        case 4:
-          $scope.rotateFn(4,70 , '4'); //现金
-     }
+          angles = 290;
+          text = "手机流量";
+      }
+
+      $scope.rotateFn(prizeType, angles, text);
     }
 
    $scope.rotateFn = function (awards, angles, text){
