@@ -39,21 +39,69 @@ angular.module('p2pSiteMobApp')
           }).then(function(response){
             if(response.ret === -1){
               alert(response.msg);
-              if (response.code == -1216){
+              if (response.code == -1238){
 
-              }else if(response.code == -1217){
+              }else if(response.code == -1239){
               
-              }else if(response.code == -1218){
+              }else if(response.code == -1240){
+              
+              }else if(response.code == -1241){
               
               }
             }else{
               $scope.userLotteryRecord = response;
               $scope.prizeType = response.prize.type;
+              $(".luck-click").click($scope.prizeType);
             }
           });
+        }else{
+          $scope.prizeType = response.prize.type;
+          $scope.RunRotate($scope.prizeType);
         }
       });
     }
+
+    $scope.RunRotate = function(prizeType){
+      var item = prizeType;
+      console.log(item);
+      // if(bRotate) return;
+      switch (item) {
+        case 0:
+          $scope.rotateFn(0, 335, '0');//金币
+          break;
+        case 1:
+          $scope.rotateFn(1, 290, '1');//手机流量
+          break;
+        case 2:
+          $scope.rotateFn(2, 245, '2');//现金
+          break;
+        case 3:
+          $scope.rotateFn(3,155 , '3');//金币
+          break;
+        case 4:
+          $scope.rotateFn(4,70 , '4'); //现金
+     }
+    }
+
+   $scope.rotateFn = function (awards, angles, text){
+    // bRotate = !bRotate;
+    $('.rec-disk').stopRotate();
+    $('.rec-disk').rotate({
+      angle:0,
+      animateTo:angles+1800,
+      duration:8000,
+      callback:function(){
+        //抽中金币
+         if(awards == 0 || awards==3){
+            $(".rec-showmoney").removeClass("tab-content");
+         }else if(awards==2 || awards ==4){
+            $(".rec-showcash").removeClass("tab-content");
+         }else{
+            $(".rec-showmob").removeClass("tab-content");
+         }
+      }
+    })
+  };
 
     /**
      * 调用微信接口，申请此页的分享接口调用
