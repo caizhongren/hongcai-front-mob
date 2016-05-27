@@ -13,7 +13,7 @@
       <span class="fl ">签到周期</span>
       <span class="fr ">{{formatDate(thisWeekCheckinRecords.monday)}}~{{formatDate(thisWeekCheckinRecords.sunday)}}</span>
     </div>
-    <ul class="rec-sign-list " ng-repeat="checkinRecord in thisWeekCheckinRecords.checkinRecords"> 
+    <ul class="rec-sign-list " ng-repeat="checkinRecord in thisWeekCheckinRecords.checkinRecords">
       <li ng-if="checkinRecord.seq < 7" class="fl {{checkinRecord.checkin ? 'li-signed' : 'li-sign'}}"><p class="rec-p" id="rec-color">{{formatDate(checkinRecord.createTime)}}</p><img ng-show="checkinRecord.checkin" src="../images/activity/rec-signed.png" alt=""><img ng-show="!checkinRecord.checkin" src="../images/activity/rec-sign.png" alt=""></li>
       <li ng-if="checkinRecord.seq === 7" class="fl {{checkinRecord.checkin ? 'li-signed' : 'li-sign'}}">
         <p class="rec-p rec-box">{{formatDate(checkinRecord.createTime)}}</p>
@@ -44,8 +44,8 @@
     </section>
 </div>
 
-//公用的弹框蒙层
-<div class=" rec-showmoney share-page-breakWishLayer position-ab width-100 height-100 position-re " style="background-color:rgba(0,0,0,0.85);" >
+<!-- //公用的弹框蒙层 -->
+<div class=" rec-showmoney share-page-breakWishLayer position-ab width-100 height-100 position-re" style="background-color:rgba(0,0,0,0.85);" >
       <!-- 公用的关闭按钮 -->
     <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="">
 <!-- 活动详情  弹出来需要去掉X号-->
@@ -68,19 +68,19 @@
       </div>
     </section>
 <!-- 活动弹出金币 -->
-    <section class=" rec-showmoney-ex tab-content" >
+    <section class="rec-showmoney-ex" >
       <div class="position-re">
         <!-- 弹出金币-兑奖前 -->
-        <div class="rec-congradulations position-ab">
+        <div class="rec-excongradulations position-ab">
           <p>超赞哟！</p>
           <p>抽中<span>1000</span>元金币</p>
           <p>金币投资&nbsp;收益即刻到账</p>
         </div>
       <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
       <img class="rec-money position-ab" src="../images/activity/rec-money.png" alt="">
-        <div class="rec-showmoney-btn">
-          <a class="fl position-ab" href=""><p class="position-ab">我的奖品</p><img src="../images/activity/rec-satisfy.png" alt=""></a>
-          <a class="fl position-ab" href=""><p class="position-ab">分享朋友</p><img src="../images/activity/rec-unsatisfy .png" alt=""></a>
+        <div class="rec-showmoney-exbtn">
+          <a class="fl position-ab" href=""><p class="position-ab"><span class="rec-span">人家很满意</span><br>奖品生效</p><img src="../images/activity/rec-satisfy.png" alt=""></a>
+          <a class="fl position-ab" href=""><p class="position-ab"><span class="rec-span">人家不满意</span><br>再抽一次</p><img src="../images/activity/rec-unsatisfy .png" alt=""></a>
         </div>
       </div>
     </section>
@@ -102,7 +102,7 @@
       </div>
     </section>
 <!-- 活动弹出流量 2G提醒-->
-    <section class=" rec-showmoney " >
+    <section class=" rec-2Gagain tab-content" >
 
       <div class="position-re">
         <div class="rec-congradulations position-ab">
@@ -111,8 +111,8 @@
         </div>
       <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
       <img class="rec-money position-ab" src="../images/activity/rec-wifi.png" alt="">
-        <div class="rec-showmoney-btn">
-          <a class="fl position-ab" href=""><p class="position-ab">再抽一次吧</p><img src="../images/activity/rec-satisfy.png" alt=""></a>
+        <div class="rec-2Gagain-btn">
+          <a class="fl position-ab" href=""><p class="position-ab">再抽一次吧</p><img src="../images/activity/rec-gameover-btm.png" alt=""></a>
         </div>
       </div>
     </section>

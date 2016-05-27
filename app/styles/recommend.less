@@ -400,8 +400,212 @@
   }
 }
 
+//抽中金币
 
-//抽中金币弹出框
+.rec-showmoney-ex {
+  .rec-mbox {
+    display: block;
+    width: 63%;
+    margin: 49% auto;
+  }
+   @media (min-width: 320px)  {
+    .rec-mbox{margin: 72% auto;}
+     }
+   @media (min-width: 375px)  {
+    .rec-mbox{margin: 60% auto;}
+     }
+  @media (min-width: 414px)  {
+    .rec-mbox{margin: 52% auto;}
+     }
+
+  .rec-money {
+    width: 21%;
+    height: 20%;
+    left: 39%;
+    top: 44%;
+  }
+  .rec-xclose {
+    width: 6%;
+    right: 23%;
+    top: 28%;
+  }
+   @media (min-width: 320px)  {
+    .rec-xclose{top: 25%; right: 24%;}
+     }
+     @media (max-width: 360px)  {
+    .rec-xclose{right: 23%; top: 32%;}
+    }
+    @media (max-width: 375px)  {
+    .rec-xclose{right: 23%; top: 29%;}
+    }
+     @media (min-width: 414px)  {
+    .rec-xclose{right: 23%;top: 25%;}
+    }
+    @media (min-width: 640px)  {
+    .rec-xclose{right: 23%;top: 32%;}
+    }
+
+
+}
+.rec-showmoney-ex {
+  .rec-showmoney-exbtn {
+    bottom: 3rem;
+    margin: 0 13rem;
+    a {
+      img{
+        width: 73%;
+      }
+      p {
+        color: #cd4431;
+        font-size: 1em;
+        font-weight: bold;
+        top: 11%;
+        left: 8%;
+      }
+
+    }
+  }
+}
+@media (min-width:320px) {
+  .rec-showmoney-ex .rec-showmoney-exbtn a:nth-child(1){
+    width: 7em;
+    top: 72%;
+    left: 25%;
+  }
+  .rec-showmoney-ex .rec-showmoney-exbtn a:nth-child(2){
+    width: 7em;
+    top: 72%;
+    right: 15%;
+  }
+  .rec-showmoney-ex .rec-showmoney-exbtn a p {
+    font-size: 1em;
+    top:16%;
+    left:8%;
+  }
+}
+@media (min-width:360px) {
+  .rec-showmoney-ex .rec-showmoney-exbtn a:nth-child(1){
+    width: 8em;
+    top: 72%;
+    left: 24%;
+  }
+  .rec-showmoney-ex .rec-showmoney-exbtn a:nth-child(2){
+    width: 8em;
+    top: 72%;
+    right: 15%;
+  }
+  .rec-showmoney-ex .rec-showmoney-exbtn a p {
+    font-size: 1em;
+  }
+}
+@media (min-width:411px) {
+  .rec-showmoney-ex .rec-showmoney-exbtn a:nth-child(1){
+    width: 9em;
+  }
+  .rec-showmoney-ex .rec-showmoney-exbtn a:nth-child(2){
+    width: 9em;
+  }
+  .rec-showmoney-ex .rec-showmoney-exbtn a p {
+    font-size: 1.2em;
+  }
+}
+
+@media (min-width:768px) {
+  .rec-showmoney-ex .rec-showmoney-exbtn a:nth-child(1){
+    width: 18em;
+    top: 72%;
+    left: 23%;
+  }
+  .rec-showmoney-ex .rec-showmoney-exbtn a:nth-child(2){
+    width: 18em;
+    top: 72%;
+    right: 13%;
+  }
+  .rec-showmoney-ex .rec-showmoney-exbtn a p {
+    font-size: 2em;
+    .rec-span{
+      font-size: 1,5em;
+    }
+  }
+}
+
+.rec-showmoney-ex{
+  .rec-excongradulations {
+    left: 30%;
+    top:13%;
+    p {
+      color: #333333;
+      margin: 0 auto;
+      font-size: 1.6em;
+      line-height: 1em;
+      height: 1em;
+      text-align: center;
+      span {
+        color: #d63018;
+      }
+    }
+  }
+}
+
+
+@media (min-width:320px) {
+  .rec-showmoney-ex .rec-excongradulations {
+      left: 30%;
+      top: 7%;
+  p {
+    font-size: .8em;
+    line-height: 2em;
+    height: 1.6em;
+    }
+  }
+}
+@media (min-width:360px) {
+  .rec-showmoney-ex .rec-excongradulations {
+      left: 32%;
+
+  p {
+    font-size: .8em;
+    line-height: 2em;
+    height: 1.6em;
+    }
+  }
+}
+@media (min-width:375px) {
+  .rec-showmoney-ex .rec-excongradulations {
+      left: 34%;
+
+  p {
+    font-size: .8em;
+    line-height: 2em;
+    height: 1.6em;
+    }
+  }
+}
+@media (min-width:411px) {
+  .rec-showmoney-ex .rec-excongradulations {
+      left: 31%;
+
+  p {
+    font-size: 1em;
+    line-height: 2em;
+    height: 1.6em;
+    }
+  }
+}
+@media (min-width:768px) {
+  .rec-showmoney-ex .rec-excongradulations {
+      left: 30%;
+      top: 8%;
+
+  p {
+    font-size: 2em;
+    line-height: 2em;
+    height: 1.6em;
+    }
+  }
+}
+
+//抽中金币-兑奖弹出框
 .rec-showmoney {
   .rec-mbox {
     display: block;
@@ -461,6 +665,10 @@
         font-weight: bold;
         top: 11%;
         left: 8%;
+        .rec-span {
+          font-size: 1.5em;
+          font-weight: 400;
+        }
       }
 
     }
@@ -590,6 +798,199 @@
     }
   }
 }
+
+//2G手机再抽一次
+.rec-2Gagain {
+  .rec-mbox {
+    display: block;
+    width: 63%;
+    margin: 49% auto;
+  }
+   @media (min-width: 320px)  {
+    .rec-mbox{margin: 72% auto;}
+     }
+   @media (min-width: 375px)  {
+    .rec-mbox{margin: 60% auto;}
+     }
+  @media (min-width: 414px)  {
+    .rec-mbox{margin: 52% auto;}
+     }
+
+  .rec-money {
+    width: 21%;
+    height: 20%;
+    left: 39%;
+    top: 44%;
+  }
+  .rec-xclose {
+    width: 6%;
+    right: 23%;
+    top: 28%;
+  }
+   @media (min-width: 320px)  {
+    .rec-xclose{top: 25%; right: 24%;}
+     }
+     @media (max-width: 360px)  {
+    .rec-xclose{right: 23%; top: 32%;}
+    }
+    @media (max-width: 375px)  {
+    .rec-xclose{right: 23%; top: 29%;}
+    }
+     @media (min-width: 414px)  {
+    .rec-xclose{right: 23%;top: 25%;}
+    }
+    @media (min-width: 640px)  {
+    .rec-xclose{right: 23%;top: 32%;}
+    }
+
+
+}
+.rec-2Gagain {
+  .rec-2Gagain-btn {
+    bottom: 3rem;
+    margin: 0 13rem;
+    a {
+      img{
+        width: 73%;
+      }
+      p {
+        color: #cd4431;
+        font-size: 1em;
+        font-weight: bold;
+        top: 11%;
+        left: 8%;
+      }
+
+    }
+  }
+}
+@media (min-width:320px) {
+  .rec-2Gagain .rec-2Gagain-btn a:nth-child(1){
+    width: 15em;
+    top: 72%;
+    left: 24%;
+  }
+
+  .rec-2Gagain .rec-2Gagain-btn a p {
+    font-size: 1em;
+    top:16%;
+    left:20%;
+  }
+}
+@media (min-width:360px) {
+  .rec-2Gagain .rec-2Gagain-btn a:nth-child(1){
+    width: 17em;
+    top: 72%;
+    left: 24%;
+  }
+
+  .rec-2Gagain .rec-2Gagain-btn a p {
+    font-size: 1em;
+  }
+}
+@media (min-width:375px) {
+  .rec-2Gagain .rec-2Gagain-btn a:nth-child(1){
+    width: 18em;
+    top: 72%;
+    left: 24%;
+  }
+
+  .rec-2Gagain .rec-2Gagain-btn a p {
+    font-size: 1em;
+  }
+}
+@media (min-width:411px) {
+  .rec-2Gagain .rec-2Gagain-btn a:nth-child(1){
+    width: 20em;
+  }
+  .rec-2Gagain .rec-2Gagain-btn a p {
+    font-size: 1.2em;
+  }
+}
+
+@media (min-width:768px) {
+  .rec-2Gagain .rec-2Gagain-btn a:nth-child(1){
+    width: 38em;
+    top: 72%;
+    left: 23%;
+  }
+  .rec-2Gagain .rec-2Gagain-btn a:nth-child(2){
+    width: 18em;
+    top: 72%;
+    right: 13%;
+  }
+  .rec-2Gagain .rec-2Gagain-btn a p {
+    font-size: 2.5em;
+  }
+}
+
+.rec-2Gagain{
+  .rec-congradulations {
+    left: 30%;
+    top:13%;
+    p {
+      color: #333333;
+      margin: 0 auto;
+      font-size: 1.6em;
+      line-height: 1em;
+      height: 1em;
+      text-align: center;
+      span {
+        color: #d63018;
+      }
+    }
+  }
+}
+
+
+@media (min-width:320px) {
+  .rec-2Gagain .rec-congradulations {
+      left: 35%;
+
+  p {
+    font-size: .8em;
+    line-height: 2em;
+    height: 1.6em;
+    }
+  }
+}
+
+@media (min-width:375px) {
+  .rec-2Gagain .rec-congradulations {
+      left: 37%;
+
+  p {
+    font-size: .8em;
+    line-height: 2em;
+    height: 1.6em;
+    }
+  }
+}
+@media (min-width:411px) {
+  .rec-2Gagain .rec-congradulations {
+      left: 36%;
+
+  p {
+    font-size: 1em;
+    line-height: 2em;
+    height: 1.6em;
+    }
+  }
+}
+@media (min-width:768px) {
+  .rec-2Gagain .rec-congradulations {
+      left: 35%;
+
+  p {
+    font-size: 2em;
+    line-height: 2em;
+    height: 1.6em;
+    }
+  }
+}
+
+
+
 
 //抽奖次数用完
 //
