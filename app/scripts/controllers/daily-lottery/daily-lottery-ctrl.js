@@ -62,6 +62,7 @@ angular.module('p2pSiteMobApp')
             if(response.ret === -1){
               
               if (response.code == -1238){
+                $scope.showOff();
                 $scope.showMask = true;
                 $scope.showGameOver = true;
               }else if(response.code == -1239){
