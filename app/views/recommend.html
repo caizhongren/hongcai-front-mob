@@ -26,7 +26,7 @@
     <div class="position-re">
       <div class=" rec-disk-section"><img class="rec-disk" src="../images/activity/rec-circle-in.png" alt=""></div>
       <img class="rec-arrow-r rotate-bg fl position-ab"src="../images/activity/rec-arrow-r.png" alt="">
-      <img class="rec-disk-words luck-click position-ab" src="../images/activity/rec-circle-inwords.png" alt="">
+      <img class="rec-disk-words luck-click position-ab" src="../images/activity/rec-circle-inwords.png" alt="" ng-click="drawPrizeAndCheckin()" id="lijichoujiang">
     </div>
     <div class="rec-disk-bottom">
       <img src="../images/activity/rec-disk-bottom.png" alt="">
@@ -39,13 +39,13 @@
         <p>其他活动</p>
         <a href=""><img src="../images/activity/rec-invite.png" alt=""></a>
         <a href=""><img src="../images/activity/rec-return.png" alt=""></a>
-
       </div>
     </section>
 </div>
 
 <!-- //公用的弹框蒙层 -->
 <div class=" rec-showmoney share-page-breakWishLayer position-ab width-100 height-100 position-re" style="background-color:rgba(0,0,0,0.85);" >
+
       <!-- 公用的关闭按钮 -->
     <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="">
 <!-- 活动详情  弹出来需要去掉X号-->
@@ -129,69 +129,4 @@
 
 </div>
 
-
-<script>
-
-$(function (){
-  var timeOut = function (){
-    $('.rec-disk').rotate({
-      angle:0,
-      animateTo:2160,
-      duration:8000,
-      callback:function (){
-       alert('网络超时，请检查您的网络设置！');
-      }
-    });
-  };
-  // var bRotate = false;
-  var rotateFn = function (awards, angles,text){
-    // bRotate = !bRotate;
-    $('.rec-disk').stopRotate();
-    $('.rec-disk').rotate({
-      angle:0,
-      animateTo:angles+1800,
-      duration:8000,
-      callback:function(){
-        //抽中金币
-         if(awards == 0 || awards==3){
-            $(".rec-showmoney").removeClass("tab-content");
-         }else if(awards==2 || awards ==4){
-            $(".rec-showcash").removeClass("tab-content");
-         }else{
-            $(".rec-showmob").removeClass("tab-content");
-         }
-      }
-    })
-  };
-  $(".luck-click").rotate({
-       bind:
-         {
-            click: function(){
-                // console.log(1);
-                var item = Math.floor(Math.random()*5);
-                console.log(item);
-                // if(bRotate) return;
-                switch (item) {
-                  case 0:
-                    rotateFn(0, 335, '0');//金币
-                    break;
-                  case 1:
-                    rotateFn(1, 290, '1');//手机流量
-                    break;
-                  case 2:
-                    rotateFn(2, 245, '2');//现金
-                    break;
-                  case 3:
-                    rotateFn(3,155 , '3');//金币
-                    break;
-                  case 4:
-                    rotateFn(4,70 , '4'); //现金
-               }
-            }
-         }
-
-    });
-})
-
-</script>
 
