@@ -405,14 +405,14 @@
 .rec-showmoney {
   .rec-mbox {
     display: block;
-    width: 58%;
+    width: 63%;
     margin: 49% auto;
   }
    @media (min-width: 320px)  {
-    .rec-mbox{margin: 59% auto;}
+    .rec-mbox{margin: 72% auto;}
      }
    @media (min-width: 375px)  {
-    .rec-mbox{margin: 55% auto;}
+    .rec-mbox{margin: 60% auto;}
      }
   @media (min-width: 414px)  {
     .rec-mbox{margin: 52% auto;}
@@ -430,10 +430,13 @@
     top: 28%;
   }
    @media (min-width: 320px)  {
-    .rec-xclose{top: 27%; right: 24%; width: 7%;}
+    .rec-xclose{top: 25%; right: 24%;}
      }
+     @media (max-width: 360px)  {
+    .rec-xclose{right: 23%; top: 32%;}
+    }
     @media (max-width: 375px)  {
-    .rec-xclose{right: 23%; top: 27%;}
+    .rec-xclose{right: 23%; top: 29%;}
     }
      @media (min-width: 414px)  {
     .rec-xclose{right: 23%;top: 25%;}
@@ -452,15 +455,207 @@
       img{
         width: 73%;
       }
-
-    a:nth-child(1){
-        top: 27rem;
-       left: 17rem;
+      p {
+        color: #cd4431;
+        font-size: 1em;
+        font-weight: bold;
+        top: 11%;
+        left: 8%;
       }
-    a:nth-child(2){
-        right: 12rem;
-        top: 27rem;
-     }
+
+    }
+  }
+}
+@media (min-width:320px) {
+  .rec-showmoney .rec-showmoney-btn a:nth-child(1){
+    width: 7em;
+    top: 72%;
+    left: 25%;
+  }
+  .rec-showmoney .rec-showmoney-btn a:nth-child(2){
+    width: 7em;
+    top: 72%;
+    right: 15%;
+  }
+  .rec-showmoney .rec-showmoney-btn a p {
+    font-size: 1em;
+    top:16%;
+    left:8%;
+  }
+}
+@media (min-width:360px) {
+  .rec-showmoney .rec-showmoney-btn a:nth-child(1){
+    width: 8em;
+    top: 72%;
+    left: 24%;
+  }
+  .rec-showmoney .rec-showmoney-btn a:nth-child(2){
+    width: 8em;
+    top: 72%;
+    right: 15%;
+  }
+  .rec-showmoney .rec-showmoney-btn a p {
+    font-size: 1em;
+  }
+}
+@media (min-width:411px) {
+  .rec-showmoney .rec-showmoney-btn a:nth-child(1){
+    width: 9em;
+  }
+  .rec-showmoney .rec-showmoney-btn a:nth-child(2){
+    width: 9em;
+  }
+  .rec-showmoney .rec-showmoney-btn a p {
+    font-size: 1.2em;
+  }
+}
+
+@media (min-width:768px) {
+  .rec-showmoney .rec-showmoney-btn a:nth-child(1){
+    width: 18em;
+    top: 72%;
+    left: 23%;
+  }
+  .rec-showmoney .rec-showmoney-btn a:nth-child(2){
+    width: 18em;
+    top: 72%;
+    right: 13%;
+  }
+  .rec-showmoney .rec-showmoney-btn a p {
+    font-size: 2.5em;
+  }
+}
+
+.rec-showmoney{
+  .rec-congradulations {
+    left: 30%;
+    top:13%;
+    p {
+      color: #333333;
+      margin: 0 auto;
+      font-size: 1.6em;
+      line-height: 1em;
+      height: 1em;
+      text-align: center;
+      span {
+        color: #d63018;
+      }
+    }
+  }
+}
+
+
+@media (min-width:320px) {
+  .rec-showmoney .rec-congradulations {
+      left: 27%;
+
+  p {
+    font-size: .8em;
+    line-height: 2em;
+    height: 1.6em;
+    }
+  }
+}
+
+@media (min-width:375px) {
+  .rec-showmoney .rec-congradulations {
+      left: 29%;
+
+  p {
+    font-size: .8em;
+    line-height: 2em;
+    height: 1.6em;
+    }
+  }
+}
+@media (min-width:411px) {
+  .rec-showmoney .rec-congradulations {
+      left: 28%;
+
+  p {
+    font-size: 1em;
+    line-height: 2em;
+    height: 1.6em;
+    }
+  }
+}
+@media (min-width:768px) {
+  .rec-showmoney .rec-congradulations {
+      left: 26%;
+
+  p {
+    font-size: 2em;
+    line-height: 2em;
+    height: 1.6em;
+    }
+  }
+}
+
+//抽奖次数用完
+//
+.rec-gameover {
+  img {
+    width: 34%;
+    display: block;
+    margin: 50% 33%;
+    margin-bottom: 0;
+  }
+  .rec-gameover-div {
+    width: 80%;
+    height: 8em;
+    margin: 2em 10%;
+    background: url("../images/activity/rec-gameover-btm.png") no-repeat;
+    background-size: 100%;
+    p {
+    font-size: 2em;
+    line-height: 2em;
+    height: 2em;
+    margin: 0 auto;
+    text-align: center;
+    }
+  }
+
+}
+//点击分享弹框
+
+.rec-sharewords {
+  img {
+    display: block;
+    width: 70%;
+    margin: 15% auto;
+
+  }
+
+}
+
+//活动详情
+.rec-act-rule{
+  margin-top: 7em;
+  .rec-act-rule-top {
+    height: 3em;
+    background-color: #cd4331;
+    border-radius: .5em .5em 0 0;
+    p {
+      height: 3em;
+      line-height: 3em;
+      color: #fff;
+      font-size: 1em;
+    }
+  }
+  .rec-act-rule-btm {
+    border-radius: 0 0 .5em .5em;
+    .rec-rule-btn {
+      width: 43%;
+      height: 3rem;
+      display: block;
+      background-color: #ce4531;
+      border-radius: .5em;
+      line-height: 3rem;
+      text-align: center;
+      margin: 2rem 29% 1em 29%;
+      color: #fff;
+      font-size: 1em;
+      // font-weight: 400;
     }
   }
 }
