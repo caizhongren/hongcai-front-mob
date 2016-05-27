@@ -2,13 +2,10 @@
 
 angular.module('p2pSiteMobApp')
   .controller('DailyLotteryCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, $location, Restangular, config, DialogService) {
-    $rootScope.showFooter = false;
     $scope.act = $stateParams.act;
     $scope.channelCode = $stateParams.f;
 
     $scope.test = config.test;
-    $scope.coverLayerFlag = false;
-    $scope.activityDetailFlag = false;
     $rootScope.checkSession.promise.then(function() {
       if (!$rootScope.isLogged) {
         $location.path('/login');
@@ -27,6 +24,31 @@ angular.module('p2pSiteMobApp')
         act: $scope.act,
         channelCode: $scope.channelCode
       });
+    }
+
+    $scope.showMask = false;
+    $scope.showMoneyEx = false;
+    $scope.showMoney = false;
+    $scope.showCashEx = false;
+    $scope.showCash = false;
+    $scope.show2Gagain = false;
+    $scope.showGameOver = false;
+    $scope.showDataTraffic = false;
+    $scope.showDataTrafficSuccess = false;
+    $scope.showShareWords = false;
+    $scope.showShareSuccess = false;
+    $scope.showOff = function(){
+      $scope.showMask = false;
+      $scope.showMoneyEx = false;
+      $scope.showMoney = false;
+      $scope.showCashEx = false;
+      $scope.showCash = false;
+      $scope.show2Gagain = false;
+      $scope.showGameOver = false;
+      $scope.showDataTraffic = false;
+      $scope.showDataTrafficSuccess = false;
+      $scope.showShareWords = false;
+      $scope.showShareSuccess = false;
     }
 
     $scope.userLotteryRecord = null;
@@ -51,7 +73,7 @@ angular.module('p2pSiteMobApp')
             }else{
               $scope.userLotteryRecord = response;
               $scope.prizeType = response.prize.type;
-              $(".luck-click").click($scope.prizeType);
+              $scope.RunRotate($scope.prizeType);
             }
           });
         }else{
@@ -86,22 +108,24 @@ angular.module('p2pSiteMobApp')
       $scope.rotateFn(prizeType, angles, text);
     }
 
-   $scope.rotateFn = function (awards, angles, text){
-    // bRotate = !bRotate;
+   $scope.rotateFn = function (prizeType, angles, text){
     $('.rec-disk').stopRotate();
+
     $('.rec-disk').rotate({
-      angle:0,
-      animateTo:angles+1800,
-      duration:8000,
+      angle: 0,
+      animateTo: angles + 1800,
+      duration: 8000,
       callback:function(){
         //抽中金币
-         if(awards == 0 || awards==3){
-            $(".rec-showmoney").removeClass("tab-content");
-         }else if(awards==2 || awards ==4){
-            $(".rec-showcash").removeClass("tab-content");
-         }else{
-            $(".rec-showmob").removeClass("tab-content");
+          $scope.showMask = true; 
+         if(prizeType === 1){
+            $scope.showMoneyEx = true;
+         }else if(prizeType === 2){
+            $scope.showCashEx = true;
+         }else if(prizeType === 3){
+            $scope.showDataTraffic = true;
          }
+         $scope.$apply();
       }
     })
   };
