@@ -20,7 +20,7 @@ angular.module('p2pSiteMobApp')
 
     if ($scope.channelCode){
       Restangular.one('users').post('channel', {
-        openId: $rootScope.openid, 
+        openId: $rootScope.openid,
         act: $scope.act,
         channelCode: $scope.channelCode
       });
@@ -203,8 +203,8 @@ angular.module('p2pSiteMobApp')
 
     /**
      * 调用微信接口，申请此页的分享接口调用
-     * @param  
-     * @return 
+     * @param
+     * @return
      */
     $scope.configJsApi = function(){
       var url = location.href.split('#')[0];
@@ -219,7 +219,7 @@ angular.module('p2pSiteMobApp')
             timestamp: apiConfig.timestamp, // 必填，生成签名的时间戳
             nonceStr: apiConfig.nonceStr, // 必填，生成签名的随机串
             signature: apiConfig.signature,// 必填，签名，见附录1
-            jsApiList: 
+            jsApiList:
                 [
                 'onMenuShareAppMessage',
                 'hideMenuItems'
@@ -249,7 +249,7 @@ angular.module('p2pSiteMobApp')
           $scope.$apply();
 
           Restangular.one('users').post('shareActivity', {
-            openId: $rootScope.openid, 
+            openId: $rootScope.openid,
             act: $scope.act,
             channelCode: $scope.channelCode
           }).then(function(response){
