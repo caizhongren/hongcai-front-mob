@@ -11,17 +11,14 @@
   <section class="clearfix overflow-hid">
     <div class="rec-sign position-re clearfix">
       <span class="fl ">签到周期</span>
-      <span class="fr ">5.24~5.30</span>
+      <span class="fr ">{{formatDate(thisWeekCheckinRecords.monday)}}~{{formatDate(thisWeekCheckinRecords.sunday)}}</span>
     </div>
-    <ul class="rec-sign-list " >
-      <li class="fl li-signed"><p class="rec-p" id="rec-color">5.24</p><img src="../images/activity/rec-signed.png" alt=""></li>
-      <li class="fl li-signed"><p class="rec-p">5.24</p><img src="../images/activity/rec-signed.png" alt=""></li>
-      <li class="fl li-signed"><p class="rec-p">5.24</p><img src="../images/activity/rec-signed.png" alt=""></li>
-      <li class="fl li-sign"><p class="rec-p">5.24</p><img src="../images/activity/rec-sign.png" alt=""></li>
-      <li class="fl li-sign"><p class="rec-p">5.24</p><img src="../images/activity/rec-sign.png" alt=""></li>
-      <li class="fl li-sign"><p class="rec-p">5.24</p><img src="../images/activity/rec-sign.png" alt=""></li>
-      <li class="fl li-sign "><p class="rec-p rec-box">5.24</p><img src="../images/activity/rec-box.png" alt=""></li>
-
+    <ul class="rec-sign-list " ng-repeat="checkinRecord in thisWeekCheckinRecords.checkinRecords"> 
+      <li ng-if="checkinRecord.seq < 7" class="fl {{checkinRecord.checkin ? 'li-signed' : 'li-sign'}}"><p class="rec-p" id="rec-color">{{formatDate(checkinRecord.createTime)}}</p><img ng-show="checkinRecord.checkin" src="../images/activity/rec-signed.png" alt=""><img ng-show="!checkinRecord.checkin" src="../images/activity/rec-sign.png" alt=""></li>
+      <li ng-if="checkinRecord.seq === 7" class="fl {{checkinRecord.checkin ? 'li-signed' : 'li-sign'}}">
+        <p class="rec-p rec-box">{{formatDate(checkinRecord.createTime)}}</p>
+        <img ng-show="thisWeekCheckinRecords.checkinDays < 4" src="../images/activity/rec-box.png" alt="">
+        <img ng-show="thisWeekCheckinRecords.checkinDays >= 4" src="../images/activity/rec-boxed.png" alt=""></li>
     </ul>
   </section>
   <!-- 抽奖转盘 -->
