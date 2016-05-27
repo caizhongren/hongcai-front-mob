@@ -20,7 +20,7 @@ angular.module('p2pSiteMobApp')
 
     if ($scope.channelCode){
       Restangular.one('users').post('channel', {
-        openId: $rootScope.openid, 
+        openId: $rootScope.openid,
         act: $scope.act,
         channelCode: $scope.channelCode
       });
@@ -64,11 +64,11 @@ angular.module('p2pSiteMobApp')
               if (response.code == -1238){
 
               }else if(response.code == -1239){
-              
+
               }else if(response.code == -1240){
-              
+
               }else if(response.code == -1241){
-              
+
               }
             }else{
               $scope.userLotteryRecord = response;
@@ -92,7 +92,7 @@ angular.module('p2pSiteMobApp')
           var angle = [155, 335];
           angles = angle[Math.floor(Math.random()*angle.length)];
           text = "金币";
-          
+
           break;
         case 2:
           var angle = [70, 245];
@@ -117,7 +117,7 @@ angular.module('p2pSiteMobApp')
       duration: 8000,
       callback:function(){
         //抽中金币
-          $scope.showMask = true; 
+          $scope.showMask = true;
          if(prizeType === 1){
             $scope.showMoneyEx = true;
          }else if(prizeType === 2){
@@ -132,8 +132,8 @@ angular.module('p2pSiteMobApp')
 
     /**
      * 调用微信接口，申请此页的分享接口调用
-     * @param  
-     * @return 
+     * @param
+     * @return
      */
     $scope.configJsApi = function(){
       var url = location.href.split('#')[0];
@@ -148,7 +148,7 @@ angular.module('p2pSiteMobApp')
             timestamp: apiConfig.timestamp, // 必填，生成签名的时间戳
             nonceStr: apiConfig.nonceStr, // 必填，生成签名的随机串
             signature: apiConfig.signature,// 必填，签名，见附录1
-            jsApiList: 
+            jsApiList:
                 [
                 'onMenuShareAppMessage',
                 'hideMenuItems'
@@ -178,7 +178,7 @@ angular.module('p2pSiteMobApp')
           $scope.$apply();
 
           Restangular.one('users').post('shareActivity', {
-            openId: $rootScope.openid, 
+            openId: $rootScope.openid,
             act: $scope.act,
             channelCode: $scope.channelCode
           });
