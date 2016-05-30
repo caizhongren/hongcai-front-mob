@@ -127,14 +127,14 @@
     border-left: 0;
       .rec-p{
        // color: #ff7761;
-       font-size: 1.2em;
+       font-size: 1.1em;
       }
     }
   }
 .rec-sign-list {
-  li:nth-child(1) {
-    border-left: 1px solid #fff390;
-  }
+  // li:nth-child(1) {
+  //   border-left: 1px solid #fff390;
+  // }
 }
 .rec-sign-list {
     li .rec-p {
@@ -267,14 +267,14 @@
 }
 .rec-disk-words {
   display: block;
-  width:13.4%;
+  width:15.5%;
   // left: 19.8em;
   // top:12.7em;
   left: 0;
   right: 0;
   top: 0;
   bottom:0;
-  margin:27% auto;
+  margin:26% auto;
 }
 // @media (min-width:320px) {
 //   .rec-disk-words {margin:27% auto;}
@@ -924,6 +924,7 @@
   }
   .rec-showmoney .rec-showmoney-btn a p {
     font-size: 1em;
+    left: 10%;
   }
 }
 @media (min-width:411px) {
@@ -1048,12 +1049,12 @@
     top: 28%;
   }
    @media (min-width: 320px)  {
-    .rec-xclose{top: 25%; right: 24%;}
+    .rec-xclose{top: 35%; right: 24%;}
      }
-     @media (max-width: 360px)  {
-    .rec-xclose{right: 23%; top: 32%;}
+     @media (min-width: 360px)  {
+    .rec-xclose{right: 23%; top: 35%;}
     }
-    @media (max-width: 375px)  {
+    @media (min-width: 375px)  {
     .rec-xclose{right: 23%; top: 29%;}
     }
      @media (min-width: 414px)  {
@@ -1241,13 +1242,13 @@
     right: 23%;
     top: 28%;
   }
-   @media (min-width: 320px)  {
-    .rec-xclose{top: 25%; right: 24%;}
+     @media (min-width: 320px)  {
+    .rec-xclose{top: 35%; right: 24%;}
      }
-     @media (max-width: 360px)  {
-    .rec-xclose{right: 23%; top: 32%;}
+     @media (min-width: 360px)  {
+    .rec-xclose{right: 23%; top: 35%;}
     }
-    @media (max-width: 375px)  {
+    @media (min-width: 375px)  {
     .rec-xclose{right: 23%; top: 29%;}
     }
      @media (min-width: 414px)  {
@@ -1256,9 +1257,8 @@
     @media (min-width: 640px)  {
     .rec-xclose{right: 23%;top: 32%;}
     }
-
-
 }
+
 .rec-traffic {
   .rec-traffic-btn {
     bottom: 3rem;
@@ -1441,13 +1441,13 @@
     right: 23%;
     top: 28%;
   }
-   @media (min-width: 320px)  {
-    .rec-xclose{top: 25%; right: 24%;}
+  @media (min-width: 320px)  {
+    .rec-xclose{top: 35%; right: 24%;}
      }
-     @media (max-width: 360px)  {
-    .rec-xclose{right: 23%; top: 32%;}
+     @media (min-width: 360px)  {
+    .rec-xclose{right: 23%; top: 35%;}
     }
-    @media (max-width: 375px)  {
+    @media (min-width: 375px)  {
     .rec-xclose{right: 23%; top: 29%;}
     }
      @media (min-width: 414px)  {
@@ -1624,28 +1624,108 @@
 //抽奖次数用完
 //
 .rec-gameover {
-  img {
-    width: 34%;
-    display: block;
-    margin: 50% 33%;
-    margin-bottom: 0;
+  .rec-close {
+    width: 6%;
+    right: 23%;
+    top: 23%;
   }
+   @media (min-width: 320px)  {
+    .rec-close{top: 29%; right: 19%;}
+     }
+     @media (max-width: 360px)  {
+    .rec-close{right: 23%; top: 32%;}
+    }
+    @media (max-width: 375px)  {
+    .rec-close{right: 15%; top: 28%;}
+    }
+     @media (min-width: 414px)  {
+    .rec-close{right: 20%;top: 27%;}
+    }
+    @media (min-width: 640px)  {
+    .rec-close{right: 23%;top: 35%;}
+    }
+
   .rec-gameover-div {
     width: 80%;
     height: 8em;
-    margin: 2em 10%;
+    margin: 12% 10%;
     background: url("../images/activity/rec-gameover-btm.png") no-repeat;
     background-size: 100%;
-    p {
-    font-size: 2em;
-    line-height: 2em;
-    height: 2em;
-    margin: 0 auto;
-    text-align: center;
+    @media (min-width:768px) {
+      width: 74%;
+      height: 9em;
+      margin:12% 13%;
     }
+    input {
+      width: 100%;
+      color: #cd4331;
+      font-size: 2em;
+      line-height: 2em;
+      height: 2em;
+      margin: 0 auto;
+      text-align: center;
+    }
+    @media (min-width:320px) {
+      input{
+        height: 48%;
+        line-height: 48%;
+        font-size: 1.3em;
+        padding-left: 4%;
+         }
+      }
+    @media (min-width:360px) {
+      input{
+        height: 54%;
+        line-height: 54%;
+        font-size: 1.4em;
+        padding-left: 7%;
+         }
+      }
+     @media (min-width:375px) {
+      input{
+        height: 57%;
+        line-height: 57%;
+        font-size: 1.5em;
+        padding-left: 5%;
+         }
+      }
+    @media (min-width:411px) {
+      input{
+        height: 63%;
+        line-height: 63%;
+        font-size: 1.6em;
+        padding-left: 7%;
+         }
+      }
+    @media (min-width:435px) {
+      input{
+        height: 65%;
+        line-height: 65%;
+        font-size: 1.7em;
+        padding-left: 7%;
+         }
+      }
+    @media (min-width:768px) {
+      input{
+        height: 95%;
+        line-height: 95%;
+        font-size: 2.8em;
+        padding-left: 6%;
+         }
+      }
   }
-
 }
+.rec-gameover {
+  .rec-guy {
+    width: 34%;
+    display: block;
+    margin: 58% 33%;
+    margin-bottom: 0;
+  }
+}
+
+
+
 //点击分享弹框
 
 .rec-sharewords {
@@ -1660,7 +1740,7 @@
 
 //活动详情
 .rec-act-rule{
-  margin-top: 7em;
+  margin-top: 57%;
   .rec-act-rule-top {
     height: 3em;
     background-color: #cd4331;

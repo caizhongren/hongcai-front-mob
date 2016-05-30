@@ -43,7 +43,7 @@
     </section>
 </div>
 <!-- 公用的弹框蒙层 -->
-<div class=" rec-showmoney share-page-breakWishLayer position-ab width-100 height-100 position-re bg-grey6" ng-show="showMask">
+<div class=" rec-showmoney share-page-breakWishLayer position-ab width-100 height-100 position-re bg-grey6" ng-show="showMoney">
 <!-- 活动详情  弹出来需要去掉X号-->
     <section class="rec-act-rule margin-t-1p5" ng-show="showRule">
       <div class="rec-act-rule-top margin-l-1 margin-r-1">
@@ -51,12 +51,12 @@
       </div>
       <div class=" rec-act-rule-btm bg-yellow5 margin-l-1 margin-r-1 ft-1p2 padding-1">
           <div class="margin-t-1 ft-1 ft-black4 padding-r-1 padding-l-1">
-            <p class="margin-t-1 margin-b-0">1、所有注册用户皆可参与。</p>
-            <p class="margin-t-1 margin-b-0">2、每周有四天参与抽奖，周日即可抽取大奖。</p>
-            <p class="margin-t-1 margin-b-0">3、每日分享链接增加一次抽奖机会，分享后第一次抽中奖品将失效。</p>
-            <p class="margin-t-1 margin-b-0">4、金币生效后，直接投资，收益即刻到账，所得现金和收益均可提现。</p>
-            <p class="margin-t-1 margin-b-0">5、本活动最终解释权归宏财网所有。</p>
-            <p class="margin-l-1 margin-b-0">服务热线：010-59436409。</p>
+            <p class="margin-t-0 margin-b-0">1、所有注册用户皆可参与。</p>
+            <p class="margin-t-0 margin-b-0">2、每周有四天参与抽奖，周日即可抽取大奖。</p>
+            <p class="margin-t-0 margin-b-0">3、每日分享链接增加一次抽奖机会，分享后第一次抽中奖品将<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;失效。</p>
+            <p class="margin-t-0 margin-b-0">4、金币生效后，直接投资，收益即刻到账，所得现金和收益均<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可提现。</p>
+            <p class="margin-t-0 margin-b-0">5、本活动最终解释权归宏财网所有。</p>
+            <p class="margin-l-0 margin-b-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客服热线：400-900-7626。</p>
             <input class="rec-rule-btn button" type="button" value="关闭页面" ng-click="showOff()">
           </div>
       </div>
@@ -115,7 +115,7 @@
       </div>
     </section>
 <!-- 弹出现金-兑奖 -->
-    <section class="rec-showcash" ng-show="showCash">
+    <section class="rec-showcash" ng-show="showMoneyEx">
         <div class="rec-showcash-ex" >
         <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="" ng-click="showOff()">
           <div class="position-re">
@@ -129,7 +129,7 @@
           <img class="rec-cash position-ab" src="../images/activity/rec-cash.png" alt="">
             <div class="rec-showmoney-btn">
           <a class="fl position-ab" ui-sref="root.userCenter.deals"><p class="position-ab">我的奖品</p><img src="../images/activity/rec-satisfy.png" alt=""></a>
-          <a class="fl position-ab" ng-click='showShareWords()'><p class="position-ab">分享朋友</p><img src="../images/activity/rec-unsatisfy.png" alt=""></a>
+          <a class="fl position-ab" ng-click='showShareWords()'><p class="position-ab">分享朋友</p><img src="../images/activity/rec-unsatisfy%20.png" alt=""></a>
             </div>
           </div>
         </div>
@@ -182,9 +182,9 @@
     </section>
 <!-- 活动弹出次数用完 -->
     <section class="rec-gameover" ng-show="showGameOver">
-      <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="" ng-click="showOff()">
-      <img src="../images/activity/rec-gameover.png" alt="">
-      <div class="rec-gameover-div"><p>抽过奖了，请明天再来吧</p></div>
+      <img class="rec-close position-ab" src="../images/activity/rec-xclose.png" alt="" ng-click="showOff()">
+      <img class="rec-guy" src="../images/activity/rec-gameover.png" alt="">
+      <div class="rec-gameover-div"><input type="button" value="抽过奖了，请明天再来吧"></div>
     </section>
  <!--  点击分享给好友 -->
     <section class="" ng-show="showShareWords">
