@@ -7,14 +7,14 @@ angular.module('p2pSiteMobApp')
 
     $scope.test = config.test;
     $rootScope.checkSession.promise.then(function() {
-      if (!$rootScope.isLogged) {
-        $location.path('/login');
-        return;
-      }
+      // if (!$rootScope.isLogged) {
+      //   $location.path('/login');
+      //   return;
+      // }
 
       Restangular.one('dailyPrizes').get().then(function(response){
         $scope.thisWeekCheckinRecords = response;
-        console.log(response);
+        // console.log(response);
       });
     });
 
@@ -35,7 +35,7 @@ angular.module('p2pSiteMobApp')
     $scope.showGameOver = false;
     $scope.showDataTraffic = false;
     $scope.showDataTrafficSuccess = false;
-    $scope.showShareWords = false;
+    $scope.showShareWordsFlag = false;
     $scope.showShareSuccess = false;
     $scope.showOff = function(){
       $scope.showMask = false;
@@ -47,12 +47,17 @@ angular.module('p2pSiteMobApp')
       $scope.showGameOver = false;
       $scope.showDataTraffic = false;
       $scope.showDataTrafficSuccess = false;
-      $scope.showShareWords = false;
+      $scope.showShareWordsFlag = false;
       $scope.showShareSuccess = false;
     }
 
     $scope.userLotteryRecord = null;
     $scope.drawPrizeAndCheckin = function(){
+      if(!$rootScope.isLogged){
+        $state.go('root.login', {redirectUrl: encodeURIComponent($location.url())});
+        return;
+      }
+
       Restangular.one('dailyPrizes').one('userUnTakeLotteryRecord').get().then(function(response){
         $scope.userLotteryRecord = response;
         if($scope.userLotteryRecord == null){

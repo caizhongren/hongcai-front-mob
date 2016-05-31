@@ -4,8 +4,10 @@
 <!-- 天天送大奖 -->
   <section class="rcm-activity">
     <img src="../images/activity/bg-words.png" alt="">
-    <p class="rcm-act" ng-click="showMask=true;showRule=true;">活动详情</p>
+    <span ng-click="showMask=true;showRule=true;">
+    <p class="rcm-act" >活动详情</p>
     <img class="rec-icon" src="../images/activity/rec-arrow.png" alt="">
+    </span>
   </section>
   <!-- 签到周期 -->
   <section class="clearfix overflow-hid">
@@ -43,7 +45,7 @@
     </section>
 </div>
 <!-- 公用的弹框蒙层 -->
-<div class=" rec-showmoney share-page-breakWishLayer position-ab width-100 height-100 position-re bg-grey6" ng-show="showMoney">
+<div class=" rec-showmoney share-page-breakWishLayer position-ab width-100 height-100 position-re bg-grey6" ng-show="showMask">
 <!-- 活动详情  弹出来需要去掉X号-->
     <section class="rec-act-rule margin-t-1p5" ng-show="showRule">
       <div class="rec-act-rule-top margin-l-1 margin-r-1">
@@ -187,7 +189,7 @@
       <div class="rec-gameover-div"><input type="button" value="抽过奖了，请明天再来吧"></div>
     </section>
  <!--  点击分享给好友 -->
-    <section class="" ng-show="showShareWords">
+    <section class="" ng-show="showShareWordsFlag">
       <div class="rec-sharewords"><img src="../images/activity/rec-sharewords.png" alt=""></div>
     </section>
 <!-- 分享成功页面 -->
