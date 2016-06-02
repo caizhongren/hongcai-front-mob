@@ -7,16 +7,14 @@ angular.module('p2pSiteMobApp')
 
     $scope.test = config.test;
     $rootScope.checkSession.promise.then(function() {
-      // if (!$rootScope.isLogged) {
-      //   $location.path('/login');
-      //   return;
-      // }
+      $scope.getUserCheckinRecords();
+    });
 
+    $scope.getUserCheckinRecords = function(){
       Restangular.one('dailyPrizes').get().then(function(response){
         $scope.thisWeekCheckinRecords = response;
-        // console.log(response);
       });
-    });
+    }
 
     if ($scope.channelCode){
       Restangular.one('users').post('channel', {
@@ -81,6 +79,7 @@ angular.module('p2pSiteMobApp')
               $scope.userLotteryRecord = response;
               $scope.prizeType = response.prize.type;
               $scope.RunRotate($scope.prizeType);
+              $scope.getUserCheckinRecords();
             }
           });
         }else{
