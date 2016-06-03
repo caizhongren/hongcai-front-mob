@@ -78,14 +78,14 @@ angular.module('p2pSiteMobApp')
             }else{
               $scope.userLotteryRecord = response;
               $scope.prizeType = response.prize.type;
-              $scope.RunRotate($scope.prizeType);
+              // $scope.RunRotate($scope.prizeType);
               $scope.testLiulianginn($scope.prizeType);
               $scope.getUserCheckinRecords();
             }
           });
         }else{
           $scope.prizeType = response.prize.type;
-          $scope.RunRotate($scope.prizeType);
+          // $scope.RunRotate($scope.prizeType);
           $scope.testLiulianginn($scope.prizeType);
         }
       });
