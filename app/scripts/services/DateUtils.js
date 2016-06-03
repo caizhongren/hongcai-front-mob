@@ -43,6 +43,7 @@ angular.module('p2pSiteMobApp')
 
         return (Math.abs(Math.floor((time2 - time1)/ (24 * 60 * 60 * 1000))) + 1) * (time2 > time1 ? 1 : -1);
     }
+    
 
 
   };
