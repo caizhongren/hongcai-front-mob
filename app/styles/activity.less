@@ -578,11 +578,60 @@ input::-webkit-inner-spin-button {
 .activity-landing{
   background-color: #f2351c;
   margin-bottom: 0;
+  padding-bottom: 1%;
+  .rmb369 {
+    p{
+      text-align: center;
+      left: 40%;
+      bottom: 10%;
+      font-size: 3.6rem;
+      font-weight: bold;
+      color: #ffffff;
+      @media (min-width:320px) {
+        font-size: 1.5rem;
+        left: 39%;
+        bottom: 8%;
+      }
+      @media (min-width:375px) {
+        font-size: 1.8rem;
+        bottom: 8%;
+      }
+      @media (min-width:414px) {
+        font-size: 1.8rem;
+        bottom: 11%;
+      }
+      @media (min-width:551px) {
+        font-size: 3.6rem;
+        bottom: 11%;
+      }
+      span {
+          font-size: 2.8rem;
+          color: #f3d66e;
+          display: block;
+          width: 100%;
+        @media (min-width:320px) {
+          font-size: 1.2rem;
+        }
+        @media (min-width:375px) {
+          font-size: 1.5rem;
+        }
+        @media (min-width:414px) {
+          font-size: 1.4rem;
+          margin-bottom: 0rem;
+        }
+        @media (min-width:551px) {
+          font-size: 2.8rem;
+          margin-bottom: -1rem;
+
+        }
+      }
+    }
+  }
   .activity-gift{
     margin:0 1rem;
     background-color: #fff;
     padding:1rem;
-    overflow: auto;
+    overflow: hidden;
     .gift-text{
       position: absolute;
       left:0;
@@ -603,24 +652,29 @@ input::-webkit-inner-spin-button {
     @media (min-width: 414px) {
       .gift-text{font-size: 1.8rem;top:0;}
     }
+    @media (min-width: 551px) {
+      .gift-text{font-size: 2.6rem;top:-0.6rem;}
+    }
     .gift-table{
       .gift-title{
         font-size: 1.6rem;
         clear: both;
         white-space: nowrap;
         margin-top: 1rem;
+        padding-left: 1.5rem;
         overflow: auto;
         span:nth-child(1),span:nth-child(2){
           display: inline-block;
-          width: 29%;
+          width: 20%;
           float: left;
-          text-align: left;
+          margin-right: 17%;
+          text-align: center;
         }
         span:nth-child(3){
           display: inline-block;
           width: 23%;
           float: left;
-          text-align: left;
+          text-align: center;
         }
         span:nth-child(4){
           display: inline-block;
@@ -634,30 +688,31 @@ input::-webkit-inner-spin-button {
         color: #000000;
         white-space: nowrap;
         background-color: #f7f7f7;
-        padding-left:0.5rem;
-        padding-right: 0.5rem;
+        padding-left:1.5rem;
+        padding-right: 1.5rem;
         width: 100%;
         overflow: auto;
         span:nth-child(1){
           display: inline-block;
-          width: 29%;
+          width: 15%;
           float: left;
-          text-align: left;
+          text-align: center;
           color: #cd000d;
           font-weight: bold;
           font-size: 1.8rem;
+          margin-right: 17%;
         }
         span:nth-child(2){
           display: inline-block;
-          width: 29%;
+          width: 36%;
           float: left;
-          text-align: left;
+          text-align: center;
         }
         span:nth-child(3){
           display: inline-block;
-          width: 23%;
-          float: left;
-          text-align: left;
+          width: 19%;
+          float: right;
+          text-align: center;
         }
         span:nth-child(4){
           display: inline-block;
@@ -685,7 +740,7 @@ input::-webkit-inner-spin-button {
     background-color: #f2351c;
     overflow: auto;
     .step-btn{
-      width: 50%;
+      width: 100%;
       float: left;
       position: relative;
       margin-top: 2rem;
@@ -753,7 +808,7 @@ input::-webkit-inner-spin-button {
     color: #ffffff;
     font-size:1.4rem;
     margin-top: 1rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
     overflow:auto;
     p{
       margin-bottom: 0;
@@ -770,6 +825,38 @@ input::-webkit-inner-spin-button {
         float: right;
         width: 95%;
         display: inline-block;
+      }
+    }
+  }
+  .landing-bottom{
+    ul{
+      margin-bottom: 0.5rem;
+      li{
+        padding-left: 1.2rem;
+        img {
+          width: 17%;
+          margin: 1.5rem 1rem 1.5rem 0;
+        }
+        span{
+          display: inline;
+          width: 77%;
+          font-size: 1.4rem;
+          color: #a3a2a2;
+          @media (max-width:360px) {
+            font-size: 1.3rem;
+          }
+        }
+        p{
+          display: inline;
+          margin-bottom: 0;
+          font-size: 1.6rem;
+          color: #333333;
+          margin: 1rem 0 0.3rem 0;
+          @media (max-width:360px) {
+            font-size: 1.4rem;
+          }
+        }
+
       }
     }
   }
