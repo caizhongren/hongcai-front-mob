@@ -45,7 +45,10 @@
     </section>
 </div>
 <!-- 公用的弹框蒙层 -->
-<div class=" rec-showmoney share-page-breakWishLayer position-ab width-100 height-100 position-re bg-grey6" ng-show="showMask">
+<div class=" rec-showmoney share-page-breakWishLayer position-ab width-100 height-100 position-re bg-grey6" ng-show="true">
+  <section>
+    <div style="background: url(/images/activity/rec-mbox.png) no-repeat;" width="200px" height="200px"></div>
+  </section>
   <!-- 活动详情  弹出来需要去掉X号-->
   <section class="rec-act-rule margin-t-1p5" ng-show="showRule">
     <div class="rec-act-rule-top margin-l-1 margin-r-1">
@@ -201,7 +204,7 @@
       </div>
     </div>
   </section>
-  
+
   <!-- 活动弹出次数用完 -->
   <section class="rec-gameover" ng-show="showGameOver">
     <img class="rec-close position-ab" src="../images/activity/rec-xclose.png" alt="" ng-click="showOff()">
