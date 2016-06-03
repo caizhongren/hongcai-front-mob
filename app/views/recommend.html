@@ -63,18 +63,32 @@
         </div>
     </div>
   </section>
-  <!-- 活动弹出金币 -->
-  <section class="rec-showmoney-ex" ng-show="showMoneyEx">
+  <!-- 首次抽中奖品 -->
+  <section class="rec-showmoney-ex" ng-show="showFirstDrawLottery">
     <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="" ng-click="showOff()">
     <div class="position-re">
-      <!-- 弹出金币-领奖前 -->
-      <div class="rec-excongradulations position-ab">
+      <!-- 抽中金币 -->
+      <div class="rec-excongradulations position-ab" ng-if="prizeType === 1">
         <p>超赞哟！</p>
         <p>抽中<span>{{userLotteryRecord.prize.amount | number : 2}}</span>元金币</p>
         <p>金币投资&nbsp;收益即刻到账</p>
       </div>
+      <!-- 抽中现金 -->
+      <div class="rec-excongradulations position-ab" ng-if="prizeType === 2">
+        <p>&nbsp;&nbsp;&nbsp;超赞哟！</p>
+        <p><span>{{userLotteryRecord.reward | number : 2}}</span>元现金</p>
+        <p>现金生效后即刻到账</p>
+      </div>
+      <!-- 抽中流量 -->
+      <div class="rec-congradulations position-ab" ng-if="prizeType === 3">
+        <p>超赞哟！</p>
+        <p>抽中<span>手机流量</span></p>
+        <p>即可送到</p>
+      </div>
       <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
-      <img class="rec-money position-ab" src="../images/activity/rec-money.png" alt="">
+      <img class="rec-money position-ab" src="../images/activity/rec-money.png" alt="" ng-if="prizeType === 1">
+      <img class="rec-money position-ab" src="../images/activity/rec-cash.png" alt="" ng-if="prizeType === 2">
+      <img class="rec-money position-ab" src="../images/activity/rec-wifi.png" alt="" ng-if="prizeType === 3">
       <div class="rec-showmoney-exbtn">
         <a class="fl position-ab" ng-click="takePrize()">
           <p class="position-ab">
@@ -91,18 +105,32 @@
       </div>
     </div>
   </section>
-  <!-- 活动弹出金币-领奖后-->
-  <section class="rec-showmoney" ng-show="showMoney">
+  <!-- 成功领取奖品 -->
+  <section class="rec-showmoney" ng-show="showTakePrize">
     <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="" ng-click="showOff()">
     <div class="position-re">
-      <div class="rec-congradulations position-ab">
+      <!-- 领取金币 -->
+      <div class="rec-congradulations position-ab" ng-if="prizeType === 1">
         <p><span>{{userLotteryRecord.prize.amount | number : 2}}元</span>金币换奖金已到账！</p>
         <p>快去查看&nbsp;可以提现</p>
         <p>明天再接再厉哦100%中奖</p>
       </div>
+      <!-- 领取现金 -->
+      <div class="rec-excongradulations position-ab" ng-if="prizeType === 2">
+        <p>&nbsp;&nbsp;&nbsp;超赞哟！</p>
+        <p><span>{{userLotteryRecord.reward | number : 2}}</span>元现金</p>
+        <p>现金生效后即刻到账</p>
+      </div>
+      <!-- 领取流量 -->
+      <div class="rec-congradulations position-ab" ng-if="prizeType === 3">
+        <p><span>流量</span>已充&nbsp;快去使用！</p>
+        <p>明日再接再厉哦 100%中奖！</p>
+      </div>
       <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
-      <img class="rec-money position-ab" src="../images/activity/rec-money.png" alt="">
-      <div class="rec-showmoney-btn">
+      <img class="rec-money position-ab" src="../images/activity/rec-money.png" alt="" ng-if="prizeType === 1">
+      <img class="rec-money position-ab" src="../images/activity/rec-cash.png" alt="" ng-if="prizeType === 2">
+      <img class="rec-money position-ab" src="../images/activity/rec-wifi.png" alt="" ng-if="prizeType === 3">
+      <div class="rec-showmoney-btn" ng-if="prizeType !== 3">
         <a class="fl position-ab" ui-sref="root.userCenter.deals">
           <p class="position-ab">我的奖品</p>
           <img src="../images/activity/rec-satisfy.png" alt="">
@@ -112,69 +140,56 @@
           <img src="../images/activity/rec-unsatisfy.png" alt="">
         </a>
       </div>
+      <div class="rec-traffic-btn" ng-if="prizeType === 3">
+        <a class="fl position-ab" ng-click='showShareWords()'>
+          <p class="position-ab">分享朋友</p>
+          <img src="../images/activity/rec-gameover-btm.png" alt="">
+        </a>
+      </div>
     </div>
   </section>
-  <!-- 活动弹出现金 -->
-  <section class="rec-showcash-ex" ng-show="showCashEx">
+
+  <!-- 分享成功后，再次抽中奖品 -->
+  <section class="rec-showmoney-ex" ng-show="showSharedDrawLottery">
     <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="" ng-click="showOff()">
     <div class="position-re">
-      <!-- 弹出金币-兑奖前 -->
-      <div class="rec-excongradulations position-ab">
+      <!-- 抽中金币 -->
+      <div class="rec-excongradulations position-ab" ng-if="prizeType === 1">
+        <p>超赞哟！</p>
+        <p>抽中<span>{{userLotteryRecord.prize.amount | number : 2}}</span>元金币</p>
+        <p>金币投资&nbsp;收益即刻到账</p>
+      </div>
+      <!-- 抽中现金 -->
+      <div class="rec-excongradulations position-ab" ng-if="prizeType === 2">
         <p>&nbsp;&nbsp;&nbsp;超赞哟！</p>
         <p><span>{{userLotteryRecord.reward | number : 2}}</span>元现金</p>
         <p>现金生效后即刻到账</p>
       </div>
+      <!-- 抽中流量 -->
+      <div class="rec-congradulations position-ab" ng-if="prizeType === 3">
+        <p>超赞哟！</p>
+        <p>抽中<span>手机流量</span></p>
+        <p>即可送到</p>
+      </div>
       <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
-      <img class="rec-cash position-ab" src="../images/activity/rec-cash.png" alt="">
-      <div class="rec-showcash-exbtn">
+      <img class="rec-money position-ab" src="../images/activity/rec-money.png" alt="" ng-if="prizeType === 1">
+      <img class="rec-money position-ab" src="../images/activity/rec-cash.png" alt="" ng-if="prizeType === 2">
+      <img class="rec-money position-ab" src="../images/activity/rec-wifi.png" alt="" ng-if="prizeType === 3">
+      <div class="rec-traffic-btn">
         <a class="fl position-ab" ng-click="takePrize()">
-          <p class="position-ab cash-p">
-            <span class="rec-span">人家很满意</span><br>奖品生效
-          </p>
-          <img src="../images/activity/rec-satisfy.png" alt="">
-        </a>
-        <a class="fl position-ab" ng-click='showShareWords()'>
-          <p class="position-ab ">
-            <span class="rec-span">人家不满意</span><br>再抽一次
-          </p>
-          <img src="../images/activity/rec-unsatisfy.png" alt="">
+          <p class="position-ab">人家很满意奖品生效</p>
+          <img src="../images/activity/rec-gameover-btm.png" alt="">
         </a>
       </div>
     </div>
   </section>
-  <!-- 弹出现金-兑奖 -->
-  <section class="rec-showcash" ng-show="showMoneyEx">
-      <div class="rec-showcash-ex" >
-      <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="" ng-click="showOff()">
-        <div class="position-re">
-      <!-- 弹出金币-兑奖前 -->
-          <div class="rec-excongradulations position-ab">
-            <p>&nbsp;&nbsp;&nbsp;超赞哟！</p>
-            <p><span>{{userLotteryRecord.reward | number : 2}}</span>元现金</p>
-            <p>现金生效后即刻到账</p>
-          </div>
-          <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
-          <img class="rec-cash position-ab" src="../images/activity/rec-cash.png" alt="">
-          <div class="rec-showmoney-btn">
-            <a class="fl position-ab" ui-sref="root.userCenter.deals">
-              <p class="position-ab">我的奖品</p>
-              <img src="../images/activity/rec-satisfy.png" alt="">
-            </a>
-            <a class="fl position-ab" ng-click='showShareWords()'>
-              <p class="position-ab">分享朋友</p>
-              <img src="../images/activity/rec-unsatisfy.png" alt="">
-            </a>
-          </div>
-        </div>
-      </div>
-  </section>
-  <!-- 活动弹出流量 2G提醒-->
+
   <section class="rec-2Gagain" ng-show="show2Gagain">
     <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="" ng-click="showOff()">
     <div class="position-re">
       <div class="rec-congradulations position-ab">
         <p>遗憾哟！</p>
-        <p>不支持<span>2G手机</span>用户</p>
+        <p><span>流量没了</span></p>
       </div>
       <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
       <img class="rec-money position-ab" src="../images/activity/rec-wifi.png" alt="">
@@ -186,43 +201,7 @@
       </div>
     </div>
   </section>
-  <!-- 弹出流量 -->
-  <section class="rec-traffic" ng-show="showDataTraffic">
-    <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="" ng-click="showOff()">
-    <div class="position-re">
-      <div class="rec-congradulations position-ab">
-        <p>超赞哟！</p>
-        <p>抽中<span>手机流量</span></p>
-        <p>即可送到</p>
-      </div>
-      <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
-      <img class="rec-money position-ab" src="../images/activity/rec-wifi.png" alt="">
-      <div class="rec-traffic-btn">
-        <a class="fl position-ab" ng-click="takePrize()">
-          <p class="position-ab">人家很满意奖品生效</p>
-          <img src="../images/activity/rec-gameover-btm.png" alt="">
-        </a>
-      </div>
-    </div>
-  </section>
-  <!-- 弹出流量已充值 -->
-  <section class="rec-recharge" ng-show="showDataTrafficSuccess">
-    <img class="rec-xclose position-ab" src="../images/activity/rec-xclose.png" alt="" ng-click="showOff()">
-    <div class="position-re">
-      <div class="rec-congradulations position-ab">
-        <p><span>流量</span>已充&nbsp;快去使用！</p>
-        <p>明日再接再厉哦 100%中奖！</p>
-      </div>
-      <img class="rec-mbox" src="../images/activity/rec-mbox.png" alt="">
-      <img class="rec-money position-ab" src="../images/activity/rec-wifi.png" alt="">
-      <div class="rec-recharge-btn">
-        <a class="fl position-ab" ng-click='showShareWords()'>
-          <p class="position-ab">分享朋友</p>
-          <img src="../images/activity/rec-gameover-btm.png" alt="">
-        </a>
-      </div>
-    </div>
-  </section>
+  
   <!-- 活动弹出次数用完 -->
   <section class="rec-gameover" ng-show="showGameOver">
     <img class="rec-close position-ab" src="../images/activity/rec-xclose.png" alt="" ng-click="showOff()">

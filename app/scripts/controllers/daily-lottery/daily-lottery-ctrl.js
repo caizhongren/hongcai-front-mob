@@ -25,26 +25,20 @@ angular.module('p2pSiteMobApp')
     }
 
     $scope.showMask = false;
-    $scope.showMoneyEx = false;
-    $scope.showMoney = false;
-    $scope.showCashEx = false;
-    $scope.showCash = false;
+    $scope.showFirstDrawLottery = false;
+    $scope.showSharedDrawLottery = false;
+    $scope.showTakePrize = false;
     $scope.show2Gagain = false;
     $scope.showGameOver = false;
-    $scope.showDataTraffic = false;
-    $scope.showDataTrafficSuccess = false;
     $scope.showShareWordsFlag = false;
     $scope.showShareSuccess = false;
     $scope.showOff = function(){
       $scope.showMask = false;
-      $scope.showMoneyEx = false;
-      $scope.showMoney = false;
-      $scope.showCashEx = false;
-      $scope.showCash = false;
+      $scope.showFirstDrawLottery = false;
+      $scope.showSharedDrawLottery = false;
+      $scope.showTakePrize = false;
       $scope.show2Gagain = false;
       $scope.showGameOver = false;
-      $scope.showDataTraffic = false;
-      $scope.showDataTrafficSuccess = false;
       $scope.showShareWordsFlag = false;
       $scope.showShareSuccess = false;
     }
@@ -78,15 +72,15 @@ angular.module('p2pSiteMobApp')
             }else{
               $scope.userLotteryRecord = response;
               $scope.prizeType = response.prize.type;
-              // $scope.RunRotate($scope.prizeType);
-              $scope.testLiulianginn($scope.prizeType);
+              $scope.giveUpFlag = response.giveUpFlag;
+              $scope.RunRotate($scope.prizeType, $scope.giveUpFlag);
               $scope.getUserCheckinRecords();
             }
           });
         }else{
           $scope.prizeType = response.prize.type;
-          // $scope.RunRotate($scope.prizeType);
-          $scope.testLiulianginn($scope.prizeType);
+          $scope.giveUpFlag = response.giveUpFlag;
+          $scope.RunRotate($scope.prizeType, $scope.giveUpFlag);
         }
       });
     }
@@ -145,38 +139,25 @@ angular.module('p2pSiteMobApp')
             }
           }else{
             $scope.userLotteryRecord = response;
+            $scope.prizeType = response.prize.type;
+            $scope.giveUpFlag = response.giveUpFlag;
+            $scope.sendTrafficFlag = response.sendTrafficFlag;
+
             $scope.showOff();
-            $scope.showTakedPrizeMask($scope.userLotteryRecord.prize.type, $scope.userLotteryRecord.takeStatus);
+            if(!$scope.sendTrafficFlag){
+              $scope.showMask = true;
+              $scope.show2Gagain = true;
+            }else{
+              $scope.showMask = true;
+              $scope.showTakePrize = true;
+            }
           }
         });
       }
     }
 
-    $scope.showTakedPrizeMask = function(prizeType, takeStatus){
-      $scope.showMask = true;
-      if(prizeType === 1){
-          if(takeStatus === 1){
-            $scope.showMoney = true;
-          }else{
-            $scope.showMoneyEx = true;
-          }
-       }else if(prizeType === 2){
-          if(takeStatus === 1){
-            $scope.showCash = true;
-          }else{
-            $scope.showCashEx = true;
-          }
-       }else if(prizeType === 3){
-          if(takeStatus === 1){
-            $scope.showDataTrafficSuccess = true;
-          }else{
-            $scope.showDataTraffic = true;
-          }
-       }
-    }
-
     //prizeType 1.金幣 2.现金 3.流量
-    $scope.RunRotate = function(prizeType){
+    $scope.RunRotate = function(prizeType, giveUpFlag){
       var text = "金币";
       var angles = 155;
       switch (prizeType) {
@@ -195,10 +176,10 @@ angular.module('p2pSiteMobApp')
           text = "手机流量";
       }
 
-      $scope.rotateFn(prizeType, angles, text);
+      $scope.rotateFn(prizeType, angles, text, giveUpFlag);
     }
 
-    $scope.rotateFn = function (prizeType, angles, text){
+    $scope.rotateFn = function (prizeType, angles, text, giveUpFlag){
       $('.rec-disk').stopRotate();
       $('.rec-disk').rotate({
         angle: 0,
@@ -207,12 +188,10 @@ angular.module('p2pSiteMobApp')
         callback:function(){
           //抽中金币
            $scope.showMask = true; 
-           if(prizeType === 1){
-              $scope.showMoneyEx = true;
-           }else if(prizeType === 2){
-              $scope.showCashEx = true;
-           }else if(prizeType === 3){
-              $scope.showDataTraffic = true;
+           if(giveUpFlag){
+              $scope.showSharedDrawLottery = true;
+           }else{
+              $scope.showFirstDrawLottery = true;
            }
            $scope.$apply();
         }
