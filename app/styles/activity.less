@@ -584,13 +584,13 @@ input::-webkit-inner-spin-button {
       text-align: center;
       left: 40%;
       bottom: 10%;
-      font-size: 1.5rem;
+      font-size: 3.6rem;
       font-weight: bold;
       color: #ffffff;
       @media (min-width:320px) {
         font-size: 1.5rem;
         left: 39%;
-        bottom: 7%;
+        bottom: 8%;
       }
       @media (min-width:375px) {
         font-size: 1.8rem;
@@ -600,17 +600,29 @@ input::-webkit-inner-spin-button {
         font-size: 1.8rem;
         bottom: 11%;
       }
+      @media (min-width:551px) {
+        font-size: 3.6rem;
+        bottom: 11%;
+      }
       span {
-          font-size: 1.4rem;
+          font-size: 2.8rem;
           color: #f3d66e;
+          display: block;
+          width: 100%;
         @media (min-width:320px) {
           font-size: 1.2rem;
         }
         @media (min-width:375px) {
           font-size: 1.5rem;
         }
+        @media (min-width:414px) {
+          font-size: 1.4rem;
+          margin-bottom: 0rem;
+        }
         @media (min-width:551px) {
-          font-size: 1.6rem;
+          font-size: 2.8rem;
+          margin-bottom: -1rem;
+
         }
       }
     }
@@ -639,6 +651,9 @@ input::-webkit-inner-spin-button {
     }
     @media (min-width: 414px) {
       .gift-text{font-size: 1.8rem;top:0;}
+    }
+    @media (min-width: 551px) {
+      .gift-text{font-size: 2.6rem;top:-0.6rem;}
     }
     .gift-table{
       .gift-title{
@@ -689,13 +704,13 @@ input::-webkit-inner-spin-button {
         }
         span:nth-child(2){
           display: inline-block;
-          width: 26%;
+          width: 36%;
           float: left;
           text-align: center;
         }
         span:nth-child(3){
           display: inline-block;
-          width: 41%;
+          width: 19%;
           float: right;
           text-align: center;
         }
@@ -824,17 +839,24 @@ input::-webkit-inner-spin-button {
         }
         span{
           display: inline;
-          width: 75%;
-          font-size: 1.2rem;
+          width: 77%;
+          font-size: 1.4rem;
           color: #a3a2a2;
+          @media (max-width:360px) {
+            font-size: 1.3rem;
+          }
         }
         p{
           display: inline;
           margin-bottom: 0;
-          font-size: 1.4rem;
+          font-size: 1.6rem;
           color: #333333;
           margin: 1rem 0 0.3rem 0;
+          @media (max-width:360px) {
+            font-size: 1.4rem;
+          }
         }
+
       }
     }
   }
