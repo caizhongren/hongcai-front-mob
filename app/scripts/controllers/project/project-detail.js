@@ -188,7 +188,7 @@ angular.module('p2pSiteMobApp')
                 $scope.msg = response.msg;
               }
             } else {
-              $scope.msg = "服务器累瘫了，请稍后访问。";
+              $scope.msg = order.msg;
             }
           })
         }
