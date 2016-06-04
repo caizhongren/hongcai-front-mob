@@ -908,7 +908,7 @@ p2pSiteMobApp
         'share-scene',
         'share-spring',
         'grade',
-        'activity-landing'   
+        'activity'   
       ];
       $rootScope.showFooter = false;
       if (notShowFooterRoute.indexOf(path) === -1) {
