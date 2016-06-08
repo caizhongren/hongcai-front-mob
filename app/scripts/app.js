@@ -456,6 +456,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/recommend.html',
+            controller : 'DailyLotteryCtrl',
+            controllerUrl : 'scripts/controllers/daily-lottery/daily-lottery-ctrl'
           }
         }
       })
@@ -687,6 +689,16 @@ p2pSiteMobApp
         }
       })
 
+      //投资返现落地页
+      .state('root.activity.activity-landing', {
+        url: '/send-money',
+        views: {
+          '': {
+            templateUrl: 'views/activity/activity-landing.html',
+          }
+        }
+      })
+
       // //邀请活动落地落地页
       // .state('root.activity.invite', {
       //   url: '/invite',
@@ -721,15 +733,7 @@ p2pSiteMobApp
           }
         }
       })
-      //送现金落地页
-      .state('root.activity-landing', {
-        url: '/activity-landing',
-        views: {
-          '': {
-            templateUrl: 'views/activity/activity-landing.html',
-          }
-        }
-      })
+      
 
 
     ;
@@ -904,7 +908,7 @@ p2pSiteMobApp
         'share-scene',
         'share-spring',
         'grade',
-        'activity-landing'   
+        'activity'   
       ];
       $rootScope.showFooter = false;
       if (notShowFooterRoute.indexOf(path) === -1) {

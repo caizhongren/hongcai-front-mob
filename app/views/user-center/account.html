@@ -11,7 +11,7 @@
       <div class="touzi-product"><a class="ft-white" ui-sref="root.userCenter.investments-stat">我的投资&nbsp;<i class="fa fa-angle-right"></i></a></div>
     </div>
     <!-- 已开通易宝时展示 账户资金详情-->
-    <div ng-include src="'views/user-center/_account-assets-info.html'" class="margin-b-1 overflow-aut">
+    <div ng-include src="'views/user-center/_account-assets-info.html'" class="margin-b-1">
     </div>
   </div>
   <!-- 未开通易宝 ng-if="securityStatus.trusteeshipAccountStatus !== 1"-->
@@ -44,10 +44,10 @@
     </div>
   </div>
   <!-- 已开通易宝时展示 充值/提现提示 !==0  ng-if="securityStatus.trusteeshipAccountStatus === 1"-->
-  <div ng-if="securityStatus.trusteeshipAccountStatus === 1">
-    <div class="padding-l-1 padding-r-1 text-center overflow-hid margin-t-1 margin-b-2">
-      <button class="margin-0 half u-pull-left button btn-orange-border bg-white" style="background:white;" ng-click="!timeout || goWithdraw()">提现</button>
-      <button class="margin-0 half u-pull-right button button-primary" ng-click="!timeout || goRecharge()">充值</button>
+  <div class="padding-l-1 padding-r-1 margin-t-1" ng-if="securityStatus.trusteeshipAccountStatus === 1">
+    <div class="padding-l-1 padding-r-1 text-center overflow-hid margin-t-1 margin-b-1">
+      <button class="margin-0 margin-t-0p5 half u-pull-left button btn-orange-border bg-white" style="background:white;" ng-click="!timeout || goWithdraw()">提现</button>
+      <button class="margin-0 margin-t-0p5 half u-pull-right button button-primary" ng-click="!timeout || goRecharge()">充值</button>
     </div>
     <div class="grade-owner">
       <p class="title">我的奖励</p>
