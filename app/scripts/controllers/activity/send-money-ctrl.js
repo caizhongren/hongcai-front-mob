@@ -53,7 +53,28 @@ angular.module('p2pSiteMobApp')
 
       wx.onMenuShareAppMessage({
         title: '投资送688元！奖金可立即提现！',
-        desc: '投资送688元！奖金可立即提现！',
+        desc: '宏财网狂送100万现金，先到先得！',
+        link: shareLink,
+        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/qtXH9iaJ3HiahUdLZGgw5CHJotSh5YxVj2kicib4eUQ6QgpRqtTZEXEFQVYEhkKg6vlnjqFaWrOE9IJMiaosI3csbzg/0?wx_fmt=png',
+        trigger: function (res) {
+        },
+        success: function (res) {
+          // 分享成功后隐藏分享引导窗口
+          $scope.$apply();
+          Restangular.one('users').post('shareActivity', {
+            openId: $rootScope.openid, 
+            act: $scope.act,
+            channelCode: $scope.channelCode
+          });
+        },
+        cancel: function (res) {
+        },
+        fail: function (res) {
+        }
+      });
+
+      wx.onMenuShareTimeline({
+        title: '投资送688元！奖金可立即提现！',
         link: shareLink,
         imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/qtXH9iaJ3HiahUdLZGgw5CHJotSh5YxVj2kicib4eUQ6QgpRqtTZEXEFQVYEhkKg6vlnjqFaWrOE9IJMiaosI3csbzg/0?wx_fmt=png',
         trigger: function (res) {
@@ -75,14 +96,13 @@ angular.module('p2pSiteMobApp')
     }
 
     wx.error(function(res){
-        $scope.configJsApi();
+        $timeout(function() {
+          window.location.href=config.domain + '/activity/send-money?' + Math.round(Math.random()* 1000);
+        }, 100);
     });
 
     wx.ready(function(){
       $scope.onMenuShareAppMessage();
-      wx.hideMenuItems({
-          menuList: ['menuItem:share:timeline'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
-      });
     });
 
     $scope.configJsApi();
