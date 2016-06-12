@@ -695,6 +695,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/activity/activity-landing.html',
+            controller: 'SendMoneyCtrl',
+            controllerUrl: 'scripts/controllers/activity/send-money-ctrl'
           }
         }
       })
