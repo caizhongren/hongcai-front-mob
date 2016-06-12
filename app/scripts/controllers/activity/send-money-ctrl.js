@@ -75,14 +75,16 @@ angular.module('p2pSiteMobApp')
     }
 
     wx.error(function(res){
-        $scope.configJsApi();
+        $timeout(function() {
+          window.location.href=config.domain + '/activity/send-money?' + Math.round(Math.random()* 1000);
+        }, 100);
     });
 
     wx.ready(function(){
       $scope.onMenuShareAppMessage();
-      wx.hideMenuItems({
-          menuList: ['menuItem:share:timeline'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
-      });
+      // wx.hideMenuItems({
+      //     menuList: ['menuItem:share:timeline'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+      // });
     });
 
     $scope.configJsApi();
