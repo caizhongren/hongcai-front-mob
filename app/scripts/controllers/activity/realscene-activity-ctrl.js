@@ -3,9 +3,6 @@
 angular.module('p2pSiteMobApp')
   .controller('RealSceneActivityCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, config) {
 
-    $scope.act = $stateParams.act;
-    $scope.channelCode = $stateParams.f;
-
     $scope.test = config.test;
     $scope.userHeadImgUrl = '/images/activity/head@2x.png';
     $scope.baseFileUrl = config.base_file_url;
@@ -19,15 +16,14 @@ angular.module('p2pSiteMobApp')
     }
 
     $rootScope.checkSession.promise.then(function() {
-      if ($scope.channelCode) {
-        Restangular.one('users').post('channel', {
-          openId: $rootScope.openid,
-          act: $scope.act,
-          channelCode: $scope.channelCode
-        });
-      }
+        if($rootScope.channelCode){
+          Restangular.one('users').post('channel', {
+            openId: $rootScope.openid, 
+            act: $rootScope.act,
+            channelCode: $rootScope.channelCode
+          });
+        }
     });
-
 
     /**
      * 设置用户分享的标题以及描述以及图片等。
@@ -36,8 +32,8 @@ angular.module('p2pSiteMobApp')
       var shareLink = config.domain + '/share-scene/' + $stateParams.sceneId;
       var words = $scope.commentData.words;
       var desc = $scope.comments[0].commenter + ':' + $scope.comments[0].message;
-      if ($scope.channelCode) {
-        shareLink = shareLink + '?f=' + $scope.channelCode + '&act=' + $scope.act;
+      if ($rootScope.channelCode) {
+        shareLink = shareLink + '?f=' + $rootScope.channelCode + '&act=' + $rootScope.act;
       }
 
       // 分享到朋友
@@ -57,8 +53,8 @@ angular.module('p2pSiteMobApp')
           });
           Restangular.one('users').post('shareActivity', {
             openId: $rootScope.openid, 
-            act: $scope.act,
-            channelCode: $scope.channelCode
+            act: $rootScope.act,
+            channelCode: $rootScope.channelCode
           });
         },
         cancel: function(res) {},
@@ -175,8 +171,8 @@ angular.module('p2pSiteMobApp')
       }
 
       var shareUrl = config.domain + '/activity-scene';
-      if ($scope.channelCode){
-        shareUrl = shareUrl + '?f=' + $scope.channelCode + '&act=' + $scope.act;
+      if ($rootScope.channelCode){
+        shareUrl = shareUrl + '?f=' + $rootScope.channelCode + '&act=' + $rootScope.act;
       }
       window.location.href = shareUrl;
     };

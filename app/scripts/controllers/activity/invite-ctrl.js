@@ -5,7 +5,7 @@ angular.module('p2pSiteMobApp').filter('slice', function() {
   };
 });
 angular.module('p2pSiteMobApp')
-  .controller('InviteCtrl', function($rootScope, $scope, $state, $stateParams, $anchorScroll, $location, $timeout, $window, Restangular, config, register1, WEB_DEFAULT_DOMAIN, mobileCaptcha, md5, HongcaiUser) {
+  .controller('InviteCtrl', function($rootScope, $scope, $state, $stateParams, $anchorScroll, $location, $timeout, $window, Restangular, config, WEB_DEFAULT_DOMAIN, mobileCaptcha, md5, HongcaiUser) {
     $rootScope.showFooter = false;
     $scope.act = $stateParams.act;
     $scope.channelCode = $stateParams.f;

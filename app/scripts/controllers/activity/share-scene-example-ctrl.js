@@ -3,9 +3,6 @@
 angular.module('p2pSiteMobApp')
   .controller('ShareSceneExampleCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, config) {
 
-    $scope.act = $stateParams.act;
-    $scope.channelCode = $stateParams.f;
-
     $scope.test = config.test;
     $scope.wechat = config.wechat_id;
     $scope.BaseWechatUrl = "weixin://profile/";
@@ -13,11 +10,11 @@ angular.module('p2pSiteMobApp')
     $scope.baseFileUrl = config.base_file_url;
 
     $rootScope.checkSession.promise.then(function() {
-      if ($scope.channelCode){
-          Restangular.one('freeWishes').post('channel', {
+        if($rootScope.channelCode){
+          Restangular.one('users').post('channel', {
             openId: $rootScope.openid, 
-            act: $scope.act,
-            channelCode: $scope.channelCode
+            act: $rootScope.act,
+            channelCode: $rootScope.channelCode
           });
         }
     });
@@ -30,8 +27,8 @@ angular.module('p2pSiteMobApp')
       }
 
       var shareUrl = config.domain + '/activity-scene';
-      if ($scope.channelCode){
-        shareUrl = shareUrl + '?f=' + $scope.channelCode + '&act=' + $scope.act;
+      if ($rootScope.channelCode){
+        shareUrl = shareUrl + '?f=' + $rootScope.channelCode + '&act=' + $rootScope.act;
       }
       window.location.href = shareUrl;
     }

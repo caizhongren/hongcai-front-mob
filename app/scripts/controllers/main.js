@@ -7,7 +7,7 @@
  * Controller of the p2pSiteMobApp
 + */
 angular.module('p2pSiteMobApp')
-  .controller('MainCtrl', function($scope, $stateParams, $state, $rootScope, $location, Restangular, projects, fundsProjects) {
+  .controller('MainCtrl', function($scope, $stateParams, $state, $rootScope, $location, $interval, Restangular, projects, fundsProjects, DateUtils) {
     // 宏金保列表页百分比值
     $scope.curr = 27;
 
@@ -43,14 +43,30 @@ angular.module('p2pSiteMobApp')
         pageSize: $scope.pageSize
       }).then(function(response) {
         $scope.jigoubao = response;
-         $scope.baseFileUrl = response.baseFileUrl;
+        $scope.baseFileUrl = response.baseFileUrl;
         // console.log(response);  
         $scope.pageCount = response.pageCount;
+        $scope.projectStatusMap = response.projectStatusMap;
+        $scope.serverTime = response.serverTime || (new Date().getTime());
         for (var i = 0; i < response.projectList.length; i++) {
+          response.projectList[i].countdown = new Date(response.projectList[i].releaseStartTime).getTime() - $scope.serverTime;
+          response.projectList[i]._timeDown = DateUtils.toHourMinSeconds(response.projectList[i].countdown);
           $scope.jigoubaoData.push(response.projectList[i]);
         };
+
       });
     }
+
+    $interval(function() {
+      for (var i = $scope.jigoubaoData.length - 1; i >= 0; i--) {
+        $scope.jigoubaoData[i].countdown -= 1000;
+        if ($scope.jigoubaoData[i].countdown <= 0 && $scope.jigoubaoData[i].status == 2) {
+          $state.reload();
+        }
+
+        $scope.jigoubaoData[i]._timeDown = DateUtils.toHourMinSeconds($scope.jigoubaoData[i].countdown);
+      };
+    }, 1000);
 
     $scope.loadDealMuch = function() {
       $scope.DealBusy = true;
@@ -160,15 +176,17 @@ angular.module('p2pSiteMobApp')
     }
 
     $scope.toggle.switchTab = function(tabIndex) {
-      $scope.toggle.activeTab = tabIndex;
-      $rootScope.tab=$scope.toggle.activeTab;
+      $location.search({tab: tabIndex});
+
+      // $scope.toggle.activeTab = tabIndex;
+      // $rootScope.tab=$scope.toggle.activeTab;
       
-      if (tabIndex !== 1) {
-        $scope.switchFundsProjects(1);
-      }
+      // if (tabIndex !== 1) {
+      //   $scope.switchFundsProjects(1);
+      // }
       //初始化第二层Tab数据
       // tabIndex === 1 ? $scope.toggle.switchSubTab(1) : '';
-      $scope.tabClassIndex = $scope.toggle.activeTab;
+      // $scope.tabClassIndex = $scope.toggle.activeTab;
     };
 
     $scope.toggle.switch = function(tabIndex, subTab) {
