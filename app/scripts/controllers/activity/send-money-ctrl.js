@@ -5,6 +5,8 @@ angular.module('p2pSiteMobApp')
     $scope.test = config.test;
 
     if($rootScope.channelCode){
+      console.log($rootScope.channelCode);
+      console.log($rootScope.act);
       Restangular.one('users').post('channel', {
         openId: $rootScope.openid, 
         act: $rootScope.act,
