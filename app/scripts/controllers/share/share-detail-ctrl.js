@@ -1,9 +1,7 @@
 'use strict';
 
 angular.module('p2pSiteMobApp')
-  .controller('ShareDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, $location, register1, mobileCaptcha, Restangular, config, DialogService) {
-    $scope.act = $stateParams.act;
-    $scope.channelCode = $stateParams.f;
+  .controller('ShareDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, $location, ipCookie, register1, mobileCaptcha, Restangular, config, DialogService) {
 
     $rootScope.showButton = false;
     $rootScope.showFooter = false;
@@ -22,16 +20,13 @@ angular.module('p2pSiteMobApp')
     $scope.buttonFlag = 1;
     $scope.isReceived = false;
 
-
-
-
     /**
      * 设置用户分享的标题以及描述以及图片等。
      */
     $scope.onMenuShareAppMessage = function(wishId){
       var shareLink = config.domain + '/share-detail/' + wishId;
-      if ($scope.channelCode){
-        shareLink = shareLink + '?f=' + $scope.channelCode + '&act=' + $scope.act;
+      if ($rootScope.channelCode){
+        shareLink = shareLink + '?f=' + $rootScope.channelCode + '&act=' + $rootScope.act;
       }
 
       wx.onMenuShareAppMessage({
@@ -47,8 +42,8 @@ angular.module('p2pSiteMobApp')
           $scope.$apply();
           Restangular.one('users').post('shareActivity', {
             openId: $rootScope.openid, 
-            act: $scope.act,
-            channelCode: $scope.channelCode
+            act: $rootScope.act,
+            channelCode: $rootScope.channelCode
           });
         },
         cancel: function (res) {
@@ -57,7 +52,6 @@ angular.module('p2pSiteMobApp')
         }
       });
     }
-
 
     $scope.getCheerRecordsUserIds = function(freeWishCheerRecords){
         if(freeWishCheerRecords != null && freeWishCheerRecords.length > 0){
@@ -324,7 +318,8 @@ angular.module('p2pSiteMobApp')
         inviteCode: user.inviteCode,
         openId: $rootScope.openid,
         nickName: $rootScope.nickName || '无',
-        headImgUrl: $rootScope.headImgUrl || '无'
+        headImgUrl: $rootScope.headImgUrl || '无',
+        channelCode: ipCookie('utm_from')
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.errorMobileMsg = response.msg;
@@ -420,13 +415,11 @@ angular.module('p2pSiteMobApp')
             // $scope.onMenuShareAppMessage($scope.freeWish.number);
           }
         });
-
-        // 渠道统计
-        if ($scope.channelCode){
+        if($rootScope.channelCode){
           Restangular.one('users').post('channel', {
             openId: $rootScope.openid, 
-            act: $scope.act,
-            channelCode: $scope.channelCode
+            act: $rootScope.act,
+            channelCode: $rootScope.channelCode
           });
         }
     });

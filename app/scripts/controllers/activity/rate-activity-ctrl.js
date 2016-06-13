@@ -2,8 +2,6 @@
 
 angular.module('p2pSiteMobApp')
   .controller('RateActivityCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, mobileCaptcha) {
-    
-    $scope.channel = "jiaxi"; // 推广渠道
 
     $scope.register = function(user) {
       if(!user || !user.mobile || !user.captcha){
@@ -12,7 +10,7 @@ angular.module('p2pSiteMobApp')
       Restangular.one('users').post('simRegister', {
         mobile: user.mobile,
         captcha: user.captcha,
-        channelCode: $scope.channel,
+        channelCode: $rootScope.channelCode,
         openId: $rootScope.openid,
         nickName: $rootScope.nickName,
         headImgUrl: $rootScope.headImgUrl

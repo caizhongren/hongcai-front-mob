@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RegisterCtrl', function($rootScope, $scope, $state, $stateParams, md5, register, wechat, mobileCaptcha) {
+  .controller('RegisterCtrl', function($rootScope, $scope, $state, $stateParams, md5, register, wechat, mobileCaptcha, ipCookie) {
     // 注册链接上是否有邀请码
     if ($stateParams.inviteCode) {
       $scope.user = {
@@ -16,6 +16,7 @@ angular.module('p2pSiteMobApp')
       };
     }
 
+    console.log(ipCookie('utm_from'));
     $scope.showRegistrationAgreement = false;
     $scope.toggle = function () {
       $scope.showRegistrationAgreement = !$scope.showRegistrationAgreement;
@@ -30,7 +31,8 @@ angular.module('p2pSiteMobApp')
         password: md5.createHash(user.password),
         mobile: user.mobile,
         captcha: user.captcha,
-        inviteCode: user.inviteCode
+        inviteCode: user.inviteCode,
+        channelCode : ipCookie('utm_from')
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.captchaShow = true;
