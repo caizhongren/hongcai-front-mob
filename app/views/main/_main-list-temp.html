@@ -9,11 +9,11 @@
       <span class="title-text" ng-show="widthFlag===1 || widthFlag===2">{{item.name}}</span>
       <!-- <span class="title-text" ng-show="item.name.length > 10">{{item.name | limitTo:9}}...</span>
     <span class="title-text" ng-show="item.name.length <= 10">{{item.name}}</span> -->
-      <span ng-show="item.status === 6" class="title-status-orange">预发布</span>
+<!--       <span ng-show="item.status === 6" class="title-status-orange">预发布</span>
       <span ng-show="item.status === 11" class="title-status-orange">预约中</span>
       <span ng-show="item.status === 7" class="title-status-orange">融资中</span>
       <span ng-show="item.status === 9" class="title-status-green">还款中</span>
-      <span ng-show="item.status === 10" class="title-status-grey">已完成</span>
+      <span ng-show="item.status === 10" class="title-status-grey">已完成</span> -->
     </div>
     <div class="pro-info">
       <ul>
@@ -53,11 +53,11 @@
       </div>
     </div>
     <div class="operation-btn">
-      <button ng-show="item.status === 6" class="button-grey button" ng-click="!timeout || goProjectInvest(item);" my-click-once>查看详情</button>
-      <button ng-show="item.status === 7" class="button-primary button" ng-click="!timeout ||goProjectInvest(item);" my-click-once>我要投资</button>
-      <button ng-show="item.status === 9" class="button-grey button" ng-click="!timeout ||goProjectInvest(item);" my-click-once>查看详情</button>
-      <button ng-show="item.status === 10" class="button-grey button" ng-click="!timeout ||goProjectInvest(item);" my-click-once>查看详情</button>
-      <button ng-show="item.status === 11" class="button-primary button" ng-click="!timeout ||goProjectInvest(item);" my-click-once>我要预约</button>
+      <button ng-show="item.status === 6" class="button-primary button" ng-click="!timeout || goProjectInvest(item);" my-click-once>{{ item._timeDown.hour }}时，{{ item._timeDown.min }}分，{{ item._timeDown.seconds }}秒</button>
+      <button ng-show="item.status === 7" class="button-primary button" ng-click="!timeout ||goProjectInvest(item);" my-click-once>立即投资</button>
+      <button ng-show="item.status === 9" class="button-grey button" ng-click="!timeout ||goProjectInvest(item);" my-click-once>{{projectStatusMap[item.status]}}</button>
+      <button ng-show="item.status === 10" class="button-grey button" ng-click="!timeout ||goProjectInvest(item);" my-click-once>{{projectStatusMap[item.status]}}</button>
+      <button ng-show="item.status === 11" class="button-primary button" ng-click="!timeout ||goProjectInvest(item);" my-click-once>{{projectStatusMap[item.status]}}</button>
     </div>
   </div>
   <!--ending repeat-->
