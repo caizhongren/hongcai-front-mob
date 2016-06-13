@@ -486,7 +486,7 @@ p2pSiteMobApp
 
     //体验金活动页
     .state('root.experience-activity', {
-        url: '/experience-activity/:number?act&c',
+        url: '/experience-activity/:number?act&f',
         views: {
           '': {
             templateUrl: 'views/activity/experience-activity.html',
@@ -497,7 +497,7 @@ p2pSiteMobApp
       })
       //加息券活动页
       .state('root.rate-activity', {
-        url: '/rate-activity',
+        url: '/rate-activity?act&f',
         views: {
           '': {
             templateUrl: 'views/activity/rate-activity.html',
@@ -508,7 +508,7 @@ p2pSiteMobApp
       })
       //体验金落地页
       .state('root.experience-landing', {
-        url: '/experience-landing',
+        url: '/experience-landing?act&f',
         views: {
           '': {
             templateUrl: 'views/activity/experience-landing.html',
@@ -691,7 +691,7 @@ p2pSiteMobApp
 
       //投资返现落地页
       .state('root.activity.activity-landing', {
-        url: '/send-money',
+        url: '/send-money?act&f',
         views: {
           '': {
             templateUrl: 'views/activity/activity-landing.html',
@@ -744,13 +744,11 @@ p2pSiteMobApp
     $locationProvider.hashPrefix('!');
 
   }])
-  .run(function($rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, restmod, config, Restangular, URLService, Utils) {
+  .run(function($rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, ipCookie, restmod, config, Restangular, URLService, Utils) {
     Restangular.setBaseUrl('/hongcai/rest');
     Restangular.setDefaultHeaders({
       'Content-Type': 'application/json'
     })
-
-
 
     var routespermission = [
       '/user-center'
@@ -810,7 +808,6 @@ p2pSiteMobApp
             return;
           }
         } else if (response.ret === -1) { //用户未登录，。
-
           if (!Utils.isWeixin()) {
             $rootScope.checkSession.resolve(response);
             if(routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1){
@@ -868,25 +865,7 @@ p2pSiteMobApp
             window.location.href = wechatRedirectUrl;
 
           }
-
         }
-
-
-
-        // $rootScope.checkSession.resolve(response);
-        // if (response.user) {
-        //   $rootScope.isLogged = true;
-        //   $rootScope.hasLoggedUser = response.user;
-        //   $rootScope.securityStatus = response.securityStatus;
-        //   $rootScope.account = response.account;
-        //   //用户未登录状态
-        // } else if(response.ret === -1) {
-        //   $rootScope.isLogged = false;
-        //   $rootScope.hasLoggedUser = null;
-        //   if (routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
-        //     $location.path('/login');
-        //   }
-        // }
       });
     });
     
@@ -896,6 +875,14 @@ p2pSiteMobApp
       $rootScope.showPath = path;
       $rootScope.showTitle = titleMap[path];
 
+      $rootScope.channelCode = $state.params.f;
+      $rootScope.act = $state.params.act;
+
+      if ($rootScope.channelCode){
+        ipCookie('utm_from', $rootScope.channelCode, {
+          expires: 1
+        });
+      }
 
       // 不需要显示footer的path
       var notShowFooterRoute = [
@@ -941,10 +928,6 @@ p2pSiteMobApp
       } else if(loginOrMy.indexOf(path) !== -1){
         $rootScope.whichFooter = 4;
       }
-
-
-
-
     });
   })
 

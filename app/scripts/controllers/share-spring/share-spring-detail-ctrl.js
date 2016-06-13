@@ -5,7 +5,7 @@ angular.module('p2pSiteMobApp').filter('slice', function() {
   };
 });
 angular.module('p2pSiteMobApp')
-  .controller('ShareSpringDetailCtrl', function($rootScope, $scope, $state, $stateParams,$anchorScroll, $location, $timeout, Restangular, config, register1, WEB_DEFAULT_DOMAIN, mobileCaptcha, md5) {
+  .controller('ShareSpringDetailCtrl', function($rootScope, $scope, $state, $stateParams,$anchorScroll, $location, $timeout, ipCookie, Restangular, config, register1, WEB_DEFAULT_DOMAIN, mobileCaptcha, md5) {
     $rootScope.showFooter = false;
     $scope.act = $stateParams.act;
     $scope.channelCode = $stateParams.f;
@@ -345,7 +345,8 @@ angular.module('p2pSiteMobApp')
         inviteCode: user.inviteCode,
         openId: $rootScope.openid,
         nickName: $rootScope.nickName || '无',
-        headImgUrl: $rootScope.headImgUrl || '无'
+        headImgUrl: $rootScope.headImgUrl || '无',
+        channelCode: ipCookie('utm_from')
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.msg = response.msg;

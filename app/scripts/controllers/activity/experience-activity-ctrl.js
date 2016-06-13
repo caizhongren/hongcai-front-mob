@@ -3,7 +3,7 @@
 angular.module('p2pSiteMobApp')
   .controller('ExperienceActivityCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, mobileCaptcha) {
     
-    $scope.channel = $stateParams.c; // 推广渠道
+    $scope.channelCode = $stateParams.f; // 推广渠道
     $scope.number = $stateParams.number;
     $scope.imgSrc = "/images/activity/activity0071.png";
 
@@ -22,7 +22,7 @@ angular.module('p2pSiteMobApp')
       Restangular.one('users').post('simRegister', {
         mobile: user.mobile,
         captcha: user.captcha,
-        channelCode: $scope.channel,
+        channelCode: $scope.channelCode,
         openId: $rootScope.openid,
         nickName: $rootScope.nickName,
         headImgUrl: $rootScope.headImgUrl

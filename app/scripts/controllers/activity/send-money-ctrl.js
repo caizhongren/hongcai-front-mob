@@ -1,16 +1,14 @@
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('SendMoneyCtrl', function($rootScope, $scope, $state, $stateParams, $anchorScroll, $location, $timeout, $window, Restangular, config, register1, WEB_DEFAULT_DOMAIN, mobileCaptcha, md5, HongcaiUser) {
+  .controller('SendMoneyCtrl', function($rootScope, $scope, $state, $stateParams, $location, $timeout, $window, ipCookie, Restangular, config) {
     $rootScope.showFooter = false;
-    $scope.act = $stateParams.act;
-    $scope.channelCode = $stateParams.f;
     $scope.test = config.test;
 
-    if ($scope.channelCode){
+    if($rootScope.channelCode){
       Restangular.one('users').post('channel', {
         openId: $rootScope.openid, 
-        act: $scope.act,
-        channelCode: $scope.channelCode
+        act: $rootScope.act,
+        channelCode: $rootScope.channelCode
       });
     }
 
@@ -47,8 +45,8 @@ angular.module('p2pSiteMobApp')
      */
     $scope.onMenuShareAppMessage = function(){
       var shareLink = config.domain + '/activity/send-money';
-      if ($scope.channelCode){
-        shareLink = shareLink + '?f=' + $scope.channelCode + '&act=' + $scope.act;
+      if ($rootScope.channelCode){
+        shareLink = shareLink + '?f=' + $rootScope.channelCode + '&act=' + $rootScope.act;
       }
 
       wx.onMenuShareAppMessage({
@@ -63,8 +61,8 @@ angular.module('p2pSiteMobApp')
           $scope.$apply();
           Restangular.one('users').post('shareActivity', {
             openId: $rootScope.openid, 
-            act: $scope.act,
-            channelCode: $scope.channelCode
+            act: $rootScope.act,
+            channelCode: $rootScope.channelCode
           });
         },
         cancel: function (res) {
@@ -84,8 +82,8 @@ angular.module('p2pSiteMobApp')
           $scope.$apply();
           Restangular.one('users').post('shareActivity', {
             openId: $rootScope.openid, 
-            act: $scope.act,
-            channelCode: $scope.channelCode
+            act: $rootScope.act,
+            channelCode: $rootScope.channelCode
           });
         },
         cancel: function (res) {
