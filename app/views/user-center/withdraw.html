@@ -18,7 +18,7 @@
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入数字(最多精确到小数点后两位)</span>
       </div>
       <div class="hint text-center bg-red1 box-shadow" ng-show="simpleWithdraw.amountDraw>availableCashRealNo || simpleWithdraw.amountDraw<1">
-        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入一个介于 1 -- {{availableCashRealNo | number:2}}之间的值</span>
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入一个介于 1 -- {{availableCash | number:2}}之间的值</span>
       </div>
 
 <!--       <div class="hint text-center bg-red1 box-shadow" ng-show="simpleWithdraw.account.reward  > 0 && availableCashRealNo - simpleWithdraw.account.reward < 1">
