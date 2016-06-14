@@ -43,7 +43,7 @@
         <div class="info1 margin-b-0">
           <div class="left fl text-left">
             <span>可投金额&nbsp;:</span>
-            <span>{{item.total - (item.soldStock + item.occupancyStock) * item.increaseAmount | number:0}}元</span>
+            <span>{{item.currentStock * item.increaseAmount | number:0}}元</span>
           </div>
           <div class="right fr text-right">
             <span>已加入</span>
@@ -53,11 +53,11 @@
       </div>
     </div>
     <div class="operation-btn">
-      <button ng-show="item.status === 6" class="button-primary button" ng-click="!timeout || goProjectInvest(item);" my-click-once>{{ item._timeDown.hour }}时，{{ item._timeDown.min }}分，{{ item._timeDown.seconds }}秒</button>
-      <button ng-show="item.status === 7" class="button-primary button" ng-click="!timeout ||goProjectInvest(item);" my-click-once>立即投资</button>
-      <button ng-show="item.status === 9" class="button-grey button" ng-click="!timeout ||goProjectInvest(item);" my-click-once>{{projectStatusMap[item.status]}}</button>
-      <button ng-show="item.status === 10" class="button-grey button" ng-click="!timeout ||goProjectInvest(item);" my-click-once>{{projectStatusMap[item.status]}}</button>
-      <button ng-show="item.status === 11" class="button-primary button" ng-click="!timeout ||goProjectInvest(item);" my-click-once>{{projectStatusMap[item.status]}}</button>
+      <button class="button {{[6,7,11].indexOf(item.status) !== -1 ? 'button-primary' :  'button-grey'}}" ng-click="!timeout || goProjectInvest(item);" my-click-once>
+        <span ng-show="item.status === 6">{{ item._timeDown.hour }}时，{{ item._timeDown.min }}分，{{ item._timeDown.seconds }}秒</span>
+        <span ng-show="item.status === 7">立即投资</span>
+        <span ng-show="item.status !== 7 && item.status !== 6">{{projectStatusMap[item.status]}}</span>
+      </button>
     </div>
   </div>
   <!--ending repeat-->
