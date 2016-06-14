@@ -35,7 +35,7 @@ angular.module('p2pSiteMobApp')
 
     $scope.jigoubaoData = [];
     $scope.getTempData = function() {
-      if ($scope.pageCount < $scope.page) {
+      if ($scope.pageCount < $scope.page || $scope.toggle.activeTab !== 1) {
         return;
       }
       Restangular.one('projects').get({
@@ -190,12 +190,10 @@ angular.module('p2pSiteMobApp')
     };
 
     $scope.toggle.switch = function(tabIndex, subTab) {
-      $scope.toggle.activeTab = tabIndex;
-      if (tabIndex === 0) {
-        $scope.switchFundsProjects(1);
-      } else if (tabIndex === 1){
-        $scope.getTempData();
-      }
+      $location.search({
+        tab: tabIndex,
+        subTab: subTab
+      });
     };
 
     // $scope.toggle.switchSubTab = function(subTabIndex) {
@@ -253,16 +251,20 @@ angular.module('p2pSiteMobApp')
     //   // console.log($scope.subtabClassIndex);
     // };
     
-    $scope.tab = $stateParams.tab || 0;
-    $scope.subTab = $stateParams.subTab || 0;
-    $scope.toggle.switch(+$scope.tab, +$scope.subTab);
-
-    // 判断是否有参数，有参数执行if中。没有参数执行else中。
-    if (window.location.search) {
-      $scope.toggle.switch(+$scope.tab, +$scope.subTab);
-    } else {
+    $scope.toggle.activeTab = parseInt($stateParams.tab, 0) || 0;
+    $scope.toggle.activeSubTab = parseInt($stateParams.subTab,0) || 0;
+    if($scope.toggle.activeTab == 0){
       $scope.switchFundsProjects(1);
     }
+
+    // $scope.toggle.switch(+$scope.tab, +$scope.subTab);
+
+    // 判断是否有参数，有参数执行if中。没有参数执行else中。
+    // if (window.location.search) {
+    //   $scope.toggle.switch(+$scope.tab, +$scope.subTab);
+    // } else {
+    //   $scope.switchFundsProjects(1);
+    // }
 
     /**
      * 点击立即投资
