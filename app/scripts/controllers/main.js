@@ -60,7 +60,7 @@ angular.module('p2pSiteMobApp')
     $interval(function() {
       for (var i = $scope.jigoubaoData.length - 1; i >= 0; i--) {
         $scope.jigoubaoData[i].countdown -= 1000;
-        if ($scope.jigoubaoData[i].countdown <= 0 && $scope.jigoubaoData[i].status == 2) {
+        if ($scope.jigoubaoData[i].countdown <= 0 && $scope.jigoubaoData[i].status == 6) {
           $state.reload();
         }
 
