@@ -1,3 +1,40 @@
+// 投资页轮播
+.slide-banner {
+  margin: 0 auto;
+  max-width: 560px;
+  .bd{
+    z-index:0;
+    li {
+      a{
+        img{
+          vertical-align:top;
+          width:100%;
+        }
+      }
+    }
+  }
+  .hd {
+    top: 75%;
+    left: 46%;
+    li{
+      display:inline-block;
+      width:5px;
+      height:5px;
+     -webkit-border-radius:5px;
+     -moz-border-radius:5px;
+     border-radius:5px;
+     background:#333;
+     text-indent:-9999px;
+     overflow:hidden;
+     margin:0 6px;
+     }
+     li.on{
+       background:#fff;
+     }
+  }
+}
+
+
 .main {
   hr {
     margin-top: 1rem;
