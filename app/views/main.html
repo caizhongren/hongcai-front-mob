@@ -51,8 +51,14 @@
 </div>
 
 <script type="text/javascript">
+var date = new Date();
+var date1 = date.getTime();
+console.log(date1);
 var timer = setInterval(function(){
   if(TouchSlide){
+date = new Date();
+var date2 = date.getTime();
+console.log(date2);
     TouchSlide({
        slideCell:"#slideBanner",
        titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
@@ -63,6 +69,7 @@ var timer = setInterval(function(){
     });
     clearInterval(timer);
   }
+
 },200)
 
 
