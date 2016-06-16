@@ -44,7 +44,7 @@ angular.module('p2pSiteMobApp')
       }).then(function(response) {
         $scope.jigoubao = response;
         $scope.baseFileUrl = response.baseFileUrl;
-        // console.log(response);  
+        // console.log(response);
         $scope.pageCount = response.pageCount;
         $scope.projectStatusMap = response.projectStatusMap;
         $scope.serverTime = response.serverTime || (new Date().getTime());
@@ -163,7 +163,7 @@ angular.module('p2pSiteMobApp')
         $state.go('root.current-deposit-detail', {
           number: project.number
         });
-      } 
+      }
       // else if ($scope.toggle.activeTab === 1) {
       //   $state.go('root.investmentplan-details', {
       //     number: project.number
@@ -180,7 +180,7 @@ angular.module('p2pSiteMobApp')
 
       // $scope.toggle.activeTab = tabIndex;
       // $rootScope.tab=$scope.toggle.activeTab;
-      
+
       // if (tabIndex !== 1) {
       //   $scope.switchFundsProjects(1);
       // }
@@ -250,7 +250,7 @@ angular.module('p2pSiteMobApp')
 
     //   // console.log($scope.subtabClassIndex);
     // };
-    
+
     $scope.toggle.activeTab = parseInt($stateParams.tab, 0) || 0;
     $scope.toggle.activeSubTab = parseInt($stateParams.subTab,0) || 0;
     if($scope.toggle.activeTab == 0){
