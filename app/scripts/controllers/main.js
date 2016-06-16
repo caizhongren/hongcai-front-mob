@@ -44,7 +44,7 @@ angular.module('p2pSiteMobApp')
       }).then(function(response) {
         $scope.jigoubao = response;
         $scope.baseFileUrl = response.baseFileUrl;
-        // console.log(response);  
+        // console.log(response);
         $scope.pageCount = response.pageCount;
         $scope.projectStatusMap = response.projectStatusMap;
         $scope.serverTime = response.serverTime || (new Date().getTime());
@@ -59,9 +59,10 @@ angular.module('p2pSiteMobApp')
 
     $interval(function() {
       for (var i = $scope.jigoubaoData.length - 1; i >= 0; i--) {
+
         $scope.jigoubaoData[i].countdown -= 1000;
-        if ($scope.jigoubaoData[i].countdown <= 0 && $scope.jigoubaoData[i].status == 6) {
-          $state.reload();
+        if ($scope.jigoubaoData[i].countdown <= 0 && $scope.jigoubaoData[i].status === 6) {
+          $scope.jigoubaoData[i].status = 7;
         }
 
         $scope.jigoubaoData[i]._timeDown = DateUtils.toHourMinSeconds($scope.jigoubaoData[i].countdown);
@@ -163,7 +164,7 @@ angular.module('p2pSiteMobApp')
         $state.go('root.current-deposit-detail', {
           number: project.number
         });
-      } 
+      }
       // else if ($scope.toggle.activeTab === 1) {
       //   $state.go('root.investmentplan-details', {
       //     number: project.number
@@ -180,7 +181,7 @@ angular.module('p2pSiteMobApp')
 
       // $scope.toggle.activeTab = tabIndex;
       // $rootScope.tab=$scope.toggle.activeTab;
-      
+
       // if (tabIndex !== 1) {
       //   $scope.switchFundsProjects(1);
       // }
@@ -250,7 +251,7 @@ angular.module('p2pSiteMobApp')
 
     //   // console.log($scope.subtabClassIndex);
     // };
-    
+
     $scope.toggle.activeTab = parseInt($stateParams.tab, 0) || 0;
     $scope.toggle.activeSubTab = parseInt($stateParams.subTab,0) || 0;
     if($scope.toggle.activeTab == 0){
