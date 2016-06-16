@@ -62,7 +62,7 @@ angular.module('p2pSiteMobApp')
 
         $scope.jigoubaoData[i].countdown -= 1000;
         if ($scope.jigoubaoData[i].countdown <= 0 && $scope.jigoubaoData[i].status === 6) {
-          $scope.jigoubaoData[i].status == 7;
+          $scope.jigoubaoData[i].status = 7;
         }
 
         $scope.jigoubaoData[i]._timeDown = DateUtils.toHourMinSeconds($scope.jigoubaoData[i].countdown);
