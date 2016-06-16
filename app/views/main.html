@@ -51,7 +51,7 @@
 </div>
 
 <script type="text/javascript">
-setTimeout(function(){
+var timer = setInterval(function(){
   if(TouchSlide){
     TouchSlide({
        slideCell:"#slideBanner",
@@ -61,7 +61,17 @@ setTimeout(function(){
        autoPage:true,//自动分页
        autoPlay:true //自动播放
     });
+    clearInterval(timer);
   }
 },200)
 
+
+// TouchSlide({
+//    slideCell:"#slideBanner",
+//    titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+//    mainCell:".bd ul",
+//    effect:"leftLoop",
+//    autoPage:true,//自动分页
+//    autoPlay:true //自动播放
+// });
 </script>
