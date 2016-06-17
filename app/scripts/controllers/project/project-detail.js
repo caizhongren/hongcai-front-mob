@@ -50,18 +50,9 @@ angular.module('p2pSiteMobApp')
       });
     }
     $scope.checkLargeUserCanAmount = function(project) {
-      if ($rootScope.isLogged) {
-        // console.log(project);
-        // var availableAmount = project.status !== 7 ? $rootScope.account.balance : $rootScope.account.balance + $rootScope.account.experienceAmount;
-        if ($rootScope.account.balance < project.investAmount) {
-          return true;
-        } else {
-          return false;
-        }
-      } else {
-        return false;
-      }
+      return $rootScope.isLogged && $rootScope.account.balance < project.investAmount;
     };
+
     $scope.checkStepAmount = function(project) {
       if (project.investAmount >= project.increaseAmount) {
         if (project.investAmount % project.increaseAmount === 0) {
@@ -136,11 +127,24 @@ angular.module('p2pSiteMobApp')
       });
     }
 
+    /**
+     * 跳转到充值页面
+     */
+    $scope.toRecharge = function(){
+      $state.go('root.userCenter.recharge');
+    }
+
 
     $scope.toInvest = function(project) {
       // console.log(project);
       if (!project.investAmount) {
-        $scope.msg = '投资金额有误，请重新输入';
+        $scope.msg = '请输入投资金额';
+        return;
+      } else if(project.investAmount < project.minInvest){
+        $scope.msg = '投资金额必须大于' + project.minInvest;
+        return;
+      } else if(project.investAmount % project.increaseAmount){
+        $scope.msg = '投资金额必须为' + project.increaseAmount + '的整数倍';
         return;
       }
 
@@ -201,7 +205,22 @@ angular.module('p2pSiteMobApp')
         $scope.msg = undefined;
       }
 
-      console.log(oldVal);
+      if($rootScope.account.balance <= 0){
+        $scope.msg = '账户余额不足，请先充值';
+      } 
+
+      if(newVal){
+        if(newVal % $scope.jigoubaoDetailData.increaseAmount){
+          $scope.msg = '投资金额必须为' + $scope.jigoubaoDetailData.increaseAmount + '的整数倍';
+          return;
+        }
+        if(newVal > $rootScope.account.balance){
+          $scope.msg = '账户余额不足，请先充值'
+        } 
+        if(newVal > $scope.jigoubaoProjectInvestNum){
+          $scope.msg = '投资金额必须小于' + $scope.jigoubaoProjectInvestNum;
+        }
+      }
     });
 
   });
