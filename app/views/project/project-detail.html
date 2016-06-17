@@ -2,15 +2,11 @@
 <div class="funds-project bg-white margin-b-7">
   <div class="row current-detail-bg ft-white padding-t-2 padding-b-2">
     <p class="text-center margin-b-1 title-block-pre">
-      <strong class="ft-1p6 ft-white ft-bold title-block">{{jigoubaoDetailData.name}}</strong>
-      <span ng-show="jigoubaoDetailData.status === 6" class="ft-1p8 bg-white ft-orange padding-l-1 padding-r-1 border-ra-20">预发布</span>
-      <span ng-show="jigoubaoDetailData.status === 11" class="ft-1p8 bg-white ft-orange padding-l-1 padding-r-1 border-ra-20">预约中</span>
-      <span ng-show="jigoubaoDetailData.status === 7" class="ft-1p8 bg-white ft-orange padding-l-1 padding-r-1 border-ra-20">融资中</span>
-      <span ng-show="jigoubaoDetailData.status === 9" class="ft-1p8 bg-white ft-orange padding-l-1 padding-r-1 border-ra-20">还款中</span>
-      <span ng-show="jigoubaoDetailData.status === 10" class="ft-1p8 bg-white ft-orange padding-l-1 padding-r-1 border-ra-20">已完成</span>
+      <strong class="ft-1p6 ft-white ft-bold title-block">{{project.name}}</strong>
+      <span class="ft-1p8 bg-white ft-orange padding-l-1 padding-r-1 border-ra-20">{{projectStatusMap[project.status]}}</span>
     </p>
     <p class="margin-b-0 text-center">
-      <strong class="ft-4">{{jigoubaoDetailData.annualEarnings}}%</strong>
+      <strong class="ft-4">{{project.annualEarnings}}%</strong>
       <!-- <strong class="ft-3">- {{simpleFundsProject.product.maxRate |currency:"":1 || 0}}</strong>% -->
     </p>
     <p class="margin-0 text-center ft-1p8">年化收益率</p>
@@ -20,37 +16,35 @@
       <tbody>
         <tr>
           <td>推荐机构</td>
-          <td>{{jigoubaoDetailData.guaranteeName}}</td>
+          <td>{{project.guaranteeName}}</td>
         </tr>
         <tr>
-          <td>投资日期</td>
-          <td><span class="ft-orange">{{jigoubaoDetailData.projectDays}}</span>天</td>
+          <td>投资期限</td>
+          <td><span class="ft-orange">{{project.projectDays}}</span>天</td>
         </tr>
         <tr>
           <td>还款日期</td>
-          <td>{{jigoubaoDetailData.repaymentDate | amDateFormat:'YYYY-MM-DD'}}</td>
+          <td>{{project.repaymentDate | amDateFormat:'YYYY-MM-DD'}}</td>
         </tr>
         <tr>
           <td>还款方式</td>
           <td>
-            <span ng-show="jigoubaoDetailData.repaymentType===1">按月付息&nbsp;到期还本</span>
-            <span ng-show="jigoubaoDetailData.repaymentType===2">按月返还&nbsp;等额本息</span>
-            <span ng-show="jigoubaoDetailData.repaymentType===3">按季付息&nbsp;到期还本</span>
-            <span ng-show="jigoubaoDetailData.repaymentType===4">半年付息&nbsp;到期还本</span>
-            <span ng-show="jigoubaoDetailData.repaymentType===5">到期还本付息</span>
+            <span ng-show="project.repaymentType===1">按月付息&nbsp;到期还本</span>
+            <span ng-show="project.repaymentType===2">按月返还&nbsp;等额本息</span>
+            <span ng-show="project.repaymentType===3">按季付息&nbsp;到期还本</span>
+            <span ng-show="project.repaymentType===4">半年付息&nbsp;到期还本</span>
+            <span ng-show="project.repaymentType===5">到期还本付息</span>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
   <div class="padding-1">
-    <a ng-click="goMoreDetail(jigoubaoDetailData)" class="fr ft-orange padding-l-2" my-click-once>更多详情&nbsp;></a>
+    <a ng-click="goMoreDetail(project)" class="fr ft-orange padding-l-2" my-click-once>更多详情&nbsp;></a>
     <!-- <a href="javascript:;" ng-click="toggle();" class="ft-grey4 fr" style="text-decoration:underline;" my-click-once>宏金保协议范本</a> -->
   </div>
   <!-- 投资模块 -->
   <div ng-include src="'views/project/_project-investment.html'"></div>
   <!-- 开通自动投标权限 -->
   <div ng-include src="'views/user-center/auto-auto-transfer.html'" ng-show="authAutoTransferFlag"></div>
-  <!-- ng-show="showFundsAgreement" 协议 -->
-  <div class="alert-agreement" ng-show="showFundsAgreement" ng-include src="'views/_current_deposit-agreement.html'"></div>
 </div>

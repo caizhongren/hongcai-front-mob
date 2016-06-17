@@ -8,17 +8,18 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('ProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects, Restangular, restmod, DEFAULT_DOMAIN, config) {
+  .controller('ProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects, Restangular, restmod, DEFAULT_DOMAIN, config, projectStatusMap) {
     // 宏金盈详情页面
     var number = $stateParams.number;
     if (!$stateParams.number) {
       $state.go('root.main');
     }
 
+    $scope.projectStatusMap = projectStatusMap;
+
     Restangular.one('projects').one($stateParams.number).get().then(function(response) {
-      $scope.jigoubaoDetailData = response;
-      $scope.jigoubaoDataMore = $scope.jigoubaoDetailData.projectInfo;
-      console.log($scope.jigoubaoDetailData);
+      $scope.project = response;
+      $scope.jigoubaoDataMore = $scope.project.projectInfo;
       // 可投资金额
       $scope.jigoubaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
       // 当status===1可融资状态的时候，判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。
@@ -50,18 +51,9 @@ angular.module('p2pSiteMobApp')
       });
     }
     $scope.checkLargeUserCanAmount = function(project) {
-      if ($rootScope.isLogged) {
-        // console.log(project);
-        // var availableAmount = project.status !== 7 ? $rootScope.account.balance : $rootScope.account.balance + $rootScope.account.experienceAmount;
-        if ($rootScope.account.balance < project.investAmount) {
-          return true;
-        } else {
-          return false;
-        }
-      } else {
-        return false;
-      }
+      return $rootScope.isLogged && $rootScope.account.balance < project.investAmount;
     };
+
     $scope.checkStepAmount = function(project) {
       if (project.investAmount >= project.increaseAmount) {
         if (project.investAmount % project.increaseAmount === 0) {
@@ -136,11 +128,24 @@ angular.module('p2pSiteMobApp')
       });
     }
 
+    /**
+     * 跳转到充值页面
+     */
+    $scope.toRecharge = function(){
+      $state.go('root.userCenter.recharge');
+    }
+
 
     $scope.toInvest = function(project) {
       // console.log(project);
       if (!project.investAmount) {
-        $scope.msg = '投资金额有误，请重新输入';
+        $scope.msg = '请输入投资金额';
+        return;
+      } else if(project.investAmount < project.minInvest){
+        $scope.msg = '投资金额必须大于' + project.minInvest;
+        return;
+      } else if(project.investAmount % project.increaseAmount){
+        $scope.msg = '投资金额必须为' + project.increaseAmount + '的整数倍';
         return;
       }
 
@@ -196,12 +201,27 @@ angular.module('p2pSiteMobApp')
     };
 
 
-    $scope.$watch('jigoubaoDetailData.investAmount', function(newVal, oldVal){
+    $scope.$watch('project.investAmount', function(newVal, oldVal){
       if(newVal !== oldVal){
         $scope.msg = undefined;
       }
 
-      console.log(oldVal);
+      if($rootScope.account.balance <= 0){
+        $scope.msg = '账户余额不足，请先充值';
+      } 
+
+      if(newVal){
+        if(newVal % $scope.project.increaseAmount){
+          $scope.msg = '投资金额必须为' + $scope.project.increaseAmount + '的整数倍';
+          return;
+        }
+        if(newVal > $rootScope.account.balance){
+          $scope.msg = '账户余额不足，请先充值'
+        } 
+        if(newVal > $scope.jigoubaoProjectInvestNum){
+          $scope.msg = '投资金额必须小于' + $scope.jigoubaoProjectInvestNum;
+        }
+      }
     });
 
   });
