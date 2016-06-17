@@ -40,7 +40,7 @@
           <span class="ft-white"><i class="fa fa-info">&nbsp;</i>输入金额格式不对，只能输入数字</span>
         </div>
         <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="investForm.investAmount.$dirty && checkLargeUserCanAmount(jigoubaoDetailData)">
-          <span class="ft-white"><i class="fa fa-info">&nbsp;</i>账户余额不足，请充值</span>
+          <span class="ft-white"><i class="fa fa-info">&nbsp;</i>账户余额不足，请<a ui-sref="root.userCenter.recharge">充值</a></span>
         </div>
         <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="investForm.investAmount.$error.max || investForm.investAmount.$error.min">
           <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入一个介于{{ jigoubaoDetailData.minInvest }}-{{ jigoubaoProjectInvestNum }}之间的值</span>

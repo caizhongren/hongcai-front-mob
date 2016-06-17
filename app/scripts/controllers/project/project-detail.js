@@ -195,4 +195,13 @@ angular.module('p2pSiteMobApp')
       }
     };
 
+
+    $scope.$watch('jigoubaoDetailData.investAmount', function(newVal, oldVal){
+      if(newVal !== oldVal){
+        $scope.msg = undefined;
+      }
+
+      console.log(oldVal);
+    });
+
   });
