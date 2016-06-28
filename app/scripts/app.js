@@ -196,6 +196,17 @@ p2pSiteMobApp
           }
         }
       })
+      // 立即投资页
+      .state('root.investment-status', {
+        url: '/investment-status',
+        views: {
+          '': {
+            templateUrl: 'views/project/investment-status.html',
+            controller: '',
+            controllerUrl: ''
+          }
+        }
+      })
       .state('root.registration-agreement', {
         url: '/registration-agreement',
         views: {
@@ -524,7 +535,7 @@ p2pSiteMobApp
           }
         }
       })
-     
+
       //串码活动页
       .state('root.exchange-code', {
         url: '/exchange-code',
@@ -735,7 +746,7 @@ p2pSiteMobApp
           }
         }
       })
-      
+
 
 
     ;
@@ -774,7 +785,7 @@ p2pSiteMobApp
       }, 400);
 
 
-      
+
 
       // $rootScope.showTitle = titleMap[path];
       $rootScope.showMe = false;
@@ -813,7 +824,7 @@ p2pSiteMobApp
             if(routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1){
               $state.go('root.login', {redirectUrl: encodeURIComponent($location.url())});
             }
-            
+
             return;
           }
 
@@ -868,7 +879,7 @@ p2pSiteMobApp
         }
       });
     });
-    
+
     $rootScope.$on('$stateChangeSuccess', function() {
 
       var path = $location.path().split('/')[1];
@@ -897,7 +908,8 @@ p2pSiteMobApp
         'share-scene',
         'share-spring',
         'grade',
-        'activity'   
+        'project',
+        'activity'
       ];
       $rootScope.showFooter = false;
       if (notShowFooterRoute.indexOf(path) === -1) {
