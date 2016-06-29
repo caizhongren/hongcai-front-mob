@@ -1,0 +1,85 @@
+<!-- 宏金宝立即投资状态页 -->
+<div class="hongjinbao-investment-status bg-white2" style="min-height:736px;">
+  <div class="padding-l-2 padding-r-1 padding-t-0p8 padding-b-1 bg-orange1 position-re border-orange3 border-left-none border-right-none width-pull overflow-hid ">
+   <!-- 未登录情况 -->
+   <p class="ft-black4 display-inb text-underline margin-b-0" style="display: none;">您的账号未登录</p>
+   <button class="button fr ft-1p6 position-ab button-primary border-ra-0p5 btn-sign" style="display: none;">登录</button>
+   <!-- 已登录显示资产 -->
+   <p class="ft-black4 display-inb margin-b-0" style="display: none;">您的账户余额<strong class="ft-orange">999</strong>元</p>
+   <button class="button fr ft-1p8 position-ab button-primary border-ra-0p5 btn-sign"style="display: none;">充值</button>
+   <!-- 未开通第三方托管 -->
+   <p class="ft-black4 display-inb text-underline margin-b-0">您的账号未开通第三方托管</p>
+   <button class="button fr ft-1p8 position-ab button-primary border-ra-0p5 btn-sign">开通</button>
+  </div>
+  <div style="height: 1rem;"></div>
+  <div class="bg-white1">
+    <div class="padding-l-2 boder-grey-tb">
+      <p class="ft-grey4 ft-1p8 margin-b-0p5 margin-t-1">首联担保20160426期</p>
+      <p class="ft-grey4 margin-b-1">剩余可投金额：<span class="ft-orange">元</span></p>
+    </div>
+    <div class="padding-l-2 boder-grey-tb border-top-none">
+      <p class="ft-grey4 margin-b-1 margin-t-1 display-inb">投资金额：<i class="fa fa-jpy ft-grey10"></i></p>
+      <input type="number" placeholder="请输入100的整数倍" class="display-inb border-none margin-b-0 padding-l-0 ft-1p5">
+    </div>
+  </div>
+  <div class="padding-l-2 ft-1" style="height: 1.3rem;margin-top: -0.2rem;">
+    <p class="margin-b-0 ft-red10 display-inb">余额不足，请先充值</p>
+    <!-- <p class="margin-b-0 ft-red10">请输入100的整数倍</p> -->
+  </div>
+  <div class="bg-white1 ft-grey4 ">
+    <div class="padding-l-2 padding-r-2 boder-grey-tb width-pull">
+      <p class="margin-b-1 margin-t-1 display-inb">加息券：</p>
+      <span class="fr margin-t-1">2%加息券&nbsp;&nbsp;<i class="fa fa-chevron-right display-inb" aria-hidden="true"></i></span>
+      <!-- 没有加息券 -->
+      <!-- <span class="fr margin-t-1p5">暂无可用加息券&nbsp;&nbsp;<i class="fa fa-chevron-right display-inb" aria-hidden="true"></i></span> -->
+    </div>
+    <div class="padding-l-2 padding-r-2 boder-grey-tb border-top-none margin-b-1">
+      <p class="margin-b-1 margin-t-1 display-inb">预期收益：</p>
+      <p class="display-inb fr margin-t-1 margin-b-0">0.00元+<span class="ft-orange">0.00元</span></p>
+    </div>
+  </div>
+  <div class="padding-l-1 padding-r-1 padding-b-0">
+    <a class="u-full-width button button-primary ft-normal ft-2">立即投资</a>
+  </div>
+  <!-- 加息券弹出 -->
+  <div class="rate-increase position-ab width-100 height-100 position-ab">
+    <div class="bg-white position-ab rate-increase-list width-pull">
+      <ul class="padding-1 margin-b-0 padding-b-0" style="max-height: 36rem;">
+        <li class="margin-b-0p5 position-re">
+          <img src="/images/rate-ticket.png" alt="">
+          <p class="fl ft-orange ft-2 position-ab margin-b-0 ticket-left">+5%</p>
+          <div class="position-ab ticket-right">
+            <p class="ft-grey4 ft-1p2">投资加息券</p>
+            <p class="ft-grey4 ft-1p2">适用于宏金保项目</p>
+            <p class="ft-grey4 ft-1p2">有效期至2016-06-30</p>
+          </div>
+        </li>
+        <li class="margin-b-0p5 position-re">
+          <img src="/images/rate-ticket.png" alt="">
+          <p class="fl position-ab ft-2 margin-b-0  ticket-left">+5%</p>
+          <div class="position-ab ticket-right">
+            <p class="ft-grey4 ft-1p2">投资加息券</p>
+            <p class="ft-grey4 ft-1p2">适用于宏金保项目</p>
+            <p class="ft-grey4 ft-1p2">有效期至2016-06-30</p>
+          </div>
+        </li>
+        <li class="margin-b-0p5 position-re">
+          <img src="/images/rate-ticket.png" alt="">
+          <p class="fl position-ab ft-2 margin-b-0  ticket-left">+5%</p>
+          <div class="position-ab ticket-right">
+            <p class="ft-grey4 ft-1p2">投资加息券</p>
+            <p class="ft-grey4 ft-1p2">适用于宏金保项目</p>
+            <p class="ft-grey4 ft-1p2">有效期至2016-06-30</p>
+          </div>
+        </li>
+      </ul>
+      <p class="text-center ft-grey4 margin-b-0p5">
+        <i class="fa fa-list-ul ft-orange" aria-hidden="true">&nbsp;&nbsp;</i>
+        <span class="text-underline ">查看更多</span>
+      </p>
+      <p class="text-center padding-t-0p5 padding-b-0p5 ft-grey4 margin-b-0 border-bottom-none boder-grey-tb ">不使用加息券</p>
+      <p class="text-center padding-t-0p5 padding-b-0p5 margin-b-0 click-active ft-orange border-bottom-none boder-grey-tb">取消</p>
+    </div>
+  </div>
+</div>
+

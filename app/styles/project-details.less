@@ -173,6 +173,99 @@
 }
 
 //宏金保页
+.hongjinbao-investment-status{
+  button.btn-sign{
+    height: 3rem;
+    right: 1rem;
+    top: .4rem;
+    line-height: 3rem;
+    font-weight: normal;
+    font-size: 1.8rem;
+  }
+  input[type="number"]{
+    font-size: 1.5rem;
+  }
+  .boder-grey-tb{
+    border-top: .1rem solid #e6e5e4;
+    border-bottom: .1rem solid #e6e5e4;
+  }
+}
+.rate-increase{
+  overflow: hidden;
+  z-index: 99999;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top:0;
+  left: 0;
+  background-color: rgba(0,0,0,0.25);
+  .rate-increase-list{
+    bottom: 0;
+    ul{
+      padding-bottom: 0;
+      li{
+        .ticket-left {//加息券活动奖励
+          left: 2rem;
+          top: 1.5rem;
+          color: #fff;
+          @media (min-width:320px) {
+            left: 2rem;
+            top: 1rem;
+          }
+          @media (min-width:360px) {
+            left: 2.5rem;
+            top: 1.2rem;
+          }
+          @media (min-width:411px) {
+            left: 3rem;
+            top: 1.5rem;
+          }
+          @media (min-width:760px) {
+            left: 7.5rem;
+            top: 4rem;
+          }
+        }
+        .ticket-right{
+          width: 57%;
+          right: 1rem;
+          p{
+            margin-bottom: 0;
+            @media(min-width:320px){
+              margin-bottom: -2px;
+              }
+            @media(min-width:375px){
+              margin-bottom: -1px;
+              }
+            @media(min-width:411px){
+              margin-bottom: 0px;
+              }
+            @media (min-width:760px){
+              margin-bottom: 0.6rem;
+            }
+          }
+          @media(min-width:320px){
+            top: 0;
+            }
+          @media (min-width:375px) {
+            top: 0.3rem;
+          }
+          @media (min-width:411px){
+            top: 0.6rem;
+          }
+          @media (min-width:760px){
+            top: 2.5rem;
+          }
+         }
+        }
+        img{
+            width: 100%;
+          }
+        }
+      }
+    p.click-active {
+      background-color: #f8f7f7;
+     }
+ }
 .hongjinbao-detail-more {
   .hr-orange {
     border: 0.1rem solid #fd8f3f;
