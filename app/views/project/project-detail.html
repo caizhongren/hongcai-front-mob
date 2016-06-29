@@ -46,7 +46,7 @@
   <!-- 更多详情模块 -->
   <div ng-include src="'views/project/project-detail-more.html'"></div>
   <!-- 投资模块 -->
-  <p class="padding-t-1 padding-b-1 bg-orange ft-white text-center footer-pos colums margin-b-0 ft-2" ui-sref="root.investment-status">立即投资</p>
+  <p class="padding-t-1 padding-b-1 bg-orange ft-white text-center footer-pos colums margin-b-0 ft-2" ui-sref="root.investment-status({number: project.number})">立即投资</p>
   <!-- <div ng-include src="'views/project/_project-investment.html'"></div> -->
   <!-- 开通自动投标权限 -->
   <!-- <div ng-include src="'views/user-center/auto-auto-transfer.html'" ng-show="authAutoTransferFlag"></div> -->

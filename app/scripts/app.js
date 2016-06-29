@@ -198,12 +198,12 @@ p2pSiteMobApp
       })
       // 立即投资页
       .state('root.investment-status', {
-        url: '/investment-status',
+        url: '/investment-status/:number',
         views: {
           '': {
             templateUrl: 'views/project/investment-status.html',
-            controller: '',
-            controllerUrl: ''
+            controller: 'InvestCtrl',
+            controllerUrl: 'scripts/controllers/project/invest'
           }
         }
       })
@@ -771,6 +771,13 @@ p2pSiteMobApp
       'safe': '安全保障',
       'account': '账户总览'
     };
+
+    $rootScope.toLogin = function() {
+      $state.go('root.login', {
+        redirectUrl: $location.path()
+      });
+      return;
+    }
 
     $rootScope.$on('$stateChangeStart', function(event, toState) {
       var title = '宏财理财';
