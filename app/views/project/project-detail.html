@@ -51,7 +51,7 @@
   <div ng-include src="'views/project/project-detail-more.html'"></div>
   <!-- 投资模块 -->
   <p class="padding-t-1 padding-b-1 bg-orange ft-white text-center footer-pos colums margin-b-0 ft-2" ng-show="project.status ===7" ui-sref="root.investment-status({number: project.number})">立即投资</p>
-  <p class="padding-t-1 padding-b-1 bg-grey5 ft-white text-center footer-pos colums margin-b-0 ft-2" ng-show="project.status ===6"> {{ project._timeDown.hour }}时，{{ project._timeDown.min }}分，{{ project._timeDown.seconds }}秒</p>
+  <p class="padding-t-1 padding-b-1 bg-grey5 ft-white text-center footer-pos colums margin-b-0 ft-2" ng-show="project.status ===6"> {{project._timeDown.hour }}时，{{project._timeDown.min }}分，{{ project._timeDown.seconds }}秒</p>
   <p class="padding-t-1 padding-b-1 bg-orange ft-white text-center footer-pos colums margin-b-0 ft-2" ng-show="project.status ===11">{{projectStatusMap[11]}}</p>
   <p class="padding-t-1 padding-b-1 bg-grey5 ft-white text-center footer-pos colums margin-b-0 ft-2" ng-show="[6,7,11].indexOf(project.status) === -1">{{projectStatusMap[project.status]}}</p>
   <!-- <div ng-include src="'views/project/_project-investment.html'"></div> -->
