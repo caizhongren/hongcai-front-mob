@@ -47,8 +47,8 @@
     </div>
   </div>
   <div class="padding-l-1 padding-r-1 padding-b-0">
-    <button class="u-full-width button button-primary ft-normal ft-2" ng-disabled="false">立即投资</button>
-    <button class="u-full-width button btn-disabled ft-normal ft-2" ng-disabled="false">立即投资</button>
+    <button class="u-full-width button button-primary ft-normal ft-2" ng-show="investButtonFlag">立即投资</button>
+    <button class="u-full-width button btn-disabled ft-normal ft-2" ng-show="!investButtonFlag">立即投资</button>
   </div>
   <!-- 加息券弹出 -->
   <div class="rate-increase position-ab width-100 height-100 position-ab" ng-show="increaseRateCoupons.length > 0 && showSelectIncreaseRateCoupon">
