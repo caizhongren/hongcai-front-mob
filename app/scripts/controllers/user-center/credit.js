@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('CreditCtrl', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN) {
+  .controller('CreditCtrl', function($scope, $rootScope, $state, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN) {
 
     // tab
     $scope.toggle = {};
@@ -20,12 +20,12 @@ angular.module('p2pSiteMobApp')
 
     $rootScope.selectedSide = 'investments-stat';
     $scope.page = 1;
-    $scope.pageSize = 10;
+    $scope.pageSize = 5;
     //$scope.creditsDetail = [];
     $scope.credits = [];
 
     $rootScope.checkSession.promise.then(function(){
-      $scope.getCredits('1,2');
+      $scope.getCredits('1');
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/totalProfit').$then(function(response){
         if (response.ret !== -1) {
           $scope.totalProfit = response;
@@ -35,9 +35,9 @@ angular.module('p2pSiteMobApp')
     $scope.toggle.switchTab = function(tabIndex) {
       $scope.toggle.activeTab = tabIndex;
       if (tabIndex === 0) {
-        $scope.creditStatus = '1,2';
+        $scope.creditStatus = '1';
       } else {
-        $scope.creditStatus = '3';
+        $scope.creditStatus = '4';
       }
       $scope.credits = [];
       $scope.page = 1;
@@ -45,21 +45,34 @@ angular.module('p2pSiteMobApp')
       //$scope.getCreditList($scope.creditStatus);
     };
 
+    var siteCredits = restmod.model(WEB_DEFAULT_DOMAIN + '/siteCredit');
 
 
     $scope.getCredits = function(status) {
-        $scope.creditStatus = status;
-        HongcaiUser.$find($rootScope.hasLoggedUser.id + '/credits', {
-          status: $scope.creditStatus,
-          page: $scope.page,
-          pageSize: $scope.pageSize
-        }).$then(function(response){
-          $scope.totalPage = response.totalPage;
-          var credits = response.data;
-          for (var i = 0; i <= credits.length - 1; i++) {
-            $scope.credits.push(credits[i]);
-          };
-        });
+      siteCredits.$find('/getHeldInCreditRightList', {
+        status: status,
+        page: $scope.page,
+        pageSize: $scope.pageSize
+      }).$then(function(response){
+        $scope.totalPage = Math.ceil(response.data.count/$scope.page);
+        var credits = response.data.heldIdCreditList;
+        for (var i = 0; i <= credits.length - 1; i++) {
+          $scope.credits.push(credits[i]);
+        };
+      })
+
+        // $scope.creditStatus = status;
+        // HongcaiUser.$find($rootScope.hasLoggedUser.id + '/credits', {
+        //   status: $scope.creditStatus,
+        //   page: $scope.page,
+        //   pageSize: $scope.pageSize
+        // }).$then(function(response){
+        //   $scope.totalPage = response.totalPage;
+        //   var credits = response.data;
+        //   for (var i = 0; i <= credits.length - 1; i++) {
+        //     $scope.credits.push(credits[i]);
+        //   };
+        // });
     };
 
     /**

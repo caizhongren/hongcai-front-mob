@@ -1,27 +1,29 @@
 <div class="credit-item border-grey2-bottom margin-b-2">
   <div class="border-orange4 padding-l-2 padding-r-2 padding-t-1 padding-b-1 overflow-hid bg-pink">
-    <span class="u-pull-left border-left">{{ item.projectName }} </span><img class="fl" src="/images/user-center/rate-icon.png" alt="" width="9%">
-    <span class="u-pull-right ft-orange1" ng-show="item.isRepeatInvest === 1"><i class="fa fa-history"></i>&nbsp;已自动续投</span>
-    <span class="u-pull-right ft-grey2" ng-show="item.isRepeatInvest === 2"><i class="fa fa-history"></i>&nbsp;未自动续投</span>
+    <span class="u-pull-left border-left">{{ item.creditRight.projectName }} </span><img class="fl" src="/images/user-center/rate-icon.png" alt="" width="9%" ng-show="item.increaseRateCoupon">
+    <span class="u-pull-right ft-orange1" ng-show="item.creditRight.isRepeatInvest === 1"><i class="fa fa-history"></i>&nbsp;已自动续投</span>
+    <span class="u-pull-right ft-grey2" ng-show="item.creditRight.isRepeatInvest === 2"><i class="fa fa-history"></i>&nbsp;未自动续投</span>
   </div>
   <div class="u-full-width padding-2 overflow-hid">
     <div class="credit-item-info u-pull-left text-center ft-1p4">
-      <strong class="ft-orange ft-1p6">{{ item.amount |currency:"":2 || 0}}</strong>
+      <strong class="ft-orange ft-1p6">{{ item.creditRight.amount |currency:"":2 || 0}}</strong>
       <br>
       <span class="ft-grey2">投资金额(元)</span>
     </div>
     <div class="credit-item-info u-pull-left text-center ft-1p4">
-      <strong class="ft-orange ft-1p6">{{ item.baseRate + item.riseRate |currency:"":2 || 0}}&nbsp;</strong><strong class="ft-red0 ft-1p6">+2.00</strong>
+      <strong class="ft-orange ft-1p6">{{ item.creditRight.baseRate + item.creditRight.riseRate |currency:"":2 || 0}}&nbsp;</strong><strong class="ft-red0 ft-1p6" ng-show="item.increaseRateCoupon">+{{item.increaseRateCoupon.rate | number:2}}</strong>
       <br>
       <span class="ft-grey2">本期利率(%)</span>
     </div>
-   <!--  <div class="credit-item-info u-pull-left text-center ft-1p4" ng-show="toggle.activeTab === 0">
-      <strong class="ft-orange ft-1p6">{{ item.profit - item.returnProfit |currency:"":2 || 0}}</strong>
+
+    <div class="credit-item-info u-pull-left text-center ft-1p4" ng-show="toggle.activeTab === 0">
+      <strong class="ft-orange ft-1p6">{{ item.creditRight.profit - item.returnProfit |currency:"":2 || 0}}</strong><strong class="ft-red0 ft-1p6" ng-show="item.increaseRateCoupon">+{{(item.creditRight.profit - item.returnProfit) * item.increaseRateCoupon.rate/(item.increaseRateCoupon.rate + item.creditRight.baseRate + item.creditRight.riseRate)/100 | number:2}}</strong>
       <br>
       <span class="ft-grey2">待收利息(元)</span>
-    </div> -->
-    <div class="credit-item-info u-pull-left text-center ft-1p4">
-      <strong class="ft-orange ft-1p6">{{ item.returnProfit |currency:"":2 || 0}}</strong>
+    </div>
+
+    <div class="credit-item-info u-pull-left text-center ft-1p4" ng-show="toggle.activeTab === 1">
+      <strong class="ft-orange ft-1p6">{{ item.creditRight.returnProfit |currency:"":2 || 0}}</strong><strong class="ft-red0 ft-1p6" ng-show="item.increaseRateCoupon">+{{(item.returnProfit) * item.increaseRateCoupon.rate/(item.increaseRateCoupon.rate + item.creditRight.baseRate + item.creditRight.riseRate)/100 | number:2}}</strong>
       <br>
       <span class="ft-grey2">已收利息(元)</span>
     </div>
