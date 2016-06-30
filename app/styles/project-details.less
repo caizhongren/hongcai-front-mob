@@ -173,6 +173,112 @@
 }
 
 //宏金保页
+.hongjinbao-investment-status{
+  button.btn-sign{
+    height: 3rem;
+    right: 1rem;
+    top: .4rem;
+    line-height: 3rem;
+    font-weight: normal;
+    font-size: 1.8rem;
+    @media (max-width:320px) {
+      height: 2.8rem;
+      line-height: 2.8rem;
+      padding: 0 20px;
+      font-size: 1.7rem;
+    }
+  }
+  input[type="number"]{
+    font-size: 1.5rem;
+  }
+  .boder-grey-tb{
+    border-top: .1rem solid #e6e5e4;
+    border-bottom: .1rem solid #e6e5e4;
+  }
+}
+.rate-increase{
+  overflow: hidden;
+  z-index: 99999;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top:0;
+  left: 0;
+  background-color: rgba(0,0,0,0.25);
+  .rate-increase-list{
+    bottom: 0;
+    ul{
+      padding-bottom: 0;
+      li{
+        .ticket-left {//加息券活动奖励
+          left: 2rem;
+          top: 1.5rem;
+          color: #fff;
+          @media (min-width:320px) {
+            font-size: 2.5rem;
+            left: 2rem;
+            top: 0.7rem;
+          }
+          @media (min-width:360px) {
+            font-size: 3rem;
+            left: 2.3rem;
+            top: 0.5rem;
+          }
+          @media (min-width:411px) {
+            font-size: 3.5rem;
+            left: 2.5rem;
+            top: 0.6rem;
+          }
+          @media (min-width:760px) {
+            font-size: 6rem;
+            left: 5.5rem;
+            top: 1.5rem;
+          }
+        }
+        .ticket-right{
+          width: 57%;
+          right: 1rem;
+          p{
+            margin-bottom: 0;
+            @media(min-width:320px){
+              margin-bottom: -2px;
+              }
+            @media(min-width:375px){
+              margin-bottom: -1px;
+              }
+            @media(min-width:411px){
+              margin-bottom: 0px;
+              }
+            @media (min-width:760px){
+              margin-bottom: -2px;
+              font-size: 2rem;
+
+            }
+          }
+          @media(min-width:320px){
+            top: 0;
+            }
+          @media (min-width:375px) {
+            top: 0.3rem;
+          }
+          @media (min-width:411px){
+            top: 0.6rem;
+          }
+          @media (min-width:760px){
+            top: 2.5rem;
+            margin-top: -1rem;
+          }
+         }
+        }
+        img{
+            width: 100%;
+          }
+        }
+      }
+    p.click-active {
+      background-color: #f8f7f7;
+     }
+ }
 .hongjinbao-detail-more {
   .hr-orange {
     border: 0.1rem solid #fd8f3f;
@@ -213,6 +319,8 @@
 	span{
 		float: left;
 		display:block;
+    height: 1.8rem;
+    line-height: 1.8rem;
 	}
 }
 
