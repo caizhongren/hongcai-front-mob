@@ -16,33 +16,21 @@ angular.module('p2pSiteMobApp')
     }
 
     $scope.projectStatusMap = projectStatusMap;
-
+    $scope.profit = 0;
+    $scope.increaseRateProfit = 0;
     Restangular.one('projects').one($stateParams.number).get().then(function(response) {
       $scope.project = response;
       $scope.jigoubaoDataMore = $scope.project.projectInfo;
       // 可投资金额
       $scope.project.availableAmount = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
-      // 当status===1可融资状态的时候，判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。
-      $rootScope.checkSession.promise.then(function() {
-        if ($rootScope.isLogged) {
-          // 用户可投资金额
-          var plusNum = $rootScope.securityStatus.realNameAuthStatus;
-
-          switch (plusNum) {
-            case 1:
-              $scope.fundsFlag = 2;
-              break;
-            case 0:
-              $scope.fundsFlag = 1;
-              break;
-          }
-        } else {
-          $scope.userCanCreditInvestNum = 0;
-          $scope.fundsFlag = 0;
-        }
-        if (!$rootScope.hasLoggedUser || !$rootScope.hasLoggedUser.id) {
-          return;
-        }
+      
+      $scope.increaseRateCoupons = [];
+      Restangular.one('projects').one('investIncreaseRateCoupon').get({
+        projectId : $scope.project.id,
+        amount : $scope.project.availableAmount
+      }).then(function(response) {
+        $scope.increaseRateCoupons = response;
+        $scope.selectIncreaseRateCoupon = $scope.increaseRateCoupons[0];
       });
     });
 
@@ -202,28 +190,78 @@ angular.module('p2pSiteMobApp')
     //   }
     // };
 
+    $scope.showErrorMsg = false;
+    $scope.$watch('project.investAmount', function(newVal, oldVal){
+      $scope.showErrorMsg = false;
 
-    // $scope.$watch('project.investAmount', function(newVal, oldVal){
-    //   if(newVal !== oldVal){
-    //     $scope.msg = undefined;
-    //   }
+      if(newVal !== oldVal){
+        $scope.msg = undefined;
+      }
 
-    //   if($rootScope.account.balance <= 0){
-    //     $scope.msg = '账户余额不足，请先充值';
-    //   } 
+      if($rootScope.account.balance <= 0){
+        $scope.msg = '账户余额不足，请先充值';
+      } 
 
-    //   if(newVal){
-    //     if(newVal % $scope.project.increaseAmount){
-    //       $scope.msg = '投资金额必须为' + $scope.project.increaseAmount + '的整数倍';
-    //       return;
-    //     }
-    //     if(newVal > $rootScope.account.balance){
-    //       $scope.msg = '账户余额不足，请先充值'
-    //     } 
-    //     if(newVal > $scope.jigoubaoProjectInvestNum){
-    //       $scope.msg = '投资金额必须小于' + $scope.jigoubaoProjectInvestNum;
-    //     }
-    //   }
-    // });
+      if(newVal){
+        if(newVal > $scope.project.availableAmount){
+          $scope.msg = '投资金额必须小于' + $scope.project.availableAmount;
+        }else if(newVal > $rootScope.account.balance){
+          $scope.msg = '账户余额不足，请先充值';
+        } else if(newVal % $scope.project.increaseAmount){
+          $scope.msg = '投资金额必须为' + $scope.project.increaseAmount + '的整数倍';
+        }
+      }
 
+      if($scope.msg){
+        $scope.showErrorMsg = true;
+      }else{
+        if($scope.project){
+            $scope.profit = $scope.calcProfit($scope.project.annualEarnings) || 0;
+            $scope.increaseRateProfit = $scope.calcProfit($scope.selectIncreaseRateCoupon.rate) || 0;
+        }
+      }
+    });
+
+    $scope.toRealNameAuth = false;
+    $scope.openYeepay = function() {
+      $scope.toRealNameAuth = true;
+    }
+
+    /**
+     * 实名认证，即开通易宝
+     */
+    $scope.realNameAuth = function(user) {
+      if (!user.realName || !user.idNo) {
+        $scope.errMsg = '请输入姓名或身份证号';
+      }
+      $state.go('root.yeepay-transfer', {
+        type: 'register',
+        number: "null",
+        realName: user.realName,
+        idNo: user.idNo
+      });
+    }
+
+    $scope.showSelectIncreaseRateCoupon = false;
+    $scope.selectCoupon = function(coupon){
+        $scope.selectIncreaseRateCoupon = coupon;
+        $scope.showSelectIncreaseRateCoupon = false;
+        $scope.increaseRateProfit = $scope.calcProfit(coupon.rate);
+    }
+
+    $scope.unUseIncreaseRateCoupon = function(){
+        $scope.selectIncreaseRateCoupon = null;
+        $scope.showSelectIncreaseRateCoupon = false;
+        $scope.increaseRateProfit = 0;
+    }
+
+    $scope.calcProfit = function(annualEarnings){
+        var profit = $scope.project.investAmount * $scope.project.projectDays * annualEarnings / 36500 ;
+        return profit;
+    }
+
+    $scope.initLimit = 3;
+    $scope.viewMoreCoupon = function(){
+        $scope.initLimit = $scope.initLimit + 3 < $scope.increaseRateCoupons.length ? $scope.initLimit + 3 : $scope.increaseRateCoupons.length;
+    }
   });
