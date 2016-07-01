@@ -15,6 +15,7 @@ angular.module('p2pSiteMobApp')
       $state.go('root.main');
     }
 
+    $scope.unSelectCouponMsg = '暂无可用加息券';
     $scope.initLimit = 3;
     $scope.resetInitLimit = function(){
         $scope.initLimit = 3;
@@ -235,6 +236,7 @@ angular.module('p2pSiteMobApp')
         $scope.showSelectIncreaseRateCoupon = false;
         $scope.increaseRateProfit = 0;
         $scope.resetInitLimit();
+        $scope.unSelectCouponMsg = '不使用加息券';
     }
 
     $scope.calcProfit = function(annualEarnings){
