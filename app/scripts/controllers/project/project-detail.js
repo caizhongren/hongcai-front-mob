@@ -205,6 +205,10 @@ angular.module('p2pSiteMobApp')
         }
       }
     };
+    
+    $scope.goToInvestVerify = function(){
+      $state.go('root.investment-status', {number: $scope.project.number});
+    }
 
 
     // $scope.$watch('project.investAmount', function(newVal, oldVal){
