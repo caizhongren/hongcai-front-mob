@@ -17,6 +17,9 @@ angular.module('p2pSiteMobApp')
 
     $scope.projectStatusMap = projectStatusMap;
 
+
+    $scope.repaymentTypeMap = {'1': '按月付息 到期还本', '2': '按月返还 等额本息', '3': '按季付息 到期还本', '4': '半年付息 到期还本', '5': '到期还本付息'};
+
     Restangular.one('projects').one($stateParams.number).get().then(function(response) {
       $scope.project = response;
       $scope.serverTime = response.serverTime || (new Date().getTime());

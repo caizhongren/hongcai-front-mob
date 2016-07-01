@@ -23,17 +23,13 @@
           <td><span class="ft-orange">{{project.projectDays}}</span>天</td>
         </tr>
         <tr>
-          <td>还款日期</td>
-          <td>{{project.repaymentDate | amDateFormat:'YYYY-MM-DD'}}</td>
+          <td>募集日期</td>
+          <td>{{project.releaseStartTime | date: 'yyyy-MM-dd'}} 至 {{project.releaseEndTime | date: 'yyyy-MM-dd'}}</td>
         </tr>
         <tr>
           <td>还款方式</td>
           <td>
-            <span ng-show="project.repaymentType===1">按月付息&nbsp;到期还本</span>
-            <span ng-show="project.repaymentType===2">按月返还&nbsp;等额本息</span>
-            <span ng-show="project.repaymentType===3">按季付息&nbsp;到期还本</span>
-            <span ng-show="project.repaymentType===4">半年付息&nbsp;到期还本</span>
-            <span ng-show="project.repaymentType===5">到期还本付息</span>
+            <span>{{repaymentTypeMap[project.repaymentType]}}</span>
           </td>
         </tr>
         <tr>
