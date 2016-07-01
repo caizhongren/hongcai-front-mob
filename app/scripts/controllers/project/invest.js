@@ -185,6 +185,11 @@ angular.module('p2pSiteMobApp')
         }
       }
 
+      if($scope.project){
+         $scope.profit = $scope.calcProfit($scope.project.annualEarnings) || 0;
+         $scope.increaseRateProfit = $scope.selectIncreaseRateCoupon != null ? $scope.calcProfit($scope.selectIncreaseRateCoupon.rate) : 0;
+      }
+
       $scope.showMsg();
     });
 
@@ -193,11 +198,7 @@ angular.module('p2pSiteMobApp')
         $scope.showErrorMsg = true;
         $scope.investButtonFlag = false;
       }else{
-        if($scope.project){
-            $scope.investButtonFlag = true;
-            $scope.profit = $scope.calcProfit($scope.project.annualEarnings) || 0;
-            $scope.increaseRateProfit = $scope.selectIncreaseRateCoupon != null ? $scope.calcProfit($scope.selectIncreaseRateCoupon.rate) : 0;
-        }
+        $scope.investButtonFlag = true;
       }
     }
 
