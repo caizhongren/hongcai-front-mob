@@ -252,7 +252,7 @@ angular.module('p2pSiteMobApp')
     //   // console.log($scope.subtabClassIndex);
     // };
 
-    $scope.toggle.activeTab = parseInt($stateParams.tab, 0) || 0;
+    $scope.toggle.activeTab = parseInt($stateParams.tab, 0) || 1;
     $scope.toggle.activeSubTab = parseInt($stateParams.subTab,0) || 0;
     if($scope.toggle.activeTab == 0){
       $scope.switchFundsProjects(1);

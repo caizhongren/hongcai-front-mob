@@ -69,7 +69,7 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
-      var status = "1";
+      var status = "1,3";
       if(subtabIndex === 1){
         status = "2";
       }
