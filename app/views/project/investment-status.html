@@ -35,11 +35,11 @@
     <p class="margin-b-0 ft-red10 display-inb"></p>
   </div>
   <div class="bg-white1 ft-grey4 ">
-    <div class="padding-l-2 padding-r-2 boder-grey-b width-pull" ng-click="showSelectIncreaseRateCoupon=true;">
+    <div class="padding-l-2 padding-r-2 boder-grey-b width-pull">
       <p class="margin-b-1 margin-t-1 display-inb">加息券：</p>
-      <span class="fr margin-t-1" id="ticket" ng-show="selectIncreaseRateCoupon">{{selectIncreaseRateCoupon.rate}}%加息券&nbsp;&nbsp;<i class="fa fa-chevron-right display-inb" aria-hidden="true"></i></span>
+      <span class="fr margin-t-1" id="ticket" ng-show="selectIncreaseRateCoupon" ng-click="showSelectIncreaseRateCoupon=true;">{{selectIncreaseRateCoupon.rate}}%加息券&nbsp;&nbsp;<i class="fa fa-chevron-right display-inb" aria-hidden="true"></i></span>
       <!-- 没有加息券 -->
-      <span class="fr margin-t-1" ng-show="!selectIncreaseRateCoupon">暂无可用加息券&nbsp;&nbsp;<i class="fa fa-chevron-right display-inb" aria-hidden="true"></i></span>
+      <span class="fr margin-t-1" ng-show="!selectIncreaseRateCoupon" ng-click="showSelectIncreaseRateCoupon=true;">暂无可用加息券&nbsp;&nbsp;<i class="fa fa-chevron-right display-inb" aria-hidden="true"></i></span>
     </div>
     <div class="padding-l-2 padding-r-2 boder-grey-tb border-top-none margin-b-3">
       <p class="margin-b-1 margin-t-1 display-inb">预期收益：</p>
@@ -69,7 +69,7 @@
         <span class="text-underline ">查看更多</span>
       </p>
       <p class="text-center padding-t-1 padding-b-1 ft-grey4 margin-b-0 boder-grey-t boder-grey-b click-active" ng-click="unUseIncreaseRateCoupon()">不使用加息券</p>
-      <p class="text-center padding-t-1 padding-b-1 margin-b-0 ft-orange click-cancel" ng-click="showSelectIncreaseRateCoupon=false;">取消</p>
+      <p class="text-center padding-t-1 padding-b-1 margin-b-0 ft-orange click-cancel" ng-click="showSelectIncreaseRateCoupon=false;initLimit=3;">取消</p>
     </div>
   </div>
 </div>
