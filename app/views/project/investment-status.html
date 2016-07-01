@@ -1,26 +1,26 @@
 <!-- 宏金宝立即投资状态页 -->
-<div class="hongjinbao-investment-status bg-white2" style="min-height:736px;">
+<div class="hongjinbao-investment-status bg-white2 ft-1p6" style="height: 100%;">
   <div class="padding-l-2 padding-r-1 padding-t-0p8 padding-b-0p8 bg-orange1 position-re border-orange3 border-left-none border-right-none width-pull overflow-hid ">
    <!-- 未登录情况 -->
    <div ng-show="!isLogged">
-    <p class="ft-black4 display-inb text-underline margin-b-0">您的账号未登录</p>
-    <button class="button fr ft-1p6 position-ab button-primary border-ra-0p5 btn-sign" ng-click="toLogin()">登录</button>
+    <p class="ft-black4 text-underline margin-b-0 display-inb status-message">您的账号未登录</p>
+    <button class="button fr ft-1p5 button-primary border-ra-0p5 btn-sign margin-b-0" ng-click="toLogin()">登录</button>
    </div>
    <div ng-show="isLogged && securityStatus.realNameAuthStatus === 1">
    <!-- 已登录显示资产 -->
-    <p class="ft-black4 display-inb margin-b-0" ><img class="display-inb fl margin-t-0p4 margin-r-0p3" width="8%" src="/images/user-center/user-balance-icon.png" alt="">您的账户余额<strong class="ft-orange">{{account.balance | number:2}}</strong>元</p>
+    <p class="ft-black4 display-inb margin-b-0 status-message" ><img class="display-inb fl margin-t-0p8 margin-r-0p3" width="8%" src="/images/user-center/user-balance-icon.png" alt="">您的账户余额<strong class="ft-orange">{{account.balance | number:2}}</strong>元</p>
     <button class="button fr ft-1p8 position-ab button-primary border-ra-0p5 btn-sign" ui-sref="root.userCenter.recharge">充值</button>
    </div>
    <!-- 未开通第三方托管 -->
    <div ng-show="isLogged && securityStatus.realNameAuthStatus !== 1">
-   <p class="ft-black4 display-inb text-underline margin-b-0">您的账号未开通第三方托管</p>
+   <p class="ft-black4 display-inb text-underline margin-b-0 status-message">您的账号未开通第三方托管</p>
    <button class="button fr ft-1p8 position-ab button-primary border-ra-0p5 btn-sign" ng-click="openYeepay()">开通</button>
    </div>
   </div>
-  <div style="height: 1rem;"></div>
+  <div style="height: 1.5rem;"></div>
   <div class="bg-white1">
-    <div class="padding-l-2 boder-grey-tb">
-      <p class="ft-grey4 ft-1p8 margin-b-0p5 margin-t-1">{{project.name}}</p>
+    <div class="padding-l-2 boder-grey-b padding-t-1p5">
+      <p class="ft-grey4 ft-1p8 margin-b-1">{{project.name}}</p>
       <p class="ft-grey4 margin-b-1">剩余可投金额：<span class="ft-orange">{{project.availableAmount | number : 2}}元</span></p>
     </div>
     <div class="padding-l-2 boder-grey-tb border-top-none">
@@ -28,20 +28,20 @@
       <input type="number" ng-model="project.investAmount" placeholder="请输入100的整数倍" class="display-inb border-none margin-b-0 padding-l-0 ft-1p5">
     </div>
   </div>
-  <div ng-show="showErrorMsg" class="padding-l-2 ft-1" style="height: 1.3rem;margin-top: -0.2rem;">
+  <div ng-show="showErrorMsg" class="padding-l-2 ft-1" style="height: 1.8rem;margin-top: -0.2rem;">
     <p class="margin-b-0 ft-red10 display-inb">{{msg}}</p>
   </div>
-  <div ng-show="!showErrorMsg" class="padding-l-2 ft-1" style="height: 1.3rem;margin-top: -0.2rem;">
+  <div ng-show="!showErrorMsg" class="padding-l-2 ft-1" style="height: 1.8rem;margin-top: -0.2rem;">
     <p class="margin-b-0 ft-red10 display-inb"></p>
   </div>
   <div class="bg-white1 ft-grey4 ">
-    <div class="padding-l-2 padding-r-2 boder-grey-tb width-pull" ng-click="showSelectIncreaseRateCoupon=true;">
+    <div class="padding-l-2 padding-r-2 boder-grey-b width-pull" ng-click="showSelectIncreaseRateCoupon=true;">
       <p class="margin-b-1 margin-t-1 display-inb">加息券：</p>
       <span class="fr margin-t-1" id="ticket" ng-show="selectIncreaseRateCoupon">{{selectIncreaseRateCoupon.rate}}%加息券&nbsp;&nbsp;<i class="fa fa-chevron-right display-inb" aria-hidden="true"></i></span>
       <!-- 没有加息券 -->
-      <span class="fr margin-t-1p5" ng-show="!selectIncreaseRateCoupon">暂无可用加息券&nbsp;&nbsp;<i class="fa fa-chevron-right display-inb" aria-hidden="true"></i></span>
+      <span class="fr margin-t-1" ng-show="!selectIncreaseRateCoupon">暂无可用加息券&nbsp;&nbsp;<i class="fa fa-chevron-right display-inb" aria-hidden="true"></i></span>
     </div>
-    <div class="padding-l-2 padding-r-2 boder-grey-tb border-top-none margin-b-1">
+    <div class="padding-l-2 padding-r-2 boder-grey-tb border-top-none margin-b-3">
       <p class="margin-b-1 margin-t-1 display-inb">预期收益：</p>
       <p class="display-inb fr margin-t-1 margin-b-0">{{profit || 0 | number : 2}}元+<span class="ft-orange">{{increaseRateProfit || 0 | number : 2}}元</span></p>
     </div>
@@ -53,14 +53,14 @@
   <!-- 加息券弹出 -->
   <div class="rate-increase position-ab width-100 height-100 position-ab" ng-show="increaseRateCoupons.length > 0 && showSelectIncreaseRateCoupon">
     <div class="bg-white position-ab rate-increase-list width-pull">
-      <ul class="padding-1 margin-b-0 padding-b-0" style="max-height: 36rem;" ng-repeat=" coupon in increaseRateCoupons |limitTo : initLimit">
-        <li class="margin-b-0p5 position-re" ng-click="selectCoupon(coupon)">
+      <ul class="padding-1 margin-b-0 padding-b-0">
+        <li class="margin-b-0p5 position-re" ng-click="selectCoupon(coupon)" ng-repeat=" coupon in increaseRateCoupons |limitTo : initLimit">
           <img src="/images/rate-ticket.png" alt="">
           <p class="fl position-ab margin-b-0 ticket-left">{{coupon.rate | number : 1}}<span class="ft-1p5">%</span></p>
           <div class="position-ab ticket-right">
-            <p class="ft-grey4 ft-1p2">投资加息券</p>
-            <p class="ft-grey4 ft-1p2">适用于宏金保项目</p>
-            <p class="ft-grey4 ft-1p2">有效期至{{coupon.endTime | date : 'yyyy-MM-dd'}}</p>
+            <p class="ft-grey4 ft-1p2">●&nbsp;投资加息券</p>
+            <p class="ft-grey4 ft-1p2">●&nbsp;适用于宏金保项目</p>
+            <p class="ft-grey4 ft-1p2">●&nbsp;有效期至{{coupon.endTime | date : 'yyyy-MM-dd'}}</p>
           </div>
         </li>
       </ul>
@@ -68,10 +68,10 @@
         <i class="fa fa-list-ul ft-orange" aria-hidden="true">&nbsp;</i>
         <span class="text-underline ">查看更多</span>
       </p>
-      <p class="text-center padding-t-1 padding-b-1 ft-grey4 margin-b-0 border-bottom-none boder-grey-tb " ng-click="unUseIncreaseRateCoupon()">不使用加息券</p>
-      <p class="text-center padding-t-1 padding-b-1 margin-b-0 ft-orange border-bottom-none boder-grey-tb click-active click-cancel" ng-click="showSelectIncreaseRateCoupon=false;">取消</p>
+      <p class="text-center padding-t-1 padding-b-1 ft-grey4 margin-b-0 boder-grey-t boder-grey-b click-active" ng-click="unUseIncreaseRateCoupon()">不使用加息券</p>
+      <p class="text-center padding-t-1 padding-b-1 margin-b-0 ft-orange click-cancel" ng-click="showSelectIncreaseRateCoupon=false;">取消</p>
     </div>
   </div>
-  <!-- 实名认证 toRealNameAuth-->
-<div ng-include src="'views/user-center/realname-auth.html'" ng-show="toRealNameAuth">
 </div>
+  <!-- 实名认证 toRealNameAuth-->
+<div ng-include src="'views/user-center/realname-auth.html'" ng-show="toRealNameAuth"></div>
