@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('ProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects, Restangular, restmod, DEFAULT_DOMAIN, config, projectStatusMap) {
+  .controller('ProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects, Restangular, restmod, DEFAULT_DOMAIN, config, projectStatusMap,DateUtils) {
     // 宏金盈详情页面
     var number = $stateParams.number;
     if (!$stateParams.number) {
@@ -19,6 +19,9 @@ angular.module('p2pSiteMobApp')
 
     Restangular.one('projects').one($stateParams.number).get().then(function(response) {
       $scope.project = response;
+      $scope.serverTime = response.serverTime || (new Date().getTime());
+      $scope.project.countdown = new Date(response.releaseStartTime).getTime() - $scope.serverTime;
+      $scope.project._timeDown = DateUtils.toHourMinSeconds($scope.project.countdown);
       $scope.jigoubaoDataMore = $scope.project.projectInfo;
       // 可投资金额
       $scope.jigoubaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
@@ -208,7 +211,7 @@ angular.module('p2pSiteMobApp')
 
       if($rootScope.account.balance <= 0){
         $scope.msg = '账户余额不足，请先充值';
-      } 
+      }
 
       if(newVal){
         if(newVal % $scope.project.increaseAmount){
@@ -217,7 +220,7 @@ angular.module('p2pSiteMobApp')
         }
         if(newVal > $rootScope.account.balance){
           $scope.msg = '账户余额不足，请先充值'
-        } 
+        }
         if(newVal > $scope.jigoubaoProjectInvestNum){
           $scope.msg = '投资金额必须小于' + $scope.jigoubaoProjectInvestNum;
         }
