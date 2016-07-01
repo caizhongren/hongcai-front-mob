@@ -156,6 +156,10 @@ angular.module('p2pSiteMobApp')
     $scope.showErrorMsg = false;
     $scope.investButtonFlag = false;
     $scope.$watch('project.investAmount', function(newVal, oldVal){
+      if(!$rootScope.isLogged){
+        return;
+      }
+
       $scope.showErrorMsg = false;
 
       if(newVal !== oldVal){

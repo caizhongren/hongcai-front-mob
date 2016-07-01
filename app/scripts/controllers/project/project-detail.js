@@ -195,7 +195,7 @@ angular.module('p2pSiteMobApp')
               } else if (response.ret === -1) {
                 $scope.msg = response.msg;
               }
-            } else {
+          } else {
               $scope.msg = order.msg;
             }
           })
@@ -204,27 +204,27 @@ angular.module('p2pSiteMobApp')
     };
 
 
-    $scope.$watch('project.investAmount', function(newVal, oldVal){
-      if(newVal !== oldVal){
-        $scope.msg = undefined;
-      }
+    // $scope.$watch('project.investAmount', function(newVal, oldVal){
+    //   if(newVal !== oldVal){
+    //     $scope.msg = undefined;
+    //   }
 
-      if($rootScope.account.balance <= 0){
-        $scope.msg = '账户余额不足，请先充值';
-      }
+    //   if($rootScope.account.balance <= 0){
+    //     $scope.msg = '账户余额不足，请先充值';
+    //   }
 
-      if(newVal){
-        if(newVal % $scope.project.increaseAmount){
-          $scope.msg = '投资金额必须为' + $scope.project.increaseAmount + '的整数倍';
-          return;
-        }
-        if(newVal > $rootScope.account.balance){
-          $scope.msg = '账户余额不足，请先充值'
-        }
-        if(newVal > $scope.jigoubaoProjectInvestNum){
-          $scope.msg = '投资金额必须小于' + $scope.jigoubaoProjectInvestNum;
-        }
-      }
-    });
+    //   if(newVal){
+    //     if(newVal % $scope.project.increaseAmount){
+    //       $scope.msg = '投资金额必须为' + $scope.project.increaseAmount + '的整数倍';
+    //       return;
+    //     }
+    //     if(newVal > $rootScope.account.balance){
+    //       $scope.msg = '账户余额不足，请先充值'
+    //     }
+    //     if(newVal > $scope.jigoubaoProjectInvestNum){
+    //       $scope.msg = '投资金额必须小于' + $scope.jigoubaoProjectInvestNum;
+    //     }
+    //   }
+    // });
 
   });
