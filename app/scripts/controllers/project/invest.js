@@ -15,6 +15,11 @@ angular.module('p2pSiteMobApp')
       $state.go('root.main');
     }
 
+    $scope.initLimit = 3;
+    $scope.resetInitLimit = function(){
+        $scope.initLimit = 3;
+    }
+
     $scope.projectStatusMap = projectStatusMap;
     $scope.profit = 0;
     $scope.increaseRateProfit = 0;
@@ -221,12 +226,14 @@ angular.module('p2pSiteMobApp')
         $scope.selectIncreaseRateCoupon = coupon;
         $scope.showSelectIncreaseRateCoupon = false;
         $scope.increaseRateProfit = $scope.calcProfit(coupon.rate);
+        $scope.resetInitLimit();
     }
 
     $scope.unUseIncreaseRateCoupon = function(){
         $scope.selectIncreaseRateCoupon = null;
         $scope.showSelectIncreaseRateCoupon = false;
         $scope.increaseRateProfit = 0;
+        $scope.resetInitLimit();
     }
 
     $scope.calcProfit = function(annualEarnings){
@@ -234,7 +241,6 @@ angular.module('p2pSiteMobApp')
         return profit;
     }
 
-    $scope.initLimit = 3;
     $scope.viewMoreCoupon = function(){
         $scope.initLimit = $scope.initLimit + 3 < $scope.increaseRateCoupons.length ? $scope.initLimit + 3 : $scope.increaseRateCoupons.length;
     }
