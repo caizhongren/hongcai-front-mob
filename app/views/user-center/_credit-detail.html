@@ -17,13 +17,13 @@
     </div>
 
     <div class="credit-item-info u-pull-left text-center ft-1p4" ng-show="toggle.activeTab === 0">
-      <strong class="ft-orange ft-1p6">{{ item.creditRight.profit - item.returnProfit |currency:"":2 || 0}}</strong><strong class="ft-red0 ft-1p6" ng-show="item.increaseRateCoupon">+{{(item.creditRight.profit - item.returnProfit) * item.increaseRateCoupon.rate/(item.increaseRateCoupon.rate + item.creditRight.baseRate + item.creditRight.riseRate)/100 | number:2}}</strong>
+      <strong class="ft-orange ft-1p6">{{ item.creditRight.profit - item.returnProfit |currency:"":2 || 0}}</strong><strong class="ft-red0 ft-1p6" ng-show="item.increaseRateCoupon">+{{item.waitRateCouponProfit | number:2}}</strong>
       <br>
       <span class="ft-grey2">待收利息(元)</span>
     </div>
 
     <div class="credit-item-info u-pull-left text-center ft-1p4" ng-show="toggle.activeTab === 1">
-      <strong class="ft-orange ft-1p6">{{ item.creditRight.returnProfit |currency:"":2 || 0}}</strong><strong class="ft-red0 ft-1p6" ng-show="item.increaseRateCoupon">+{{(item.returnProfit) * item.increaseRateCoupon.rate/(item.increaseRateCoupon.rate + item.creditRight.baseRate + item.creditRight.riseRate)/100 | number:2}}</strong>
+      <strong class="ft-orange ft-1p6">{{ item.creditRight.returnProfit |currency:"":2 || 0}}</strong><strong class="ft-red0 ft-1p6" ng-show="item.increaseRateCoupon">+{{item.returnRateCouponProfit| number:2}}</strong>
       <br>
       <span class="ft-grey2">已收利息(元)</span>
     </div>

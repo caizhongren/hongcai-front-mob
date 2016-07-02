@@ -57,6 +57,13 @@ angular.module('p2pSiteMobApp')
         $scope.totalPage = Math.ceil(response.data.count/$scope.page);
         var credits = response.data.heldIdCreditList;
         for (var i = 0; i <= credits.length - 1; i++) {
+          if(credits[i].increaseRateCoupon){
+            var oriRate = credits[i].increaseRateCoupon.rate + credits[i].creditRight.baseRate;
+            credits[i].waitRateCouponProfit = credits[i].creditRight.profit * (credits[i].increaseRateCoupon.rate/100 + oriRate)/oriRate - credits[i].creditRight.profit;
+            credits[i].returnRateCouponProfit = credits[i].creditRight.returnProfit * (credits[i].increaseRateCoupon.rate/100 + oriRate)/oriRate - credits[i].creditRight.returnProfit;
+
+          }
+          
           $scope.credits.push(credits[i]);
         };
       })
