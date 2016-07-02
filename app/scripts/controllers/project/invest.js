@@ -106,7 +106,7 @@ angular.module('p2pSiteMobApp')
     }
 
     $scope.toInvest = function(project) {
-      $scope.showMsg();
+      $scope.showMsg(project.investAmount);
       if($scope.showErrorMsg){
         return;
       }
@@ -148,11 +148,11 @@ angular.module('p2pSiteMobApp')
                 })
               } else if (response.ret === -1) {
                 $scope.msg = response.msg;
-                $scope.showMsg();
+                $scope.showMsg(payAmount);
               }
             } else {
               $scope.msg = order.msg;
-              $scope.showMsg();
+              $scope.showMsg(payAmount);
             }
           })
         }
@@ -191,15 +191,17 @@ angular.module('p2pSiteMobApp')
          $scope.increaseRateProfit = $scope.selectIncreaseRateCoupon != null ? $scope.calcProfit($scope.selectIncreaseRateCoupon.rate) : 0;
       }
 
-      $scope.showMsg();
+      $scope.showMsg(newVal);
     });
 
-    $scope.showMsg = function(){
+    $scope.showMsg = function(investAmount){
       if($scope.msg){
         $scope.showErrorMsg = true;
         $scope.investButtonFlag = false;
       }else{
-        $scope.investButtonFlag = true;
+        if(investAmount){
+            $scope.investButtonFlag = true;
+        }
       }
     }
 
