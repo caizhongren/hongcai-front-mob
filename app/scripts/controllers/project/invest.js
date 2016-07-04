@@ -205,26 +205,6 @@ angular.module('p2pSiteMobApp')
       }
     }
 
-    $scope.toRealNameAuth = false;
-    $scope.openYeepay = function() {
-      $scope.toRealNameAuth = true;
-    }
-
-    /**
-     * 实名认证，即开通易宝
-     */
-    $scope.realNameAuth = function(user) {
-      if (!user.realName || !user.idNo) {
-        $scope.errMsg = '请输入姓名或身份证号';
-      }
-      $state.go('root.yeepay-transfer', {
-        type: 'register',
-        number: "null",
-        realName: user.realName,
-        idNo: user.idNo
-      });
-    }
-
     $scope.showSelectIncreaseRateCoupon = false;
     $scope.selectCoupon = function(coupon){
         $scope.selectIncreaseRateCoupon = coupon;

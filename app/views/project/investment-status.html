@@ -14,7 +14,7 @@
    <!-- 未开通第三方托管 -->
    <div ng-show="isLogged && securityStatus.realNameAuthStatus !== 1">
    <p class="ft-black4 display-inb text-underline margin-b-0 status-message">您的账号未开通第三方托管</p>
-   <button class="button fr ft-1p8 position-ab button-primary border-ra-0p5 btn-sign" ng-click="openYeepay()">开通</button>
+   <button class="button fr ft-1p8 position-ab button-primary border-ra-0p5 btn-sign" ng-click="toRealNameAuth()">开通</button>
    </div>
   </div>
   <div style="height: 2rem;"></div>
@@ -76,5 +76,3 @@
     </div>
   </div>
 </div>
-  <!-- 实名认证 toRealNameAuth-->
-<div ng-include src="'views/user-center/realname-auth.html'" ng-show="toRealNameAuth"></div>
