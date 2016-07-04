@@ -252,14 +252,15 @@ angular.module('p2pSiteMobApp')
     //   // console.log($scope.subtabClassIndex);
     // };
     
-    $scope.toggle.activeTab = parseInt($stateParams.tab, 0);
-    $scope.toggle.activeSubTab = parseInt($stateParams.subTab,0) 
-    if($scope.toggle.activeTab){
-      $scope.toggle.activeTab = 1;
+    $scope.toggle.activeTab = 1;
+    $scope.toggle.activeSubTab = 0;
+    if($stateParams.tab){
+      $scope.toggle.activeTab = parseInt($stateParams.tab);
+    } 
+    if($stateParams.subTab){
+      $scope.toggle.activeSubTab = parseInt($stateParams.subTab);
     }
-    if($scope.toggle.activeSubTab){
-      $scope.toggle.activeSubTab = 0;
-    }
+
 
 
     if($scope.toggle.activeTab == 0){
