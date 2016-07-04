@@ -119,20 +119,7 @@ angular.module('p2pSiteMobApp')
       //  window.location.href = locationUrl;
 
     }
-    /**
-     * 实名认证，即开通易宝
-     */
-    $scope.realNameAuth = function(user){
-      if (!user.realName || !user.idNo){
-        $scope.errMsg = '请输入姓名或身份证号';
-      }
-      $state.go('root.yeepay-transfer', {
-        type: 'register',
-        number: "null",
-        realName: user.realName,
-        idNo: user.idNo
-      });
-    }
+
 
     /**
      * 跳转到充值页面

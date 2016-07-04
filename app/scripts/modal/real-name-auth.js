@@ -22,6 +22,8 @@ angular.module('p2pSiteMobApp')
       if (!user.realName || !user.idNo){
         $scope.errMsg = '请输入姓名或身份证号';
       }
+
+      $scope.cancel();
       $state.go('root.yeepay-transfer', {
         type: 'register',
         number: "null",

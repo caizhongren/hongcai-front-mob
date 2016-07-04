@@ -3,7 +3,7 @@
     <form autocomplete="on" id="realNameAuthForm" name="realNameAuthForm" class="margin-b-0">
       <p class="ft-grey2">身份认证</p>
       <p>
-        <label for="">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+        <label for="">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
         <input id="realName" name="realName" type="text" ng-model="user.realName" placeholder="姓名" ng-disabled="!timeout" required>
       </p>
       <p>
@@ -14,7 +14,7 @@
         {{errMsg}}
       </p>
       <p class="project-mask-btn3">
-        <span class="ft-grey2" ng-click="cancel();$parent.toRealNameAuth=false;" my-click-once>取消</span>
+        <span class="ft-grey2" ng-click="cancel()" my-click-once>取消</span>
         <span ng-disabled="realNameAuthForm.$invalid" ng-click="realNameAuth(user)" my-click-once ng-class="{'active-span': !realNameAuthForm.$invalid}">点击认证</span>
       </p>
     </form>

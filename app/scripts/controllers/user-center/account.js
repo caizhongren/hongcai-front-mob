@@ -108,11 +108,6 @@ angular.module('p2pSiteMobApp')
       });
     }
 
-    $scope.toRealNameAuth = false;
-    $scope.openYeepay = function() {
-      $scope.toRealNameAuth = true;
-    }
-
 
     $scope.goWithdraw = function() {
       $state.go("root.userCenter.withdraw");
@@ -187,7 +182,7 @@ angular.module('p2pSiteMobApp')
           $state.go('root.experience-project-detail',{});
         }
       }else{
-        $scope.toRealNameAuth = true;
+        $rootScope.toRealNameAuth();
       }
     }
 
