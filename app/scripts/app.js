@@ -20,7 +20,7 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'angular-md5',
   'restangular',
   'angular-svg-round-progress',
-  // 'ui.bootstrap',
+  'ui.bootstrap',
   //'restangular',
   'textAngular'
 ]);
@@ -755,7 +755,7 @@ p2pSiteMobApp
     $locationProvider.hashPrefix('!');
 
   }])
-  .run(function($rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, ipCookie, restmod, config, Restangular, URLService, Utils) {
+  .run(function($rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, $uibModal, ipCookie, restmod, config, Restangular, URLService, Utils) {
     Restangular.setBaseUrl('/hongcai/rest');
     Restangular.setDefaultHeaders({
       'Content-Type': 'application/json'
@@ -777,6 +777,20 @@ p2pSiteMobApp
         redirectUrl: $location.path()
       });
       return;
+    }
+
+    $rootScope.toRealNameAuth = function(){
+      $uibModal.open({
+        animation: true,
+        templateUrl: 'views/user-center/realname-auth.html',
+        controller: 'RealNameAuthCtrl'
+        // size: size,
+        // resolve: {
+        //   items: function () {
+        //     return $scope.items;
+        //   }
+        // }
+      });
     }
 
     $rootScope.$on('$stateChangeStart', function(event, toState) {
