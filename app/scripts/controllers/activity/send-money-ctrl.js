@@ -53,7 +53,7 @@ angular.module('p2pSiteMobApp')
 
       wx.onMenuShareAppMessage({
         title: '投资送688元！奖金可立即提现！',
-        desc: '宏财网狂送100万现金，先到先得！',
+        desc: '现在参与活动，每次投资，还赠2%加息券一张！',
         link: shareLink,
         imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/qtXH9iaJ3HiahUdLZGgw5CHJotSh5YxVj2kicib4eUQ6QgpRqtTZEXEFQVYEhkKg6vlnjqFaWrOE9IJMiaosI3csbzg/0?wx_fmt=png',
         trigger: function (res) {
