@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('ProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects, Restangular, restmod, DEFAULT_DOMAIN, config, projectStatusMap,DateUtils) {
+  .controller('ProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects,$interval, Restangular, restmod, DEFAULT_DOMAIN, config, projectStatusMap,DateUtils) {
     // 宏金盈详情页面
     var number = $stateParams.number;
     if (!$stateParams.number) {
@@ -51,6 +51,15 @@ angular.module('p2pSiteMobApp')
         }
       });
     });
+
+    $interval(function() {
+        $scope.project.countdown -= 1000;
+        if ($scope.project.countdown <= 0 && $scope.project.status === 6) {
+          $scope.project.status = 7;
+        }
+        $scope.project._timeDown = DateUtils.toHourMinSeconds($scope.project.countdown);
+    }, 1000);
+
     $scope.goMoreDetail = function(project) {
       $state.go('root.project-detail-more', {
         number: project.number
@@ -192,7 +201,7 @@ angular.module('p2pSiteMobApp')
         }
       }
     };
-    
+
     $scope.goToInvestVerify = function(){
       $state.go('root.investment-status', {number: $scope.project.number});
     }
