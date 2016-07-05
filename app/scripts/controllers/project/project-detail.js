@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('ProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects, Restangular, restmod, DEFAULT_DOMAIN, config, projectStatusMap) {
+  .controller('ProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects, Restangular, restmod, DEFAULT_DOMAIN, config, projectStatusMap,DateUtils) {
     // 宏金盈详情页面
     var number = $stateParams.number;
     if (!$stateParams.number) {
@@ -17,8 +17,14 @@ angular.module('p2pSiteMobApp')
 
     $scope.projectStatusMap = projectStatusMap;
 
+
+    $scope.repaymentTypeMap = {'1': '按月付息 到期还本', '2': '按月返还 等额本息', '3': '按季付息 到期还本', '4': '半年付息 到期还本', '5': '到期还本付息'};
+
     Restangular.one('projects').one($stateParams.number).get().then(function(response) {
       $scope.project = response;
+      $scope.serverTime = response.createTime || (new Date().getTime());
+      $scope.project.countdown = new Date(response.releaseStartTime).getTime() - $scope.serverTime;
+      $scope.project._timeDown = DateUtils.toHourMinSeconds($scope.project.countdown);
       $scope.jigoubaoDataMore = $scope.project.projectInfo;
       // 可投资金额
       $scope.jigoubaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
@@ -113,20 +119,7 @@ angular.module('p2pSiteMobApp')
       //  window.location.href = locationUrl;
 
     }
-    /**
-     * 实名认证，即开通易宝
-     */
-    $scope.realNameAuth = function(user){
-      if (!user.realName || !user.idNo){
-        $scope.errMsg = '请输入姓名或身份证号';
-      }
-      $state.go('root.yeepay-transfer', {
-        type: 'register',
-        number: "null",
-        realName: user.realName,
-        idNo: user.idNo
-      });
-    }
+
 
     /**
      * 跳转到充值页面
@@ -192,36 +185,40 @@ angular.module('p2pSiteMobApp')
               } else if (response.ret === -1) {
                 $scope.msg = response.msg;
               }
-            } else {
+          } else {
               $scope.msg = order.msg;
             }
           })
         }
       }
     };
+    
+    $scope.goToInvestVerify = function(){
+      $state.go('root.investment-status', {number: $scope.project.number});
+    }
 
 
-    $scope.$watch('project.investAmount', function(newVal, oldVal){
-      if(newVal !== oldVal){
-        $scope.msg = undefined;
-      }
+    // $scope.$watch('project.investAmount', function(newVal, oldVal){
+    //   if(newVal !== oldVal){
+    //     $scope.msg = undefined;
+    //   }
 
-      if($rootScope.account.balance <= 0){
-        $scope.msg = '账户余额不足，请先充值';
-      } 
+    //   if($rootScope.account.balance <= 0){
+    //     $scope.msg = '账户余额不足，请先充值';
+    //   }
 
-      if(newVal){
-        if(newVal % $scope.project.increaseAmount){
-          $scope.msg = '投资金额必须为' + $scope.project.increaseAmount + '的整数倍';
-          return;
-        }
-        if(newVal > $rootScope.account.balance){
-          $scope.msg = '账户余额不足，请先充值'
-        } 
-        if(newVal > $scope.jigoubaoProjectInvestNum){
-          $scope.msg = '投资金额必须小于' + $scope.jigoubaoProjectInvestNum;
-        }
-      }
-    });
+    //   if(newVal){
+    //     if(newVal % $scope.project.increaseAmount){
+    //       $scope.msg = '投资金额必须为' + $scope.project.increaseAmount + '的整数倍';
+    //       return;
+    //     }
+    //     if(newVal > $rootScope.account.balance){
+    //       $scope.msg = '账户余额不足，请先充值'
+    //     }
+    //     if(newVal > $scope.jigoubaoProjectInvestNum){
+    //       $scope.msg = '投资金额必须小于' + $scope.jigoubaoProjectInvestNum;
+    //     }
+    //   }
+    // });
 
   });

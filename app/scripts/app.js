@@ -20,7 +20,7 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'angular-md5',
   'restangular',
   'angular-svg-round-progress',
-  // 'ui.bootstrap',
+  'ui.bootstrap',
   //'restangular',
   'textAngular'
 ]);
@@ -248,7 +248,7 @@ p2pSiteMobApp
       .state('root.userCenter.account', {
         url: '/account',
         data: {
-          title: '账户'
+          title: '个人中心'
         },
         views: {
           '': {
@@ -709,6 +709,9 @@ p2pSiteMobApp
             controller: 'SendMoneyCtrl',
             controllerUrl: 'scripts/controllers/activity/send-money-ctrl'
           }
+        },
+        data: {
+          title: '投资送688元！奖金可立即提现！'
         }
       })
 
@@ -755,7 +758,7 @@ p2pSiteMobApp
     $locationProvider.hashPrefix('!');
 
   }])
-  .run(function($rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, ipCookie, restmod, config, Restangular, URLService, Utils) {
+  .run(function($rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, $uibModal, ipCookie, restmod, config, Restangular, URLService, Utils) {
     Restangular.setBaseUrl('/hongcai/rest');
     Restangular.setDefaultHeaders({
       'Content-Type': 'application/json'
@@ -779,12 +782,26 @@ p2pSiteMobApp
       return;
     }
 
+    $rootScope.toRealNameAuth = function(){
+      $uibModal.open({
+        animation: true,
+        templateUrl: 'views/user-center/realname-auth.html',
+        controller: 'RealNameAuthCtrl'
+        // size: size,
+        // resolve: {
+        //   items: function () {
+        //     return $scope.items;
+        //   }
+        // }
+      });
+    }
+
     $rootScope.$on('$stateChangeStart', function(event, toState) {
       var title = '宏财理财';
       if (toState.data && toState.data.title) {
         title = toState.data.title;
       }
-      $rootScope.headerTitle = title;
+      $rootScope.headerTitle = title + ' - 要理财，上宏财！';
 
       $rootScope.timeout = false;
       $timeout(function() {
@@ -887,7 +904,26 @@ p2pSiteMobApp
       });
     });
 
-    $rootScope.$on('$stateChangeSuccess', function() {
+    $rootScope.$on('$stateChangeSuccess', function(event, toState) {
+      var title = '宏财理财';
+      if (toState.data && toState.data.title) {
+        title = toState.data.title;
+      }
+      $rootScope.headerTitle = title + ' - 要理财，上宏财！';
+
+      
+
+      // 微信等webview中无法修改title的问题
+      //需要jQuery
+      var $body = $('body');
+      document.title = $rootScope.headerTitle;
+      // hack在微信等webview中无法修改document.title的情况
+      var $iframe = $('<iframe src="/favicon.ico" style="visibility:hidden"></iframe>');
+      $iframe.on('load',function() {
+          setTimeout(function() {
+              $iframe.off('load').remove();
+          }, 0);
+      }).appendTo($body);
 
       var path = $location.path().split('/')[1];
       $rootScope.showPath = path;

@@ -11,7 +11,7 @@
   <div ng-switch-when=1>
     <!-- 可融资状态下 -->
     <div ng-show="simpleFundsProject.status === 1">
-      <div class="padding-t-1p5 padding-b-1p5 text-center bg-grey4 border-grey-top border-grey-bottom ft-1p6"  ng-click="$parent.toRealNameAuth=true">
+      <div class="padding-t-1p5 padding-b-1p5 text-center bg-grey4 border-grey-top border-grey-bottom ft-1p6"  ng-click="toRealNameAuth()">
         <p class="margin-b-0">您的账号未开通第三方托管</p>
         <p class="margin-b-0"><span class="ft-red">点击这里</span>开通</p>
       </div>
@@ -111,8 +111,6 @@
     </div>
   </div>
 </div>
-<!-- 实名认证 toRealNameAuth-->
-<div ng-include src="'views/user-center/realname-auth.html'" ng-show="toRealNameAuth">
 </div>
 <div class="project-mask" ng-show="rewardFlag">
   <div class="bg-white project-mask-inner">

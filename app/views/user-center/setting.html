@@ -34,7 +34,7 @@
       <p>第三方托管账户：</p>
       <p>保证您的资金安全
         <span ng-show="securityStatus.trusteeshipAccountStatus === 1"><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已开通</span>
-        <span ng-click="toRealNameAuth=true" ng-show="securityStatus.trusteeshipAccountStatus !== 1"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通<small class="ft-orange">(立即开通)</small></span>
+        <span ng-click="toRealNameAuth()" ng-show="securityStatus.trusteeshipAccountStatus !== 1"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通<small class="ft-orange">(立即开通)</small></span>
       </p>
     </div>
   </div>
@@ -84,8 +84,6 @@
     </p>
   </div>
 </div>
-<!-- 实名认证 toRealNameAuth-->
-<div ng-include src="'views/user-center/realname-auth.html'" ng-show="toRealNameAuth">
 </div>
 <!-- 开通自动投标权限蒙层 -->
 <div ng-show="checkAutoFlag" class="project-mask">

@@ -16,7 +16,7 @@
   </div>
   <!-- 未开通易宝 ng-if="securityStatus.trusteeshipAccountStatus !== 1"-->
   <div class="padding-l-1 padding-r-1 margin-t-1" ng-if="securityStatus.trusteeshipAccountStatus !== 1">
-    <button class="margin-0 margin-t-0p5 button button-primary button-shadwo ft-1p5" ng-click="openYeepay()" style="width:100%">立即开通托管账户</button>
+    <button class="margin-0 margin-t-0p5 button button-primary button-shadwo ft-1p5" ng-click="toRealNameAuth()" style="width:100%">立即开通托管账户</button>
     <div class="grade-owner">
       <p class="title">我的奖励</p>
       <div class="account-panel">
@@ -32,7 +32,7 @@
       <hr>
       <div class="account-panel border-none">
         <div class="icon"><img src="/images/user-center/balance6.png" alt=""></div>
-        <div class="title-text">我的加息券<sup class="green-sup">{{couponStatis.couponCount || 0}}</sup></div>
+        <div class="title-text">我的加息券<sup class="green-sup">{{couponStatis.unUsedCoupon || 0}}</sup></div>
         <div class="more" ng-click="viewMore(1)">查看所有加息券<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
       </div>
       <hr>
@@ -65,7 +65,7 @@
       <hr>
       <div class="account-panel border-none">
         <div class="icon"><img src="/images/user-center/balance6.png" alt=""></div>
-        <div class="title-text">我的加息券<sup class="green-sup">{{couponStatis.couponCount || 0}}</sup></div>
+        <div class="title-text">我的加息券<sup class="green-sup">{{couponStatis.unUsedCoupon || 0}}</sup></div>
         <div class="more" ng-click="viewMore(1)">查看所有加息券<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
       </div>
       <hr>
@@ -79,7 +79,4 @@
   </div>
   <!-- 尚未开通易宝提示 -->
   <!-- 细分页面入口 -->
-</div>
-<!-- 实名认证 toRealNameAuth-->
-<div ng-include src="'views/user-center/realname-auth.html'" ng-show="toRealNameAuth">
 </div>

@@ -53,9 +53,9 @@ angular.module('p2pSiteMobApp')
 
       wx.onMenuShareAppMessage({
         title: '投资送688元！奖金可立即提现！',
-        desc: '宏财网狂送100万现金，先到先得！',
+        desc: '现在参与活动，每次投资，还赠2%加息券一张！',
         link: shareLink,
-        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/qtXH9iaJ3HiahUdLZGgw5CHJotSh5YxVj2kicib4eUQ6QgpRqtTZEXEFQVYEhkKg6vlnjqFaWrOE9IJMiaosI3csbzg/0?wx_fmt=png',
+        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Al0UHTrddN5KGSB1iaL3yDCGYOr19JXcqHnMgEIJiaJTxLg6wMSkJUEA1ic7jlP1UY972icVXibKuQuIkA/0?wx_fmt=jpeg',
         trigger: function (res) {
         },
         success: function (res) {
@@ -76,7 +76,7 @@ angular.module('p2pSiteMobApp')
       wx.onMenuShareTimeline({
         title: '投资送688元！奖金可立即提现！',
         link: shareLink,
-        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/qtXH9iaJ3HiahUdLZGgw5CHJotSh5YxVj2kicib4eUQ6QgpRqtTZEXEFQVYEhkKg6vlnjqFaWrOE9IJMiaosI3csbzg/0?wx_fmt=png',
+        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Al0UHTrddN5KGSB1iaL3yDCGYOr19JXcqHnMgEIJiaJTxLg6wMSkJUEA1ic7jlP1UY972icVXibKuQuIkA/0?wx_fmt=jpeg',
         trigger: function (res) {
         },
         success: function (res) {

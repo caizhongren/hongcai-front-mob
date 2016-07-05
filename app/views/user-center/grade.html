@@ -35,24 +35,49 @@
 	    <div ng-class="{'ng-hide': toggle.activesubTab!==$index}" ng-repeat="item in subtabs">
 		    <div ng-if="item.titles ==='未使用'" class="jiaxiquan-tab minHeight">
 		    	<div ng-show="datas.length > 0">
-			    	<div class="margin-t-1 outer-panel" ng-repeat="item in datas">
-			    		<img src="/images/new/rate.png">
-			    		<div class="inner-panel-left">
-			    			<!-- <p class="top-margin">活动奖励</p> -->
-			    			<p class="margin-b-0 top-margin"><strong class="ft-4">{{item.rate | number:1}}</strong>%</p>
-			    		</div>
-			    		<div class="inner-panel-center">
-			    			<p class="margin-b-0 padding-l-1">•适用于所有项目</p>
-			    			<p class="padding-l-1 middle-margin">•投资即可使用</p>
-			    			<p class="margin-b-0 padding-l-1">•有效期至{{item.endTime | date:"yyyy-MM-dd"}}</p>
-			    		</div>
-			    		<div class="inner-panel-right">
-			    			<span>立</span>
-			    			<span>即</span>
-			    			<span>使</span>
-			    			<span>用</span>
-			    		</div>
+		    		<div  ng-repeat="item in datas">
+				    	<div class="margin-t-1 outer-panel" ng-if="item.status === 1">
+				    		<div>
+					    		<img src="/images/new/rate.png">
+					    		<div class="inner-panel-left">
+					    			<!-- <p class="top-margin">活动奖励</p> -->
+					    			<p class="margin-b-0 top-margin"><strong class="ft-4">{{item.rate | number:1}}</strong>%</p>
+					    		</div>
+					    		<div class="inner-panel-center">
+					    			<p class="margin-b-0 padding-l-1">•{{item.description}}</p>
+					    			<p class="padding-l-1 middle-margin">•适用于宏金宝项目</p>
+					    			<p class="margin-b-0 padding-l-1">•有效期至{{item.endTime | date:"yyyy-MM-dd"}}</p>
+					    		</div>
+					    		<div class="inner-panel-right" ui-sref="root.main">
+					    			<span>立</span>
+					    			<span>即</span>
+					    			<span>使</span>
+					    			<span>用</span>
+					    		</div>
+				    		</div>
+				    	</div>
+
+				    	<!-- 未使用但是已过期的 img改为/images/new/rate1.png，两个class名改为inner-panel-center1，inner-panel-right1-->
+				    	<div class="margin-t-1 outer-panel"  ng-if="item.status === 3">
+				    	  <img src="/images/new/rate1.png">
+				    	  <div class="inner-panel-left">
+				    	    <!-- <p class="top-margin">活动奖励</p> -->
+				    	    <p class="margin-b-0 top-margin"><strong class="ft-4">{{item.rate | number:1}}</strong>%</p>
+				    	  </div>
+				    	  <div class="inner-panel-center1">
+				    	    <p class="margin-b-0 padding-l-1">•{{item.description}}</p>
+				    	    <p class="padding-l-1 middle-margin">•适用于宏金宝项目</p>
+				    	    <p class="margin-b-0 padding-l-1">•有效期至{{item.endTime | date:"yyyy-MM-dd"}}</p>
+				    	  </div>
+				    	  <div class="inner-panel-right1">
+				    	    <span>已</span>
+				    	    <span>过</span>
+				    	    <span>期</span>
+				    	  </div>
+				    	</div>
+
 			    	</div>
+
 			    	<div class="margin-t-2" ng-show="unUseTotalPage > page" ng-click="loadMuch(toggle.activeTab, toggle.activesubTab)"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<span class="cursor-hand ft-black2 text-line">查看更多信息</span></div>
 			    </div>
 			    <div class="margin-t-2" ng-show="datas.length <= 0">
