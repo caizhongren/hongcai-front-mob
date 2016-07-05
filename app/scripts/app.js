@@ -911,6 +911,20 @@ p2pSiteMobApp
       }
       $rootScope.headerTitle = title + ' - 要理财，上宏财！';
 
+      
+
+      // 微信等webview中无法修改title的问题
+      //需要jQuery
+      var $body = $('body');
+      document.title = $rootScope.headerTitle;
+      // hack在微信等webview中无法修改document.title的情况
+      var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+      $iframe.on('load',function() {
+          setTimeout(function() {
+              $iframe.off('load').remove();
+          }, 0);
+      }).appendTo($body);
+
       var path = $location.path().split('/')[1];
       $rootScope.showPath = path;
       $rootScope.showTitle = titleMap[path];
