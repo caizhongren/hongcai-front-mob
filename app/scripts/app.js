@@ -904,7 +904,7 @@ p2pSiteMobApp
       });
     });
 
-    $rootScope.$on('$stateChangeSuccess', function() {
+    $rootScope.$on('$stateChangeSuccess', function(event, toState) {
       var title = '宏财理财';
       if (toState.data && toState.data.title) {
         title = toState.data.title;
