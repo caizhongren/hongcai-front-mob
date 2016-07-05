@@ -248,7 +248,7 @@ p2pSiteMobApp
       .state('root.userCenter.account', {
         url: '/account',
         data: {
-          title: '账户'
+          title: '个人中心'
         },
         views: {
           '': {
@@ -709,6 +709,9 @@ p2pSiteMobApp
             controller: 'SendMoneyCtrl',
             controllerUrl: 'scripts/controllers/activity/send-money-ctrl'
           }
+        },
+        data: {
+          title: '投资送688元！奖金可立即提现！'
         }
       })
 
@@ -798,7 +801,7 @@ p2pSiteMobApp
       if (toState.data && toState.data.title) {
         title = toState.data.title;
       }
-      $rootScope.headerTitle = title;
+      $rootScope.headerTitle = title + ' - 要理财，上宏财！';
 
       $rootScope.timeout = false;
       $timeout(function() {
@@ -902,6 +905,11 @@ p2pSiteMobApp
     });
 
     $rootScope.$on('$stateChangeSuccess', function() {
+      var title = '宏财理财';
+      if (toState.data && toState.data.title) {
+        title = toState.data.title;
+      }
+      $rootScope.headerTitle = title + ' - 要理财，上宏财！';
 
       var path = $location.path().split('/')[1];
       $rootScope.showPath = path;
