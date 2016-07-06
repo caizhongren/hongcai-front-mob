@@ -134,7 +134,7 @@ angular.module('p2pSiteMobApp')
     // tab 零存宝  宏金盈 宏金保暂时不做
     $scope.toggle = {};
     $scope.tabs = [{
-      title: '零存宝',
+      title: '新手标',
     }, {
       title: '宏金保'
     }];
