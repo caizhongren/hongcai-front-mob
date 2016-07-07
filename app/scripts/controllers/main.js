@@ -103,6 +103,17 @@ angular.module('p2pSiteMobApp')
         number: $scope.jigoubaoData.number
       })
     }
+
+    $scope.newbieBiaoProject = function(){
+      Restangular.one('projects').one('newbieBiaoProject').get().then(function(response) {
+        if(response.ret === -1){
+            return;
+          }
+
+          $scope.newbieBiaoProject = response;
+      });
+    }
+
     $scope.switchFundsProjects = function(type) {
       fundsProjects.$find('recommendations', {
         productType: type
@@ -264,7 +275,7 @@ angular.module('p2pSiteMobApp')
 
 
     if($scope.toggle.activeTab == 0){
-      $scope.switchFundsProjects(1);
+      $scope.newbieBiaoProject();
     }
 
     // $scope.toggle.switch(+$scope.tab, +$scope.subTab);
