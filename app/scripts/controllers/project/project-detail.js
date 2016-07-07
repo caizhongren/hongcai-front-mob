@@ -19,16 +19,13 @@ angular.module('p2pSiteMobApp')
 
 
     $scope.repaymentTypeMap = {'1': '按月付息 到期还本', '2': '按月返还 等额本息', '3': '按季付息 到期还本', '4': '半年付息 到期还本', '5': '到期还本付息'};
-    $scope.newbieBiaoInvestFlag=true;
     Restangular.one('projects').one($stateParams.number).get().then(function(response) {
       $scope.project = response;
       $scope.serverTime = response.createTime || (new Date().getTime());
       $scope.project.countdown = new Date(response.releaseStartTime).getTime() - $scope.serverTime;
       $scope.project._timeDown = DateUtils.toHourMinSeconds($scope.project.countdown);
       $scope.jigoubaoDataMore = $scope.project.projectInfo;
-      if($scope.category.code === '0112'){
-        $scope.newbieBiaoInvestFlag = $rootScope.account.investAmount <= 0;
-      }
+      
       // 可投资金额
       $scope.jigoubaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
       // 当status===1可融资状态的时候，判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。

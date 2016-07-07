@@ -293,8 +293,12 @@ angular.module('p2pSiteMobApp')
      * 点击立即投资
      */
     $scope.goInvest = function() {
-      if ($scope.newbieBiaoProject.currentStock <= 0 || $scope.newbieBiaoProject.status !== 7) {
-        $scope.goDetail($scope.newbieBiaoProject);
+      // if ($scope.newbieBiaoProject.currentStock <= 0 || $scope.newbieBiaoProject.status !== 7) {
+      if ($scope.newbieBiaoProjectInvestNum <= 0 || $scope.newbieBiaoProject.status !== 7) {
+        // $scope.goDetail($scope.newbieBiaoProject);
+        $state.go('root.project-detail', {
+        number: $scope.newbieBiaoProject.number
+      })
         return;
       }
 
