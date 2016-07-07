@@ -30,11 +30,20 @@ angular.module('p2pSiteMobApp')
       $scope.jigoubaoDataMore = $scope.project.projectInfo;
       $scope.category = response.category;
       if($scope.category.code === '0112'){
-        $scope.newbieBiaoInvestFlag = $rootScope.account.investAmount <= 0;
-        if(!$scope.newbieBiaoInvestFlag){
-          $scope.msg = '仅限未投资用户参与';
-          $scope.showMsg(0);
-        }
+          Restangular.one('projects').one('investNewbieBiaoProjectVerify').get({
+            number: $stateParams.number
+          }).then(function(response) {
+            if(response.ret === -1){
+              return;
+            }
+
+            $scope.newbieBiaoInvestFlag = response.isOk;
+            if(!$scope.newbieBiaoInvestFlag){
+              $scope.msg = '仅限未投资用户参与';
+              $scope.showMsg(0);
+            }
+        });
+        
       }
       
       // 可投资金额
