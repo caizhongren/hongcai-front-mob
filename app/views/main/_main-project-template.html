@@ -1,7 +1,7 @@
 <div class="padding-b-1">
   <div class="margin-b-2 border-ra-50 text-center circle-rate-outside small-circle-outer" ng-click="!timeout || goDetail(recFundsProjects)">
     <div class="margin-b-2 border-ra-50 text-center ft-orange circle-rate small-circle">
-      <p class="margin-0 padding-t-0p8"><span class="ft-5p5">8</span><span class="ft-1p6">% </span><span class="ft-4 add-rate">+{{newbieBiaoProject.annualEarnings-8}}</span><span class="add-rate ft-1p4">%</span></p>
+      <p class="margin-0 padding-t-0p8"><span class="ft-5p5">8</span><span class="ft-1p6">% </span><span class="ft-4 add-rate">+{{newbieBiaoProject.annualEarnings-8 || 0 }}</span><span class="add-rate ft-1p4">%</span></p>
       <hr class="border-orange1">
       <p class="margin-0 padding-t-0p5 padding-b-0p5 ft-1p8 ft-bold">预期年化收益</p>
       <hr class="border-orange1">
@@ -12,7 +12,7 @@
 <hr>
 <div>
   <!-- <span class="ft-orange">{{recFundsProjects.product.baseRate |currency:"":1 || 0}}%</span>起，{{stepShowMsg}}涨<span class="ft-orange">{{recFundsProjects.product.riseRate |currency:"":1|| 0}}%</span>，预期最高<span class="ft-orange">{{recFundsProjects.product.maxRate |currency:"":1|| 0}}%</span> -->
-  项目期限<span class="ft-orange"> {{newbieBiaoProject.projectDays}} </span>天，<span class="ft-orange">{{newbieBiaoProject.minInvest}} </span>元起投，无上限
+  项目期限<span class="ft-orange"> {{newbieBiaoProject.projectDays || 0 }} </span>天，<span class="ft-orange">{{newbieBiaoProject.minInvest || 0 }} </span>元起投，无上限
 </div>
 <hr>
 <div class="padding-l-2 padding-r-2">
