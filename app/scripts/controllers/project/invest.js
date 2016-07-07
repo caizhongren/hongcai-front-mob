@@ -24,9 +24,19 @@ angular.module('p2pSiteMobApp')
     $scope.projectStatusMap = projectStatusMap;
     $scope.profit = 0;
     $scope.increaseRateProfit = 0;
+    $scope.newbieBiaoInvestFlag=true;
     Restangular.one('projects').one($stateParams.number).get().then(function(response) {
       $scope.project = response;
       $scope.jigoubaoDataMore = $scope.project.projectInfo;
+      $scope.category = response.category;
+      if($scope.category.code === '0112'){
+        $scope.newbieBiaoInvestFlag = $rootScope.account.investAmount <= 0;
+        if(!$scope.newbieBiaoInvestFlag){
+          $scope.msg = '仅限未投资用户参与';
+          $scope.showMsg(0);
+        }
+      }
+      
       // 可投资金额
       $scope.project.availableAmount = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
       

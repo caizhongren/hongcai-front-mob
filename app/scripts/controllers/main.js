@@ -111,6 +111,8 @@ angular.module('p2pSiteMobApp')
           }
 
           $scope.newbieBiaoProject = response;
+          // 可投资金额
+          $scope.newbieBiaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
       });
     }
 
@@ -291,8 +293,8 @@ angular.module('p2pSiteMobApp')
      * 点击立即投资
      */
     $scope.goInvest = function() {
-      if ($scope.recFundsProjects.currentStock <= 0 || $scope.recFundsProjects.status !== 1) {
-        $scope.goDetail($scope.recFundsProjects);
+      if ($scope.newbieBiaoProject.currentStock <= 0 || $scope.newbieBiaoProject.status !== 7) {
+        $scope.goDetail($scope.newbieBiaoProject);
         return;
       }
 
@@ -308,8 +310,8 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
-      $state.go('root.invplan-verify', {
-        number: $scope.recFundsProjects.number
+      $state.go('root.project-detail', {
+        number: $scope.newbieBiaoProject.number
       })
     }
 
