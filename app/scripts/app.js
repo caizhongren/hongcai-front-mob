@@ -934,8 +934,16 @@ p2pSiteMobApp
 
       if ($rootScope.channelCode){
         ipCookie('utm_from', $rootScope.channelCode, {
-          expires: 1
+          expires: 1,
+          path: '/'
         });
+      }
+
+      if ($rootScope.act) {
+        ipCookie('act', $rootScope.act, {
+          expires: 1,
+          path: '/'
+        });   
       }
 
       // 不需要显示footer的path
