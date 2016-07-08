@@ -274,7 +274,18 @@ input[type="button"].button-primary-red:focus {
 .position-re {
   position: relative;
 }
-
+.bottom-0{
+  bottom: 0;
+}
+.left-0{
+  left: 0;
+}
+.top-0{
+  top: 0;
+}
+.right-0{
+  right: 0;
+}
 .position-ab {
   position: absolute;
 }
@@ -790,6 +801,9 @@ input[type="button"].button-primary-red:focus {
 .padding-l-0p5 {
   padding-left: 0.5rem;
 }
+.padding-l-0p9 {
+  padding-left: 0.9rem;
+}
 
 .padding-l-1 {
   padding-left: 1rem;
@@ -1056,7 +1070,9 @@ Opera
 .half {
   width: 48%;
 }
-
+.half1{
+  width: 45%;
+}
 .indent-2rem {
   text-indent: 2rem;
 }
@@ -1064,7 +1080,10 @@ Opera
 .border-solidf5-bottom {
   border-bottom: 0.1rem solid #F5F5F5;
 }
-
+.border-rb-0p9{
+  border-right-width: 0.9rem !important;
+  border-bottom-width: 0.9rem !important;
+}
 
 /* mask */
 
@@ -1195,4 +1214,55 @@ input[type="email"], input[type="number"], input[type="search"], input[type="tex
 }
 .pull-right{
   float:right;
+}
+
+// 未支付订单提示
+.unfinished-order{
+  button {
+    border-color: #fd8f3f;
+    font-weight: normal;
+    font-size: 1.6rem;
+    height: 45px;
+    line-height: 45px;
+  }
+  button:hover {
+    border-color: #fd8f3f;
+    outline: 0;
+  }
+  .btn-close {
+    background-color: #fff;
+    color: #fd8f3f;
+  }
+  @media (min-width:320px) {
+    .unfinished-order-tittle {
+      font-size: 1.6rem;
+    }
+    .unfinished-order-tip{
+      font-size: 1.2rem;
+    }
+  }
+  @media (min-width:360px) {
+    .unfinished-order-tittle {
+      font-size: 1.8rem;
+    }
+    .unfinished-order-tip{
+      font-size: 1.2rem;
+    }
+  }
+  @media (min-width:375px) {
+    .unfinished-order-tittle {
+      font-size: 1.8rem;
+    }
+    .unfinished-order-tip{
+      font-size: 1.3rem;
+    }
+  }
+  @media (min-width:411px) {
+    .unfinished-order-tittle {
+      font-size: 1.8rem;
+    }
+    .unfinished-order-tip{
+      font-size: 1.3rem;
+    }
+  }
 }
