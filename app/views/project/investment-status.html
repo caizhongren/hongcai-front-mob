@@ -77,10 +77,10 @@
   </div>
 </div>
 <!-- 有未支付订单 -->
-  <div class="mask1 unfinished-order">
+  <div class="mask1 unfinished-order" ng-show="showUnfinishedOrder">
     <div class="bg-white position-ab bottom-0 padding-r-2 padding-l-2 padding-t-1  width-pull">
       <div class="clearfix">
-        <div class="click-close"><img src="/images/user-center/close1.png" class="fr" alt=""></div>
+        <div class="click-close" ng-click="hideUnfinishedOrder()"><img src="/images/user-center/close1.png" class="fr" alt=""></div>
       </div>
       <div class="text-left">
         <p class="unfinished-order-tittle ft-orange margin-b-1p5 ft-1p8">您当前有一笔尚未支付的订单：</p>

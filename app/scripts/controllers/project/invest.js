@@ -43,12 +43,12 @@ angular.module('p2pSiteMobApp')
               $scope.showMsg(0);
             }
         });
-        
+
       }
-      
+
       // 可投资金额
       $scope.project.availableAmount = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
-      
+
       $scope.increaseRateCoupons = [];
       Restangular.one('projects').one('investIncreaseRateCoupon').get({
         projectId : $scope.project.id,
@@ -177,6 +177,11 @@ angular.module('p2pSiteMobApp')
         }
       }
     };
+ /*显示未支付订单*/
+    $scope.showUnfinishedOrder = true;
+    $scope.hideUnfinishedOrder = function(){
+      $scope.showUnfinishedOrder = false;
+    }
 
     $scope.showErrorMsg = false;
     $scope.investButtonFlag = false;
@@ -193,7 +198,7 @@ angular.module('p2pSiteMobApp')
 
       if($rootScope.account.balance <= 0){
         $scope.msg = '账户余额不足，请先充值';
-      } 
+      }
 
       if(newVal){
         if(newVal > $scope.project.availableAmount){
