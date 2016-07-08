@@ -346,7 +346,8 @@ angular.module('p2pSiteMobApp')
         openId: $rootScope.openid,
         nickName: $rootScope.nickName || '无',
         headImgUrl: $rootScope.headImgUrl || '无',
-        channelCode: ipCookie('utm_from')
+        channelCode: ipCookie('utm_from'),
+        act: ipCookie('act')
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.msg = response.msg;
