@@ -61,10 +61,16 @@ angular.module('p2pSiteMobApp')
     }, 1000);
 
 /*显示未支付订单*/
-    $scope.showUnfinishedOrder = true;
-    $scope.hideUnfinishedOrder = function(){
-      $scope.showUnfinishedOrder = false;
-    }
+    Restangular.one('orders').one('unpay').get().then(function(response) {
+      $scope.order = response;
+      if(response.ret === -1){
+          return;
+        }
+      if(response !== null){
+        $rootScope.tofinishedOrder($scope.order);
+      }
+    });
+
     $scope.goMoreDetail = function(project) {
       $state.go('root.project-detail-more', {
         number: project.number
