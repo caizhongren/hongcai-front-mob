@@ -110,30 +110,6 @@ angular.module('p2pSiteMobApp')
       }
     };
 
-    function newForm() {
-      var f = document.createElement('form');
-      document.body.appendChild(f);
-      f.method = 'post';
-      // f.target = '_blank';
-      return f;
-    }
-
-    function createElements(eForm, eName, eValue) {
-      var e = document.createElement('input');
-      eForm.appendChild(e);
-      e.type = 'text';
-      e.name = eName;
-      if (!document.all) {
-        e.style.display = 'none';
-      } else {
-        e.style.display = 'block';
-        e.style.width = '0px';
-        e.style.height = '0px';
-      }
-      e.value = eValue;
-      return e;
-    }
-
     $scope.toInvest = function(project) {
       $scope.showMsg(project.investAmount);
       if($scope.showErrorMsg){
@@ -161,20 +137,10 @@ angular.module('p2pSiteMobApp')
             // 重复下单后，response.number为undefined
             if (order.ret !== -1) {
               if (order.number !== null && order.number !== undefined) {
-                restmod.model(DEFAULT_DOMAIN + '/projects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/payment').$create({
-                  orderNumber: order.number
-                }).$then(function(response) {
-                  if (response.$status === 'ok') {
-                    var req = response.req;
-                    var sign = response.sign;
-                    var _f = newForm(); //创建一个form表单
-                    createElements(_f, 'req', req); //创建form中的input对象
-                    createElements(_f, 'sign', sign);
-                    _f.action = config.YEEPAY_ADDRESS + 'toTransfer'; //form提交地址
-                    _f.submit(); //提交
-                  }
-                  // $state.go('');
-                })
+                $state.go('root.yeepay-transfer', {
+                  type: 'transfer',
+                  number: order.number
+               });
               } else if (response.ret === -1) {
                 $scope.msg = response.msg;
                 $scope.showMsg(payAmount);
