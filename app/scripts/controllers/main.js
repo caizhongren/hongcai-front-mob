@@ -103,6 +103,19 @@ angular.module('p2pSiteMobApp')
         number: $scope.jigoubaoData.number
       })
     }
+
+    $scope.newbieBiaoProject = function(){
+      Restangular.one('projects').one('newbieBiaoProject').get().then(function(response) {
+        if(response.ret === -1){
+            return;
+          }
+
+          $scope.newbieBiaoProject = response;
+          // 可投资金额
+          $scope.newbieBiaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
+      });
+    }
+
     $scope.switchFundsProjects = function(type) {
       fundsProjects.$find('recommendations', {
         productType: type
@@ -134,7 +147,7 @@ angular.module('p2pSiteMobApp')
     // tab 零存宝  宏金盈 宏金保暂时不做
     $scope.toggle = {};
     $scope.tabs = [{
-      title: '零存宝',
+      title: '新手标',
     }, {
       title: '宏金保'
     }];
@@ -264,7 +277,7 @@ angular.module('p2pSiteMobApp')
 
 
     if($scope.toggle.activeTab == 0){
-      $scope.switchFundsProjects(1);
+      $scope.newbieBiaoProject();
     }
 
     // $scope.toggle.switch(+$scope.tab, +$scope.subTab);
@@ -280,8 +293,12 @@ angular.module('p2pSiteMobApp')
      * 点击立即投资
      */
     $scope.goInvest = function() {
-      if ($scope.recFundsProjects.currentStock <= 0 || $scope.recFundsProjects.status !== 1) {
-        $scope.goDetail($scope.recFundsProjects);
+      // if ($scope.newbieBiaoProject.currentStock <= 0 || $scope.newbieBiaoProject.status !== 7) {
+      if ($scope.newbieBiaoProjectInvestNum <= 0 || $scope.newbieBiaoProject.status !== 7) {
+        // $scope.goDetail($scope.newbieBiaoProject);
+        $state.go('root.project-detail', {
+        number: $scope.newbieBiaoProject.number
+      })
         return;
       }
 
@@ -297,8 +314,8 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
-      $state.go('root.invplan-verify', {
-        number: $scope.recFundsProjects.number
+      $state.go('root.project-detail', {
+        number: $scope.newbieBiaoProject.number
       })
     }
 

@@ -32,7 +32,8 @@ angular.module('p2pSiteMobApp')
         mobile: user.mobile,
         captcha: user.captcha,
         inviteCode: user.inviteCode,
-        channelCode : ipCookie('utm_from')
+        channelCode : ipCookie('utm_from'),
+        act: ipCookie('act')
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.captchaShow = true;
