@@ -188,6 +188,9 @@ p2pSiteMobApp
       // 宏金保列表页
       .state('root._main-list-temp', {
         url: '/project-list',
+        data: {
+          title: '宏金保'
+        },
         views: {
           '': {
             templateUrl: 'views/main/_main-list-temp.html',
