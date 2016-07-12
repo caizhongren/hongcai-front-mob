@@ -28,7 +28,7 @@
           <!-- <p>投资期限</p> -->
         </li>
         <li>
-          <span class="fa fa-angle-right"></span>
+          <span class="fa fa-angle-right" ng-class="{'ft-black1':item.status === 7 || item.status === 6 , 'ft-grey6':item.status === 11 || item.status === 9 || item.status === 10}"></span>
         </li>
         <!-- <li>
           <p class="ft-black"><span class="ft-2">{{item.total/10000}}</span>万元</p>
