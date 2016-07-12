@@ -185,6 +185,17 @@ p2pSiteMobApp
           }
         }
       })
+      // 宏金保列表页
+      .state('root._main-list-temp', {
+        url: '/project-list',
+        views: {
+          '': {
+            templateUrl: 'views/main/_main-list-temp.html',
+            controller: 'ProjectListCtrl',
+            controllerUrl: 'scripts/controllers/project/project-list'
+          }
+        }
+      })
       // 宏金保详情页更多详情
       .state('root.project-detail-more', {
         url: '/project-detail-more/:number',
@@ -918,6 +929,8 @@ p2pSiteMobApp
         title = toState.data.title;
       }
       $rootScope.headerTitle = title + ' - 要理财，上宏财！';
+
+    
 
 
 
