@@ -1,6 +1,6 @@
 <!-- 宏金保首页 在下面的div class="main-list-temp"上面添加ng-repeat即可  start list   ui-sref="root.project-detail"-->
 <div infinite-scroll="loadDealMuch()" infinite-scroll-distance="3" class="main-list">
-  <div class="main-list-temp clear" ng-repeat="item in jigoubaoData">
+  <div class="main-list-temp clear" ng-repeat="item in jigoubaoData" ui-sref="root.project-detail({number:item.number})">
     <div class="title">
       <!-- <span class="height-line">&nbsp;</span> -->
       <!--<img src="{{baseFileUrl}}{{item.guarantee.url}}" alt="">-->
@@ -65,6 +65,14 @@
         <span ng-show="item.status !== 7 && item.status !== 6">{{projectStatusMap[item.status]}}</span>
       </button>
     </div> -->
+    <div class="status">
+      <img src="/images/main-list/status1.png" alt="">
+      <span ng-show="item.status === 6" class="title-status-orange">预发布</span>
+      <span ng-show="item.status === 11" class="title-status-orange">预约中</span>
+      <span ng-show="item.status === 7" class="title-status-orange">融资中</span>
+      <span ng-show="item.status === 9" class="title-status-green">还款中</span>
+      <span ng-show="item.status === 10" class="title-status-grey">已完成</span>
+    </div>
   </div>
   <!--ending repeat-->
 </div>
