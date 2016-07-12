@@ -795,15 +795,27 @@ p2pSiteMobApp
         // }
       });
     }
-    $rootScope.tofinishedOrder = function(order){
-      $uibModal.open({
-        templateUrl: 'views/project/unfinished-order.html',
-        controller: 'UnfinishedOrderCtrl',
-        resolve: {
-          order: order
+    $rootScope.tofinishedOrder = function(){
+      Restangular.one('orders').one('unpay').get().then(function(response) {
+        var order = response;
+        if(response.ret === -1){
+            return;
         }
+        if(response !== null){
+          $uibModal.open({
+            templateUrl: 'views/project/unfinished-order.html',
+            controller: 'UnfinishedOrderCtrl',
+            resolve: {
+              order: order
+            }
+          });
+          return true;
+        }
+        return false;
+        // $scopegoToInvestVerify();
       });
     }
+
     $rootScope.$on('$stateChangeStart', function(event, toState) {
       var title = '宏财理财';
       if (toState.data && toState.data.title) {

@@ -26,7 +26,7 @@ angular.module('p2pSiteMobApp')
       $scope.project._timeDown = DateUtils.toHourMinSeconds($scope.project.countdown);
       $scope.jigoubaoDataMore = $scope.project.projectInfo;
       if($scope.project.status === 7){
-        $scope.showUnfinishedOrder();
+        $rootScope.tofinishedOrder();
       }
 
       // 可投资金额
@@ -63,19 +63,6 @@ angular.module('p2pSiteMobApp')
         $scope.project._timeDown = DateUtils.toHourMinSeconds($scope.project.countdown);
     }, 1000);
 
-/*显示未支付订单*/
-    $scope.showUnfinishedOrder = function(){
-      Restangular.one('orders').one('unpay').get().then(function(response) {
-        $scope.order = response;
-        if(response.ret === -1){
-            return;
-          }
-        if(response !== null){
-          $rootScope.tofinishedOrder($scope.order);
-        }
-        $scopegoToInvestVerify();
-      });
-    }
 
     $scope.goMoreDetail = function(project) {
       $state.go('root.project-detail-more', {

@@ -17,7 +17,8 @@ angular.module('p2pSiteMobApp')
       Restangular.one('orders').one("/"+order.number).remove().then(function(response) {
         if(response.ret === -1){
             return;
-          }
+        }
+        $state.reload();
         $scope.cancel();
       });
     }

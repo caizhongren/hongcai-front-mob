@@ -21,6 +21,8 @@ angular.module('p2pSiteMobApp')
         $scope.initLimit = 3;
     }
 
+    $rootScope.tofinishedOrder();
+
     $scope.projectStatusMap = projectStatusMap;
     $scope.profit = 0;
     $scope.increaseRateProfit = 0;
@@ -46,16 +48,7 @@ angular.module('p2pSiteMobApp')
 
       }
 
-      /*显示未支付订单*/
-      Restangular.one('orders').one('unpay').get().then(function(response) {
-        $scope.order = response;
-        if(response.ret === -1){
-            return;
-          }
-        if(response !== null){
-          $rootScope.tofinishedOrder($scope.order);
-        }
-      });
+
       // 可投资金额
       $scope.project.availableAmount = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
 
@@ -111,6 +104,8 @@ angular.module('p2pSiteMobApp')
     };
 
     $scope.toInvest = function(project) {
+      $rootScope.tofinishedOrder();
+
       $scope.showMsg(project.investAmount);
       if($scope.showErrorMsg){
         return;
