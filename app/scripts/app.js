@@ -795,6 +795,26 @@ p2pSiteMobApp
         // }
       });
     }
+    $rootScope.tofinishedOrder = function(){
+      Restangular.one('orders').one('unpay').get().then(function(response) {
+        var order = response;
+        if(response.ret === -1){
+            return;
+        }
+        if(response !== null){
+          $uibModal.open({
+            templateUrl: 'views/project/unfinished-order.html',
+            controller: 'UnfinishedOrderCtrl',
+            resolve: {
+              order: order
+            }
+          });
+          return true;
+        }
+        return false;
+        // $scopegoToInvestVerify();
+      });
+    }
 
     $rootScope.$on('$stateChangeStart', function(event, toState) {
       var title = '宏财理财';
@@ -911,7 +931,7 @@ p2pSiteMobApp
       }
       $rootScope.headerTitle = title + ' - 要理财，上宏财！';
 
-      
+
 
       // 微信等webview中无法修改title的问题
       //需要jQuery
@@ -943,7 +963,7 @@ p2pSiteMobApp
         ipCookie('act', $rootScope.act, {
           expires: 1,
           path: '/'
-        });   
+        });
       }
 
       // 不需要显示footer的path

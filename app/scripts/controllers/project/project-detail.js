@@ -25,6 +25,9 @@ angular.module('p2pSiteMobApp')
       $scope.project.countdown = new Date(response.releaseStartTime).getTime() - $scope.serverTime;
       $scope.project._timeDown = DateUtils.toHourMinSeconds($scope.project.countdown);
       $scope.jigoubaoDataMore = $scope.project.projectInfo;
+      if($scope.project.status === 7){
+        $rootScope.tofinishedOrder();
+      }
 
       // 可投资金额
       $scope.jigoubaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
@@ -60,11 +63,7 @@ angular.module('p2pSiteMobApp')
         $scope.project._timeDown = DateUtils.toHourMinSeconds($scope.project.countdown);
     }, 1000);
 
-/*显示未支付订单*/
-    $scope.showUnfinishedOrder = true;
-    $scope.hideUnfinishedOrder = function(){
-      $scope.showUnfinishedOrder = false;
-    }
+
     $scope.goMoreDetail = function(project) {
       $state.go('root.project-detail-more', {
         number: project.number
