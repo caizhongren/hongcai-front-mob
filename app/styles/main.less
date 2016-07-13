@@ -1,7 +1,6 @@
 // 投资页轮播
 .slide-banner {
   margin: 0 auto;
-  margin-bottom: 0.5rem;
   max-width: 560px;
   .bd{
     z-index:0;
@@ -10,6 +9,7 @@
         img{
           vertical-align:top;
           width:100%;
+          height: 15rem;
         }
       }
     }
@@ -37,6 +37,20 @@
 
 
 .main {
+  // 首页的关于我们li列表
+  .about-list{
+    ul{
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid #d4d4d4;
+      li{
+        height: 8rem;
+        border-right: 1px solid #d4d4d4;
+        width: 33.3333%;
+        margin-bottom: 0;
+        box-sizing: border-box;
+      }
+    }
+  }
   hr {
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -307,7 +321,7 @@
           padding-top: 0.8rem;
         }
       }
-      
+
       .title-status-orange {
         margin-top: 8px;
         padding: 0 6px;
@@ -361,7 +375,7 @@
         float: left;
         //text-align: center;
         margin-bottom: 0;
-        
+
       }
       ul li:nth-child(1) {
         width: 54%;
@@ -532,7 +546,7 @@
         }
       }
     }
-  } 
+  }
 }
 
 
