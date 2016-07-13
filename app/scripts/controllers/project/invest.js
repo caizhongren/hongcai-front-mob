@@ -148,6 +148,7 @@ angular.module('p2pSiteMobApp')
             } else {
               $scope.msg = order.msg;
               $scope.showMsg(payAmount);
+              $rootScope.tofinishedOrder($scope.order);
             }
           })
         }
