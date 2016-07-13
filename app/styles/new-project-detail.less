@@ -1,0 +1,213 @@
+//新项目详情页
+.new-project-detail{
+	background-color:#ebebed;
+	margin-bottom:3rem;
+	.header{
+		width: 100%;
+    overflow: auto;
+    background-color:#fd8f3f;
+    padding:1.6rem 2.4rem 1.4rem;
+    color:#ffeceb;
+		ul li{
+			list-style: none;
+      float: left;
+      margin-bottom: 0;
+      p{
+      	margin-bottom:0;
+      }
+		}
+		ul li:nth-child(1) {
+      width: 50%;
+      p:nth-child(1) {
+      	color:#fff;
+      	font-size:4rem;
+      	span{
+      		font-size:2rem;
+      	}
+      }
+      p:nth-child(2) {
+      	font-size:1.4rem;
+      	margin-top:-0.6rem;
+      }
+    }
+    ul li:nth-child(2) {
+      width: 50%;
+      margin-top:1.1rem;
+      p {
+      	font-size:1.4rem;
+      	margin-bottom: 0.2rem;
+    		margin-top: 0.1rem;
+      }
+      .pro-info3 {
+        width: 100%;
+        overflow: auto;
+        .join-in{
+          display:inline-block;
+          width:10%;
+          float:left;
+          //margin-top: 1rem;
+          margin-left:0.5rem;
+          color:#ffeced;
+          font-size:1.4rem;
+          margin-top: -0.2rem;
+        }
+        .process {
+          position: relative;
+          margin: 0.55rem 0 1rem;
+          width: 78%;
+          height: 0.1rem;
+          background-color: #ffeced;
+          border-radius: 3px;
+          -webkit-border-radius: 3px;
+          display:inline-block;
+          float:left;
+        }
+        .process .progress-bar {
+          width: 12%;
+          border-radius: 3px;
+          -webkit-border-radius: 3px;
+          background-color: #da5830;
+        }
+        .type-img {
+          height: 0.1rem;
+        }
+      }
+    }
+	}
+	.content{
+		overflow:hidden;
+		.column{
+			border-bottom: 0.1rem solid #d4d4d4;
+			padding:1rem 2rem;
+			background-color:#fff;
+			span{
+				font-size:1.6rem;
+			}
+			span:nth-child(1) {
+				float:left;
+				color:#45484f;
+				@media (max-width:320px) {
+					font-size:1.4rem;
+					margin-top:0.3rem;
+				}
+			}
+			span:nth-child(2) {
+				float:right;
+				color:#9f9d9e;
+				b{
+					position: relative;
+					top: -0.3rem;
+					@media (max-width:320px) {
+						font-size:1.4rem;
+					}
+				}
+				i{
+					font-size:2.8rem;
+					margin-left:1rem;
+					margin-top:0.1rem;
+				}
+			}
+		}
+		ul{
+			background-color:#fff;
+			padding:1.5rem 2rem 1rem;
+			overflow:hidden;
+			margin-bottom: 0;
+		}
+		ul li{
+			list-style: none;
+      float: left;
+      margin-bottom: 0;
+      width:50%;
+      box-sizing:border-box;
+      background-color:#fff;
+      p{
+      	margin-bottom:0;
+      	font-size:1.6rem;
+      	@media (max-width:320px) {
+					font-size:1.5rem;
+				}
+      }
+      p:nth-child(1) {
+      	color:#9f9e9d;
+      }
+      p:nth-child(2) {
+      	color:#fd8f3f;
+      }
+		}
+		ul li:nth-child(2) {
+			border-left:0.1rem solid #c8c8c8;
+			padding-left:5.9rem;
+			@media (max-width:320px) {
+				padding-left:3.9rem;
+			}
+		}
+		.invest{
+			background-color:#fff;
+			border-bottom: 0.1rem solid #d4d4d4;
+			padding-left:2rem;
+			div {
+				display:inline-block;
+				width:4rem;
+				height:4rem;
+				font-size:1.6rem;
+				position: relative;
+		    top: 4px;
+			}
+			.grey-status{
+				border: 0.1rem solid #d5d4d4;
+				background-color:#efedec;
+			}
+			.orange-status{
+				border: 0.1rem solid #ff9052;
+				background-color:#ffccb0;
+			}
+			.plus{
+				hr{
+					margin-top: 1.9rem;
+					margin-left: 0.6rem;
+					width: 2.6rem;
+					border-top: 1px solid #d1d0d0;
+				}
+			}
+			.add{
+				hr{
+					margin-top: 1.9rem;
+					margin-left: 0.6rem;
+					width: 2.6rem;
+					border-top: 1px solid #fd8f3f;
+				}
+				hr:nth-child(2) {
+					margin-top:-3.6rem;
+					transform:rotate(90deg);
+	        -ms-transform:rotate(90deg); /* Internet Explorer */
+	        -moz-transform:rotate(90deg); /* Firefox */
+	        -webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+	        -o-transform:rotate(90deg); /* Opera */
+				}
+			}
+			i{
+				background-color:red;
+				width:4rem;
+				height:4rem;
+				font-size:1.6rem;
+			}
+			.invest-input{
+				border-radius:0;
+				border:0.1rem solid #e8e8e8;
+				text-align:center;
+				color:#4548f !important;
+				font-size:2.8rem;
+				width:60%;
+				height:4rem;
+				margin: 0 0.5rem 2rem;
+				position:relative;
+				top:-0.75rem;
+				@media (max-width:320px) {
+					margin: 0 0rem 2rem;
+					width:57%;
+				}
+			}
+		}
+	}
+}
