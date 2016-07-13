@@ -8,7 +8,7 @@
       <img class="margin-t-1p5 margin-l-1 fl setting-icon" src="/images/user-center/setting1.png" alt="" ui-sref="root.userCenter.setting">
       <div class="display-inb text-center">
         <div class="display-inb clearfix">
-          <img ng-src="{{userHeadImgUrl}}" alt="" class="margin-r-1 margin-t-0p5 fl avatar">
+          <div class="border-pull margin-r-1 margin-t-0p5 fl"><img ng-src="/images/user-center/head.png" alt="" class="border-pull avatar"></div>
           <div class="fl user-name"><span class="ft-2">{{ hasLoggedUser.nickName || (hasLoggedUser.mobile || hasLoggedUser.name) }}</span></div>
         </div>
       </div>
@@ -76,16 +76,16 @@
     <!-- 投资记录和奖励列表 -->
     <div class="user-center-list bg-white ft-1p6">
       <ul class="clearfix border-grey-t margin-b-0">
-        <li class="fl border-grey-r"ui-sref="root.userCenter.credits"><img src="/images/user-center/investment-record.png" width="14%" alt="">我的投资</li>
-        <li class="fl"><img src="/images/user-center/user-prize.png" width="14%" alt="">我的奖金</li>
+        <li class="fl border-grey-r"ui-sref="root.userCenter.credits"><img src="/images/user-center/investment-record.png" width="16%" alt="">我的投资</li>
+        <li class="fl"><img src="/images/user-center/user-prize.png" width="16%" alt="">我的奖金</li>
       </ul>
       <ul class="clearfix border-grey-t margin-b-0 border-grey-b">
-        <li class="fl border-grey-r" ui-sref="root.userCenter.deals"><img src="/images/user-center/user-capital.png" width="14%" alt="">资金流水</li>
-        <li class="fl"  ng-click="viewMore(2)"><img src="/images/user-center/user-invite.png" width="12%" alt="">我的邀请<sup class="green-sup">{{inviteNum || 0}}</sup></li>
+        <li class="fl border-grey-r" ui-sref="root.userCenter.deals"><img src="/images/user-center/user-capital.png" width="16%" alt="">资金流水</li>
+        <li class="fl"  ng-click="viewMore(2)"><img src="/images/user-center/user-invite.png" width="16%" alt="">我的邀请<sup class="green-sup">{{inviteNum || 0}}</sup></li>
       </ul>
       <ul class="clearfix border-grey-b margin-b-0">
-        <li class="fl border-grey-r" ng-click="viewMore(0)"><img src="/images/user-center/user-experience.png" width="12%" alt="">我的体验金</li>
-        <li class="fl" ng-click="viewMore(1)"><img src="/images/user-center/user-rate-ticket.png" width="14%" alt="">我的加息券<sup class="green-sup">{{couponStatis.unUsedCoupon || 0}}</sup></li>
+        <li class="fl border-grey-r" ng-click="viewMore(0)"><img src="/images/user-center/user-experience.png" width="16%" alt="">我的体验金</li>
+        <li class="fl" ng-click="viewMore(1)"><img src="/images/user-center/user-rate-ticket.png" width="16%" alt="">我的加息券<sup class="green-sup">{{couponStatis.unUsedCoupon || 0}}</sup></li>
       </ul>
     </div>
   </div>
