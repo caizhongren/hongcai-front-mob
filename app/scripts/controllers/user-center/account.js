@@ -10,11 +10,14 @@
 angular.module('p2pSiteMobApp')
 
   .controller('AccountCtrl', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, fundsProjects, $location) {
-
+    $scope.userHeadImgUrl = '/images/user-center/avatar.png';
     $rootScope.checkSession.promise.then(function() {
       if (!$rootScope.isLogged) {
         $location.path('/login');
         return;
+      }
+      if ($rootScope.hasLoggedUser.headImgUrl){
+        $scope.userHeadImgUrl = $rootScope.hasLoggedUser.headImgUrl
       }
 
       HongcaiUser.$find($rootScope.hasLoggedUser.id + '/account').$then(function(response) {
@@ -40,7 +43,7 @@ angular.module('p2pSiteMobApp')
               }else if(response.coupons[i].rate === 1){
                 $scope.bNum += 1;
               }
-            }       
+            }
           }
           console.log(response);
         } else {

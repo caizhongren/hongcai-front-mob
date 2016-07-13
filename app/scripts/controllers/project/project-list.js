@@ -11,10 +11,9 @@ angular.module('p2pSiteMobApp')
   .controller('ProjectListCtrl', function($scope, $state, $rootScope, $stateParams, $location, Restangular, restmod, config,DateUtils){
   	$scope.page = 1;
     $scope.pageSize = 4;
-    $scope.pageCount = 1;
   	$scope.widthFlag = "";
   	$scope.jigoubaoData = [];
-  	
+
   	$scope.screenWidth = function(){
       $scope.width = document.body.scrollWidth; //用系统返回宽度除以分辨率
       if ($scope.width >= 320 && $scope.width < 375) {
@@ -57,7 +56,9 @@ angular.module('p2pSiteMobApp')
       $scope.pageCount = $scope.pageCount + 1;
       $scope.pageSize = $scope.pageSize;
       $scope.getTempData();
+
       $scope.DealBusy = false;
     };
-    
-})
+
+  })
+

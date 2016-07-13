@@ -947,7 +947,7 @@ p2pSiteMobApp
       }
       $rootScope.headerTitle = title + ' - 要理财，上宏财！';
 
-    
+
 
 
 
@@ -1005,14 +1005,16 @@ p2pSiteMobApp
         $rootScope.showFooter = true;
       }
 
-      var recommendPath = [
-        'recommend'
-      ];
-      var introductionPath = [
+      var mainPath = [
+        'recommend',
         'safe',
-        'issue',
         'about',
-        'novice-guide'
+        'main'
+      ];
+      var projectPath = [
+        'issue',
+        'novice-guide',
+        'project-list'
       ];
 
       var loginOrMy = [
@@ -1021,13 +1023,13 @@ p2pSiteMobApp
         'user-center'
       ];
 
-      $rootScope.whichFooter = 3;
-      if(recommendPath.indexOf(path) !== -1){
+      $rootScope.whichFooter = 1;
+      if(mainPath.indexOf(path) !== -1){
         $rootScope.whichFooter = 1;
-      } else if(introductionPath.indexOf(path) !== -1){
+      } else if(projectPath.indexOf(path) !== -1){
         $rootScope.whichFooter = 2;
       } else if(loginOrMy.indexOf(path) !== -1){
-        $rootScope.whichFooter = 4;
+        $rootScope.whichFooter = 3;
       }
     });
   })
