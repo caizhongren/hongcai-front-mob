@@ -185,6 +185,20 @@ p2pSiteMobApp
           }
         }
       })
+      // 新宏金保项目详情页
+      .state('root.new-project-detail', {
+        url: '/new-project/:number',
+        data: {
+          title: '新项目'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/project/new-project-detail.html',
+            controller: 'ProjectDetailCtrl',
+            controllerUrl: 'scripts/controllers/project/project-detail'
+          }
+        }
+      })
       // 宏金保列表页
       .state('root._main-list-temp', {
         url: '/project-list',
