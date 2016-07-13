@@ -8,7 +8,7 @@
       <img class="margin-t-1p5 margin-l-1 fl setting-icon" src="/images/user-center/setting1.png" alt="" ui-sref="root.userCenter.setting">
       <div class="display-inb text-center">
         <div class="display-inb clearfix">
-          <div class="border-pull margin-r-1 margin-t-0p5 fl"><img ng-src="/images/user-center/head.png" alt="" class="border-pull avatar"></div>
+          <div class="border-pull margin-r-1 margin-t-0p5 fl"><img ng-src="{{userHeadImgUrl}}" alt="" class="border-pull avatar"></div>
           <div class="fl user-name"><span class="ft-2">{{ hasLoggedUser.nickName || (hasLoggedUser.mobile || hasLoggedUser.name) }}</span></div>
         </div>
       </div>
