@@ -5,7 +5,7 @@
     <div class=" margin-0 padding-1 bg-orange clearfix text-center ft-white">
     <!-- 您好，亲爱的&nbsp;<strong class="ft-orange">{{ hasLoggedUser.nickName || (hasLoggedUser.mobile || hasLoggedUser.name) }}</strong>&nbsp;<i class="fa fa-newspaper-o"></i>
       <span class="pull-right" ui-sref="root.userCenter.setting">基本资料></span> -->
-      <img class="margin-t-1p5 margin-l-1 fl setting-icon" src="/images/user-center/setting1.png" alt="" ui-sref="root.userCenter.setting">
+      <img class="margin-t-1p5 margin-l-1 fl setting-icon" src="/images/user-center/setting.png" alt="" ui-sref="root.userCenter.setting">
       <div class="display-inb text-center">
         <div class="display-inb clearfix">
           <div class="border-pull margin-r-1 margin-t-0p5 fl"><img ng-src="{{userHeadImgUrl}}" alt="" class="border-pull avatar"></div>
@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="fr margin-r-1 margin-t-1p5">
-        <img class="message-icon" src="/images/user-center/message1.png" alt="">
+        <img class="message-icon" src="/images/user-center/message.png" alt="">
       </div>
     </div>
     <!-- <div class="padding-2 position-re bg-orange">
@@ -24,23 +24,23 @@
       <div class="touzi-product"><a class="ft-white" ui-sref="root.userCenter.investments-stat">我的投资&nbsp;<i class="fa fa-angle-right"></i></a></div>
     </div> -->
     <div class="text-cneter bg-orange ft-white">
-      <p class="text-center margin-b-0 margin-t--0p5">当前资产(元)</p>
-      <p class="text-center ft-3 margin-b-1 ft-1p8">{{ userAccount.tTotalAssets | number:2}}</strong></p>
+      <p class="text-center margin-b-0 padding-t-0p5">当前资产(元)</p>
+      <p class="text-center ft-3 margin-b-1 ft-1p6">{{ userAccount.tTotalAssets | number:2}}</strong></p>
       <div class="overflow-hid">
         <ul class="colums">
           <li class="text-center fl width-0p3 position-re">
             <p class="margin-b-0">累计收益(元)</p>
-            <p class="margin-b-0 ft-1p8">{{ userAccount.totalProfit | number:2 }}</p>
+            <p class="margin-b-0 ft-1p6">{{ userAccount.totalProfit | number:2 }}</p>
             <i class="fl border-white-right position-ab right-0 line"></i>
           </li>
           <li class="text-center fl width-0p3 position-re">
             <p class="margin-b-0">可用余额(元)</p>
-            <p class="margin-b-0 ft-1p8">{{ userAccount.balance | number:2 }}</p>
+            <p class="margin-b-0 ft-1p6">{{ userAccount.balance | number:2 }}</p>
             <i class="fl border-white-right position-ab right-0 line"></i>
           </li>
           <li class="text-center fl width-0p3">
             <p class="margin-b-0">未提现奖金(元)</p>
-            <p class="margin-b-0 ft-1p8"></p>
+            <p class="margin-b-0 ft-1p6">0.00</p>
           </li>
         </ul>
       </div>
