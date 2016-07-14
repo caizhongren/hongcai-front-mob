@@ -8,7 +8,7 @@
       <img class="margin-t-1p3 margin-l-1 fl setting-icon" src="/images/user-center/setting.png" alt="" ui-sref="root.userCenter.setting">
       <div class="display-inb text-center">
         <div class="display-inb clearfix">
-          <div class="border-pull margin-r-1 fl"><img ng-src="{{userHeadImgUrl}}" alt="" class="border-pull avatar"></div>
+          <div class="border-pull margin-r-1 fl"><img ng-src="{{hasLoggedUser.headImgUrl}}" alt="" class="border-pull avatar"></div>
           <div class="fl user-name"><span class="ft-1p8">{{ hasLoggedUser.nickName || (hasLoggedUser.mobile || hasLoggedUser.name) }}</span></div>
         </div>
       </div>
@@ -56,18 +56,19 @@
       </div>
       <div class="fr text-center ft-1p8 ft-orange0 width-half" ng-click="!timeout || goRecharge()"><span>充值</span></div>
     </div>
-    <div class="bg-white hot border-grey-t margin-b-1 ft-1p6">
+
+    <div class="bg-white hot border-grey-t margin-b-1 ft-1p6" ng-show="recommends.data.length > 0" ui-sref="root.project({number:recommends.data[0].number})">
       <div class=" border-grey-b clearfix hot-tittle margin-l-2 margin-r-2">
         <p class="fl margin-b-0">热抢中的项目</p>
         <div class="ft-greyb2 fr"><i class="fa fa-chevron-right margin-l-1"></i></div>
       </div>
       <div class="hot-content ft-greyb2 border-grey-b ft-1p5">
-        <p class="margin-l-2 margin-t-1 margin-b-1">置业公司融资项目</p>
+        <p class="margin-l-2 margin-t-1 margin-b-1">{{recommends.data[0].name}}</p>
         <div class="clearfix">
           <ul>
-            <li class="text-left fl margin-l-2 ft-2 ft-orange0 profit">9.8%</li>
-            <li class="text-center fl border-grey-l border-grey-r1">3个月</li>
-            <li class="text-right fl padding-r-2">500000元</li>
+            <li class="text-left fl margin-l-2 ft-2 ft-orange0 profit">{{recommends.data[0].annualEarnings | number:2}}%</li>
+            <li class="text-center fl border-grey-l border-grey-r1">{{recommends.data[0].projectDays}}天</li>
+            <li class="text-right fl padding-r-2">{{recommends.data[0].total}}元</li>
           </ul>
         </div>
       </div>
