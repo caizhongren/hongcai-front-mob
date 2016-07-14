@@ -9,7 +9,18 @@
         img{
           vertical-align:top;
           width:100%;
-          height: 15rem;
+          @media (min-width:320px) {
+            height: 12rem;
+          }
+          @media (min-width:360px) {
+            height: 14.5rem;
+          }
+          @media (min-width:375px) {
+            height: 15rem;
+          }
+          @media (min-width:411px) {
+            height: 18rem;
+          }
         }
       }
     }
@@ -37,20 +48,88 @@
 
 
 .main {
+  .gap {
+    border-bottom: 1px solid #d4d4d4;
+    height: 1.2rem;
+  }
   // 首页的关于我们li列表
   .about-list{
     ul{
       margin-bottom: 1.2rem;
       border-bottom: 1px solid #d4d4d4;
       li{
-        height: 8rem;
+        height: 8.5rem;
         border-right: 1px solid #d4d4d4;
         width: 33.3333%;
         margin-bottom: 0;
         box-sizing: border-box;
+        img {
+          margin-top: 1.8rem
+        }
+        p {
+          color: #716b66;
+        }
       }
     }
   }
+  //项目展示
+  .project-name {
+    p {
+      margin-bottom: 3rem;
+    }
+
+  }
+  // 进度条
+  .pro-info3 {
+          width: 100%;
+          padding: 0 2rem 0 3rem;
+          overflow: auto;
+          .join-in{
+            display:inline-block;
+            width:10%;
+            float:left;
+            margin-top: .1rem;
+            margin-left:0.5rem;
+            color:#b7b6b6;
+            font-size:1.2rem
+          }
+          @media(min-width:320px){
+            padding: 0 2rem 0 4rem;
+          }
+          @media(min-width:375px){
+            padding: 0 5rem 0 6.5rem;
+          }
+          @media(min-width:411px){
+            padding: 0 5.5rem 0 7rem;
+          }
+          .process {
+            position: relative;
+            margin: 1rem 0 2rem;
+            width: 85%;
+            height: 1px;
+            background-color: #b7b6b6;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            display:inline-block;
+            float:left;
+          }
+          .process .progress-bar {
+            width: 12%;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            //background-color: #fd8f3f;
+          }
+          .process .processing {
+            position: absolute;
+            top: -16px;
+            left: 3px;
+            color: #000;
+            font-size: 0.5rem;
+          }
+          .type-img {
+            height: 1px;
+          }
+        }
   hr {
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -256,6 +335,170 @@
     }
   }
 }
+@media (min-width:320px) {
+    .main{
+      .about-list {
+        ul{
+          margin-bottom: 1.2rem;
+          li{
+            height: 7.5rem;
+            img {
+              margin-top: 1.7rem
+            }
+          }
+        }
+      }
+      .project-name {
+        font-size: 1.4rem;
+        span{
+          font-size: 1.3rem
+        }
+      }
+      .project-show {
+        margin-top: 1rem;
+        .project-profit {
+          font-size: 3.8rem;
+        }
+        .benefits {
+          font-size: 1.2rem;
+          margin-top: -3px;
+        }
+        .project-limit {
+          .project-amounts,.project-date{
+            margin-top: 1rem;
+            p:nth-child(1){
+              font-size: 1rem;
+            }
+          }
+          .project-amounts {
+            margin-right: 7rem;
+            margin-left: -1rem;
+            margin-top: 1.5rem;
+            span{
+              height:3rem;
+              border-right: 1px solid #f5f2f2;
+              top: 16px;
+              right: -43px;
+            }
+          }
+        }
+      }
+    }
+ }
+ @media (min-width:360px) {
+    .main{
+      .about-list {
+        ul{
+          margin-bottom: 1.2rem;
+          li{
+            height: 8.5rem;
+            img {
+              margin-top: 1.7rem
+            }
+          }
+        }
+      }
+      .project-name {
+        font-size: 1.45rem;
+        span{
+          font-size: 1.4rem
+        }
+      }
+      .project-show {
+        margin-top: 1.2rem;
+        .project-profit {
+          font-size: 4.2rem;
+        }
+        .benefits {
+          font-size: 1.3rem;
+          margin-top: -3px;
+        }
+      }
+    }
+ }
+ @media (min-width:375px) {
+    .main{
+      .about-list {
+        ul{
+          margin-bottom: 1.2rem;
+          li{
+            height: 8.7rem;
+            img {
+              margin-top: 1.8rem
+            }
+            p {
+              margin-top: 0.2rem;
+            }
+          }
+        }
+      }
+      .project-name {
+        font-size: 1.48rem;
+        span{
+          font-size: 1.4rem
+        }
+      }
+      .project-show {
+        margin-top: 1.2rem;
+        .project-profit {
+          font-size: 4.3rem;
+        }
+        .benefits {
+          font-size: 1.3rem;
+          margin-top: 0px;
+        }
+      }
+    }
+ }
+ @media (min-width:411px) {
+    .main{
+      .about-list {
+        ul{
+          margin-bottom: 1.3rem;
+          li{
+            height: 9.5rem;
+            img {
+              margin-top: 1.8rem
+            }
+            p {
+              margin-top: 0.5rem;
+            }
+          }
+        }
+      }
+      .project-name {
+        font-size: 1.5rem;
+        span{
+          font-size: 1.4rem
+        }
+      }
+      .project-show {
+        margin-top: 1rem;
+        .project-profit {
+          font-size: 5rem;
+        }
+        .project-limit {
+          .project-amounts,.project-date{
+            margin-top: 1rem;
+            p:nth-child(1){
+              font-size: 1rem;
+            }
+          }
+          .project-amounts {
+            margin-right: 8rem;
+            margin-left: -1rem;
+            margin-top: 1.5rem;
+            span{
+              height:3rem;
+              border-right: 1px solid #f5f2f2;
+              top: 16px;
+              right: -50px;
+            }
+          }
+        }
+      }
+    }
+ }
 .main-list{
   background-color:#ebebed;
   margin-bottom:4rem;
@@ -458,7 +701,7 @@
           position: relative;
           margin: 1rem 0 2rem;
           width: 85%;
-          height: 0.1rem;
+          height: .1rem;
           background-color: #c6c6c6;
           border-radius: 3px;
           -webkit-border-radius: 3px;
@@ -481,24 +724,24 @@
         .type-img {
           height: 0.1rem;
         }
-        .info1 {
-          font-size: 1.4rem;
-          .left,
-          .right {
-            span:nth-child(1) {
-              color: #7a7a7a;
-            }
-            span:nth-child(2) {
-              color: #fd8f3f;
-            }
-          }
-          .left{
-            width: 60%;
-          }
-          .right{
-            width: 40%;
-          }
-        }
+        // .info1 {
+        //   font-size: 1.4rem;
+        //   .left,
+        //   .right {
+        //     span:nth-child(1) {
+        //       color: #7a7a7a;
+        //     }
+        //     span:nth-child(2) {
+        //       color: #fd8f3f;
+        //     }
+        //   }
+        //   .left{
+        //     width: 60%;
+        //   }
+        //   .right{
+        //     width: 40%;
+        //   }
+        // }
       }
     }
     .operation-btn {
@@ -548,7 +791,6 @@
     }
   }
 }
-
 
 .main-hongjinbao {
   width: 100%;
