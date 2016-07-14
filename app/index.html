@@ -38,6 +38,7 @@ var _hmt = _hmt || [];
   <link rel="stylesheet" href="bower_components/skeleton/css/skeleton.css" />
   <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
   <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css" />
+  <link rel="stylesheet" href="bower_components/angular-busy/dist/angular-busy.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
@@ -68,12 +69,16 @@ var _hmt = _hmt || [];
     <![endif]-->
 
   <!-- Add your site or application content here -->
+  <div cg-busy="checkSession"></div>
+  
   <div class="padding-0">
     <section ui-view="header"></section>
     <section ui-view autoscroll="true"></section>
     <section ui-view="footer"></section>
     <section ui-view="landingPage"></section>
   </div>
+
+  
 
 
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -124,6 +129,7 @@ var _hmt = _hmt || [];
   <script src="bower_components/textAngular/dist/textAngular.js"></script>
   <script src="bower_components/textAngular/dist/textAngular-sanitize.js"></script>
   <script src="bower_components/textAngular/dist/textAngularSetup.js"></script>
+  <script src="bower_components/angular-busy/dist/angular-busy.js"></script>
   <!-- endbower -->
   <script src="bower_components/famous/dist/famous-global.js"></script>
   <!-- endbuild -->
