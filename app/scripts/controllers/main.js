@@ -69,6 +69,29 @@ angular.module('p2pSiteMobApp')
       };
     }, 1000);
 
+     /**
+     * 推荐项目
+     */
+    Restangular.one('projects').one('recommends').get({
+      pageSize : 1
+    }).then(function(response) {
+      $scope.recommends = response.data[0];
+      $scope.serverTime = response.data[0].serveTime || (new Date().getTime());
+      $scope.recommends.countDown = new Date($scope.recommends.releaseStartTime).getTime() - $scope.serverTime;
+      $scope.recommends._timeDown = DateUtils.toHourMinSeconds($scope.recommends.countDown);
+      var timer1 = $interval(function() {
+        $scope.recommends.countDown -= 1000;
+        if ($scope.recommends.countDown <= 0 && $scope.recommends.status === 6) {
+          $scope.recommends.status = 7;
+        }
+        $scope.recommends._timeDown = DateUtils.toHourMinSeconds($scope.recommends.countDown);
+    }, 1000);
+      $scope.$on('$stateChangeStart', function() {
+          clearInterval(timer1);
+        });
+    });
+
+
     $scope.loadDealMuch = function() {
       $scope.DealBusy = true;
       $scope.getTempData();
@@ -104,7 +127,7 @@ angular.module('p2pSiteMobApp')
       })
     }
 
-    $scope.newbieBiaoProject = function(){
+    $scope.getNewbieBiaoProject = function(){
       Restangular.one('projects').one('newbieBiaoProject').get().then(function(response) {
         if(response.ret === -1){
             return;
@@ -113,7 +136,22 @@ angular.module('p2pSiteMobApp')
           $scope.newbieBiaoProject = response;
           // 可投资金额
           $scope.newbieBiaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
-      });
+          $scope.serverTime = response.serveTime || (new Date().getTime());
+          $scope.newbieBiaoProject.countdown = new Date(response.releaseStartTime).getTime() - $scope.serverTime;
+          $scope.newbieBiaoProject._timeDown = DateUtils.toHourMinSeconds($scope.newbieBiaoProject.countdown);
+          var timer2 = $interval(function() {
+              $scope.newbieBiaoProject.countdown -= 1000;
+              if ($scope.newbieBiaoProject.countdown <= 0 && $scope.newbieBiaoProject.status === 6) {
+                $scope.newbieBiaoProject.status = 7;
+              }
+              $scope.newbieBiaoProject._timeDown = DateUtils.toHourMinSeconds($scope.newbieBiaoProject.countdown);
+          }, 1000);
+          $scope.$on('$stateChangeStart', function() {
+          clearInterval(timer2);
+          });
+       });
+
+
     }
 
     $scope.switchFundsProjects = function(type) {
@@ -264,21 +302,21 @@ angular.module('p2pSiteMobApp')
 
     //   // console.log($scope.subtabClassIndex);
     // };
-    
+
     $scope.toggle.activeTab = 1;
     $scope.toggle.activeSubTab = 0;
     if($stateParams.tab){
       $scope.toggle.activeTab = parseInt($stateParams.tab);
-    } 
+    }
     if($stateParams.subTab){
       $scope.toggle.activeSubTab = parseInt($stateParams.subTab);
     }
 
 
 
-    if($scope.toggle.activeTab == 0){
-      $scope.newbieBiaoProject();
-    }
+    // if($scope.toggle.activeTab == 0){
+      $scope.getNewbieBiaoProject();
+    // }
 
     // $scope.toggle.switch(+$scope.tab, +$scope.subTab);
 
