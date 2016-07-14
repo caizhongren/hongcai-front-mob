@@ -57,17 +57,38 @@ angular.module('p2pSiteMobApp')
       });
     }
 
-    $interval(function() {
-      for (var i = $scope.jigoubaoData.length - 1; i >= 0; i--) {
+    // $interval(function() {
+    //   for (var i = $scope.jigoubaoData.length - 1; i >= 0; i--) {
 
-        $scope.jigoubaoData[i].countdown -= 1000;
-        if ($scope.jigoubaoData[i].countdown <= 0 && $scope.jigoubaoData[i].status === 6) {
-          $scope.jigoubaoData[i].status = 7;
+    //     $scope.jigoubaoData[i].countdown -= 1000;
+    //     if ($scope.jigoubaoData[i].countdown <= 0 && $scope.jigoubaoData[i].status === 6) {
+    //       $scope.jigoubaoData[i].status = 7;
+    //     }
+
+    //     $scope.jigoubaoData[i]._timeDown = DateUtils.toHourMinSeconds($scope.jigoubaoData[i].countdown);
+    //   };
+    // }, 1000);
+
+     /**
+     * 推荐项目
+     */
+    Restangular.one('projects').one('recommends').get({
+      pageSize : 1
+    }).then(function(response) {
+      $scope.recommends = response.data[0];
+      $scope.serverTime = response.data[0].createTime || (new Date().getTime());
+      $scope.recommends.countdown = new Date(response.data[0].releaseStartTime).getTime() - response.data[0].serverTime;
+      $scope.recommends._timeDown = DateUtils.toHourMinSeconds($scope.recommends.countdown);
+      $interval(function() {
+        $scope.recommends.countdown -= 1000;
+        if ($scope.recommends.countdown <= 0 && $scope.recommends.status === 6) {
+          $scope.recommends.status = 7;
         }
+        $scope.recommends._timeDown = DateUtils.toHourMinSeconds($scope.recommends.countdown);
+      }, 1000);
+    });
 
-        $scope.jigoubaoData[i]._timeDown = DateUtils.toHourMinSeconds($scope.jigoubaoData[i].countdown);
-      };
-    }, 1000);
+
 
     $scope.loadDealMuch = function() {
       $scope.DealBusy = true;
@@ -104,7 +125,7 @@ angular.module('p2pSiteMobApp')
       })
     }
 
-    $scope.newbieBiaoProject = function(){
+    $scope.getNewbieBiaoProject = function(){
       Restangular.one('projects').one('newbieBiaoProject').get().then(function(response) {
         if(response.ret === -1){
             return;
@@ -113,7 +134,19 @@ angular.module('p2pSiteMobApp')
           $scope.newbieBiaoProject = response;
           // 可投资金额
           $scope.newbieBiaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
-      });
+          $scope.serverTime = response.createTime || (new Date().getTime());
+          $scope.newbieBiaoProject.countdown = new Date(response.releaseStartTime).getTime() - $scope.serverTime;
+          $scope.newbieBiaoProject._timeDown = DateUtils.toHourMinSeconds($scope.newbieBiaoProject.countdown);
+          });
+
+           $interval(function() {
+
+              $scope.newbieBiaoProject.countdown -= 1000;
+              if ($scope.newbieBiaoProject.countdown <= 0 && $scope.newbieBiaoProject.status === 6) {
+                $scope.newbieBiaoProject.status = 7;
+              }
+              $scope.newbieBiaoProject._timeDown = DateUtils.toHourMinSeconds($scope.newbieBiaoProject.countdown);
+          }, 1000);
     }
 
     $scope.switchFundsProjects = function(type) {
@@ -264,21 +297,21 @@ angular.module('p2pSiteMobApp')
 
     //   // console.log($scope.subtabClassIndex);
     // };
-    
+
     $scope.toggle.activeTab = 1;
     $scope.toggle.activeSubTab = 0;
     if($stateParams.tab){
       $scope.toggle.activeTab = parseInt($stateParams.tab);
-    } 
+    }
     if($stateParams.subTab){
       $scope.toggle.activeSubTab = parseInt($stateParams.subTab);
     }
 
 
 
-    if($scope.toggle.activeTab == 0){
-      $scope.newbieBiaoProject();
-    }
+    // if($scope.toggle.activeTab == 0){
+      $scope.getNewbieBiaoProject();
+    // }
 
     // $scope.toggle.switch(+$scope.tab, +$scope.subTab);
 
