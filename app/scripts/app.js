@@ -9,7 +9,7 @@
  */
 var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'ngAnimate',
-  'ngTouch',
+  // 'ngTouch',
   'famous.angular',
   'ui.router',
   'restmod',
