@@ -10,19 +10,20 @@
 angular.module('p2pSiteMobApp')
 
 .controller('AccountCtrl', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, Restangular, $location) {
-    
+  /*头像设置*/
     $scope.userHeadImgUrl = '/images/user-center/avatar.png';
+     if ($rootScope.hasLoggedUser.headImgUrl){
+        $scope.userHeadImgUrl = $rootScope.hasLoggedUser.headImgUrl
+     }
 
     HongcaiUser.$find(0 + '/account').$then(function(response) {
         // 获取用户金额信息
         $scope.userAccount = response;
     });
-
     HongcaiUser.$find(0 + '/increaseRateCoupon').$then(function(response) {
       if(response.ret == -1){
         return;
       }
-
       // 获取用户金额信息
       $scope.couponStatis = response;
       if(response.couponTypes.length <= 0){
