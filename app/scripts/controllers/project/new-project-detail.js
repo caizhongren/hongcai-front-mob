@@ -232,19 +232,6 @@ angular.module('p2pSiteMobApp')
         $scope.unSelectCouponMsg = '不使用加息券';
     }
 
-    /*显示未支付订单*/
-    $scope.showUnfinishedOrder = function(){
-      Restangular.one('orders').one('unpay').get().then(function(response) {
-        $scope.order = response;
-        if(response.ret === -1){
-            return;
-          }
-        if(response !== null){
-          $rootScope.tofinishedOrder($scope.order);
-        }
-        $scopegoToInvestVerify();
-      });
-    }
     //跳转到充值页面
     $scope.toRecharge = function(){
       $state.go('root.userCenter.recharge');
