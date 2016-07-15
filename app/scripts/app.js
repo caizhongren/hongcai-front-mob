@@ -476,7 +476,7 @@ p2pSiteMobApp
       })
       // 宏财简介
       .state('root.about', {
-        url: '/about',
+        url: '/about/:tab',
         data: {
           title: '宏财介绍'
         },

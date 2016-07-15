@@ -8,7 +8,8 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('AboutCtrl',['$scope',function ($scope) {
+  .controller('AboutCtrl',function ($scope,$stateParams) {
+    $scope.tab = parseInt($stateParams.tab) || 0;
     // tab
     $scope.toggle = {};
     $scope.tabs = [{
@@ -21,7 +22,7 @@ angular.module('p2pSiteMobApp')
     $scope.toggle.switchTab = function(tabIndex) {
       $scope.toggle.activeTab = tabIndex;
     };
-
+    $scope.toggle.switchTab($scope.tab);
 
     // 顾问团队
     /*jslint es5: true */
@@ -54,5 +55,5 @@ angular.module('p2pSiteMobApp')
     {name: '项目保障', content: '项目方打造了一套完善的风控体系，所有项目经过严格风控审核后才能发布，如果出现项目方违约，担保公司第一时间先行垫付。项目有汽车房产等优质资产足值抵押，彻底解决项目风险问题！', fa: 'fa-gavel'},
     {name: '资金安全', content: '宏财网联合知名支付平台“易宝支付”打造了一套完善的资金支付与托管账户体系，一人一户且每笔资金的流动都可追查记录。同时宏财网坚决不设虚假标，每一笔投资都有对应的真实债权，不设资金池，保障投资人的权益。', fa: 'fa-jpy'}
     ];
-  }]);
+  });
 
