@@ -38,7 +38,7 @@ angular.module('p2pSiteMobApp')
       }).then(function(response) {
         $scope.increaseRateCoupons = response;
         $scope.selectIncreaseRateCoupon = $scope.increaseRateCoupons[0];
-        $scope.project.investAmount = 1000;
+        $scope.project.status === 7 ? $scope.project.investAmount = 1000 : ' ';
       });
       
       $scope.jigoubaoDataMore = $scope.project.projectInfo;
