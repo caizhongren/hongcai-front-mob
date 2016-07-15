@@ -25,16 +25,27 @@ angular.module('p2pSiteMobApp')
     Restangular.one('projects').one($stateParams.number).get().then(function(response) {
       $scope.project = response;
       $rootScope.increaseAmount = $scope.project.increaseAmount;
-      $scope.project.investAmount = 1000;
-      $scope.jigoubaoDataMore = $scope.project.projectInfo;
-      if($scope.project.status === 7){
-        $scope.showUnfinishedOrder();
-      }
-      //已投百分百
+       //已投百分百
       $scope.perence = (response.soldStock + response.occupancyStock) * response.increaseAmount / response.total * 100;
       
       // 可投资金额
       $scope.availableAmount = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
+
+      $scope.increaseRateCoupons = [];
+      Restangular.one('projects').one('investIncreaseRateCoupon').get({
+        projectId : $scope.project.id,
+        amount : $scope.availableAmount
+      }).then(function(response) {
+        $scope.increaseRateCoupons = response;
+        $scope.selectIncreaseRateCoupon = $scope.increaseRateCoupons[0];
+        $scope.project.investAmount = 1000;
+      });
+      
+      $scope.jigoubaoDataMore = $scope.project.projectInfo;
+      if($scope.project.status === 7){
+        $scope.showUnfinishedOrder();
+      }
+     
       // 当status===1可融资状态的时候，判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。
       $rootScope.checkSession.promise.then(function() {
         if ($rootScope.isLogged) {
@@ -58,14 +69,7 @@ angular.module('p2pSiteMobApp')
         }
       });
     
-      $scope.increaseRateCoupons = [];
-      Restangular.one('projects').one('investIncreaseRateCoupon').get({
-        projectId : $scope.project.id,
-        amount : $scope.availableAmount
-      }).then(function(response) {
-        $scope.increaseRateCoupons = response;
-        $scope.selectIncreaseRateCoupon = $scope.increaseRateCoupons[0];
-      });
+      
     });
    
 
