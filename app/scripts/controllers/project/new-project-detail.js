@@ -79,7 +79,7 @@ angular.module('p2pSiteMobApp')
         $scope.project._timeDown = DateUtils.toHourMinSeconds($scope.project.countdown);
     }, 1000);
 
-/*显示未支付订单*/
+    /*显示未支付订单*/
     $scope.showUnfinishedOrder = function(){
       Restangular.one('orders').one('unpay').get().then(function(response) {
         $scope.order = response;
@@ -156,8 +156,8 @@ angular.module('p2pSiteMobApp')
                 $scope.showMsg(payAmount);
               }
             } else {
-              $scope.msg = order.msg;
-              $scope.showMsg(payAmount);
+              // $scope.msg = order.msg;
+              // $scope.showMsg(payAmount);
               // $rootScope.tofinishedOrder($scope.order);
             }
           })
@@ -202,6 +202,7 @@ angular.module('p2pSiteMobApp')
       $scope.showMsg(newVal);
     });
 
+    //显示信息
     $scope.showMsg = function(investAmount){
       if($scope.msg){
         $scope.showErrorMsg = true;
@@ -212,10 +213,13 @@ angular.module('p2pSiteMobApp')
       }else{
         if(investAmount){
             $scope.investButtonFlag = true;
+            $scope.showErrorMsg = false;
+            $scope.showUnfinishedOrder();
         }
       }
     }
 
+    //选择加息券
     $scope.showSelectIncreaseRateCoupon = false;
     $scope.selectCoupon = function(coupon){
         $scope.selectIncreaseRateCoupon = coupon;
@@ -223,7 +227,7 @@ angular.module('p2pSiteMobApp')
         $scope.increaseRateProfit = $scope.calcProfit(coupon.rate);
         $scope.resetInitLimit();
     }
-
+    //不使用加息券
     $scope.unUseIncreaseRateCoupon = function(){
         $scope.selectIncreaseRateCoupon = null;
         $scope.showSelectIncreaseRateCoupon = false;

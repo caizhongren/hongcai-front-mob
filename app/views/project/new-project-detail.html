@@ -56,13 +56,17 @@
     </ul>
     <div class="invest">
     	<div ng-click="subMoney()" class="plus grey-status"><hr></div>
-    	<input class="invest-input" type="number" placeholder="1000" ng-model="project.investAmount">
+    	<input class="invest-input" type="number" placeholder="1000" ng-model="project.investAmount" ng-disabled="project.status ===6 || project.status ===9 || project.status ===10 || project.status ===11 || securityStatus.realNameAuthStatus !== 1">
     	<div ng-click="plusMoney()" class="add orange-status"><hr><hr></div>
     </div>
 	</div>
 	<div class="padding-2">
-    <button class="u-full-width button button-primary ft-normal ft-4" type="button" ng-show="investButtonFlag" ng-click="toInvest(project)">立即投资</button>
-    <button class="u-full-width button btn-disabled ft-normal ft-2" ng-show="!investButtonFlag ">立即投资</button>
+    <button class="u-full-width button button-primary ft-normal ft-4" type="button" ng-show="investButtonFlag && project.status === 7" ng-click="toInvest(project)">立即投资</button>
+    <button class="u-full-width button btn-disabled ft-normal ft-2" ng-show="!investButtonFlag && project.status ===7">立即投资</button>
+    <button class="u-full-width button btn-disabled ft-normal ft-2" ng-show="project.status ===6 ">预发布</button>
+    <button class="u-full-width button btn-disabled ft-normal ft-2" ng-show="project.status ===9 ">还款中</button>
+    <button class="u-full-width button btn-disabled ft-normal ft-2" ng-show="project.status ===10 ">已完成</button>
+    <button class="u-full-width button btn-disabled ft-normal ft-2" ng-show="project.status ===11 ">预约中</button>
     <button class="u-full-width button button-primary ft-normal ft-4" type="button" ng-show="isLogged && securityStatus.realNameAuthStatus !== 1">开通资金托管账户</button>
   </div>
 
