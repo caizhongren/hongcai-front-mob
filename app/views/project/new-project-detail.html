@@ -33,7 +33,7 @@
       <span><b class="ft-normal">12名投资人</b><i class="fa fa-angle-right"></i></span>
     </a> -->
     <a class="column border-grey3-top margin-t-2" ng-click="toRecharge()">
-      <span>账户余额：<i class="ft-orange ft-normal1">{{account.balance || 0}}</i> 元</span>
+      <span>账户余额：<i class="ft-orange ft-normal1">{{account.balance || 0 | number:2}}</i> 元</span>
       <span><b class="ft-normal">充值</b><i class="fa fa-angle-right"></i></span>
     </a>
     <a class="column">
