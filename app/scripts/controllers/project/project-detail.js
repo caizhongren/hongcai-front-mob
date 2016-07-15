@@ -73,7 +73,6 @@ angular.module('p2pSiteMobApp')
         if(response !== null){
           $rootScope.tofinishedOrder($scope.order);
         }
-        $scopegoToInvestVerify();
       });
     }
 
