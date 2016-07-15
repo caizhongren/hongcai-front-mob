@@ -29,7 +29,7 @@
   <div class="padding-b-2" ng-click="!timeout || goInvest()">
     <div class="margin-t-1p5 margin-l-1p5 project-name clearfix">
       <p class="fl ft-black1 margin-b-0 ft-1p6">{{newbieBiaoProject.name}}</p>
-      <span class="fl ft-1 ft-orange0 margin-t-0p2">&nbsp;&nbsp;&nbsp;&nbsp;{{newbieBiaoProject._timeDown.hour }}:{{newbieBiaoProject._timeDown.min }}:{{ newbieBiaoProject._timeDown.seconds }}</span>
+      <span class="fl ft-1 ft-orange0 margin-t-0p2" ng-show="newbieBiaoProject.status === 6">&nbsp;&nbsp;&nbsp;&nbsp;{{newbieBiaoProject._timeDown.hour }}:{{newbieBiaoProject._timeDown.min }}:{{ newbieBiaoProject._timeDown.seconds }}</span>
       <span class="margin-r-2 fr ft-1p4 ft-black1 details">详情&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right ft-black1 ft-1p8"></i></span>
     </div>
     <div class="text-center margin-t-0p5 project-show">
@@ -49,7 +49,7 @@
     </div>
     <div class="pro-info3">
         <div class="process">
-          <div class="progress-bar bg-orange0" ng-class="{'bg-orange':item.status === 7 || item.status === 6 ,'bg-grey5':item.status === 11 || item.status === 9 || item.status === 10}" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{(newbieBiaoProject.soldStock + newbieBiaoProject.occupancyStock) * newbieBiaoProject.increaseAmount / newbieBiaoProject.total * 100}}%;">
+          <div class="progress-bar bg-orange0" ng-class="{'bg-orange':newbieBiaoProject.status === 7 || newbieBiaoProject.status === 6 ,'bg-grey5':newbieBiaoProject.status === 11 || newbieBiaoProject.status === 9 || newbieBiaoProject.status === 10}" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{(newbieBiaoProject.soldStock + newbieBiaoProject.occupancyStock) * newbieBiaoProject.increaseAmount / newbieBiaoProject.total * 100}}%;">
             <div class="type-img"></div>
           </div>
         </div>
@@ -63,7 +63,7 @@
   <div class="padding-b-2" ui-sref="root.project({number:recommends.data[0].number})" href="root.project({number:recommends.data[0].number})">
     <div class="margin-t-1p5 margin-l-1p5 project-name clearfix">
       <p class="fl ft-black1 margin-b-0 ft-1p6">{{recommends.name}}</p>
-      <span class="fl ft-1 ft-orange0 margin-t-0p2">&nbsp;&nbsp;&nbsp;&nbsp;{{recommends._timeDown.hour }}:{{recommends._timeDown.min }}:{{ recommends._timeDown.seconds }}</span>
+      <span class="fl ft-1 ft-orange0 margin-t-0p2" ng-show="recommends.status === 6">&nbsp;&nbsp;&nbsp;&nbsp;{{recommends._timeDown.hour }}:{{recommends._timeDown.min }}:{{ recommends._timeDown.seconds }}</span>
       <span class="margin-r-2 fr ft-1p4 ft-black1 details" >详情&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right ft-black1 ft-1p8"></i></span>
     </div>
     <div class="text-center margin-t-0p5 project-show">
@@ -83,7 +83,7 @@
     </div>
     <div class="pro-info3">
         <div class="process">
-          <div class="progress-bar bg-orange0" ng-class="{'bg-orange':item.status === 7 || item.status === 6 ,'bg-grey5':item.status === 11 || item.status === 9 || item.status === 10}" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{(recommends.soldStock + recommends.occupancyStock) * recommends.increaseAmount / recommends.total * 100}}%;">
+          <div class="progress-bar bg-orange0" ng-class="{'bg-orange0':recommends.status === 7 || recommends.status === 6 ,'bg-grey5':recommends.status === 11 || recommends.status === 9 || recommends.status === 10}" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{(recommends.soldStock + recommends.occupancyStock) * recommends.increaseAmount / recommends.total * 100}}%;">
             <div class="type-img"></div>
           </div>
         </div>
