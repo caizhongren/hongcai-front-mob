@@ -998,6 +998,7 @@ p2pSiteMobApp
         'share-spring',
         'grade',
         'project',
+        'project-detail',
         'activity'
       ];
       $rootScope.showFooter = false;
@@ -1008,13 +1009,13 @@ p2pSiteMobApp
       var mainPath = [
         'recommend',
         'safe',
-        'about',
-        'main'
+        'about'
       ];
       var projectPath = [
         'issue',
         'novice-guide',
-        'project-list'
+        'project-list',
+        'investment-status'
       ];
 
       var loginOrMy = [
