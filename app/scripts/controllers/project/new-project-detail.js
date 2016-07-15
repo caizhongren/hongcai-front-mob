@@ -67,13 +67,12 @@ angular.module('p2pSiteMobApp')
     $scope.showUnfinishedOrder = function(){
       Restangular.one('orders').one('unpay').get().then(function(response) {
         $scope.order = response;
-        if(response.ret === -1){
+        if(response && response.ret === -1){
             return;
-          }
-        if(response !== null){
+        }
+        if(response){
           $rootScope.tofinishedOrder($scope.order);
         }
-        $scopegoToInvestVerify();
       });
     }
 
