@@ -1,4 +1,4 @@
-<div class="about" ng-init="toggle.activeTab=0;">
+<div class="about" >
   <div class="bg-offWhite overflow-hid">
     <ul class="about-tab1 columns ten offset-by-one mainorange  margin-b-0">
       <li class="column text-center margin-0 padding-t-1 padding-b-1" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
