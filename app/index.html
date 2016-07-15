@@ -70,7 +70,7 @@ var _hmt = _hmt || [];
   <!-- Add your site or application content here -->
   <div class="padding-0">
     <section ui-view="header"></section>
-    <section ui-view autoscroll="true"></section>
+    <section ui-view autoscroll="true" ng-show="timeout"></section>
     <section ui-view="footer"></section>
     <section ui-view="landingPage"></section>
   </div>
