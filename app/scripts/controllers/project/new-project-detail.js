@@ -214,7 +214,7 @@ angular.module('p2pSiteMobApp')
         if(investAmount){
             $scope.investButtonFlag = true;
             $scope.showErrorMsg = false;
-            $scope.showUnfinishedOrder();
+            if($scope.project.status === 7){$scope.showUnfinishedOrder();}
         }
       }
     }
