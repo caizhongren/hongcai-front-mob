@@ -39,7 +39,7 @@ angular.module('p2pSiteMobApp')
 
             $scope.newbieBiaoInvestFlag = response.isOk;
             if(!$scope.newbieBiaoInvestFlag){
-              $scope.msg = '仅限未投资用户参与';
+              $scope.msg = '仅限首次投资后一周内参与';
               $scope.showMsg(0);
             }
         });

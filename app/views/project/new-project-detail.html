@@ -55,20 +55,20 @@
     	</li>
     </ul>
     <div class="invest">
-    	<div ng-click="subMoney()" class="plus grey-status"><hr></div>
-    	<input class="invest-input" type="number" ng-model="project.investAmount" ng-disabled="project.status ===6 || project.status ===9 || project.status ===10 || project.status ===11 || securityStatus.realNameAuthStatus !== 1">
-    	<div ng-click="plusMoney()" class="add orange-status"><hr><hr></div>
+    	<div ng-click="modInvestAmout(-project.increaseAmount)" class="plus grey-status"><hr></div>
+    	<input class="invest-input" type="number" ng-model="project.investAmount" ng-disabled="project.status !==7 || securityStatus.realNameAuthStatus !== 1" min="{{project.minInvest}}">
+    	<div ng-click="modInvestAmout(project.increaseAmount)" class="add orange-status"><hr><hr></div>
     </div>
 	</div>
 	<div class="invest-btn">
-    <button class="button button-primary" type="button" ng-show="isLogged&&investButtonFlag && project.status === 7" ng-click="toInvest(project)">立即投资</button>
-    <button class="button btn-disabled" ng-show="!investButtonFlag && project.status ===7 && securityStatus.realNameAuthStatus === 1">立即投资</button>
+    <button class="button button-primary" type="button" ng-show="!msg && isLogged && project.status === 7" ng-click="toInvest(project)">立即投资</button>
+    <button class="button btn-disabled" ng-show="msg && project.status ===7 && securityStatus.realNameAuthStatus === 1">立即投资</button>
     <button class="button btn-disabled" ng-show="project.status ===6 ">预发布</button>
     <button class="button btn-disabled" ng-show="project.status ===9 ">还款中</button>
     <button class="button btn-disabled" ng-show="project.status ===10 ">已完成</button>
     <button class="button btn-disabled" ng-show="project.status ===11 ">预约中</button>
     <button class="button button-primary" type="button" ng-show="isLogged && project.status ===7 && securityStatus.realNameAuthStatus !== 1" ng-click="toRealNameAuth()">开通资金托管账户</button>
-    <button class="button button-primary" type="button" ng-show="!isLogged && project.status ===7" ui-sref="root.login">立即登录</button>
+    <button class="button button-primary" type="button" ng-show="!isLogged && project.status ===7" ng-click="toLogin()">立即登录</button>
   </div>
 
 

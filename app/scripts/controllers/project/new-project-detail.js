@@ -35,6 +35,26 @@ angular.module('p2pSiteMobApp')
       $scope.project = project;
 
       /**
+       * 新手标判断
+       */
+      if($scope.project.category.code === '0112'){
+          Restangular.one('projects').one('investNewbieBiaoProjectVerify').get({
+            number: $stateParams.number
+          }).then(function(response) {
+            if(response.ret === -1){
+              return;
+            }
+
+            if(!response.isOk){
+              $scope.msg = '仅限首次投资后一周内参与';
+              $scope.showMsg();
+            }
+            
+        });
+
+      }
+
+      /**
        * 可用加息券
        */
       $scope.increaseRateCoupons = [];
@@ -44,79 +64,42 @@ angular.module('p2pSiteMobApp')
       }).then(function(response) {
         $scope.increaseRateCoupons = response;
         $scope.selectIncreaseRateCoupon = $scope.increaseRateCoupons[0];
-        $scope.project.status === 7 ? $scope.project.investAmount = 1000 : ' ';
+        $scope.project.investAmount =  1000 ;
       });
     });
 
     $rootScope.tofinishedOrder();
 
-    $scope.checkLargeUserCanAmount = function(project) {
-      return $rootScope.isLogged && $rootScope.account.balance < project.investAmount;
-    };
-
-    $scope.checkStepAmount = function(project) {
-      if (project.investAmount >= project.increaseAmount) {
-        if (project.investAmount % project.increaseAmount === 0) {
-          return false;
-        } else {
-          return true;
-        }
-      }
-    };
-
-
-    $scope.experienceAmount = 0;
-    $scope.confirmUseReward = function(project, selectCoupon) {
-      if (project.useExperience) {
-        $scope.experienceAmount = parseInt($rootScope.account.experienceAmount / 100) * 100;
-        if ($scope.experienceAmount > project.investAmount) {
-          project.investAmount = $scope.experienceAmount;
-        }
-      }
-      $scope.couponNumber = selectCoupon == null ? "" : selectCoupon.number;
-      $scope.rewardFlag = false;
-      $scope.selectCoupon = selectCoupon;
-    }
-
+    /**
+     * 下单并支付
+     */
     $scope.toInvest = function(project) {
-      $scope.showMsg(project.investAmount);
-      if($scope.showErrorMsg){
+      $scope.showMsg();
+      if($scope.msg || project.investAmount <= project.minInvest){
         return;
       }
 
-      $scope.investAmount = project.investAmount;
-      var payAmount = $scope.investAmount;
       var couponNumber = $scope.selectIncreaseRateCoupon != null ? $scope.selectIncreaseRateCoupon.number : '';
-      if(payAmount <= 0){
-        return;
-      }
 
       Restangular.one('projects').one(number+'/users/' + $rootScope.hasLoggedUser.id).post('investment', {
         investAmount: project.investAmount,
         couponNumber: couponNumber
       }).then(function(order){
         // 重复下单后，response.number为undefined
-        if (order.ret !== -1) {
-          if (order.number !== null && order.number !== undefined) {
-            $state.go('root.yeepay-transfer', {
-              type: 'transfer',
-              number: order.number
-           });
-          } else if (response.ret === -1) {
-            $scope.msg = response.msg;
-            $scope.showMsg(payAmount);
-          }
+        if (order && order.ret !== -1) {
+          $state.go('root.yeepay-transfer', {
+            type: 'transfer',
+            number: order.number
+         });
         } else {
-          // $scope.msg = order.msg;
-          // $scope.showMsg(payAmount);
-          // $rootScope.tofinishedOrder($scope.order);
+          $scope.msg = order.msg;
+          $scope.showMsg();
         }
       });
     };
 
     
     $scope.showErrorMsg = false;
-    $scope.investButtonFlag = true;
     $scope.$watch('project.investAmount', function(newVal, oldVal){
       if(!$rootScope.isLogged){
         return;
@@ -137,8 +120,8 @@ angular.module('p2pSiteMobApp')
           $scope.msg = '投资金额必须小于' + $scope.availableAmount;
         }else if(newVal > $rootScope.account.balance){
           $scope.msg = '账户余额不足，请先充值';
-        } else if(newVal % $rootScope.increaseAmount){
-          $scope.msg = '投资金额必须为' + $rootScope.increaseAmount + '的整数倍';
+        } else if(newVal % $scope.project.increaseAmount){
+          $scope.msg = '投资金额必须为' + $scope.project.increaseAmount + '的整数倍';
           
         }
       }
@@ -148,23 +131,16 @@ angular.module('p2pSiteMobApp')
          $scope.increaseRateProfit = $scope.selectIncreaseRateCoupon != null ? $scope.calcProfit($scope.selectIncreaseRateCoupon.rate) : 0;
       }
 
-      $scope.showMsg(newVal);
+      $scope.showMsg();
     });
 
     //显示信息
-    $scope.showMsg = function(investAmount){
+    $scope.showMsg = function(){
       if($scope.msg){
         $scope.showErrorMsg = true;
-        $scope.investButtonFlag = false;
         $timeout(function() {
           $scope.showErrorMsg = false;
         }, 3000);
-      }else{
-        if(investAmount){
-            $scope.investButtonFlag = true;
-            $scope.showErrorMsg = false;
-            $rootScope.tofinishedOrder();
-        }
       }
     }
 
@@ -196,22 +172,12 @@ angular.module('p2pSiteMobApp')
         return profit;
     }
 
-    //输入框两侧加减号
-    $scope.subMoney = function() {
-      var oldValue = $scope.project.investAmount;
-      oldValue = oldValue - 100;
-      if(oldValue <= 100){
-        oldValue = 100;
-      }
-      $scope.project.investAmount = oldValue;
+    /**
+     * 修改投资金额
+     */
+    $scope.modInvestAmout = function(offset){
+      $scope.project.investAmount = $scope.project.investAmount ? $scope.project.investAmount + offset : offset;
+      $scope.project.investAmount = $scope.project.investAmount < 100 ? 100 : $scope.project.investAmount;
     }
-
-    $scope.plusMoney = function() {
-      var oldValue = $scope.project.investAmount;
-      if(!oldValue){
-        oldValue = 0;
-      }
-      oldValue = oldValue + 100;
-      $scope.project.investAmount = oldValue;
-    }
+   
 });
