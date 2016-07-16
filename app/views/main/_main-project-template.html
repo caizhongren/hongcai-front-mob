@@ -1,28 +1,4 @@
-<!--<div class="padding-b-1">
-  <div class="margin-b-2 border-ra-50 text-center circle-rate-outside small-circle-outer" ng-click="!timeout || goDetail(recFundsProjects)">
-    <div class="margin-b-2 border-ra-50 text-center ft-orange circle-rate small-circle border-rb-0p9">
-      <p class="margin-0 padding-t-0p8"><span class="ft-5p5 padding-l-0p9">8</span><span class="ft-1p6">%</span><span class="ft-4 add-rate"><span class="padding-b-1">+</span>{{newbieBiaoProject.annualEarnings-8 || 0 }}</span><span class="add-rate ft-1p4">%</span></p>
-      <hr class="border-orange1">
-      <p class="margin-0 padding-t-0p5 padding-b-0p5 ft-1p8 ft-bold">预期年化收益</p>
-      <hr class="border-orange1">
-      <!-- <p class="margin-0 padding-t-0p6 padding-b-0p6 ft-1p2">新手专享 特权加息</p>
-    </div>
-  </div>
-</div> -->
-<!--<hr>
-<div>
-  <!-- <span class="ft-orange">{{recFundsProjects.product.baseRate |currency:"":1 || 0}}%</span>起，{{stepShowMsg}}涨<span class="ft-orange">{{recFundsProjects.product.riseRate |currency:"":1|| 0}}%</span>，预期最高<span class="ft-orange">{{recFundsProjects.product.maxRate |currency:"":1|| 0}}%</span>
-  项目期限<span class="ft-orange"> {{newbieBiaoProject.projectDays || 0 }} </span>天，<span class="ft-orange">{{newbieBiaoProject.minInvest || 0 }} </span>元起投，无上限
-</div>
-<hr>-->
-<!-- <div class="padding-l-2 padding-r-2">
-  <a class="u-full-width button button-primary" ng-click="!timeout || goInvest()">{{(newbieBiaoProjectInvestNum > 0 && newbieBiaoProject.status === 7) ? '立即投资' : '查看详情'}}</a>
-</div>
 
-<div class="columns twelve margin-b-2 ft-1p4">
-  <span class="padding-l-2 pull-left">可投金额&nbsp;<strong class="ft-orange">{{newbieBiaoProjectInvestNum | currency:"":0 || 0}}</strong>元</span>
-  <span class="ft-grey4 padding-r-2 pull-right">已有{{newbieBiaoProject.investNum || 0}}人参与 新手标</span>
-</div> -->
 <!-- 新手标 -->
 <div ng-show = "newbieBiaoProject.status ===  6 || newbieBiaoProject.status === 7">
   <div class="gap bg-white2"></div>
@@ -39,7 +15,7 @@
         <div class="project-amounts display-inb position-re">
           <p class="ft-grey6 margin-t-1 ft-1p4 margin-b-0">项目金额(元)</p>
           <p class="ft-orange0">{{newbieBiaoProject.total || 0}}</p>
-          <span class="vertical-line position-ab" style=""></span>
+          <span class="vertical-line position-ab"></span>
         </div>
         <div class="project-date display-inb">
           <p class="ft-grey6 margin-t-1 ft-1p4 margin-b-0">投资期限</p>
@@ -73,7 +49,7 @@
         <div class="project-amounts display-inb position-re">
           <p class="ft-grey6 margin-t-1 ft-1p4 margin-b-0">项目金额(元)</p>
           <p class="ft-orange0">{{recommends.total || 0}}</p>
-          <span class="vertical-line position-ab" style=""></span>
+          <span class="vertical-line position-ab"></span>
         </div>
         <div class="project-date display-inb">
           <p class="ft-grey6 margin-t-1 ft-1p4 margin-b-0">投资期限</p>

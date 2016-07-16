@@ -201,7 +201,7 @@ p2pSiteMobApp
       })
       // 宏金保列表页
       .state('root._main-list-temp', {
-        url: '/project-list',
+        url: '/guaranteepro-list',
         data: {
           title: '宏金保'
         },
@@ -1014,7 +1014,7 @@ p2pSiteMobApp
       var projectPath = [
         'issue',
         'novice-guide',
-        'project-list',
+        'guaranteepro-list',
         'investment-status'
       ];
 
