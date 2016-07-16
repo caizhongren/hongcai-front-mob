@@ -16,7 +16,7 @@
 		        </div>
 
 	        </div>
-	        <div class="join-in">{{perence | number: 1}}%</div>
+	        <div class="join-in">{{project.percent | number: 1}}%</div>
 					</div>
 			</li>
 		</ul>
@@ -47,7 +47,7 @@
     <ul>
     	<li>
     		<p>剩余可投(元)</p>
-    		<p>{{availableAmount || 0}}</p>
+    		<p>{{project.availableAmount || 0}}</p>
     	</li>
     	<li>
     		<p>预计收益(元)</p>
@@ -55,20 +55,20 @@
     	</li>
     </ul>
     <div class="invest">
-    	<div ng-click="subMoney()" class="plus grey-status"><hr></div>
-    	<input class="invest-input" type="number" ng-model="project.investAmount" ng-disabled="project.status ===6 || project.status ===9 || project.status ===10 || project.status ===11 || securityStatus.realNameAuthStatus !== 1">
-    	<div ng-click="plusMoney()" class="add orange-status"><hr><hr></div>
+    	<div ng-click="modInvestAmout(-project.increaseAmount)" class="plus grey-status"><hr></div>
+    	<input class="invest-input" type="number" ng-model="project.investAmount" ng-disabled="project.status !==7 || securityStatus.realNameAuthStatus !== 1" min="{{project.minInvest}}">
+    	<div ng-click="modInvestAmout(project.increaseAmount)" class="add orange-status"><hr><hr></div>
     </div>
 	</div>
 	<div class="invest-btn">
-    <button class="button button-primary" type="button" ng-show="isLogged&&investButtonFlag && project.status === 7" ng-click="toInvest(project)">立即投资</button>
-    <button class="button btn-disabled" ng-show="!investButtonFlag && project.status ===7 && securityStatus.realNameAuthStatus === 1">立即投资</button>
+    <button class="button button-primary" type="button" ng-show="!msg && isLogged && project.status === 7" ng-click="toInvest(project)">立即投资</button>
+    <button class="button btn-disabled" ng-show="msg && project.status ===7 && securityStatus.realNameAuthStatus === 1">立即投资</button>
     <button class="button btn-disabled" ng-show="project.status ===6 ">预发布</button>
     <button class="button btn-disabled" ng-show="project.status ===9 ">还款中</button>
     <button class="button btn-disabled" ng-show="project.status ===10 ">已完成</button>
     <button class="button btn-disabled" ng-show="project.status ===11 ">预约中</button>
     <button class="button button-primary" type="button" ng-show="isLogged && project.status ===7 && securityStatus.realNameAuthStatus !== 1" ng-click="toRealNameAuth()">开通资金托管账户</button>
-    <button class="button button-primary" type="button" ng-show="!isLogged && project.status ===7" ui-sref="root.login">立即登录</button>
+    <button class="button button-primary" type="button" ng-show="!isLogged && project.status ===7" ng-click="toLogin()">立即登录</button>
   </div>
 
 
@@ -77,27 +77,26 @@
   	<span>{{msg}}</span>
   </div>
 </div>
- <!-- 加息券弹出 -->
-  <div class="rate-increase " ng-show="increaseRateCoupons.length > 0 && showSelectIncreaseRateCoupon">
-    <div class="bg-white position-ab rate-increase-list width-pull">
-      <ul class="padding-1 margin-b-0 padding-b-0">
-        <li class="margin-b-0p5 position-re" ng-click="selectCoupon(coupon)" ng-repeat=" coupon in increaseRateCoupons |limitTo : initLimit">
-          <img src="/images/rate-ticket.png" alt="">
-          <p class="fl position-ab margin-b-0 ticket-left">{{coupon.rate | number : 1}}<span class="ft-1p5">%</span></p>
-          <div class="position-ab ticket-right">
-            <p class="ft-grey4 ft-1p2">•&nbsp;{{coupon.description || '活动奖励'}}</p>
-            <p class="ft-grey4 ft-1p2">•&nbsp;适用于宏金保项目</p>
-            <p class="ft-grey4 ft-1p2">•&nbsp;有效期至{{coupon.endTime | date : 'yyyy-MM-dd'}}</p>
-          </div>
-        </li>
-      </ul>
-      <p class="text-center ft-grey4 margin-b-2" ng-show="initLimit < increaseRateCoupons.length" ng-click="viewMoreCoupon()">
-        <i class="fa fa-list-ul ft-orange" aria-hidden="true">&nbsp;</i>
-        <span class="text-underline ">查看更多</span>
-      </p>
-      <p class="text-center padding-t-1 padding-b-1 ft-grey4 margin-b-0 boder-grey-t boder-grey-b click-active" ng-click="unUseIncreaseRateCoupon()">不使用加息券</p>
-      <p class="text-center padding-t-1 padding-b-1 margin-b-0 ft-orange click-cancel" ng-click="showSelectIncreaseRateCoupon=false;initLimit=3;">取消</p>
-    </div>
+<!-- 加息券弹出 -->
+<div class="rate-increase " ng-show="increaseRateCoupons.length > 0 && showSelectIncreaseRateCoupon">
+  <div class="bg-white position-ab rate-increase-list width-pull">
+    <ul class="padding-1 margin-b-0 padding-b-0">
+      <li class="margin-b-0p5 position-re" ng-click="selectCoupon(coupon)" ng-repeat=" coupon in increaseRateCoupons |limitTo : initLimit">
+        <img src="/images/rate-ticket.png" alt="">
+        <p class="fl position-ab margin-b-0 ticket-left">{{coupon.rate | number : 1}}<span class="ft-1p5">%</span></p>
+        <div class="position-ab ticket-right">
+          <p class="ft-grey4 ft-1p2">•&nbsp;{{coupon.description || '活动奖励'}}</p>
+          <p class="ft-grey4 ft-1p2">•&nbsp;适用于宏金保项目</p>
+          <p class="ft-grey4 ft-1p2">•&nbsp;有效期至{{coupon.endTime | date : 'yyyy-MM-dd'}}</p>
+        </div>
+      </li>
+    </ul>
+    <p class="text-center ft-grey4 margin-b-2" ng-show="initLimit < increaseRateCoupons.length" ng-click="viewMoreCoupon()">
+      <i class="fa fa-list-ul ft-orange" aria-hidden="true">&nbsp;</i>
+      <span class="text-underline ">查看更多</span>
+    </p>
+    <p class="text-center padding-t-1 padding-b-1 ft-grey4 margin-b-0 boder-grey-t boder-grey-b click-active" ng-click="unUseIncreaseRateCoupon()">不使用加息券</p>
+    <p class="text-center padding-t-1 padding-b-1 margin-b-0 ft-orange click-cancel" ng-click="showSelectIncreaseRateCoupon=false;initLimit=3;">取消</p>
   </div>
-
 </div>
+

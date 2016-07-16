@@ -2,7 +2,8 @@
 <div infinite-scroll="loadMore()" infinite-scroll-distance="4" class="main-list">
   <div class="main-list-temp clear" ng-repeat="item in jigoubaoData" ui-sref="root.project({number:item.number})">
     <div class="title">
-      <span class="title-text" ng-show="widthFlag===0 && item.name.length <= 12">{{item.name}}</span><span class="count-down" ng-show="item.status === 6">倒计时：{{ item._timeDown.hour }}:{{ item._timeDown.min }}:{{ item._timeDown.seconds }}</span>
+      <span class="title-text" ng-show="widthFlag===0 && item.name.length <= 12">{{item.name}}</span>
+
       <span class="title-text" ng-show="widthFlag===0 && item.name.length > 12">{{item.name | limitTo:14}}...</span>
       <span class="title-text" ng-show="widthFlag===1 || widthFlag===2">{{item.name}}</span>
     </div>
@@ -20,7 +21,7 @@
           <span class="fa fa-angle-right" ng-class="{'ft-black1':item.status === 7 || item.status === 6 , 'ft-grey6':item.status === 11 || item.status === 9 || item.status === 10}"></span>
         </li>
       </ul>
-      <div class="pro-info2">
+      <div class="pro-info2" ng-hide="item.status === 6">
         <div class="process">
           <div class="progress-bar" ng-class="{'bg-orange':item.status === 7 || item.status === 6 ,'bg-grey5':item.status === 11 || item.status === 9 || item.status === 10}" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{(item.soldStock + item.occupancyStock) * item.increaseAmount / item.total * 100}}%;">
             <div class="type-img"></div>
@@ -28,6 +29,7 @@
         </div>
         <div class="join-in">{{(item.soldStock + item.occupancyStock) * item.increaseAmount / item.total * 100| number:1}}%</div>
       </div>
+      <span class="count-down" ng-show="item.status === 6">倒计时：{{ item._timeDown.hour }}:{{ item._timeDown.min }}:{{ item._timeDown.seconds }}</span>
     </div>
     <div class="status">
       <img ng-show="item.status === 7 || item.status === 6" src="/images/main-list/status1.png" alt="">

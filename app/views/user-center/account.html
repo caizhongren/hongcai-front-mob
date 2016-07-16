@@ -1,14 +1,11 @@
 <!-- 我的账户 -->
 <div class="account-userInfo bg-accountcolor padding-b-7 ft-black5">
   <div class="bg-orange0 text-center ft-white padding-t-0p5 padding-l-0p5 padding-r-0p5 ">
-  <!-- 头部设置和用户 账号->
-    <div class=" margin-0 padding-1 bg-orange clearfix text-center ft-white">
-    <!-- 您好，亲爱的&nbsp;<strong class="ft-orange">{{ hasLoggedUser.nickName || (hasLoggedUser.mobile || hasLoggedUser.name) }}</strong>&nbsp;<i class="fa fa-newspaper-o"></i>
-      <span class="pull-right" ui-sref="root.userCenter.setting">基本资料></span> -->
+  
       <img class="margin-t-1p3 margin-l-1 fl setting-icon" src="/images/user-center/setting.png" alt="" ui-sref="root.userCenter.setting">
       <div class="display-inb text-center">
         <div class="display-inb clearfix">
-          <div class="border-pull margin-r-1 fl"><img ng-src="{{userHeadImgUrl}}" alt="" class="border-pull avatar"></div>
+          <div class="border-pull margin-r-1 fl"><img ng-src="{{hasLoggedUser.headImgUrl || userHeadImgUrl}}" alt="" class="border-pull avatar"></div>
           <div class="fl user-name"><span class="ft-1p8">{{ hasLoggedUser.nickName || (hasLoggedUser.mobile || hasLoggedUser.name) }}</span></div>
         </div>
       </div>
@@ -16,13 +13,7 @@
         <img class="message-icon" src="/images/user-center/message.png" alt="">
       </div>
     </div>
-    <!-- <div class="padding-2 position-re bg-orange">
-      <div class="money-info">
-        <p>账户总资产：</p>
-        <p>￥<strong class="ft-3">{{ userAccount.tTotalAssets | number:2}}</strong>元</p>
-      </div>
-      <div class="touzi-product"><a class="ft-white" ui-sref="root.userCenter.investments-stat">我的投资&nbsp;<i class="fa fa-angle-right"></i></a></div>
-    </div> -->
+
     <div class="text-cneter bg-orange0 ft-white">
       <p class="text-center margin-b-0 padding-t-1 ft-white1 ft-1p4">当前资产(元)</p>
       <p class="text-center ft-2p8 margin-b-1 ft-1p6">{{ userAccount.tTotalAssets | number:2}}</strong></p>
@@ -45,9 +36,6 @@
         </ul>
       </div>
     </div>
-    <!-- 已开通易宝时展示 账户资金详情-->
-    <!-- <div ng-include src="'views/user-center/_account-assets-info.html'" class="margin-b-1">
-    </div> -->
 
     <!-- 提现和充值 -->
     <div class="margin-b-1 bg-white  clearfix border-grey-t border-grey-b user-choice">
@@ -85,7 +73,7 @@
       </ul>
       <ul class="clearfix border-grey-t margin-b-0 border-grey-b">
         <li class="fl border-grey-r" ui-sref="root.userCenter.deals"><img src="/images/user-center/user-capital.png" width="14%" alt="">资金流水</li>
-        <li class="fl"  ng-click="viewMore(2)"><img src="/images/user-center/user-invite.png" width="14%" alt="">我的邀请<sup class="green-sup">{{inviteNum || 0}}</sup></li>
+        <li class="fl"  ng-click="viewMore(2)"><img src="/images/user-center/user-invite.png" width="14%" alt="">我的邀请<sup class="green-sup">{{voucher.inviteNum || 0}}</sup></li>
       </ul>
       <ul class="clearfix border-grey-b margin-b-0">
         <li class="fl border-grey-r" ng-click="viewMore(0)"><img src="/images/user-center/user-experience.png" width="14%" alt="">我的体验金</li>
@@ -93,69 +81,5 @@
       </ul>
     </div>
   </div>
-  <!-- 未开通易宝 ng-if="securityStatus.trusteeshipAccountStatus !== 1"-->
-  <!-- <div class="padding-l-1 padding-r-1 margin-t-1" ng-if="securityStatus.trusteeshipAccountStatus !== 1">
-    <button class="margin-0 margin-t-0p5 button button-primary button-shadwo ft-1p5" ng-click="toRealNameAuth()" style="width:100%">立即开通托管账户</button> -->
-    <!-- <div class="grade-owner">
-      <p class="title">我的奖励</p>
-      <div class="account-panel">
-        <div class="icon"><img src="/images/user-center/balance5.png" alt=""></div>
-        <div class="title-text">我的体验金</div>
-        <div class="more" ng-click="viewMore(0)">查看记录<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
-      </div>
-      <div class="left-to-right">
-        <span><strong class="ft-orange">{{userAccount.experienceAmount | number:0}}</strong>
-        &nbsp;元</span>
-        <span ng-click="quickInvest()">快速投资</span>
-      </div>
-      <hr>
-      <div class="account-panel border-none">
-        <div class="icon"><img src="/images/user-center/balance6.png" alt=""></div>
-        <div class="title-text">我的加息券<sup class="green-sup">{{couponStatis.unUsedCoupon || 0}}</sup></div>
-        <div class="more" ng-click="viewMore(1)">查看所有加息券<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
-      </div>
-      <hr>
-      <div class="account-panel border-none">
-        <div class="icon"><img src="/images/user-center/invite.png" alt=""></div>
-        <div class="title-text">我的邀请<sup class="green-sup">{{inviteNum || 0}}</sup></div>
-        <div class="more" ng-click="viewMore(2)">查看所有邀请人<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
-      </div>
-    </div>
-  </div> -->
-  <!-- 已开通易宝时展示 充值/提现提示 !==0  ng-if="securityStatus.trusteeshipAccountStatus === 1"-->
-  <!-- <div class="padding-l-1 padding-r-1 margin-t-1" ng-if="securityStatus.trusteeshipAccountStatus === 1"> -->
-    <!-- <div class="padding-l-1 padding-r-1 text-center overflow-hid margin-t-1 margin-b-1">
-      <button class="margin-0 margin-t-0p5 half u-pull-left button btn-orange-border bg-white" style="background:white;" ng-click="!timeout || goWithdraw()">提现</button>
-      <button class="margin-0 margin-t-0p5 half u-pull-right button button-primary" ng-click="!timeout || goRecharge()">充值</button>
-    </div> -->
-    <!-- <div class="grade-owner">
-      <p class="title">我的奖励</p>
-      <div class="account-panel">
-        <div class="icon"><img src="/images/user-center/balance5.png" alt=""></div>
-        <div class="title-text">我的体验金</div>
-        <div class="more" ng-click="viewMore(0)">查看记录<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
-      </div>
-      <div class="left-to-right">
-        <span><strong class="ft-orange">{{userAccount.experienceAmount | number:0}}</strong>
-        &nbsp;元</span>
-        <!-- ng-click="quickInvest()" -->
-        <!-- <span ng-click="quickInvest()">快速投资</span> -->
-     <!--  </div>
-      <hr>
-      <div class="account-panel border-none">
-        <div class="icon"><img src="/images/user-center/balance6.png" alt=""></div>
-        <div class="title-text">我的加息券<sup class="green-sup">{{couponStatis.unUsedCoupon || 0}}</sup></div>
-        <div class="more" ng-click="viewMore(1)">查看所有加息券<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
-      </div>
-      <hr>
-      <div class="account-panel border-none">
-        <div class="icon"><img src="/images/user-center/invite.png" alt=""></div>
-        <div class="title-text">我的邀请<sup class="green-sup">{{inviteNum || 0}}</sup></div>
-        <div class="more" ng-click="viewMore(2)">查看所有邀请人<i class="fa fa-chevron-right ft-97 margin-l-1"></i></div>
-      </div>
-    </div> -->
-    <!-- 体验金
-  </div>
-  <!-- 尚未开通易宝提示 -->
-  <!-- 细分页面入口 -->
+  
 </div>
