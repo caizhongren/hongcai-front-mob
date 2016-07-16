@@ -77,27 +77,26 @@
   	<span>{{msg}}</span>
   </div>
 </div>
- <!-- 加息券弹出 -->
-  <div class="rate-increase " ng-show="increaseRateCoupons.length > 0 && showSelectIncreaseRateCoupon">
-    <div class="bg-white position-ab rate-increase-list width-pull">
-      <ul class="padding-1 margin-b-0 padding-b-0">
-        <li class="margin-b-0p5 position-re" ng-click="selectCoupon(coupon)" ng-repeat=" coupon in increaseRateCoupons |limitTo : initLimit">
-          <img src="/images/rate-ticket.png" alt="">
-          <p class="fl position-ab margin-b-0 ticket-left">{{coupon.rate | number : 1}}<span class="ft-1p5">%</span></p>
-          <div class="position-ab ticket-right">
-            <p class="ft-grey4 ft-1p2">•&nbsp;{{coupon.description || '活动奖励'}}</p>
-            <p class="ft-grey4 ft-1p2">•&nbsp;适用于宏金保项目</p>
-            <p class="ft-grey4 ft-1p2">•&nbsp;有效期至{{coupon.endTime | date : 'yyyy-MM-dd'}}</p>
-          </div>
-        </li>
-      </ul>
-      <p class="text-center ft-grey4 margin-b-2" ng-show="initLimit < increaseRateCoupons.length" ng-click="viewMoreCoupon()">
-        <i class="fa fa-list-ul ft-orange" aria-hidden="true">&nbsp;</i>
-        <span class="text-underline ">查看更多</span>
-      </p>
-      <p class="text-center padding-t-1 padding-b-1 ft-grey4 margin-b-0 boder-grey-t boder-grey-b click-active" ng-click="unUseIncreaseRateCoupon()">不使用加息券</p>
-      <p class="text-center padding-t-1 padding-b-1 margin-b-0 ft-orange click-cancel" ng-click="showSelectIncreaseRateCoupon=false;initLimit=3;">取消</p>
-    </div>
+<!-- 加息券弹出 -->
+<div class="rate-increase " ng-show="increaseRateCoupons.length > 0 && showSelectIncreaseRateCoupon">
+  <div class="bg-white position-ab rate-increase-list width-pull">
+    <ul class="padding-1 margin-b-0 padding-b-0">
+      <li class="margin-b-0p5 position-re" ng-click="selectCoupon(coupon)" ng-repeat=" coupon in increaseRateCoupons |limitTo : initLimit">
+        <img src="/images/rate-ticket.png" alt="">
+        <p class="fl position-ab margin-b-0 ticket-left">{{coupon.rate | number : 1}}<span class="ft-1p5">%</span></p>
+        <div class="position-ab ticket-right">
+          <p class="ft-grey4 ft-1p2">•&nbsp;{{coupon.description || '活动奖励'}}</p>
+          <p class="ft-grey4 ft-1p2">•&nbsp;适用于宏金保项目</p>
+          <p class="ft-grey4 ft-1p2">•&nbsp;有效期至{{coupon.endTime | date : 'yyyy-MM-dd'}}</p>
+        </div>
+      </li>
+    </ul>
+    <p class="text-center ft-grey4 margin-b-2" ng-show="initLimit < increaseRateCoupons.length" ng-click="viewMoreCoupon()">
+      <i class="fa fa-list-ul ft-orange" aria-hidden="true">&nbsp;</i>
+      <span class="text-underline ">查看更多</span>
+    </p>
+    <p class="text-center padding-t-1 padding-b-1 ft-grey4 margin-b-0 boder-grey-t boder-grey-b click-active" ng-click="unUseIncreaseRateCoupon()">不使用加息券</p>
+    <p class="text-center padding-t-1 padding-b-1 margin-b-0 ft-orange click-cancel" ng-click="showSelectIncreaseRateCoupon=false;initLimit=3;">取消</p>
   </div>
-
 </div>
+
