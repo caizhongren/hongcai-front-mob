@@ -65,6 +65,7 @@
     <button class="button btn-disabled" ng-show="msg && project.status ===7 && securityStatus.realNameAuthStatus === 1">立即投资</button>
     <button class="button btn-disabled" ng-show="project.status ===6 ">预发布</button>
     <button class="button btn-disabled" ng-show="project.status ===9 ">还款中</button>
+    <button class="button btn-disabled" ng-show="project.status ===8 ">融资成功</button>
     <button class="button btn-disabled" ng-show="project.status ===10 ">已完成</button>
     <button class="button btn-disabled" ng-show="project.status ===11 ">预约中</button>
     <button class="button button-primary" type="button" ng-show="isLogged && project.status ===7 && securityStatus.realNameAuthStatus !== 1" ng-click="toRealNameAuth()">开通资金托管账户</button>
