@@ -823,13 +823,25 @@ p2pSiteMobApp
         // }
       });
     }
-    $rootScope.tofinishedOrder = function(order){
-      $uibModal.open({
-        templateUrl: 'views/project/unfinished-order.html',
-        controller: 'UnfinishedOrderCtrl',
-        resolve: {
-          order: order
+
+    /**
+     * 未支付订单
+     */
+    $rootScope.tofinishedOrder = function(){
+      Restangular.one('orders').one('unpay').get().then(function(order) {
+        if(!order || order.ret === -1){
+            return;
         }
+
+        $rootScope.unfinishOrderModal = 
+          $uibModal.open({
+            templateUrl: 'views/project/unfinished-order.html',
+            controller: 'UnfinishedOrderCtrl',
+            resolve: {
+              order: order
+            }
+          });
+
       });
     }
     $rootScope.$on('$stateChangeStart', function(event, toState) {

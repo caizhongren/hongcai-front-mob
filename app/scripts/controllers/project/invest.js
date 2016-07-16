@@ -46,16 +46,7 @@ angular.module('p2pSiteMobApp')
 
       }
 
-      /*显示未支付订单*/
-      Restangular.one('orders').one('unpay').get().then(function(response) {
-        $scope.order = response;
-        if(response.ret === -1){
-            return;
-          }
-        if(response !== null){
-          $rootScope.tofinishedOrder($scope.order);
-        }
-      });
+      
       // 可投资金额
       $scope.project.availableAmount = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
 
@@ -90,6 +81,8 @@ angular.module('p2pSiteMobApp')
         }
       });
     });
+
+    $rootScope.tofinishedOrder();
 
     $scope.goMoreDetail = function(project) {
       $state.go('root.project-detail-more', {
