@@ -18,6 +18,30 @@ var _hmt = _hmt || [];
     s2.parentNode.insertBefore(bp, s2);
 })();
 </script>
+<style type="text/css">
+  .site-loader {
+      z-index: 50;
+      background: #f2f2f2;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto
+  }
+
+  .site-loader.loaded {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      z-index: 15;
+      -webkit-transition: all .3s ease-out;
+      transition: all .3s ease-out
+  }
+  .ui-center-container {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+  }
+</style>
 
 <head>
   <meta charset="utf-8">
@@ -68,11 +92,13 @@ var _hmt = _hmt || [];
     <![endif]-->
 
   <!-- Add your site or application content here -->
+  <div class="ui-center-container site-loader loaded" ng-class="{'loaded': !timeout}">
   <div class="padding-0">
     <section ui-view="header"></section>
-    <section ui-view autoscroll="true" ng-show="timeout"></section>
+    <section ui-view autoscroll="true"></section>
     <section ui-view="footer"></section>
     <section ui-view="landingPage"></section>
+  </div>
   </div>
 
 
