@@ -778,6 +778,7 @@ p2pSiteMobApp
           }
         }
       })
+      //个人中心体验金详情页
       .state('root.userCenter.experience-money',{
         url: '/experience-money',
         views: {

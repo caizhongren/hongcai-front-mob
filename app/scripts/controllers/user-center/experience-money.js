@@ -2,7 +2,7 @@
 * @Author: fuqiang1
 * @Date:   2016-07-18 10:32:33
 * @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-07-18 15:11:07
+* @Last Modified time: 2016-07-18 15:49:45
 */
 
 'use strict';
@@ -31,7 +31,6 @@ angular.module('p2pSiteMobApp')
             $scope.msg = '获取信息失败';
         }
       });
-     //$scope.DealBusy = false;
     };
     $scope.dealList();
   /*
