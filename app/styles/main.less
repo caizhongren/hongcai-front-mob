@@ -738,13 +738,19 @@
         top:0;
         right:0;
         width: 15%;
+        @media (max-width:414px) {
+          width:13%;
+        }
+        @media (max-width:375px) {
+          width:14.5%;
+        }
         @media (max-width:320px) {
           width:16.5%;
         }
       }
       span{
         position:absolute;
-        top: 0.7rem;
+        top: 0.8rem;
         right: -0.2rem;
         color: #fff;
         font-size: 1.2rem;
@@ -767,8 +773,17 @@
       font-size: 1.4rem;
       position:relative;
       bottom:0.7rem;
-      left: 14.5rem;
+      left: 19rem;
       margin-top: 0.5rem;
+      @media (max-width: 375px) {
+        left:17rem;
+      }
+      @media (max-width: 360px) {
+        left:16.5rem;
+      }
+      @media (max-width: 320px) {
+        left:14.5rem;
+      }
     }
   }
 }

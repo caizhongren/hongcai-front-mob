@@ -33,7 +33,7 @@
     </div>
     <div class="status">
       <img ng-show="item.status === 7 || item.status === 6" src="/images/main-list/status1.png" alt="">
-      <img ng-show="item.status !== 7 || item.status !== 8 " src="/images/main-list/status2.png" alt="">
+      <img ng-show="item.status !== 7 && item.status !== 6 " src="/images/main-list/status2.png" alt="">
       <span ng-show="item.status === 6" class="title-status-orange">预发布</span>
       <span ng-show="item.status === 11" class="title-status-orange">预约中</span>
       <span ng-show="item.status === 7" class="title-status-orange">融资中</span>
