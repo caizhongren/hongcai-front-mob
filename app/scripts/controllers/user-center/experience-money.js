@@ -2,7 +2,7 @@
 * @Author: fuqiang1
 * @Date:   2016-07-18 10:32:33
 * @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-07-18 14:30:33
+* @Last Modified time: 2016-07-18 15:11:07
 */
 
 'use strict';
@@ -13,29 +13,27 @@ angular.module('p2pSiteMobApp')
     $scope.pageSize = 4;
     $scope.datas = [];
     $scope.totalPage = 1;
-    $scope.inviteList = function(){
+    $scope.dealList = function(){
       if ($scope.totalPage < $scope.page){
         return;
       }
-      var couponsReq = HongcaiUser.$find($rootScope.hasLoggedUser.id + '/userInvestExperienceMoneyDeals' , {
+      var dealsReq = HongcaiUser.$find($rootScope.hasLoggedUser.id + '/userInvestExperienceMoneyDeals', {
         page: $scope.page,
-        pageSize: $scope.pageSize,
-        status: status
+        pageSize: $scope.pageSize
       });
-      couponsReq.$then(function(response){
+      dealsReq.$then(function(response){
         if(response.$status === 'ok'){
           $scope.totalPage = response.totalPage;
           for (var i = 0; i < response.data.length; i++) {
             $scope.datas.push(response.data[i]);
           };
-          console.log($scope.datas);
-        } else{
+       } else{
             $scope.msg = '获取信息失败';
         }
       });
      //$scope.DealBusy = false;
     };
-    $scope.inviteList();
+    $scope.dealList();
   /*
     体验金金额
   */
@@ -47,7 +45,7 @@ angular.module('p2pSiteMobApp')
     $scope.loadMuch = function(){
       $scope.page = $scope.page + 1;
       $scope.pageSize = $scope.pageSize;
-      $scope.inviteList();
+      $scope.dealList();
     };
   /*跳转到体验金投资页*/
     $scope.quickInvest  = function(){
