@@ -28,7 +28,7 @@ angular.module('p2pSiteMobApp')
         $scope.jigoubaoDataMore = response;
       });
       if($scope.project.status === 7){
-        $scope.showUnfinishedOrder();
+        $rootScope.tofinishedOrder();
       }
 
       // 可投资金额
