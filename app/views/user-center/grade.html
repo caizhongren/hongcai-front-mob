@@ -1,9 +1,4 @@
 <div class="grade">
-  <div class="bg-offWhite overflow-hid">
-    <ul class="grade-tab1 columns ten offset-by-one margin-b-0">
-      <li class="column text-center margin-0 padding-t-1 padding-b-1" ng-class="{in: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
-    </ul>
-  </div>
   <!-- 要展示的内容如下 -->
   <div class="tab-content columns twelve bg-offWhite overflow-hid padding-b-2 text-center " ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs">
     <section ng-if="tab.title==='体验金'">
