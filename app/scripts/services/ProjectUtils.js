@@ -9,11 +9,11 @@ angular.module('p2pSiteMobApp')
      * 项目倒计时
      */
     projectTimedown : function(project, serverTime){
-      if(!project){
+      if(!project || project.status !== 6){
         return;
       }
 
-      project.countDown = new Date(project.releaseStartTime).getTime() - serverTime;
+      project.countDown = project.releaseStartTime - serverTime;
       project._timeDown = DateUtils.toHourMinSeconds(project.countDown);
       project._interval = $interval(function() {
         project.countDown -= 1000;

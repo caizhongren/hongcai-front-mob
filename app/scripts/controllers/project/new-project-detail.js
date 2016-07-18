@@ -28,11 +28,12 @@ angular.module('p2pSiteMobApp')
      */
     Restangular.one('projects').one($stateParams.number).get().then(function(response) {
       var project = response;
+      $scope.project = project;
       project.percent = (project.soldStock + project.occupancyStock) * project.increaseAmount / project.total * 100;
       project.availableAmount = project.total - (project.soldStock + project.occupancyStock) * project.increaseAmount;
 
       ProjectUtils.projectTimedown(project, project.createTime);
-      $scope.project = project;
+      
 
       /**
        * 新手标判断

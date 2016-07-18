@@ -8,6 +8,7 @@
  * Main module of the application.
  */
 var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
+  'angular-loading-bar',
   'ngAnimate',
   // 'ngTouch',
   'famous.angular',

@@ -10,15 +10,15 @@
     <div class="pro-info">
       <ul>
         <li>
-          <p class="text-left" ng-class="{'ft-orange':item.status === 7 || item.status === 6 , 'ft-grey6':item.status === 11 || item.status === 9 || item.status === 10}"><span class="ft-3p6">{{item.annualEarnings}}</span>%</p>
+          <p class="text-left" ng-class="{'ft-orange':item.status === 7 || item.status === 6 , 'ft-grey6':item.status !== 6 || item.status !== 7 }"><span class="ft-3p6">{{item.annualEarnings}}</span>%</p>
           <p>预期年化收益率</p>
         </li>
         <li>
-          <p class=""><span ng-class="{'ft-black1':item.status === 7 || item.status === 6 ,'ft-grey6':item.status === 11 || item.status === 9 || item.status === 10}">{{item.projectDays}}</span>天</p>
-          <p class=""><span ng-class="{'ft-black1':item.status === 7 || item.status === 6 ,'ft-grey6':item.status === 11 || item.status === 9 || item.status === 10}">{{item.total}}</span>元</p>
+          <p class=""><span ng-class="{'ft-black1':item.status === 7 || item.status === 6 ,'ft-grey6':item.status !== 6 || item.status !== 7 }">{{item.projectDays}}</span>天</p>
+          <p class=""><span ng-class="{'ft-black1':item.status === 7 || item.status === 6 ,'ft-grey6':item.status !== 6 || item.status !== 7 }">{{item.total}}</span>元</p>
         </li>
         <li>
-          <span class="fa fa-angle-right" ng-class="{'ft-black1':item.status === 7 || item.status === 6 , 'ft-grey6':item.status === 11 || item.status === 9 || item.status === 10}"></span>
+          <span class="fa fa-angle-right" ng-class="{'ft-black1':item.status === 7 || item.status === 6 , 'ft-grey6':item.status !== 6 || item.status !== 7 }"></span>
         </li>
       </ul>
       <div class="pro-info2" ng-hide="item.status === 6">
@@ -33,11 +33,12 @@
     </div>
     <div class="status">
       <img ng-show="item.status === 7 || item.status === 6" src="/images/main-list/status1.png" alt="">
-      <img ng-show="item.status === 11 || item.status === 9 || item.status === 10" src="/images/main-list/status2.png" alt="">
+      <img ng-show="item.status !== 7 || item.status !== 8 " src="/images/main-list/status2.png" alt="">
       <span ng-show="item.status === 6" class="title-status-orange">预发布</span>
       <span ng-show="item.status === 11" class="title-status-orange">预约中</span>
       <span ng-show="item.status === 7" class="title-status-orange">融资中</span>
       <span ng-show="item.status === 9" class="title-status-green">还款中</span>
+      <span ng-show="item.status === 8" class="title-status-green">融资成功</span>
       <span ng-show="item.status === 10" class="title-status-grey">已完成</span>
     </div>
   </div>
