@@ -1,7 +1,7 @@
 <!-- 我的账户 -->
 <div class="account-userInfo bg-accountcolor padding-b-7 ft-black5">
   <div class="bg-orange0 text-center ft-white padding-t-0p5 padding-l-0p5 padding-r-0p5 ">
-  
+
       <img class="margin-t-1p3 margin-l-1 fl setting-icon" src="/images/user-center/setting.png" alt="" ui-sref="root.userCenter.setting">
       <div class="display-inb text-center">
         <div class="display-inb clearfix">
@@ -76,10 +76,10 @@
         <li class="fl"  ng-click="viewMore(2)"><img src="/images/user-center/user-invite.png" width="14%" alt="">我的邀请<sup class="green-sup">{{voucher.inviteNum || 0}}</sup></li>
       </ul>
       <ul class="clearfix border-grey-b margin-b-0">
-        <li class="fl border-grey-r" ng-click="viewMore(0)"><img src="/images/user-center/user-experience.png" width="14%" alt="">我的体验金</li>
+        <li class="fl border-grey-r" ui-sref="root.userCenter.experience-money"><img src="/images/user-center/user-experience.png" width="14%" alt="">我的体验金</li>
         <li class="fl" ng-click="viewMore(1)"><img src="/images/user-center/user-rate-ticket.png" width="14%" alt="">我的加息券<sup class="green-sup">{{couponStatis.unUsedCoupon || 0}}</sup></li>
       </ul>
     </div>
   </div>
-  
+
 </div>
