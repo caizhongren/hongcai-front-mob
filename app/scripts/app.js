@@ -189,9 +189,6 @@ p2pSiteMobApp
       // 新宏金保项目详情页
       .state('root.project', {
         url: '/project/:number',
-        data: {
-          title: '新项目'
-        },
         views: {
           '': {
             templateUrl: 'views/project/new-project-detail.html',
@@ -971,22 +968,10 @@ p2pSiteMobApp
       }
       $rootScope.headerTitle = title + ' - 要理财，上宏财！';
 
-
-
-
-
-      // 微信等webview中无法修改title的问题
-      //需要jQuery
-      var $body = $('body');
-      document.title = $rootScope.headerTitle;
-      // hack在微信等webview中无法修改document.title的情况
-      var $iframe = $('<iframe src="/favicon.ico" style="visibility:hidden"></iframe>');
-      $iframe.on('load',function() {
-          setTimeout(function() {
-              $iframe.off('load').remove();
-          }, 0);
-      }).appendTo($body);
-
+      if(toState.name !== 'root.project'){
+        Utils.setTitle($rootScope.headerTitle);
+      }
+      
       var path = $location.path().split('/')[1];
       $rootScope.showPath = path;
       $rootScope.showTitle = titleMap[path];

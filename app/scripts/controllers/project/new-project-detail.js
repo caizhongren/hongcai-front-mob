@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('NewProjectDetailCtrl', function($scope,$timeout, $state, $rootScope, $stateParams, $location, fundsProjects,$interval, Restangular, restmod, DEFAULT_DOMAIN, config, projectStatusMap, ProjectUtils) {
+  .controller('NewProjectDetailCtrl', function($scope,$timeout, $state, $rootScope, $stateParams, $location,$interval, Restangular, projectStatusMap, ProjectUtils, Utils) {
     // 项目详情页面
     var number = $stateParams.number;
     if (!$stateParams.number) {
@@ -27,6 +27,9 @@ angular.module('p2pSiteMobApp')
      * 项目信息
      */
     Restangular.one('projects').one($stateParams.number).get().then(function(response) {
+      $rootScope.headerTitle = response.name;
+      Utils.setTitle($rootScope.headerTitle);
+
       var project = response;
       $scope.project = project;
       project.percent = (project.soldStock + project.occupancyStock) * project.increaseAmount / project.total * 100;
