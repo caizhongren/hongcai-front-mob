@@ -1,7 +1,5 @@
 <div class="deal bg-white margin-b-7">
-  <div class=" margin-0 padding-1">您好，亲爱的&nbsp;<strong class="ft-orange">{{ hasLoggedUser.name }}</strong>&nbsp;<i class="fa fa-newspaper-o"></i>
-    <span class="pull-right" ui-sref="root.userCenter.setting">基本资料></span></div>
-  <h6 class="border-grey text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>交易记录</strong></h6>
+  <h6 class="border-grey text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>资金流水</strong></h6>
   <div class="row text-center margin-t-5" ng-hide="deals">
     <img src="images/user-center/deal-list.png" width="50%">
     <p class="padding-2-t">亲，您还没有产生任何交易呢...</p>
@@ -11,11 +9,11 @@
     <table class="u-full-width">
       <thead class="bg-orange2">
         <th class="ft-grey4">时间</th>
-        <th class="ft-grey4">交易类型</th>
+        <th class="ft-grey4">类型</th>
         <!-- <th class="ft-grey3">收支描述</th> -->
         <!-- <th class="ft-grey4">收入(元)</th> -->
-        <th class="ft-grey4">交易金额(元)</th>
-        <th class="ft-grey4">账户现金(元)</th>
+        <th class="ft-grey4">金额(元)</th>
+        <th class="ft-grey4">账户余额(元)</th>
       </thead>
       <tbody>
         <div infinite-scroll="loadDealMuch()" infinite-scroll-distance="3">

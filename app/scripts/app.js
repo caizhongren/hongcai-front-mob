@@ -287,6 +287,9 @@ p2pSiteMobApp
       //个人设置
       .state('root.userCenter.setting', {
         url: '/setting',
+        data: {
+          title: '个人设置'
+        },
         views: {
           '': {
             templateUrl: 'views/user-center/setting.html',
@@ -379,6 +382,9 @@ p2pSiteMobApp
       // 银行卡管理
       .state('root.userCenter.bankcard', {
         url: '/bankcard',
+        data: {
+          title: '我的银行卡'
+        },
         views: {
           '': {
             templateUrl: 'views/user-center/bankcard.html',
@@ -413,7 +419,7 @@ p2pSiteMobApp
       .state('root.userCenter.deals', {
         url: '/deals',
         data: {
-          title: '交易记录'
+          title: '资金流水'
         },
         views: {
           '': {
@@ -756,6 +762,9 @@ p2pSiteMobApp
       //体验金新手标
       .state('root.experience-project-detail', {
         url: '/experience-project',
+        data: {
+          title: '体验金专享标'
+        },
         views: {
           '': {
             templateUrl: 'views/project/experience-project-detail.html',
@@ -778,6 +787,9 @@ p2pSiteMobApp
       //个人中心体验金详情页
       .state('root.userCenter.experience-money',{
         url: '/experience-money',
+        data: {
+          title: '我的体验金'
+        },
         views: {
           '': {
             templateUrl: 'views/user-center/experience-money.html',
