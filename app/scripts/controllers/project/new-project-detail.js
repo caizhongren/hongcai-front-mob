@@ -75,11 +75,12 @@ angular.module('p2pSiteMobApp')
      * 下单并支付
      */
     $scope.toInvest = function(project) {
-      $scope.showMsg();
+      
       if($scope.msg || project.investAmount <= project.minInvest){
         return;
       }
 
+      $scope.showMsg();
       $rootScope.tofinishedOrder();
       var couponNumber = $scope.selectIncreaseRateCoupon != null ? $scope.selectIncreaseRateCoupon.number : '';
 
