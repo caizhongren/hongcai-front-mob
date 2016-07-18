@@ -20,28 +20,22 @@ var _hmt = _hmt || [];
 </script>
 <style type="text/css">
 
-.loaded {
+.site-loader {
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
       z-index: 5000;
-      -webkit-transition: all .1s ease-in-out;
+      -webkit-transition: all .1s ease-out;
       transition: all .1s ease-out;
   }
-  .site-loader {
+  .loaded {
       z-index: 15;
       background: #fff;
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
-      -webkit-transition: all .1s  ease-out .5s;
-      transition: all .1s ease-out .5s;
-  }
-  .ui-center-container {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      width: 100%;
+      -webkit-transition: all .1s  ease-out;
+      transition: all .1s ease-out;
   }
 </style>
 
@@ -95,13 +89,15 @@ var _hmt = _hmt || [];
     <![endif]-->
 
   <!-- Add your site or application content here -->
-  <div class="loaded" ng-class="{'site-loader':timeout}">
-  <div class="padding-0">
-    <section ui-view="header"></section>
-    <section ui-view autoscroll="true"></section>
-    <section ui-view="footer"></section>
-    <section ui-view="landingPage"></section>
-  </div>
+  
+  <div class="site-loader" ng-class="{'loaded':!loading}">
+    <div class="padding-0">
+      <section ui-view="header"></section>
+      <section ui-view autoscroll="true"></section>
+      <section ui-view="footer"></section>
+      <section ui-view="landingPage"></section>
+    </div>
+  
   </div>
 
 
