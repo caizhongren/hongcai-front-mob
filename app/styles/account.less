@@ -563,69 +563,7 @@
   .insub{
     color: #fd8f3f !important;
   }
-  .tiyanjin-tab{
-    width: 100%;
-    border-radius: 0.5rem;
-    border:1px solid #d6d4d4;
-    overflow: auto;
-    overflow-y: hidden;
-    .use-list-title{
-      background-color: #e9e9e9;
-      font-size: 1.8rem;
-      color: #333333;
-      text-align: center;
-      padding: 1rem;
-    }
-    .use-list-head{
-      border-top:1px solid #e6e5e4;
-      color: #7a7a7a;
-      font-size: 1.6rem;
-      background-color: white;
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-      overflow: auto;
-      .list-cell{
-        width: 1/3*100%;
-        display:table-cell;
-        float: left;
-        text-align: center;
-      }
-      .list-cell-title{
-        width: 2/3*100%;
-        display:table-cell;
-        float: left;
-        text-align: center;
-      }
-    }
-    .account-panel{
-      width: 100%;
-      height: 56px;
-      line-height: 56px;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      color:#7a7a7a;
-      float: left;
-      border-bottom: 1px solid #e6e5e4;
-      .icon{
-        margin-right: 1rem;
-        float: left;
-        img{
-          width: 22px;
-          height: 22px;
-          margin-top: 15px;
-        }
-      }
-      .title-text{
-        float: left;
-        font-size: 1.6rem;
-      }
-      .more{
-        float: right;
-        font-size: 1.4rem;
-        margin-right: 2rem;
-      }
-    }
-  }
+
 }
 .minHeight{
   min-height: 650px;
@@ -817,6 +755,145 @@
       .inner-model-right{
         top:16px;
       }
+    }
+  }
+}
+// 体验金使用记录提取公用
+.tiyanjin-tab{
+    width: 100%;
+    border-radius: 0.5rem;
+    border:1px solid #d6d4d4;
+    overflow: auto;
+    overflow-y: hidden;
+    .use-list-title{
+      background-color: #e9e9e9;
+      font-size: 1.8rem;
+      color: #333333;
+      text-align: center;
+      padding: 1rem;
+    }
+    .use-list-head{
+      border-top:1px solid #e6e5e4;
+      color: #7a7a7a;
+      font-size: 1.6rem;
+      background-color: white;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      overflow: auto;
+      .list-cell{
+        width: 1/3*100%;
+        display:table-cell;
+        float: left;
+        text-align: center;
+      }
+      .list-cell-title{
+        width: 2/3*100%;
+        display:table-cell;
+        float: left;
+        text-align: center;
+      }
+    }
+    .account-panel{
+      width: 100%;
+      height: 56px;
+      line-height: 56px;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      color:#7a7a7a;
+      float: left;
+      border-bottom: 1px solid #e6e5e4;
+      .icon{
+        margin-right: 1rem;
+        float: left;
+        img{
+          width: 22px;
+          height: 22px;
+          margin-top: 15px;
+        }
+      }
+      .title-text{
+        float: left;
+        font-size: 1.6rem;
+      }
+      .more{
+        float: right;
+        font-size: 1.4rem;
+        margin-right: 2rem;
+      }
+    }
+  }
+// 体验金头部样式
+.experience-header {
+  height: 180px;
+  width: 100%;
+  background: url("/images/user-center/experience-header.png") no-repeat;
+  background-size: 100%;
+  button {
+    margin-top: 4rem;
+    background-color: #F9A371;
+    // opacity: .25;
+    font-size: 1.6rem;
+    color: #fff;
+    border: 0;
+  }
+}
+@media (min-width:320px) {
+  .experience-header {
+    height: 82px;
+    p:first-child{
+      font-size: 1.3rem;
+      margin-top: 1rem;
+      margin-bottom: 0.2rem;
+    }
+    p:last-child{
+      font-size: 2.5rem;
+    }
+    button {
+      margin-top: 2.8rem;
+      padding: 0 20px;
+      height: 30px;
+      line-height: 30px;
+      font-size: 1.5rem;
+    }
+  }
+}
+@media (min-width:360px) {
+  .experience-header {
+    height: 95px;
+    p:first-child{
+      font-size: 1.3rem;
+      margin-top: 1.3rem;
+      margin-bottom: 0.2rem;
+    }
+    p:last-child{
+      font-size: 2.5rem;
+    }
+    button {
+      margin-top: 3.2rem;
+      padding: 0 20px;
+      height: 30px;
+      line-height: 30px;
+      font-size: 1.5rem;
+    }
+  }
+}
+@media (min-width:411px) {
+  .experience-header {
+    height: 105px;
+    p:first-child{
+      font-size: 1.4rem;
+      margin-top: 1.4rem;
+      margin-bottom: 0.2rem;
+    }
+    p:last-child{
+      font-size: 3rem;
+    }
+    button {
+      margin-top: 3.6rem;
+      padding: 0 30px;
+      height: 38px;
+      line-height: 38px;
+      font-size: 1.6rem;
     }
   }
 }
