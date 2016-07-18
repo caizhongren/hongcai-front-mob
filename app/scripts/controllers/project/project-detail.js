@@ -24,10 +24,12 @@ angular.module('p2pSiteMobApp')
       $scope.serverTime = response.createTime || (new Date().getTime());
       $scope.project.countdown = new Date(response.releaseStartTime).getTime() - $scope.serverTime;
       $scope.project._timeDown = DateUtils.toHourMinSeconds($scope.project.countdown);
-      $scope.jigoubaoDataMore = $scope.project.projectInfo;
       if($scope.project.status === 7){
         $rootScope.tofinishedOrder();
       }
+      Restangular.one('projects').one($scope.project.id+'/info').get().then(function(response){
+        $scope.jigoubaoDataMore = response;
+      });
 
       // 可投资金额
       $scope.jigoubaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
@@ -63,6 +65,7 @@ angular.module('p2pSiteMobApp')
         $scope.project._timeDown = DateUtils.toHourMinSeconds($scope.project.countdown);
     }, 1000);
 
+    $rootScope.tofinishedOrder();
 
     $scope.goMoreDetail = function(project) {
       $state.go('root.project-detail-more', {

@@ -41,13 +41,12 @@ angular.module('p2pSiteMobApp')
 
             $scope.newbieBiaoInvestFlag = response.isOk;
             if(!$scope.newbieBiaoInvestFlag){
-              $scope.msg = '该项目仅限用户首次投资后一周内参与';
+              $scope.msg = '仅限首次投资后一周内参与';
               $scope.showMsg(0);
             }
         });
 
       }
-
 
       // 可投资金额
       $scope.project.availableAmount = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
@@ -83,6 +82,8 @@ angular.module('p2pSiteMobApp')
         }
       });
     });
+
+    $rootScope.tofinishedOrder();
 
     $scope.goMoreDetail = function(project) {
       $state.go('root.project-detail-more', {
@@ -143,6 +144,7 @@ angular.module('p2pSiteMobApp')
             } else {
               $scope.msg = order.msg;
               $scope.showMsg(payAmount);
+              $rootScope.tofinishedOrder($scope.order);
             }
           })
         }

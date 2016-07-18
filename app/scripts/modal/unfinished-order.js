@@ -11,7 +11,9 @@ angular.module('p2pSiteMobApp')
     $scope.order = order;
     $scope.projectDays = Math.ceil((order.repaymentDate-order.createTime)/1000/3600/24);
     $scope.cancel = function () {
-      $uibModalInstance.dismiss('cancel');
+      // $uibModalInstance.close('cancel');
+      // $rootScope.unfinishOrderModal.dismiss();
+      $uibModalInstance.dismiss();
     };
     $scope.cancelUnpay = function(){
       Restangular.one('orders').one("/"+order.number).remove().then(function(response) {
@@ -21,6 +23,7 @@ angular.module('p2pSiteMobApp')
         $state.reload();
         $scope.cancel();
       });
+      $scope.cancel();
     }
     $scope.goonPay = function(){
       $state.go('root.yeepay-transfer', {

@@ -8,8 +8,9 @@
  * Main module of the application.
  */
 var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
+  'angular-loading-bar',
   'ngAnimate',
-  'ngTouch',
+  // 'ngTouch',
   'famous.angular',
   'ui.router',
   'restmod',
@@ -176,12 +177,40 @@ p2pSiteMobApp
       })
       // 宏金保详情页
       .state('root.project-detail', {
-        url: '/project/:number',
+        url: '/project-detail/:number',
         views: {
           '': {
             templateUrl: 'views/project/project-detail.html',
             controller: 'ProjectDetailCtrl',
             controllerUrl: 'scripts/controllers/project/project-detail'
+          }
+        }
+      })
+      // 新宏金保项目详情页
+      .state('root.project', {
+        url: '/project/:number',
+        data: {
+          title: '新项目'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/project/new-project-detail.html',
+            controller: 'NewProjectDetailCtrl',
+            controllerUrl: 'scripts/controllers/project/new-project-detail'
+          }
+        }
+      })
+      // 宏金保列表页
+      .state('root._main-list-temp', {
+        url: '/guaranteepro-list',
+        data: {
+          title: '宏金保'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/main/_main-list-temp.html',
+            controller: 'ProjectListCtrl',
+            controllerUrl: 'scripts/controllers/project/project-list'
           }
         }
       })
@@ -448,7 +477,7 @@ p2pSiteMobApp
       })
       // 宏财简介
       .state('root.about', {
-        url: '/about',
+        url: '/about/:tab',
         data: {
           title: '宏财介绍'
         },
@@ -749,7 +778,17 @@ p2pSiteMobApp
           }
         }
       })
-
+      //个人中心体验金详情页
+      .state('root.userCenter.experience-money',{
+        url: '/experience-money',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/experience-money.html',
+            controller: 'ExperienceMoneyCtrl',
+            controllerUrl: 'scripts/controllers/user-center/experience-money'
+          }
+        }
+      })
 
 
     ;
@@ -795,13 +834,17 @@ p2pSiteMobApp
         // }
       });
     }
+
+    /**
+     * 未支付订单
+     */
     $rootScope.tofinishedOrder = function(){
-      Restangular.one('orders').one('unpay').get().then(function(response) {
-        var order = response;
-        if(response.ret === -1){
-            return;
+      Restangular.one('orders').one('unpay').get().then(function(order) {
+        if(!order || order.ret === -1){
+            return false;
         }
-        if(response !== null){
+
+        $rootScope.unfinishOrderModal =
           $uibModal.open({
             templateUrl: 'views/project/unfinished-order.html',
             controller: 'UnfinishedOrderCtrl',
@@ -810,9 +853,6 @@ p2pSiteMobApp
             }
           });
           return true;
-        }
-        return false;
-        // $scopegoToInvestVerify();
       });
     }
 
@@ -933,6 +973,8 @@ p2pSiteMobApp
 
 
 
+
+
       // 微信等webview中无法修改title的问题
       //需要jQuery
       var $body = $('body');
@@ -980,6 +1022,7 @@ p2pSiteMobApp
         'share-spring',
         'grade',
         'project',
+        'project-detail',
         'activity'
       ];
       $rootScope.showFooter = false;
@@ -987,14 +1030,16 @@ p2pSiteMobApp
         $rootScope.showFooter = true;
       }
 
-      var recommendPath = [
-        'recommend'
-      ];
-      var introductionPath = [
+      var mainPath = [
+        'recommend',
         'safe',
+        'about'
+      ];
+      var projectPath = [
         'issue',
-        'about',
-        'novice-guide'
+        'novice-guide',
+        'guaranteepro-list',
+        'investment-status'
       ];
 
       var loginOrMy = [
@@ -1003,13 +1048,13 @@ p2pSiteMobApp
         'user-center'
       ];
 
-      $rootScope.whichFooter = 3;
-      if(recommendPath.indexOf(path) !== -1){
+      $rootScope.whichFooter = 1;
+      if(mainPath.indexOf(path) !== -1){
         $rootScope.whichFooter = 1;
-      } else if(introductionPath.indexOf(path) !== -1){
+      } else if(projectPath.indexOf(path) !== -1){
         $rootScope.whichFooter = 2;
       } else if(loginOrMy.indexOf(path) !== -1){
-        $rootScope.whichFooter = 4;
+        $rootScope.whichFooter = 3;
       }
     });
   })
