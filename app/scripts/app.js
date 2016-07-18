@@ -877,9 +877,9 @@ p2pSiteMobApp
         $rootScope.timeout = true;
       }, 400);
 
-      $rootScope.timeout = true;
+      $rootScope.loading = true;
       $timeout(function() {
-        $rootScope.timeout = false;
+        $rootScope.loading = false;
       }, 300);
 
 
