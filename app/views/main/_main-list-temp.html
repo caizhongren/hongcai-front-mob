@@ -1,5 +1,5 @@
 <!-- 宏金保首页 在下面的div class="main-list-temp"上面添加ng-repeat即可  start list   ui-sref="root.project-detail"-->
-<div infinite-scroll="loadMore()" infinite-scroll-distance="4" class="main-list">
+<div infinite-scroll="loadMore()" infinite-scroll-distance="3" class="main-list">
   <div class="main-list-temp clear" ng-repeat="item in jigoubaoData" ui-sref="root.project({number:item.number})">
     <div class="title">
       <span class="title-text" ng-show="widthFlag===0 && item.name.length <= 12">{{item.name}}</span>
