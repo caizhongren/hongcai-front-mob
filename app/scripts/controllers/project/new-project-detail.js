@@ -142,7 +142,7 @@ angular.module('p2pSiteMobApp')
 
     //显示信息
     $scope.showMsg = function(){
-      if($scope.msg){
+      if($scope.msg && $scope.project.status == 7){
         $scope.showErrorMsg = true;
         $timeout(function() {
           $scope.showErrorMsg = false;
