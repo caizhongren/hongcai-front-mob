@@ -778,7 +778,16 @@ p2pSiteMobApp
           }
         }
       })
-
+      .state('root.userCenter.experience-money',{
+        url: '/experience-money',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/experience-money.html',
+            controller: 'ExperienceMoneyCtrl',
+            controllerUrl: 'scripts/controllers/user-center/experience-money'
+          }
+        }
+      })
 
 
     ;
@@ -834,7 +843,7 @@ p2pSiteMobApp
             return;
         }
 
-        $rootScope.unfinishOrderModal = 
+        $rootScope.unfinishOrderModal =
           $uibModal.open({
             templateUrl: 'views/project/unfinished-order.html',
             controller: 'UnfinishedOrderCtrl',
