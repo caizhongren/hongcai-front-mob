@@ -20,8 +20,8 @@ angular.module('p2pSiteMobApp')
         if(response.ret === -1){
             return;
         }
-        $scope.cancel();
       });
+      $scope.cancel();
     }
     $scope.goonPay = function(){
       $state.go('root.yeepay-transfer', {
