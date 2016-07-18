@@ -79,7 +79,7 @@ angular.module('p2pSiteMobApp')
      */
     $scope.toInvest = function(project) {
       
-      if($scope.msg || project.investAmount <= project.minInvest){
+      if($scope.msg || project.investAmount < project.minInvest){
         return;
       }
 
