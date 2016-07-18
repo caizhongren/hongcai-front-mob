@@ -79,6 +79,7 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
+      $rootScope.tofinishedOrder();
       var couponNumber = $scope.selectIncreaseRateCoupon != null ? $scope.selectIncreaseRateCoupon.number : '';
 
       Restangular.one('projects').one(number+'/users/' + $rootScope.hasLoggedUser.id).post('investment', {
