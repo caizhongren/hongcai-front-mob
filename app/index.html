@@ -25,7 +25,7 @@ var _hmt = _hmt || [];
       visibility: hidden;
       pointer-events: none;
       z-index: 5000;
-      -webkit-transition: all .1s ease-out;
+      -webkit-transition: all .1s ease-in-out;
       transition: all .1s ease-out;
   }
   .site-loader {
@@ -34,10 +34,9 @@ var _hmt = _hmt || [];
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
-      -webkit-transition: all .1s ease-out;
-      transition: all .1s ease-out;
+      -webkit-transition: all .1s  ease-out .5s;
+      transition: all .1s ease-out .5s;
   }
-
   .ui-center-container {
       position: fixed;
       top: 0;
@@ -65,6 +64,7 @@ var _hmt = _hmt || [];
   <link rel="stylesheet" href="bower_components/skeleton/css/skeleton.css" />
   <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
   <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css" />
+  <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
@@ -153,6 +153,7 @@ var _hmt = _hmt || [];
   <script src="bower_components/textAngular/dist/textAngular.js"></script>
   <script src="bower_components/textAngular/dist/textAngular-sanitize.js"></script>
   <script src="bower_components/textAngular/dist/textAngularSetup.js"></script>
+  <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
   <!-- endbower -->
   <script src="bower_components/famous/dist/famous-global.js"></script>
   <!-- endbuild -->
