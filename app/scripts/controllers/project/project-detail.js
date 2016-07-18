@@ -24,7 +24,7 @@ angular.module('p2pSiteMobApp')
       Utils.setTitle($rootScope.headerTitle);
 
       $scope.project = response;
-      $scope.serverTime = response.serveTime || (new Date().getTime());
+      $scope.serverTime = response.createTime || (new Date().getTime());
       $scope.project.countdown = new Date(response.releaseStartTime).getTime() - $scope.serverTime;
       $scope.project._timeDown = DateUtils.toHourMinSeconds($scope.project.countdown);
       if($scope.project.status === 7){

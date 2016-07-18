@@ -17,7 +17,7 @@ angular.module('p2pSiteMobApp')
       pageSize : 1
     }).then(function(response) {
       $scope.recommends = response.data[0];
-      var serverTime = response.data[0].serveTime || (new Date().getTime());
+      var serverTime = response.data[0].createTime || (new Date().getTime());
       ProjectUtils.projectTimedown($scope.recommends, serverTime);
     });
 
@@ -32,7 +32,7 @@ angular.module('p2pSiteMobApp')
       $scope.newbieBiaoProject = response;
       // 可投资金额
       $scope.newbieBiaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
-      var serverTime = response.serveTime || (new Date().getTime());
+      var serverTime = response.createTime || (new Date().getTime());
       ProjectUtils.projectTimedown($scope.newbieBiaoProject, serverTime);
     });
 
