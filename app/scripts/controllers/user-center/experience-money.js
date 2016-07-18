@@ -17,7 +17,7 @@ angular.module('p2pSiteMobApp')
       if ($scope.totalPage < $scope.page){
         return;
       }
-      var couponsReq = HongcaiUser.$find($rootScope.hasLoggedUser.id + '/inviteList' , {
+      var couponsReq = HongcaiUser.$find($rootScope.hasLoggedUser.id + '/userInvestExperienceMoneyDeals' , {
         page: $scope.page,
         pageSize: $scope.pageSize,
         status: status

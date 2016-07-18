@@ -29,7 +29,6 @@ angular.module('p2pSiteMobApp')
           }
 
           $scope.experienceProject = response;
-          console.log($scope.experienceProject);
       });
     });
 

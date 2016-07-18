@@ -47,6 +47,8 @@ angular.module('p2pSiteMobApp')
           $scope.jigoubaoData.push(response.projectList[i]);
         };
 
+        $scope.busy = false;
+
       });
     }
 
@@ -56,8 +58,11 @@ angular.module('p2pSiteMobApp')
      * 加载更多项目
      */
     $scope.loadMore = function() {
+      if($scope.busy){
+        return;
+      }
+      $scope.busy = true;
       $scope.page = $scope.page + 1;
-      $scope.pageCount = $scope.pageCount + 1;
       $scope.pageSize = $scope.pageSize;
       $scope.getProjectList($scope.page, $scope.pageSize);
     };
