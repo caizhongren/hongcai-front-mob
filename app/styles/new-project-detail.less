@@ -1,7 +1,6 @@
 //新项目详情页
 .new-project-detail{
 	background-color:#ebebed;
-	margin-bottom:3rem;
 	.header{
 		width: 100%;
     overflow: auto;
@@ -175,7 +174,6 @@
 		}
 		.invest{
 			background-color:#fff;
-			border-bottom: 0.1rem solid #d4d4d4;
 			padding-left:2rem;
 			padding-right:2rem;
 			text-align:center;
@@ -233,12 +231,15 @@
 				font-size:2.8rem;
 				width:64%;
 				height:4rem;
+				line-height:4rem;
+				padding-top:0;
+				padding-bottom:0;
 				margin: 0 0.6rem 2rem;
 				position:relative;
-				top:-0.75rem;
-				
+				top: -0.3rem;
 				@media (max-width:375px) {
 					width:62%;
+					top: -0.5rem;
 				}
 				@media (max-width:320px) {
 					margin: 0 0rem 2rem;
@@ -274,12 +275,19 @@
     }
   }
   .invest-btn{
-  	padding:2rem;
+  	padding:2rem 2.5rem;
+  	border-top: 0.1rem solid #d4d4d4;
+  	position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #ebebed;
   	button{
   		width: 100%;
     	box-sizing: border-box;
     	font-weight: normal !important;
     	border-radius: 3px !important;
+    	margin-bottom:0;
   	}
   }
 }

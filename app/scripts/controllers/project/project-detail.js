@@ -27,9 +27,6 @@ angular.module('p2pSiteMobApp')
       Restangular.one('projects').one($scope.project.id+'/info').get().then(function(response){
         $scope.jigoubaoDataMore = response;
       });
-      if($scope.project.status === 7){
-        $scope.showUnfinishedOrder();
-      }
 
       // 可投资金额
       $scope.jigoubaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
