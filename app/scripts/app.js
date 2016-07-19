@@ -737,7 +737,7 @@ p2pSiteMobApp
         url: '/send-money?act&f',
         views: {
           '': {
-            templateUrl: 'views/activity/send-money.html',
+            // templateUrl: 'views/activity/send-money.html',
             templateUrl: 'views/activity/coupon-landing.html',
             controller: 'SendMoneyCtrl',
             controllerUrl: 'scripts/controllers/activity/send-money-ctrl'
@@ -994,8 +994,8 @@ p2pSiteMobApp
       $rootScope.showPath = path;
       $rootScope.showTitle = titleMap[path];
 
-      $rootScope.channelCode = $state.params.f;
-      $rootScope.act = $state.params.act;
+      $rootScope.channelCode = $location.search().f;
+      $rootScope.act = $location.search().act;
 
       if ($rootScope.channelCode){
         ipCookie('utm_from', $rootScope.channelCode, {
