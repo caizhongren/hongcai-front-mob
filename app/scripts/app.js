@@ -994,8 +994,8 @@ p2pSiteMobApp
       $rootScope.showPath = path;
       $rootScope.showTitle = titleMap[path];
 
-      $rootScope.channelCode = $state.params.f;
-      $rootScope.act = $state.params.act;
+      $rootScope.channelCode = $location.search().f;
+      $rootScope.act = $location.search().act;
 
       if ($rootScope.channelCode){
         ipCookie('utm_from', $rootScope.channelCode, {
