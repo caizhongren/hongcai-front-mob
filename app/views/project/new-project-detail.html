@@ -91,7 +91,8 @@
         <p class="fl position-ab margin-b-0 ticket-left">{{coupon.rate | number : 1}}<span class="ft-1p5">%</span></p>
         <div class="position-ab ticket-right">
           <p class="ft-grey4 ft-1p2">•&nbsp;{{coupon.description || '活动奖励'}}</p>
-          <p class="ft-grey4 ft-1p2">•&nbsp;适用于宏金保项目</p>
+          <p class="ft-grey4 ft-1p2" ng-if="coupon.projectDays <= 0">•&nbsp;适用于宏金保项目</p>
+          <p class="ft-grey4 ft-1p2" ng-if="coupon.projectDays > 0">•&nbsp;适用于宏金保&ge;30天项目</p>
           <p class="ft-grey4 ft-1p2">•&nbsp;有效期至{{coupon.endTime | date : 'yyyy-MM-dd'}}</p>
         </div>
       </li>
