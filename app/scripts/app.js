@@ -880,7 +880,7 @@ p2pSiteMobApp
       $rootScope.loading = true;
       $timeout(function() {
         $rootScope.loading = false;
-      }, 300);
+      }, 350);
 
 
 
