@@ -643,6 +643,36 @@ input::-webkit-inner-spin-button {
       }
     }
   }
+  .top-img{
+    img{
+      vertical-align:bottom;
+    } 
+  }
+  .deadline{
+    text-align: center;
+    left: 40%;
+    bottom: 10%;
+    font-size: 2.8rem;
+    color: #ffffff;
+    @media (min-width:320px) {
+      font-size: 1.2rem;
+      left: 22%;
+      bottom: 25%;
+    }
+    @media (min-width:360px) {
+      font-size: 1.3rem;
+      left: 24%;
+      bottom: 25%;
+    }
+    @media (min-width:375px) {
+      font-size: 1.4rem;
+      bottom: 27%;
+    }
+    @media (min-width:414px) {
+      font-size: 1.5rem;
+      bottom: 27%;
+    }
+  }
   .activity-gift{
     margin:0 1rem;
     background-color: #fff;
@@ -754,6 +784,10 @@ input::-webkit-inner-spin-button {
   .part-two{
     width: 100%;
     background-color: #fee575;
+    img.one{
+      margin-left:10%;
+      margin-bottom:1rem;
+    }
     img:nth-child(2){
       margin-left:10%;
       margin-bottom:1rem;
@@ -777,6 +811,15 @@ input::-webkit-inner-spin-button {
       .left43 {
         left:39% !important;
       }
+      .left1 {
+        left:4.5% !important;
+      }
+      .left2 {
+        left:6.5% !important;
+      }
+      .left3 {
+        left:7.5% !important;
+      }
     }
     @media (min-width: 360px){
       .left34 {
@@ -791,6 +834,15 @@ input::-webkit-inner-spin-button {
       .left36 {
         left:30% !important;
       }
+      .left1 {
+        left:10% !important;
+      }
+      .left2 {
+        left:11.3% !important;
+      }
+      .left3 {
+        left:13% !important;
+      }
     }
     @media (min-width: 375px){
       .left34 {
@@ -802,6 +854,15 @@ input::-webkit-inner-spin-button {
       .left30 {
         left:22.5% !important;
       }
+      .left1 {
+        left:6% !important;
+      }
+      .left2 {
+        left:7.8% !important;
+      }
+      .left3 {
+        left:8.5% !important;
+      }
     }
     @media (min-width: 414px){
       .left34 {
@@ -812,6 +873,15 @@ input::-webkit-inner-spin-button {
       }
       .left30 {
         left:22.5% !important;
+      }
+      .left1 {
+        left:5% !important;
+      }
+      .left2 {
+        left:7% !important;
+      }
+      .left3 {
+        left:8.5% !important;
       }
     }
     .tip{
@@ -828,7 +898,7 @@ input::-webkit-inner-spin-button {
         @media (min-width: 320px){
           font-size:1.2rem;
           padding:0 3.5rem;
-          top:0.3rem;
+          top:0.9rem;
         }
         @media (min-width: 360px){
           font-size:1.2rem;
@@ -838,17 +908,24 @@ input::-webkit-inner-spin-button {
          @media (min-width: 375px){
           font-size:1.27rem;
           padding:0 3.4rem;
-          top:0.3rem;
+          top:0.9rem;
         }
         @media (min-width: 414px){
           font-size:1.4rem;
           padding:0 3.9rem;
-          top:0.5rem;
+          top:0.7rem;
         }
          @media (min-width: 551px){
           font-size:2rem;
           padding:0 6rem;
           top:0.8rem;
+        }
+        span{
+          position:relative;
+          left:20%;
+          @media (max-width: 320px) {
+            left:0;
+          }
         }
       }
     }
