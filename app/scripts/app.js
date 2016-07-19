@@ -877,10 +877,10 @@ p2pSiteMobApp
         $rootScope.timeout = true;
       }, 400);
 
-      $rootScope.loading = true;
-      $timeout(function() {
-        $rootScope.loading = false;
-      }, 350);
+      // $rootScope.loading = true;
+      // $timeout(function() {
+      //   $rootScope.loading = false;
+      // }, 350);
 
 
 
@@ -1064,5 +1064,5 @@ p2pSiteMobApp
 .constant('DEFAULT_DOMAIN', '/hongcai/rest')
 
 .constant('WEB_DEFAULT_DOMAIN', '/hongcai/api/v1')
-.constant('projectStatusMap', {"96":"终审被拒绝","1":"创建中","97":"拒绝发布","2":"创建完成","98":"融资失败","3":"审核中","99":"已删除","4":"初审通过","5":"终审通过","6":"预发布","7":"融资中","8":"融资成功","9":"还款中","10":"还款完成","11":"预约中","12":"预约处理异常","95":"初审被拒绝"});
+.constant('projectStatusMap', {"6":"预发布","7":"融资中","8":"融资成功","9":"还款中","10":"还款完成","11":"预约中","12":"预约处理异常"});
 
