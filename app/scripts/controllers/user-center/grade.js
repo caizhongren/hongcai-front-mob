@@ -90,7 +90,6 @@ angular.module('p2pSiteMobApp')
           for (var i = 0; i < response.data.length; i++) {
             $scope.datas.push(response.data[i]);
           };
-          console.log($scope.datas);
         } else{
             $scope.msg = '获取信息失败';
         }
@@ -116,7 +115,6 @@ angular.module('p2pSiteMobApp')
           for (var i = 0; i < response.data.length; i++) {
             $scope.datas.push(response.data[i]);
           };
-          console.log($scope.datas);
         } else{
             $scope.msg = '获取信息失败';
         }
@@ -168,7 +166,6 @@ angular.module('p2pSiteMobApp')
 
     $scope.loadMuch = function(tabIndex, subtabIndex){
       $scope.page = $scope.page + 1;
-      $scope.totalPage = $scope.totalPage + 1;
       $scope.pageSize = $scope.pageSize;
       $scope.initData(tabIndex, subtabIndex);
     };

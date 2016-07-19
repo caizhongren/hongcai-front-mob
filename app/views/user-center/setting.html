@@ -102,7 +102,7 @@
     <form name="resetMobileForm" class="margin-b-0">
       <p class="margin-b-0 text-center">
         <span>手机号码&nbsp;&nbsp;</span>
-        <input type="text" id="mobileNum" name="mobileNum" ng-model="mobileNum" ng-pattern="/^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/" ensure-unique-mobile="mobileNum" placeholder="请输入手机号码" ng-focus required autofocus/>
+        <input type="text" id="mobileNum" name="mobileNum" ng-model="mobileNum" ng-pattern="/^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/" ensure-unique-mobile="mobileNum" placeholder="请输入手机号码" ng-focus required/>
         <!-- <input type="password" placeholder="请输入手机号码" ng-model="mobile"> -->
       </p>
       <div ng-show="resetMobileForm.mobileNum.$dirty && resetMobileForm.mobileNum.$invalid && !resetMobileForm.mobileNum.$focused" class="text-center">

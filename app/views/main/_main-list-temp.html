@@ -1,67 +1,48 @@
 <!-- 宏金保首页 在下面的div class="main-list-temp"上面添加ng-repeat即可  start list   ui-sref="root.project-detail"-->
-<div infinite-scroll="loadDealMuch()" infinite-scroll-distance="3">
-  <div class="main-list-temp clear" ng-repeat="item in jigoubaoData">
+
+<div infinite-scroll="loadMore()" infinite-scroll-distance="0" class="main-list">
+  <div class="main-list-temp clear" ng-repeat="item in jigoubaoData" ui-sref="root.project({number:item.number})">
     <div class="title">
-      <span class="height-line">&nbsp;</span>
-      <!--<img src="{{baseFileUrl}}{{item.guarantee.url}}" alt="">-->
       <span class="title-text" ng-show="widthFlag===0 && item.name.length <= 12">{{item.name}}</span>
       <span class="title-text" ng-show="widthFlag===0 && item.name.length > 12">{{item.name | limitTo:14}}...</span>
       <span class="title-text" ng-show="widthFlag===1 || widthFlag===2">{{item.name}}</span>
-      <!-- <span class="title-text" ng-show="item.name.length > 10">{{item.name | limitTo:9}}...</span>
-    <span class="title-text" ng-show="item.name.length <= 10">{{item.name}}</span> -->
-<!--       <span ng-show="item.status === 6" class="title-status-orange">预发布</span>
-      <span ng-show="item.status === 11" class="title-status-orange">预约中</span>
-      <span ng-show="item.status === 7" class="title-status-orange">融资中</span>
-      <span ng-show="item.status === 9" class="title-status-green">还款中</span>
-      <span ng-show="item.status === 10" class="title-status-grey">已完成</span> -->
     </div>
     <div class="pro-info">
       <ul>
         <li>
-          <p class="ft-orange"><span class="ft-2">{{item.annualEarnings}}</span>%</p>
-          <p>预期年化收益</p>
+
+          <p class="text-left" ng-class="{'ft-orange':item.status === 7 || item.status === 6 , 'ft-grey6':item.status !== 6 || item.status !== 7 }"><span class="ft-3p6">{{item.annualEarnings}}</span>%</p>
+          <p>预期年化收益率</p>
         </li>
         <li>
-          <p class="ft-black"><span class="ft-2">{{item.projectDays}}</span>天</p>
-          <p>投资期限</p>
+          <p class=""><span ng-class="{'ft-black1':item.status === 7 || item.status === 6 ,'ft-grey6':item.status !== 6 || item.status !== 7 }">{{item.projectDays}}</span>天</p>
+          <p class=""><span ng-class="{'ft-black1':item.status === 7 || item.status === 6 ,'ft-grey6':item.status !== 6 || item.status !== 7 }">{{item.total}}</span>元</p>
         </li>
         <li>
-          <p class="ft-black"><span class="ft-2">{{item.total/10000}}</span>万元</p>
-          <p>投资金额</p>
+          <span class="fa fa-angle-right" ng-class="{'ft-black1':item.status === 7 || item.status === 6 , 'ft-grey6':item.status !== 6 || item.status !== 7 }"></span>
         </li>
       </ul>
-      <div class="pro-info2">
-        <!-- <div class="progress">
-        <div class="progress-bar" ng-class="{'progress-bar-warning': item.status === 8 || item.status === 9 || item.status === 10, 'progress-bar-success progree-bar-green': item.status === 5, 'progress-bar-info': item.status === 11}" role="progressbar" aria-valuenow="{{item.progress || 0 }}" aria-valuemin="0" aria-valuemax="100" style="width: {{item.progress||0 }}%">
-        </div>
-      </div> -->
+      <div class="pro-info2" ng-hide="item.status === 6">
         <div class="process">
-          <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{(item.soldStock + item.occupancyStock) * item.increaseAmount / item.total * 100}}%;">
+          <div class="progress-bar" ng-class="{'bg-orange':item.status === 7 || item.status === 6 ,'bg-grey5':item.status === 11 || item.status === 9 || item.status === 10}" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{(item.soldStock + item.occupancyStock) * item.increaseAmount / item.total * 100}}%;">
             <div class="type-img"></div>
           </div>
         </div>
-        <div class="info1 margin-b-0">
-          <div class="left fl text-left">
-            <span>可投金额&nbsp;:</span>
-            <span>{{item.currentStock * item.increaseAmount | number:0}}元</span>
-          </div>
-          <div class="right fr text-right">
-            <span>已加入</span>
-            <span>{{(item.soldStock + item.occupancyStock) * item.increaseAmount / item.total * 100| number:1}}%</span>
-          </div>
-        </div>
+
+        <div class="join-in">{{(item.soldStock + item.occupancyStock) * item.increaseAmount / item.total * 100| number:1}}%</div>
       </div>
+      <span class="count-down" ng-show="item.status === 6">倒计时：{{ item._timeDown.hour }}:{{ item._timeDown.min }}:{{ item._timeDown.seconds }}</span>
     </div>
-    <div class="operation-btn">
-      <button class="button {{[6,7,11].indexOf(item.status) !== -1 ? 'button-primary' :  'button-grey'}}" ng-click="!timeout || goProjectInvest(item);" my-click-once>
-        <span ng-show="item.status === 6">{{ item._timeDown.hour }}时，{{ item._timeDown.min }}分，{{ item._timeDown.seconds }}秒</span>
-        <span ng-show="item.status === 7">立即投资</span>
-        <span ng-show="item.status !== 7 && item.status !== 6">{{projectStatusMap[item.status]}}</span>
-      </button>
+    <div class="status">
+      <img ng-show="item.status === 7 || item.status === 6" src="/images/main-list/status1.png" alt="">
+      <img ng-show="item.status !== 7 && item.status !== 6 " src="/images/main-list/status2.png" alt="">
+      <span ng-show="item.status === 6" class="title-status-orange">预发布</span>
+      <span ng-show="item.status === 11" class="title-status-orange">预约中</span>
+      <span ng-show="item.status === 7" class="title-status-orange">融资中</span>
+      <span ng-show="item.status === 9" class="title-status-green">还款中</span>
+      <span ng-show="item.status === 8" class="title-status-green">融资成功</span>
+      <span ng-show="item.status === 10" class="title-status-grey">已完成</span>
     </div>
   </div>
   <!--ending repeat-->
-</div>
-<div class="text-center">
-  <div ng-show="DealBusy"><img src="/images/ajax-loader1.gif">加载更多...</div>
 </div>

@@ -1,36 +1,3 @@
-<div class="main overflow-hid margin-b-7">
-<!-- 轮播banner图 -->
-  <div id="slideBanner" class="slide-banner position-re overflow-hid" >
-    <div class="bd position-re">
-      <ul>
-        <li class="position-re text-center">
-          <a class="pic display-bl" ui-sref="root.activity.activity-landing" href="/activity-landing"><img src="images/new/ad04.jpg" /></a>
-        </li class="position-re text-center">
-        <li>
-          <a class="pic display-bl" ui-sref="root.about" href="/about"><img src="images/new/ad03.jpg"/></a>
-        </li>
-      </ul>
-    </div>
-    <div class="hd position-ab"><ul></ul></div>
-  </div>
-  <!-- 7天理财、1-6月理财Tab模块 -->
-  <div class="bg-white padding-l-2 padding-r-2 overflow-hid">
-    <!-- 零存宝橙色导航 -->
-    <ul class="main-tab1 nav-ul columns border-orange2 border-ra-0p5 margin-b-2" ng-class="{mainred: tabClassIndex===2,mainorange1: tabClassIndex===1}">
-      <li class="column text-center margin-0 padding-t-0p5 border-left-orange padding-b-0p5 ft-black ft-1p6" ng-class="{active: toggle.activeTab === $index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)" my-click-once>{{tab.title}}</li>
-    </ul>
-    <!-- 宏金盈蓝色导航 -->
-    <!-- <ul class="main-tab1 nav-ul columns border-orange2 border-ra-0p5 margin-t-2 margin-b-2">
-      <li class="column text-center margin-0 padding-t-0p5 padding-b-0p5 ft-black" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
-    </ul> -->
-    <!-- 宏金保绿色导航 -->
-    <!-- <ul class="main-tab1 nav-ul columns border-orange2 border-ra-0p5 margin-t-2 margin-b-2">
-      <li class="column text-center margin-0 padding-t-0p5 padding-b-0p5 ft-black" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
-    </ul> -->
-  </div>
-  <div class="tab-content columns twelve bg-white overflow-hid padding-t-1 padding-b-2 text-center ios-highlights" ng-include src='"views/main/_main-project.html"' ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs">
-  </div>
-</div>
 
 <script>
   /*!
@@ -58,3 +25,42 @@
    });
 
 </script>
+
+<div class="main overflow-hid margin-b-5 bg-white">
+<!-- 轮播banner图 -->
+  <div id="slideBanner" class="slide-banner position-re overflow-hid" >
+    <div class="bd position-re">
+      <ul>
+        <li class="position-re text-center">
+          <a class="pic display-bl" ui-sref="root.activity.activity-landing" href="/activity-landing"><img src="images/new/ad06.png" /></a>
+        </li class="position-re text-center">
+        <li>
+          <a class="pic display-bl" ui-sref="root.about" href="/about"><img src="images/new/ad05.png"/></a>
+        </li>
+      </ul>
+    </div>
+    <div class="hd position-ab"><ul></ul></div>
+  </div>
+  <!-- li列表 -->
+  <div class="about-list">
+    <ul class="cleafix overflow-hid margin-b-0">
+      <li class="fl text-center" ui-sref="root.about({tab:0})">
+        <img class="margin-t-" src="/images/main-list/about.png" width="27%" alt="">
+        <p class="ft-1p4 margin-b-0">走进宏财</p>
+      </li>
+      <li class="fl text-center">
+        <img class="margin-t-" src="/images/main-list/bonus.png" width="23.6%" alt="">
+        <p class="ft-1p4 margin-b-0">全年分红</p>
+      </li>
+      <li class="fl border-none text-center" ui-sref="root.about({tab:1})">
+        <img class="margin-t-" src="/images/main-list/safe.png" width="25%" alt="">
+        <p class="ft-1p4 margin-b-0">安全保障</p>
+      </li>
+    </ul>
+  </div>
+  <!--新手标  -->
+  <div ng-include src='"views/main/_main-project-template.html"'></div>
+
+
+</div>
+

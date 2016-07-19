@@ -40,7 +40,7 @@ angular.module('p2pSiteMobApp')
 
           if (redirectUrl) {
             $location.path(decodeURIComponent(redirectUrl));
-            console.log($location.path(decodeURIComponent(redirectUrl)));
+            // console.log($location.path(decodeURIComponent(redirectUrl)));
             return;
           }
 

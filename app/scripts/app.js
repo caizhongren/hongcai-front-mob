@@ -8,8 +8,9 @@
  * Main module of the application.
  */
 var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
+  'angular-loading-bar',
   'ngAnimate',
-  'ngTouch',
+  // 'ngTouch',
   'famous.angular',
   'ui.router',
   'restmod',
@@ -176,12 +177,37 @@ p2pSiteMobApp
       })
       // 宏金保详情页
       .state('root.project-detail', {
-        url: '/project/:number',
+        url: '/project-detail/:number',
         views: {
           '': {
             templateUrl: 'views/project/project-detail.html',
             controller: 'ProjectDetailCtrl',
             controllerUrl: 'scripts/controllers/project/project-detail'
+          }
+        }
+      })
+      // 新宏金保项目详情页
+      .state('root.project', {
+        url: '/project/:number',
+        views: {
+          '': {
+            templateUrl: 'views/project/new-project-detail.html',
+            controller: 'NewProjectDetailCtrl',
+            controllerUrl: 'scripts/controllers/project/new-project-detail'
+          }
+        }
+      })
+      // 宏金保列表页
+      .state('root._main-list-temp', {
+        url: '/guaranteepro-list',
+        data: {
+          title: '宏金保'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/main/_main-list-temp.html',
+            controller: 'ProjectListCtrl',
+            controllerUrl: 'scripts/controllers/project/project-list'
           }
         }
       })
@@ -261,6 +287,9 @@ p2pSiteMobApp
       //个人设置
       .state('root.userCenter.setting', {
         url: '/setting',
+        data: {
+          title: '个人设置'
+        },
         views: {
           '': {
             templateUrl: 'views/user-center/setting.html',
@@ -353,6 +382,9 @@ p2pSiteMobApp
       // 银行卡管理
       .state('root.userCenter.bankcard', {
         url: '/bankcard',
+        data: {
+          title: '我的银行卡'
+        },
         views: {
           '': {
             templateUrl: 'views/user-center/bankcard.html',
@@ -387,7 +419,7 @@ p2pSiteMobApp
       .state('root.userCenter.deals', {
         url: '/deals',
         data: {
-          title: '交易记录'
+          title: '资金流水'
         },
         views: {
           '': {
@@ -448,7 +480,7 @@ p2pSiteMobApp
       })
       // 宏财简介
       .state('root.about', {
-        url: '/about',
+        url: '/about/:tab',
         data: {
           title: '宏财介绍'
         },
@@ -730,6 +762,9 @@ p2pSiteMobApp
       //体验金新手标
       .state('root.experience-project-detail', {
         url: '/experience-project',
+        data: {
+          title: '体验金专享标'
+        },
         views: {
           '': {
             templateUrl: 'views/project/experience-project-detail.html',
@@ -749,7 +784,20 @@ p2pSiteMobApp
           }
         }
       })
-
+      //个人中心体验金详情页
+      .state('root.userCenter.experience-money',{
+        url: '/experience-money',
+        data: {
+          title: '我的体验金'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/experience-money.html',
+            controller: 'ExperienceMoneyCtrl',
+            controllerUrl: 'scripts/controllers/user-center/experience-money'
+          }
+        }
+      })
 
 
     ;
@@ -795,13 +843,17 @@ p2pSiteMobApp
         // }
       });
     }
+
+    /**
+     * 未支付订单
+     */
     $rootScope.tofinishedOrder = function(){
-      Restangular.one('orders').one('unpay').get().then(function(response) {
-        var order = response;
-        if(response.ret === -1){
-            return;
+      Restangular.one('orders').one('unpay').get().then(function(order) {
+        if(!order || order.ret === -1){
+            return false;
         }
-        if(response !== null){
+
+        $rootScope.unfinishOrderModal =
           $uibModal.open({
             templateUrl: 'views/project/unfinished-order.html',
             controller: 'UnfinishedOrderCtrl',
@@ -810,9 +862,6 @@ p2pSiteMobApp
             }
           });
           return true;
-        }
-        return false;
-        // $scopegoToInvestVerify();
       });
     }
 
@@ -827,6 +876,11 @@ p2pSiteMobApp
       $timeout(function() {
         $rootScope.timeout = true;
       }, 400);
+
+      // $rootScope.loading = true;
+      // $timeout(function() {
+      //   $rootScope.loading = false;
+      // }, 350);
 
 
 
@@ -931,20 +985,10 @@ p2pSiteMobApp
       }
       $rootScope.headerTitle = title + ' - 要理财，上宏财！';
 
-
-
-      // 微信等webview中无法修改title的问题
-      //需要jQuery
-      var $body = $('body');
-      document.title = $rootScope.headerTitle;
-      // hack在微信等webview中无法修改document.title的情况
-      var $iframe = $('<iframe src="/favicon.ico" style="visibility:hidden"></iframe>');
-      $iframe.on('load',function() {
-          setTimeout(function() {
-              $iframe.off('load').remove();
-          }, 0);
-      }).appendTo($body);
-
+      if(toState.name !== 'root.project'){
+        Utils.setTitle($rootScope.headerTitle);
+      }
+      
       var path = $location.path().split('/')[1];
       $rootScope.showPath = path;
       $rootScope.showTitle = titleMap[path];
@@ -980,6 +1024,7 @@ p2pSiteMobApp
         'share-spring',
         'grade',
         'project',
+        'project-detail',
         'activity'
       ];
       $rootScope.showFooter = false;
@@ -987,14 +1032,16 @@ p2pSiteMobApp
         $rootScope.showFooter = true;
       }
 
-      var recommendPath = [
-        'recommend'
-      ];
-      var introductionPath = [
+      var mainPath = [
+        'recommend',
         'safe',
+        'about'
+      ];
+      var projectPath = [
         'issue',
-        'about',
-        'novice-guide'
+        'novice-guide',
+        'guaranteepro-list',
+        'investment-status'
       ];
 
       var loginOrMy = [
@@ -1003,13 +1050,13 @@ p2pSiteMobApp
         'user-center'
       ];
 
-      $rootScope.whichFooter = 3;
-      if(recommendPath.indexOf(path) !== -1){
+      $rootScope.whichFooter = 1;
+      if(mainPath.indexOf(path) !== -1){
         $rootScope.whichFooter = 1;
-      } else if(introductionPath.indexOf(path) !== -1){
+      } else if(projectPath.indexOf(path) !== -1){
         $rootScope.whichFooter = 2;
       } else if(loginOrMy.indexOf(path) !== -1){
-        $rootScope.whichFooter = 4;
+        $rootScope.whichFooter = 3;
       }
     });
   })
@@ -1017,5 +1064,5 @@ p2pSiteMobApp
 .constant('DEFAULT_DOMAIN', '/hongcai/rest')
 
 .constant('WEB_DEFAULT_DOMAIN', '/hongcai/api/v1')
-.constant('projectStatusMap', {"96":"终审被拒绝","1":"创建中","97":"拒绝发布","2":"创建完成","98":"融资失败","3":"审核中","99":"已删除","4":"初审通过","5":"终审通过","6":"预发布","7":"融资中","8":"融资成功","9":"还款中","10":"还款完成","11":"预约中","12":"预约处理异常","95":"初审被拒绝"});
+.constant('projectStatusMap', {"6":"预发布","7":"融资中","8":"融资成功","9":"还款中","10":"还款完成","11":"预约中","12":"预约处理异常"});
 

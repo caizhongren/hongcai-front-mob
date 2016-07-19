@@ -3,7 +3,7 @@
   <p class="ft-2p5 ft-89">宏财账号登录</p>
   <form class="login-form ft-grey text-left" autocomplete="on" ng-submit="toLogin(user)">
     <div class="to-login">
-      <input id="username" name="username" required="required" type="text" ng-model="user.account" placeholder="用户名/手机号/邮箱" autofocus><br>
+      <input id="username" name="username" required="required" type="text" ng-model="user.account" placeholder="用户名/手机号/邮箱"><br>
       <input id="password" name="password" ng-model="user.password" required="required" type="password" placeholder="输入登录密码" class="input-pwd" />
     </div>
     <p ng-show="msg" class="ft-red2 margin-b-0 margin-t-2 text-center">{{msg}}</p>
