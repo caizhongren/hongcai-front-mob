@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('ProjectListCtrl', function($scope, Restangular, ProjectUtils){
+  .controller('ProjectListCtrl', function($scope, $timeout, Restangular, ProjectUtils){
   	$scope.page = 1;
     $scope.pageSize = 4;
   	$scope.widthFlag = "";
@@ -31,6 +31,8 @@ angular.module('p2pSiteMobApp')
      * 当前页项目列表
      */
     $scope.getProjectList = function(page, pageSize) {
+      $scope.busy = true;
+
       if ($scope.pageCount < $scope.page) {
         return;
       }
@@ -47,7 +49,9 @@ angular.module('p2pSiteMobApp')
           $scope.jigoubaoData.push(response.projectList[i]);
         };
 
-        $scope.busy = false;
+        $timeout(function() {
+          $scope.busy = false;
+        }, 100);
 
       });
     }
