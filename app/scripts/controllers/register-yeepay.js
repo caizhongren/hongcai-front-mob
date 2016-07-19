@@ -9,7 +9,7 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('RegisterYeepayCtrl', ['$rootScope','$scope', '$state', '$stateParams', 'md5', 'registerYeepay', 'HongcaiUser', 'config', function ($rootScope, $scope, $state, $stateParams, md5, registerYeepay, HongcaiUser, config) {
-    /*var userId = $stateParams.userId;
+    var userId = $stateParams.userId;
     if (!userId) {
       $state.go('root.main');
     }
@@ -26,7 +26,7 @@ angular.module('p2pSiteMobApp')
         // 绑定超时
         $state.go('root.main');
       }
-    });*/
+    });
 
     // 注册易宝POST
     $scope.signUpYeepay = function(user) {
