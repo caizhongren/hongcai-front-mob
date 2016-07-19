@@ -737,7 +737,7 @@ p2pSiteMobApp
         url: '/send-money?act&f',
         views: {
           '': {
-            templateUrl: 'views/activity/send-money.html',
+            // templateUrl: 'views/activity/send-money.html',
             templateUrl: 'views/activity/coupon-landing.html',
             controller: 'SendMoneyCtrl',
             controllerUrl: 'scripts/controllers/activity/send-money-ctrl'
