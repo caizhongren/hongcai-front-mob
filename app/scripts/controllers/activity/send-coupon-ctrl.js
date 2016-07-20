@@ -50,7 +50,7 @@ angular.module('p2pSiteMobApp')
       }
 
       wx.onMenuShareAppMessage({
-        title: '2%加息券,投资即送！',
+        title: '2%加息券，投资即送！',
         desc: '宏财理财季，疯狂加息2%，年利率超10%！',
         link: shareLink,
         imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak6XibeP4rtlnYOfaCFneic3dYdZU9Gy2CCwjHpjNot1KNxB5XQdsDuTQgUNdVnZlJw38qHm7qsggeg/0?wx_fmt=png',
@@ -72,7 +72,7 @@ angular.module('p2pSiteMobApp')
       });
 
       wx.onMenuShareTimeline({
-        title: '2%加息券,投资即送！',
+        title: '2%加息券，投资即送！',
         link: shareLink,
         imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak6XibeP4rtlnYOfaCFneic3dYdZU9Gy2CCwjHpjNot1KNxB5XQdsDuTQgUNdVnZlJw38qHm7qsggeg/0?wx_fmt=png',
         trigger: function (res) {
