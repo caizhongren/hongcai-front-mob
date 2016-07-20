@@ -747,6 +747,21 @@ p2pSiteMobApp
         }
       })
 
+      //投资送加息券落地页
+      .state('root.activity.send-coupon', {
+        url: '/send-coupon?act&f',
+        views: {
+          '': {
+            templateUrl: 'views/activity/coupon-landing.html',
+            controller: 'SendCouponCtrl',
+            controllerUrl: 'scripts/controllers/activity/send-coupon-ctrl'
+          }
+        },
+        data: {
+          title: '2%加息券,投资即送！'
+        }
+      })
+
       // //邀请活动落地落地页
       // .state('root.activity.invite', {
       //   url: '/invite',
@@ -823,7 +838,13 @@ p2pSiteMobApp
       'account': '账户总览'
     };
 
+    /**
+     * 跳转到登陆页
+     */
     $rootScope.toLogin = function() {
+      if(!$rootScope.timeout){
+        return;
+      }
       $state.go('root.login', {
         redirectUrl: $location.path()
       });
@@ -993,8 +1014,8 @@ p2pSiteMobApp
       $rootScope.showPath = path;
       $rootScope.showTitle = titleMap[path];
 
-      $rootScope.channelCode = $state.params.f;
-      $rootScope.act = $state.params.act;
+      $rootScope.channelCode = $location.search().f;
+      $rootScope.act = $location.search().act;
 
       if ($rootScope.channelCode){
         ipCookie('utm_from', $rootScope.channelCode, {
