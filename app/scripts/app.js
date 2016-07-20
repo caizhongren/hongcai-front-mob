@@ -737,8 +737,7 @@ p2pSiteMobApp
         url: '/send-money?act&f',
         views: {
           '': {
-            // templateUrl: 'views/activity/send-money.html',
-            templateUrl: 'views/activity/coupon-landing.html',
+            templateUrl: 'views/activity/send-money.html',
             controller: 'SendMoneyCtrl',
             controllerUrl: 'scripts/controllers/activity/send-money-ctrl'
           }
@@ -759,7 +758,7 @@ p2pSiteMobApp
           }
         },
         data: {
-          title: '投资送688元！奖金可立即提现！'
+          title: '2%加息券,投资即送！'
         }
       })
 
