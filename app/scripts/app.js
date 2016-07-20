@@ -758,7 +758,7 @@ p2pSiteMobApp
           }
         },
         data: {
-          title: '2%加息券,投资即送！'
+          title: '2%加息券，投资即送！'
         }
       })
 
