@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('ProjectListCtrl', function($scope, $timeout, Restangular, ProjectUtils){
+  .controller('ProjectListCtrl', function($scope, $rootScope, $state, $timeout, Restangular, ProjectUtils){
   	$scope.page = 1;
     $scope.pageSize = 4;
   	$scope.widthFlag = "";
@@ -54,6 +54,15 @@ angular.module('p2pSiteMobApp')
         }, 100);
 
       });
+    }
+
+    /**
+     * 跳转到详情页
+     */
+    $scope.toDetail = function(project){
+      if($rootScope.timeout){
+        $state.go('root.project', {number: project.number});
+      }
     }
 
     $scope.getProjectList($scope.page, $scope.pageSize);

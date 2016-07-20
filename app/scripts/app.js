@@ -824,7 +824,13 @@ p2pSiteMobApp
       'account': '账户总览'
     };
 
+    /**
+     * 跳转到登陆页
+     */
     $rootScope.toLogin = function() {
+      if(!$rootScope.timeout){
+        return;
+      }
       $state.go('root.login', {
         redirectUrl: $location.path()
       });

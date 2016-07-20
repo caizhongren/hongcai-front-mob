@@ -146,7 +146,7 @@ angular.module('p2pSiteMobApp')
         $scope.showErrorMsg = true;
         $timeout(function() {
           $scope.showErrorMsg = false;
-        }, 3000);
+        }, 2000);
       }
     }
 
@@ -169,7 +169,10 @@ angular.module('p2pSiteMobApp')
 
     //跳转到充值页面
     $scope.toRecharge = function(){
-      $state.go('root.userCenter.recharge');
+      if($rootScope.timeout){
+        $state.go('root.userCenter.recharge');
+      }
+      
     }
 
     //计算预计收益
