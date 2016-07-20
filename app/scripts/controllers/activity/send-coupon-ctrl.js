@@ -44,7 +44,7 @@ angular.module('p2pSiteMobApp')
      * 设置用户分享的标题以及描述以及图片等。
      */
     $scope.onMenuShareAppMessage = function(){
-      var shareLink = config.domain + '/activity/send-money';
+      var shareLink = config.domain + '/activity/send-coupon';
       if ($rootScope.channelCode){
         shareLink = shareLink + '?f=' + $rootScope.channelCode + '&act=' + $rootScope.act;
       }
@@ -95,7 +95,7 @@ angular.module('p2pSiteMobApp')
 
     wx.error(function(res){
         $timeout(function() {
-          window.location.href=config.domain + '/activity/send-money?' + Math.round(Math.random()* 1000);
+          window.location.href=config.domain + '/activity/send-coupon?' + Math.round(Math.random()* 1000);
         }, 100);
     });
 
