@@ -65,7 +65,7 @@
     </div>
 	</div>
 	<div class="invest-btn">
-    <button class="button button-primary" type="button" ng-show="!msg && isLogged && project.status === 7" ng-click="toInvest(project)">立即投资</button>
+    <button id="invest-btn1" class="button button-primary" type="button" ng-show="!msg && isLogged && project.status === 7 &&showBtn" ng-click="toInvest(project)">立即投资</button>
     <button class="button btn-disabled" ng-show="msg && project.status ===7 && securityStatus.realNameAuthStatus === 1">立即投资</button>
     <button class="button btn-disabled" ng-show="project.status ===6 ">预发布</button>
     <button class="button btn-disabled" ng-show="project.status ===9 ">还款中</button>
@@ -105,4 +105,8 @@
     <p class="text-center padding-t-1 padding-b-1 margin-b-0 ft-orange click-cancel" ng-click="showSelectIncreaseRateCoupon=false;initLimit=3;">取消</p>
   </div>
 </div>
-
+<script>
+  $('.invest-input').focus(function(){
+    $('.invest-btn').hide();
+  })
+</script>
