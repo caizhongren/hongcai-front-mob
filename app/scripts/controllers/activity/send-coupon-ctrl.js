@@ -74,7 +74,7 @@ angular.module('p2pSiteMobApp')
       wx.onMenuShareTimeline({
         title: '2%加息券,投资即送！',
         link: shareLink,
-        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Al0UHTrddN5KGSB1iaL3yDCGYOr19JXcqHnMgEIJiaJTxLg6wMSkJUEA1ic7jlP1UY972icVXibKuQuIkA/0?wx_fmt=jpeg',
+        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak6XibeP4rtlnYOfaCFneic3dYdZU9Gy2CCwjHpjNot1KNxB5XQdsDuTQgUNdVnZlJw38qHm7qsggeg/0?wx_fmt=png',
         trigger: function (res) {
         },
         success: function (res) {
