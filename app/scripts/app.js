@@ -748,6 +748,21 @@ p2pSiteMobApp
         }
       })
 
+      //投资送加息券落地页
+      .state('root.activity.send-coupon', {
+        url: '/send-coupon?act&f',
+        views: {
+          '': {
+            templateUrl: 'views/activity/coupon-landing.html',
+            controller: 'SendCouponCtrl',
+            controllerUrl: 'scripts/controllers/activity/send-coupon-ctrl'
+          }
+        },
+        data: {
+          title: '投资送688元！奖金可立即提现！'
+        }
+      })
+
       // //邀请活动落地落地页
       // .state('root.activity.invite', {
       //   url: '/invite',
