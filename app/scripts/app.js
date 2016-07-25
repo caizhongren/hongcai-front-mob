@@ -813,6 +813,20 @@ p2pSiteMobApp
           }
         }
       })
+      //个人中心我的奖金
+      .state('root.userCenter.cash-coupon',{
+        url: '/user-center/cash-coupon',
+        data: {
+          title: '我的奖金'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/cash-coupon.html',
+            controller: 'CashCouponCtrl',
+            controllerUrl: 'scripts/controllers/user-center/cash-coupon'
+          }
+        }
+      })
 
 
     ;
