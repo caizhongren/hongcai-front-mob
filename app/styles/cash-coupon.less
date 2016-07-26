@@ -1,30 +1,35 @@
 //我的奖金
 .cash-header {
   overflow:hidden;
-  height:160px;
   width: 100%;
-  //background: url("/images/user-center/experience-header.png") no-repeat;
-  background-size: 100%;
-  background-color:#f6511d;
+  background: url("/images/user-center/cash-coupon-header.png") no-repeat;
+  background-size: 100% 100%;
   .header1{
   	overflow:hidden;
   	p{
   		margin-bottom:0;
   	}
   	p:nth-child(1){
-  		font-size:1.8rem;
+  		font-size:1.6rem;
   		margin-top:0.2rem;
+  	}
+  	p:nth-child(2){
+  		font-size:1.4rem;
   	}
   	.authent{
   		background-color:#fd9256;
-  		margin-left:0.5rem;
   		border-radius:15px;
-  		padding:0.2rem 1rem;
+  		padding:0.1rem 1rem;
   		font-size:1.4rem;
   		i{
   			font-size: 1.4rem;
   		}
   	}
+  	.border-pull {
+	    width: 4.5rem;
+	    height: 4.5rem;
+	    border-radius: 2.3rem;
+		}
   }
   .header2{
   	overflow:hidden;
@@ -33,6 +38,12 @@
   	li{
   		width:50%;
   		box-sizing: border-box;
+  		p:nth-child(1){
+  			font-size:1.5rem;
+  		}
+  		p:nth-child(2){
+  			font-size:1.8rem;
+  		}
   	}
   	li:nth-child(1){
   		border-right:1px solid #c63b0f;
@@ -44,6 +55,7 @@
 }
 .cash-body{
 	background-color:#f2f2f2;
+	padding-bottom:5rem;
 	.cash-select{
 		overflow:hidden;
 		clear:both;
@@ -55,24 +67,25 @@
 			width:50%;
 			box-sizing:border-box;
 			padding: 1rem 0;
+			//border-bottom: 1px solid #e6e5e4;
 		}
 		li.active{
-			color:#f75520;
-			border-bottom:1px solid #f87227;
+			color:#f87227;
+			border-bottom:2px solid #f87227;
 		}
 	}
 	.outer-panel {
-    padding-left: 1rem;
-  	padding-right: 1rem;
+    padding-left: 2rem;
+  	padding-right: 2rem;
     position: relative;
-    img {
+    img:nth-child(1) {
     	width: 100%;
     }
     .inner-panel-left {
 	    position: absolute;
 	    top: 0;
 	    bottom: 0;
-	    width: 33.33333333%;
+	    width: 27%;
 	    text-align: center;
 	    color: white;
 	    font-size: 1.6rem;
@@ -87,115 +100,81 @@
 	    font-size: 1.4rem;
 	    text-align: left;
 	    .withdraw{
-	    	color:#f86e5f;
-	    	border:1px solid #f86e5f;
+	    	color: #f86e5f;
+	    	border: 1px solid #f86e5f;
 	    	border-radius:8px;
 	    	padding: 0 0.5rem;
-		    font-size: 1.5rem;
-		    margin-top: 0.5rem;
+		    position: absolute;
+    		bottom: 0;
+    		right: 1rem;
+	    }
+	    img.received{
+	    	width: 25%;
+	    	position: absolute;
+	    	bottom: 0;
+	    	right: 1rem;
+	    }
+	    .col-2{
+	    	display: inline-block;
+	    	width: 66%;
 	    }
     }
     @media (min-width:320px){
-      .middle-margin{
-        margin-bottom: 1rem;
-      }
       .top-margin{
         margin-bottom: 0rem;
         margin-top: 1rem;
       }
-      .model-margin{
-        margin-top: 1rem;
+      .inner-panel-center1{
+        font-size: 1.21rem;
+        right: 1.8rem;
+    		width: 60%;
+    		top: 6px;
+      }
+    }
+    @media (min-width:360px){
+      .top-margin{
         margin-bottom: 0.5rem;
-        font-size: 1.4rem;
+        margin-top: 2.2rem;
       }
-      .inner-model-center{
-        font-size: 1.2rem;
-      }
-      .inner-model-right{
-        top:10px;
-      }
-      .inner-panel-center,.inner-panel-center1{
-        font-size: 1.35rem;
-      }
-      .inner-panel-right{
-        margin-top: 7px;
-        span{
-          height: 20px;
-          font-size: 1.4rem;
-        }
-      }
-      .inner-panel-right1{
-        margin-top: 15px;
-        span{
-          height: 20px;
-          font-size: 1.4rem;
-        }
+      .inner-panel-center1{
+        font-size: 1.38rem;
       }
     }
     @media (min-width:375px){
-      .middle-margin{
-        margin-bottom: 2rem;
-      }
       .top-margin{
         margin-bottom: 0.5rem;
-        margin-top: 2rem;
+        margin-top: 2.2rem;
       }
-      .inner-panel-center,.inner-panel-center1{
-        font-size: 1.6rem;
-      }
-      .inner-panel-right{
-        margin-top: 16px;
-        span{
-          height: 20px;
-          font-size: 1.6rem;
-        }
-      }
-      .inner-panel-right1{
-        margin-top: 25px;
-        span{
-          height: 20px;
-          font-size: 1.6rem;
-        }
-      }
-      .model-margin{
-        margin-top: 1.5rem;
-        margin-bottom: 0.5rem;
-        font-size: 1.6rem;
-      }
-      .inner-model-center{
-        font-size: 1.4rem;
-      }
-      .inner-model-right{
-        top:13px;
+      .inner-panel-center1{
+        font-size: 1.39rem;
+        top: 10px;
       }
     }
     @media (min-width:414px){
-      .middle-margin{
-        margin-bottom: 2.5rem;
-      }
       .top-margin{
         margin-bottom: 0.5rem;
-        margin-top: 2.5rem;
+        margin-top: 3rem;
       }
-      .inner-panel-right{
-        margin-top: 16px;
-        span{
-          height: 20px;
-          font-size: 1.8rem;
-        }
-      }
-      .model-margin{
-        margin-top: 1.8rem;
-        margin-bottom: 0.5rem;
-        font-size: 1.8rem;
-      }
-      .inner-model-center{
-        font-size: 1.6rem;
-      }
-      .inner-model-right{
-        top:16px;
+      .inner-panel-center1{
+        font-size: 1.5rem;
+        top: 10px;
       }
     }
+  }
+  .no-cash{
+  	p{
+  		margin-bottom:0;
+  	}
+  	p:nth-child(2) {
+  		color:#595656;
+  		font-size:1.4rem;
+  		margin-top:1rem;
+  	}
+  	p:nth-child(3) {
+  		color:#fc3a00;
+  		font-size:1.3rem;
+  		margin-top:1rem;
+  	}
   }
 }
 .cash{
@@ -214,6 +193,9 @@
 	.rule{
 		color: #8b8b8b;
 		line-height:25px;
+	}
+	.rec-act-rule1 {
+    margin-top: 36% !important;
 	}
 }
 
