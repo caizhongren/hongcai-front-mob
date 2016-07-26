@@ -5,9 +5,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-.controller('CashCouponCtrl', function ($scope, $rootScope, Restangular) {
-	/*现金券查询*/
-
+.controller('CashCouponCtrl', function ($scope, Restangular) {
 	/**
 	 * 默认头像
 	 */
@@ -27,5 +25,32 @@ angular.module('p2pSiteMobApp')
 	$scope.closeRule = function() {
 		$scope.showRules = false;
 	}
+
+	/*投资统计*/
+	Restangular.one('cashCoupons').one('stat').get().then(function(response) {
+		$scope.cash = response;
+	});
+
+	/*现金券查询*/
+	$scope.status = 1;
+	
+	/*解决闪烁问题*/
+	$scope.loading = true;
+
+	/*选择提现状态*/
+	$scope.selectStat = function(status){
+		$scope.loading = true;
+		$scope.cashCoupons = [];
+		$scope.status = status;
+		Restangular.one('cashCoupons').get({
+			status : status
+		}).then(function(response){
+			$scope.loading = false;
+			for (var i = 0; i < response.data.length; i++) {
+				$scope.cashCoupons.push(response.data[i]);
+			}
+		});
+	}
+	$scope.selectStat($scope.status);
 });
  
