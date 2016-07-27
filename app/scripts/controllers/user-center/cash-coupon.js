@@ -59,7 +59,7 @@ angular.module('p2pSiteMobApp')
 		angular.element(".cash-body").css("min-height",angular.element(window).height()-"220"+"px");
 		//当文档窗口发生改变时 触发  
 		angular.element(window).resize(function(){  
-		    angular.element(".cash-body").css("min-height",angular.element(window).height()-"220"+"px");
+		  angular.element(".cash-body").css("min-height",angular.element(window).height()-"220"+"px");
 		});
   });
 });
