@@ -193,10 +193,11 @@ angular.module('p2pSiteMobApp')
      * 虚拟键盘弹出遮住输入框问题
      */
     angular.element('.invest-input').bind({
-      'focus': function(){
+      focus: function(){
         angular.element('.new-project-detail').css('margin-bottom','100px');
       },
-      'blur': function(){
+      blur: function(){
         angular.element('.new-project-detail').css('margin-bottom','0');
-        }
-    });
+      }
+    })
+  });
