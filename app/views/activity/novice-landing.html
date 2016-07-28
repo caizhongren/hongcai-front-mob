@@ -78,7 +78,7 @@
     <div class="novice-project padding-l-1">
       <div class="nvc-head">
         <p class="fl margin-b-0 font-red44"><strong>新手标</strong></p>
-        <span class="font-red44 display-inb margin-l-0p5 padding-l-0p5 padding-r-0p5">{{newbieBiaoProject.minInvest}}元起投，无投资上限</span>
+        <span class="font-red44 display-inb margin-l-0p5 padding-l-0p5 padding-r-0p5">{{newbieBiaoProject.minInvest || 0}}元起投，无投资上限</span>
       </div>
       <div class="nvc-detail">
         <div class="detail-left fl">
@@ -86,7 +86,7 @@
             <span class="font-red4e ft-3 margin-r-0p5">{{newbieBiaoProject.annualEarnings}}</span>
             <span class="display-inb width62 font-grey">预计年化收益 %</span>
           </p>
-          <p class="ft-1p2 margin-b-0 font-grey">项目期限{{newbieBiaoProject.projectDays}}天，可投资金额{{newbieBiaoProjectInvestNum}}元</p>
+          <p class="ft-1p2 margin-b-0 font-grey">项目期限{{newbieBiaoProject.projectDays}}天，可投资金额{{newbieBiaoProjectInvestNum || 0}}元</p>
         </div>
         <div class="fl detail-right position-re">
           <div>
@@ -95,7 +95,7 @@
                 <div class="type-img"></div>
               </div>
             </div>
-            <span class="ft-1p2 font-grey position-ab">{{(newbieBiaoProject.soldStock + newbieBiaoProject.occupancyStock) * newbieBiaoProject.increaseAmount / newbieBiaoProject.total * 100}}%</span>
+            <span class="ft-1p2 font-grey position-ab">{{(newbieBiaoProject.soldStock + newbieBiaoProject.occupancyStock) * newbieBiaoProject.increaseAmount / newbieBiaoProject.total * 100 | number:1}}%</span>
           </div>
           <img src="/images/activity/invest-purple.png" width="95%" ui-sref="root.main">
         </div>
