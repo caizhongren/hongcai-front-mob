@@ -11,6 +11,9 @@ angular.module('p2pSiteMobApp')
           return ua.match(/MicroMessenger/i)=="micromessenger";
       },
 
+      /**
+       * 设置微信等webview中的title
+       */
       setTitle: function(title){
         // 微信等webview中无法修改title的问题
         //需要jQuery
@@ -23,6 +26,60 @@ angular.module('p2pSiteMobApp')
                 $iframe.off('load').remove();
             }, 0);
         }).appendTo($body);
+      },
+
+
+      /**
+       * 判断浏览器手机版本
+       */
+      browser: function(){
+
+        return {
+
+          // Windows Phone's UA also contains "Android"
+          isAndroid : function(){
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            return /android/i.test(userAgent) && !/windows phone/i.test(userAgent);
+          },
+
+          // iOS detection from: http://stackoverflow.com/a/9039885/177710
+          isIos : function(){
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            return /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+          },
+
+          isWinPhone: function(){
+            return /windows phone/i.test(userAgent);
+          }
+        }
+
+      },
+
+      /**
+       * 获取和后端对应的deviceCode
+       */
+      deviceCode: function () {
+
+        var deviceCode = 0;
+
+        if(browser.isAndroid){
+          deviceCode = 2;
+        }
+
+        if(browser.isWeixin && browser.isAndroid){
+          deviceCode = 3;
+        }
+
+        if(browser.isIos){
+          deviceCode = 5;
+        }
+
+        if(browser.isWeixin && browser.isIos){
+          deviceCode = 6;
+        }
+
+        return deviceCode;
+
       }
 
     };
