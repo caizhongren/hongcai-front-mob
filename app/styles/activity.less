@@ -1192,11 +1192,27 @@ input::-webkit-inner-spin-button {
   .font-red44 {
     color: #d82344;
   }
+  .bg-red44 {
+    background-color: #d82344;
+  }
+  .bg-red2f {
+    background-color: #cb214f;
+  }
   .font-red4e {
     color: #cb214e;
   }
   .font-grey {
     color: #c7bcc8;
+  }
+  .bg-greyc8 {
+    background-color: #c7bcc8;
+  }
+  .rule-line {
+    margin-top: .5rem;
+    display: inline-block;
+    height: 1px;
+    width: 79%;
+    border-top: 1px solid #fee14e;
   }
   .top-img {
     width: 100%;
@@ -1212,6 +1228,9 @@ input::-webkit-inner-spin-button {
 // 新手活动媒体查询
 @media (min-width: 320px) {
   .novice-landing {
+    .rule-line {
+      margin-top: .8rem;
+    }
     .top-img {
       height: 208px;
       p {
@@ -1335,18 +1354,25 @@ input::-webkit-inner-spin-button {
           .detail-right {
             width: 30%;
             img {
-              margin-top: 3rem;
+              margin-top: 0rem;
+            }
+            span {
+              top: .8rem;
+              right: 0;
             }
             .process{
               position: relative;
-              margin: 1rem 0 2rem;
-              width: 85%;
-              height: 1px;
+              margin: 1.5rem 0 1.2rem 0rem;
+              width: 64%;
+              height: 3px;
               background-color: #b7b6b6;
               border-radius: 3px;
               -webkit-border-radius: 3px;
               display: inline-block;
               float: left;
+              .type-img {
+                height: 3px;
+              }
             }
           }
         }
@@ -1436,6 +1462,9 @@ input::-webkit-inner-spin-button {
               margin-top: 0;
             }
           }
+          .detail-right {
+            margin-left: 1rem;
+          }
         }
       }
     }
@@ -1513,7 +1542,8 @@ input::-webkit-inner-spin-button {
         }
         .nvc-detail {
           padding-top: 1.5rem;
-          .detail-left {
+          .detail-right {
+            margin-left: 2rem;
           }
         }
       }
@@ -1532,6 +1562,9 @@ input::-webkit-inner-spin-button {
 }
 @media (min-width: 411px) {
   .novice-landing {
+    .rule-line {
+      margin-top: 1rem;
+    }
     .top-img {
       height: 268px;
       p {
@@ -1604,10 +1637,7 @@ input::-webkit-inner-spin-button {
             }
           }
           .detail-right {
-            img {
-              margin-top: 3.5rem;
-            }
-
+            margin-left: 3.5rem;
           }
         }
       }

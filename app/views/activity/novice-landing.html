@@ -18,10 +18,10 @@
       <img src="/images/activity/cash-388.png" class="display-inb margin-l-2" width="22%">
     </div>
     <div class="take-cash">
-      <img src="/images/activity/take-cash.png" class="display-bl margin-auto" width="58%">
+      <img src="/images/activity/take-cash.png" class="display-bl margin-auto" width="58%" ui-sref="root.login">
     </div>
     <div class="cash-rules ft-white padding-l-1 padding-r-1">
-      <p class="margin-b-0p5"><strong>活动规则：</strong></p>
+      <p class="margin-b-0p5"><strong>活动规则：</strong><span class="rule-line fr"></span></p>
       <p>1、活动期间，新用户注册即送688元现金。</p>
       <p>2、用户投资满足相关条件时，可提取对应现金。</p>
       <p>3、奖励详情及提现规则请在"我的账户——我的奖金"中查看。</p>
@@ -57,9 +57,9 @@
           <p class="">197.26元+73.97元=271.23元</p>
         </div>
       </div>
-      <div><img src="/images/activity/invest1.png" class="display-bl margin-auto margin-t-1p5 margin-b-1" width="60%"></div>
+      <div><img src="/images/activity/invest1.png" class="display-bl margin-auto margin-t-1p5 margin-b-1" width="60%" ui-sref="root.login"></div>
       <div class="rate-rules ft-white padding-l-1">
-        <p><strong>活动规则：</strong></p>
+        <p><strong>活动规则：</strong><span class="rule-line fr"></span></p>
         <p class="margin-t-1">1、注册立领3%加息券一张，有效期为15天；</p>
         <p>2、加息券仅限投资宏金保项目，不可叠加使用；</p>
         <p>3、加息券详细信息及使用规则请在“我的账户——我的加息券”中查看；</p>
@@ -78,25 +78,26 @@
     <div class="novice-project padding-l-1">
       <div class="nvc-head">
         <p class="fl margin-b-0 font-red44"><strong>新手标</strong></p>
-        <span class="font-red44 display-inb margin-l-0p5 padding-l-0p5 padding-r-0p5">100元起投，无投资上限</span>
+        <span class="font-red44 display-inb margin-l-0p5 padding-l-0p5 padding-r-0p5">{{newbieBiaoProject.minInvest}}元起投，无投资上限</span>
       </div>
       <div class="nvc-detail">
         <div class="detail-left fl">
           <p class="margin-b-0 display-inb ft-1p2">
-            <span class="font-red4e ft-3 margin-r-0p5">14</span>
+            <span class="font-red4e ft-3 margin-r-0p5">{{newbieBiaoProject.annualEarnings}}</span>
             <span class="display-inb width62 font-grey">预计年化收益 %</span>
           </p>
-          <p class="ft-1p2 margin-b-0 font-grey">项目期限28天，可投资金额18600元</p>
+          <p class="ft-1p2 margin-b-0 font-grey">项目期限{{newbieBiaoProject.projectDays}}天，可投资金额{{newbieBiaoProjectInvestNum}}元</p>
         </div>
-        <div class="fr padding-r-1 detail-right">
+        <div class="fl detail-right position-re">
           <div>
             <div class="process">
-              <div class="progress-bar bg-orange0" ng-class="{'bg-orange0':newbieBiaoProject.status === 7 || newbieBiaoProject.status === 6 ,'bg-grey5':newbieBiaoProject.status === 11 || newbieBiaoProject.status === 9 || newbieBiaoProject.status === 10}" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:8.25%;">
+              <div class="progress-bar bg-red2f" ng-class="{'bg-red2f':newbieBiaoProject.status === 7 || newbieBiaoProject.status === 6 ,'bg-greyc8':newbieBiaoProject.status === 11 || newbieBiaoProject.status === 9 || newbieBiaoProject.status === 10}" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{(newbieBiaoProject.soldStock + newbieBiaoProject.occupancyStock) * newbieBiaoProject.increaseAmount / newbieBiaoProject.total * 100}}%;">
                 <div class="type-img"></div>
               </div>
             </div>
+            <span class="ft-1p2 font-grey position-ab">{{(newbieBiaoProject.soldStock + newbieBiaoProject.occupancyStock) * newbieBiaoProject.increaseAmount / newbieBiaoProject.total * 100}}%</span>
           </div>
-          <img src="/images/activity/invest-purple.png" width="95%">
+          <img src="/images/activity/invest-purple.png" width="95%" ui-sref="root.main">
         </div>
       </div>
     </div>
