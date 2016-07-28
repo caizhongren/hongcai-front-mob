@@ -31,6 +31,7 @@
     <li class="text-center margin-0" ng-class="{'active':status === 1}" ng-click="selectStat(1)">可提现</li>
     <li class="text-center margin-0" ng-class="{'active':status === 2}" ng-click="selectStat(2)">已提现</li>
   </ul>
+  <!-- 可提 -->
 	<div class="outer-panel margin-b-1" ng-if="status === 1 && cashCoupons.length >0" ng-repeat="item in cashCoupons">
 		<div>
   		<img src="/images/user-center/cash-coupon01.png">
@@ -46,11 +47,7 @@
   		</div>
 		</div>
 	</div>
-	<div class="no-cash margin-t-2 text-center" ng-show="status === 1 && !loading && (cashCoupons.length <= 0)">
-		<img src="/images/user-center/cash-coupon03.png" alt="">
-		<p>暂无可提奖金噢~</p>
-		<p>如何获取 &gt;&gt;</p>
-	</div>
+	<!-- 已提 -->
 	<div class="outer-panel margin-b-1" ng-if="status === 2 && cashCoupons.length >0" ng-repeat="item in cashCoupons">
 		<div>
   		<img src="/images/user-center/cash-coupon01.png">
@@ -58,16 +55,24 @@
   			<p class="margin-b-0 top-margin ft-4"><small class="ft-1p6">￥</small>{{item.value}}</p>
   		</div>
   		<div class="inner-panel-center1">
-  			<p class="margin-b-0"><span class="fl">投资项目：</span><span class="col-2">宏金保</span></p>
+  			<p class="margin-b-0"><span class="fl">投资项目：</span><span class="col-2">{{item.order.projectName}}</span></p>
   			<p class="margin-b-0">使用时间：{{item.usedTime | date: 'yyyy-MM-dd'}}</p>
   			<img class="received" src="/images/user-center/cash-coupon02.png" alt="">
   		</div>
 		</div>
 	</div>
-  <div class="no-cash margin-t-2 text-center" ng-show="status === 2 && !loading && (cashCoupons.length <=0)">
+	<!-- 未使用现金券  -->
+  <!-- 暂无可提现奖金 & 还没有提取过-->
+	<div class="no-cash margin-t-3 text-center" ng-show="(status === 1 || status === 2 ) && (!loading && (cashCoupons.length <= 0))">
+		<img src="/images/user-center/cash-coupon03.png" alt="">
+		<p ng-show="status === 1">暂无可提奖金噢~</p>
+		<p ng-show="status === 1">如何获取 &gt;&gt;</p>
+		<p ng-show="status === 2">您还没有提取过奖金~</p>
+	</div>
+  <!-- <div class="no-cash margin-t-2 text-center" ng-show="status === 2 && !loading && (cashCoupons.length <=0)">
   	<img src="/images/user-center/cash-coupon03.png" alt="">
   	<p>您还没有提取过奖金~</p>
-	</div>
+  	</div> -->
 </section>
 <div class="cash">
 	<!-- 公用的弹框蒙层 -->
