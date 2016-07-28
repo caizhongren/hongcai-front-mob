@@ -84,13 +84,19 @@
         <div class="detail-left fl">
           <p class="margin-b-0 display-inb ft-1p2">
             <span class="font-red4e ft-3 margin-r-0p5">14</span>
-            <span class="display-inb width62">预计年化收益 %</span>
+            <span class="display-inb width62 font-grey">预计年化收益 %</span>
           </p>
-          <p class="ft-1p2 margin-b-0">项目期限28天，可投资金额18600元</p>
+          <p class="ft-1p2 margin-b-0 font-grey">项目期限28天，可投资金额18600元</p>
         </div>
-        <div class="fr">
-          <div></div>
-          <div><img src="/images/activity/invest-purple.png" width="28%"></div>
+        <div class="fr padding-r-1 detail-right">
+          <div>
+            <div class="process">
+              <div class="progress-bar bg-orange0" ng-class="{'bg-orange0':newbieBiaoProject.status === 7 || newbieBiaoProject.status === 6 ,'bg-grey5':newbieBiaoProject.status === 11 || newbieBiaoProject.status === 9 || newbieBiaoProject.status === 10}" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:8.25%;">
+                <div class="type-img"></div>
+              </div>
+            </div>
+          </div>
+          <img src="/images/activity/invest-purple.png" width="95%">
         </div>
       </div>
     </div>
