@@ -761,7 +761,20 @@ p2pSiteMobApp
           title: '2%加息券，投资即送！'
         }
       })
-
+      //新手活动落地页
+      .state('root.activity.novice-landing', {
+        url: '/novice-activity?act&f',
+        views: {
+          '': {
+            templateUrl: 'views/activity/novice-landing.html',
+            controller: 'NoviceCtrl',
+            controllerUrl: 'scripts/controllers/activity/novice-landing-ctrl'
+          }
+        },
+        data: {
+          title: '注册立拿688元现金+3%加息券'
+        }
+      })
       // //邀请活动落地落地页
       // .state('root.activity.invite', {
       //   url: '/invite',
@@ -1023,7 +1036,7 @@ p2pSiteMobApp
       if(toState.name !== 'root.project'){
         Utils.setTitle($rootScope.headerTitle);
       }
-      
+
       var path = $location.path().split('/')[1];
       $rootScope.showPath = path;
       $rootScope.showTitle = titleMap[path];
