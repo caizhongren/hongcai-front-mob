@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('NewProjectDetailCtrl', function($scope,$timeout, $state, $rootScope, $stateParams, $location,$interval, Restangular, projectStatusMap, ProjectUtils, Utils) {
+  .controller('NewProjectDetailCtrl', function(ipCookie, $scope, $timeout, $state, $rootScope, $stateParams, $location,$interval, Restangular, projectStatusMap, ProjectUtils, Utils) {
     // 项目详情页面
     var number = $stateParams.number;
     if (!$stateParams.number) {
@@ -36,7 +36,7 @@ angular.module('p2pSiteMobApp')
       project.availableAmount = project.total - (project.soldStock + project.occupancyStock) * project.increaseAmount;
 
       ProjectUtils.projectTimedown(project, project.createTime);
-      
+
 
       /**
        * 新手标判断
@@ -53,13 +53,13 @@ angular.module('p2pSiteMobApp')
               $scope.msg = '仅限首次投资后一周内参与';
               $scope.showMsg();
             }
-            
+
         });
 
       }
 
       /**
-       * 可用加息券
+       * 可用券
        */
       $scope.increaseRateCoupons = [];
       Restangular.one('projects').one('investIncreaseRateCoupon').get({
@@ -70,6 +70,7 @@ angular.module('p2pSiteMobApp')
         $scope.selectIncreaseRateCoupon = $scope.increaseRateCoupons[0];
         $scope.project.investAmount =  1000 ;
       });
+
     });
 
     $rootScope.tofinishedOrder();
@@ -78,7 +79,7 @@ angular.module('p2pSiteMobApp')
      * 下单并支付
      */
     $scope.toInvest = function(project) {
-      
+
       if($scope.msg || project.investAmount < project.minInvest){
         return;
       }
@@ -105,7 +106,7 @@ angular.module('p2pSiteMobApp')
       });
     };
 
-    
+
     $scope.showErrorMsg = false;
     $scope.$watch('project.investAmount', function(newVal, oldVal){
       if(!$rootScope.isLogged){
@@ -129,7 +130,7 @@ angular.module('p2pSiteMobApp')
           $scope.msg = '账户余额不足，请先充值';
         } else if(newVal % $scope.project.increaseAmount){
           $scope.msg = '投资金额必须为' + $scope.project.increaseAmount + '的整数倍';
-          
+
         }
       }
 
@@ -152,11 +153,13 @@ angular.module('p2pSiteMobApp')
     }
 
     //选择加息券
+    $scope.cashNum = ipCookie('cashNum') || '';
+    $scope.rateNum = ipCookie('rateNum') || '';
     $scope.showSelectIncreaseRateCoupon = false;
     $scope.selectCoupon = function(coupon){
         $scope.selectIncreaseRateCoupon = coupon;
         $scope.showSelectIncreaseRateCoupon = false;
-        $scope.increaseRateProfit = $scope.calcProfit(coupon.rate);
+        $scope.increaseRateProfit = $scope.calcProfit(coupon.value);
         $scope.resetInitLimit();
     }
     //不使用加息券
@@ -173,7 +176,7 @@ angular.module('p2pSiteMobApp')
       if($rootScope.timeout){
         $state.go('root.userCenter.recharge');
       }
-      
+
     }
 
     //计算预计收益
@@ -189,7 +192,7 @@ angular.module('p2pSiteMobApp')
       $scope.project.investAmount = $scope.project.investAmount ? $scope.project.investAmount + offset : offset;
       $scope.project.investAmount = $scope.project.investAmount < 100 ? 100 : $scope.project.investAmount;
     }
-   
+
     /**
      * 虚拟键盘弹出遮住输入框问题
      */

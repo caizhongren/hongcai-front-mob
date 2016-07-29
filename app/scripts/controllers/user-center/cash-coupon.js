@@ -5,7 +5,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-.controller('CashCouponCtrl', function ($scope, Restangular) {
+.controller('CashCouponCtrl', function ($scope, $rootScope, $state, Restangular, ipCookie) {
 	/**
 	 * 默认头像
 	 */
@@ -16,7 +16,7 @@ angular.module('p2pSiteMobApp')
 	$scope.voucher = Restangular.one('users').one('0/userInviteNum').get().$object;
 
 	$scope.couponStatis = Restangular.one('users').one('0/increaseRateCoupon').get().$object;
-	
+
 	/*使用规则*/
 	$scope.showRules = false;
 	$scope.showRule = function(){
@@ -33,7 +33,7 @@ angular.module('p2pSiteMobApp')
 
 	/*现金券查询*/
 	$scope.status = 1;
-	
+  $scope.cashCoupons = [];
 	/*解决闪烁问题*/
 	$scope.loading = true;
 
@@ -48,19 +48,29 @@ angular.module('p2pSiteMobApp')
 			$scope.loading = false;
 			for (var i = 0; i < response.data.length; i++) {
 				$scope.cashCoupons.push(response.data[i]);
+
+
 			}
 		});
 	}
 	$scope.selectStat($scope.status);
+  $scope.toProjectList = function($index){
+    if($rootScope.timeout){
+      $state.go('root._main-list-temp');
+    }
+    // console.log($scope.cashCoupons[$index].number);
+    ipCookie('cashNum', $scope.cashCoupons[$index].number);
+  }
+
 
 	/*根据屏幕高度设置内容高度*/
-	angular.element('document').ready(function(){  
-		//初始化宽度、高度  
+	angular.element('document').ready(function(){
+		//初始化宽度、高度
 		angular.element(".cash-body").css("min-height",angular.element(window).height()-"220"+"px");
-		//当文档窗口发生改变时 触发  
-		angular.element(window).resize(function(){  
+		//当文档窗口发生改变时 触发
+		angular.element(window).resize(function(){
 		  angular.element(".cash-body").css("min-height",angular.element(window).height()-"220"+"px");
 		});
   });
 });
- 
+

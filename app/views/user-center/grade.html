@@ -44,7 +44,7 @@
 					    			<p class="padding-l-1 middle-margin" ng-if="item.projectDays > 0">•适用宏金保&ge;30天项目</p>
 					    			<p class="margin-b-0 padding-l-1">•有效期至{{item.endTime | date:"yyyy-MM-dd"}}</p>
 					    		</div>
-					    		<div class="inner-panel-right" ui-sref="root.main">
+					    		<div class="inner-panel-right" ng-click="toProjectList($index)">
 					    			<span>立</span>
 					    			<span>即</span>
 					    			<span>使</span>
