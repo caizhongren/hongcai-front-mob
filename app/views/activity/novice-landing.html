@@ -97,7 +97,7 @@
             </div>
             <span class="ft-1p2 font-grey position-ab">{{(newbieBiaoProject.soldStock + newbieBiaoProject.occupancyStock) * newbieBiaoProject.increaseAmount / newbieBiaoProject.total * 100 | number:1}}%</span>
           </div>
-          <img src="/images/activity/invest-purple.png" width="95%" ui-sref="root.main">
+          <img src="/images/activity/invest-purple.png" width="95%" ui-sref="root.project-detail({number: newbieBiaoProject.number})">
         </div>
       </div>
     </div>
