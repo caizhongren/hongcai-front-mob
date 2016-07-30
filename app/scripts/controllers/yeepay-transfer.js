@@ -1,6 +1,6 @@
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('YeepayTransferCtrl', function($scope, $state, $rootScope, $stateParams, restmod, DEFAULT_DOMAIN, config) {
+  .controller('YeepayTransferCtrl', function($scope, $state, $rootScope, $stateParams, restmod, DEFAULT_DOMAIN, config, Utils) {
     function newForm() {
       var f = document.createElement('form');
       document.body.appendChild(f);
@@ -52,7 +52,8 @@ angular.module('p2pSiteMobApp')
         var rechargeModel = restmod.model($scope.HongcaiUser + '/recharge');
         rechargeModel.$create({
           'amount': $scope.number,
-          'from': 2
+          'from': 2,
+          'device': Utils.deviceCode
         }).$then(function(response) {
 
           redirectToYeepay('toRecharge', response);
@@ -63,7 +64,8 @@ angular.module('p2pSiteMobApp')
         var withdrawModel = restmod.model($scope.HongcaiUser + '/withdraw');
         withdrawModel.$create({
           'amount': $scope.number,
-          'from': 2
+          'from': 2,
+          'device': Utils.deviceCode
         }).$then(function(response) {
           redirectToYeepay('toWithdraw', response);
         });
@@ -72,17 +74,19 @@ angular.module('p2pSiteMobApp')
 
         var bindBankcardModel = restmod.model($scope.HongcaiUser + '/bindBankcard');
         bindBankcardModel.$create({
-          'from': 2
+          'from': 2,
+          'device': Utils.deviceCode
         }).$then(function(response) {
           redirectToYeepay('toBindBankCard', response);
         });
 
       } else if ($scope.type === 'register') { // 开通易宝
-        var withdrawModel = restmod.model($scope.HongcaiUser + '/yeepayRegister');
-        withdrawModel.$create({
+        var yeepayRegisterModel = restmod.model($scope.HongcaiUser + '/yeepayRegister');
+        yeepayRegisterModel.$create({
           'realName': $scope.realName,
           'idCardNo': $scope.idNo,
-          'from': 2
+          'from': 2,
+          'device': Utils.deviceCode
         }).$then(function(response) {
           redirectToYeepay('toRegister', response);
         });
@@ -96,7 +100,8 @@ angular.module('p2pSiteMobApp')
 
         var autoTransfer = restmod.model($scope.HongcaiUser + '/authorizeAutoTransfer');
         autoTransfer.$create({
-          'from': 2
+          'from': 2,
+          'device': Utils.deviceCode
         }).$then(function(response) {
           redirectToYeepay('toAuthorizeAutoTransfer', response);
         });
