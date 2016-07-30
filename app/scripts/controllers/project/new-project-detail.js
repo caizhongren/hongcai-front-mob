@@ -90,7 +90,7 @@ angular.module('p2pSiteMobApp')
       Restangular.one('projects').one(number+'/users/' + $rootScope.hasLoggedUser.id).post('investment', {
         investAmount: project.investAmount,
         couponNumber: couponNumber,
-        device: Utils.deviceCode
+        device: Utils.deviceCode()
       }).then(function(order){
         // 重复下单后，response.number为undefined
         if (order && order.ret !== -1) {
