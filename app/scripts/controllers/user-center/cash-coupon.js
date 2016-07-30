@@ -58,8 +58,8 @@ angular.module('p2pSiteMobApp')
     if($rootScope.timeout){
       $state.go('root._main-list-temp');
     }
-    // console.log($scope.cashCoupons[$index].number);
     ipCookie('cashNum', $scope.cashCoupons[$index].number);
+    ipCookie('cashType', $scope.cashCoupons[$index].type);
   }
 
 
