@@ -62,24 +62,23 @@ angular.module('p2pSiteMobApp')
 
         var deviceCode = 0;
 
-        if(browser.isAndroid){
+        if(this.browser().isAndroid()){
           deviceCode = 2;
         }
 
-        if(browser.isWeixin && browser.isAndroid){
+        if(this.isWeixin() && this.browser().isAndroid()){
           deviceCode = 3;
         }
 
-        if(browser.isIos){
+        if(this.browser().isIos()){
           deviceCode = 5;
         }
 
-        if(browser.isWeixin && browser.isIos){
+        if(this.isWeixin() && this.browser().isIos()){
           deviceCode = 6;
         }
 
         return deviceCode;
-
       }
 
     };

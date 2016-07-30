@@ -53,7 +53,7 @@ angular.module('p2pSiteMobApp')
         rechargeModel.$create({
           'amount': $scope.number,
           'from': 2,
-          'device': Utils.deviceCode
+          'device': Utils.deviceCode()
         }).$then(function(response) {
 
           redirectToYeepay('toRecharge', response);
@@ -65,7 +65,7 @@ angular.module('p2pSiteMobApp')
         withdrawModel.$create({
           'amount': $scope.number,
           'from': 2,
-          'device': Utils.deviceCode
+          'device': Utils.deviceCode()
         }).$then(function(response) {
           redirectToYeepay('toWithdraw', response);
         });
@@ -75,7 +75,7 @@ angular.module('p2pSiteMobApp')
         var bindBankcardModel = restmod.model($scope.HongcaiUser + '/bindBankcard');
         bindBankcardModel.$create({
           'from': 2,
-          'device': Utils.deviceCode
+          'device': Utils.deviceCode()
         }).$then(function(response) {
           redirectToYeepay('toBindBankCard', response);
         });
@@ -86,7 +86,7 @@ angular.module('p2pSiteMobApp')
           'realName': $scope.realName,
           'idCardNo': $scope.idNo,
           'from': 2,
-          'device': Utils.deviceCode
+          'device': Utils.deviceCode()
         }).$then(function(response) {
           redirectToYeepay('toRegister', response);
         });
@@ -101,7 +101,7 @@ angular.module('p2pSiteMobApp')
         var autoTransfer = restmod.model($scope.HongcaiUser + '/authorizeAutoTransfer');
         autoTransfer.$create({
           'from': 2,
-          'device': Utils.deviceCode
+          'device': Utils.deviceCode()
         }).$then(function(response) {
           redirectToYeepay('toAuthorizeAutoTransfer', response);
         });

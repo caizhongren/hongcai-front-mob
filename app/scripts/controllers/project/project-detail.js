@@ -184,7 +184,7 @@ angular.module('p2pSiteMobApp')
             // fundsProjects.$find(number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
             investAmount: project.investAmount,
             couponNumber: couponNumber,
-            device: Utils.deviceCode
+            device: Utils.deviceCode()
           }).$then(function(order) {
             // 重复下单后，response.number为undefined
             if (order.ret !== -1) {
