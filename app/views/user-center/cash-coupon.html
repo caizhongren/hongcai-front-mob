@@ -43,7 +43,7 @@
   			<p class="margin-b-0" ng-if="item.projectDays <=0">期限要求：无</p>
   			<p class="margin-b-0">投资要求：&ge;{{item.minInvestAmount}}元</p>
   			<p class="margin-b-0">有效期：{{item.createTime | date :'yyyy.MM.dd'}}-{{item.endTime | date :'yyyy.MM.dd'}}</p>
-  			<p class="withdraw margin-b-0 pull-right" ui-sref="root._main-list-temp">马上提现</p>
+  			<p class="withdraw margin-b-0 pull-right" ng-click="toProjectList($index)">马上提现</p>
   		</div>
 		</div>
 	</div>

@@ -1,13 +1,13 @@
 <!-- 新手活动落地页 -->
 <div class="novice-landing">
   <div class="position-re top-img">
-    <p class="deadline">2016年8月1日—2016年8月31日</p>
+    <!-- <p class="deadline ft-1p2">2016年8月1日—2016年8月31日</p> -->
   </div>
   <!-- 注册拿现金部分 -->
   <div class="part-one">
-    <div class="tittle ft-white position-re">
+    <div class="tittle ft-white">
       <img src="/images/activity/tittle-bg.png" width="100%" class="display-bl padding-t-1">
-      <p class="position-ab text-center">688元现金 · 注册立拿</p>
+      <p class="text-center">688元现金 · 注册立拿</p>
     </div>
     <div class="cash-list margin-t-4">
       <img src="/images/activity/cash-10.png" class="display-inb margin-l-1p5 margin-r-2" width="22%">
@@ -18,7 +18,7 @@
       <img src="/images/activity/cash-388.png" class="display-inb margin-l-2" width="22%">
     </div>
     <div class="take-cash">
-      <img src="/images/activity/take-cash.png" class="display-bl margin-auto" width="58%" ui-sref="root.login">
+      <img src="/images/activity/take-cash.png" class="display-bl margin-auto" width="58%" ui-sref="root.register">
     </div>
     <div class="cash-rules ft-white padding-l-1 padding-r-1">
       <p class="margin-b-0p5"><strong>活动规则：</strong><span class="rule-line fr"></span></p>
@@ -29,16 +29,16 @@
   </div>
   <!-- 注册领加息券部分 -->
   <div class="part-next padding-t-3">
-    <div class="tittle ft-white position-re">
+    <div class="tittle ft-white">
       <img src="/images/activity/tittle-bg.png" width="100%" class="display-bl padding-t-1">
-      <p class="position-ab text-center">3%加息券 · 注册立领</p>
+      <p class=" text-center">3%加息券 · 注册立领</p>
     </div>
     <div class="rate-example">
       <div class="example-head">
         <p class="ft-yellow0 margin-b-0  text-center"><strong class="margin-b-0">注册即获3%加息券一张，可用于投资宏金保项目</strong></p>
       </div>
       <div class="describe ft-white">
-        <p>举个栗子：</p>
+        <p class="padding-t-0p5">举个栗子：</p>
         <p>王先生在7月6日注册，使用获赠的加息券投资宏金保30天项目3万元，王先生本次投资将获得271.23元：</p>
       </div>
       <div class="show-rate margin-t-3 ft-white text-center">
@@ -57,7 +57,7 @@
           <p class="">197.26元+73.97元=271.23元</p>
         </div>
       </div>
-      <div><img src="/images/activity/invest1.png" class="display-bl margin-auto margin-t-1p5 margin-b-1" width="60%" ui-sref="root.login"></div>
+      <div><img src="/images/activity/invest1.png" class="display-bl margin-auto margin-t-1p5 margin-b-1" width="60%" ui-sref="root.register"></div>
       <div class="rate-rules ft-white padding-l-1">
         <p><strong>活动规则：</strong><span class="rule-line fr"></span></p>
         <p class="margin-t-1">1、注册立领3%加息券一张，有效期为15天；</p>
@@ -70,9 +70,9 @@
   </div>
   <!-- 新手专享部分 -->
   <div class="part-three ft-1p4 padding-t-3">
-    <div class="tittle ft-white position-re">
+    <div class="tittle ft-white">
       <img src="/images/activity/tittle-bg.png" width="100%" class="display-bl padding-t-1">
-      <p class="position-ab text-center margin-b-0 ft-white">14%收益 · 新手专享</p>
+      <p class="text-center margin-b-0 ft-white">14%收益 · 新手专享</p>
     </div>
     <p class="ft-yellow0 ft-1p2 text-center margin-t-2 margin-b-2">用户首次投资后一周内均可参与，不限金额，不限次数！</p>
     <div class="novice-project padding-l-1">
@@ -97,15 +97,15 @@
             </div>
             <span class="ft-1p2 font-grey position-ab">{{(newbieBiaoProject.soldStock + newbieBiaoProject.occupancyStock) * newbieBiaoProject.increaseAmount / newbieBiaoProject.total * 100 | number:1}}%</span>
           </div>
-          <img src="/images/activity/invest-purple.png" width="95%" ui-sref="root.main">
+          <img src="/images/activity/invest-purple.png" width="95%" ui-sref="root.project-detail({number: newbieBiaoProject.number})">
         </div>
       </div>
     </div>
     <!-- 增信部分 -->
     <div class="padding-l-1 padding-r-1 margin-t-2">
-      <div class="tittle ft-white position-re">
+      <div class="tittle ft-white">
         <img src="/images/activity/tittle-bg.png" width="100%" class="display-bl padding-t-1">
-        <p class="position-ab text-center">宏财理财 · 关于我们</p>
+        <p class="text-center">宏财理财 · 关于我们</p>
       </div>
       <div class="landing-bottom margin-t-4">
         <ul class="pagging-l-1">

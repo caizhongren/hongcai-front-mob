@@ -9,6 +9,7 @@
  */
 var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'angular-loading-bar',
+  // 'ngCookies',
   'ngAnimate',
   // 'ngTouch',
   'famous.angular',

@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('GradeCtrl',function ($scope, $state, $rootScope, $location, $stateParams, HongcaiUser) {
+  .controller('GradeCtrl',function ($scope, $state, $rootScope, $location, $stateParams, HongcaiUser, ipCookie) {
     $scope.page = 1;
     $scope.pageSize = 4;
     $scope.datas = [];
@@ -27,7 +27,7 @@ angular.module('p2pSiteMobApp')
     }, {
       title: '邀请',
     }];
-    
+
     $scope.subtabs = [{
       titles: '未使用',
     }, {
@@ -175,6 +175,17 @@ angular.module('p2pSiteMobApp')
      */
     $scope.goInviteLanding = function(){
       $location.url('/activity/invite');
+    }
+
+    /**
+     *跳转到列表页
+     */
+    $scope.toProjectList = function($index){
+      if($rootScope.timeout){
+        $state.go('root._main-list-temp');
+      }
+      console.log($scope.datas[$index].number);
+      ipCookie('rateNum',$scope.datas[$index].number);
     }
 
   });
