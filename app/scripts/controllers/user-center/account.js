@@ -10,17 +10,19 @@
 angular.module('p2pSiteMobApp')
 
 .controller('AccountCtrl', function ($scope, $state, DEFAULT_DOMAIN, Restangular) {
-    
+
     /**
      * 默认头像
      */
     $scope.userHeadImgUrl = '/images/user-center/avatar.png';
 
     $scope.userAccount = Restangular.one('users').one('0/account').get().$object;
-    
+
     $scope.voucher = Restangular.one('users').one('0/userInviteNum').get().$object;
 
     $scope.couponStatis = Restangular.one('users').one('0/increaseRateCoupon').get().$object;
+
+    $scope.unGotCash = Restangular.one('cashCoupons').one('stat').get().$object;
 
     /**
      * 推荐项目
