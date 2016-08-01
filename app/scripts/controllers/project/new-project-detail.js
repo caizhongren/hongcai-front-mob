@@ -127,7 +127,9 @@ angular.module('p2pSiteMobApp')
           $scope.msg = '投资金额必须小于' + $scope.availableAmount;
         }else if(newVal > $rootScope.account.balance){
           $scope.msg = '账户余额不足，请先充值';
-        } else if(newVal % $scope.project.increaseAmount){
+        } else if(newVal < $scope.project.minInvest ){
+          $scope.msg = '投资金额必须大于' + $scope.project.minInvest;
+        } else if(newVal % $scope.project.increaseAmount !==0 ){
           $scope.msg = '投资金额必须为' + $scope.project.increaseAmount + '的整数倍';
         }
         $scope.showCashMsg(newVal);
