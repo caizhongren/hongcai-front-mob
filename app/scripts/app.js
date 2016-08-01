@@ -852,10 +852,13 @@ p2pSiteMobApp
   .run(function($rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, $uibModal, ipCookie, restmod, config, Restangular, URLService, Utils) {
     // if ('addEventListener' in document) {
         // document.addEventListener('DOMContentLoaded', function() {
-            FastClick.attach(document.body);
+        if(!Utils.browser().isAndroid()){
+          FastClick.attach(document.body);
+        }
+            
         // }, false);
     // }
-    
+
     Restangular.setBaseUrl('/hongcai/rest');
     Restangular.setDefaultHeaders({
       'Content-Type': 'application/json'
