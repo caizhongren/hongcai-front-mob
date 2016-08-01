@@ -60,19 +60,23 @@ angular.module('p2pSiteMobApp')
        * 可用券
        */
       $scope.increaseRateCoupons = [];
+      $scope.selectIncreaseRateCoupon = [];
       Restangular.one('projects').one('investIncreaseRateCoupon').get({
         projectId : $scope.project.id,
         amount : project.availableAmount
       }).then(function(response) {
         $scope.increaseRateCoupons = response;
-       /* if($scope.cashType === null && $scope.rateType ===null){
-          $scope.selectIncreaseRateCoupon = $scope.increaseRateCoupons[0];
-        }else{
-          $scope.selectIncreaseRateCoupon = $scope.increaseRateCoupons[0];
-        }*/
-
-        $scope.selectIncreaseRateCoupon = $scope.cashType ===1 ? $scope.increaseRateCoupons[1] : $scope.increaseRateCoupons[0];
-        $scope.selectIncreaseRateCoupon = $scope.rateType ===1 ? $scope.increaseRateCoupons[1] : $scope.increaseRateCoupons[0];
+        for (var i = 0; i < response.length; i++) {
+          if($scope.cashType === '' && $scope.rateType === ''){
+            $scope.selectIncreaseRateCoupon = response[0];
+          }
+          if($scope.rateNum == response[i].number){
+            $scope.selectIncreaseRateCoupon = response[i];
+          }
+          if($scope.cashNum == response[i].number){
+            $scope.selectIncreaseRateCoupon = response[i];
+          }
+        }
         $scope.project.investAmount =  1000 ;
       });
 

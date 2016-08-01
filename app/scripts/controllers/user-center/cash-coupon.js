@@ -48,8 +48,6 @@ angular.module('p2pSiteMobApp')
 			$scope.loading = false;
 			for (var i = 0; i < response.data.length; i++) {
 				$scope.cashCoupons.push(response.data[i]);
-
-
 			}
 		});
 	}
