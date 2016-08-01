@@ -17,7 +17,7 @@ angular.module('p2pSiteMobApp')
     $scope.profit = 0;
     $scope.increaseRateProfit = 0;
     $scope.projectStatusMap = projectStatusMap;
-    $scope.unSelectCouponMsg = '暂无可用加息券';
+    $scope.unSelectCouponMsg = '暂无可用奖励';
     $scope.initLimit = 3;
     $scope.resetInitLimit = function(){
         $scope.initLimit = 3;
@@ -48,12 +48,10 @@ angular.module('p2pSiteMobApp')
             if(response.ret === -1){
               return;
             }
-
             if(!response.isOk){
               $scope.msg = '仅限首次投资后一周内参与';
               $scope.showMsg();
             }
-
         });
 
       }
@@ -67,7 +65,8 @@ angular.module('p2pSiteMobApp')
         amount : project.availableAmount
       }).then(function(response) {
         $scope.increaseRateCoupons = response;
-        $scope.selectIncreaseRateCoupon = $scope.increaseRateCoupons[0];
+        $scope.selectIncreaseRateCoupon = $scope.cashType ===1 ? $scope.increaseRateCoupons[1] : $scope.increaseRateCoupons[0];
+        $scope.selectIncreaseRateCoupon = $scope.rateType ===1 ? $scope.increaseRateCoupons[1] : $scope.increaseRateCoupons[0];
         $scope.project.investAmount =  1000 ;
       });
 
@@ -130,17 +129,30 @@ angular.module('p2pSiteMobApp')
           $scope.msg = '账户余额不足，请先充值';
         } else if(newVal % $scope.project.increaseAmount){
           $scope.msg = '投资金额必须为' + $scope.project.increaseAmount + '的整数倍';
-
         }
+        $scope.showCashMsg(newVal);
       }
 
       if($scope.project){
-         $scope.profit = $scope.calcProfit($scope.project.annualEarnings) || 0;
-         $scope.increaseRateProfit = $scope.selectIncreaseRateCoupon != null ? $scope.calcProfit($scope.selectIncreaseRateCoupon.rate) : 0;
+        $scope.profit = $scope.calcProfit($scope.project.annualEarnings) || 0;
+        if($scope.selectIncreaseRateCoupon.type ===1){
+          $scope.increaseRateProfit = $scope.selectIncreaseRateCoupon != null ? $scope.calcProfit($scope.selectIncreaseRateCoupon.value) : 0;
+        } else{
+          $scope.cashProfit = $scope.project.investAmount >= $scope.selectIncreaseRateCoupon.minInvestAmount ? $scope.selectIncreaseRateCoupon.value : 0;
+        }
       }
 
       $scope.showMsg();
     });
+
+    // 判断现金券投资金额显示错误提示
+    $scope.showCashMsg = function(investAmount){
+      if(investAmount < $scope.selectIncreaseRateCoupon.minInvestAmount){
+        $scope.msg = '投资金额不满足返现条件';
+        $scope.showMsg();
+      }
+      return;
+    }
 
     //显示信息
     $scope.showMsg = function(){
@@ -151,24 +163,31 @@ angular.module('p2pSiteMobApp')
         }, 2000);
       }
     }
-
-    //选择加息券
+    // 记录券的来源
     $scope.cashNum = ipCookie('cashNum') || '';
+    $scope.cashType = ipCookie('cashType') || '';
     $scope.rateNum = ipCookie('rateNum') || '';
+    $scope.rateType = ipCookie('rateType') || '';
+
+    //选择券
     $scope.showSelectIncreaseRateCoupon = false;
     $scope.selectCoupon = function(coupon){
         $scope.selectIncreaseRateCoupon = coupon;
         $scope.showSelectIncreaseRateCoupon = false;
         $scope.increaseRateProfit = $scope.calcProfit(coupon.value);
         $scope.resetInitLimit();
+        //选择现金券时判断投资金额是否满足条件
+        if(coupon.type ===2){
+          $scope.showCashMsg($scope.project.investAmount);
+        }
     }
-    //不使用加息券
+    //不使用券
     $scope.unUseIncreaseRateCoupon = function(){
         $scope.selectIncreaseRateCoupon = null;
         $scope.showSelectIncreaseRateCoupon = false;
         $scope.increaseRateProfit = 0;
         $scope.resetInitLimit();
-        $scope.unSelectCouponMsg = '不使用加息券';
+        $scope.unSelectCouponMsg = '暂不使用';
     }
 
     //跳转到充值页面
@@ -176,7 +195,6 @@ angular.module('p2pSiteMobApp')
       if($rootScope.timeout){
         $state.go('root.userCenter.recharge');
       }
-
     }
 
     //计算预计收益

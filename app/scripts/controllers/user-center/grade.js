@@ -184,8 +184,8 @@ angular.module('p2pSiteMobApp')
       if($rootScope.timeout){
         $state.go('root._main-list-temp');
       }
-      console.log($scope.datas[$index].number);
       ipCookie('rateNum',$scope.datas[$index].number);
+      ipCookie('rateType',$scope.datas[$index].type);
     }
 
   });
