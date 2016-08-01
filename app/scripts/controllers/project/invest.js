@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('InvestCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects, Restangular, restmod, DEFAULT_DOMAIN, config, projectStatusMap) {
+  .controller('InvestCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects, Restangular, restmod, DEFAULT_DOMAIN, config, projectStatusMap, Utils) {
     //宏金盈详情页面
     var number = $stateParams.number;
     if (!$stateParams.number) {
@@ -128,7 +128,8 @@ angular.module('p2pSiteMobApp')
           restmod.model(DEFAULT_DOMAIN + '/projects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
             // fundsProjects.$find(number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
             investAmount: project.investAmount,
-            couponNumber: couponNumber
+            couponNumber: couponNumber,
+            device: Utils.deviceCode()
           }).$then(function(order) {
             // 重复下单后，response.number为undefined
             if (order.ret !== -1) {
