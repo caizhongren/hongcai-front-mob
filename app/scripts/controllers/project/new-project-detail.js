@@ -65,6 +65,12 @@ angular.module('p2pSiteMobApp')
         amount : project.availableAmount
       }).then(function(response) {
         $scope.increaseRateCoupons = response;
+       /* if($scope.cashType === null && $scope.rateType ===null){
+          $scope.selectIncreaseRateCoupon = $scope.increaseRateCoupons[0];
+        }else{
+          $scope.selectIncreaseRateCoupon = $scope.increaseRateCoupons[0];
+        }*/
+
         $scope.selectIncreaseRateCoupon = $scope.cashType ===1 ? $scope.increaseRateCoupons[1] : $scope.increaseRateCoupons[0];
         $scope.selectIncreaseRateCoupon = $scope.rateType ===1 ? $scope.increaseRateCoupons[1] : $scope.increaseRateCoupons[0];
         $scope.project.investAmount =  1000 ;
@@ -213,6 +219,10 @@ angular.module('p2pSiteMobApp')
       $scope.project.investAmount = $scope.project.investAmount < 100 ? 100 : $scope.project.investAmount;
     }
 
+    //查看更多
+    $scope.viewMoreCoupon = function(){
+      $scope.initLimit = $scope.initLimit + 3 < $scope.increaseRateCoupons.length ? $scope.initLimit + 3 : $scope.increaseRateCoupons.length;
+    }
     /**
      * 虚拟键盘弹出遮住输入框问题
      */
