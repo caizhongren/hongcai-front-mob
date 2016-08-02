@@ -60,9 +60,9 @@ angular.module('p2pSiteMobApp')
     $scope.couponList = function(subtabIndex){
       var totalPage = 0;
       if(subtabIndex === 0){
-        totalPage = $scope.useTotalPage;
-      }else if(subtabIndex === 1){
         totalPage = $scope.unUseTotalPage;
+      }else if(subtabIndex === 1){
+        totalPage = $scope.useTotalPage;
       }
 
       if (totalPage < $scope.page){
@@ -80,11 +80,11 @@ angular.module('p2pSiteMobApp')
         status: status
       });
       couponsReq.$then(function(response){
-        if(response.$status === 'ok'){
+        if(response && response.ret !== -1){
           if(subtabIndex === 0){
-            $scope.useTotalPage = response.totalPage;
-          }else if(subtabIndex === 1){
             $scope.unUseTotalPage = response.totalPage;
+          }else if(subtabIndex === 1){
+            $scope.useTotalPage = response.totalPage;
           }
           $scope.totalPage = response.totalPage;
           for (var i = 0; i < response.data.length; i++) {
