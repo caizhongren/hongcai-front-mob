@@ -42,8 +42,9 @@ angular.module('p2pSiteMobApp')
 		$scope.loading = true;
 		$scope.cashCoupons = [];
 		$scope.status = status;
+		var queryStatus = status === 1 ? '1' : '2,4';
 		Restangular.one('cashCoupons').get({
-			status : status
+			status : queryStatus
 		}).then(function(response){
 			$scope.loading = false;
 			for (var i = 0; i < response.data.length; i++) {
