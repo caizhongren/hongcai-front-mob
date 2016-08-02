@@ -29,7 +29,7 @@
             <p class="margin-b-0 ft-1p6">{{ userAccount.balance || 0  | number:2 }}</p>
             <i class="fl border-white-right position-ab right-0 line"></i>
           </li>
-          <li class="text-center fl width-0p3 ft-1p4">
+          <li class="text-center fl width-0p3 ft-1p4" ui-sref="root.userCenter.cash-coupon">
             <p class="margin-b-0  ft-white1">未提现奖金(元)</p>
             <p class="margin-b-0 ft-1p6">{{ unGotCash.unGotAmount || 0  | number:2 }}</p>
           </li>
@@ -57,9 +57,9 @@
         <p class="margin-l-2 margin-t-1 margin-b-1">{{recommends.data[0].name || '无'}}</p>
         <div class="clearfix">
           <ul>
-            <li class="text-left fl margin-l-2 ft-2 ft-orange0 profit">{{recommends.data[0].annualEarnings | number:2}}%</li>
-            <li class="text-center fl border-grey-l border-grey-r1">{{recommends.data[0].projectDays}}天</li>
-            <li class="text-right fl padding-r-2">{{recommends.data[0].total}}元</li>
+            <li class="text-left fl margin-l-2 ft-2 ft-orange0 profit">{{recommends.data[0].annualEarnings | number:2 || 0}}%</li>
+            <li class="text-center fl border-grey-l border-grey-r1">{{recommends.data[0].projectDays || 0}}天</li>
+            <li class="text-right fl padding-r-2">{{recommends.data[0].total || 0}}元</li>
           </ul>
         </div>
       </div>
@@ -69,7 +69,7 @@
     <div class="user-center-list bg-white ft-1p6">
       <ul class="clearfix border-grey-t margin-b-0">
         <li class="fl border-grey-r" ui-sref="root.userCenter.credits"><img src="/images/user-center/investment-record.png" width="14%" alt="">我的投资</li>
-        <li class="fl"ui-sref="root.userCenter.cash-coupon"><img src="/images/user-center/user-prize.png" width="14%" alt="">我的奖金</li>
+        <li class="fl" ui-sref="root.userCenter.cash-coupon"><img src="/images/user-center/user-prize.png" width="14%" alt="">我的奖金</li>
       </ul>
       <ul class="clearfix border-grey-t margin-b-0 border-grey-b">
         <li class="fl border-grey-r" ui-sref="root.userCenter.deals"><img src="/images/user-center/user-capital.png" width="14%" alt="">资金流水</li>
