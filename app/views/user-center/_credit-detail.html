@@ -11,7 +11,7 @@
       <span class="ft-grey2">投资金额(元)</span>
     </div>
     <div class="credit-item-info u-pull-left text-center ft-1p4">
-      <strong class="ft-orange ft-1p6">{{ item.creditRight.baseRate + item.creditRight.riseRate |currency:"":2 || 0}}&nbsp;</strong><strong class="ft-red0 ft-1p6" ng-show="item.increaseRateCoupon">+{{item.increaseRateCoupon.rate | number:2}}</strong>
+      <strong class="ft-orange ft-1p6">{{ item.creditRight.baseRate + item.creditRight.riseRate |currency:"":2 || 0}}&nbsp;</strong><strong class="ft-red0 ft-1p6" ng-show="item.increaseRateCoupon && item.increaseRateCoupon.type === 1">+{{item.increaseRateCoupon.rate | number:2}}</strong>
       <br>
       <span class="ft-grey2">本期利率(%)</span>
     </div>
