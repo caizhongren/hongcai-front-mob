@@ -30,7 +30,7 @@
 	    <div ng-class="{'ng-hide': toggle.activesubTab!==$index}" ng-repeat="item in subtabs">
 		    <div ng-if="item.titles ==='未使用'" class="jiaxiquan-tab minHeight">
 		    	<div ng-show="datas.length > 0">
-		    		<div  ng-repeat="item in datas | orderBy : 'endTime' : true ">
+		    		<div  ng-repeat="item in datas">
 				    	<div class="margin-t-1 outer-panel" ng-if="item.status === 1">
 				    		<div>
 					    		<img src="/images/new/rate.png">

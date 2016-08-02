@@ -104,12 +104,17 @@
 			span{
 				font-size:1.5rem;
 			}
+      span.award_coupon{
+        display: inline-block;
+        text-align: right;
+        width: 80%;
+      }
 			span:nth-child(1) {
 				float:left;
 				color:#45484f;
 				line-height: 2.7rem;
 				@media (max-width:320px) {
-					font-size:1.4rem;
+					font-size:1.3rem;
 				}
 			}
 			span:nth-child(2) {
@@ -119,13 +124,16 @@
 					position: relative;
 					top: -0.2rem;
 					@media (max-width:320px) {
-						font-size:1.4rem;
+						font-size:1.3rem;
 					}
 				}
 				i{
 					font-size:2.8rem;
 					margin-left:0.5rem;
 					margin-top:0.1rem;
+          @media (max-width:320px) {
+            margin-left:0.1rem;
+          }
 				}
 			}
 		}
@@ -287,20 +295,5 @@
     	border-radius: 3px !important;
     	margin-bottom:0;
   	}
-  }
-}
-.rate-increase .ticket2{
-  height: 60px;
-  @media (min-width:320px) {
-    height: 53px;
-  }
-  @media (min-width:360px) {
-    height: 60px;
-  }
-  @media (min-width:375px) {
-    height: 63px;
-  }
-   @media (min-width:414px) {
-    height: 70px;
   }
 }

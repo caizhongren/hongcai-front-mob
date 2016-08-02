@@ -20,23 +20,6 @@ var _hmt = _hmt || [];
 </script>
 <style type="text/css">
 
-.site-loader {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      z-index: 5000;
-      -webkit-transition: all .1s ease-out;
-      transition: all .1s ease-out;
-  }
-  .loaded {
-      z-index: 15;
-      background: #fff;
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-      -webkit-transition: all .1s  ease-out;
-      transition: all .1s ease-out;
-  }
 </style>
 
 <head>
@@ -45,7 +28,7 @@ var _hmt = _hmt || [];
   <base href="/">
   <meta name="fragment" content="!">
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width,initial-scale=1,mininum-scale=1,maximum-scale=1,user-scaleable=no">
+  <meta name="viewport" content="width=device-width,initial-scale=1,mininum-scale=1,maximum-scale=1">
   <meta name="renderer" content="webkit">
   <meta name='apple-mobile-web-app-capable' content='yes' />
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -91,7 +74,7 @@ var _hmt = _hmt || [];
 
   <!-- Add your site or application content here -->
 
-  <div class="site-loader" ng-class="{'loaded':true}">
+  <div >
     <div class="padding-0">
       <section ui-view="header"></section>
       <section ui-view autoscroll="true"></section>
@@ -121,6 +104,8 @@ var _hmt = _hmt || [];
   <!-- endbuild -->
 
   <!-- build:js(.) scripts/vendor.js -->
+  <script src="bower_components/fastclick/lib/fastclick.js"></script>
+  
   <!-- bower:js -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/angular/angular.js"></script>
@@ -153,7 +138,7 @@ var _hmt = _hmt || [];
   <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
   <!-- endbower -->
   <script src="bower_components/famous/dist/famous-global.js"></script>
-  <script src="bower_components/fastclick/lib/fastclick.js"></script>
+  
   <script src="bower_components/angular-cookies/angular-cookies.js"></script>
   <!-- endbuild -->
 

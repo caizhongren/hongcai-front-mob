@@ -21,30 +21,30 @@
 		</ul>
 	</div>
 	<div class="content">
-		<a class="column"  ui-sref="root.project-detail({number:project.number})">
+		<div class="column"  ui-sref="root.project-detail({number:project.number})">
       <span>项目详情</span>
       <span>
       	<i class="fa fa-angle-right"></i>
       </span>
-    </a>
+    </div>
     <!-- <a class="column">
       <span>投资记录</span>
       <span><b class="ft-normal">12名投资人</b><i class="fa fa-angle-right"></i></span>
     </a> -->
     <a class="column border-grey3-top margin-t-1p2" ng-click="toRecharge()" ng-show="isLogged">
       <span>账户余额：<i class="ft-orange ft-normal1">{{account.balance || 0 | number:2}}</i> 元</span>
-      <span><b class="ft-normal">充值</b><i class="fa fa-angle-right"></i></span>
+      <span><b class="ft-normal">充值 </b><i class="fa fa-angle-right"></i></span>
     </a>
     <a class="column border-grey3-top margin-t-1p2" ng-click="toLogin()" ng-show="!isLogged">
       <span>您的账号未登录，请先登录</span>
-      <span><b class="ft-normal">登录</b><i class="fa fa-angle-right"></i></span>
+      <span><b class="ft-normal">登录 </b><i class="fa fa-angle-right"></i></span>
     </a>
     <a class="column">
       <span>可用奖励</span>
-      <span>
-        <b class="ft-normal" ng-show="(selectIncreaseRateCoupon.type ===rateType && selectIncreaseRateCoupon.number ===rateNum) || selectIncreaseRateCoupon.type ===1" ng-click="showSelectIncreaseRateCoupon=true;">{{selectIncreaseRateCoupon.value}}%加息券 有效期到{{selectIncreaseRateCoupon.endTime | date : 'yy-MM-dd' }}</b>
-      	<b class="ft-normal" ng-show="(selectIncreaseRateCoupon.type ===cashType && selectCashCoupon.number === cashNum) || (selectIncreaseRateCoupon && selectIncreaseRateCoupon.type === 2) " ng-click="showSelectIncreaseRateCoupon=true;">现金{{selectIncreaseRateCoupon.value}}元 需投资金额&ge;{{selectIncreaseRateCoupon.minInvestAmount || 0 }}</b>
-      	<b class="ft-normal" ng-show="!selectIncreaseRateCoupon" ng-click="showSelectIncreaseRateCoupon=true;">{{unSelectCouponMsg}}</b>
+      <span class="award_coupon" ng-click="showSelectIncreaseRateCoupon=true;">
+        <b class="ft-normal" ng-show="(selectIncreaseRateCoupon.type ===rateType && selectIncreaseRateCoupon.number ===rateNum) || selectIncreaseRateCoupon.type ===1">{{selectIncreaseRateCoupon.value}}%加息券 有效期到{{selectIncreaseRateCoupon.endTime | date : 'yy-MM-dd'}}</b>
+      	<b class="ft-normal" ng-show="(selectIncreaseRateCoupon.type ===cashType && selectCashCoupon.number === cashNum) || (selectIncreaseRateCoupon && selectIncreaseRateCoupon.type === 2) ">现金{{selectIncreaseRateCoupon.value}}元 需投资金额&ge;{{selectIncreaseRateCoupon.minInvestAmount || 0}}</b>
+      	<b class="ft-normal" ng-show="!selectIncreaseRateCoupon">{{unSelectCouponMsg}}</b>
       	<i class="fa fa-angle-right"></i>
       </span>
     </a>
@@ -57,15 +57,14 @@
     		<p>预计收益(元)</p>
         <p>{{ profit | number: 2 }}
           <span ng-show="selectIncreaseRateCoupon">+{{selectIncreaseRateCoupon.type ===1 ? increaseRateProfit : cashProfit || 0 | number : 2}}</span>
-          <!-- <span ng-show="selectIncreaseRateCoupon" ng-if="selectIncreaseRateCoupon.type ===2">+{{cashProfit || 0 | number : 2}}</span> -->
         </p>
     	</li>
     </ul>
     <!-- input输入框 -->
     <div class="invest">
-    	<div ng-click="modInvestAmout(-project.increaseAmount)" class="plus grey-status"><hr></div>
+    	<div ng-click="modInvestAmout(-project.increaseAmount,$event)" class="plus grey-status"><hr></div>
     	<input class="invest-input" type="number" ng-model="project.investAmount" ng-disabled="project.status !==7 || securityStatus.realNameAuthStatus !== 1">
-    	<div ng-click="modInvestAmout(project.increaseAmount)" class="add orange-status"><hr><hr></div>
+    	<div ng-click="modInvestAmout(project.increaseAmount,$event)" class="add orange-status"><hr><hr></div>
     </div>
 	</div>
   <!-- 状态按钮 -->
@@ -101,7 +100,7 @@
           <p class="ft-grey4 ft-1p2">•&nbsp;有效期至{{coupon.endTime | date : 'yyyy-MM-dd'}}</p>
         </div>
         <!-- 现金券 -->
-        <img ng-show="coupon.type === 2" class="ticket2" src="/images/rate-ticket2.png" alt="">
+        <img ng-show="coupon.type === 2" src="/images/rate-ticket2.png" alt="">
         <p ng-show="coupon.type === 2" class="fl position-ab margin-b-0 ticket-left margin-l-p1"><span class="ft-1p6">￥</span>{{coupon.value | number }}</p>
         <div ng-show="coupon.type === 2" class="position-ab ticket-right">
           <p class="ft-grey4 ft-1p2" ng-if="coupon.projectDays <=0">•&nbsp;期限要求：无</p>
