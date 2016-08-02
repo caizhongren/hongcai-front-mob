@@ -41,10 +41,10 @@
     </a>
     <a class="column">
       <span>可用奖励</span>
-      <span>
-        <b class="ft-normal" ng-show="(selectIncreaseRateCoupon.type ===rateType && selectIncreaseRateCoupon.number ===rateNum) || selectIncreaseRateCoupon.type ===1" ng-click="showSelectIncreaseRateCoupon=true;">{{selectIncreaseRateCoupon.value}}%加息券 有效期到{{selectIncreaseRateCoupon.endTime | date : 'yy-MM-dd'}}</b>
-      	<b class="ft-normal" ng-show="(selectIncreaseRateCoupon.type ===cashType && selectCashCoupon.number === cashNum) || (selectIncreaseRateCoupon && selectIncreaseRateCoupon.type === 2) " ng-click="showSelectIncreaseRateCoupon=true;">现金{{selectIncreaseRateCoupon.value}}元 需投资金额&ge;{{selectIncreaseRateCoupon.minInvestAmount || 0}}</b>
-      	<b class="ft-normal" ng-show="!selectIncreaseRateCoupon" ng-click="showSelectIncreaseRateCoupon=true;">{{unSelectCouponMsg}}</b>
+      <span class="award_coupon" ng-click="showSelectIncreaseRateCoupon=true;">
+        <b class="ft-normal" ng-show="(selectIncreaseRateCoupon.type ===rateType && selectIncreaseRateCoupon.number ===rateNum) || selectIncreaseRateCoupon.type ===1">{{selectIncreaseRateCoupon.value}}%加息券 有效期到{{selectIncreaseRateCoupon.endTime | date : 'yy-MM-dd'}}</b>
+      	<b class="ft-normal" ng-show="(selectIncreaseRateCoupon.type ===cashType && selectCashCoupon.number === cashNum) || (selectIncreaseRateCoupon && selectIncreaseRateCoupon.type === 2) ">现金{{selectIncreaseRateCoupon.value}}元 需投资金额&ge;{{selectIncreaseRateCoupon.minInvestAmount || 0}}</b>
+      	<b class="ft-normal" ng-show="!selectIncreaseRateCoupon">{{unSelectCouponMsg}}</b>
       	<i class="fa fa-angle-right"></i>
       </span>
     </a>
@@ -57,7 +57,6 @@
     		<p>预计收益(元)</p>
         <p>{{ profit | number: 2 }}
           <span ng-show="selectIncreaseRateCoupon">+{{selectIncreaseRateCoupon.type ===1 ? increaseRateProfit : cashProfit || 0 | number : 2}}</span>
-          <!-- <span ng-show="selectIncreaseRateCoupon" ng-if="selectIncreaseRateCoupon.type ===2">+{{cashProfit || 0 | number : 2}}</span> -->
         </p>
     	</li>
     </ul>
