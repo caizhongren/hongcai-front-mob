@@ -9,6 +9,7 @@
  */
 var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'angular-loading-bar',
+  // 'ngCookies',
   'ngAnimate',
   // 'ngTouch',
   'famous.angular',
@@ -761,7 +762,20 @@ p2pSiteMobApp
           title: '2%加息券，投资即送！'
         }
       })
-
+      //新手活动落地页
+      .state('root.activity.novice-landing', {
+        url: '/novice-activity?act&f',
+        views: {
+          '': {
+            templateUrl: 'views/activity/novice-landing.html',
+            controller: 'NoviceCtrl',
+            controllerUrl: 'scripts/controllers/activity/novice-landing-ctrl'
+          }
+        },
+        data: {
+          title: '注册立拿688元现金+3%加息券'
+        }
+      })
       // //邀请活动落地落地页
       // .state('root.activity.invite', {
       //   url: '/invite',
@@ -813,6 +827,20 @@ p2pSiteMobApp
           }
         }
       })
+      //个人中心我的奖金
+      .state('root.userCenter.cash-coupon',{
+        url: '/cash-coupon',
+        data: {
+          title: '我的奖金'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/cash-coupon.html',
+            controller: 'CashCouponCtrl',
+            controllerUrl: 'scripts/controllers/user-center/cash-coupon'
+          }
+        }
+      })
 
 
     ;
@@ -822,6 +850,12 @@ p2pSiteMobApp
 
   }])
   .run(function($rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, $uibModal, ipCookie, restmod, config, Restangular, URLService, Utils) {
+    // if ('addEventListener' in document) {
+        // document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        // }, false);
+    // }
+    
     Restangular.setBaseUrl('/hongcai/rest');
     Restangular.setDefaultHeaders({
       'Content-Type': 'application/json'
@@ -1009,7 +1043,7 @@ p2pSiteMobApp
       if(toState.name !== 'root.project'){
         Utils.setTitle($rootScope.headerTitle);
       }
-      
+
       var path = $location.path().split('/')[1];
       $rootScope.showPath = path;
       $rootScope.showTitle = titleMap[path];

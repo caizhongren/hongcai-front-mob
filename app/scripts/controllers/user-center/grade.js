@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('GradeCtrl',function ($scope, $state, $rootScope, $location, $stateParams, HongcaiUser) {
+  .controller('GradeCtrl',function ($scope, $state, $rootScope, $location, $stateParams, HongcaiUser, ipCookie) {
     $scope.page = 1;
     $scope.pageSize = 4;
     $scope.datas = [];
@@ -27,7 +27,7 @@ angular.module('p2pSiteMobApp')
     }, {
       title: '邀请',
     }];
-    
+
     $scope.subtabs = [{
       titles: '未使用',
     }, {
@@ -60,9 +60,9 @@ angular.module('p2pSiteMobApp')
     $scope.couponList = function(subtabIndex){
       var totalPage = 0;
       if(subtabIndex === 0){
-        totalPage = $scope.useTotalPage;
-      }else if(subtabIndex === 1){
         totalPage = $scope.unUseTotalPage;
+      }else if(subtabIndex === 1){
+        totalPage = $scope.useTotalPage;
       }
 
       if (totalPage < $scope.page){
@@ -80,11 +80,11 @@ angular.module('p2pSiteMobApp')
         status: status
       });
       couponsReq.$then(function(response){
-        if(response.$status === 'ok'){
+        if(response && response.ret !== -1){
           if(subtabIndex === 0){
-            $scope.useTotalPage = response.totalPage;
-          }else if(subtabIndex === 1){
             $scope.unUseTotalPage = response.totalPage;
+          }else if(subtabIndex === 1){
+            $scope.useTotalPage = response.totalPage;
           }
           $scope.totalPage = response.totalPage;
           for (var i = 0; i < response.data.length; i++) {
@@ -175,6 +175,17 @@ angular.module('p2pSiteMobApp')
      */
     $scope.goInviteLanding = function(){
       $location.url('/activity/invite');
+    }
+
+    /**
+     *跳转到列表页
+     */
+    $scope.toProjectList = function($index){
+      if($rootScope.timeout){
+        $state.go('root._main-list-temp');
+      }
+      ipCookie('rateNum',$scope.datas[$index].number);
+      ipCookie('rateType',$scope.datas[$index].type);
     }
 
   });

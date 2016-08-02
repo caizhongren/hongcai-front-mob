@@ -582,10 +582,60 @@ input::-webkit-inner-spin-button {
     }
 }
 
-.activity-landing{
+.activity-landing, .novice-landing{
   background-color: #f9513b;
   margin-bottom: 0;
   padding-bottom: 1%;
+  .landing-bottom{
+    ul{
+      margin-bottom: 0.5rem;
+      li{
+        padding-left: 1.2rem;
+        img {
+          width: 17%;
+          margin: 1.5rem 1rem 1.5rem 0;
+        }
+        span{
+          display: inline;
+          width: 77%;
+          font-size: 1.4rem;
+          color: #a3a2a2;
+          @media (max-width:360px) {
+            font-size: 1.3rem;
+          }
+        }
+        p{
+          display: inline;
+          margin-bottom: 0;
+          font-size: 1.6rem;
+          color: #333333;
+          margin: 1rem 0 0.3rem 0;
+          @media (max-width:360px) {
+            font-size: 1.4rem;
+          }
+        }
+
+      }
+    }
+    .explain{
+       @media (min-width: 320px) {
+        p{
+          color:#ffffff;
+          font-size:1.3rem;
+          margin:0 auto;
+          text-align:center;
+        }
+      }
+      @media (min-width: 375px) {
+        p{
+          color:#ffffff;
+          font-size:1.4rem;
+          margin:0 auto;
+          text-align:center;
+        }
+      }
+    }
+  }
   .rmb369 {
     img{
       left:10%;
@@ -646,7 +696,7 @@ input::-webkit-inner-spin-button {
   .top-img{
     img{
       vertical-align:bottom;
-    } 
+    }
   }
   .deadline{
     text-align: center;
@@ -781,7 +831,7 @@ input::-webkit-inner-spin-button {
       }
     }
   }
-  .part-two{
+  .part-two {
     width: 100%;
     background-color: #fee575;
     img.one{
@@ -959,22 +1009,22 @@ input::-webkit-inner-spin-button {
         @media (min-width: 320px){
           top:0.3rem;
           left:35%;
-          font-size:1.6rem; 
+          font-size:1.6rem;
         }
         @media (min-width: 360px){
           top:0.3rem;
           left:35%;
-          font-size:1.6rem; 
+          font-size:1.6rem;
         }
          @media (min-width: 375px){
           top:0.3rem;
           left:35%;
-          font-size:1.8rem; 
+          font-size:1.8rem;
         }
          @media (min-width: 414px){
           top:0.5rem;
           left:35%;
-          font-size:2rem; 
+          font-size:2rem;
         }
       }
       p.formula{
@@ -982,24 +1032,24 @@ input::-webkit-inner-spin-button {
         @media (min-width: 320px){
           bottom:2.5rem;
           left:6.5%;
-          font-size:1.4rem; 
+          font-size:1.4rem;
         }
         @media (min-width: 360px){
           bottom:3.5rem;
           left:11.5%;
-          font-size:1.4rem; 
+          font-size:1.4rem;
         }
          @media (min-width: 375px){
           bottom:2.5rem;
           left:7%;
-          font-size:1.6rem; 
+          font-size:1.6rem;
         }
          @media (min-width: 414px){
           bottom:2.5rem;
           left:6.5%;
-          font-size:1.8rem; 
+          font-size:1.8rem;
         }
-      } 
+      }
     }
     .add{
       display:block;
@@ -1130,60 +1180,516 @@ input::-webkit-inner-spin-button {
       }
     }
   }
-  .landing-bottom{
-    ul{
-      margin-bottom: 0.5rem;
-      li{
-        padding-left: 1.2rem;
-        img {
-          width: 17%;
-          margin: 1.5rem 1rem 1.5rem 0;
-        }
-        span{
-          display: inline;
-          width: 77%;
-          font-size: 1.4rem;
-          color: #a3a2a2;
-          @media (max-width:360px) {
-            font-size: 1.3rem;
-          }
-        }
-        p{
-          display: inline;
-          margin-bottom: 0;
-          font-size: 1.6rem;
-          color: #333333;
-          margin: 1rem 0 0.3rem 0;
-          @media (max-width:360px) {
-            font-size: 1.4rem;
-          }
-        }
-
-      }
-    }
-    .explain{
-       @media (min-width: 320px) {
-        p{
-          color:#ffffff;
-          font-size:1.3rem;
-          margin:0 auto;
-          text-align:center;
-        }
-      }
-      @media (min-width: 375px) {
-        p{
-          color:#ffffff;
-          font-size:1.4rem;
-          margin:0 auto;
-          text-align:center;
-        }
-      }
-    }
-  }
   .img-bottom{
     display: block;
     vertical-align: bottom;
     margin-bottom: -4px;
   }
 }
+// 新手活动落地页
+.novice-landing {
+  background-color: #4B046C;
+  .font-red44 {
+    color: #d82344;
+  }
+  .bg-red44 {
+    background-color: #d82344;
+  }
+  .bg-red2f {
+    background-color: #cb214f;
+  }
+  .font-red4e {
+    color: #cb214e;
+  }
+  .font-grey {
+    color: #c7bcc8;
+  }
+  .bg-greyc8 {
+    background-color: #c7bcc8;
+  }
+  .rule-line {
+    margin-top: .5rem;
+    display: inline-block;
+    height: 1px;
+    width: 78%;
+    border-top: 1px solid #fee14e;
+  }
+  .top-img {
+    width: 100%;
+    height: 472px;
+    background: url("/images/activity/novice-top.jpg") no-repeat;
+    background-size: cover;
+    .part-one {
+      .tittle {
+      }
+    }
+  }
+}
+// 新手活动媒体查询
+@media (min-width: 320px) {
+  .novice-landing {
+    .rule-line {
+      margin-top: .8rem;
+    }
+    .top-img {
+      height: 208px;
+      p {
+        padding-top: 13.5rem;
+      }
+    }
+    .tittle p {
+        margin-top: -1.5rem;
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+    .part-one {
+      background: url('/images/activity/bg-part01.jpg') no-repeat;
+      background-size: cover;
+      height: 422px;
 
+      .cash-list {
+        img {
+          width: 19.5%;
+        }
+      }
+      .take-cash {
+        img {
+          margin: 2.3rem auto 1.5rem;
+        }
+      }
+      .cash-rules {
+        p {
+          font-size: 1.2rem;
+          margin-bottom: .2rem;
+        }
+      }
+    }
+    .part-next {
+      height: 834px;
+      background: url("/images/activity/bg-part02.jpg") no-repeat;
+      background-size: cover;
+      .rate-example {
+        width: 94%;
+        margin: 2.8rem auto;
+        height: 120px;
+        background: url('/images/activity/example-bg.png') no-repeat;
+        background-size: 100%;
+        .example-head {
+          strong {
+            font-size: 1.25rem;
+            line-height: 1.9rem;
+          }
+        }
+        .describe {
+          p {
+            width: 94%;
+            margin: 0 auto;
+            margin-top: -0.1rem;
+            font-size: 1.2rem;
+          }
+        }
+        .show-rate {
+          img {
+            margin: .5rem auto .8rem;
+            display: block;
+          }
+          .new-packet {
+            width: 60%;
+            height: 118px;
+            margin: 0 auto;
+            background: url('/images/activity/new-packet.png') no-repeat;
+            background-size: 100%;
+            strong {
+              font-size: 1.5rem;
+            }
+            p {
+              font-size: 1.2rem;
+              margin-top: 7rem;
+            }
+          }
+        }
+        .rate-rules {
+          p {
+            margin-bottom: 0;
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+    .part-three {
+      height: 897px;
+      background: url('/images/activity/bg-part03.jpg') no-repeat;
+      background-size: cover;
+      .novice-project {
+        height: 118px;
+        width: 94%;
+        margin: 0 auto;
+        background: url('/images/activity/novice-project-bg.png') no-repeat;
+        background-size: 100%;
+        .nvc-head {
+          p {
+            font-size: 1.6rem;
+            line-height: 3.2rem;
+          }
+          span {
+            font-size: 1.2rem;
+            height: 1.6rem;
+            line-height: 1.6rem;
+            margin-top: 0.7rem;
+            border: 1px solid #cb214e;
+          }
+        }
+        .nvc-detail {
+          padding-top: 1.5rem;
+          .detail-left {
+            .width62 {
+              width: 62%;
+              line-height: 1rem;
+            }
+            p:nth-child(2){
+              margin-top: -0.5rem;
+            }
+          }
+          .detail-right {
+            width: 30%;
+            img {
+              margin-top: 0rem;
+            }
+            span {
+              top: .8rem;
+              right: 0;
+            }
+            .process{
+              position: relative;
+              margin: 1.5rem 0 1.2rem 0rem;
+              width: 64%;
+              height: 3px;
+              background-color: #b7b6b6;
+              border-radius: 3px;
+              -webkit-border-radius: 3px;
+              display: inline-block;
+              float: left;
+              .type-img {
+                height: 3px;
+              }
+            }
+          }
+        }
+      }
+      .landing-bottom {
+        li {
+          background: url('/images/activity/about-bg.png') no-repeat;
+          background-size: cover;
+          height: 100px;
+          margin-bottom: .3rem;
+          span {
+            font-size: 1.2rem;
+          }
+          img {
+            margin-top: 2rem;
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: 360px) {
+  .novice-landing {
+    .top-img {
+      height: 235px;
+      p {
+        padding-top: 17.6rem;
+      }
+    }
+    .tittle p {
+      }
+    .part-one {
+      height: 470px;
+      .cash-list {
+        img {
+          width: 21%;
+        }
+      }
+    }
+    .part-next {
+      height: 916px;
+      .rate-example {
+        .example-head {
+          strong {
+            font-size: 1.3rem;
+            line-height: 2.2rem;
+          }
+        }
+        .describe {
+          p {
+            width: 92%;
+            margin-top: .2rem;
+          }
+        }
+        .show-rate {
+          .new-packet {
+            height: 132px;
+            p {
+              margin-top: 6.8rem;
+            }
+          }
+        }
+        .rate-rules {
+          p {
+            margin-bottom: 0.2rem;
+            font-size: 1.3rem;
+          }
+        }
+      }
+    }
+    .part-three {
+      height: 911px;
+      .novice-project {
+        height: 134px;
+        .nvc-head {
+          p {
+            line-height: 3.6rem;
+          }
+          span {
+            margin-top: 1rem;
+          }
+        }
+        .nvc-detail {
+          .detail-left {
+            p:nth-child(2){
+              margin-top: 0;
+            }
+          }
+          .detail-right {
+            margin-left: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: 375px) {
+  .novice-landing {
+    .top-img {
+      height: 244px;
+      p {
+        padding-top: 14rem;
+      }
+    }
+    .tittle p {
+        font-size: 2.0rem;
+      }
+    .part-one {
+      height: 490px;
+      .cash-list {
+        img {
+          width: 21%;
+        }
+      }
+      .cash-rules {
+        p {
+          font-size: 1.3rem;
+          margin-bottom: .2rem;
+        }
+      }
+    }
+    .part-next {
+      height: 942px;
+      .rate-example {
+        .example-head {
+          strong {
+            line-height: 2.3rem;
+          }
+        }
+        .describe {
+          p {
+            width: 90%;
+          }
+        }
+        .show-rate {
+          .new-packet {
+            height: 134px;
+            strong {
+              font-size: 1.6rem;
+              margin-top: .2rem;
+            }
+            p {
+              font-size: 1.3rem;
+              margin-top: 8rem;
+            }
+          }
+        }
+        .rate-rules {
+          p {
+            margin-bottom: 0.2rem;
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+    .part-three {
+      height: 931px;
+      .novice-project {
+        height: 140px;
+        .nvc-head {
+          p {
+            font-size: 1.7rem;
+          }
+        }
+        .nvc-detail {
+          padding-top: 1.8rem;
+          .detail-right {
+            margin-left: 2rem;
+          }
+        }
+      }
+      .landing-bottom {
+        li {
+          span {
+            font-size: 1.3rem;
+          }
+          img {
+            margin-top: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: 411px) {
+  .novice-landing {
+    .rule-line {
+      margin-top: 1rem;
+    }
+    .top-img {
+      height: 268px;
+      p {
+        padding-top: 17.5rem;
+      }
+    }
+    .tittle p {
+        left: 10rem;
+      }
+    .part-one {
+      height: 536px;
+      .cash-list {
+        img {
+          width: 22.5%;
+        }
+      }
+      .cash-rules {
+        p {
+          font-size: 1.4rem;
+          margin-bottom: .3rem;
+        }
+      }
+    }
+    .part-next {
+      height: 1034px;
+      .rate-example {
+        .example-head {
+          strong {
+            font-size: 1.4rem;
+            line-height: 2.8rem;
+          }
+        }
+        .show-rate {
+          .new-packet {
+            height: 152px;
+            strong {
+              font-size: 1.7rem;
+              margin-top: 0.5rem;
+            }
+            p {
+              font-size: 1.4rem;
+              margin-top: 8.2rem;
+            }
+          }
+        }
+        .rate-rules {
+          p {
+            margin-bottom: 0.3rem;
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+    .part-three {
+      height: 952px;
+      .novice-project {
+        height: 160px;
+        .nvc-head {
+          p {
+            line-height: 4rem;
+          }
+          span {
+            margin-top: 1.2rem;
+          }
+        }
+        .nvc-detail {
+          .detail-left {
+            p:nth-child(2){
+              margin-top: 0.5rem;
+            }
+          }
+          .detail-right {
+            margin-left: 3.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: 435px) {
+  .novice-landing {
+    .top-img {
+      height: 284px;
+      p {
+        padding-top: 19rem;
+      }
+    }
+    .tittle p {
+        top: -0.6rem;
+        left: 9rem;
+        font-size: 2.2rem;
+      }
+    .part-one {
+      height: 569px;
+      .cash-rules {
+        padding-left: 1.5rem;
+        p {
+          font-size: 1.4rem;
+          margin-bottom: .4rem;
+        }
+      }
+    }
+    .part-next {
+      height: 1094px;
+      .rate-example {
+        .show-rate {
+          .new-packet {
+            height: 160px;
+            p {
+              margin-top: 7.3rem;
+            }
+          }
+        }
+        .rate-rules {
+          p {
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+    .part-three {
+      height: 954px;
+      .novice-project {
+        .nvc-head {
+          p {
+            font-size: 1.8rem;
+          }
+        }
+      }
+    }
+  }
+}

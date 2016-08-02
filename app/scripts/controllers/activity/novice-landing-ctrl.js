@@ -1,6 +1,26 @@
+/*
+* @Author: yuyang
+* @Date:   2016-07-28 17:08:11
+* @Last Modified by:   Administrator
+* @Last Modified time: 2016-08-02 17:49:40
+*/
+
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('SendCouponCtrl', function($rootScope, $scope, $state, $stateParams, $location, $timeout, $window, ipCookie, Restangular, config) {
+  .controller('NoviceCtrl', function($scope, Restangular, $rootScope, config) {
+    /**
+     * 获取新手标项目
+     */
+    Restangular.one('projects').one('newbieBiaoProject').get().then(function(response) {
+      if(!response || response.ret === -1){
+          return;
+      }
+      $scope.newbieBiaoProject = response;
+      // 可投资金额
+      $scope.newbieBiaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
+
+    });
+
     $rootScope.showFooter = false;
     $scope.test = config.test;
 
@@ -44,16 +64,16 @@ angular.module('p2pSiteMobApp')
      * 设置用户分享的标题以及描述以及图片等。
      */
     $scope.onMenuShareAppMessage = function(){
-      var shareLink = config.domain + '/activity/send-coupon';
+      var shareLink = config.domain + '/activity/novice-activity';
       if ($rootScope.channelCode){
         shareLink = shareLink + '?f=' + $rootScope.channelCode + '&act=' + $rootScope.act;
       }
 
       wx.onMenuShareAppMessage({
-        title: '2%加息券，投资即送！',
-        desc: '宏财理财季，疯狂加息2%，年利率超10%！',
+        title: '688元现金奖励+3%加息券！！',
+        desc: '现在宏财网注册，即可获得以上奖励！现金奖励，投资即可提现！',
         link: shareLink,
-        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak6XibeP4rtlnYOfaCFneic3dYdZU9Gy2CCwjHpjNot1KNxB5XQdsDuTQgUNdVnZlJw38qHm7qsggeg/0?wx_fmt=png',
+        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak5t5pVMCyJsOvnmGG6obPj8qU2yXy8WA78oSwHPNRfIic4uW9X7Rbs652IQzBX65ycTU6JbYXQWWg/0?wx_fmt=jpeg',
         trigger: function (res) {
         },
         success: function (res) {
@@ -72,9 +92,9 @@ angular.module('p2pSiteMobApp')
       });
 
       wx.onMenuShareTimeline({
-        title: '2%加息券，投资即送！',
+        title: '688元现金奖励+3%加息券！！',
         link: shareLink,
-        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak6XibeP4rtlnYOfaCFneic3dYdZU9Gy2CCwjHpjNot1KNxB5XQdsDuTQgUNdVnZlJw38qHm7qsggeg/0?wx_fmt=png',
+        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak5t5pVMCyJsOvnmGG6obPj8qU2yXy8WA78oSwHPNRfIic4uW9X7Rbs652IQzBX65ycTU6JbYXQWWg/0?wx_fmt=jpeg',
         trigger: function (res) {
         },
         success: function (res) {
@@ -95,7 +115,7 @@ angular.module('p2pSiteMobApp')
 
     wx.error(function(res){
         $timeout(function() {
-          window.location.href=config.domain + '/activity/send-coupon?' + Math.round(Math.random()* 1000);
+          window.location.href=config.domain + '/activity/novice-activity?' + Math.round(Math.random()* 1000);
         }, 100);
     });
 
@@ -104,5 +124,4 @@ angular.module('p2pSiteMobApp')
     });
 
     $scope.configJsApi();
-
-});
+  });

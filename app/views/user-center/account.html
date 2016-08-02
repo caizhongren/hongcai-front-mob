@@ -16,22 +16,22 @@
 
     <div class="text-cneter bg-orange0 ft-white">
       <p class="text-center margin-b-0 padding-t-1 ft-white1 ft-1p4">当前资产(元)</p>
-      <p class="text-center ft-2p8 margin-b-1 ft-1p6">{{ userAccount.tTotalAssets | number:2}}</strong></p>
+      <p class="text-center ft-2p8 margin-b-1 ft-1p6">{{ userAccount.tTotalAssets || 0 | number:2}}</strong></p>
       <div class="overflow-hid">
         <ul class="colums">
           <li class="text-center fl width-0p3 position-re ft-1p4">
             <p class="margin-b-0 ft-1p4  ft-white1">累计收益(元)</p>
-            <p class="margin-b-0 ft-1p6">{{ userAccount.totalProfit | number:2 }}</p>
+            <p class="margin-b-0 ft-1p6">{{userAccount.totalProfit || 0  | number:2 }}</p>
             <i class="fl border-white-right position-ab right-0 line"></i>
           </li>
           <li class="text-center fl width-0p3 position-re ft-1p4">
             <p class="margin-b-0  ft-white1">可用余额(元)</p>
-            <p class="margin-b-0 ft-1p6">{{ userAccount.balance | number:2 }}</p>
+            <p class="margin-b-0 ft-1p6">{{ userAccount.balance || 0  | number:2 }}</p>
             <i class="fl border-white-right position-ab right-0 line"></i>
           </li>
           <li class="text-center fl width-0p3 ft-1p4">
             <p class="margin-b-0  ft-white1">未提现奖金(元)</p>
-            <p class="margin-b-0 ft-1p6">0.00</p>
+            <p class="margin-b-0 ft-1p6">{{ unGotCash.unGotAmount || 0  | number:2 }}</p>
           </li>
         </ul>
       </div>
@@ -40,21 +40,21 @@
     <!-- 提现和充值 -->
     <div class="margin-b-1 bg-white  clearfix border-grey-t border-grey-b user-choice">
       <div ng-if="securityStatus.trusteeshipAccountStatus ===  1">
-        <div class="fl text-center ft-1p8 ft-orange0 width-half" ng-click="!timeout || goWithdraw()">
+        <div class="fl text-center ft-1p8 ft-orange0 width-half" ng-click="goWithdraw()">
           <span class="user-choice">取现</span><span class="fr vertical-line border-grey-r1"></span>
         </div>
-        <div class="fr text-center ft-1p8 ft-orange0 width-half" ng-click="!timeout || goRecharge()"><span>充值</span></div>
+        <div class="fr text-center ft-1p8 ft-orange0 width-half" ng-click="goRecharge()"><span>充值</span></div>
       </div>
       <div class="text-center ft-orange0 ft-1p5" ng-if="securityStatus.trusteeshipAccountStatus !== 1">未开通资金托管账户&nbsp;&nbsp;<span ng-click="toRealNameAuth()">去开通&nbsp;<i class="fa fa-angle-right ft-1p8"></i></span></div>
     </div>
 
-    <div class="bg-white hot border-grey-t margin-b-1 ft-1p6" ng-show="recommends.data.length > 0" ui-sref="root.project({number:recommends.data[0].number})">
+    <div class="bg-white hot border-grey-t margin-b-1 ft-1p6" ui-sref="root.project({number:recommends.data[0].number})">
       <div class=" border-grey-b clearfix hot-tittle margin-l-2 margin-r-2">
         <p class="fl margin-b-0">热抢中的项目</p>
         <div class="ft-greyb2 fr"><i class="fa fa-chevron-right margin-l-1"></i></div>
       </div>
       <div class="hot-content ft-greyb2 border-grey-b ft-1p5">
-        <p class="margin-l-2 margin-t-1 margin-b-1">{{recommends.data[0].name}}</p>
+        <p class="margin-l-2 margin-t-1 margin-b-1">{{recommends.data[0].name || '无'}}</p>
         <div class="clearfix">
           <ul>
             <li class="text-left fl margin-l-2 ft-2 ft-orange0 profit">{{recommends.data[0].annualEarnings | number:2}}%</li>
@@ -68,8 +68,8 @@
     <!-- 投资记录和奖励列表 -->
     <div class="user-center-list bg-white ft-1p6">
       <ul class="clearfix border-grey-t margin-b-0">
-        <li class="fl border-grey-r"ui-sref="root.userCenter.credits"><img src="/images/user-center/investment-record.png" width="14%" alt="">我的投资</li>
-        <li class="fl"><img src="/images/user-center/user-prize.png" width="14%" alt="">我的奖金</li>
+        <li class="fl border-grey-r" ui-sref="root.userCenter.credits"><img src="/images/user-center/investment-record.png" width="14%" alt="">我的投资</li>
+        <li class="fl"ui-sref="root.userCenter.cash-coupon"><img src="/images/user-center/user-prize.png" width="14%" alt="">我的奖金</li>
       </ul>
       <ul class="clearfix border-grey-t margin-b-0 border-grey-b">
         <li class="fl border-grey-r" ui-sref="root.userCenter.deals"><img src="/images/user-center/user-capital.png" width="14%" alt="">资金流水</li>

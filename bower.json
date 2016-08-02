@@ -22,6 +22,8 @@
     "angular-strap": "~2.3.6",
     "textAngular": "~1.5.0",
     "lodash": "3.10.1",
-    "angular-loading-bar": "^0.9.0"
+    "angular-loading-bar": "^0.9.0",
+    "angular-cookies": "^1.5.8",
+    "fastclick": "https://github.com/z-feng/hfastclick.git#^1.0.8"
   }
 }
