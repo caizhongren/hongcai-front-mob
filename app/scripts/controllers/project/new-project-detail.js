@@ -142,7 +142,6 @@ angular.module('p2pSiteMobApp')
         } else if(newVal % $scope.project.increaseAmount !==0 ){
           $scope.msg = '投资金额必须为' + $scope.project.increaseAmount + '的整数倍';
         }
-        $scope.showCashMsg(newVal);
       }
 
       if($scope.project){
@@ -150,6 +149,7 @@ angular.module('p2pSiteMobApp')
         if($scope.selectIncreaseRateCoupon.type ===1){
           $scope.increaseRateProfit = $scope.selectIncreaseRateCoupon != null ? $scope.calcProfit($scope.selectIncreaseRateCoupon.value) : 0;
         } else{
+          $scope.showCashMsg(newVal);
           $scope.cashProfit = $scope.project.investAmount >= $scope.selectIncreaseRateCoupon.minInvestAmount ? $scope.selectIncreaseRateCoupon.value : 0;
         }
       }
