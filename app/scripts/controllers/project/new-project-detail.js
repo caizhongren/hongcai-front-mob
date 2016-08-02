@@ -110,7 +110,7 @@ angular.module('p2pSiteMobApp')
          });
         } else {
           $scope.msg = order.msg;
-          // $scope.showMsg();
+          $scope.showMsg();
         }
       });
     };
