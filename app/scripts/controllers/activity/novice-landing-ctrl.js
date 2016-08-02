@@ -2,12 +2,12 @@
 * @Author: yuyang
 * @Date:   2016-07-28 17:08:11
 * @Last Modified by:   Administrator
-* @Last Modified time: 2016-08-02 17:29:49
+* @Last Modified time: 2016-08-02 17:49:40
 */
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('NoviceCtrl', function($scope, Restangular) {
+  .controller('NoviceCtrl', function($scope, Restangular, $rootScope, config) {
     /**
      * 获取新手标项目
      */
@@ -43,7 +43,7 @@ angular.module('p2pSiteMobApp')
       Restangular.one("wechat").one("jsApiConfig").get({
         requestUrl : url
       }).then(function(apiConfig){
-        console.log('apiConfig: ' + apiConfig);
+        // console.log('apiConfig: ' + apiConfig);
         wx.config({
             debug: false,
             appId: config.wechatAppid, // 必填，公众号的唯一标识
