@@ -200,6 +200,9 @@ angular.module('p2pSiteMobApp')
         $scope.increaseRateProfit = 0;
         $scope.resetInitLimit();
         $scope.unSelectCouponMsg = '暂不使用';
+        if($scope.msg){
+          $scope.msg = '';
+        }
     }
 
     //跳转到充值页面
