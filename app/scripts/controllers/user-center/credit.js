@@ -24,15 +24,24 @@ angular.module('p2pSiteMobApp')
     //$scope.creditsDetail = [];
     $scope.credits = [];
 
-    $rootScope.checkSession.promise.then(function(){
-      $scope.getCredits('1');
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/totalProfit').$then(function(response){
-        if (response.ret !== -1) {
-          $scope.totalProfit = response;
-        }
-      });
+    
+    HongcaiUser.$find(0 + '/totalProfit').$then(function(response){
+      if (response.ret !== -1) {
+        $scope.totalProfit = response;
+      }
     });
+
+    /**
+     * 切换标签
+     */
     $scope.toggle.switchTab = function(tabIndex) {
+      $scope.loading = true;
+
+      // 与当前活动标签相同，不刷新数据
+      if($scope.toggle.activeTab === tabIndex){
+        return;
+      }
+
       $scope.toggle.activeTab = tabIndex;
       if (tabIndex === 0) {
         $scope.creditStatus = '1';
@@ -45,9 +54,11 @@ angular.module('p2pSiteMobApp')
       //$scope.getCreditList($scope.creditStatus);
     };
 
+    
+    
+
+
     var siteCredits = restmod.model(WEB_DEFAULT_DOMAIN + '/siteCredit');
-
-
     $scope.getCredits = function(status) {
       siteCredits.$find('/getHeldInCreditRightList', {
         status: status,
@@ -66,6 +77,7 @@ angular.module('p2pSiteMobApp')
           
           $scope.credits.push(credits[i]);
         };
+        $scope.loading = false;
       })
 
         // $scope.creditStatus = status;
@@ -81,6 +93,8 @@ angular.module('p2pSiteMobApp')
         //   };
         // });
     };
+
+    $scope.toggle.switchTab(0);
 
     /**
      * 加载更多
