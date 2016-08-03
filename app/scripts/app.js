@@ -198,6 +198,20 @@ p2pSiteMobApp
           }
         }
       })
+      // 项目投资人记录页
+      .state('root.orders', {
+        url: '/project/:number/orders',
+        views: {
+          '': {
+            templateUrl: 'views/project/new-orders.html',
+            controller: 'NewOrdersCtrl',
+            controllerUrl: 'scripts/controllers/project/new-orders'
+          }
+        },
+        data: {
+          title: '项目投资人'
+        },
+      })
       // 宏金保列表页
       .state('root._main-list-temp', {
         url: '/guaranteepro-list',
@@ -855,7 +869,7 @@ p2pSiteMobApp
             FastClick.attach(document.body);
         // }, false);
     // }
-    
+
     Restangular.setBaseUrl('/hongcai/rest');
     Restangular.setDefaultHeaders({
       'Content-Type': 'application/json'
