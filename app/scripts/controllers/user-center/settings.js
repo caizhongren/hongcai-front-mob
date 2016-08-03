@@ -40,7 +40,6 @@ angular.module('p2pSiteMobApp')
         if (response.$status === 'ok') {
           // 获取用户的银行卡信息
           $scope.simpleBankcard = response;
-          $scope.openBank = $scope.simpleBankcard.openBank.slice(2);
           $scope.cardNo = $scope.simpleBankcard.cardNo.slice(-4);
         } else {
           // 获取信息失败。

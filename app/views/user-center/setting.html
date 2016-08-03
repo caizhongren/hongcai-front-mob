@@ -46,7 +46,7 @@
       <p>我的银行卡：</p>
       <p>用于充值和提现
         <span ng-click="bindBankcard()" ng-show="simpleBankcard.status !== 'VERIFIED'"> <a>去绑定</a></span>
-        <span ng-show="simpleBankcard.status == 'VERIFIED'"><a class="ft-blue">{{openBank}}(尾号{{cardNo}})</a></span>
+        <span ng-show="simpleBankcard.status == 'VERIFIED'"><a class="ft-blue">{{simpleBankcard.openBank}}(尾号{{cardNo}})</a></span>
       </p>
     </div>
   </div>
