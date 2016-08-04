@@ -10,6 +10,20 @@
 angular.module('p2pSiteMobApp')
   .controller('CreditCtrl', function($scope, $rootScope, $state, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN) {
 
+    $scope.widthFlag = "";
+    $scope.screenWidth = function(){
+      $scope.width = document.body.scrollWidth; //用系统返回宽度除以分辨率
+      if ($scope.width >= 320 && $scope.width < 375) {
+        $scope.widthFlag = 0;
+      } else if ($scope.width >= 375 && $scope.width < 414) {
+        $scope.widthFlag = 1;
+      } else if ($scope.width >= 414) {
+        $scope.widthFlag = 2;
+      }
+      return $scope.widthFlag;
+    }
+    $scope.screenWidth();
+
     // tab
     $scope.toggle = {};
     $scope.tabs = [{
@@ -24,7 +38,7 @@ angular.module('p2pSiteMobApp')
     //$scope.creditsDetail = [];
     $scope.credits = [];
 
-    
+
     HongcaiUser.$find(0 + '/totalProfit').$then(function(response){
       if (response.ret !== -1) {
         $scope.totalProfit = response;
@@ -54,11 +68,15 @@ angular.module('p2pSiteMobApp')
       //$scope.getCreditList($scope.creditStatus);
     };
 
-    
-    
-
-
     var siteCredits = restmod.model(WEB_DEFAULT_DOMAIN + '/siteCredit');
+
+    //统计持有、已回款项目数量
+    siteCredits.$find('/getCreditRightStatistics', {}).$then(function(response){
+      $scope.creditRightStatis = response.data.creditRightStatis;
+      $scope.heldingCount = $scope.creditRightStatis.heldingCount;
+      $scope.endProfitCount = $scope.creditRightStatis.endProfitCount;
+    });
+
     $scope.getCredits = function(status) {
       siteCredits.$find('/getHeldInCreditRightList', {
         status: status,
@@ -74,7 +92,7 @@ angular.module('p2pSiteMobApp')
             credits[i].returnRateCouponProfit = credits[i].creditRight.returnProfit * (credits[i].increaseRateCoupon.value + oriRate)/oriRate - credits[i].creditRight.returnProfit;
 
           }
-          
+
           $scope.credits.push(credits[i]);
         };
         $scope.loading = false;
@@ -104,5 +122,5 @@ angular.module('p2pSiteMobApp')
       $scope.getCredits($scope.creditStatus);
     };
 
-    
+
   });
