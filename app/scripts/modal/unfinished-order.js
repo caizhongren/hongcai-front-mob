@@ -1,8 +1,8 @@
 /*
 * @Author: wangyadan
 * @Date:   2016-07-11 12:13:11
-* @Last Modified by:   wangyadan
-* @Last Modified time: 2016-07-11 18:38:10
+* @Last Modified by:   Administrator
+* @Last Modified time: 2016-08-04 10:32:27
 */
 
 'use strict';
@@ -11,8 +11,6 @@ angular.module('p2pSiteMobApp')
     $scope.order = order;
     $scope.projectDays = Math.ceil((order.repaymentDate-order.createTime)/1000/3600/24);
     $scope.cancel = function () {
-      // $uibModalInstance.close('cancel');
-      // $rootScope.unfinishOrderModal.dismiss();
       $uibModalInstance.dismiss();
     };
     $scope.cancelUnpay = function(){
@@ -20,7 +18,7 @@ angular.module('p2pSiteMobApp')
         if(response.ret === -1){
             return;
         }
-        $state.reload();
+        // $state.reload();
         $scope.cancel();
       });
       $scope.cancel();
