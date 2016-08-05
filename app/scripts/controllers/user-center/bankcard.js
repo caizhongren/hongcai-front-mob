@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('BankcardCtrl', ['$scope', '$rootScope', '$state', 'HongcaiUser','restmod','WEB_DEFAULT_DOMAIN', function($scope, $rootScope, $state, HongcaiUser,restmod, WEB_DEFAULT_DOMAIN) {
+  .controller('BankcardCtrl', ['$scope', '$rootScope', '$state', 'HongcaiUser', 'restmod', 'WEB_DEFAULT_DOMAIN', function($scope, $rootScope, $state, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN) {
 
     $rootScope.checkSession.promise.then(function() {
       if (!$rootScope.isLogged) {
@@ -25,23 +25,31 @@ angular.module('p2pSiteMobApp')
 
         var unBindBankcardModel = restmod.model(WEB_DEFAULT_DOMAIN + '/yeepay');
         $scope.unBindBankcard = function() {
-          $scope.showBankCard = false;
           unBindBankcardModel.$find('/unbindBankCard').$then(function(response) {
-            if(response.ret === -1) {
-              retrun;
+            if (response) {
+              $scope.showBankCard = false;
+              $scope.showTip = true;
+              $scope.showBankCardState = true;
             }
-
           });
         }
       });
     });
-
+    $scope.showBankCardState = false;
+    $scope.showMask = false;
     $scope.showBankCard = false;
     $scope.toRemoveCard = function() {
       $scope.showBankCard = true;
+      $scope.showMask = true;
     }
     $scope.cancle = function() {
-        $scope.showBankCard = false;
+      $scope.showBankCard = false;
+      $scope.showMask = false;
+    }
+    $scope.showTip = false;
+    $scope.closeTip = function() {
+        $scope.showTip = false;
+        $scope.showMask = false;
       }
       /*根据屏幕高度设置内容高度*/
     angular.element('document').ready(function() {
