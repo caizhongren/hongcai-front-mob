@@ -24,8 +24,41 @@ module.exports = function(grunt) {
   };
 
   grunt.loadNpmTasks('grunt-connect-proxy');
+  grunt.loadNpmTasks('grunt-angular-templates');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   // Define the configuration for all the tasks
   grunt.initConfig({
+    //templateCache
+    ngtemplates: {
+      p2pSiteMobApp: {
+        dest: '.tmp/scripts/templates.js',
+        src: ['app/views/*.html','app/views/**/*.html','!app/views/activity/*.html','!app/views/share/*.html','!app/views/share-spring/*.html'],
+        options: {
+          url: function(url) {
+            return url.replace('app/','');
+          }
+        }
+      }
+    },
+    //压缩js
+    uglify: {
+      p2pSiteMobApp: {
+        files: [
+          {
+            expand: true,
+            src: '.tmp/scripts/templates.js',
+            dest: 'dist/scripts',
+            rename: function (dest, src) {
+              var filename = src.substring(src.lastIndexOf('/'), src.length);
+              filename = filename.substring(0, filename.lastIndexOf('.'));
+              var fileresult=dest + filename + '.min.js';
+              return fileresult;
+            }
+          }
+        ]
+      }
+    },
+
     ngconstant: {
 
       development: {
@@ -101,9 +134,9 @@ module.exports = function(grunt) {
     // The actual grunt server settings
     connect: {
       options: {
-        port: 9000,
+        port: 8000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: '192.168.10.70',
+        hostname: 'localhost',
         // hostname: '192.168.60.34',
         livereload: 35729
       },
@@ -443,6 +476,7 @@ module.exports = function(grunt) {
         singleRun: true
       }
     }
+
   });
 
 
@@ -458,9 +492,11 @@ module.exports = function(grunt) {
       'less',
       'concurrent:server',
       'autoprefixer',
+      'ngtemplates',
       'configureProxies:server',
       'connect:livereload',
       'watch'
+
     ]);
   });
 
@@ -493,7 +529,8 @@ module.exports = function(grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'ngtemplates'
   ]);
 
   grunt.registerTask('buildTest321', [
@@ -512,7 +549,8 @@ module.exports = function(grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'ngtemplates'
   ]);
 
   grunt.registerTask('build', [
@@ -528,10 +566,11 @@ module.exports = function(grunt) {
     'copy:dist',
     // 'cdnify',
     'cssmin',
-    'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'ngtemplates',
+    'uglify'
   ]);
 
   grunt.registerTask('default', [
