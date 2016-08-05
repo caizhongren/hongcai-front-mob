@@ -66,15 +66,25 @@ angular.module('p2pSiteMobApp')
         amount : project.availableAmount
       }).then(function(response) {
         $scope.increaseRateCoupons = response;
-        for (var i = 0; i < response.length; i++) {
-          if($scope.cashType === '' && $scope.rateType === ''){
-            $scope.selectIncreaseRateCoupon = response[0];
+        var cashCoupon = [];
+        if(response && $scope.cashType === '' && $scope.rateType === ''){
+          for(var j = 0; j < response.length; j++){
+            if($scope.increaseRateCoupons[j].type === 2){
+              cashCoupon.push(response[j]);
+            }else if(cashCoupon === '' && $scope.increaseRateCoupons[j].type === 1){
+              cashCoupon.push(response[j]);
+            }
           }
-          if($scope.rateNum == response[i].number){
-            $scope.selectIncreaseRateCoupon = response[i];
-          }
-          if($scope.cashNum == response[i].number){
-            $scope.selectIncreaseRateCoupon = response[i];
+          cashCoupon.sort();
+          $scope.selectIncreaseRateCoupon = cashCoupon[cashCoupon.length-1];
+        }else{
+          for (var i = 0; i < response.length; i++) {
+            if($scope.rateNum == response[i].number){
+              $scope.selectIncreaseRateCoupon = response[i];
+            }
+            if($scope.cashNum == response[i].number){
+              $scope.selectIncreaseRateCoupon = response[i];
+            }
           }
         }
         $scope.project.investAmount =  1000 ;
