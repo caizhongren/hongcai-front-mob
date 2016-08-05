@@ -149,33 +149,7 @@ p2pSiteMobApp
           }
         }
       })
-      .state('root.investmentplan-details', {
-        url: '/investmentplan/:number',
-        data: {
-          title: '宏金盈'
-        },
-        views: {
-          '': {
-            templateUrl: 'views/project/funds-project-detail.html',
-            controller: 'FundsProjectDetailCtrl',
-            controllerUrl: 'scripts/controllers/project/funds-project-detail'
-          }
-        }
-      })
-      // 零存宝详情
-      .state('root.current-deposit-detail', {
-        url: '/current-deposit/:number',
-        data: {
-          title: '零存宝'
-        },
-        views: {
-          '': {
-            templateUrl: 'views/project/current-deposit-detail.html',
-            controller: 'FundsProjectDetailCtrl',
-            controllerUrl: 'scripts/controllers/project/funds-project-detail'
-          }
-        }
-      })
+
       // 宏金保详情页
       .state('root.project-detail', {
         url: '/project-detail/:number',

@@ -154,7 +154,7 @@ angular.module('p2pSiteMobApp')
         }
       }
 
-      if($scope.project){
+      if($scope.selectIncreaseRateCoupon && $scope.project){
         $scope.profit = $scope.calcProfit($scope.project.annualEarnings) || 0;
         if($scope.selectIncreaseRateCoupon.type ===1){
           $scope.increaseRateProfit = $scope.selectIncreaseRateCoupon != null ? $scope.calcProfit($scope.selectIncreaseRateCoupon.value) : 0;
