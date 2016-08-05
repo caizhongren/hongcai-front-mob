@@ -42,8 +42,8 @@
     <a class="column">
       <span>可用奖励</span>
       <span class="award_coupon" ng-click="showSelectIncreaseRateCoupon=true;">
-        <b class="ft-normal" ng-show="(selectIncreaseRateCoupon.type ===rateType && selectIncreaseRateCoupon.number ===rateNum) || selectIncreaseRateCoupon.type ===1">{{selectIncreaseRateCoupon.value}}%加息券 有效期到{{selectIncreaseRateCoupon.endTime | date : 'yy-MM-dd'}}</b>
-      	<b class="ft-normal" ng-show="(selectIncreaseRateCoupon.type ===cashType && selectCashCoupon.number === cashNum) || (selectIncreaseRateCoupon && selectIncreaseRateCoupon.type === 2) ">现金{{selectIncreaseRateCoupon.value}}元 需投资金额&ge;{{selectIncreaseRateCoupon.minInvestAmount || 0}}</b>
+        <b class="ft-normal" ng-show="selectIncreaseRateCoupon.type ===1 && selectIncreaseRateCoupon">{{selectIncreaseRateCoupon.value}}%加息券 有效期到{{selectIncreaseRateCoupon.endTime | date : 'yy-MM-dd'}}</b>
+      	<b class="ft-normal" ng-show="selectIncreaseRateCoupon && selectIncreaseRateCoupon.type === 2 ">现金{{selectIncreaseRateCoupon.value}}元 需投资金额&ge;{{selectIncreaseRateCoupon.minInvestAmount || 0}}</b>
       	<b class="ft-normal" ng-show="!selectIncreaseRateCoupon">{{unSelectCouponMsg}}</b>
       	<i class="fa fa-angle-right"></i>
       </span>
@@ -89,7 +89,7 @@
   <div class="bg-white position-ab rate-increase-list width-pull">
     <ul class="padding-1 margin-b-0 padding-b-0">
       <!-- 可用奖励 ：加息券 + 现金券-->
-      <li class="margin-b-0p5 position-re" ng-click="selectCoupon(coupon)" ng-repeat=" coupon in increaseRateCoupons | orderBy : 'value' |limitTo : initLimit ">
+      <li class="margin-b-0p5 position-re" ng-click="selectCoupon(coupon)" ng-repeat=" coupon in increaseRateCoupons | orderBy : ['-type','value'] |limitTo : initLimit ">
         <!-- 加息券 -->
         <img ng-show="coupon.type === 1" src="/images/rate-ticket.png" alt="">
         <p ng-show="coupon.type === 1" class="fl position-ab margin-b-0 ticket-left">{{coupon.value | number : 1}}<span class="ft-1p5">%</span></p>

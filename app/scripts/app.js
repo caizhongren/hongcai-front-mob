@@ -519,8 +519,8 @@ p2pSiteMobApp
           }
         }
       })
-    //点赞活动详情页
-    .state('root.share-detail', {
+      //点赞活动详情页
+      .state('root.share-detail', {
         url: '/share-detail/:id?act&f', //f 表示渠道,act 表示活动
         views: {
           '': {
@@ -542,8 +542,8 @@ p2pSiteMobApp
         }
       })
 
-    //体验金活动页
-    .state('root.experience-activity', {
+      //体验金活动页
+      .state('root.experience-activity', {
         url: '/experience-activity/:number?act&f',
         views: {
           '': {
@@ -863,7 +863,7 @@ p2pSiteMobApp
     $locationProvider.hashPrefix('!');
 
   }])
-  .run(function($rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, $uibModal, ipCookie, restmod, config, Restangular, URLService, Utils) {
+  .run(function($templateCache, $rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, $uibModal, ipCookie, restmod, config, Restangular, URLService, Utils) {
     // if ('addEventListener' in document) {
         // document.addEventListener('DOMContentLoaded', function() {
             FastClick.attach(document.body);
