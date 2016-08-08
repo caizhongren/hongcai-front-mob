@@ -39,7 +39,7 @@ angular.module('p2pSiteMobApp')
       if ($scope.totalPage < $scope.page){
         return;
       }
-      var dealsReq = HongcaiUser.$find($rootScope.hasLoggedUser.id + '/userInvestExperienceMoneyDeals', {
+      var dealsReq = HongcaiUser.$find('0' + '/userInvestExperienceMoneyDeals', {
         page: $scope.page,
         pageSize: $scope.pageSize
       });
@@ -74,7 +74,7 @@ angular.module('p2pSiteMobApp')
         status = "2";
       }
 
-      var couponsReq = HongcaiUser.$find($rootScope.hasLoggedUser.id + '/userIncreaseRateCoupons', {
+      var couponsReq = HongcaiUser.$find('0' + '/userIncreaseRateCoupons', {
         page: $scope.page,
         pageSize: $scope.pageSize,
         status: status
@@ -104,7 +104,7 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
-      var couponsReq = HongcaiUser.$find($rootScope.hasLoggedUser.id + '/inviteList' , {
+      var couponsReq = HongcaiUser.$find('0' + '/inviteList' , {
         page: $scope.page,
         pageSize: $scope.pageSize,
         status: status
@@ -126,7 +126,7 @@ angular.module('p2pSiteMobApp')
      * 邀请统计
      */
     $scope.getInviteStat = function(){
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/inviteStat', {}).$then(function(response){
+      HongcaiUser.$find('0' + '/inviteStat', {}).$then(function(response){
         if(response.$status === 'ok' && response.ret !== -1){
           $scope.inviteStat = response;
         } else{

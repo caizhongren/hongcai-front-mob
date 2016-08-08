@@ -17,7 +17,7 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'restmod',
   'config',
   'ipCookie',
-  'angularMoment',
+  // 'angularMoment',
   'infinite-scroll',
   'angular-md5',
   'restangular',
@@ -149,33 +149,7 @@ p2pSiteMobApp
           }
         }
       })
-      .state('root.investmentplan-details', {
-        url: '/investmentplan/:number',
-        data: {
-          title: '宏金盈'
-        },
-        views: {
-          '': {
-            templateUrl: 'views/project/funds-project-detail.html',
-            controller: 'FundsProjectDetailCtrl',
-            controllerUrl: 'scripts/controllers/project/funds-project-detail'
-          }
-        }
-      })
-      // 零存宝详情
-      .state('root.current-deposit-detail', {
-        url: '/current-deposit/:number',
-        data: {
-          title: '零存宝'
-        },
-        views: {
-          '': {
-            templateUrl: 'views/project/current-deposit-detail.html',
-            controller: 'FundsProjectDetailCtrl',
-            controllerUrl: 'scripts/controllers/project/funds-project-detail'
-          }
-        }
-      })
+
       // 宏金保详情页
       .state('root.project-detail', {
         url: '/project-detail/:number',
@@ -197,6 +171,20 @@ p2pSiteMobApp
             controllerUrl: 'scripts/controllers/project/new-project-detail'
           }
         }
+      })
+      // 项目投资人记录页
+      .state('root.orders', {
+        url: '/project/:number/orders',
+        views: {
+          '': {
+            templateUrl: 'views/project/new-orders.html',
+            controller: 'NewOrdersCtrl',
+            controllerUrl: 'scripts/controllers/project/new-orders'
+          }
+        },
+        data: {
+          title: '项目投资人'
+        },
       })
       // 宏金保列表页
       .state('root._main-list-temp', {
@@ -505,8 +493,8 @@ p2pSiteMobApp
           }
         }
       })
-    //点赞活动详情页
-    .state('root.share-detail', {
+      //点赞活动详情页
+      .state('root.share-detail', {
         url: '/share-detail/:id?act&f', //f 表示渠道,act 表示活动
         views: {
           '': {
@@ -528,8 +516,8 @@ p2pSiteMobApp
         }
       })
 
-    //体验金活动页
-    .state('root.experience-activity', {
+      //体验金活动页
+      .state('root.experience-activity', {
         url: '/experience-activity/:number?act&f',
         views: {
           '': {
@@ -849,13 +837,13 @@ p2pSiteMobApp
     $locationProvider.hashPrefix('!');
 
   }])
-  .run(function($rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, $uibModal, ipCookie, restmod, config, Restangular, URLService, Utils) {
+  .run(function($templateCache, $rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, $uibModal, ipCookie, restmod, config, Restangular, URLService, Utils) {
     // if ('addEventListener' in document) {
         // document.addEventListener('DOMContentLoaded', function() {
             FastClick.attach(document.body);
         // }, false);
     // }
-    
+
     Restangular.setBaseUrl('/hongcai/rest');
     Restangular.setDefaultHeaders({
       'Content-Type': 'application/json'

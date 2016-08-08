@@ -17,7 +17,7 @@ angular.module('p2pSiteMobApp')
         $state.go('root.login');
       }
 
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/availableCash').$then(function(response) {
+      HongcaiUser.$find('0' + '/availableCash').$then(function(response) {
         if (response.ret !== -1) {
           // 获取用户充值信息
           $scope.simpleWithdraw = response;
@@ -28,8 +28,8 @@ angular.module('p2pSiteMobApp')
           // 获取信息失败。
         }
         });
-      
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/bankcard').$then(function(response) {
+
+      HongcaiUser.$find('0' + '/bankcard').$then(function(response) {
         if (response.$status === 'ok') {
           // 获取用户的银行卡信息
           $scope.simpleBankcard = response;
@@ -78,13 +78,13 @@ angular.module('p2pSiteMobApp')
   $scope.bindBankcard = function(){
     if($scope.simpleWithdraw.cardStatus == 'VERIFIED' || $scope.simpleWithdraw.cardStatus == 'VERIFYING'){
       return;
-    } 
+    }
 
     $state.go('root.yeepay-transfer', {
       type: 'BIND_BANK_CARD'
     });
   }
-    
+
 
     $scope.checkMaxAmount = function(simpleWithdraw) {
       if (simpleWithdraw.amount > simpleWithdraw.availableCash) {

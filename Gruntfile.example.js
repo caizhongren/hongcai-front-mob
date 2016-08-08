@@ -24,8 +24,41 @@ module.exports = function(grunt) {
   };
 
   grunt.loadNpmTasks('grunt-connect-proxy');
+  grunt.loadNpmTasks('grunt-angular-templates');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   // Define the configuration for all the tasks
   grunt.initConfig({
+    //templateCache
+    ngtemplates: {
+      p2pSiteMobApp: {
+        dest: '.tmp/scripts/templates.js',
+        src: ['app/views/*.html','app/views/**/*.html','!app/views/activity/*.html','!app/views/share/*.html','!app/views/share-spring/*.html'],
+        options: {
+          url: function(url) {
+            return url.replace('app/','');
+          }
+        }
+      }
+    },
+    //压缩js
+    uglify: {
+      p2pSiteMobApp: {
+        files: [
+          {
+            expand: true,
+            src: '.tmp/scripts/templates.js',
+            dest: '.tmp/scripts',
+            rename: function (dest, src) {
+              var filename = src.substring(src.lastIndexOf('/'), src.length);
+              filename = filename.substring(0, filename.lastIndexOf('.'));
+              var fileresult=dest + filename + '.min.js';
+              return fileresult;
+            }
+          }
+        ]
+      }
+    },
+
     ngconstant: {
 
       development: {
@@ -411,6 +444,11 @@ module.exports = function(grunt) {
           cwd: 'bower_components/fontawesome',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
+        }, {
+          expand: true,
+          cwd: '.tmp',
+          src: 'scripts/templates.min.js',
+          dest: '<%= yeoman.dist %>'
         }]
       },
       styles: {
@@ -443,6 +481,7 @@ module.exports = function(grunt) {
         singleRun: true
       }
     }
+
   });
 
 
@@ -458,9 +497,12 @@ module.exports = function(grunt) {
       'less',
       'concurrent:server',
       'autoprefixer',
+      'ngtemplates',
+      'uglify',
       'configureProxies:server',
       'connect:livereload',
       'watch'
+
     ]);
   });
 
@@ -487,10 +529,11 @@ module.exports = function(grunt) {
     'autoprefixer',
     'concat',
     'ngAnnotate',
+    'ngtemplates',
+    'uglify',
     'copy:dist',
     // 'cdnify',
     'cssmin',
-    'uglify',
     'filerev',
     'usemin',
     'htmlmin'
@@ -506,10 +549,11 @@ module.exports = function(grunt) {
     'autoprefixer',
     'concat',
     'ngAnnotate',
+    'ngtemplates',
+    'uglify',
     'copy:dist',
     // 'cdnify',
     'cssmin',
-    'uglify',
     'filerev',
     'usemin',
     'htmlmin'
@@ -525,10 +569,11 @@ module.exports = function(grunt) {
     'autoprefixer',
     'concat',
     'ngAnnotate',
+    'ngtemplates',
+    'uglify',
     'copy:dist',
     // 'cdnify',
     'cssmin',
-    'uglify',
     'filerev',
     'usemin',
     'htmlmin'

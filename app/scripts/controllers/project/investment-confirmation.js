@@ -32,13 +32,13 @@ angular.module('p2pSiteMobApp')
           return;
         }
         $scope.project = project;
-        
+
         $scope.canUseFlag = $scope.project.product.type !== 1;
         $scope.project.projectInvestAmount = project.currentStock * project.increaseAmount;
         $scope.project.investAmount = $rootScope.account.balance >= 100 ? Math.floor($rootScope.account.balance / 100) * 100 : 100;
         $scope.project.investAmount = $scope.project.investAmount >= $scope.project.projectInvestAmount ? $scope.project.projectInvestAmount: $scope.project.investAmount;
         $scope.project.isRepeatFlag = false;
-        
+
         // 当status===1可融资状态的时候，判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。
         if ($scope.project.status === 1) {
             // 用户可投资金额
@@ -63,7 +63,7 @@ angular.module('p2pSiteMobApp')
         /**
          * 加息券统计信息
          */
-        Restangular.one('users', $rootScope.hasLoggedUser.id).one('unUsedIncreaseRateCoupons').get().then(function(response) {
+        Restangular.one('users', '0').one('unUsedIncreaseRateCoupons').get().then(function(response) {
           $scope.increaseRateCoupons = response;
           $scope.selectCoupon = null;
           if ($scope.increaseRateCoupons.length > 0 && $scope.project.product.type !== 1) {
@@ -119,8 +119,8 @@ angular.module('p2pSiteMobApp')
       if($scope.project){
         // alert($scope.project.isRepeatFlag);
       }
-      
-      
+
+
     })
 
     /**
@@ -152,7 +152,7 @@ angular.module('p2pSiteMobApp')
       } else if ($scope.checkLargeUserCanAmount(project)) {
         $state.go('root.userCenter.recharge');
       } else if ($scope.fundsFlag === 2 || $scope.fundsFlag === 3) {
-          restmod.model(DEFAULT_DOMAIN + '/fundsProjects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
+          restmod.model(DEFAULT_DOMAIN + '/fundsProjects/' + number + '/users/' + '0' + '/investment').$create({
             amount: project.investAmount,
             projectId: project.id,
             isRepeat: $scope.isRepeat,
@@ -183,7 +183,7 @@ angular.module('p2pSiteMobApp')
       }
 
       $scope.needRecharge =  $rootScope.account.balance < project.investAmount
-      return  $scope.needRecharge;       
+      return  $scope.needRecharge;
     };
 
     $scope.checkStepAmount = function(project) {

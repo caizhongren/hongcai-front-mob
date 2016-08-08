@@ -40,11 +40,24 @@
   </div>
   <div class="content-main">
     <div>
+      <img src="/images/user-center/03.png" alt="">
+    </div>
+    <div>
+      <p>我的银行卡：</p>
+      <p>用于充值和提现
+        <span ng-click="bindBankcard()" ng-show="simpleBankcard.status !== 'VERIFIED' && simpleBankcard.status !== 'VERIFING'"> <a>去绑定 ></a></span>
+        <span ng-show="simpleBankcard.status == 'VERIFING'"> 绑定中(尾号{{cardNo}})</span>
+        <span ng-show="simpleBankcard.status == 'VERIFIED'" ui-sref="root.userCenter.bankcard"><a class="ft-blue">{{simpleBankcard.openBank}}(尾号{{cardNo}}) ></a></span>
+      </p>
+    </div>
+  </div>
+  <div class="content-main">
+    <div>
       <img src="/images/user-center/04.png" alt="">
     </div>
     <div>
       <p>自动投标权限：</p>
-      <p>方便您续投
+      <p>方便您预约
         <span ng-show="securityStatus.autoTransfer === 1"><i class="fa fa-check-circle-o ft-green" ></i>&nbsp;已开通</span>
         <span ng-click="checkAutoFlag=true" ng-show="securityStatus.autoTransfer !== 1"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通<small class="ft-orange">(立即开通)</small></span>
       </p>
@@ -58,6 +71,9 @@
       <p>我的邀请码<span>{{voucher.inviteCode}}</span>
       </p>
     </div>
+  </div>
+  <div  class="contain-last bg-red3 text-center ft-white ft-1p8 padding-t-1 padding-b-1" ng-click="toLogout()">
+    <p>安全退出</p>
   </div>
 </div>
 <!-- 修改密码蒙层 checkPwdFlag-->
