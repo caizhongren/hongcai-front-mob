@@ -16,7 +16,7 @@ angular.module('p2pSiteMobApp')
         $state.go('root.login');
       }
 
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/orders').$then(function(response) {
+      HongcaiUser.$find('0' + '/orders').$then(function(response) {
         if (response.$status === 'ok') {
           // 获取用户的订单列表
           $scope.simpleOrders = response;

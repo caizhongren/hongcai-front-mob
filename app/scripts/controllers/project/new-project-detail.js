@@ -107,7 +107,7 @@ angular.module('p2pSiteMobApp')
       $rootScope.tofinishedOrder();
       var couponNumber = $scope.selectIncreaseRateCoupon != null ? $scope.selectIncreaseRateCoupon.number : '';
 
-      Restangular.one('projects').one(number+'/users/' + $rootScope.hasLoggedUser.id).post('investment', {
+      Restangular.one('projects').one(number+'/users/' + '0').post('investment', {
         investAmount: project.investAmount,
         couponNumber: couponNumber,
         device: Utils.deviceCode()

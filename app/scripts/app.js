@@ -17,7 +17,7 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'restmod',
   'config',
   'ipCookie',
-  'angularMoment',
+  // 'angularMoment',
   'infinite-scroll',
   'angular-md5',
   'restangular',

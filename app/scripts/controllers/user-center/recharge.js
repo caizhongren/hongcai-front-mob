@@ -17,7 +17,7 @@ angular.module('p2pSiteMobApp')
         $state.go('root.login');
       }
 
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/account').$then(function(response) {
+      HongcaiUser.$find('0' + '/account').$then(function(response) {
         if (response.$status === 'ok') {
           // 获取用户金额信息
           $scope.userAccount = response;
@@ -42,5 +42,5 @@ angular.module('p2pSiteMobApp')
       });
     });
 
-    
+
   });

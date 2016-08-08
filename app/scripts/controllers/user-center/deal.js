@@ -30,7 +30,7 @@ angular.module('p2pSiteMobApp')
       if ($scope.totalPage < $scope.page){
         return;
       }
-      var dealsReq = HongcaiUser.$find($rootScope.hasLoggedUser.id + '/deals', {
+      var dealsReq = HongcaiUser.$find('0' + '/deals', {
         page: $scope.page,
         pageSize: $scope.pageSize
       });
@@ -71,7 +71,7 @@ angular.module('p2pSiteMobApp')
       $scope.dealList();
     });
 
-    
+
 
     $scope.loadDealMuch = function(){
       $scope.DealBusy = true;
@@ -84,7 +84,7 @@ angular.module('p2pSiteMobApp')
     //以上为增加 自动加载代码
 
     // 通过点击加载更多宏金盈项目
-    
+
     // $scope.loadDealMore = function() {
     //   $scope.pageSize = $scope.pageSize + 10;
     //   $scope.deals = HongcaiUser.$find($rootScope.hasLoggedUser.id + '/deals', {
@@ -92,7 +92,7 @@ angular.module('p2pSiteMobApp')
     //     pageSize: $scope.pageSize
     //   })
     // };
-    
+
 
     $scope.dealMap = {
       1: '充值',

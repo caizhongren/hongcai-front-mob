@@ -18,14 +18,14 @@ angular.module('p2pSiteMobApp')
     $rootScope.selectedSide =  'investments-stat';
 
     if ($rootScope.hasLoggedUser) {
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/orders').$then(function(response) {
+      HongcaiUser.$find('0' + '/orders').$then(function(response) {
         if (response.$status === 'ok') {
           $scope.simpleOrder = response;
         } else {
           //
         }
       });
-      
+
     }
   }]);
 

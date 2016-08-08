@@ -9,14 +9,14 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('UserCenterCtrl', ['$scope', '$rootScope', '$state', 'HongcaiUser', 'restmod', 'DEFAULT_DOMAIN', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN) {
-    
+
 
     $rootScope.checkSession.promise.then(function(){
       if(!$rootScope.isLogged){
         $state.go('root.login');
       }
 
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/account').$then(function(response) {
+      HongcaiUser.$find('0' + '/account').$then(function(response) {
         $scope.userAccount = response;
       });
 
@@ -29,7 +29,7 @@ angular.module('p2pSiteMobApp')
       // var
       if ($rootScope.hasLoggedUser) {
         // TODO  登出的model在这里不太好吧。
-        var logoutModel = restmod.model(DEFAULT_DOMAIN + '/users/' + $rootScope.hasLoggedUser.id + '/logout');
+        var logoutModel = restmod.model(DEFAULT_DOMAIN + '/users/' + '0' + '/logout');
         logoutModel.$create().$then(function(response) {
           if (response.ret === 1) {
             $rootScope.hasLoggedUser = null;

@@ -180,7 +180,7 @@ angular.module('p2pSiteMobApp')
         // how to bulid investment path restmod.model
         // restmod.model(DEFAULT_DOMAIN + '/projects')
         if (payAmount > 0) {
-          restmod.model(DEFAULT_DOMAIN + '/projects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
+          restmod.model(DEFAULT_DOMAIN + '/projects/' + number + '/users/' + '0' + '/investment').$create({
             // fundsProjects.$find(number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
             investAmount: project.investAmount,
             couponNumber: couponNumber,
@@ -189,7 +189,7 @@ angular.module('p2pSiteMobApp')
             // 重复下单后，response.number为undefined
             if (order.ret !== -1) {
               if (order.number !== null && order.number !== undefined) {
-                restmod.model(DEFAULT_DOMAIN + '/projects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/payment').$create({
+                restmod.model(DEFAULT_DOMAIN + '/projects/' + number + '/users/' + '0' + '/payment').$create({
                   orderNumber: order.number
                 }).$then(function(response) {
                   if (response.$status === 'ok') {
