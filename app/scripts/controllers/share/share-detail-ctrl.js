@@ -320,7 +320,8 @@ angular.module('p2pSiteMobApp')
         nickName: $rootScope.nickName || '无',
         headImgUrl: $rootScope.headImgUrl || '无',
         channelCode: ipCookie('utm_from'),
-        act: ipCookie('act')
+        act: ipCookie('act'),
+        channelParams: ipCookie('channelParams')
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.errorMobileMsg = response.msg;

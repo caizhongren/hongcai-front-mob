@@ -1038,6 +1038,25 @@ p2pSiteMobApp
 
       $rootScope.channelCode = $location.search().f;
       $rootScope.act = $location.search().act;
+      $rootScope.channelParamsObj = {};
+
+      for(var obj in $location.search()){
+        if(obj !== 'act' && obj !== 'f'){
+          $rootScope.channelParamsObj[obj] = $location.search()[obj];
+        }
+      }
+
+      $rootScope.channelParams = '';
+      if(!jQuery.isEmptyObject($rootScope.channelParamsObj)){
+        $rootScope.channelParams = angular.toJson($rootScope.channelParamsObj);
+      }
+
+      if ($rootScope.channelParams){
+        ipCookie('channelParams', $rootScope.channelParams, {
+          expires: 1,
+          path: '/'
+        });
+      }
 
       if ($rootScope.channelCode){
         ipCookie('utm_from', $rootScope.channelCode, {

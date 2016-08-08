@@ -16,7 +16,6 @@ angular.module('p2pSiteMobApp')
       };
     }
 
-    console.log(ipCookie('utm_from'));
     $scope.showRegistrationAgreement = false;
     $scope.toggle = function () {
       $scope.showRegistrationAgreement = !$scope.showRegistrationAgreement;
@@ -33,7 +32,8 @@ angular.module('p2pSiteMobApp')
         captcha: user.captcha,
         inviteCode: user.inviteCode,
         channelCode : ipCookie('utm_from'),
-        act: ipCookie('act')
+        act: ipCookie('act'),
+        channelParams: ipCookie('channelParams')
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.captchaShow = true;
