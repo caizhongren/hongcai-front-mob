@@ -535,7 +535,7 @@ module.exports = function(grunt) {
     'cssmin',
     'filerev',
     'usemin',
-    'htmlmin',
+    'htmlmin'
   ]);
 
   grunt.registerTask('buildTest321', [
@@ -555,7 +555,7 @@ module.exports = function(grunt) {
     'cssmin',
     'filerev',
     'usemin',
-    'htmlmin',
+    'htmlmin'
   ]);
 
   grunt.registerTask('build', [
@@ -569,13 +569,13 @@ module.exports = function(grunt) {
     'concat',
     'ngAnnotate',
     'ngtemplates',
-    'uglify'
+    'uglify',
     'copy:dist',
     // 'cdnify',
     'cssmin',
     'filerev',
     'usemin',
-    'htmlmin',
+    'htmlmin'
   ]);
 
   grunt.registerTask('default', [
