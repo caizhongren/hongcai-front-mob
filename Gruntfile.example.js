@@ -47,7 +47,7 @@ module.exports = function(grunt) {
           {
             expand: true,
             src: '.tmp/scripts/templates.js',
-            dest: 'dist/scripts',
+            dest: '.tmp/scripts',
             rename: function (dest, src) {
               var filename = src.substring(src.lastIndexOf('/'), src.length);
               filename = filename.substring(0, filename.lastIndexOf('.'));
@@ -134,9 +134,9 @@ module.exports = function(grunt) {
     // The actual grunt server settings
     connect: {
       options: {
-        port: 8000,
+        port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
+        hostname: '192.168.10.70',
         // hostname: '192.168.60.34',
         livereload: 35729
       },
@@ -444,6 +444,11 @@ module.exports = function(grunt) {
           cwd: 'bower_components/fontawesome',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
+        }, {
+          expand: true,
+          cwd: '.tmp',
+          src: 'scripts/templates.min.js',
+          dest: '<%= yeoman.dist %>'
         }]
       },
       styles: {
@@ -523,14 +528,14 @@ module.exports = function(grunt) {
     'autoprefixer',
     'concat',
     'ngAnnotate',
+    'ngtemplates',
+    'uglify',
     'copy:dist',
     // 'cdnify',
     'cssmin',
-    'uglify',
     'filerev',
     'usemin',
     'htmlmin',
-    'ngtemplates'
   ]);
 
   grunt.registerTask('buildTest321', [
@@ -543,14 +548,14 @@ module.exports = function(grunt) {
     'autoprefixer',
     'concat',
     'ngAnnotate',
+    'ngtemplates',
+    'uglify',
     'copy:dist',
     // 'cdnify',
     'cssmin',
-    'uglify',
     'filerev',
     'usemin',
     'htmlmin',
-    'ngtemplates'
   ]);
 
   grunt.registerTask('build', [
@@ -563,14 +568,14 @@ module.exports = function(grunt) {
     'autoprefixer',
     'concat',
     'ngAnnotate',
+    'ngtemplates',
+    'uglify'
     'copy:dist',
     // 'cdnify',
     'cssmin',
     'filerev',
     'usemin',
     'htmlmin',
-    'ngtemplates',
-    'uglify'
   ]);
 
   grunt.registerTask('default', [
