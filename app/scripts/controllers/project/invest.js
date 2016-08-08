@@ -125,7 +125,7 @@ angular.module('p2pSiteMobApp')
         $state.go('root.userCenter.recharge');
       } else if ($scope.fundsFlag === 2) {
         if (payAmount > 0) {
-          restmod.model(DEFAULT_DOMAIN + '/projects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
+          restmod.model(DEFAULT_DOMAIN + '/projects/' + number + '/users/' + '0' + '/investment').$create({
             // fundsProjects.$find(number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
             investAmount: project.investAmount,
             couponNumber: couponNumber,

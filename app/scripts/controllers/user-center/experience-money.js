@@ -1,8 +1,8 @@
 /*
 * @Author: fuqiang1
 * @Date:   2016-07-18 10:32:33
-* @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-07-18 15:49:45
+* @Last Modified by:   Administrator
+* @Last Modified time: 2016-08-08 17:55:07
 */
 
 'use strict';
@@ -17,7 +17,7 @@ angular.module('p2pSiteMobApp')
       if ($scope.totalPage < $scope.page){
         return;
       }
-      var dealsReq = HongcaiUser.$find($rootScope.hasLoggedUser.id + '/userInvestExperienceMoneyDeals', {
+      var dealsReq = HongcaiUser.$find('0' + '/userInvestExperienceMoneyDeals', {
         page: $scope.page,
         pageSize: $scope.pageSize
       });

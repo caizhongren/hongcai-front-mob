@@ -9,14 +9,14 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('ExperienceProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, $location, projects, Restangular, restmod, DEFAULT_DOMAIN, HongcaiUser) {
-    
+
     $rootScope.checkSession.promise.then(function() {
       if (!$rootScope.isLogged) {
         $location.path('/login');
         return;
       }
 
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/account').$then(function(response) {
+      HongcaiUser.$find('0' + '/account').$then(function(response) {
           // 获取用户金额信息
           $scope.userAccount = response;
           // 获取信息失败。
@@ -52,7 +52,7 @@ angular.module('p2pSiteMobApp')
     $scope.showMsg = false;
     $scope.toInvest = function() {
       $scope.useExperience = false;
-      restmod.model(DEFAULT_DOMAIN + '/projects/' + $scope.experienceProject.number + '/users/' + $rootScope.hasLoggedUser.id + '/investmentByExperience').$create({
+      restmod.model(DEFAULT_DOMAIN + '/projects/' + $scope.experienceProject.number + '/users/' + '0' + '/investmentByExperience').$create({
         amount: $scope.userAccount.experienceAmount,
         projectId: $scope.experienceProject.id,
         isRepeat: 2,

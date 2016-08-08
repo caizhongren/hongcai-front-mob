@@ -25,18 +25,18 @@ angular.module('p2pSiteMobApp')
       /**
        * 邀请码
        */
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/voucher').$then(function(response) {
+      HongcaiUser.$find('0' + '/voucher').$then(function(response) {
         $scope.voucher = response;
       });
 
-      HongcaiUser.$find($rootScope.hasLoggedUser.id).$then(function(response) {
+      HongcaiUser.$find('0').$then(function(response) {
         console.log(response);
       });
 
       /**
        * 银行卡信息
        */
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/bankcard').$then(function(response) {
+      HongcaiUser.$find('0' + '/bankcard').$then(function(response) {
         if (response.$status === 'ok') {
           // 获取用户的银行卡信息
           $scope.simpleBankcard = response;
@@ -71,7 +71,7 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
-      restmod.model(DEFAULT_DOMAIN + '/users/' + $rootScope.hasLoggedUser.id + '/changePassword')
+      restmod.model(DEFAULT_DOMAIN + '/users/' + '0' + '/changePassword')
         .$create({
           oldPassword: md5.createHash(oldP),
           newPassword: md5.createHash(newP2)
@@ -112,7 +112,7 @@ angular.module('p2pSiteMobApp')
     $scope.toLogout = function() {
       if ($rootScope.hasLoggedUser) {
         // TODO  登出的model在这里不太好吧。
-        var logoutModel = restmod.model(DEFAULT_DOMAIN + '/users/' + $rootScope.hasLoggedUser.id + '/logout');
+        var logoutModel = restmod.model(DEFAULT_DOMAIN + '/users/' + '0' + '/logout');
         logoutModel.$create().$then(function(response) {
           if (response.ret === 1) {
             $rootScope.hasLoggedUser = null;

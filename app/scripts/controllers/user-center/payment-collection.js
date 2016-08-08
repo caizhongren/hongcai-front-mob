@@ -15,7 +15,7 @@ angular.module('p2pSiteMobApp')
         $state.go('root.login');
       }
 
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/bankcard').$then(function(response) {
+      HongcaiUser.$find('0' + '/bankcard').$then(function(response) {
         if (response.$status === 'ok') {
           // 获取用户的银行卡信息
           $scope.simpleBankcard = response;

@@ -15,7 +15,7 @@ angular.module('p2pSiteMobApp')
         $state.go('root.login');
       }
 
-      HongcaiUser.$find($rootScope.hasLoggedUser.id + '/investments/stat').$then(function(response) {
+      HongcaiUser.$find('0' + '/investments/stat').$then(function(response) {
         $scope.investmentsStat = response;
         if(response.notPayOrder){
           $scope.investmentsStat.notPayOrder.dueTime = ($scope.investmentsStat.notPayOrder.createTime  + 5 * 60 * 1000 - $scope.investmentsStat.serverTime)/(1000* 60);

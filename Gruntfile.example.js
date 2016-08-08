@@ -493,7 +493,7 @@ module.exports = function(grunt) {
     grunt.task.run([
       'clean:server',
       'ngconstant:development',
-      'wiredep',
+      // 'wiredep',
       'less',
       'concurrent:server',
       'autoprefixer',
@@ -522,7 +522,7 @@ module.exports = function(grunt) {
   grunt.registerTask('buildTest43', [
     'clean:dist',
     'ngconstant:development',
-    'wiredep',
+    // 'wiredep',
     'less',
     'useminPrepare',
     'concurrent:dist',
@@ -542,7 +542,7 @@ module.exports = function(grunt) {
   grunt.registerTask('buildTest321', [
     'clean:dist',
     'ngconstant:developmentTest321',
-    'wiredep',
+    // 'wiredep',
     'less',
     'useminPrepare',
     'concurrent:dist',
@@ -562,7 +562,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'ngconstant:production',
-    'wiredep',
+    // 'wiredep',
     'less',
     'useminPrepare',
     'concurrent:dist',
