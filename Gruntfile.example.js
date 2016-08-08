@@ -498,6 +498,7 @@ module.exports = function(grunt) {
       'concurrent:server',
       'autoprefixer',
       'ngtemplates',
+      'uglify',
       'configureProxies:server',
       'connect:livereload',
       'watch'
