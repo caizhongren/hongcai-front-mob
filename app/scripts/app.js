@@ -1121,6 +1121,9 @@ p2pSiteMobApp
         $rootScope.whichFooter = 3;
       }
     });
+
+    /*加载中loading*/
+    $rootScope.showLoadingToast = false;
   })
 
 .constant('DEFAULT_DOMAIN', '/hongcai/rest')

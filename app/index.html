@@ -64,7 +64,7 @@ var _hmt = _hmt || [];
 
   <!-- endbuild -->
   <link rel="stylesheet" href="styles/un-min/box-flex.css">
-  <link rel="stylesheet" href="styles/weui.min.css">
+  <link rel="stylesheet" href="styles/un-min/weui.min.css">
 </head>
 
 <body class="bg-white padding-0" >
@@ -83,7 +83,8 @@ var _hmt = _hmt || [];
     </div>
 
   </div>
-
+  <!-- loading toast -->
+  <div ng-include src='"views/loading-toast.html"' ng-show="showLoadingToast"></div>
 
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
   <!--      <script>
@@ -137,7 +138,7 @@ var _hmt = _hmt || [];
   <!-- endbower -->
   <script src="bower_components/famous/dist/famous-global.js"></script>
 
-  
+
 
   <!-- <script src="bower_components/angular-cookies/angular-cookies.js"></script> -->
   <!-- endbuild -->

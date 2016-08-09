@@ -98,8 +98,9 @@ angular.module('p2pSiteMobApp')
     /**
      * 下单并支付
      */
+    $scope.clicked = true;
     $scope.toInvest = function(project) {
-
+      $scope.clicked = false;
       if($scope.msg || project.investAmount < project.minInvest){
         return;
       }
@@ -107,12 +108,14 @@ angular.module('p2pSiteMobApp')
       $scope.showMsg();
       $rootScope.tofinishedOrder();
       var couponNumber = $scope.selectIncreaseRateCoupon != null ? $scope.selectIncreaseRateCoupon.number : '';
-
+      $rootScope.showLoadingToast = true;
       Restangular.one('projects').one(number+'/users/' + '0').post('investment', {
         investAmount: project.investAmount,
         couponNumber: couponNumber,
         device: Utils.deviceCode()
       }).then(function(order){
+        $rootScope.showLoadingToast = false;
+        $scope.clicked = true;
         // 重复下单后，response.number为undefined
         if (order && order.ret !== -1) {
           $state.go('root.yeepay-transfer', {

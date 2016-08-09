@@ -2,12 +2,12 @@
 * @Author: Administrator
 * @Date:   2016-08-03 17:08:13
 * @Last Modified by:   Administrator
-* @Last Modified time: 2016-08-09 10:02:17
+* @Last Modified time: 2016-08-09 10:21:51
 */
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('NewOrdersCtrl', function($state, $rootScope, $scope, WEB_DEFAULT_DOMAIN, restmod, Restangular, $stateParams) {
+  .controller('NewOrdersCtrl', function($scope, WEB_DEFAULT_DOMAIN, restmod, Restangular, $stateParams) {
 
     /**
      * 项目信息
