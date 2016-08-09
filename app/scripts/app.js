@@ -21,7 +21,6 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'infinite-scroll',
   'angular-md5',
   'restangular',
-  'angular-svg-round-progress',
   'ui.bootstrap',
   //'restangular',
   'textAngular'
@@ -152,12 +151,12 @@ p2pSiteMobApp
 
       // 宏金保详情页
       .state('root.project-detail', {
-        url: '/project-detail/:number',
+        url: '/project-info/:number',
         views: {
           '': {
             templateUrl: 'views/project/project-detail.html',
-            controller: 'ProjectDetailCtrl',
-            controllerUrl: 'scripts/controllers/project/project-detail'
+            controller: 'ProjectInfoCtrl',
+            controllerUrl: 'scripts/controllers/project/project-info'
           }
         }
       })
