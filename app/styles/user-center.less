@@ -13,11 +13,9 @@
     background-size: 100% 100%;
   }
   .credit {
-    li:nth-child(1) {
-      border-right: 0.1rem solid #ddd;
-    }
+    background-color: #f5f5f5;
     li.active {
-      border-top: 0.2rem solid #ee7822;
+      border-bottom: 0.2rem solid #ee7822;
       color: #fd8f3f;
       background-color: #fff;
     }
@@ -471,6 +469,9 @@
 }
 
 .border-left {
+  height: 1.3rem;
+  line-height: 1.3rem;
+  margin-top: .5rem;
   border-left: 0.5rem solid #fd8f3f;
   padding-left: 1rem;
   font-weight: bold;
@@ -582,6 +583,193 @@
       height: 50px;
       margin-left: 1.2rem;
       margin-right: 1.2rem;
+    }
+  }
+}
+
+// 债权详情页
+.credit-detail {
+  .orange-bg {
+    background-color: #fd8f3e;
+  }
+  .grey-bg {
+    background-color: #dbdada;
+  }
+  .orange-ft {
+    color: #fd8f3e !important;
+  }
+  .grey-ft {
+    color: #dbdada;
+  }
+  @media (min-width:320px) {
+    .detail-header {
+      .annualEarnings {
+        top: 2.6rem;
+        left: 8rem;
+        p:first-child {
+          font-size: 3rem;
+        }
+        p:last-child {
+          margin-top: -0.7rem;
+          font-size: 1.3rem;
+        }
+      }
+      .projectDays {
+        top: 5.7rem;
+        right: 2rem;
+        p:first-child {
+          font-size: 2.4rem;
+        }
+        p:last-child {
+          margin-top: -0.5rem;
+          font-size: 1.3rem;
+        }
+      }
+    }
+    .detail-steps {
+      ul {
+        li {
+          .timeline {
+            p {
+              margin: .2rem 0;
+              margin-left: 3.3rem;
+              width: 1px;
+              height: 3.2rem;
+            }
+            img {
+              padding-left: 3rem;
+            }
+          }
+          .step {
+            .hyphen {
+              margin-bottom: 0.3rem;
+            }
+            span {
+              width: 2rem;
+              height: 1px;
+              margin-bottom: 1.8rem;
+            }
+            p {
+              margin-top: 3.2rem;
+              line-height: 1.5rem;
+            }
+          }
+        }
+      }
+    }
+    .project-details {
+      background-color: #f5f5f5;
+      padding: 2rem 0 4rem 0;
+      p {
+        color: #6c6c6c;
+      }
+      span {
+        width: 20%;
+        border-top: 1px solid #d4d4d4;
+        padding-bottom: 0.3rem;
+      }
+    }
+  }
+  @media (min-width:360px) {
+    .detail-header {
+      .annualEarnings {
+        top: 3rem;
+        left: 9.5rem;
+      }
+      .projectDays {
+        top: 7rem;
+        right: 3.8rem;
+      }
+    }
+    .detail-steps {
+      ul {
+        li {
+          .timeline {
+            p {
+              margin-left: 3.8rem;
+            }
+            img {
+              padding-left: 3.4rem;
+            }
+          }
+        }
+      }
+    }
+    .project-details {
+      padding-top: 3rem;
+    }
+  }
+  @media (min-width:375px) {
+    .detail-header {
+      .annualEarnings {
+        top: 3.8rem;
+        left: 9.8rem;
+      }
+      .projectDays {
+        top: 7.5rem;
+        right: 4rem;
+      }
+    }
+    .detail-steps {
+      ul {
+        li {
+          .timeline {
+            p {
+              height: 3.8rem;
+              margin-left: 3.8rem;
+            }
+            img {
+              padding-left: 3.4rem;
+            }
+          }
+          .step {
+            p {
+              margin-top: 3.9rem;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media (min-width:411px) {
+    .detail-header {
+      .annualEarnings {
+        top: 2.8rem;
+        left: 11rem;
+        p:first-child {
+          font-size: 4rem;
+        }
+        p:last-child {
+          font-size: 1.4rem;
+        }
+      }
+      .projectDays {
+        top: 8.2rem;
+        right: 4.8rem;
+        p:last-child {
+          margin-top: -0.3rem;
+          font-size: 1.4rem;
+        }
+      }
+    }
+    .detail-steps {
+      ul {
+        li {
+          .timeline {
+            p {
+              margin-left: 4.3rem;
+            }
+            img {
+              padding-left: 3.9rem;
+            }
+          }
+          .step {
+            span {
+              font-size: 1.3rem;
+            }
+          }
+        }
+      }
     }
   }
 }
