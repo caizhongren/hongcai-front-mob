@@ -114,7 +114,7 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/register.html',
+            templateUrl: 'views/activity/register-new.html',
             controller: 'RegisterCtrl',
             controllerUrl: 'scripts/controllers/register'
           }

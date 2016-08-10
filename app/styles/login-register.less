@@ -34,20 +34,6 @@
     //background-color: #f0f0f0;
   }
 }
-
-// #invitationCode {
-//   input[type="text"] {
-//     border: 0.1rem solid #ddd;
-//   }
-//   label {
-//     border: none;
-//     box-shadow: none;
-//     line-height: 38px;
-//   }
-//   span {
-//     font-weight: normal;
-//   }
-// }
 .password {
   font-family: "微软雅黑";
   input[type="text"],
@@ -71,8 +57,20 @@
   }
 }
 
-.ft-89 {
-  color: #898989;
+.ft-65 {
+  color: #656565;
+}
+.ft-blue8 {
+  color: #349cf5;
+}
+.ft-9f{
+  color: #9f9e9d;
+}
+
+@media (max-width: 320px) {
+  .ft-small{
+    font-size: 1.4rem;
+  }
 }
 
 .login-form {
@@ -95,7 +93,7 @@
       border: none;
       font-family: "微软雅黑";
       border-radius: 0.8rem 0.8rem 0 0;
-    font-size: 1.8rem;
+      font-size: 1.8rem;
       border-bottom: 1px solid #cecece;
       height: 48px;
       // line-height: 48px;
@@ -121,84 +119,54 @@
     font-family: "Microsoft yahei";
   }
   .to-register {
-    background-color: #fff;
-    border: 0.1rem solid #cecece;
-    border-radius: 0.5rem;
     padding: 0;
     font-size: 1.8rem;
     margin: 0;
-    input:nth-child(1) {
+    input{
       margin-bottom: 0;
       width: 100%;
       border: none;
       font-family: "微软雅黑";
-      border-radius: 0.5rem 0.5rem 0 0;
-      border-bottom: 1px solid #cecece;
-      box-shadow: inset 0px 2px 1px #e9e9e9;
+      border-bottom: 1px solid #d4d4d4;
+      border-radius: 0px;
       height: 48px;
-      font-size: 1.8rem;
-      // line-height: 48px;
-    }
-    .input-pwd {
-      margin-bottom: 0;
-      width: 100%;
-      border: none;
-      font-family: "微软雅黑";
-      // border-top: 1px solid #cecece;
-      border-radius: 0 0 0.8rem 0.8rem;
-      height: 48px;
-      font-size: 1.8rem;
-      // line-height: 48px;
-    }
-  }
-  .to-invite {
-    background-color: #fff;
-    border: 0.1rem solid #cecece;
-    border-radius: 0.5rem;
-    padding: 0;
-    margin: 1rem 0;
-    input:nth-child(1) {
-      float: left;
-      border-radius: 0.8rem 0.8rem 0 0;
-      border: none;
-      // border-bottom: 1px solid #cecece;
-      width: 60%;
-      margin-bottom: 0;
-      font-family: "微软雅黑";
-      height: 48px;
-      font-size: 1.8rem;
-      // line-height: 48px;
-    }
-    .input-invitecode {
-      border: none;
-      border-top: 1px solid #cecece;
-      border-radius: 0 0 0.8rem 0.8rem;
-      margin-bottom: 0;
-      font-family: "微软雅黑";
-      height: 48px;
-      // line-height: 48px;
-      font-size: 1.8rem;
-      width: 100%;
+      font-size: 1.6rem;
     }
     span {
-      width: 39.5%;
-      display: inline-block;
+      width: 40%;
       height: 48px;
-      line-height: 48px;
-      // border-bottom: 1px solid #cecece;
-      border-left: 1px solid #cecece;
+      display: inline-block;
       float: right;
       box-sizing: border-box;
+      border-bottom: 1px solid #d4d4d4;
+      text-align: right;
+      padding: 0 0.6rem;
       button {
         width: 100%;
+        height: 47px;
         border: none;
         border-radius: 0;
         padding: 0;
         margin: 0;
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         font-weight: normal;
-        color: #ff705d;
+        color: #f5762f;
+        text-align: right;
       }
+    }
+    .captchacode{
+      float: left;
+      width: 60%;
+    }
+    .input-pwd {
+      width: 85%;
+    }
+    .pwd-eyes {
+      width: 15%;
+      float: right;
+      height: 47px;
+      line-height: 47px;
+      border-bottom: 1px solid #d4d4d4;
     }
   }
 }
@@ -210,3 +178,21 @@
   height: 20px;
   line-height: 20px;
 }
+//设置input 有默认内容时的背景颜色
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+//设置input placeholder字体颜色
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color: #9f9e9d !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: #9f9e9d !important;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #9f9e9d !important;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #9f9e9d !important;
+}
+
