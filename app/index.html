@@ -64,7 +64,7 @@ var _hmt = _hmt || [];
 
   <!-- endbuild -->
   <link rel="stylesheet" href="styles/un-min/box-flex.css">
-  <link rel="stylesheet" href="styles/weui.min.css">
+  <link rel="stylesheet" href="styles/un-min/weui.min.css">
 </head>
 
 <body class="bg-white padding-0" >
@@ -83,7 +83,8 @@ var _hmt = _hmt || [];
     </div>
 
   </div>
-
+  <!-- loading toast -->
+  <div ng-include src='"views/loading-toast.html"' ng-show="showLoadingToast"></div>
 
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
   <!--      <script>
@@ -120,7 +121,6 @@ var _hmt = _hmt || [];
   <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
   <script src="bower_components/lodash/lodash.js"></script>
   <script src="bower_components/restangular/dist/restangular.js"></script>
-  <script src="bower_components/angular-svg-round-progressbar/build/roundProgress.min.js"></script>
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
   <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
@@ -134,7 +134,7 @@ var _hmt = _hmt || [];
   <script src="bower_components/textAngular/dist/textAngular-sanitize.js"></script>
   <script src="bower_components/textAngular/dist/textAngularSetup.js"></script>
   <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
-  <script src="bower_components/moment/moment.js"></script>
+  <script src="bower_components/moment/min/moment.min.js"></script>
   <!-- endbower -->
   <script src="bower_components/famous/dist/famous-global.js"></script>
 
@@ -193,6 +193,7 @@ var _hmt = _hmt || [];
   <script src="scripts/controllers/header-ctrl.js"></script>
   <script src="scripts/controllers/login.js"></script>
   <script src="scripts/controllers/project/project-detail.js"></script>
+  <script src="scripts/controllers/project/project-info.js"></script>
   <script src="scripts/controllers/project/investment-confirmation.js"></script>
   <script src="scripts/controllers/project/experience-project-detail.js"></script>
   <script src="scripts/controllers/project/invest.js"></script>
