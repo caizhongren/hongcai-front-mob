@@ -325,6 +325,20 @@ p2pSiteMobApp
           }
         }
       })
+      // 债权详情
+      .state('root.userCenter.credit-security-details', {
+        url: '/credit-security-details/:type/:number',
+        data: {
+          title: '债权详情'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/credit-security-details.html',
+            controller: 'CreditSecurityCtrl',
+            controllerUrl: 'scripts/controllers/user-center/credit-security-details'
+          }
+        }
+      })
       // 我的订单
       .state('root.userCenter.orders', {
         url: '/orders',
