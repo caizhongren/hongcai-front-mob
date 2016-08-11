@@ -20,7 +20,6 @@ angular.module('p2pSiteMobApp')
     $scope.toggle = function () {
       $scope.showRegistrationAgreement = !$scope.showRegistrationAgreement;
     };
-
     var openId = $rootScope.openId;
     var signUpBe = register;
     $scope.signUp = function(user) {
@@ -104,6 +103,7 @@ angular.module('p2pSiteMobApp')
     var pwd_regexp2 = /^[^~!@#$%^&*]+$/;
     $scope.$watch('user.mobile', function(oldVal){
       if(oldVal !== undefined){
+        $scope.msg = '';
         var valLgth = oldVal.toString().length;
         if(valLgth >=11 && !phoneNum_regexp.test(oldVal)){
           $scope.mobileShow = true;
@@ -118,10 +118,12 @@ angular.module('p2pSiteMobApp')
             $scope.showMsg();
           })
         }
+        $scope.showMsg();
       }
     })
     $scope.$watch('user.password', function(oldVal){
       if(oldVal !== undefined){
+        $scope.msg = '';
         var valLgth2 = oldVal.toString().length;
         if(!pwd_regexp2.test(oldVal)){
           $scope.mobileShow = true;
@@ -133,10 +135,12 @@ angular.module('p2pSiteMobApp')
           $scope.msg = '密码6-16位，需包含字母和数字';
           $scope.showMsg();
         }
+        $scope.showMsg();
       }
     })
     $scope.$watch('user.picCaptcha', function(oldVal){
       if(oldVal !== undefined){
+        $scope.msg = '';
         var valLgth3 = oldVal.toString().length;
         if(valLgth3 >=4){
           $http({
@@ -144,7 +148,7 @@ angular.module('p2pSiteMobApp')
             url: DEFAULT_DOMAIN + '/captchas/checkPic?captcha=' + oldVal
           }).success(function(data) {
             if(data == true) {
-              $scope.msg = '';
+              // $scope.msg = '';
             } else {
               $scope.mobileShow = true;
               $scope.msg = '图形验证码错误';
@@ -156,6 +160,7 @@ angular.module('p2pSiteMobApp')
             $scope.showMsg();
           });
         }
+        $scope.showMsg();
       }
     })
     $scope.$watch('user.inviteCode', function(oldVal){
@@ -186,12 +191,17 @@ angular.module('p2pSiteMobApp')
 
     //设置错误提示
     $scope.showErrorMsg = false;
+    $scope.showBtn = true;
     $scope.showMsg = function(){
       if($scope.msg){
         $scope.showErrorMsg = true;
+        $scope.showBtn = !$scope.showErrorMsg;
         $timeout(function() {
           $scope.showErrorMsg = false;
+          $scope.showBtn = false;
         }, 3000);
+      }else{
+        $scope.showBtn = true;
       }
     }
     $scope.showChecked = true;
