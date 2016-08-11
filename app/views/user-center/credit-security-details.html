@@ -23,7 +23,7 @@
         </div>
         <div class="step display-inb position-ab margin-l--0p5">
           <span class="display-inb grey-bg"></span>
-          <p class="margin-t-2p5 display-inb ft-grey4 ft-1p4 margin-b--0p5">投资：本金{{creditRight.transferableAmount | number:2 }}元<br><span class="ft-blue7 ft-1p2 margin-t--0p5">{{ order.createTime | date:'yyyy-MM-dd'}}</span></p>
+          <p class="margin-t-2p5 display-inb ft-grey4 ft-1p4 margin-b--0p5">投资：本金{{totalInv | number:2 }}元<br><span class="ft-blue7 ft-1p2 margin-t--0p5">{{ credits[0].createTime | date:'yyyy-MM-dd'}}</span></p>
         </div>
       </li>
       <!-- 计息日期 -->
@@ -31,28 +31,28 @@
         <div class="timeline display-inb">
           <p  class="margin-b-0 {{project.loanTime > 0?'grey-bg':'orange-bg'}}"></p>
           <div class="margin-t--0p5">
-            <img src="/images/user-center/circle-ed.png" width="19%" class="display-inb"  ng-if="project.loanTime > 0">
-            <img src="/images/user-center/circle-ex.png" width="19%" class="display-inb" ng-if="project.loanTime <= 0">
+            <img src="/images/user-center/circle-ed.png" width="19%" class="display-inb" ng-if="loanTime > 0">
+            <img src="/images/user-center/circle-ex.png" width="19%" class="display-inb" ng-if="loanTime <= 0">
           </div>
         </div>
         <div class="step display-inb position-ab margin-l--0p5">
-          <span class="hyphen display-inb {{project.loanTime > 0?'grey-bg':'orange-bg'}}"></span>
-          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="project.loanTime > 0">计息日期：{{ project.loanTime | date:'yyyy-MM-dd'}}</p>
-          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="project.loanTime <= 0">项目募集中</p>
+          <span class="hyphen display-inb {{loanTime > 0?'grey-bg':'orange-bg'}}"></span>
+          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="loanTime > 0">计息日期：{{ project.loanTime | date:'yyyy-MM-dd'}}</p>
+          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="loanTime <= 0">项目募集中</p>
         </div>
       </li>
       <!-- 每次回款 -->
-      <li class="margin-b--0p5" ng-repeat="card in listInvPond">
+      <li class="margin-b--0p5" ng-repeat="card in credits">
         <div class="timeline display-inb">
           <p  class="margin-b-0 orange-bg"></p>
           <div class="margin-t--0p5">
-            <img src="/images/user-center/circle-ed.png" width="19%" class="display-inb" ng-if="card.payDateMs - curDate <= 0">
-            <img src="/images/user-center/circle-ex.png" width="19%" class="display-inb" ng-if="card.payDateMs - curDate > 0">
+            <img src="/images/user-center/circle-ed.png" width="19%" class="display-inb" ng-if="card.repaymentTime - curDate <= 0">
+            <img src="/images/user-center/circle-ex.png" width="19%" class="display-inb" ng-if="card.repaymentTime - curDate > 0">
           </div>
         </div>
         <div class="step display-inb position-ab margin-l--0p5">
-          <span class="display-inb {{card.payDateMs - curDate > 0?'orange-bg':'grey-bg'}}"></span>
-          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5">回款：利息{{ card.invEarnings | number: 2 }}元<b class="ft-red0 display-inb ft-normal" ng-show="increaseRateCoupon.value">+{{(oriRate + increaseRateCoupon.value ) * card.profit / oriRate - card.profit| number:2 }}元</b><br><span class="ft-1p2 margin-t--0p5 {{card.payDateMs - curDate > 0?'orange-ft':'ft-blue7'}}">{{ card.payDate }}</span></p>
+          <span class="display-inb {{card.repaymentTime - curDate > 0?'orange-bg':'grey-bg'}}"></span>
+          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5">回款：利息{{ card.repaymentInterest | number: 2 }}元<b class="ft-red0 display-inb ft-normal" ng-show="increaseRateCoupon.value">+{{repaymentAmount| number:2 }}元</b><br><span class="ft-1p2 margin-t--0p5 {{card.repaymentTime - curDate > 0?'orange-ft':'ft-blue7'}}">{{ card.repaymentTime | date:'yyyy-MM-dd'}}</span></p>
         </div>
       </li>
       <!-- 最后一次回款含本金单独写 -->
@@ -60,13 +60,13 @@
         <div class="timeline display-inb">
           <p  class="margin-b-0 orange-bg"></p>
           <div class="margin-t--0p5">
-            <img src="/images/user-center/circle-ex.png" width="19%" class="display-inb" ng-if="project.repaymentDate - curDate > 0">
-            <img src="/images/user-center/circle-ed.png" width="19%" class="display-inb" ng-if="project.repaymentDate - curDate <= 0">
+            <img src="/images/user-center/circle-ex.png" width="19%" class="display-inb" ng-if="credits[credits.length-1].repaymentTime - curDate > 0">
+            <img src="/images/user-center/circle-ed.png" width="19%" class="display-inb" ng-if="credits[credits.length-1].repaymentTime - curDate <= 0">
           </div>
         </div>
         <div class="step display-inb position-ab margin-l--0p5">
-          <span class="display-inb {{project.repaymentDate - curDate > 0?'orange-bg':'grey-bg'}}"></span>
-          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5">回款：本金{{creditRight.transferableAmount | number:2 }}元<br><span class="ft-1p2 margin-t--0p5 {{project.repaymentDate - curDate > 0?'orange-ft':'ft-blue7'}}">{{project.repaymentDate | date:'yyyy-MM-dd'}}</span></p>
+          <span class="display-inb {{credits[credits.length-1].repaymentTime - curDate > 0?'orange-bg':'grey-bg'}}"></span>
+          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5">回款：本金{{totalInv | number:2}}元<br><span class="ft-1p2 margin-t--0p5 {{credits[credits.length-1].repaymentTime - curDate > 0?'orange-ft':'ft-blue7'}}">{{credits[credits.length-1].repaymentTime | date:'yyyy-MM-dd'}}</span></p>
         </div>
       </li>
     </ul>
