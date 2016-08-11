@@ -148,7 +148,7 @@ angular.module('p2pSiteMobApp')
             url: DEFAULT_DOMAIN + '/captchas/checkPic?captcha=' + oldVal
           }).success(function(data) {
             if(data == true) {
-              // $scope.msg = '';
+              $scope.showMsg();
             } else {
               $scope.mobileShow = true;
               $scope.msg = '图形验证码错误';
