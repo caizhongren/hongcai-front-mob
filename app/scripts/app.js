@@ -327,7 +327,7 @@ p2pSiteMobApp
       })
       // 债权详情
       .state('root.userCenter.credit-security-details', {
-        url: '/credit-security-details/:type/:number',
+        url: '/credit-security-details/:id/:time',
         data: {
           title: '债权详情'
         },
@@ -1099,6 +1099,7 @@ p2pSiteMobApp
         'share-spring',
         'grade',
         'project',
+        'project-info',
         'project-detail',
         'activity'
       ];
