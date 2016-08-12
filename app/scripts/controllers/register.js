@@ -70,7 +70,6 @@ angular.module('p2pSiteMobApp')
         if (response.ret === -1) {
           $scope.captchaShow = true;
           $scope.msg = response.msg;
-          $scope.showMsg();
         }
       });
     };
@@ -98,30 +97,31 @@ angular.module('p2pSiteMobApp')
 
 
     //监测手机号码
-    $scope.mobileShow = false;
+    // $scope.mobileShow = false;
     var phoneNum_regexp = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
     var pwd_regexp2 = /^[^~!@#$%^&*]+$/;
     $scope.$watch('user.mobile', function(oldVal){
+      $scope.mobileShow = false;
       if(oldVal !== undefined){
         $scope.msg = '';
         var valLgth = oldVal.toString().length;
         if(valLgth >=11 && !phoneNum_regexp.test(oldVal)){
-          $scope.mobileShow = true;
           $scope.msg = '手机号码格式不正确';
+          $scope.mobileShow = true;
           $scope.showMsg();
         }else if(valLgth ===11 && phoneNum_regexp.test(oldVal)){
           Restangular.one('/users/').post('isUnique',{
             account: oldVal
           }).then(function(response){
-            $scope.mobileShow = true;
             $scope.msg = response.msg;
+            $scope.mobileShow = true;
             $scope.showMsg();
           })
-        }
-        $scope.showMsg();
+        }else if(valLgth >=11 && $scope.msg === ''){$scope.showMsg();}
       }
     })
     $scope.$watch('user.password', function(oldVal){
+      $scope.mobileShow = false;
       if(oldVal !== undefined){
         $scope.msg = '';
         var valLgth2 = oldVal.toString().length;
@@ -129,16 +129,15 @@ angular.module('p2pSiteMobApp')
           $scope.mobileShow = true;
           $scope.msg = '密码含非法字符';
           $scope.showMsg();
-        }
-        if(valLgth2 >16){
+        }else if(valLgth2 >16){
           $scope.mobileShow = true;
           $scope.msg = '密码6-16位，需包含字母和数字';
           $scope.showMsg();
-        }
-        $scope.showMsg();
+        }else if($scope.msg === ''){$scope.showMsg();}
       }
     })
     $scope.$watch('user.picCaptcha', function(oldVal){
+      $scope.mobileShow = false;
       if(oldVal !== undefined){
         $scope.msg = '';
         var valLgth3 = oldVal.toString().length;
@@ -150,20 +149,20 @@ angular.module('p2pSiteMobApp')
             if(data == true) {
               $scope.showMsg();
             } else {
-              $scope.mobileShow = true;
               $scope.msg = '图形验证码错误';
+              $scope.mobileShow = true;
               $scope.showMsg();
             }
           }).error(function() {
-            $scope.mobileShow = true;
             $scope.msg = '图形验证码错误';
+            $scope.mobileShow = true;
             $scope.showMsg();
           });
-        }
-        $scope.showMsg();
+        }else if(valLgth3>=4 && $scope.msg===''){$scope.showMsg();}
       }
     })
     $scope.$watch('user.inviteCode', function(oldVal){
+      $scope.mobileShow = false;
       if(oldVal !== undefined){
         var valLgth4 = oldVal.toString().length;
         if(valLgth4 >=11){
@@ -191,8 +190,8 @@ angular.module('p2pSiteMobApp')
 
     //设置错误提示
     $scope.showErrorMsg = false;
-    $scope.showBtn = true;
     $scope.showMsg = function(){
+      $scope.showBtn = true;
       if($scope.msg){
         $scope.showErrorMsg = true;
         $scope.showBtn = !$scope.showErrorMsg;
@@ -204,14 +203,11 @@ angular.module('p2pSiteMobApp')
         $scope.showBtn = true;
       }
     }
-    $scope.showChecked = true;
     $scope.checked = function(){
       if($('#isremind').is(':checked')){
         $("#isremind").removeAttr("checked");
-        $scope.showChecked = false;
       }else{
         $("#isremind").prop("checked",true);
-        $scope.showChecked = true;
       }
     }
 
