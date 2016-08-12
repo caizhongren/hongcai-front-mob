@@ -24,39 +24,36 @@ angular.module('p2pSiteMobApp')
     var signUpBe = register;
     $scope.signUp = function(user) {
       var pwd_regexp = /^(?=.*\d)(?=.*[a-zA-Z]).{6,16}$/;
-      $scope.$watch('user.password', function(oldVal){
-        if(!pwd_regexp.test(oldVal)){
-          $scope.mobileShow = true;
-          $scope.msg = '密码6-16位，需包含字母和数字';
+      if(!pwd_regexp.test(user.password)){
+        $scope.mobileShow = true;
+        $scope.msg = '密码6-16位，需包含字母和数字';
+        $scope.showMsg();
+        return;
+      }
+      signUpBe.$create({
+        // name: user.name,
+        picCaptcha: user.picCaptcha,
+        password: md5.createHash(user.password),
+        mobile: user.mobile,
+        captcha: user.captcha,
+        inviteCode: user.inviteCode,
+        channelCode : ipCookie('utm_from'),
+        act: ipCookie('act'),
+        channelParams: ipCookie('channelParams')
+      }).$then(function(response) {
+        if (response.ret === -1) {
+          $scope.captchaShow = true;
+          $scope.msg = response.msg;
           $scope.showMsg();
-          return;
-        }else{
-          signUpBe.$create({
-            // name: user.name,
-            picCaptcha: user.picCaptcha,
-            password: md5.createHash(user.password),
-            mobile: user.mobile,
-            captcha: user.captcha,
-            inviteCode: user.inviteCode,
-            channelCode : ipCookie('utm_from'),
-            act: ipCookie('act'),
-            channelParams: ipCookie('channelParams')
-          }).$then(function(response) {
-            if (response.ret === -1) {
-              $scope.captchaShow = true;
-              $scope.msg = response.msg;
-              $scope.showMsg();
-            } else {
-              $rootScope.user = {
-                id: response.id
-              };
-              $state.go('root.register-success', {
-                userId: $rootScope.user.id
-              });
-            }
+        } else {
+          $rootScope.user = {
+            id: response.id
+          };
+          $state.go('root.register-success', {
+            userId: $rootScope.user.id
           });
         }
-      })
+    })
 
 
 

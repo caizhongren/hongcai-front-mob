@@ -148,6 +148,17 @@ p2pSiteMobApp
           }
         }
       })
+      //修改密码
+      .state('root.modifyPwd', {
+        url: '/modify-pwd',
+        views: {
+          '': {
+            templateUrl: 'views/activity/modify-pwd.html',
+            controller: 'modifyPwd',
+            controllerUrl: 'scripts/controllers/modify-pwd.js'
+          }
+        }
+      })
 
       // 宏金保详情页
       .state('root.project-detail', {
