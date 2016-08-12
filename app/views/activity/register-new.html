@@ -9,7 +9,7 @@
       <span><img src="{{getPicCaptcha}}" id="checkCaptcha" class="pic-verify no-padding margin-t--13 margin-l-5" ng-click="refreshCode()" width="78" height="40"></span>
       <!-- 短信验证码 -->
       <input id="captchasignup" name="captchasignup" ng-model="user.captcha" required="required" type="text" placeholder="请输入短信验证码" class="captchacode"/>
-      <span><button ng-click="sendMobileCaptcha(user);" ng-disabled="registerForm.mobile.$invalid || registerForm.password.$invalid || registerForm.picCaptcha.$invalid || piccha" onclick="countDown(this,60,'out');">短信验证码</button></span>
+      <span><button ng-click="sendMobileCaptcha(user);" ng-disabled="registerForm.mobile.$invalid || registerForm.password.$invalid || registerForm.picCaptcha.$invalid" onclick="countDown(this,60,'out');">短信验证码</button></span>
       <!-- 登录密码 -->
       <input id="passwordsignup" name="password" ng-model="user.password" required type="password" placeholder="请输入登录密码" class="input-pwd" />
       <i class="fa fa-eye pwd-eyes ft-9f text-right" ng-if="!showEyes" ng-click="selectEyes()"></i>
