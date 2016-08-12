@@ -211,6 +211,8 @@ angular.module('p2pSiteMobApp')
           }else{
             $scope.showCashMsg($scope.project.investAmount);
           }
+        }else{
+          $scope.msg = '';
         }
     }
     //不使用券

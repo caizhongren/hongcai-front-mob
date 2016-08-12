@@ -75,40 +75,40 @@
 
 .login-form {
   font-family: "微软雅黑";
-  padding: 2rem 1rem;
+  padding: 1rem 1rem;
   button {
     font-family: "Microsoft yahei";
   }
   .to-login {
-    background-color: #fff;
-    border: 0.1rem solid #cecece;
-    box-shadow: inset 0px 3px 1px #e9e9e9;
-    border-radius: 0.5rem;
     padding: 0;
     margin: 0;
-    font-size: 1.8rem;
-    input:nth-child(1) {
+    font-size: 1.6rem;
+    input{
       margin-bottom: 0;
       width: 100%;
       border: none;
       font-family: "微软雅黑";
-      border-radius: 0.8rem 0.8rem 0 0;
-      font-size: 1.8rem;
-      border-bottom: 1px solid #cecece;
+      border-bottom: 1px solid #d4d4d4;
+      border-radius: 0px;
       height: 48px;
-      // line-height: 48px;
+      font-size: 1.6rem;
     }
-    .input-pwd {
-      margin-bottom: 0;
-      width: 100%;
-      border: none;
-      font-family: "微软雅黑";
-      // border-top: 1px solid #cecece;
-      border-radius: 0 0 0.8rem 0.8rem;
-      height: 48px;
-    font-size: 1.8rem;
-      // line-height: 48px;
+    .input-pwd{
+      width: 85%;
     }
+    .pwd-eyes {
+      width: 12%;
+      float: right;
+      height: 47px;
+      line-height: 47px;
+      border-bottom: 1px solid #d4d4d4;
+      text-align: right;
+      padding-right: 3%;
+    }
+  }
+  .toast-w{
+    width: 14rem;
+    margin-left: -7rem;
   }
 }
 
@@ -162,11 +162,13 @@
       width: 85%;
     }
     .pwd-eyes {
-      width: 15%;
+      width: 12%;
       float: right;
       height: 47px;
       line-height: 47px;
       border-bottom: 1px solid #d4d4d4;
+      text-align: right;
+      padding-right: 3%;
     }
   }
 }

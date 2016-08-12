@@ -100,7 +100,7 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/login.html',
+            templateUrl: 'views/activity/login-new.html',
             controller: 'LoginCtrl',
             controllerUrl: 'scripts/controllers/login'
 
