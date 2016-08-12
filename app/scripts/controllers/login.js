@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('LoginCtrl', function($scope, $state, $rootScope, $stateParams, $location, md5, ipCookie, HongcaiLogin) {
+  .controller('LoginCtrl', function($timeout, $scope, $state, $rootScope, $stateParams, $location, md5, ipCookie, HongcaiLogin) {
     // 如果已经登录，自动跳转到首页。
     // if ($rootScope.hasLoggedUser) {
     //   $state.go('root.main');
@@ -36,6 +36,14 @@ angular.module('p2pSiteMobApp')
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.msg = response.msg;
+          if($scope.msg){
+            $scope.showErrorMsg = true;
+            $timeout(function() {
+              $scope.showErrorMsg = false;
+              $scope.msg ='';
+            }, 2000);
+          }
+
         } else {
 
           if (redirectUrl) {
@@ -50,4 +58,15 @@ angular.module('p2pSiteMobApp')
         }
       });
     };
+
+    //密码显示方式
+    $scope.showEyes = true;
+    $scope.selectEyes = function(){
+      $scope.showEyes = !$scope.showEyes;
+      if(!$scope.showEyes){
+        angular.element('.input-pwd').prop("type","text");
+      }else{
+        angular.element('.input-pwd').prop("type","password");
+      }
+    }
   });
