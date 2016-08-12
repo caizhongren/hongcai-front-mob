@@ -136,6 +136,7 @@ angular.module('p2pSiteMobApp')
         }else if($scope.msg === ''){$scope.showMsg();}
       }
     })
+    $scope.piccha =false;
     $scope.$watch('user.picCaptcha', function(oldVal){
       $scope.mobileShow = false;
       if(oldVal !== undefined){
@@ -152,11 +153,13 @@ angular.module('p2pSiteMobApp')
               $scope.msg = '图形验证码错误';
               $scope.mobileShow = true;
               $scope.showMsg();
+              $scope.piccha =true;
             }
           }).error(function() {
             $scope.msg = '图形验证码错误';
             $scope.mobileShow = true;
             $scope.showMsg();
+            $scope.piccha =true;
           });
         }else if(valLgth3>=4 && $scope.msg===''){$scope.showMsg();}
       }
