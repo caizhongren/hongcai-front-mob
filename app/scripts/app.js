@@ -313,7 +313,7 @@ p2pSiteMobApp
       })
       // 我的债权
       .state('root.userCenter.credits', {
-        url: '/credits',
+        url: '/credits/:tab',
         data: {
           title: '我的投资'
         },

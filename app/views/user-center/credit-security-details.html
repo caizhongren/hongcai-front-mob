@@ -1,3 +1,4 @@
+
 <!-- 债权详情 -->
 <div class="credit-detail">
   <div class="detail-header ft-white">
@@ -43,7 +44,7 @@
       </li>
       <!-- 每次回款 -->
           <!-- 宏金保 -->
-      <li class="margin-b--0p5" ng-repeat="card in credits" ng-show="creditRight.type == 1">
+      <li class="margin-b--0p5" ng-repeat="card in credits" ng-show="creditRight.type !== 3">
         <div class="timeline display-inb">
           <p  class="margin-b-0 {{card.status==1 ?'grey-bg':'orange-bg'}}"></p>
           <div class="margin-t--0p5">
@@ -53,7 +54,7 @@
         </div>
         <div class="step display-inb position-ab margin-l--0p5">
           <span class="display-inb {{card.status==1 ?'grey-bg':'orange-bg'}}"></span>
-          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5">回款：利息{{ card.repaymentAmount | number: 2 }}元<b class="ft-red0 display-inb ft-normal" ng-show="increaseRateCoupon.value">+{{card.repaymentAmount*increaseRateCoupon.value/annualEarnings| number:2 }}元</b><br><span class="ft-1p2 margin-t--0p5 {{card.status==1?'ft-blue7':'orange-ft'}}">{{ card.repaymentTime | date:'yyyy-MM-dd'}}</span></p>
+          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5">回款：利息{{ card.repaymentInterest | number: 2 }}元<b class="ft-red0 display-inb ft-normal" ng-show="increaseRateCoupon.value">+{{card.repaymentInterest*increaseRateCoupon.value/annualEarnings| number:2 }}元</b><br><span class="ft-1p2 margin-t--0p5 {{card.status==1?'ft-blue7':'orange-ft'}}">{{ card.repaymentTime | date:'yyyy-MM-dd'}}</span></p>
         </div>
       </li>
           <!-- 宏金盈 -->
@@ -73,9 +74,9 @@
       <!-- 最后一次回款只有本金单独写 -->
       <li class="margin-b--0p5">
         <div class="timeline display-inb">
-          <p  class="margin-b-0 {{credits[credits.length-1].status == 1?'grey-bg':'orange-bg'}}" ng-show="creditRight.type == 1"></p>
+          <p  class="margin-b-0 {{credits[credits.length-1].status == 1?'grey-bg':'orange-bg'}}" ng-show="creditRight.type !== 3"></p>
           <p  class="margin-b-0 {{fundsProject.status == 5?'grey-bg':'orange-bg'}}" ng-show="creditRight.type == 3"></p>
-          <div class="margin-t--0p5" ng-show="creditRight.type == 1">
+          <div class="margin-t--0p5" ng-show="creditRight.type !== 3">
             <img src="/images/user-center/circle-ex.png" width="19%" class="display-inb" ng-if="credits[credits.length-1].status == 0 || card.status==2">
             <img src="/images/user-center/circle-ed.png" width="19%" class="display-inb" ng-if="credits[credits.length-1].status == 1">
           </div>
@@ -85,10 +86,10 @@
           </div>
         </div>
         <div class="step display-inb position-ab margin-l--0p5">
-          <span class="display-inb {{credits[credits.length-1].status == 1?'grey-bg':'orange-bg'}}" ng-show="creditRight.type == 1"></span>
+          <span class="display-inb {{credits[credits.length-1].status == 1?'grey-bg':'orange-bg'}}" ng-show="creditRight.type !== 3"></span>
           <span class="display-inb {{fundsProject.status == 5?'grey-bg':'orange-bg'}}" ng-show="creditRight.type == 3"></span>
           <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5">回款：本金{{creditRight.amount | number:2}}元<br>
-            <span class="ft-1p2 margin-t--0p5 {{credits[credits.length-1].status == 1?'ft-blue7':'orange-ft'}}" ng-show="creditRight.type == 1">{{project.repaymentDate | date:'yyyy-MM-dd'}}</span>
+            <span class="ft-1p2 margin-t--0p5 {{credits[credits.length-1].status == 1?'ft-blue7':'orange-ft'}}" ng-show="creditRight.type !== 3">{{project.repaymentDate | date:'yyyy-MM-dd'}}</span>
             <span class="ft-1p2 margin-t--0p5 {{fundsProject.status == 5?'ft-blue7':'orange-ft'}}" ng-show="creditRight.type == 3">{{fundsProject.repaymentDate | date:'yyyy-MM-dd'}}</span>
           </p>
         </div>

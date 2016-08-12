@@ -8,7 +8,8 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('CreditCtrl', function($scope, $rootScope, $state, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN) {
+  .controller('CreditCtrl', function($scope, $rootScope, $state, $stateParams, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN) {
+    $scope.tab = 0;
     $scope.widthFlag = "";
     $scope.screenWidth = function() {
       $scope.width = document.body.scrollWidth; //用系统返回宽度除以分辨率
