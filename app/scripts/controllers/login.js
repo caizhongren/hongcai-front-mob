@@ -40,7 +40,6 @@ angular.module('p2pSiteMobApp')
             $scope.showErrorMsg = true;
             $timeout(function() {
               $scope.showErrorMsg = false;
-              $scope.msg ='';
             }, 2000);
           }
 
