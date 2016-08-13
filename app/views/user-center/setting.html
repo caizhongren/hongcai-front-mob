@@ -11,7 +11,8 @@
     </div>
     <div>
       <p>登录密码：</p>
-      <p>用于登录宏财网<span ng-click="checkPwdFlag=true"><a>修改></a></span></p>
+      <!-- <p>用于登录宏财网<span ng-click="checkPwdFlag=true"><a>修改></a></span></p> -->
+      <p>用于登录宏财网<span ui-sref="root.modifyPwd"><a>修改></a></span></p>
     </div>
   </div>
   <div class="content-main">
@@ -77,7 +78,7 @@
   </div>
 </div>
 <!-- 修改密码蒙层 checkPwdFlag-->
-<div ng-show="checkPwdFlag" class="project-mask">
+<div ng-show="false" class="project-mask">
   <div class="bg-white setting-mask project-mask-inner">
     <form name="passwordResetForm" class="margin-b-0">
       <p class="margin-b-1p5">
