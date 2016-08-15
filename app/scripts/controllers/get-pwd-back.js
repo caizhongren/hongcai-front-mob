@@ -36,6 +36,7 @@ angular.module('p2pSiteMobApp')
        * 短信验证码倒计时
        */
       var captcha = document.getElementById("captcha");
+
       function countDown(obj, second, inOrOut) {
         var getMobile = document.getElementById("usermobile");
         var mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678])|(14[0-9]))\d{8}$/;
@@ -99,30 +100,30 @@ angular.module('p2pSiteMobApp')
     var mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678]))\d{8}$/;
     $scope.checkePicMsg = false;
     $scope.$watch('user.mobile', function(oldVal) {
-      if (oldVal !== undefined) {
-        $scope.msg = '';
-        var valLgth = oldVal.toString().length;
-        if (valLgth >= 11 && !mobilePattern.test(oldVal)) {
-          $scope.checkePicMsg = true;
-          $scope.msg = '手机号码格式不正确';
-          $scope.showMsg();
-        } else if (valLgth === 11 && mobilePattern.test(oldVal)) {
-          Restangular.one('/users/').post('isUnique', {
-            account: oldVal
-          }).then(function(response) {
-            if (response.ret == -1) {
-              return;
-            }
+        if (oldVal !== undefined) {
+          $scope.msg = '';
+          var valLgth = oldVal.toString().length;
+          if (valLgth >= 11 && !mobilePattern.test(oldVal)) {
             $scope.checkePicMsg = true;
-            $scope.msg = "该手机号还未注册";
+            $scope.msg = '手机号码格式不正确';
             $scope.showMsg();
-          })
+          } else if (valLgth === 11 && mobilePattern.test(oldVal)) {
+            Restangular.one('/users/').post('isUnique', {
+              account: oldVal
+            }).then(function(response) {
+              if (response.ret == -1) {
+                return;
+              }
+              $scope.checkePicMsg = true;
+              $scope.msg = "该手机号还未注册";
+              $scope.showMsg();
+            })
+          }
         }
-      }
-    })
-    /**
-     * 监测图形验证码
-     */
+      })
+      /**
+       * 监测图形验证码
+       */
     $scope.$watch('user.picCaptcha', function(oldVal) {
       $scope.checkPic = false;
       if (oldVal !== undefined) {
@@ -165,7 +166,7 @@ angular.module('p2pSiteMobApp')
           $scope.msg = response.msg;
           $scope.showMsg();
         } else {
-          $state.go('root.modifyPwd', {
+          $state.go('root.getPwd2', {
             mobile: mobile,
             captcha: captcha
           });
@@ -191,30 +192,71 @@ angular.module('p2pSiteMobApp')
     $scope.captchaNum = $stateParams.captcha;
 
 
-    //确认找回并修改密码
-    // $scope.changePwd = function(pwd1, pwd2) {
-    //   if (!pwd1 || !pwd2) {
-    //     return;
-    //   }
 
-    //   if (pwd1 !== pwd2) {
-    //     $scope.changePasswordMsg = "两次密码输入不一致";
-    //     return;
-    //   }
+    /**
+     * 下一步修改密码
+     */
+    var pwd_regexp = /^(?=.*\d)(?=.*[a-zA-Z]).{6,16}$/;
+    var pwd_regexp2 = /^[^~!@#$%^&*]+$/;
+    $scope.$watch('chg.newPassword1', function(oldVal) {
+      // $scope.mobileShow = false;
+      if (oldVal !== undefined) {
+        $scope.msg = '';
+        var valLgth1 = oldVal.toString().length;
+        $scope.valLgth1 = valLgth1;
+        if (!pwd_regexp2.test(oldVal)) {
+          $scope.msg = '密码含非法字符';
+          $scope.checkePicMsg = true;
+          $scope.showMsg();
+        } else if (valLgth1 > 16) {
+          $scope.msg = '密码6-16位，需包含字母和数字';
+          $scope.checkePicMsg = true;
+          $scope.showMsg();
+        }
+        $scope.showBtn = $scope.msg === '' ? false : true;
+      }
+    })
 
-    //   restmod.model(DEFAULT_DOMAIN + '/users/resetMobilePassword')
-    //     .$create({
-    //       mobile: $scope.mobileNum,
-    //       captcha: $scope.captchaNum,
-    //       password: md5.createHash(pwd2)
-    //     }).$then(function(response) {
-    //       if (response.ret === -1) {
-    //         $scope.changePasswordMsg = response.msg;
-    //       } else {
-    //         $state.go('root.login');
-    //       }
-    //     });
-    // }
+    $scope.$watch('chg.newPassword2', function(oldVal) {
+      $scope.mobileShow = false;
+      if (oldVal !== undefined) {
+        $scope.msg = '';
+        var valLgth2 = oldVal.toString().length;
+        if (valLgth2 >= $scope.valLgth1 && $scope.chg.newPassword1 !== $scope.chg.newPassword2) {
+          $scope.msg = '两次密码输入不一致';
+          $scope.checkePicMsg = true;
+          $scope.showMsg();
+        }
+        $scope.showBtn = $scope.msg === '' ? false : true;
+      }
+    })
+    $scope.changePassword = function(chg) {
+      var pwd_regexp1 = /^(?=.*\d)(?=.*[a-zA-Z]).{6,16}$/;
+      $scope.msg = '';
+      if (chg.newPassword1 !== chg.newPassword2) {
+        $scope.msg = '两次密码输入不一致';
+        $scope.checkePicMsg = true;
+        $scope.showMsg();
+        return;
+      }
 
-
+      if (!pwd_regexp1.test(chg.newPassword1)) {
+        $scope.msg = '密码6-16位，需包含字母和数字';
+        $scope.checkePicMsg = true;
+        $scope.showMsg();
+        return;
+      }
+      restmod.model(DEFAULT_DOMAIN + '/users/resetMobilePassword')
+        .$create({
+          mobile: $scope.mobileNum,
+          captcha: $scope.captchaNum,
+          password: md5.createHash(chg.newPassword2)
+        }).$then(function(response) {
+          if (response.ret === -1) {
+            $scope.changePasswordMsg = response.msg;
+          } else {
+            $state.go('root.login');
+          }
+        });
+    }
   });
