@@ -242,11 +242,11 @@ angular.module('p2pSiteMobApp')
 
 
     //设置错误提示
-    $scope.showMsg = function() {
       $scope.showBtn = true;
+    $scope.showMsg = function() {
       if ($scope.msg) {
-        $scope.showErrorMsg = true;
-        $scope.showBtn = !$scope.showErrorMsg;
+        // $scope.showErrorMsg = true;
+        // $scope.showBtn = true;
         $timeout(function() {
           $scope.showErrorMsg = false;
           $scope.showBtn = false;
