@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2016-08-12 16:37:40
 * @Last Modified by:   Administrator
-* @Last Modified time: 2016-08-15 17:54:49
+* @Last Modified time: 2016-08-15 18:27:54
 */
 
 'use strict';
@@ -13,7 +13,6 @@ angular.module('p2pSiteMobApp')
     var pwd_regexp = /^(?=.*\d)(?=.*[a-zA-Z]).{6,16}$/;
     var pwd_regexp2 = /^[^~!@#$%^&*]+$/;
     $scope.$watch('chg.newPassword1', function(oldVal){
-      // $scope.mobileShow = false;
       if(oldVal !== undefined){
         $scope.msg = '';
         var valLgth1 = oldVal.toString().length;
@@ -78,10 +77,12 @@ angular.module('p2pSiteMobApp')
         if (response.ret === -1) {
           $scope.msg = '旧密码不正确';
           $scope.showErrorMsg = true;
+          $scope.oldPwd = false;
           $scope.showBtn = $scope.msg === '' ?false : true;
           $scope.showMsg();
         } else {
           $scope.showErrorMsg = false;
+          $scope.oldPwd = true;
           $scope.oldPassword = null;
           $scope.newPassword1 = null;
           $scope.newPassword2 = null;
@@ -92,7 +93,7 @@ angular.module('p2pSiteMobApp')
       });
 
       $scope.$watch('chg.oldPassword', function(newVal, oldVal){
-        if(newVal ===oldVal){
+        if(newVal !==oldVal){
           if($scope.msg ==='旧密码不正确'){
             $scope.showBtn = false;
           }
@@ -101,8 +102,8 @@ angular.module('p2pSiteMobApp')
     }
     $scope.showMsg = function(){
       $timeout(function() {
-          $scope.showErrorMsg = false;
-          $scope.showBtn = true;
-        }, 2000);
+        $scope.showErrorMsg = false;
+        // $scope.showBtn = true;
+      }, 2000);
     }
   })
