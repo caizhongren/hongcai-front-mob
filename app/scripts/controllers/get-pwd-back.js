@@ -24,13 +24,16 @@ angular.module('p2pSiteMobApp')
         $scope.showMsg();
         return;
       }
+      /**
+       * 判断图片验证码
+       */
       if (!user.picCaptcha || $scope.checkPic == false) {
         $scope.msg = '图形验证码有误';
         $scope.showMsg();
         return;
       }
       /**
-       * 验证码倒计时
+       * 短信验证码倒计时
        */
       var captcha = document.getElementById("captcha");
       function countDown(obj, second, inOrOut) {
@@ -75,7 +78,9 @@ angular.module('p2pSiteMobApp')
           window.buttonFlag = 0;
         }
       }
-
+      /**
+       * 获取短信验证码
+       */
       mobileCaptcha.$create({
         mobile: user.mobile
       }).$then(function(response) {
@@ -88,6 +93,9 @@ angular.module('p2pSiteMobApp')
         countDown(captcha, 60, 'out');
       });
     };
+    /**
+     * 监测用户手机号
+     */
     var mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678]))\d{8}$/;
     $scope.checkePicMsg = false;
     $scope.$watch('user.mobile', function(oldVal) {
@@ -110,9 +118,11 @@ angular.module('p2pSiteMobApp')
             $scope.showMsg();
           })
         }
-        $scope.showMsg();
       }
     })
+    /**
+     * 监测图形验证码
+     */
     $scope.$watch('user.picCaptcha', function(oldVal) {
       $scope.checkPic = false;
       if (oldVal !== undefined) {
