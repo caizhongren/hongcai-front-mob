@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2016-08-12 16:37:40
 * @Last Modified by:   Administrator
-* @Last Modified time: 2016-08-15 17:27:59
+* @Last Modified time: 2016-08-15 17:54:49
 */
 
 'use strict';
@@ -45,7 +45,7 @@ angular.module('p2pSiteMobApp')
       }
     })
 
-    if($scope.msg ==='旧密码不正确'){
+    if($scope.msg ==='旧密码不正确' ){
       $scope.$watch('chg.oldPassword', function(newVal, oldVal){
         if(newVal !==oldVal){
           $scope.showBtn = false;
@@ -86,17 +86,14 @@ angular.module('p2pSiteMobApp')
           $scope.newPassword1 = null;
           $scope.newPassword2 = null;
         }
+        if($scope.msg ===''){
+          $state.go('root.login');
+        }
       });
 
-
-      if($scope.msg ===''){
-        $state.go('root.login');
-      }
-
-
       $scope.$watch('chg.oldPassword', function(newVal, oldVal){
-        if(newVal !==oldVal){
-          if($scope.msg ==='旧密码不正确' && $scope.showErrorMsg === 'true'){
+        if(newVal ===oldVal){
+          if($scope.msg ==='旧密码不正确'){
             $scope.showBtn = false;
           }
         }
