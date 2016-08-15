@@ -11,5 +11,6 @@
 	"test": true,
 	"domain":"http://m.test321.hongcai.com",
   	"base_file_url":"http://test321.hongcai.com/uploads/",
-  	"wechat_id": "gh_34771f7f6e08"
+  	"wechat_id": "gh_34771f7f6e08",
+  	"pay_company":"yeepay"
 }
