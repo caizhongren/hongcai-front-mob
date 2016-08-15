@@ -16,6 +16,19 @@ angular.module('p2pSiteMobApp')
     };
     // 用户获取手机验证码
     $scope.sendMobileCaptcha = function(user) {
+      /**
+       * 判断手机号码
+       */
+      if (!user.mobile || user.mobile.length !== 11||!mobilePattern.test(user.mobile)) {
+        $scope.msg = '手机号码格式不正确';
+        $scope.showMsg();
+        return;
+      }
+      if(!user.picCaptcha) {
+        $scope.msg = '图形验证码有误';
+        $scope.showMsg();
+        return;
+      }
       mobileCaptcha.$create({
         mobile: user.mobile
       }).$then(function(response) {
@@ -40,7 +53,7 @@ angular.module('p2pSiteMobApp')
           Restangular.one('/users/').post('isUnique', {
             account: oldVal
           }).then(function(response) {
-            if(response.ret== -1){
+            if (response.ret == -1) {
               return;
             }
             $scope.checkePicMsg = true;
@@ -48,52 +61,34 @@ angular.module('p2pSiteMobApp')
             $scope.showMsg();
           })
         }
-        // $scope.showMsg();
+        $scope.showMsg();
       }
     })
     $scope.$watch('user.picCaptcha', function(oldVal) {
-        if (oldVal !== undefined) {
-          $scope.msg = '';
-          var valLgth3 = oldVal.toString().length;
-          if (valLgth3 >= 4) {
-            $http({
-              method: 'POST',
-              url: DEFAULT_DOMAIN + '/captchas/checkPic?captcha=' + oldVal
-            }).success(function(data) {
-              if (data == true) {
-                $scope.showMsg();
-              } else {
-                $scope.checkePicMsg = true;
-                $scope.msg = '图形验证码错误';
-                $scope.showMsg();
-              }
-            }).error(function() {
+      if (oldVal !== undefined) {
+        $scope.msg = '';
+        var valLgth3 = oldVal.toString().length;
+        if (valLgth3 >= 4) {
+          $http({
+            method: 'POST',
+            url: DEFAULT_DOMAIN + '/captchas/checkPic?captcha=' + oldVal
+          }).success(function(data) {
+            if (data == true) {
+              $scope.showMsg();
+            } else {
               $scope.checkePicMsg = true;
               $scope.msg = '图形验证码错误';
               $scope.showMsg();
-            });
-          }
-          $scope.showMsg();
+            }
+          }).error(function() {
+            $scope.checkePicMsg = true;
+            $scope.msg = '图形验证码错误';
+            $scope.showMsg();
+          });
         }
-      })
-      /**
-       * 错误提示
-       */
-    $scope.showMsg = function() {
-      if ($scope.msg) {
-        $scope.checkePicMsg = true;
-        // $scope.showBtn = true;
-        $scope.showBtn = !$scope.checkePicMsg;
-        $timeout(function() {
-          $scope.checkePicMsg = false;
-          // $scope.showBtn = false;
-        }, 3000);
-      } else {
-        // $scope.showBtn = true;
+        $scope.showMsg();
       }
-    }
-    $scope.mobileNum = $stateParams.mobile;
-    $scope.captchaNum = $stateParams.captcha;
+    })
 
     //获取验证码进行下一步
     $scope.newPwd = function(mobile, captcha) {
@@ -107,7 +102,8 @@ angular.module('p2pSiteMobApp')
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.getCaptchaErr = response.msg;
-          console.log($scope.getCaptchaErr);
+          $scope.msg = response.msg;
+          $scope.showMsg();
         } else {
           $state.go('root.getPwd2', {
             mobile: mobile,
@@ -120,6 +116,20 @@ angular.module('p2pSiteMobApp')
     $scope.$watch('user.captcha', function(newVal, oldVal) {
       $scope.getCaptchaErr = null;
     });
+    /**
+     * 错误提示
+     */
+    $scope.showMsg = function() {
+      if ($scope.msg) {
+        $scope.checkePicMsg = true;
+        $timeout(function() {
+          $scope.checkePicMsg = false;
+        }, 3000);
+      }
+    }
+    $scope.mobileNum = $stateParams.mobile;
+    $scope.captchaNum = $stateParams.captcha;
+
 
     //确认找回并修改密码
     $scope.changePwd = function(pwd1, pwd2) {
