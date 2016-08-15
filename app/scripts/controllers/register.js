@@ -16,6 +16,7 @@ angular.module('p2pSiteMobApp')
       };
     }
 
+    $scope.showErrorMsg = false;
     $scope.showRegistrationAgreement = false;
     $scope.toggle = function () {
       $scope.showRegistrationAgreement = !$scope.showRegistrationAgreement;
@@ -25,8 +26,8 @@ angular.module('p2pSiteMobApp')
     $scope.signUp = function(user) {
       var pwd_regexp = /^(?=.*\d)(?=.*[a-zA-Z]).{6,16}$/;
       if(!pwd_regexp.test(user.password)){
-        $scope.mobileShow = true;
         $scope.msg = '密码6-16位，需包含字母和数字';
+        $scope.showErrorMsg = true;
         $scope.showMsg();
         return;
       }
@@ -42,8 +43,8 @@ angular.module('p2pSiteMobApp')
         channelParams: ipCookie('channelParams')
       }).$then(function(response) {
         if (response.ret === -1) {
-          $scope.captchaShow = true;
           $scope.msg = response.msg;
+          $scope.showErrorMsg = true;
           $scope.showMsg();
         } else {
           $rootScope.user = {
@@ -54,19 +55,16 @@ angular.module('p2pSiteMobApp')
           });
         }
     })
-
-
-
     };
-    $scope.captchaShow = false;
+
     // 用户获取手机验证码
     $scope.sendMobileCaptcha = function(user) {
       mobileCaptcha.$create({
         mobile: user.mobile
       }).$then(function(response) {
         if (response.ret === -1) {
-          $scope.captchaShow = true;
           $scope.msg = response.msg;
+          $scope.showErrorMsg = true;
         }
       });
     };
@@ -104,14 +102,15 @@ angular.module('p2pSiteMobApp')
         var valLgth = oldVal.toString().length;
         if(valLgth >=11 && !phoneNum_regexp.test(oldVal)){
           $scope.msg = '手机号码格式不正确';
-          $scope.mobileShow = true;
+          $scope.showErrorMsg = true;
           $scope.showMsg();
         }else if(valLgth ===11 && phoneNum_regexp.test(oldVal)){
           Restangular.one('/users/').post('isUnique',{
             account: oldVal
           }).then(function(response){
             $scope.msg = response.msg;
-            $scope.mobileShow = true;
+            console.log($scope.msg);
+            $scope.showErrorMsg = true;
             $scope.showMsg();
           })
         }else if(valLgth >=11 && $scope.msg === ''){$scope.showMsg();}
@@ -123,12 +122,12 @@ angular.module('p2pSiteMobApp')
         $scope.msg = '';
         var valLgth2 = oldVal.toString().length;
         if(!pwd_regexp2.test(oldVal)){
-          $scope.mobileShow = true;
           $scope.msg = '密码含非法字符';
+          $scope.showErrorMsg = true;
           $scope.showMsg();
         }else if(valLgth2 >16){
-          $scope.mobileShow = true;
           $scope.msg = '密码6-16位，需包含字母和数字';
+          $scope.showErrorMsg = true;
           $scope.showMsg();
         }else if($scope.msg === ''){$scope.showMsg();}
       }
@@ -148,13 +147,13 @@ angular.module('p2pSiteMobApp')
               $scope.showMsg();
             } else {
               $scope.msg = '图形验证码错误';
-              $scope.mobileShow = true;
+              $scope.showErrorMsg = true;
               $scope.showMsg();
               $scope.piccha =true;
             }
           }).error(function() {
             $scope.msg = '图形验证码错误';
-            $scope.mobileShow = true;
+            $scope.showErrorMsg = true;
             $scope.showMsg();
             $scope.piccha =true;
           });
@@ -175,13 +174,13 @@ angular.module('p2pSiteMobApp')
               $scope.msg = '';
               $scope.showMsg();
             } else if(response.data.isValid  === 0) {
-              $scope.mobileShow = true;
               $scope.msg = '邀请码不存在';
+              $scope.showErrorMsg = true;
               $scope.showMsg();
             }
           }).error(function() {
-              $scope.mobileShow = true;
               $scope.msg = '邀请码不存在';
+              $scope.showErrorMsg = true;
               $scope.showMsg();
           });
         }
@@ -189,7 +188,6 @@ angular.module('p2pSiteMobApp')
     })
 
     //设置错误提示
-    $scope.showErrorMsg = false;
     $scope.showMsg = function(){
       $scope.showBtn = true;
       if($scope.msg){
@@ -203,6 +201,7 @@ angular.module('p2pSiteMobApp')
         $scope.showBtn = true;
       }
     }
+    //解决input checkbox checked不起作用问题
     $scope.checked = function(){
       if($('#isremind').is(':checked')){
         $("#isremind").removeAttr("checked");

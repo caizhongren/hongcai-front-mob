@@ -16,8 +16,8 @@
       <a ui-sref="root.register" class="ft-red1 pull-right ft-blue8">立即注册></a>
     </p>
     <!-- 错误提示 -->
-    <div class="toast toast-w" ng-show="showErrorMsg">
-      <p ng-show="msg" class="margin-b-0 text-center">{{msg}}</p>
+    <div class="toast toast-w" ng-show="showErrorMsg && msg">
+      <p class="margin-b-0 text-center">{{msg}}</p>
     </div>
 
   </form>

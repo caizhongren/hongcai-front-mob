@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2016-08-12 16:37:40
 * @Last Modified by:   Administrator
-* @Last Modified time: 2016-08-13 11:13:13
+* @Last Modified time: 2016-08-15 10:44:34
 */
 
 'use strict';
@@ -98,26 +98,10 @@ angular.module('p2pSiteMobApp')
         }
       })
     }
-    // $scope.showBtn = $scope.showErrorMsg;
     $scope.showMsg = function(){
       $timeout(function() {
           $scope.showErrorMsg = false;
           $scope.showBtn = true;
         }, 3000);
     }
-    //设置错误提示
-   /* $scope.showErrorMsg = false;
-    $scope.showMsg = function(){
-      $scope.showBtn = true;
-      if($scope.msg){
-        $scope.showErrorMsg = true;
-        $scope.showBtn = !$scope.showErrorMsg;
-        $timeout(function() {
-          $scope.showErrorMsg = false;
-          $scope.showBtn = false;
-        }, 3000);
-      }else{
-        $scope.showBtn = true;
-      }
-    }*/
   })
