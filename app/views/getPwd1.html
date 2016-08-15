@@ -35,12 +35,12 @@
       <input id="picCaptcha" name="picCaptcha" ng-model="user.picCaptcha" type="text" placeholder="请输入图形验证码" required class="captchacode"/>
       <span><img src="{{getPicCaptcha}}" id="checkCaptcha" class="pic-verify no-padding margin-t--13 margin-l-5"width="78" height="40" ng-click="refreshCode()"></span>
       <!-- 短信验证码 -->
-      <input id="captchasignup" name="captchasignup" ng-model="user.captcha" type="text" placeholder="请输入短信验证码" required class="captchacode"/>
-      <span><button type="text" ng-click="getPwdMobileForm.usermobile.$error.unique || sendMobileCaptcha(user);" ng-disabled="getPwdMobileForm.mobile.$invalid || getPwdMobileForm.picCaptcha.$invalid" onclick="countDown(this,60,'out');">短信验证码</button></span>
+      <input id="captchasignup" name="captchasignup" ng-model="user.captcha" type="text" ng-required="getPwdMobileForm.captchasignup.$invalid" placeholder="请输入短信验证码" class="captchacode"/>
+      <span><button id="captcha" type="text" ng-click="sendMobileCaptcha(user);" >短信验证码</button></span>
     </div>
      <!-- 按钮 -->
     <p class="getBack margin-0 text-center">
-      <button type="submit" class="ft-normal margin-t-2 button button-primary column {{getPwdMobileForm.mobie.$invalid||getPwdMobileForm.picCaptcha.$invalid||getPwdMobileForm.captchasignup.$invalid ? 'button-disabled' : ''}}" ng-disabled="getPwdMobileForm.$invalid" ng-click="newPwd(user.mobile,user.captcha)" my-click-once>下一步</button>
+      <button type="submit" class="ft-normal margin-t-2 button button-primary column {{getPwdMobileForm.$invalid ? 'button-disabled1' : ''}}" ng-disabled="getPwdMobileForm.$invalid" ng-click="newPwd(user.mobile,user.captcha)" my-click-once>下一步</button>
     </p>
   </form>
   <!-- 错误提示 -->
@@ -49,47 +49,5 @@
   </div>
 </div>
 <script>
-function countDown(obj, second, inOrOut) {
-  var getMobile = document.getElementById("usermobile");
-  var mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678])|(14[0-9]))\d{8}$/;
 
-  if (inOrOut === 'out' && window.buttonFlag == 0) {
-    return;
-  }
-
- // 如果秒数还是大于0，则表示倒计时还没结束
-  if (mobilePattern.test(getMobile.value)) {
-    if (second >= 0) {
-      // 获取默认按钮上的文字
-
-      if (typeof buttonDefaultValue === 'undefined') {
-        buttonDefaultValue = obj.defaultValue;
-      }
-      // 按钮置为不可点击状态
-      obj.disabled = true;
-      window.buttonFlag = 0;
-      // 按钮里的内容呈现倒计时状态
-      //obj.value = buttonDefaultValue + '(' + second + ')';
-      obj.innerHTML = second + "s";
-      obj.className = '';
-      // 时间减一
-      second--;
-      // 一秒后重复执行
-      setTimeout(function() {
-        countDown(obj, second, 'in');
-      }, 1000);
-      // 否则，按钮重置为初始状态
-    } else {
-      // 按钮置为可点击状态
-      obj.disabled = false;
-      window.buttonFlag = 1;
-      // 按钮里的内容恢复初始状态
-      obj.className = '';
-      obj.innerHTML = "重新发送";
-    }
-  } else {
-    obj.disabled = true;
-    window.buttonFlag = 0;
-  }
-}
 </script>
