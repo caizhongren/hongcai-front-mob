@@ -20,16 +20,16 @@ angular.module('p2pSiteMobApp')
        * 判断手机号码
        */
       if (!user.mobile || user.mobile.length !== 11 || !mobilePattern.test(user.mobile)) {
-        $scope.msg = '手机号码格式不正确';
-        $scope.showMsg();
+        // $scope.msg = '手机号码格式不正确';
+        // $scope.showMsg();
         return;
       }
       /**
        * 判断图片验证码
        */
       if (!user.picCaptcha || $scope.checkPic == false) {
-        $scope.msg = '图形验证码有误';
-        $scope.showMsg();
+        // $scope.msg = '图形验证码有误';
+        // $scope.showMsg();
         return;
       }
       /**
@@ -152,11 +152,26 @@ angular.module('p2pSiteMobApp')
     })
 
     //获取验证码进行下一步
-    $scope.newPwd = function(mobile, captcha) {
+    $scope.newPwd = function(mobile, captcha, picCaptcha) {
       if (!mobile || !captcha) {
         return;
       }
-
+      /**
+       * 判断手机号码
+       */
+      if (!mobile || mobile.length !== 11 || !mobilePattern.test(mobile)) {
+        // $scope.msg = '手机号码格式不正确';
+        // $scope.showMsg();
+        return;
+      }
+      /**
+       * 判断图片验证码
+       */
+      if (!picCaptcha || $scope.checkPic == false) {
+        // $scope.msg = '图形验证码有误';
+        // $scope.showMsg();
+        return;
+      }
       HongcaiUser.$find('/checkMobileCaptcha', {
         mobile: mobile,
         captcha: captcha
@@ -175,6 +190,11 @@ angular.module('p2pSiteMobApp')
     };
 
     $scope.$watch('user.captcha', function(newVal, oldVal) {
+      $scope.sendMsg = true;
+      if (!newVal || newVal == undefined) {
+        $scope.sendMsg = false;
+
+      }
       $scope.getCaptchaErr = null;
     });
     /**

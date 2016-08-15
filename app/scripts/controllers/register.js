@@ -31,6 +31,12 @@ angular.module('p2pSiteMobApp')
         $scope.showMsg();
         return;
       }
+      if(user.picCaptcha.toString().length<4){
+        $scope.msg = '图形验证码错误';
+        $scope.showErrorMsg = true;
+        $scope.showMsg();
+        return;
+      }
       signUpBe.$create({
         // name: user.name,
         picCaptcha: user.picCaptcha,
@@ -136,9 +142,11 @@ angular.module('p2pSiteMobApp')
           }).success(function(data) {
             if (data == true) {
               $scope.piccha = true;
+              $scope.showpic =false;
             } else {
               $scope.msg = '图形验证码错误';
               $scope.showErrorMsg = true;
+              $scope.showpic =true;
               $scope.showMsg();
             }
           }).error(function() {
@@ -148,6 +156,9 @@ angular.module('p2pSiteMobApp')
           });
         } else if (valLgth3 >= 4 && $scope.msg === '') {
           $scope.showMsg();
+        }
+        if(valLgth3 ===4 && $scope.showErrorMsg === false){
+          $scope.showErrorMsg = false;
         }
       }
     })
