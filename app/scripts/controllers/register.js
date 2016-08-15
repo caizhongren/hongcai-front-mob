@@ -250,7 +250,7 @@ angular.module('p2pSiteMobApp')
         $timeout(function() {
           $scope.showErrorMsg = false;
           $scope.showBtn = false;
-        }, 3000);
+        }, 2000);
       } else {
         $scope.showBtn = true;
       }

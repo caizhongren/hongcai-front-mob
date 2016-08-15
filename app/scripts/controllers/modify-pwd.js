@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2016-08-12 16:37:40
 * @Last Modified by:   Administrator
-* @Last Modified time: 2016-08-15 16:24:47
+* @Last Modified time: 2016-08-15 17:27:59
 */
 
 'use strict';
@@ -70,25 +70,23 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
-      if($rootScope.isLogged){
-        restmod.model(DEFAULT_DOMAIN + '/users/' + '0' + '/changePassword')
-        .$create({
-          oldPassword: md5.createHash(chg.oldPassword),
-          newPassword: md5.createHash(chg.newPassword1),
-        }).$then(function(response) {
-          if (response.ret === -1) {
-            $scope.msg = '旧密码不正确';
-            $scope.showErrorMsg = true;
-            $scope.showBtn = $scope.msg === '' ?false : true;
-            $scope.showMsg();
-          } else {
-            $scope.showErrorMsg = false;
-            $scope.oldPassword = null;
-            $scope.newPassword1 = null;
-            $scope.newPassword2 = null;
-          }
-        });
-      }
+      restmod.model(DEFAULT_DOMAIN + '/users/' + '0' + '/changePassword')
+      .$create({
+        oldPassword: md5.createHash(chg.oldPassword),
+        newPassword: md5.createHash(chg.newPassword1),
+      }).$then(function(response) {
+        if (response.ret === -1) {
+          $scope.msg = '旧密码不正确';
+          $scope.showErrorMsg = true;
+          $scope.showBtn = $scope.msg === '' ?false : true;
+          $scope.showMsg();
+        } else {
+          $scope.showErrorMsg = false;
+          $scope.oldPassword = null;
+          $scope.newPassword1 = null;
+          $scope.newPassword2 = null;
+        }
+      });
 
 
       if($scope.msg ===''){
@@ -98,8 +96,7 @@ angular.module('p2pSiteMobApp')
 
       $scope.$watch('chg.oldPassword', function(newVal, oldVal){
         if(newVal !==oldVal){
-          if($scope.msg ==='旧密码不正确'){
-          console.log(1);
+          if($scope.msg ==='旧密码不正确' && $scope.showErrorMsg === 'true'){
             $scope.showBtn = false;
           }
         }
@@ -109,6 +106,6 @@ angular.module('p2pSiteMobApp')
       $timeout(function() {
           $scope.showErrorMsg = false;
           $scope.showBtn = true;
-        }, 3000);
+        }, 2000);
     }
   })
