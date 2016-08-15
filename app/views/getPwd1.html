@@ -28,72 +28,26 @@
 <div class="padding-l-1 padding-r-1 padding-t-1 text-center margin-b-7">
   <p class="ft-2p5 ft-89 margin-b-1 margin-t-1">找回密码</p>
   <form autocomplete="off" class="getpwd-form margin-0 padding-b-2 padding-t-1 ft-grey" name="getPwdMobileForm" autocomplete="on"  id="">
-    <div class="to-getpwd border-grey3-top">
+    <div class="to-getpwd ">
       <!-- 手机号 -->
-      <input id="usermobile" name="mobile" ng-model="user.mobile" type="tel" placeholder="请输入手机号" required/>
+      <input id="usermobile" name="mobile" ng-model="user.mobile" type="tel" placeholder="请输入手机号" ensure-mobile-exist required/>
       <!-- 图形验证码 -->
-      <input id="picCaptcha" name="picCaptcha" ng-model="user.picCaptcha" required="required" type="text" placeholder="请输入图形验证码" class="captchacode"/>
+      <input id="picCaptcha" name="picCaptcha" ng-model="user.picCaptcha" type="text" placeholder="请输入图形验证码" required class="captchacode"/>
       <span><img src="{{getPicCaptcha}}" id="checkCaptcha" class="pic-verify no-padding margin-t--13 margin-l-5"width="78" height="40" ng-click="refreshCode()"></span>
       <!-- 短信验证码 -->
-      <input id="captchasignup" name="captchasignup" ng-model="user.captcha" required="required" type="text" placeholder="请输入短信验证码" class="captchacode"/>
-      <span><button ng-click="sendMobileCaptcha(user);" ng-disabled="getPwdMobileForm.usermobile.$invalid" onclick="countDown(this,60,'out');">短信验证码</button></span>
+      <input id="captchasignup" name="captchasignup" ng-model="user.captcha" type="text" ng-required="getPwdMobileForm.captchasignup.$invalid" placeholder="请输入短信验证码" class="captchacode"/>
+      <span><button id="captcha" type="text" ng-click="sendMobileCaptcha(user);" >短信验证码</button></span>
     </div>
-     <!-- 完成注册按钮 -->
+     <!-- 按钮 -->
     <p class="getBack margin-0 text-center">
-      <button type="submit" class="ft-normal margin-t-2 button button-primary column {{getPwdMobileForm.$invalid || !showBtn ? 'button-disabled' : ''}}" ng-disabled="getPwdMobileForm.mobile.$invalid || getPwdMobileForm.captchasignup.$error.required" ng-click="newPwd(user.mobile,user.captcha)" my-click-once>下一步</button>
+      <button type="submit" class="ft-normal margin-t-2 button button-primary column {{getPwdMobileForm.$invalid ? 'button-disabled1' : ''}}" ng-disabled="getPwdMobileForm.$invalid" ng-click="newPwd(user.mobile,user.captcha)" my-click-once>下一步</button>
     </p>
   </form>
   <!-- 错误提示 -->
-  <div class="toast toast1" ng-show="checkePicMsg">
+  <div class="toast toast1" ng-show="checkePicMsg && msg">
     <p>{{msg}}</p>
-    <p class="showcaptcha"></p>
-    <p class="ft-white" ng-if="getPwdMobileForm.picCaptcha.$dirty && registerForm.picCaptcha.$invalid">
-      <small ng-if="registerForm.picCaptcha.$error.check">图形验证码错误</small>
-    </p>
   </div>
 </div>
 <script>
-function countDown(obj, second, inOrOut) {
-  var getMobile = document.getElementById("usermobile");
-  var mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678])|(14[0-9]))\d{8}$/;
 
-  if (inOrOut === 'out' && window.buttonFlag == 0) {
-    return;
-  }
-
- // 如果秒数还是大于0，则表示倒计时还没结束
-  if (mobilePattern.test(getMobile.value)) {
-    if (second >= 0) {
-      // 获取默认按钮上的文字
-
-      if (typeof buttonDefaultValue === 'undefined') {
-        buttonDefaultValue = obj.defaultValue;
-      }
-      // 按钮置为不可点击状态
-      obj.disabled = true;
-      window.buttonFlag = 0;
-      // 按钮里的内容呈现倒计时状态
-      //obj.value = buttonDefaultValue + '(' + second + ')';
-      obj.innerHTML = second + "s";
-      obj.className = '';
-      // 时间减一
-      second--;
-      // 一秒后重复执行
-      setTimeout(function() {
-        countDown(obj, second, 'in');
-      }, 1000);
-      // 否则，按钮重置为初始状态
-    } else {
-      // 按钮置为可点击状态
-      obj.disabled = false;
-      window.buttonFlag = 1;
-      // 按钮里的内容恢复初始状态
-      obj.className = '';
-      obj.innerHTML = "重新发送";
-    }
-  } else {
-    obj.disabled = true;
-    window.buttonFlag = 0;
-  }
-}
 </script>

@@ -2,12 +2,12 @@
 * @Author: Administrator
 * @Date:   2016-08-12 16:37:40
 * @Last Modified by:   Administrator
-* @Last Modified time: 2016-08-13 11:13:13
+* @Last Modified time: 2016-08-15 16:24:47
 */
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('modifyPwd', function($timeout, $scope, restmod, DEFAULT_DOMAIN,md5) {
+  .controller('modifyPwd', function($timeout, $scope, restmod, DEFAULT_DOMAIN,md5, $state,$rootScope) {
 
     $scope.showErrorMsg = false;
     var pwd_regexp = /^(?=.*\d)(?=.*[a-zA-Z]).{6,16}$/;
@@ -47,7 +47,6 @@ angular.module('p2pSiteMobApp')
 
     if($scope.msg ==='旧密码不正确'){
       $scope.$watch('chg.oldPassword', function(newVal, oldVal){
-        console.log(1);
         if(newVal !==oldVal){
           $scope.showBtn = false;
         }
@@ -71,23 +70,31 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
-      restmod.model(DEFAULT_DOMAIN + '/users/' + '0' + '/changePassword')
-      .$create({
-        oldPassword: md5.createHash(chg.oldPassword),
-      }).$then(function(response) {
-        if (response.ret === -1) {
-          $scope.msg = '旧密码不正确';
-          $scope.showErrorMsg = true;
-          $scope.showBtn = $scope.msg === '' ?false : true;
-          $scope.showMsg();
-        } else {
-          $scope.showErrorMsg = false;
-          $scope.oldPassword = null;
-          $scope.newPassword1 = null;
-          $scope.newPassword2 = null;
-        }
+      if($rootScope.isLogged){
+        restmod.model(DEFAULT_DOMAIN + '/users/' + '0' + '/changePassword')
+        .$create({
+          oldPassword: md5.createHash(chg.oldPassword),
+          newPassword: md5.createHash(chg.newPassword1),
+        }).$then(function(response) {
+          if (response.ret === -1) {
+            $scope.msg = '旧密码不正确';
+            $scope.showErrorMsg = true;
+            $scope.showBtn = $scope.msg === '' ?false : true;
+            $scope.showMsg();
+          } else {
+            $scope.showErrorMsg = false;
+            $scope.oldPassword = null;
+            $scope.newPassword1 = null;
+            $scope.newPassword2 = null;
+          }
+        });
+      }
 
-      });
+
+      if($scope.msg ===''){
+        $state.go('root.login');
+      }
+
 
       $scope.$watch('chg.oldPassword', function(newVal, oldVal){
         if(newVal !==oldVal){
@@ -98,26 +105,10 @@ angular.module('p2pSiteMobApp')
         }
       })
     }
-    // $scope.showBtn = $scope.showErrorMsg;
     $scope.showMsg = function(){
       $timeout(function() {
           $scope.showErrorMsg = false;
           $scope.showBtn = true;
         }, 3000);
     }
-    //设置错误提示
-   /* $scope.showErrorMsg = false;
-    $scope.showMsg = function(){
-      $scope.showBtn = true;
-      if($scope.msg){
-        $scope.showErrorMsg = true;
-        $scope.showBtn = !$scope.showErrorMsg;
-        $timeout(function() {
-          $scope.showErrorMsg = false;
-          $scope.showBtn = false;
-        }, 3000);
-      }else{
-        $scope.showBtn = true;
-      }
-    }*/
   })

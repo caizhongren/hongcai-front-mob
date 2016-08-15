@@ -142,7 +142,8 @@ module.exports = function(grunt) {
       },
       proxies: [{
         context: '/ipa',
-        host: '192.168.60.34',
+        //host: '192.168.60.34',
+        host: '114.255.24.47',
         port: 4000,
         https: false
       }, {

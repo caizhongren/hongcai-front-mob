@@ -3,7 +3,7 @@
   <form autocomplete="off" class="changePwd-form margin-0 padding-b-2 padding-t-1 ft-grey" name="changePwdMobileForm" autocomplete="on"  id="">
     <div class="change-pwd">
       <!-- 旧密码 -->
-      <input id="oldPassword" name="oldPassword" ng-model="chg.oldPassword" type="password" placeholder="请输入旧密码" required/>
+      <input ng-if="isLogged" id="oldPassword" name="oldPassword" ng-model="chg.oldPassword" type="password" placeholder="请输入旧密码" required/>
       <!-- 新密码 -->
       <input id="newPassword1" name="newPassword1" ng-model="chg.newPassword1" type="password" placeholder="请输入新密码" required/>
       <!-- 重复密码 -->
@@ -15,7 +15,7 @@
       <button ng-show="changePwdMobileForm.$invalid || showBtn" type="button" class="ft-normal margin-t-3 button column button-disabled1" >确认</button>
     </p>
   </form>
-  <div class="toast toast2" ng-show="showErrorMsg">
+  <div class="toast toast2" ng-show="showErrorMsg && msg">
     <p>{{msg}}</p>
   </div>
 </div>
