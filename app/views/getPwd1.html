@@ -30,17 +30,17 @@
   <form autocomplete="off" class="getpwd-form margin-0 padding-b-2 padding-t-1 ft-grey" name="getPwdMobileForm" autocomplete="on"  id="">
     <div class="to-getpwd ">
       <!-- 手机号 -->
-      <input id="usermobile" name="mobile" ng-model="user.mobile" type="tel" placeholder="请输入手机号" ensure-mobile-exist required/>
+      <input id="usermobile" name="mobile" ng-model="user.mobile" type="tel" placeholder="请输入手机号" required/>
       <!-- 图形验证码 -->
       <input id="picCaptcha" name="picCaptcha" ng-model="user.picCaptcha" type="text" placeholder="请输入图形验证码" required class="captchacode"/>
-      <span><img src="{{getPicCaptcha}}" id="checkCaptcha" class="pic-verify no-padding margin-t--13 margin-l-5"width="78" height="40" ng-click="refreshCode()"></span>
+      <span><img src="{{getPicCaptcha}}" id="checkCaptcha" class="pic-verify no-padding margin-t--13 margin-l-5" width="78" height="40" ng-click="refreshCode()"></span>
       <!-- 短信验证码 -->
       <input id="captchasignup" name="captchasignup" ng-model="user.captcha" type="text" ng-required="getPwdMobileForm.captchasignup.$invalid" placeholder="请输入短信验证码" class="captchacode"/>
       <span><button id="captcha" type="text" ng-click="sendMobileCaptcha(user);" >短信验证码</button></span>
     </div>
      <!-- 按钮 -->
     <p class="getBack margin-0 text-center">
-      <button type="submit" class="ft-normal margin-t-2 button button-primary column {{getPwdMobileForm.$invalid || sendMsg==false ? 'button-disabled1' : ''}}" ng-disabled="getPwdMobileForm.$invalid" ng-click="newPwd(user.mobile,user.captcha,user.picCaptcha)" my-click-once>下一步</button>
+      <button type="submit" class="ft-normal margin-t-2 button button-primary column {{getPwdMobileForm.$invalid ? 'button-disabled1' : ''}}" ng-click="newPwd(user.mobile,user.captcha,user.picCaptcha)" my-click-once>下一步</button>
     </p>
   </form>
   <!-- 错误提示 -->

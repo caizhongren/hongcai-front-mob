@@ -26,7 +26,6 @@ angular.module('p2pSiteMobApp')
           $scope.showErrorMsg = true;
           $scope.showMsg();
         }
-        $scope.showBtn = $scope.msg === '' ?false : true;
       }
     })
 
@@ -40,7 +39,6 @@ angular.module('p2pSiteMobApp')
           $scope.showErrorMsg = true;
           $scope.showMsg();
         }
-        $scope.showBtn = $scope.msg === '' ?false : true;
       }
     })
 
@@ -78,7 +76,6 @@ angular.module('p2pSiteMobApp')
           $scope.msg = '旧密码不正确';
           $scope.showErrorMsg = true;
           $scope.oldPwd = false;
-          $scope.showBtn = $scope.msg === '' ?false : true;
           $scope.showMsg();
         } else {
           $scope.showErrorMsg = false;
@@ -92,18 +89,10 @@ angular.module('p2pSiteMobApp')
         }
       });
 
-      $scope.$watch('chg.oldPassword', function(newVal, oldVal){
-        if(newVal !==oldVal){
-          if($scope.msg ==='旧密码不正确'){
-            $scope.showBtn = false;
-          }
-        }
-      })
     }
     $scope.showMsg = function(){
       $timeout(function() {
         $scope.showErrorMsg = false;
-        // $scope.showBtn = true;
       }, 2000);
     }
   })
