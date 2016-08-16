@@ -1,0 +1,24 @@
+<div class="padding-l-1 padding-r-1 padding-t-1 text-center">
+  <p class="ft-2p5 ft-65 margin-b-1 margin-t-1">登录宏财账号</p>
+  <form name="loginForm" id="loginForm" class="login-form ft-grey" autocomplete="on" ng-submit="toLogin(user)">
+    <div class="to-login">
+      <input id="username" name="username" required="required" type="text" ng-model="user.account" placeholder="请输入手机号" required><br>
+      <input id="password" name="password" ng-model="user.password" required="required" type="password" placeholder="请输入登录密码" class="input-pwd" required/>
+      <i class="fa fa-eye pwd-eyes ft-9f" ng-if="!showEyes" ng-click="selectEyes()"></i>
+      <i class="fa fa-eye-slash pwd-eyes ft-9f" ng-if="showEyes" ng-click="selectEyes()"></i>
+    </div>
+    <p><div ui-sref="root.getPwd1" class="ft-orange0 pull-right margin-t-0p5">忘记密码？</div></p>
+    <p class="login margin-0 text-center margin-t-2">
+      <button type="submit" class="button button-primary column ft-normal margin-t-1p5 margin-b-1p5 {{loginForm.$invalid? 'button-disabled1' : ''}}">立即登录</button>
+    </p>
+    <p class="change_link margin-0 text-center">
+      <span class="pull-left ft-9f"><input type="checkbox" checked>一周内自动登录</span>
+      <div ui-sref="root.register" class="ft-red1 pull-right ft-blue8">立即注册></div>
+    </p>
+    <!-- 错误提示 -->
+    <div class="toast toast-w" ng-show="showErrorMsg && msg">
+      <p class="margin-b-0 text-center">{{msg}}</p>
+    </div>
+
+  </form>
+</div>

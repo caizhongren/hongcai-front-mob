@@ -16,7 +16,7 @@
         <th class="ft-grey4">账户余额(元)</th>
       </thead>
       <tbody>
-        <div infinite-scroll="loadDealMuch()" infinite-scroll-distance="3">
+        <div >
           <tr ng-repeat="item in deals">
             <td>{{item.createTime | date: 'yy-MM-dd'}}</td>
             <td>{{ dealMap[item.type] }}</td>
@@ -28,9 +28,8 @@
         </div>
       </tbody>
     </table>
-    <div class="text-center">
-      <!-- <input type="button" class="button button-primary" ng-click="loadDealMore();" value="加载更多..."> -->
-      <div ng-show="DealBusy"><img src="/images/ajax-loader1.gif">加载更多...</div>
+    <div class="text-center bg-white" ng-show="totalPage > page">
+      <p class="margin-b-0"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a ng-click="loadDealMuch();" style="cursor:pointer;color:black;">查看更多交易记录</a></p>
     </div>
   </div>
 </div>

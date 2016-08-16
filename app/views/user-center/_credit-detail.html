@@ -1,35 +1,29 @@
-<div class="credit-item border-grey2-bottom margin-b-2">
-  <div class="border-orange4 padding-l-2 padding-r-1 padding-t-1 padding-b-1 overflow-hid bg-pink">
+<div class="credit-item margin-b-1" ui-sref ='root.userCenter.credit-security-details({id:item.creditRight.id})'>
+  <div class="border-grey2-bottom padding-l-2 padding-r-1 padding-t-1 padding-b-1 overflow-hid bg-white">
     <span class="u-pull-left border-left" ng-show="widthFlag===0 && item.creditRight.projectName.length <= 11">{{ item.creditRight.projectName}} </span>
     <span class="u-pull-left border-left" ng-show="widthFlag===0 && item.creditRight.projectName.length > 11">{{ item.creditRight.projectName | limitTo:8}}... </span>
     <span class="u-pull-left border-left"  ng-show="widthFlag===1 || widthFlag===2">{{ item.creditRight.projectName}}</span>
     <img class="fl" src="/images/user-center/rate-icon.png" alt="" width="9%" ng-show="item.increaseRateCoupon && item.increaseRateCoupon.type === 1">
-    <span class="u-pull-right ft-orange1" ng-show="item.creditRight.isRepeatInvest === 1"><i class="fa fa-history"></i>&nbsp;已自动续投</span>
-    <span class="u-pull-right ft-grey2" ng-show="item.creditRight.isRepeatInvest === 2"><i class="fa fa-history"></i>&nbsp;未自动续投</span>
-    <span class="endtime u-pull-right ft-grey2 ft-1p3" ng-show="creditStatus === '1' && item.creditRight.type !== 3">到期日:{{item.project.repaymentDate | date : 'yyyy-MM-dd'}}</span>
+    <span class="u-pull-right ft-1p8 fa fa-angle-right margin-t-0p4"></span>
+    <span class="u-pull-right ft-orange1" ng-show="item.creditRight.isRepeatInvest === 1"><i class="fa fa-history"></i>&nbsp;已自动续投&nbsp;</span>
+    <span class="u-pull-right ft-grey2" ng-show="item.creditRight.isRepeatInvest === 2"><i class="fa fa-history"></i>&nbsp;未自动续投&nbsp;</span>
+    <!-- <span class="endtime u-pull-right ft-grey2 ft-1p3" ng-show="creditStatus === '1' && item.creditRight.type !== 3">到期日:{{item.project.repaymentDate | date : 'yyyy-MM-dd'}}</span> -->
   </div>
-  <div class="u-full-width padding-2 overflow-hid">
+  <div class="u-full-width padding-t-1p2 padding-b-1p2 padding-r-1 padding-l-0p5 overflow-hid bg-white">
     <div class="credit-item-info u-pull-left text-center ft-1p4">
       <strong class="ft-orange ft-1p6">{{ item.creditRight.amount |currency:"":2 || 0}}</strong>
       <br>
-      <span class="ft-grey2">投资金额(元)</span>
+      <span class="ft-grey2 padding-l-0p5">本(元)</span>
     </div>
     <div class="credit-item-info u-pull-left text-center ft-1p4">
-      <strong class="ft-orange ft-1p6">{{ item.creditRight.baseRate + item.creditRight.riseRate |currency:"":2 || 0}}&nbsp;</strong><strong class="ft-red0 ft-1p6" ng-show="item.increaseRateCoupon && item.increaseRateCoupon.type === 1">+{{item.increaseRateCoupon.value | number:2}}</strong>
+      <strong class="ft-orange ft-1p6">{{ item.creditRight.profit |currency:"":2 || 0}}</strong><strong class="ft-red0 ft-1p6" ng-show="item.increaseRateCoupon && item.increaseRateCoupon.type === 1">+{{item.rateCouponProfit | number:2}}</strong>
       <br>
-      <span class="ft-grey2">本期利率(%)</span>
+      <span class="ft-grey2">息(元)</span>
     </div>
-
-    <div class="credit-item-info u-pull-left text-center ft-1p4" ng-show="toggle.activeTab === 0">
-      <strong class="ft-orange ft-1p6">{{ item.creditRight.profit - item.returnProfit |currency:"":2 || 0}}</strong><strong class="ft-red0 ft-1p6" ng-show="item.increaseRateCoupon && item.increaseRateCoupon.type === 1">+{{item.waitRateCouponProfit | number:2}}</strong>
+    <div class="credit-item-info u-pull-right text-center ft-1p4">
+      <strong class="ft-grey4 ft-1p6">{{item.project.repaymentDate | date : 'yyyy/MM/dd'}}</strong>
       <br>
-      <span class="ft-grey2">待收利息(元)</span>
-    </div>
-
-    <div class="credit-item-info u-pull-left text-center ft-1p4" ng-show="toggle.activeTab === 1">
-      <strong class="ft-orange ft-1p6">{{ item.creditRight.returnProfit |currency:"":2 || 0}}</strong><strong class="ft-red0 ft-1p6" ng-show="item.increaseRateCoupon && item.increaseRateCoupon.type === 1">+{{item.returnRateCouponProfit| number:2}}</strong>
-      <br>
-      <span class="ft-grey2">已收利息(元)</span>
+      <span class="ft-grey2">到期日</span>
     </div>
   </div>
 </div>

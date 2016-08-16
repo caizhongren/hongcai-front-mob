@@ -21,7 +21,6 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'infinite-scroll',
   'angular-md5',
   'restangular',
-  'angular-svg-round-progress',
   'ui.bootstrap',
   //'restangular',
   'textAngular'
@@ -101,7 +100,7 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/login.html',
+            templateUrl: 'views/activity/login-new.html',
             controller: 'LoginCtrl',
             controllerUrl: 'scripts/controllers/login'
 
@@ -115,7 +114,7 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/register.html',
+            templateUrl: 'views/activity/register-new.html',
             controller: 'RegisterCtrl',
             controllerUrl: 'scripts/controllers/register'
           }
@@ -149,15 +148,26 @@ p2pSiteMobApp
           }
         }
       })
+      //修改密码
+      .state('root.modifyPwd', {
+        url: '/modify-pwd',
+        views: {
+          '': {
+            templateUrl: 'views/activity/modify-pwd.html',
+            controller: 'modifyPwd',
+            controllerUrl: 'scripts/controllers/modify-pwd.js'
+          }
+        }
+      })
 
       // 宏金保详情页
       .state('root.project-detail', {
-        url: '/project-detail/:number',
+        url: '/project-info/:number',
         views: {
           '': {
             templateUrl: 'views/project/project-detail.html',
-            controller: 'ProjectDetailCtrl',
-            controllerUrl: 'scripts/controllers/project/project-detail'
+            controller: 'ProjectInfoCtrl',
+            controllerUrl: 'scripts/controllers/project/project-info'
           }
         }
       })
@@ -314,7 +324,7 @@ p2pSiteMobApp
       })
       // 我的债权
       .state('root.userCenter.credits', {
-        url: '/credits',
+        url: '/credits/:tab',
         data: {
           title: '我的投资'
         },
@@ -323,6 +333,20 @@ p2pSiteMobApp
             templateUrl: 'views/user-center/credit.html',
             controller: 'CreditCtrl',
             controllerUrl: 'scripts/controllers/user-center/credit'
+          }
+        }
+      })
+      // 债权详情
+      .state('root.userCenter.credit-security-details', {
+        url: '/credit-security-details/:id',
+        data: {
+          title: '债权详情'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/credit-security-details.html',
+            controller: 'CreditSecurityCtrl',
+            controllerUrl: 'scripts/controllers/user-center/credit-security-details'
           }
         }
       })
@@ -1038,6 +1062,25 @@ p2pSiteMobApp
 
       $rootScope.channelCode = $location.search().f;
       $rootScope.act = $location.search().act;
+      $rootScope.channelParamsObj = {};
+
+      for(var obj in $location.search()){
+        if(obj !== 'act' && obj !== 'f'){
+          $rootScope.channelParamsObj[obj] = $location.search()[obj];
+        }
+      }
+
+      $rootScope.channelParams = '';
+      if(!jQuery.isEmptyObject($rootScope.channelParamsObj)){
+        $rootScope.channelParams = angular.toJson($rootScope.channelParamsObj);
+      }
+
+      if ($rootScope.channelParams){
+        ipCookie('channelParams', $rootScope.channelParams, {
+          expires: 1,
+          path: '/'
+        });
+      }
 
       if ($rootScope.channelCode){
         ipCookie('utm_from', $rootScope.channelCode, {
@@ -1067,6 +1110,7 @@ p2pSiteMobApp
         'share-spring',
         'grade',
         'project',
+        'project-info',
         'project-detail',
         'activity'
       ];
@@ -1102,6 +1146,9 @@ p2pSiteMobApp
         $rootScope.whichFooter = 3;
       }
     });
+
+    /*加载中loading*/
+    $rootScope.showLoadingToast = false;
   })
 
 .constant('DEFAULT_DOMAIN', '/hongcai/rest')

@@ -59,37 +59,38 @@ angular.module('p2pSiteMobApp')
       /**
        * 可用券
        */
-      $scope.increaseRateCoupons = [];
-      $scope.selectIncreaseRateCoupon = [];
-      Restangular.one('projects').one('investIncreaseRateCoupon').get({
-        projectId : $scope.project.id,
-        amount : project.availableAmount
-      }).then(function(response) {
-        $scope.increaseRateCoupons = response;
-        var cashCoupon = [];
-        if(response && $scope.cashType === '' && $scope.rateType === ''){
-          for(var j = 0; j < response.length; j++){
-            if($scope.increaseRateCoupons[j].type === 2){
-              cashCoupon.push(response[j]);
-            }else if(cashCoupon === '' && $scope.increaseRateCoupons[j].type === 1){
-              cashCoupon.push(response[j]);
+      if($rootScope.isLogged){
+        $scope.increaseRateCoupons = [];
+        $scope.selectIncreaseRateCoupon = [];
+        Restangular.one('projects').one('investIncreaseRateCoupon').get({
+          projectId : $scope.project.id,
+          amount : project.availableAmount
+        }).then(function(response) {
+          $scope.increaseRateCoupons = response;
+          var cashCoupon = [];
+          if(response && $scope.cashType === '' && $scope.rateType === ''){
+            for(var j = 0; j < response.length; j++){
+              if($scope.increaseRateCoupons[j].type === 2){
+                cashCoupon.push(response[j]);
+              }else if(cashCoupon === '' && $scope.increaseRateCoupons[j].type === 1){
+                cashCoupon.push(response[j]);
+              }
+            }
+            cashCoupon.sort();
+            $scope.selectIncreaseRateCoupon = cashCoupon[cashCoupon.length-1];
+          }else{
+            for (var i = 0; i < response.length; i++) {
+              if($scope.rateNum == response[i].number){
+                $scope.selectIncreaseRateCoupon = response[i];
+              }
+              if($scope.cashNum == response[i].number){
+                $scope.selectIncreaseRateCoupon = response[i];
+              }
             }
           }
-          cashCoupon.sort();
-          $scope.selectIncreaseRateCoupon = cashCoupon[cashCoupon.length-1];
-        }else{
-          for (var i = 0; i < response.length; i++) {
-            if($scope.rateNum == response[i].number){
-              $scope.selectIncreaseRateCoupon = response[i];
-            }
-            if($scope.cashNum == response[i].number){
-              $scope.selectIncreaseRateCoupon = response[i];
-            }
-          }
-        }
-        $scope.project.investAmount =  1000 ;
-      });
-
+          $scope.project.investAmount =  1000 ;
+        });
+      }
     });
 
     $rootScope.tofinishedOrder();
@@ -97,8 +98,9 @@ angular.module('p2pSiteMobApp')
     /**
      * 下单并支付
      */
+    $scope.clicked = true;
     $scope.toInvest = function(project) {
-
+      $scope.clicked = false;
       if($scope.msg || project.investAmount < project.minInvest){
         return;
       }
@@ -106,12 +108,14 @@ angular.module('p2pSiteMobApp')
       $scope.showMsg();
       $rootScope.tofinishedOrder();
       var couponNumber = $scope.selectIncreaseRateCoupon != null ? $scope.selectIncreaseRateCoupon.number : '';
-
+      $rootScope.showLoadingToast = true;
       Restangular.one('projects').one(number+'/users/' + '0').post('investment', {
         investAmount: project.investAmount,
         couponNumber: couponNumber,
         device: Utils.deviceCode()
       }).then(function(order){
+        $rootScope.showLoadingToast = false;
+        $scope.clicked = true;
         // 重复下单后，response.number为undefined
         if (order && order.ret !== -1) {
           $state.go('root.yeepay-transfer', {
@@ -207,6 +211,8 @@ angular.module('p2pSiteMobApp')
           }else{
             $scope.showCashMsg($scope.project.investAmount);
           }
+        }else{
+          $scope.msg = '';
         }
     }
     //不使用券
@@ -225,6 +231,19 @@ angular.module('p2pSiteMobApp')
     $scope.toRecharge = function(){
       if($rootScope.timeout){
         $state.go('root.userCenter.recharge');
+      }
+    }
+
+    /**
+     * 跳转到投资记录页
+     */
+    $scope.toOrderList = function(){
+      if(!$rootScope.isLogged){
+        return;
+      }else{
+        $state.go('root.orders', {
+          number: $stateParams.number
+       });
       }
     }
 

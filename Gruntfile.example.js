@@ -142,7 +142,8 @@ module.exports = function(grunt) {
       },
       proxies: [{
         context: '/ipa',
-        host: '192.168.60.34',
+        //host: '192.168.60.34',
+        host: '114.255.24.47',
         port: 4000,
         https: false
       }, {
@@ -237,7 +238,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: '.tmp/styles/',
-          src: '{,*/}*.css',
+          src: '*.css',
           dest: '.tmp/styles/'
         }]
       }
@@ -311,7 +312,7 @@ module.exports = function(grunt) {
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
       html: ['<%= yeoman.dist %>/**/*.html'],
-      css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
+      css: ['<%= yeoman.dist %>/styles/{,*/}*.css', '!<%= yeoman.dist %>/styles/un-min/{,*/}*.css'],
       js: '<%= yeoman.dist %>/scripts/*.js',
       options: {
         assetsDirs: ['<%= yeoman.dist %>', '<%= yeoman.dist %>/images', '<%= yeoman.dist %>/images/user-center'],
@@ -493,7 +494,7 @@ module.exports = function(grunt) {
     grunt.task.run([
       'clean:server',
       'ngconstant:development',
-      'wiredep',
+      // 'wiredep',
       'less',
       'concurrent:server',
       'autoprefixer',
@@ -522,7 +523,7 @@ module.exports = function(grunt) {
   grunt.registerTask('buildTest43', [
     'clean:dist',
     'ngconstant:development',
-    'wiredep',
+    // 'wiredep',
     'less',
     'useminPrepare',
     'concurrent:dist',
@@ -542,7 +543,7 @@ module.exports = function(grunt) {
   grunt.registerTask('buildTest321', [
     'clean:dist',
     'ngconstant:developmentTest321',
-    'wiredep',
+    // 'wiredep',
     'less',
     'useminPrepare',
     'concurrent:dist',
@@ -562,7 +563,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'ngconstant:production',
-    'wiredep',
+    // 'wiredep',
     'less',
     'useminPrepare',
     'concurrent:dist',
