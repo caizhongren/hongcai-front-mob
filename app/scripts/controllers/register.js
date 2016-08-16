@@ -52,7 +52,9 @@ angular.module('p2pSiteMobApp')
           $scope.msg = response.msg;
           $scope.showErrorMsg = true;
           $scope.showMsg();
+          $scope.showMob = true;
         } else {
+          $scope.showMob = false;
           $rootScope.user = {
             id: response.id
           };
@@ -84,6 +86,12 @@ angular.module('p2pSiteMobApp')
       angular.element('#checkCaptcha').attr('src', angular.element('#checkCaptcha').attr('src').substr(0, angular.element('#checkCaptcha').attr('src').indexOf('?')) + '?code=' + Math.random());
     };
 
+    $scope.$watch('user.captcha', function(newVal, oldVal) {
+      if($scope.showMob === true && newVal !== oldVal){
+        $scope.showBtn = true;
+        $scope.msg ='';
+      }
+    })
 
     //监测手机号码
     // $scope.mobileShow = false;
@@ -142,6 +150,7 @@ angular.module('p2pSiteMobApp')
           }).success(function(data) {
             if (data == true) {
               $scope.piccha = true;
+              $scope.showBtn = true;
               $scope.showpic =false;
             } else {
               $scope.msg = '图形验证码错误';
@@ -156,9 +165,6 @@ angular.module('p2pSiteMobApp')
           });
         } else if (valLgth3 >= 4 && $scope.msg === '') {
           $scope.showMsg();
-        }
-        if(valLgth3 ===4 && $scope.showErrorMsg === false){
-          $scope.showErrorMsg = false;
         }
       }
     })
