@@ -16,11 +16,12 @@
       <i class="fa fa-eye-slash pwd-eyes ft-9f" ng-if="showEyes" ng-click="selectEyes()"></i>
       <!-- 邀请码 -->
       <p class="margin-b-0 margin-t-1 ft-blue8 text-align" ng-click="investCode =!investCode;">邀请码<i class="fa fa-angle-double-down" aria-hidden="true"></i></p>
-      <input class="input-invitecode" name="invitationCode" type="text" placeholder="邀请人手机号码（选填）" style="border-radius:0;" ng-model="user.inviteCode" ng-show="investCode"/>
+      <input class="input-invitecode" name="invitationCode" type="text" placeholder="邀请人手机号码（选填）" style="border-radius:0;" ng-model="user.inviteCode" ng-if="investCode"/>
     </div>
     <!-- 完成注册按钮 -->
     <p class="signin margin-0 text-center">
-      <button type="submit" class="ft-normal margin-t-2 button button-primary column {{registerForm.$invalid  || !showBtn ? 'button-disabled1' : ''}}" ng-disabled="registerForm.$invalid" ng-click="signUp(user);" my-click-once>完成注册</button>
+      <button type="submit" ng-if="!registerForm.$invalid && showBtn ===true && !msg" class="ft-normal margin-t-2 button button-primary column" ng-disabled="registerForm.$invalid" ng-click="signUp(user);">完成注册</button>
+      <button ng-if="registerForm.$invalid || showBtn===false || msg" class="ft-normal margin-t-2 button button-disabled1 column" >完成注册</button>
     </p>
     <p class="margin-0 pull-left ft-small ft-9f">
       <input id="isremind" type="checkbox" ng-click="checked()" checked />注册即表示您同意<a href="javascript:;" ng-click="toggle();" class="ft-blue8">注册服务协议</a>
