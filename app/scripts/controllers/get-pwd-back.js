@@ -27,9 +27,7 @@ angular.module('p2pSiteMobApp')
       /**
        * 判断图片验证码
        */
-      if (!user.picCaptcha || $scope.checkPic == false) {
-        // $scope.msg = '图形验证码有误';
-        // $scope.showMsg();
+      if (!user.picCaptcha) {
         return;
       }
       /**
@@ -125,7 +123,7 @@ angular.module('p2pSiteMobApp')
        * 监测图形验证码
        */
     $scope.$watch('user.picCaptcha', function(oldVal) {
-      $scope.checkPic = false;
+      $scope.checkPic == false;
       if (oldVal !== undefined) {
         $scope.msg = '';
         var valLgth3 = oldVal.toString().length;
@@ -138,11 +136,13 @@ angular.module('p2pSiteMobApp')
               $scope.checkPic = true;
             } else {
               $scope.checkePicMsg = true;
+              $scope.checkPic == false;
               $scope.msg = '图形验证码错误';
               $scope.showMsg();
             }
           }).error(function() {
             $scope.checkePicMsg = true;
+            $scope.checkPic == false;
             $scope.msg = '图形验证码错误';
             $scope.showMsg();
           });
@@ -167,11 +167,12 @@ angular.module('p2pSiteMobApp')
       /**
        * 判断图片验证码
        */
-      if (!picCaptcha || $scope.checkPic == false) {
+      if (!picCaptcha) {
         // $scope.msg = '图形验证码有误';
         // $scope.showMsg();
         return;
       }
+
       HongcaiUser.$find('/checkMobileCaptcha', {
         mobile: mobile,
         captcha: captcha
@@ -181,6 +182,12 @@ angular.module('p2pSiteMobApp')
           $scope.msg = response.msg;
           $scope.showMsg();
         } else {
+          if (picCaptcha.length < 4 || $scope.checkPic == false) {
+            $scope.checkePicMsg = true;
+            $scope.msg = "图形验证码有误";
+            $scope.showMsg();
+            return;
+          }
           $state.go('root.getPwd2', {
             mobile: mobile,
             captcha: captcha
