@@ -21,7 +21,8 @@
       <span class="ft-grey2">息(元)</span>
     </div>
     <div class="credit-item-info u-pull-right text-center ft-1p4">
-      <strong class="ft-grey4 ft-1p6">{{item.project.repaymentDate | date : 'yyyy/MM/dd'}}</strong>
+      <strong class="ft-grey4 ft-1p6" ng-if="item.creditRight.type !== 3">{{item.project.repaymentDate | date : 'yyyy/MM/dd'}}</strong>
+      <strong class="ft-grey4 ft-1p6" ng-if="item.creditRight.type == 3">{{item.fundsProject.repaymentDate | date : 'yyyy/MM/dd'}}</strong>
       <br>
       <span class="ft-grey2">到期日</span>
     </div>
