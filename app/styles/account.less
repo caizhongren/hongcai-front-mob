@@ -393,27 +393,41 @@
         margin-top: 1rem;
       }
       .message-icon{
-        width: 48%;
+        font-size: 1.8rem;
+        margin-top: -0.3rem;
+        margin-right: .4rem;
       }
       .setting-icon {
-        width: 5%;
+        font-size: 1.8rem;
+        margin-top: .8rem;
       }
-      .setting {
 
-      }
     }
     @media (min-width:360px) {
       .user-name{
         margin-top: 1rem;
       }
       .message-icon{
-        width: 56%;
+        font-size: 2rem;
+        margin-top: -0.6rem;
+        margin-right: .7rem;
       }
       .setting-icon {
-        width: 5%;
+        font-size: 1.9rem;
       }
     }
-
+    @media (min-width:375px) {
+      .setting-icon {
+        font-size: 2rem;
+        margin-top: .7rem;
+      }
+    }
+     @media (min-width:411px) {
+      .setting-icon {
+        font-size: 2.3rem;
+        margin-top: .6rem;
+      }
+    }
   .message-icon {
 
   }
@@ -826,13 +840,21 @@
       float: left;
       border-bottom: 1px solid #e6e5e4;
       .icon{
-        margin-right: 1rem;
+        margin-right: 0.6rem;
         float: left;
-        img{
-          width: 22px;
-          height: 22px;
-          margin-top: 15px;
-        }
+        width: 2.3rem;
+        height: 2.3rem;
+        margin-top: 10px;
+        background: url("/images/new/list.png") no-repeat;
+      }
+      .icon1 {
+        background-position: -5px -2px;
+      }
+      .icon2 {
+        background-position: -5px -33px;
+      }
+      .icon3 {
+        background-position: -5px -60px;
       }
       .title-text{
         float: left;
