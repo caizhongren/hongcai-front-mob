@@ -9,6 +9,7 @@
       <strong ng-switch-when="4">恭喜您，成功绑定银行卡！</strong>
       <strong ng-switch-when="5">恭喜您，成功修改手机号！</strong>
       <strong ng-switch-when="6">恭喜您，成功投资{{amount | number:2}}元！</strong>
+      <strong ng-switch-when="7">恭喜您，成功激活存管通账号</strong>
     </p>
     <div class="column twelve padding-l-1 padding-r-1 margin-b-1 padding-b-2 margin-t-2">
       <div class="one-half column button button-primary u-pull-left border-none" ng-switch-default ui-sref="root.main">
@@ -35,6 +36,14 @@
       </div>
       <div class="one-half column button button-primary u-pull-left border-none" ng-switch-when="6" ui-sref="root.main">
         <span>浏览项目</span>
+      </div>
+      <div ng-switch-when="7">
+        <div class="one-half column button button-primary u-pull-left border-none" ui-sref="root.main">
+          <span>浏览项目</span>
+        </div>
+        <div class="one-half column button button-primary u-pull-left border-none" ui-sref="root.userCenter">
+          <span>我的账户</span>
+        </div>
       </div>
     </div>
   </div>
