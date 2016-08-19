@@ -169,16 +169,16 @@ angular.module('p2pSiteMobApp')
     })
 
     //监测邀请码
-    $scope.$watch('user.inviteCode', function(oldVal) {
-      if (oldVal === undefined) {
+    $scope.$watch('user.inviteCode', function(newVal) {
+      if (newVal === undefined) {
         return;
       }
 
-      var valLgth4 = oldVal.toString().length;
+      var valLgth4 = newVal.toString().length;
       if (valLgth4 >= 11) {
         $http({
           method: 'POST',
-          url: '/hongcai/api/v1/activity/checkInviteCode?inviteCode=' + oldVal
+          url: '/hongcai/api/v1/activity/checkInviteCode?inviteCode=' + newVal
         }).success(function(response) {
           if (response.data.isValid === 1) {
             $scope.msg = '';

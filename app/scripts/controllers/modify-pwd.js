@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2016-08-12 16:37:40
 * @Last Modified by:   yuyang
-* @Last Modified time: 2016-08-16 16:17:13
+* @Last Modified time: 2016-08-19 10:03:44
 */
 
 'use strict';
@@ -16,14 +16,14 @@ angular.module('p2pSiteMobApp')
     /**
      * 监测新密码
      */
-    $scope.$watch('chg.newPassword1', function(oldVal){
-      if(oldVal !== undefined){
+    $scope.$watch('chg.newPassword1', function(newVal){
+      if(newVal === undefined){
         return;
       }
       $scope.msg = '';
-      var valLgth1 = oldVal.toString().length;
+      var valLgth1 = newVal.toString().length;
       $scope.valLgth1 = valLgth1;
-      if(!pwd_regexp2.test(oldVal)){
+      if(!pwd_regexp2.test(newVal)){
         $scope.msg = '密码含非法字符';
         $scope.showErrorMsg = true;
         $scope.showMsg();
@@ -36,15 +36,15 @@ angular.module('p2pSiteMobApp')
     /**
      * 监测确认密码
      */
-    $scope.$watch('chg.newPassword2', function(oldVal){
-      $scope.mobileShow = false;
-      if(oldVal !== undefined){
-        $scope.msg = '';
-        var valLgth2 = oldVal.toString().length;
-        if(valLgth2 >= $scope.valLgth1 && $scope.chg.newPassword1 !== $scope.chg.newPassword2){
-          $scope.msg = '两次密码输入不一致';
-          $scope.showMsg();
-        }
+    $scope.$watch('chg.newPassword2', function(newVal){
+      if(newVal === undefined){
+        return;
+      }
+      $scope.msg = '';
+      var valLgth2 = newVal.toString().length;
+      if(valLgth2 >= $scope.valLgth1 && $scope.chg.newPassword1 !== $scope.chg.newPassword2){
+        $scope.msg = '两次密码输入不一致';
+        $scope.showMsg();
       }
     })
 
