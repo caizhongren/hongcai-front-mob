@@ -100,7 +100,7 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/activity/login-new.html',
+            templateUrl: 'views/login-new.html',
             controller: 'LoginCtrl',
             controllerUrl: 'scripts/controllers/login'
 
@@ -114,7 +114,7 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/activity/register-new.html',
+            templateUrl: 'views/register-new.html',
             controller: 'RegisterCtrl',
             controllerUrl: 'scripts/controllers/register'
           }
@@ -153,7 +153,7 @@ p2pSiteMobApp
         url: '/modify-pwd',
         views: {
           '': {
-            templateUrl: 'views/activity/modify-pwd.html',
+            templateUrl: 'views/modify-pwd.html',
             controller: 'modifyPwd',
             controllerUrl: 'scripts/controllers/modify-pwd.js'
           }
