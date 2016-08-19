@@ -134,9 +134,9 @@ module.exports = function(grunt) {
     // The actual grunt server settings
     connect: {
       options: {
-        port: 9000,
+        port: 8000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: '192.168.10.70',
+        hostname: 'localhost',
         // hostname: '192.168.60.34',
         livereload: 35729
       },
@@ -148,7 +148,7 @@ module.exports = function(grunt) {
         https: false
       }, {
         context: '/hongcai',
-        host: '192.168.1.43',
+        host: 'test321.hongcai.com',
         // host: '192.168.10.83',
         port: 8080,
         https: false
@@ -494,7 +494,7 @@ module.exports = function(grunt) {
     grunt.task.run([
       'clean:server',
       'ngconstant:development',
-      // 'wiredep',
+      'wiredep',
       'less',
       'concurrent:server',
       'autoprefixer',
@@ -523,7 +523,7 @@ module.exports = function(grunt) {
   grunt.registerTask('buildTest43', [
     'clean:dist',
     'ngconstant:development',
-    // 'wiredep',
+    'wiredep',
     'less',
     'useminPrepare',
     'concurrent:dist',
@@ -543,7 +543,7 @@ module.exports = function(grunt) {
   grunt.registerTask('buildTest321', [
     'clean:dist',
     'ngconstant:developmentTest321',
-    // 'wiredep',
+    'wiredep',
     'less',
     'useminPrepare',
     'concurrent:dist',
@@ -563,7 +563,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'ngconstant:production',
-    // 'wiredep',
+    'wiredep',
     'less',
     'useminPrepare',
     'concurrent:dist',
