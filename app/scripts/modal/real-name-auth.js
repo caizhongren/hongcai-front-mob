@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RealNameAuthCtrl', function($scope, $state, $rootScope, $uibModalInstance) {
+  .controller('RealNameAuthCtrl', function($scope, $state, $uibModalInstance) {
 
 
     $scope.cancel = function () {
