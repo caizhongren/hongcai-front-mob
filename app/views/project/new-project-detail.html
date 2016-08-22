@@ -73,7 +73,7 @@
 	</div>
   <!-- 状态按钮 -->
 	<div class="invest-btn">
-    <button id="invest-btn1" class="button button-primary" type="button" ng-show="!msg && isLogged && project.status === 7" ng-click="toInvest(project)" ng-disabled="showSelectIncreaseRateCoupon && clicked">立即投资</button>
+    <button id="invest-btn1" class="button button-primary" type="button" ng-show="!msg && isLogged && project.status === 7 && securityStatus.realNameAuthStatus === 1" ng-click="toInvest(project)" ng-disabled="showSelectIncreaseRateCoupon && clicked">立即投资</button>
     <button class="button btn-disabled" ng-show="msg && project.status ===7 && securityStatus.realNameAuthStatus === 1">立即投资</button>
     <button class="button btn-disabled" ng-show="project.status ===6 ">预发布</button>
     <button class="button btn-disabled" ng-show="project.status ===9 ">还款中</button>
