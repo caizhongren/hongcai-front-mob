@@ -76,7 +76,7 @@
     <button class="button btn-disabled" ng-show="project.status ===8 ">融资成功</button>
     <button class="button btn-disabled" ng-show="project.status ===10 ">已完成</button>
     <button class="button btn-disabled" ng-show="project.status ===11 ">预约中</button>
-    <button class="button button-primary" type="button" ng-show="isLogged && project.status ===7 && securityStatus.realNameAuthStatus !== 1" ng-click="toRealNameAuth()">开通资金托管账户</button>
+    <button class="button button-primary" type="button" ng-show="isLogged && project.status ===7 && securityStatus.realNameAuthStatus !== 1" ng-click="toRealNameAuth()">开通资金存管账户</button>
     <button class="button button-primary" type="button" ng-show="!isLogged && project.status ===7" ng-click="toLogin()">立即登录</button>
   </div>
   <!-- 错误提示 -->
