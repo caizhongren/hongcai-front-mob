@@ -52,7 +52,7 @@ angular.module('p2pSiteMobApp')
      * 绑定银行卡
      */
     $scope.bindBankcard = function() {
-      if ($scope.simpleBankcard.status == 'VERIFIED' || $scope.simpleBankcard.status == 'VERIFYING') {
+      if ($scope.simpleBankcard != undefined && ($scope.simpleBankcard.status == 'VERIFIED' || $scope.simpleBankcard.status == 'VERIFYING')) {
         return;
       }
 
