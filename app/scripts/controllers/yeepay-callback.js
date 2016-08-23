@@ -27,6 +27,8 @@ angular.module('p2pSiteMobApp')
         $scope.page = 6;
     } else if(business === 'USER_ACTIVE'){
         $scope.page = 7;
+    } else if(business === 'UNBIND_BANK_CARD'){
+        $scope.page = 8;
     }
 
   });

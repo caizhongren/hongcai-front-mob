@@ -11,11 +11,11 @@
     </div>
   </div>
   <div class="bg-white margin-b-1 padding-l-2 padding-r-2 border-t-greyd8 border-b-greyf5">
-    <div class="clearfix padding-t-1p5 padding-b-1p5" ng-click="toRemoveCard()" ng-hide="showBankCardState">
+    <div class="clearfix padding-t-1p5 padding-b-1p5" ng-click="toRemoveCard()" ng-show="simpleBankcard.status === 'VERIFIED' && simpleBankcard.status === 'VERIFING'">
       <p class="fl margin-b-0 ft-black4">解绑银行卡</p>
       <i class="fa fa-angle-right fr ft-2p5"></i>
     </div>
-    <div class="clearfix padding-t-1p5 padding-b-1p5" ng-show="showBankCardState">
+    <div class="clearfix padding-t-1p5 padding-b-1p5" ng-show="simpleBankcard.status !== 'VERIFIED' && simpleBankcard.status !== 'VERIFING'">
       <p class="fl margin-b-0 ft-black4">您的银行卡正处于解绑中</p>
     </div>
   </div>
@@ -24,8 +24,7 @@
       <p class="ft-orange margin-b-0">温馨提示:</p>
       <p class="ft-grey4 margin-b-0">1、当前银行卡{{simpleBankcard.cardNo}}({{simpleBankcard.openBank}})为您的提现银行卡；</p>
       <p class="ft-grey4 margin-b-0">2、更换银行卡，需要您先解绑当前的银行卡；</p>
-      <p class="ft-grey4 margin-b-0">3、解绑银行卡，需1-2个工作日对您申请解绑的银行卡进行认证；</p>
-      <p class="ft-grey4 margin-b-0">4、解绑成功后，您可以申请绑定新的银行卡。</p>
+      <p class="ft-grey4 margin-b-0">3、解绑成功后，您可以申请绑定新的银行卡。</p>
     </div>
   </div>
 </div>
@@ -38,10 +37,5 @@
       <button class="fl text-center bg-orange ft-white" ng-click="unBindBankcard()">确认解绑</button>
       <button class="fr text-center bg-white ft-orange" ng-click="cancle()">取消</button>
     </div>
-  </div>
-  <div class="project-mask-inner margin-t-20 text-center bg-white ft-black4 ft-1p6 padding-t-3 padding-b-2" ng-show="showTip">
-    <p class="margin-b-0 ">银行卡解绑操作成功，银行处理需要</p>
-    <p class="margin-b-2">1-2个工作日，请您耐心等待。</p>
-    <button class="text-center margin-t-1 bg-white ft-orange" ng-click="closeTip()">我知道了</button>
   </div>
 </div>

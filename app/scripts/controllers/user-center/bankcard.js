@@ -28,14 +28,14 @@ angular.module('p2pSiteMobApp')
           unBindBankcardModel.$find('/unbindBankCard').$then(function(response) {
             if (response) {
               $scope.showBankCard = false;
-              $scope.showTip = true;
-              $scope.showBankCardState = true;
+              $state.go('root.yeepay-callback', {
+                business: 'UNBIND_BANK_CARD'
+              });
             }
           });
         }
       });
     });
-    $scope.showBankCardState = false;
     $scope.showMask = false;
     $scope.showBankCard = false;
     $scope.toRemoveCard = function() {
@@ -43,12 +43,7 @@ angular.module('p2pSiteMobApp')
       $scope.showMask = true;
     }
     $scope.cancle = function() {
-      $scope.showBankCard = false;
-      $scope.showMask = false;
-    }
-    $scope.showTip = false;
-    $scope.closeTip = function() {
-        $scope.showTip = false;
+        $scope.showBankCard = false;
         $scope.showMask = false;
       }
       /*根据屏幕高度设置内容高度*/
