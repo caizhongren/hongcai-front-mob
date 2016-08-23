@@ -936,6 +936,9 @@ p2pSiteMobApp
      * 激活存管通
      */
     $rootScope.toActivate = function() {
+      if (!$rootScope.isLogged || $rootScope.securityStatus.realNameAuthStatus !== 1 || $rootScope.securityStatus.userAuth.active === true) {
+        return;
+      }
       $uibModal.open({
         animation: true,
         templateUrl: 'views/user-center/activate.html',
@@ -1064,7 +1067,6 @@ p2pSiteMobApp
         title = toState.data.title;
       }
       $rootScope.headerTitle = title + ' - 要理财，上宏财！';
-
       if (toState.name !== 'root.project') {
         Utils.setTitle($rootScope.headerTitle);
       }
@@ -1077,6 +1079,10 @@ p2pSiteMobApp
       $rootScope.act = $location.search().act;
       $rootScope.channelParamsObj = {};
 
+      //提示激活存管通
+      if(path == 'user-center'){
+        $rootScope.toActivate();
+      }
       for (var obj in $location.search()) {
         if (obj !== 'act' && obj !== 'f') {
           $rootScope.channelParamsObj[obj] = $location.search()[obj];
