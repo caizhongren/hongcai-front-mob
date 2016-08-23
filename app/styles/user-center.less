@@ -125,14 +125,11 @@
     border: 0.1rem solid #d8d8d8;
     float: left;
     width: 94%;
+    .padding-t-0p5 {
+      margin-right: 0.8rem;
+    }
     div:nth-child(1) {
       float: left;
-      width: 8%;
-      img {
-        width: 1.5rem;
-        height: 1.5rem;
-        margin-top: 1rem;
-      }
     }
     div:nth-child(2) {
       float: left;
@@ -167,11 +164,11 @@
     width: 94%;
     div:nth-child(1) {
       float: left;
-      width: 8%;
       img {
         width: 1.5rem;
         height: 1.5rem;
-        margin-top: 1rem;
+        margin-top: 0.8rem;
+        margin-right: 0.5rem;
       }
     }
     div:nth-child(2) {
@@ -793,3 +790,103 @@
     }
   }
 }
+//激活弹窗
+.activate-mask {
+  margin: 10rem 1.4rem;
+  width: 94%;
+  height: 25rem;
+  background: url("/images/user-center/activate-bg.png") no-repeat;
+  background-size: contain;
+  .close {
+    width: 2rem;
+    height: 2rem;
+    right: 0;
+    top: 0;
+  }
+}
+  @media (min-width:320px) {
+    .activate-mask {
+      margin: 10rem 1rem;
+      .activate-head {
+        line-height: 5rem;
+        font-size: 1.5rem;
+      }
+      .activate-tip {
+        font-size: 1.2rem;
+      }
+      .activate-btn {
+        width: 78%;
+        margin: 0 auto;
+        margin-top: 2.7rem;
+        button:first-child {
+          padding: 0 15px;
+          font-size: 1.4rem;
+        }
+        button:last-child {
+          padding: 0 21px;
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+  @media (min-width:360px) {
+    .activate-mask {
+      margin: 10rem 1.2rem;
+      .activate-head {
+        line-height: 5.8rem;
+        font-size: 1.7rem;
+      }
+      .activate-tip {
+        font-size: 1.3rem;
+      }
+      .activate-btn {
+        width: 76%;
+        margin: 0 auto;
+        margin-top: 3.6rem;
+        button:first-child {
+          padding: 0 21px;
+        }
+        button:last-child {
+          padding: 0 27px;
+        }
+      }
+    }
+  }
+  @media (min-width:375px) {
+    .activate-mask {
+      .activate-btn {
+        width: 71%;
+        margin: 0 auto;
+        margin-top: 4.5rem;
+        button:first-child {
+          padding: 0 18px;
+        }
+        button:last-child {
+          padding: 0 24px;
+        }
+      }
+    }
+  }
+  @media (min-width:411px) {
+    .activate-mask {
+      margin: 10rem 1.4rem;
+      .activate-head {
+        line-height: 6.5rem;
+        font-size: 1.97rem;
+      }
+      .activate-tip {
+        font-size: 1.4rem;
+      }
+      .activate-btn {
+        width: 72%;
+        margin: 0 auto;
+        margin-top: 5.1rem;
+         button:first-child {
+          padding: 0 24px;
+        }
+        button:last-child {
+          padding: 0 31px;
+        }
+      }
+    }
+  }

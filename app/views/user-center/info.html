@@ -13,7 +13,7 @@
       <td>{{'已设置'}}</td>
     </tr>
     <tr>
-      <td>第三方托管账户</td>
+      <td>第三方存管账户</td>
       <td>{{'保证您的资金安全'}}</td>
       <td>{{'未开通'}}</td>
     </tr>
@@ -48,8 +48,8 @@
           </p>
           <p ng-if="registerYeepayForm.IDcardsignup.$dirty && registerYeepayForm.$invalid && !registerYeepayForm.IDcardsignup.$focused && registerYeepayForm.$error.pattern" class="text-center ft-red"><small>输入的身份证号码格式不正确</small></p>
           <p class="signin margin-0 text-center padding-t-1">
-              <!-- <input type="submit" class="button button-primary column" value="开通易宝资金托管账户"/> -->
-              <input type="submit" class="button button-primary column {{registerYeepayForm.$invalid ? 'button-disabled' : ''}}" ng-disabled="registerYeepayForm.$invalid" value="开通易宝资金托管账户"/>
+              <!-- <input type="submit" class="button button-primary column" value="开通易宝资金存管账户"/> -->
+              <input type="submit" class="button button-primary column {{registerYeepayForm.$invalid ? 'button-disabled' : ''}}" ng-disabled="registerYeepayForm.$invalid" value="开通易宝资金存管账户"/>
           </p>
         </form>
       </td>

@@ -20,16 +20,14 @@ angular.module('p2pSiteMobApp')
        * 判断手机号码
        */
       if (!user.mobile || user.mobile.length !== 11 || !mobilePattern.test(user.mobile)) {
-        $scope.msg = '手机号码格式不正确';
-        $scope.showMsg();
+        // $scope.msg = '手机号码格式不正确';
+        // $scope.showMsg();
         return;
       }
       /**
        * 判断图片验证码
        */
-      if (!user.picCaptcha || $scope.checkPic == false) {
-        $scope.msg = '图形验证码有误';
-        $scope.showMsg();
+      if (!user.picCaptcha) {
         return;
       }
       /**
@@ -125,7 +123,7 @@ angular.module('p2pSiteMobApp')
        * 监测图形验证码
        */
     $scope.$watch('user.picCaptcha', function(oldVal) {
-      $scope.checkPic = false;
+      $scope.checkPic == false;
       if (oldVal !== undefined) {
         $scope.msg = '';
         var valLgth3 = oldVal.toString().length;
@@ -138,11 +136,13 @@ angular.module('p2pSiteMobApp')
               $scope.checkPic = true;
             } else {
               $scope.checkePicMsg = true;
+              $scope.checkPic == false;
               $scope.msg = '图形验证码错误';
               $scope.showMsg();
             }
           }).error(function() {
             $scope.checkePicMsg = true;
+            $scope.checkPic == false;
             $scope.msg = '图形验证码错误';
             $scope.showMsg();
           });
@@ -151,9 +151,25 @@ angular.module('p2pSiteMobApp')
       }
     })
 
-    //获取验证码进行下一步
-    $scope.newPwd = function(mobile, captcha) {
-      if (!mobile || !captcha) {
+    /**
+     * 获取验证码进行下一步
+     */
+    $scope.newPwd = function(mobile, captcha, picCaptcha) {
+      if (!mobile || !captcha || !picCaptcha) {
+        return;
+      }
+
+      //判断手机号码
+      if (!mobilePattern.test(mobile)) {
+        $scope.msg = '手机号码格式不正确';
+        $scope.showMsg();
+        return;
+      }
+
+      if (picCaptcha.length < 4 || $scope.checkPic == false) {
+        $scope.checkePicMsg = true;
+        $scope.msg = "图形验证码有误";
+        $scope.showMsg();
         return;
       }
 
@@ -166,6 +182,7 @@ angular.module('p2pSiteMobApp')
           $scope.msg = response.msg;
           $scope.showMsg();
         } else {
+
           $state.go('root.getPwd2', {
             mobile: mobile,
             captcha: captcha
@@ -175,6 +192,11 @@ angular.module('p2pSiteMobApp')
     };
 
     $scope.$watch('user.captcha', function(newVal, oldVal) {
+      $scope.sendMsg = true;
+      if (!newVal || newVal == undefined) {
+        $scope.sendMsg = false;
+
+      }
       $scope.getCaptchaErr = null;
     });
     /**
@@ -213,7 +235,6 @@ angular.module('p2pSiteMobApp')
           $scope.checkePicMsg = true;
           $scope.showMsg();
         }
-        $scope.showBtn = $scope.msg === '' ? false : true;
       }
     })
 
@@ -227,7 +248,6 @@ angular.module('p2pSiteMobApp')
           $scope.checkePicMsg = true;
           $scope.showMsg();
         }
-        $scope.showBtn = $scope.msg === '' ? false : true;
       }
     })
     $scope.changePassword = function(chg) {

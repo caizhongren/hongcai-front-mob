@@ -11,8 +11,8 @@
     </div>
      <!-- 完成注册按钮 -->
     <p class="getBack margin-0 text-center">
-      <button ng-show="!changePwdMobileForm.$invalid && !showBtn" type="button" class="ft-normal margin-t-3 button button-primary column" ng-click="changePassword(chg)" >确认</button>
-      <button ng-show="changePwdMobileForm.$invalid || showBtn" type="button" class="ft-normal margin-t-3 button column button-disabled1" >确认</button>
+      <button ng-if="!changePwdMobileForm.$invalid" type="button" class="ft-normal margin-t-3 button button-primary column" ng-click="changePassword(chg)" >确认</button>
+      <button ng-if="changePwdMobileForm.$invalid" type="button" class="ft-normal margin-t-3 button column button-disabled1" >确认</button>
     </p>
   </form>
   <div class="toast toast2" ng-show="showErrorMsg && msg">

@@ -1,6 +1,6 @@
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('YeepayTransferCtrl', function($scope, $state, $rootScope, $stateParams, restmod, DEFAULT_DOMAIN, config, Utils) {
+  .controller('YeepayTransferCtrl', function($scope, $state, $rootScope, $stateParams, restmod, DEFAULT_DOMAIN, config, Utils, WEB_DEFAULT_DOMAIN) {
     function newForm() {
       var f = document.createElement('form');
       document.body.appendChild(f);
@@ -27,13 +27,35 @@ angular.module('p2pSiteMobApp')
     //
     function redirectToYeepay(business, encrpyMsg) {
       if (encrpyMsg.ret !== -1) {
-        var req = encrpyMsg.req;
-        var sign = encrpyMsg.sign;
-        var _f = newForm();
-        createElements(_f, 'req', req);
-        createElements(_f, 'sign', sign);
-        _f.action = config.YEEPAY_ADDRESS + business;
-        _f.submit();
+
+        if(config.pay_company === 'yeepay'){
+          var req = encrpyMsg.req;
+          var sign = encrpyMsg.sign;
+          var _f = newForm();
+          createElements(_f, 'req', req);
+          createElements(_f, 'sign', sign);
+          _f.action = config.YEEPAY_ADDRESS + business;
+          _f.submit();
+        } else if (config.pay_company === 'cgt'){
+          var serviceName = encrpyMsg.serviceName;
+          var platformNo = encrpyMsg.platformNo;
+          var userDevice = encrpyMsg.userDevice;
+          var reqData = encrpyMsg.reqData;
+          var keySerial = encrpyMsg.keySerial;
+          var sign = encrpyMsg.sign;
+          var _f = newForm();
+          createElements(_f, 'serviceName', serviceName);
+          createElements(_f, 'platformNo', platformNo);
+          createElements(_f, 'userDevice', userDevice);
+          createElements(_f, 'reqData', reqData);
+          createElements(_f, 'keySerial', keySerial);
+          createElements(_f, 'sign', sign);
+          _f.action = config.YEEPAY_ADDRESS;
+          _f.submit();
+        }
+
+
+        
       } else {
         alert(encrpyMsg.msg);
       }
@@ -113,6 +135,16 @@ angular.module('p2pSiteMobApp')
           'mobile': $stateParams.number
         }).$then(function(response){
           redirectToYeepay('toResetMobile',response);
+        });
+      } else if ($scope.type === 'autoRepayment') { //自动还款授权
+        var autoRepayment = restmod.model(WEB_DEFAULT_DOMAIN + "/yeepay/authorizeAutoRepayment");
+        autoRepayment.$create({}).$then(function(response){
+          redirectToYeepay('toAuthorizeAutoRepayment',response);
+        });
+      } else if ($scope.type === 'active') { //自动还款授权
+        var active = restmod.model(DEFAULT_DOMAIN + "/userAuths/cgtActive");
+        active.$create({}).$then(function(response){
+          redirectToYeepay('toActive',response);
         });
       }
 

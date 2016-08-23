@@ -1,8 +1,7 @@
 <!-- 我的账户 -->
 <div class="account-userInfo bg-accountcolor padding-b-7 ft-black5">
   <div class="bg-orange0 text-center ft-white padding-t-0p5 padding-l-0p5 padding-r-0p5 ">
-
-      <img class="margin-t-1p3 margin-l-1 fl setting-icon" src="/images/user-center/setting.png" alt="" ui-sref="root.userCenter.setting">
+      <div class="margin-t-1p3 margin-l-1 fl setting-icon" ui-sref="root.userCenter.setting"><i class="fa fa-cog" aria-hidden="true"></i></div>
       <div class="display-inb text-center">
         <div class="display-inb clearfix">
           <div class="border-pull margin-r-1 fl"><img ng-src="{{hasLoggedUser.headImgUrl || userHeadImgUrl}}" alt="" class="border-pull avatar"></div>
@@ -10,10 +9,9 @@
         </div>
       </div>
       <div class="fr margin-r-1 margin-t-1p3">
-        <img class="message-icon" src="/images/user-center/message.png" alt="">
+        <div class="message-icon"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
       </div>
     </div>
-
     <div class="text-cneter bg-orange0 ft-white">
       <p class="text-center margin-b-0 padding-t-1 ft-white1 ft-1p4">当前资产(元)</p>
       <p class="text-center ft-2p8 margin-b-1 ft-1p6">{{ userAccount.tTotalAssets || 0 | number:2}}</strong></p>
@@ -45,7 +43,7 @@
         </div>
         <div class="fr text-center ft-1p8 ft-orange0 width-half" ng-click="goRecharge()"><span>充值</span></div>
       </div>
-      <div class="text-center ft-orange0 ft-1p5" ng-if="securityStatus.trusteeshipAccountStatus !== 1">未开通资金托管账户&nbsp;&nbsp;<span ng-click="toRealNameAuth()">去开通&nbsp;<i class="fa fa-angle-right ft-1p8"></i></span></div>
+      <div class="text-center ft-orange0 ft-1p5" ng-if="securityStatus.trusteeshipAccountStatus !== 1">未开通资金存管账户&nbsp;&nbsp;<span ng-click="toRealNameAuth()">去开通&nbsp;<i class="fa fa-angle-right ft-1p8"></i></span></div>
     </div>
 
     <div class="bg-white hot border-grey-t margin-b-1 ft-1p6" ui-sref="root.project({number:recommends.data[0].number})">
@@ -68,16 +66,40 @@
     <!-- 投资记录和奖励列表 -->
     <div class="user-center-list bg-white ft-1p6">
       <ul class="clearfix border-grey-t margin-b-0">
-        <li class="fl border-grey-r" ui-sref="root.userCenter.credits({tab:0})"><img src="/images/user-center/investment-record.png" width="14%" alt="">我的投资</li>
-        <li class="fl" ui-sref="root.userCenter.cash-coupon"><img src="/images/user-center/user-prize.png" width="14%" alt="">我的奖金</li>
+        <li class="fl border-grey-r" ui-sref="root.userCenter.credits({tab:0})">
+          <i class="display-inb"></i>
+          <img src="/images/user-center/investment-record.png" width="14%" alt="">
+          我的投资
+        </li>
+        <li class="fl" ui-sref="root.userCenter.cash-coupon">
+          <i class="display-inb"></i>
+          <img src="/images/user-center/user-prize.png" width="14%" alt="">
+          我的奖金
+        </li>
       </ul>
       <ul class="clearfix border-grey-t margin-b-0 border-grey-b">
-        <li class="fl border-grey-r" ui-sref="root.userCenter.deals"><img src="/images/user-center/user-capital.png" width="14%" alt="">资金流水</li>
-        <li class="fl"  ng-click="viewMore(2)"><img src="/images/user-center/user-invite.png" width="14%" alt="">我的邀请<sup class="green-sup">{{voucher.inviteNum || 0}}</sup></li>
+        <li class="fl border-grey-r" ui-sref="root.userCenter.deals">
+          <i class="display-inb"></i>
+          <img src="/images/user-center/user-capital.png" width="14%" alt="">
+          资金流水
+        </li>
+        <li class="fl"  ng-click="viewMore(2)">
+          <i class="display-inb"></i>
+          <img src="/images/user-center/user-invite.png" width="14%" alt="">
+          我的邀请<sup class="green-sup">{{voucher.inviteNum || 0}}</sup>
+        </li>
       </ul>
       <ul class="clearfix border-grey-b margin-b-0">
-        <li class="fl border-grey-r" ui-sref="root.userCenter.experience-money"><img src="/images/user-center/user-experience.png" width="14%" alt="">我的体验金</li>
-        <li class="fl" ng-click="viewMore(1)"><img src="/images/user-center/user-rate-ticket.png" width="14%" alt="">我的加息券<sup class="green-sup">{{couponStatis.unUsedCoupon || 0}}</sup></li>
+        <li class="fl border-grey-r" ui-sref="root.userCenter.experience-money">
+          <i class="display-inb"></i>
+          <img src="/images/user-center/user-experience.png" width="14%" alt="">
+          我的体验金
+        </li>
+        <li class="fl" ng-click="viewMore(1)">
+          <i class="display-inb"></i>
+          <img src="/images/user-center/user-rate-ticket.png" width="14%" alt="">
+          我的加息券<sup class="green-sup">{{couponStatis.unUsedCoupon || 0}}</sup>
+        </li>
       </ul>
     </div>
   </div>

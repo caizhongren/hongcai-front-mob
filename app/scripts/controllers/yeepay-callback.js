@@ -21,10 +21,12 @@ angular.module('p2pSiteMobApp')
     	$scope.page = 3;
     } else if (business === 'BIND_BANK_CARD'){
         $scope.page = 4;
-    }else if(business === 'RESET_MOBILE'){
+    } else if(business === 'RESET_MOBILE'){
         $scope.page = 5;
-    }else if(business === 'EXPERIENCE'){
+    } else if(business === 'EXPERIENCE'){
         $scope.page = 6;
+    } else if(business === 'USER_ACTIVE'){
+        $scope.page = 7;
     }
 
   });
