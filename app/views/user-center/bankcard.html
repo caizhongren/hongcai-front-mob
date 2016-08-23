@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="bg-white margin-b-1 padding-l-2 padding-r-2 border-t-greyd8 border-b-greyf5">
-    <div class="clearfix padding-t-1p5 padding-b-1p5" ng-click="toRemoveCard()" ng-show="simpleBankcard.status === 'VERIFIED' && simpleBankcard.status === 'VERIFING'">
+    <div class="clearfix padding-t-1p5 padding-b-1p5" ng-click="toRemoveCard()" ng-show="simpleBankcard.status === 'VERIFIED' || simpleBankcard.status === 'VERIFING'">
       <p class="fl margin-b-0 ft-black4">解绑银行卡</p>
       <i class="fa fa-angle-right fr ft-2p5"></i>
     </div>
@@ -29,8 +29,8 @@
   </div>
 </div>
 <!-- 解绑提示 -->
-<div class="project-mask bankcard-setting" ng-show="showMask">
-  <div class="project-mask-inner margin-t-20 text-center bg-white ft-black4 ft-1p6 padding-t-3 padding-b-3"  ng-show="showBankCard">
+<div class="project-mask bankcard-setting">
+  <div class="project-mask-inner margin-t-20 text-center bg-white ft-black4 ft-1p6 padding-t-3 padding-b-3">
     <p class="margin-b-0 ">解绑银行卡将会影响您的提现，</p>
     <p class="margin-b-2">您确定要解绑此银行卡么？</p>
     <div class="padding-l-2 padding-r-2 clearfix">
