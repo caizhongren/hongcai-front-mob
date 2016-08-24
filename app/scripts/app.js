@@ -67,7 +67,17 @@ p2pSiteMobApp
           }
         }
       })
-
+    // 开通存管通落地页
+    .state('root.activate-landing', {
+        url: '/activate',
+        views: {
+          '': {
+            templateUrl: 'views/activate-landing.html',
+            // controller: 'MainCtrl',
+            // controllerUrl: 'scripts/controllers/main'
+          }
+        }
+      })
     // 忘记密码流程
     .state('root.getPwd1', {
         url: '/getPwd1',
@@ -1080,7 +1090,7 @@ p2pSiteMobApp
       $rootScope.channelParamsObj = {};
 
       //提示激活存管通
-      if(path == 'user-center'){
+      if (path == 'user-center') {
         $rootScope.toActivate();
       }
       for (var obj in $location.search()) {

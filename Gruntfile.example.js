@@ -148,7 +148,7 @@ module.exports = function(grunt) {
         https: false
       }, {
         context: '/hongcai',
-        host: 'test321.hongcai.com',
+        host: '192.168.5.199',
         // host: '192.168.10.83',
         port: 8080,
         https: false
