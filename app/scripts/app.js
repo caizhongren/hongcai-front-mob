@@ -1153,7 +1153,8 @@ p2pSiteMobApp
       var loginOrMy = [
         'login',
         'register',
-        'user-center'
+        'user-center',
+        'yeepay-callback'
       ];
 
       $rootScope.whichFooter = 1;
