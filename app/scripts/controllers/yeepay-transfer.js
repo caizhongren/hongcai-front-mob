@@ -141,7 +141,7 @@ angular.module('p2pSiteMobApp')
         autoRepayment.$create({}).$then(function(response){
           redirectToYeepay('toAuthorizeAutoRepayment',response);
         });
-      } else if ($scope.type === 'active') { //自动还款授权
+      } else if ($scope.type === 'active') { //存管通激活
         var active = restmod.model(DEFAULT_DOMAIN + "/userAuths/cgtActive");
         active.$create({}).$then(function(response){
           redirectToYeepay('toActive',response);
