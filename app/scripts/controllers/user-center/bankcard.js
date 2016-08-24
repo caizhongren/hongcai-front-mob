@@ -26,12 +26,14 @@ angular.module('p2pSiteMobApp')
         var unBindBankcardModel = restmod.model(WEB_DEFAULT_DOMAIN + '/yeepay');
         $scope.unBindBankcard = function() {
           unBindBankcardModel.$find('/unbindBankCard').$then(function(response) {
-            if (response) {
-              $scope.showBankCard = false;
-              $state.go('root.yeepay-callback', {
-                business: 'UNBIND_BANK_CARD'
-              });
+            $scope.showMask = false;
+            $scope.showBankCard = false;
+            if (!response || response.ret == -1) {
+              return;
             }
+            $state.go('root.yeepay-callback', {
+              business: 'UNBIND_BANK_CARD'
+            });
           });
         }
       });
