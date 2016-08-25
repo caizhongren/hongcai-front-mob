@@ -1,5 +1,6 @@
 <div class="padding-2 bg-white text-center">
   <div class="padding-2">
-    <strong>您即将进入存管通资金存管系统，请在存管通页面完成剩余操作！</strong>
+    <strong ng-show="config.pay_company === 'cgt'">您即将进入存管通资金存管系统，请在存管通页面完成剩余操作！</strong>
+    <strong ng-show="config.pay_company === 'yeepay'">您即将进入易宝，请在存管通页面完成剩余操作！</strong>
   </div>
 </div>

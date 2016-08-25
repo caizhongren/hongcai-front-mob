@@ -2,15 +2,16 @@
   <div class="overflow-hid">
     <img src="/images/success-re_03.png" width="30%">
     <p class="padding-t-1 ft-2 ft-black2 margin-t-2">
-      <strong ng-switch-default>恭喜您，成功开通存管通账户！</strong>
+      <strong ng-switch-default>恭喜您，成功开通存管账户！</strong>
       <strong ng-switch-when="1">恭喜您，成功充值{{amount | number:2}}元！</strong>
       <strong ng-switch-when="2">恭喜您，成功提现{{amount | number:2}}元！</strong>
       <strong ng-switch-when="3">恭喜您，成功投资{{amount | number:2}}元！</strong>
       <strong ng-switch-when="4">恭喜您，成功绑定银行卡！</strong>
       <strong ng-switch-when="5">恭喜您，成功修改手机号！</strong>
       <strong ng-switch-when="6">恭喜您，成功投资{{amount | number:2}}元！</strong>
-      <strong ng-switch-when="7">恭喜您，成功激活存管通账号</strong>
-      <strong ng-switch-when="8">恭喜您，成功解绑银行卡</strong>
+      <strong ng-switch-when="7">恭喜您，成功开通存管账号！</strong>
+      <strong ng-switch-when="8">恭喜您，成功解绑银行卡！</strong>
+      <strong ng-switch-when="9">恭喜您，成功申请解绑银行卡！</strong>
     </p>
     <div class="column twelve padding-l-1 padding-r-1 margin-b-1 padding-b-2 margin-t-2">
       <div class="one-half column button button-primary u-pull-left border-none" ng-switch-default ui-sref="root.__main-list-temp-list-temp">
@@ -49,6 +50,14 @@
       <div ng-switch-when="8">
         <div class="one-half column button button-primary u-pull-left border-none" ui-sref="root.userCenter.setting">
           <span>绑定新银行卡</span>
+        </div>
+        <div class="one-half column button button-primary u-pull-left border-none" ui-sref="root.main">
+          <span>逛逛首页</span>
+        </div>
+      </div>
+      <div ng-switch-when="9">
+        <div class="one-half column button button-primary u-pull-left border-none" ui-sref="root.userCenter.account">
+          <span>我的账户</span>
         </div>
         <div class="one-half column button button-primary u-pull-left border-none" ui-sref="root.main">
           <span>逛逛首页</span>

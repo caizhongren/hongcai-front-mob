@@ -31,9 +31,16 @@ angular.module('p2pSiteMobApp')
             if (!response || response.ret == -1) {
               return;
             }
-            $state.go('root.yeepay-callback', {
-              business: 'UNBIND_BANK_CARD'
-            });
+            if (config.pay_company === 'cgt') {
+              $state.go('root.yeepay-callback', {
+                business: 'UNBIND_BANK_CARD'
+              });
+            }
+            if (config.pay_company === 'yeepay') {
+              $state.go('root.yeepay-callback', {
+                business: 'UNBIND_BANK_CARD_ING'
+              });
+            }
           });
         }
       });

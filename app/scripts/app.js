@@ -946,9 +946,9 @@ p2pSiteMobApp
      * 激活存管通
      */
     $rootScope.toActivate = function() {
-      // if (!$rootScope.isLogged || $rootScope.securityStatus.realNameAuthStatus !== 1 || $rootScope.securityStatus.userAuth.active === true) {
-      //   return;
-      // }
+      if (config.pay_company === 'yeepay'||!$rootScope.isLogged || $rootScope.securityStatus.realNameAuthStatus !== 1 || $rootScope.securityStatus.userAuth.active === true) {
+        return;
+      }
       $uibModal.open({
         animation: true,
         templateUrl: 'views/user-center/activate.html',
