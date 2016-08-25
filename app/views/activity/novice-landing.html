@@ -132,7 +132,8 @@
           <li class="bg-white1 clearfix">
             <img class="fl" src="/images/activity/safe.png" alt="">
             <p class="fl">资金安全</p>
-            <span class="fl">联合易宝支付打造一套完整的资金支付与托管第三方账户体系。</span>
+            <span class="fl" ng-if="payCompany === 'yeepay'">联合易宝支付打造一套完整的资金支付与托管第三方账户体系。</span>
+            <span class="fl" ng-if="payCompany === 'cgt'">联合北京网贷存管通打造一套完整的风险监控及资金存管系统。</span>
           </li>
         </ul>
         <div class="explain">

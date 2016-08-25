@@ -31,12 +31,12 @@ angular.module('p2pSiteMobApp')
             if (!response || response.ret == -1) {
               return;
             }
-            if (config.pay_company === 'cgt') {
+            if ($rootScope.payCompany === 'cgt') {
               $state.go('root.yeepay-callback', {
                 business: 'UNBIND_BANK_CARD'
               });
             }
-            if (config.pay_company === 'yeepay') {
+            if ($rootScope.payCompany === 'yeepay') {
               $state.go('root.yeepay-callback', {
                 business: 'UNBIND_BANK_CARD_ING'
               });

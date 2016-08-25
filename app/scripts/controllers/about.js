@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('AboutCtrl',function ($scope,$stateParams) {
+  .controller('AboutCtrl',function ($scope, $stateParams, $rootScope) {
     $scope.tab = parseInt($stateParams.tab) || 0;
     // tab
     $scope.toggle = {};
@@ -55,5 +55,10 @@ angular.module('p2pSiteMobApp')
     {name: '项目保障', content: '项目方打造了一套完善的风控体系，所有项目经过严格风控审核后才能发布，如果出现项目方违约，担保公司第一时间先行垫付。项目有汽车房产等优质资产足值抵押，彻底解决项目风险问题！', fa: 'fa-gavel'},
     {name: '资金安全', content: '宏财网联合北京知名支付平台“易宝支付”打造了一套完善的资金支付与托管账户体系，一人一户且每笔资金的流动都可追查记录。同时宏财网坚决不设虚假标，每一笔投资都有对应的真实债权，不设资金池，保障投资人的权益。', fa: 'fa-jpy'}
     ];
+
+    if($rootScope.payCompany === 'cgt') {
+      $scope.partners[2] = {name: '商务伙伴', eName: 'Bussiness Partners', fa: 'fa-bullhorn', title: '优质金融机构，易宝支付，天畅律师', introduction: '宏财网只与最优质的金融机构合作，资金存管由北京网贷存管通进行存管，并与天畅律师事务所达成战略合作协议。全面确保客户资金安全。'}
+      $scope.NewSafes[3] = {name: '资金安全', content: '宏财网联合北京网贷存管通打造了一套完善的风险金控及资金存管系统，一人一户且每笔资金的流动都可追查记录。同时宏财网坚决不设虚假标，每一笔投资都有对应的真实债权，不设资金池，保障投资人的权益。', fa: 'fa-jpy'}
+    }
   });
 

@@ -893,7 +893,7 @@ p2pSiteMobApp
       'safe': '安全保障',
       'account': '账户总览'
     };
-
+    $rootScope.payCompany = config.pay_company;
     /**
      * 跳转到登陆页
      */
@@ -946,7 +946,7 @@ p2pSiteMobApp
      * 激活存管通
      */
     $rootScope.toActivate = function() {
-      if (config.pay_company === 'yeepay'||!$rootScope.isLogged || $rootScope.securityStatus.realNameAuthStatus !== 1 || $rootScope.securityStatus.userAuth.active === true) {
+      if ($rootScope.payCompany === 'yeepay'||!$rootScope.isLogged || $rootScope.securityStatus.realNameAuthStatus !== 1 || $rootScope.securityStatus.userAuth.active === true) {
         return;
       }
       $uibModal.open({
