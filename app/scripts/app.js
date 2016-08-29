@@ -955,6 +955,20 @@ p2pSiteMobApp
         controller: 'ActivateCtrl'
       });
     }
+
+    /**
+     * 错误提示
+     */
+    $rootScope.showErrorMsg = false;
+    $rootScope.showMsg = function(msg) {
+      if (msg) {
+        $rootScope.showErrorMsg = true;
+        $timeout(function() {
+          $rootScope.showErrorMsg = false;
+        }, 2000);
+      }
+    }
+
     $rootScope.$on('$stateChangeStart', function(event, toState) {
       var title = '宏财理财';
       if (toState.data && toState.data.title) {

@@ -16,7 +16,6 @@ angular.module('p2pSiteMobApp')
       };
     }
 
-    $scope.showErrorMsg = false;
     $scope.showRegistrationAgreement = false;
     $scope.toggle = function() {
       $scope.showRegistrationAgreement = !$scope.showRegistrationAgreement;
@@ -29,7 +28,7 @@ angular.module('p2pSiteMobApp')
     $scope.checkPassword = function(password){
       if (!pwd_regexp.test(password)) {
         $scope.msg = '密码6-16位，需包含字母和数字';
-        $scope.showMsg();
+        $rootScope.showMsg($scope.msg);
         return false;
       }
       return true;
@@ -38,7 +37,7 @@ angular.module('p2pSiteMobApp')
     $scope.checkPicCaptchLength = function(picCaptcha){
       if(picCaptcha.toString().length<4){
         $scope.msg = '图形验证码错误';
-        $scope.showMsg();
+        $rootScope.showMsg($scope.msg);
         return false;
       }
       return true;
@@ -47,7 +46,7 @@ angular.module('p2pSiteMobApp')
     $scope.checkMobile = function(mobile){
       if(!phoneNum_regexp.test(mobile)){
         $scope.msg = "手机号码格式不正确";
-        $scope.showMsg();
+        $rootScope.showMsg($scope.msg);
         return false;
       }
 
@@ -57,7 +56,7 @@ angular.module('p2pSiteMobApp')
     $scope.checkillegalCharcater = function(password){
       if (!pwdIllegal_regexp.test(password)) {
         $scope.msg = '密码含非法字符';
-        $scope.showMsg();
+        $rootScope.showMsg($scope.msg);
         return false;
       }
       return true;
@@ -85,8 +84,7 @@ angular.module('p2pSiteMobApp')
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.msg = response.msg;
-          $scope.showMsg();
-          $scope.mobMsg = true;
+          $rootScope.showMsg($scope.msg);
         } else {
           $rootScope.user = {
             id: response.id
@@ -109,14 +107,14 @@ angular.module('p2pSiteMobApp')
       var valLgth = newVal.toString().length;
       if (valLgth >= 11 && !phoneNum_regexp.test(newVal)) {
         $scope.msg = '手机号码格式不正确';
-        $scope.showMsg();
+        $rootScope.showMsg($scope.msg);
       } else if (valLgth === 11 && phoneNum_regexp.test(newVal)) {
         Restangular.one('/users/').post('isUnique', {
           account: newVal
         }).then(function(response) {
           if(response.ret === -1){
             $scope.msg = response.msg;
-            $scope.showMsg();
+            $rootScope.showMsg($scope.msg);
           }
         })
       }
@@ -141,11 +139,11 @@ angular.module('p2pSiteMobApp')
             $scope.msg = '';
           } else {
             $scope.msg = '图形验证码错误';
-            $scope.showMsg();
+            $rootScope.showMsg($scope.msg);
           }
         }).error(function() {
           $scope.msg = '图形验证码错误';
-          $scope.showMsg();
+          $rootScope.showMsg($scope.msg);
         });
       }
     })
@@ -160,10 +158,10 @@ angular.module('p2pSiteMobApp')
       var valLgth2 = newVal.toString().length;
       if (!pwdIllegal_regexp.test(newVal)) {
         $scope.msg = '密码含非法字符';
-        $scope.showMsg();
+        $rootScope.showMsg($scope.msg);
       } else if (valLgth2 > 16) {
         $scope.msg = '密码6-16位，需包含字母和数字';
-        $scope.showMsg();
+        $rootScope.showMsg($scope.msg);
       }
 
     })
@@ -184,11 +182,11 @@ angular.module('p2pSiteMobApp')
             $scope.msg = '';
           } else if (response.data.isValid === 0) {
             $scope.msg = '邀请码不存在';
-            $scope.showMsg();
+            $rootScope.showMsg($scope.msg);
           }
         }).error(function() {
           $scope.msg = '邀请码不存在';
-          $scope.showMsg();
+          $rootScope.showMsg($scope.msg);
         });
       }
     })
@@ -254,16 +252,6 @@ angular.module('p2pSiteMobApp')
 
     };
 
-    //设置错误提示
-    $scope.showMsg = function() {
-      if ($scope.msg) {
-        $scope.showErrorMsg = true;
-        $timeout(function() {
-          $scope.showErrorMsg = false;
-        }, 2000);
-
-      }
-    }
 
     //邀请码
     $scope.investCode = false;
