@@ -966,7 +966,6 @@ p2pSiteMobApp
         $timeout(function() {
           $rootScope.showErrorMsg = false;
         }, 2000);
-
       }
     }
 
