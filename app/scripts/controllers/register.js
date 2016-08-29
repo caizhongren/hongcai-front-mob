@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RegisterCtrl', function($http, DEFAULT_DOMAIN, Restangular, $timeout, $rootScope, $scope, $state, $stateParams, md5, register, wechat, mobileCaptcha, ipCookie) {
+  .controller('RegisterCtrl', function(checkPwdUtils, $http, DEFAULT_DOMAIN, Restangular, $timeout, $rootScope, $scope, $state, $stateParams, md5, register, wechat, mobileCaptcha, ipCookie) {
     // 注册链接上是否有邀请码
     if ($stateParams.inviteCode) {
       $scope.user = {
@@ -26,9 +26,8 @@ angular.module('p2pSiteMobApp')
     var pwd_regexp = /^(?=.*\d)(?=.*[a-zA-Z]).{6,16}$/;
 
     $scope.checkPassword = function(password){
-      if (!pwd_regexp.test(password)) {
-        $scope.msg = '密码6-16位，需包含字母和数字';
-        $rootScope.showMsg($scope.msg);
+      $scope.msg = checkPwdUtils.showPwd2(password);
+      if ($scope.msg) {
         return false;
       }
       return true;
@@ -53,21 +52,12 @@ angular.module('p2pSiteMobApp')
       return true;
     }
 
-    $scope.checkillegalCharcater = function(password){
-      if (!pwdIllegal_regexp.test(password)) {
-        $scope.msg = '密码含非法字符';
-        $rootScope.showMsg($scope.msg);
-        return false;
-      }
-      return true;
-    }
-
     var openId = $rootScope.openId;
     var signUpBe = register;
     $scope.signUp = function(user) {
       if(!$scope.checkMobile(user.mobile)
-        || !$scope.checkillegalCharcater(user.password) || !$scope.checkPicCaptchLength(user.picCaptcha)
-        || !$scope.checkPassword(user.password)){
+        || !$scope.checkPassword(user.password)
+        || !$scope.checkPicCaptchLength(user.picCaptcha)){
         return;
       }
 
@@ -153,16 +143,8 @@ angular.module('p2pSiteMobApp')
       if(!newVal){
         return;
       }
-
-      $scope.msg = '';
-      var valLgth2 = newVal.toString().length;
-      if (!pwdIllegal_regexp.test(newVal)) {
-        $scope.msg = '密码含非法字符';
-        $rootScope.showMsg($scope.msg);
-      } else if (valLgth2 > 16) {
-        $scope.msg = '密码6-16位，需包含字母和数字';
-        $rootScope.showMsg($scope.msg);
-      }
+      //调用checkPwdUtils，判断密码是否含非法字符
+      $scope.msg = checkPwdUtils.showPwd1(newVal);
 
     })
 
