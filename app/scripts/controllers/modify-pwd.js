@@ -2,15 +2,12 @@
 * @Author: Administrator
 * @Date:   2016-08-12 16:37:40
 * @Last Modified by:   yuyang
-* @Last Modified time: 2016-08-29 11:17:30
+* @Last Modified time: 2016-08-29 18:03:54
 */
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('modifyPwd', function($timeout, $scope, restmod, DEFAULT_DOMAIN,md5, $state,$rootScope) {
-
-    var pwd_regexp = /^(?=.*\d)(?=.*[a-zA-Z]).{6,16}$/;
-    var pwd_regexp2 = /^[^~!@#$%^&*]+$/;
+  .controller('modifyPwd', function(checkPwdUtils, $timeout, $scope, restmod, DEFAULT_DOMAIN,md5, $state,$rootScope) {
 
     /**
      * 监测新密码
@@ -19,16 +16,9 @@ angular.module('p2pSiteMobApp')
       if(newVal === undefined){
         return;
       }
-      $scope.msg = '';
-      var valLgth1 = newVal.toString().length;
-      $scope.valLgth1 = valLgth1;
-      if(!pwd_regexp2.test(newVal)){
-        $scope.msg = '密码含非法字符';
-        $rootScope.showMsg($scope.msg);
-      }else if(valLgth1 >16){
-        $scope.msg = '密码6-16位，需包含字母和数字';
-        $rootScope.showMsg($scope.msg);
-      }
+
+      //调用checkPwdUtils，判断密码是否含非法字符
+      $scope.msg = checkPwdUtils.showPwd1(newVal);
     })
 
     /**
@@ -38,19 +28,14 @@ angular.module('p2pSiteMobApp')
       if(newVal === undefined){
         return;
       }
-      $scope.msg = '';
-      var valLgth2 = newVal.toString().length;
-      if(valLgth2 >= $scope.valLgth1 && $scope.chg.newPassword1 !== $scope.chg.newPassword2){
-        $scope.msg = '两次密码输入不一致';
-        $rootScope.showMsg($scope.msg);
-      }
+
+      $scope.msg = checkPwdUtils.eqPwd($scope.chg.newPassword1, $scope.chg.newPassword2);
     })
 
     /**
      * 确认修改密码
      */
     $scope.changePassword = function(chg) {
-      var pwd_regexp1 = /^(?=.*\d)(?=.*[a-zA-Z]).{6,16}$/;
       $scope.msg = '';
 
       //判断新密码与确认密码是否一致
@@ -61,9 +46,8 @@ angular.module('p2pSiteMobApp')
       }
 
       //判断新密码是否符合规则
-      if(!pwd_regexp1.test(chg.newPassword1)){
-        $scope.msg = '密码6-16位，需包含字母和数字';
-        $rootScope.showMsg($scope.msg);
+      $scope.msg = checkPwdUtils.showPwd2(chg.newPassword1);
+      if($scope.msg){
         return;
       }
 
