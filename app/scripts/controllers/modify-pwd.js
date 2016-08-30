@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2016-08-12 16:37:40
 * @Last Modified by:   yuyang
-* @Last Modified time: 2016-08-29 18:03:54
+* @Last Modified time: 2016-08-30 10:01:00
 */
 
 'use strict';
@@ -18,7 +18,7 @@ angular.module('p2pSiteMobApp')
       }
 
       //调用checkPwdUtils，判断密码是否含非法字符
-      $scope.msg = checkPwdUtils.showPwd1(newVal);
+      checkPwdUtils.showPwd1(newVal);
     })
 
     /**
@@ -29,25 +29,23 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
-      $scope.msg = checkPwdUtils.eqPwd($scope.chg.newPassword1, $scope.chg.newPassword2);
+      checkPwdUtils.eqPwd($scope.chg.newPassword1, $scope.chg.newPassword2);
     })
 
     /**
      * 确认修改密码
      */
     $scope.changePassword = function(chg) {
-      $scope.msg = '';
 
       //判断新密码与确认密码是否一致
       if(chg.newPassword1 !== chg.newPassword2){
-        $scope.msg = '两次密码输入不一致';
-        $rootScope.showMsg($scope.msg);
+        $rootScope.showMsg('两次密码输入不一致');
         return;
       }
 
       //判断新密码是否符合规则
-      $scope.msg = checkPwdUtils.showPwd2(chg.newPassword1);
-      if($scope.msg){
+      var msg = checkPwdUtils.showPwd2(chg.newPassword1);
+      if(msg){
         return;
       }
 
@@ -58,14 +56,8 @@ angular.module('p2pSiteMobApp')
         newPassword: md5.createHash(chg.newPassword1),
       }).$then(function(response) {
         if (response.ret === -1) {
-          $scope.msg = '旧密码不正确';
-          $rootScope.showMsg($scope.msg);
+          $rootScope.showMsg('旧密码不正确');
         } else {
-          $scope.oldPassword = null;
-          $scope.newPassword1 = null;
-          $scope.newPassword2 = null;
-        }
-        if($scope.msg ===''){
           $state.go('root.login');
         }
       });

@@ -961,6 +961,7 @@ p2pSiteMobApp
      */
     $rootScope.showErrorMsg = false;
     $rootScope.showMsg = function(msg) {
+      $rootScope.msg = '';
       if (msg) {
         $rootScope.msg = msg;
         $rootScope.showErrorMsg = true;

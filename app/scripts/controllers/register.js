@@ -22,12 +22,10 @@ angular.module('p2pSiteMobApp')
     };
 
     var phoneNum_regexp = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
-    var pwdIllegal_regexp = /^[^~!@#$%^&*]+$/;
-    var pwd_regexp = /^(?=.*\d)(?=.*[a-zA-Z]).{6,16}$/;
 
     $scope.checkPassword = function(password){
-      $scope.msg = checkPwdUtils.showPwd2(password);
-      if ($scope.msg) {
+      var msg = checkPwdUtils.showPwd2(password);
+      if (msg) {
         return false;
       }
       return true;
@@ -35,8 +33,7 @@ angular.module('p2pSiteMobApp')
 
     $scope.checkPicCaptchLength = function(picCaptcha){
       if(picCaptcha.toString().length<4){
-        $scope.msg = '图形验证码错误';
-        $rootScope.showMsg($scope.msg);
+        $rootScope.showMsg('图形验证码错误');
         return false;
       }
       return true;
@@ -44,8 +41,7 @@ angular.module('p2pSiteMobApp')
 
     $scope.checkMobile = function(mobile){
       if(!phoneNum_regexp.test(mobile)){
-        $scope.msg = "手机号码格式不正确";
-        $rootScope.showMsg($scope.msg);
+        $rootScope.showMsg("手机号码格式不正确");
         return false;
       }
 
@@ -144,7 +140,7 @@ angular.module('p2pSiteMobApp')
         return;
       }
       //调用checkPwdUtils，判断密码是否含非法字符
-      $scope.msg = checkPwdUtils.showPwd1(newVal);
+      checkPwdUtils.showPwd1(newVal);
 
     })
 
