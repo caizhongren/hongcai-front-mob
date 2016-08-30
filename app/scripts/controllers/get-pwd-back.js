@@ -75,14 +75,13 @@ angular.module('p2pSiteMobApp')
        * 获取短信验证码
        */
       mobileCaptcha.$create({
-        mobile: user.mobile,
-        picCaptcha: user.picCaptcha,
+        mobile: user.mobile
       }).$then(function(response) {
         if (response.ret === -1) {
           $rootScope.showMsg(response.msg);
-        }else {
-          countDown(captcha, 60, 'out');
+
         }
+        countDown(captcha, 60, 'out');
       });
     };
     /**
