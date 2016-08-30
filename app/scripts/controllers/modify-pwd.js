@@ -2,70 +2,50 @@
 * @Author: Administrator
 * @Date:   2016-08-12 16:37:40
 * @Last Modified by:   yuyang
-* @Last Modified time: 2016-08-16 16:17:13
+* @Last Modified time: 2016-08-30 10:01:00
 */
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('modifyPwd', function($timeout, $scope, restmod, DEFAULT_DOMAIN,md5, $state,$rootScope) {
-
-    $scope.showErrorMsg = false;
-    var pwd_regexp = /^(?=.*\d)(?=.*[a-zA-Z]).{6,16}$/;
-    var pwd_regexp2 = /^[^~!@#$%^&*]+$/;
+  .controller('modifyPwd', function(checkPwdUtils, $timeout, $scope, restmod, DEFAULT_DOMAIN,md5, $state,$rootScope) {
 
     /**
      * 监测新密码
      */
-    $scope.$watch('chg.newPassword1', function(oldVal){
-      if(oldVal !== undefined){
+    $scope.$watch('chg.newPassword1', function(newVal){
+      if(newVal === undefined){
         return;
       }
-      $scope.msg = '';
-      var valLgth1 = oldVal.toString().length;
-      $scope.valLgth1 = valLgth1;
-      if(!pwd_regexp2.test(oldVal)){
-        $scope.msg = '密码含非法字符';
-        $scope.showErrorMsg = true;
-        $scope.showMsg();
-      }else if(valLgth1 >16){
-        $scope.msg = '密码6-16位，需包含字母和数字';
-        $scope.showMsg();
-      }
+
+      //调用checkPwdUtils，判断密码是否含非法字符
+      checkPwdUtils.showPwd1(newVal);
     })
 
     /**
      * 监测确认密码
      */
-    $scope.$watch('chg.newPassword2', function(oldVal){
-      $scope.mobileShow = false;
-      if(oldVal !== undefined){
-        $scope.msg = '';
-        var valLgth2 = oldVal.toString().length;
-        if(valLgth2 >= $scope.valLgth1 && $scope.chg.newPassword1 !== $scope.chg.newPassword2){
-          $scope.msg = '两次密码输入不一致';
-          $scope.showMsg();
-        }
+    $scope.$watch('chg.newPassword2', function(newVal){
+      if(newVal === undefined){
+        return;
       }
+
+      checkPwdUtils.eqPwd($scope.chg.newPassword1, $scope.chg.newPassword2);
     })
 
     /**
      * 确认修改密码
      */
     $scope.changePassword = function(chg) {
-      var pwd_regexp1 = /^(?=.*\d)(?=.*[a-zA-Z]).{6,16}$/;
-      $scope.msg = '';
 
       //判断新密码与确认密码是否一致
       if(chg.newPassword1 !== chg.newPassword2){
-        $scope.msg = '两次密码输入不一致';
-        $scope.showMsg();
+        $rootScope.showMsg('两次密码输入不一致');
         return;
       }
 
       //判断新密码是否符合规则
-      if(!pwd_regexp1.test(chg.newPassword1)){
-        $scope.msg = '密码6-16位，需包含字母和数字';
-        $scope.showMsg();
+      var msg = checkPwdUtils.showPwd2(chg.newPassword1);
+      if(msg){
         return;
       }
 
@@ -76,27 +56,12 @@ angular.module('p2pSiteMobApp')
         newPassword: md5.createHash(chg.newPassword1),
       }).$then(function(response) {
         if (response.ret === -1) {
-          $scope.msg = '旧密码不正确';
-          $scope.showMsg();
+          $rootScope.showMsg('旧密码不正确');
         } else {
-          $scope.oldPassword = null;
-          $scope.newPassword1 = null;
-          $scope.newPassword2 = null;
-        }
-        if($scope.msg ===''){
           $state.go('root.login');
         }
       });
 
     }
 
-    /**
-     * 错误提示
-     */
-    $scope.showMsg = function(){
-      $scope.showErrorMsg = true;
-      $timeout(function() {
-        $scope.showErrorMsg = false;
-      }, 2000);
-    }
   })

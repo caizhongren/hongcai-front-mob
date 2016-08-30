@@ -130,13 +130,10 @@ angular.module('p2pSiteMobApp')
     };
 
 
-    $scope.showErrorMsg = false;
     $scope.$watch('project.investAmount', function(newVal, oldVal){
       if(!$rootScope.isLogged){
         return;
       }
-
-      $scope.showErrorMsg = false;
 
       if(newVal !== oldVal){
         $scope.msg = undefined;
@@ -182,11 +179,8 @@ angular.module('p2pSiteMobApp')
 
     //显示信息
     $scope.showMsg = function(){
-      if($scope.msg && $scope.project.status == 7){
-        $scope.showErrorMsg = true;
-        $timeout(function() {
-          $scope.showErrorMsg = false;
-        }, 2000);
+      if($scope.project && $scope.project.status == 7){
+        $rootScope.showMsg($scope.msg);
       }
     }
     // 记录券的来源

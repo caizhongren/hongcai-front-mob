@@ -36,13 +36,7 @@ angular.module('p2pSiteMobApp')
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.msg = response.msg;
-          if($scope.msg){
-            $scope.showErrorMsg = true;
-            $timeout(function() {
-              $scope.showErrorMsg = false;
-            }, 2000);
-          }
-
+          $rootScope.showMsg($scope.msg);
         } else {
 
           if (redirectUrl) {

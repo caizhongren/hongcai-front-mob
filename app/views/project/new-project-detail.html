@@ -31,7 +31,11 @@
       <span>投资记录</span>
       <span><i class="fa fa-angle-right"></i></span>
     </div>
-    <a class="column border-grey3-top margin-t-1p2" ng-click="toRecharge()" ng-show="isLogged">
+    <a class="column border-grey3-top margin-t-1p2" ng-click="toRealNameAuth()" ng-show="isLogged && securityStatus.realNameAuthStatus !== 1">
+      <span>账户余额：<i class="ft-orange ft-normal1">{{account.balance || 0 | number:2}}</i> 元</span>
+      <span><b class="ft-normal">开通 </b><i class="fa fa-angle-right"></i></span>
+    </a>
+    <a class="column border-grey3-top margin-t-1p2" ng-click="toRecharge()" ng-show="isLogged && securityStatus.realNameAuthStatus === 1">
       <span>账户余额：<i class="ft-orange ft-normal1">{{account.balance || 0 | number:2}}</i> 元</span>
       <span><b class="ft-normal">充值 </b><i class="fa fa-angle-right"></i></span>
     </a>
@@ -69,19 +73,15 @@
 	</div>
   <!-- 状态按钮 -->
 	<div class="invest-btn">
-    <button id="invest-btn1" class="button button-primary" type="button" ng-show="!msg && isLogged && project.status === 7" ng-click="toInvest(project)" ng-disabled="showSelectIncreaseRateCoupon && clicked">立即投资</button>
+    <button id="invest-btn1" class="button button-primary" type="button" ng-show="!msg && isLogged && project.status === 7 && securityStatus.realNameAuthStatus === 1" ng-click="toInvest(project)" ng-disabled="showSelectIncreaseRateCoupon && clicked">立即投资</button>
     <button class="button btn-disabled" ng-show="msg && project.status ===7 && securityStatus.realNameAuthStatus === 1">立即投资</button>
     <button class="button btn-disabled" ng-show="project.status ===6 ">预发布</button>
     <button class="button btn-disabled" ng-show="project.status ===9 ">还款中</button>
     <button class="button btn-disabled" ng-show="project.status ===8 ">融资成功</button>
     <button class="button btn-disabled" ng-show="project.status ===10 ">已完成</button>
     <button class="button btn-disabled" ng-show="project.status ===11 ">预约中</button>
-    <button class="button button-primary" type="button" ng-show="isLogged && project.status ===7 && securityStatus.realNameAuthStatus !== 1" ng-click="toRealNameAuth()">开通资金托管账户</button>
+    <button class="button button-primary" type="button" ng-show="isLogged && project.status ===7 && securityStatus.realNameAuthStatus !== 1" ng-click="toRealNameAuth()">开通资金存管账户</button>
     <button class="button button-primary" type="button" ng-show="!isLogged && project.status ===7" ng-click="toLogin()">立即登录</button>
-  </div>
-  <!-- 错误提示 -->
-  <div class="toast" ng-show="showErrorMsg">
-  	<span class="display-inb">{{msg}}</span>
   </div>
 </div>
 <!-- 加息券弹出 -->

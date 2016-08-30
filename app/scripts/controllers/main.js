@@ -7,7 +7,7 @@
  * Controller of the p2pSiteMobApp
 + */
 angular.module('p2pSiteMobApp')
-  .controller('MainCtrl', function($scope, Restangular, ProjectUtils) {
+  .controller('MainCtrl', function($scope, $rootScope, Restangular, ProjectUtils) {
 
 
     /**
@@ -36,7 +36,9 @@ angular.module('p2pSiteMobApp')
       ProjectUtils.projectTimedown($scope.recommends, serverTime);
     });
 
-
-
+    /**
+     * 是否激活存管通
+     */
+     $rootScope.toActivate();
 
   });

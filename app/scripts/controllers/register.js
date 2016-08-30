@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RegisterCtrl', function($http, DEFAULT_DOMAIN, Restangular, $timeout, $rootScope, $scope, $state, $stateParams, md5, register, wechat, mobileCaptcha, ipCookie) {
+  .controller('RegisterCtrl', function(CheckPicUtil, checkPwdUtils, $http, DEFAULT_DOMAIN, Restangular, $timeout, $rootScope, $scope, $state, $stateParams, CheckMobUtil, md5, register, wechat, mobileCaptcha, ipCookie) {
     // 注册链接上是否有邀请码
     if ($stateParams.inviteCode) {
       $scope.user = {
@@ -16,48 +16,31 @@ angular.module('p2pSiteMobApp')
       };
     }
 
-    $scope.showErrorMsg = false;
     $scope.showRegistrationAgreement = false;
     $scope.toggle = function() {
       $scope.showRegistrationAgreement = !$scope.showRegistrationAgreement;
     };
 
-    var phoneNum_regexp = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
-    var pwdIllegal_regexp = /^[^~!@#$%^&*]+$/;
-    var pwd_regexp = /^(?=.*\d)(?=.*[a-zA-Z]).{6,16}$/;
-
     $scope.checkPassword = function(password){
-      if (!pwd_regexp.test(password)) {
-        $scope.msg = '密码6-16位，需包含字母和数字';
-        $scope.showMsg();
+      var msg = checkPwdUtils.showPwd2(password);
+      if (msg) {
         return false;
       }
       return true;
     }
 
+
     $scope.checkPicCaptchLength = function(picCaptcha){
       if(picCaptcha.toString().length<4){
-        $scope.msg = '图形验证码错误';
-        $scope.showMsg();
+        $rootScope.showMsg('图形验证码错误');
         return false;
       }
       return true;
     }
 
     $scope.checkMobile = function(mobile){
-      if(!phoneNum_regexp.test(mobile)){
-        $scope.msg = "手机号码格式不正确";
-        $scope.showMsg();
-        return false;
-      }
-
-      return true;
-    }
-
-    $scope.checkillegalCharcater = function(password){
-      if (!pwdIllegal_regexp.test(password)) {
-        $scope.msg = '密码含非法字符';
-        $scope.showMsg();
+      if(!$rootScope.mobilePattern.test(mobile)){
+        $rootScope.showMsg("手机号码格式不正确");
         return false;
       }
       return true;
@@ -66,9 +49,7 @@ angular.module('p2pSiteMobApp')
     var openId = $rootScope.openId;
     var signUpBe = register;
     $scope.signUp = function(user) {
-      if(!$scope.checkMobile(user.mobile)
-        || !$scope.checkillegalCharcater(user.password) || !$scope.checkPicCaptchLength(user.picCaptcha)
-        || !$scope.checkPassword(user.password)){
+      if (!$scope.checkMobile(user.mobile) || !$scope.checkPassword(user.password) || !$scope.checkPicCaptchLength(user.picCaptcha)) {
         return;
       }
 
@@ -85,8 +66,7 @@ angular.module('p2pSiteMobApp')
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.msg = response.msg;
-          $scope.showMsg();
-          $scope.mobMsg = true;
+          $rootScope.showMsg($scope.msg);
         } else {
           $rootScope.user = {
             id: response.id
@@ -101,113 +81,65 @@ angular.module('p2pSiteMobApp')
 
     //监测手机号码
     $scope.$watch('user.mobile', function(newVal) {
-      if(newVal === undefined){
-        return;
-      }
-
-      $scope.msg = '';
-      var valLgth = newVal.toString().length;
-      if (valLgth >= 11 && !phoneNum_regexp.test(newVal)) {
-        $scope.msg = '手机号码格式不正确';
-        $scope.showMsg();
-      } else if (valLgth === 11 && phoneNum_regexp.test(newVal)) {
-        Restangular.one('/users/').post('isUnique', {
-          account: newVal
-        }).then(function(response) {
-          if(response.ret === -1){
-            $scope.msg = response.msg;
-            $scope.showMsg();
-          }
-        })
-      }
+      CheckMobUtil.checkMob(newVal);
     })
 
     //监测图形验证码
     $scope.$watch('user.picCaptcha', function(newVal) {
       $scope.piccha = false;
-      if (newVal === undefined) {
-        return;
-      }
-
-      $scope.msg = '';
-      var valLgth3 = newVal.toString().length;
-      if (valLgth3 >= 4) {
-        $http({
-          method: 'POST',
-          url: DEFAULT_DOMAIN + '/captchas/checkPic?captcha=' + newVal
-        }).success(function(data) {
-          if (data == true) {
-            $scope.piccha = true;
-            $scope.msg = '';
-          } else {
-            $scope.msg = '图形验证码错误';
-            $scope.showMsg();
-          }
-        }).error(function() {
-          $scope.msg = '图形验证码错误';
-          $scope.showMsg();
-        });
+      var msg = CheckPicUtil.checkePic(newVal);
+      if(msg){
+        $scope.piccha = true;
       }
     })
 
     //监测密码
     $scope.$watch('user.password', function(newVal) {
-      if(!newVal){
+      if (!newVal) {
         return;
       }
-
-      $scope.msg = '';
-      var valLgth2 = newVal.toString().length;
-      if (!pwdIllegal_regexp.test(newVal)) {
-        $scope.msg = '密码含非法字符';
-        $scope.showMsg();
-      } else if (valLgth2 > 16) {
-        $scope.msg = '密码6-16位，需包含字母和数字';
-        $scope.showMsg();
-      }
+      //调用checkPwdUtils，判断密码是否含非法字符
+      checkPwdUtils.showPwd1(newVal);
 
     })
 
     //监测邀请码
-    $scope.$watch('user.inviteCode', function(oldVal) {
-      if (oldVal === undefined) {
+    $scope.$watch('user.inviteCode', function(newVal) {
+      if (newVal === undefined) {
         return;
       }
 
-      var valLgth4 = oldVal.toString().length;
+      var valLgth4 = newVal.toString().length;
       if (valLgth4 >= 11) {
         $http({
           method: 'POST',
-          url: '/hongcai/api/v1/activity/checkInviteCode?inviteCode=' + oldVal
+          url: '/hongcai/api/v1/activity/checkInviteCode?inviteCode=' + newVal
         }).success(function(response) {
           if (response.data.isValid === 1) {
-            $scope.msg = '';
+            $rootScope.msg = '';
           } else if (response.data.isValid === 0) {
-            $scope.msg = '邀请码不存在';
-            $scope.showMsg();
+            $rootScope.showMsg('邀请码不存在');
           }
         }).error(function() {
-          $scope.msg = '邀请码不存在';
-          $scope.showMsg();
+          $rootScope.showMsg('邀请码不存在');
         });
       }
     })
 
     // 用户获取短信验证码
     $scope.sendMobileCaptcha = function(user) {
-      if (user.mobile && phoneNum_regexp.test(user.mobile) && user.picCaptcha && $scope.piccha ===true) {
+      if (user.mobile && $rootScope.mobilePattern.test(user.mobile) && user.picCaptcha && $scope.piccha === false) {
         var mobileBtn = document.getElementById('mess');
         var buttonDefaultValue = mobileBtn.innerHTML;
+
         function countDown(obj, second, inOrOut) {
           var getMobile = document.getElementById("mobilesignup");
-          var mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
-
           if (inOrOut === 'out' && window.buttonFlag == 0) {
             return;
           }
 
           // 如果秒数还是大于0，则表示倒计时还没结束
-          if (mobilePattern.test(getMobile.value)) {
+          if ($rootScope.mobilePattern.test(getMobile.value)) {
             if (second >= 0) {
               // 获取默认按钮上的文字
 
@@ -242,28 +174,20 @@ angular.module('p2pSiteMobApp')
           }
         }
         mobileCaptcha.$create({
-          mobile: user.mobile
+          mobile: user.mobile,
+          picCaptcha: user.picCaptcha,
+          type: 1
         }).$then(function(response) {
           if (response.ret === -1) {
-            $scope.msg = response.msg;
-            $scope.showMsg();
+            $scope.showMsg(response.msg);
+          } else {
+            countDown(mobileBtn, 60, 'out');
           }
-          countDown(mobileBtn,60,'out');
         });
       }
 
     };
 
-    //设置错误提示
-    $scope.showMsg = function() {
-      if ($scope.msg) {
-        $scope.showErrorMsg = true;
-        $timeout(function() {
-          $scope.showErrorMsg = false;
-        }, 2000);
-
-      }
-    }
 
     //邀请码
     $scope.investCode = false;

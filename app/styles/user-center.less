@@ -125,14 +125,11 @@
     border: 0.1rem solid #d8d8d8;
     float: left;
     width: 94%;
+    .padding-t-0p5 {
+      margin-right: 0.8rem;
+    }
     div:nth-child(1) {
       float: left;
-      width: 8%;
-      img {
-        width: 1.5rem;
-        height: 1.5rem;
-        margin-top: 1rem;
-      }
     }
     div:nth-child(2) {
       float: left;
@@ -167,11 +164,11 @@
     width: 94%;
     div:nth-child(1) {
       float: left;
-      width: 8%;
       img {
         width: 1.5rem;
         height: 1.5rem;
-        margin-top: 1rem;
+        margin-top: 0.8rem;
+        margin-right: 0.5rem;
       }
     }
     div:nth-child(2) {
@@ -793,3 +790,121 @@
     }
   }
 }
+//激活弹窗
+.activate-mask {
+  margin: 10rem 0;
+  width: 96%;
+  height: 28rem;
+  background: url("/images/user-center/activate-bg.png") no-repeat center center;
+  background-size: 100%;
+  .close {
+    width: 2rem;
+    height: 2rem;
+    right: 0;
+    top: -3rem;
+  }
+}
+  @media (min-width:320px) {
+    .activate-mask {
+      margin: 10rem 0.5rem 10rem 1rem;
+      padding-top: 1rem;
+      height: 25rem;
+      .activate-head {
+        line-height: 5rem;
+        font-size: 1.5rem;
+      }
+      .activate-tip {
+        font-size: 1.2rem;
+      }
+      .activate-btn:hover {
+        border: 0;
+      }
+      .activate-btn {
+        width: 78%;
+        margin: 0 auto;
+        margin-top: 3rem;
+        p:first-child {
+          padding: 5px 15px;
+          font-size: 1.4rem;
+          border-radius: .5rem;
+        }
+        p:last-child {
+          padding: 5px 21px;
+          font-size: 1.4rem;
+          border-radius: .5rem;
+        }
+      }
+    }
+  }
+  @media (min-width:360px) {
+    .activate-mask {
+      margin: 10rem 0.6rem 10rem 1.2rem;
+      height: 26rem;
+      .activate-head {
+        line-height: 5.8rem;
+        font-size: 1.7rem;
+      }
+      .activate-tip {
+        font-size: 1.3rem;
+      }
+      .activate-btn {
+        width: 76%;
+        margin: 0 auto;
+        margin-top: 4rem;
+        p:first-child {
+          padding: 7px 21px;
+        }
+        p:last-child {
+          padding: 7px 27px;
+        }
+      }
+    }
+  }
+  @media (min-width:375px) {
+    .activate-mask {
+      height: 28rem;
+      .activate-btn {
+        width: 71%;
+        margin: 0 auto;
+        margin-top: 5rem;
+        p:first-child {
+          padding: 7px 18px;
+        }
+        p:last-child {
+          padding: 7px 24px;
+        }
+      }
+    }
+  }
+  @media (min-width:411px) {
+    .activate-mask {
+      margin: 10rem 0.7rem 10rem 1.4rem;
+      height: 32rem;
+      .activate-head {
+        line-height: 6.5rem;
+        font-size: 1.97rem;
+      }
+      .activate-tip {
+        font-size: 1.4rem;
+      }
+      .activate-btn {
+        width: 72%;
+        margin: 0 auto;
+        margin-top: 5.6rem;
+         p:first-child {
+          padding: 8px 24px;
+          font-size: 1.5rem;
+        }
+        p:last-child {
+          padding: 8px 31px;
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+  @media (min-width:440px) {
+    .activate-mask {
+      margin: 10rem 0.7rem 10rem 1.4rem;
+      height: 36rem;
+    }
+  }

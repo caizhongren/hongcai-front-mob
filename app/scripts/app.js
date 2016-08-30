@@ -67,7 +67,17 @@ p2pSiteMobApp
           }
         }
       })
-
+    // 开通存管通落地页
+    .state('root.activate-landing', {
+        url: '/activate',
+        views: {
+          '': {
+            templateUrl: 'views/activate-landing.html',
+            // controller: 'MainCtrl',
+            // controllerUrl: 'scripts/controllers/main'
+          }
+        }
+      })
     // 忘记密码流程
     .state('root.getPwd1', {
         url: '/getPwd1',
@@ -100,7 +110,7 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/activity/login-new.html',
+            templateUrl: 'views/login-new.html',
             controller: 'LoginCtrl',
             controllerUrl: 'scripts/controllers/login'
 
@@ -114,7 +124,7 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/activity/register-new.html',
+            templateUrl: 'views/register-new.html',
             controller: 'RegisterCtrl',
             controllerUrl: 'scripts/controllers/register'
           }
@@ -153,15 +163,15 @@ p2pSiteMobApp
         url: '/modify-pwd',
         views: {
           '': {
-            templateUrl: 'views/activity/modify-pwd.html',
+            templateUrl: 'views/modify-pwd.html',
             controller: 'modifyPwd',
             controllerUrl: 'scripts/controllers/modify-pwd.js'
           }
         }
       })
 
-      // 宏金保详情页
-      .state('root.project-detail', {
+    // 宏金保详情页
+    .state('root.project-detail', {
         url: '/project-info/:number',
         views: {
           '': {
@@ -512,8 +522,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/recommend.html',
-            controller : 'DailyLotteryCtrl',
-            controllerUrl : 'scripts/controllers/daily-lottery/daily-lottery-ctrl'
+            controller: 'DailyLotteryCtrl',
+            controllerUrl: 'scripts/controllers/daily-lottery/daily-lottery-ctrl'
           }
         }
       })
@@ -540,8 +550,8 @@ p2pSiteMobApp
         }
       })
 
-      //体验金活动页
-      .state('root.experience-activity', {
+    //体验金活动页
+    .state('root.experience-activity', {
         url: '/experience-activity/:number?act&f',
         views: {
           '': {
@@ -581,8 +591,8 @@ p2pSiteMobApp
         }
       })
 
-      //串码活动页
-      .state('root.exchange-code', {
+    //串码活动页
+    .state('root.exchange-code', {
         url: '/exchange-code',
         views: {
           '': {
@@ -624,8 +634,8 @@ p2pSiteMobApp
         }
       })
 
-      //媒体公告
-      .state('root.media-reports', {
+    //媒体公告
+    .state('root.media-reports', {
         url: '/media-reports',
         views: {
           '': {
@@ -652,10 +662,10 @@ p2pSiteMobApp
         }
       })
 
-      //定义root.share-spring
-      .state('root.share-spring', {
+    //定义root.share-spring
+    .state('root.share-spring', {
         abstract: true,
-        url:'/share-spring',
+        url: '/share-spring',
         views: {
           '': {
             templateUrl: 'views/root-share.html',
@@ -732,36 +742,36 @@ p2pSiteMobApp
         }
       })
 
-      // 活动主url
-      .state('root.activity', {
-        abstract: true,
-        url:'/activity',
-        views: {
-          '': {
-            templateUrl: 'views/activity/root-activity.html'
+    // 活动主url
+    .state('root.activity', {
+      abstract: true,
+      url: '/activity',
+      views: {
+        '': {
+          templateUrl: 'views/activity/root-activity.html'
             // controller: 'ShareSpringCtrl',
             // controllerUrl: 'scripts/controllers/share-spring/share-spring-ctrl'
-          }
         }
-      })
+      }
+    })
 
-      //投资返现落地页
-      .state('root.activity.activity-landing', {
-        url: '/send-money?act&f',
-        views: {
-          '': {
-            templateUrl: 'views/activity/send-money.html',
-            controller: 'SendMoneyCtrl',
-            controllerUrl: 'scripts/controllers/activity/send-money-ctrl'
-          }
-        },
-        data: {
-          title: '投资送688元！奖金可立即提现！'
+    //投资返现落地页
+    .state('root.activity.activity-landing', {
+      url: '/send-money?act&f',
+      views: {
+        '': {
+          templateUrl: 'views/activity/send-money.html',
+          controller: 'SendMoneyCtrl',
+          controllerUrl: 'scripts/controllers/activity/send-money-ctrl'
         }
-      })
+      },
+      data: {
+        title: '投资送688元！奖金可立即提现！'
+      }
+    })
 
-      //投资送加息券落地页
-      .state('root.activity.send-coupon', {
+    //投资送加息券落地页
+    .state('root.activity.send-coupon', {
         url: '/send-coupon?act&f',
         views: {
           '': {
@@ -800,8 +810,8 @@ p2pSiteMobApp
       //   }
       // })
 
-      //体验金新手标
-      .state('root.experience-project-detail', {
+    //体验金新手标
+    .state('root.experience-project-detail', {
         url: '/experience-project',
         data: {
           title: '体验金专享标'
@@ -826,7 +836,7 @@ p2pSiteMobApp
         }
       })
       //个人中心体验金详情页
-      .state('root.userCenter.experience-money',{
+      .state('root.userCenter.experience-money', {
         url: '/experience-money',
         data: {
           title: '我的体验金'
@@ -840,7 +850,7 @@ p2pSiteMobApp
         }
       })
       //个人中心我的奖金
-      .state('root.userCenter.cash-coupon',{
+      .state('root.userCenter.cash-coupon', {
         url: '/cash-coupon',
         data: {
           title: '我的奖金'
@@ -863,9 +873,9 @@ p2pSiteMobApp
   }])
   .run(function($templateCache, $rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, $uibModal, ipCookie, restmod, config, Restangular, URLService, Utils) {
     // if ('addEventListener' in document) {
-        // document.addEventListener('DOMContentLoaded', function() {
-            FastClick.attach(document.body);
-        // }, false);
+    // document.addEventListener('DOMContentLoaded', function() {
+    FastClick.attach(document.body);
+    // }, false);
     // }
 
     Restangular.setBaseUrl('/hongcai/rest');
@@ -883,12 +893,12 @@ p2pSiteMobApp
       'safe': '安全保障',
       'account': '账户总览'
     };
-
+    $rootScope.payCompany = config.pay_company;
     /**
      * 跳转到登陆页
      */
     $rootScope.toLogin = function() {
-      if(!$rootScope.timeout){
+      if (!$rootScope.timeout) {
         return;
       }
       $state.go('root.login', {
@@ -897,27 +907,27 @@ p2pSiteMobApp
       return;
     }
 
-    $rootScope.toRealNameAuth = function(){
+    $rootScope.toRealNameAuth = function() {
       $uibModal.open({
         animation: true,
         templateUrl: 'views/user-center/realname-auth.html',
         controller: 'RealNameAuthCtrl'
-        // size: size,
-        // resolve: {
-        //   items: function () {
-        //     return $scope.items;
-        //   }
-        // }
+          // size: size,
+          // resolve: {
+          //   items: function () {
+          //     return $scope.items;
+          //   }
+          // }
       });
     }
 
     /**
      * 未支付订单
      */
-    $rootScope.tofinishedOrder = function(){
+    $rootScope.tofinishedOrder = function() {
       Restangular.one('orders').one('unpay').get().then(function(order) {
-        if(!order || order.ret === -1){
-            return false;
+        if (!order || order.ret === -1) {
+          return false;
         }
 
         $rootScope.unfinishOrderModal =
@@ -928,8 +938,37 @@ p2pSiteMobApp
               order: order
             }
           });
-          return true;
+        return true;
       });
+    }
+
+    /**
+     * 激活存管通
+     */
+    $rootScope.toActivate = function() {
+      if ($rootScope.payCompany === 'yeepay'||!$rootScope.isLogged || $rootScope.securityStatus.realNameAuthStatus !== 1 || $rootScope.securityStatus.userAuth.active === true) {
+        return;
+      }
+      $uibModal.open({
+        animation: true,
+        templateUrl: 'views/user-center/activate.html',
+        controller: 'ActivateCtrl'
+      });
+    }
+
+    /**
+     * 错误提示
+     */
+    $rootScope.showErrorMsg = false;
+    $rootScope.showMsg = function(msg) {
+      $rootScope.msg = '';
+      if (msg) {
+        $rootScope.msg = msg;
+        $rootScope.showErrorMsg = true;
+        $timeout(function() {
+          $rootScope.showErrorMsg = false;
+        }, 2000);
+      }
     }
 
     $rootScope.$on('$stateChangeStart', function(event, toState) {
@@ -948,7 +987,6 @@ p2pSiteMobApp
       // $timeout(function() {
       //   $rootScope.loading = false;
       // }, 350);
-
 
 
 
@@ -975,7 +1013,7 @@ p2pSiteMobApp
             $rootScope.isLogged = false;
           }
 
-          if ($rootScope.userInfo && $rootScope.userInfo.id > 0 && $rootScope.openid){
+          if ($rootScope.userInfo && $rootScope.userInfo.id > 0 && $rootScope.openid) {
             $rootScope.bindWechat = true;
           }
 
@@ -986,8 +1024,10 @@ p2pSiteMobApp
         } else if (response.ret === -1) { //用户未登录，。
           if (!Utils.isWeixin()) {
             $rootScope.checkSession.resolve(response);
-            if(routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1){
-              $state.go('root.login', {redirectUrl: encodeURIComponent($location.url())});
+            if (routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
+              $state.go('root.login', {
+                redirectUrl: encodeURIComponent($location.url())
+              });
             }
 
             return;
@@ -997,7 +1037,7 @@ p2pSiteMobApp
           var redirect_uri = location.href;
           if (wechat_code) { // 用户未登录但已经有code，去登录
             restmod.model(DEFAULT_DOMAIN + '/desireUsers/').$find(wechat_code + '/openid').$then(function(response) {
-              if (response.ret == -1){
+              if (response.ret == -1) {
                 var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechatAppid +
                   "&redirect_uri=" + encodeURIComponent(URLService.removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
                 window.location.href = wechatRedirectUrl;
@@ -1018,12 +1058,14 @@ p2pSiteMobApp
                 $rootScope.isLogged = false;
               }
 
-              if ($rootScope.userInfo && $rootScope.userInfo.id > 0 && $rootScope.openid){
+              if ($rootScope.userInfo && $rootScope.userInfo.id > 0 && $rootScope.openid) {
                 $rootScope.bindWechat = true;
               }
 
               if (!$rootScope.isLogged && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
-                $state.go('root.login', {redirectUrl: encodeURIComponent($location.url())});
+                $state.go('root.login', {
+                  redirectUrl: encodeURIComponent($location.url())
+                });
               } else if (response.ret == -1) { // 未拿到openid再次请求授权
                 var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechatAppid +
                   "&redirect_uri=" + encodeURIComponent(URLService.removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
@@ -1051,8 +1093,7 @@ p2pSiteMobApp
         title = toState.data.title;
       }
       $rootScope.headerTitle = title + ' - 要理财，上宏财！';
-
-      if(toState.name !== 'root.project'){
+      if (toState.name !== 'root.project') {
         Utils.setTitle($rootScope.headerTitle);
       }
 
@@ -1064,25 +1105,29 @@ p2pSiteMobApp
       $rootScope.act = $location.search().act;
       $rootScope.channelParamsObj = {};
 
-      for(var obj in $location.search()){
-        if(obj !== 'act' && obj !== 'f'){
+      //提示激活存管通
+      if (path == 'user-center') {
+        $rootScope.toActivate();
+      }
+      for (var obj in $location.search()) {
+        if (obj !== 'act' && obj !== 'f') {
           $rootScope.channelParamsObj[obj] = $location.search()[obj];
         }
       }
 
       $rootScope.channelParams = '';
-      if(!jQuery.isEmptyObject($rootScope.channelParamsObj)){
+      if (!jQuery.isEmptyObject($rootScope.channelParamsObj)) {
         $rootScope.channelParams = angular.toJson($rootScope.channelParamsObj);
       }
 
-      if ($rootScope.channelParams){
+      if ($rootScope.channelParams) {
         ipCookie('channelParams', $rootScope.channelParams, {
           expires: 1,
           path: '/'
         });
       }
 
-      if ($rootScope.channelCode){
+      if ($rootScope.channelCode) {
         ipCookie('utm_from', $rootScope.channelCode, {
           expires: 1,
           path: '/'
@@ -1134,15 +1179,16 @@ p2pSiteMobApp
       var loginOrMy = [
         'login',
         'register',
-        'user-center'
+        'user-center',
+        'yeepay-callback'
       ];
 
       $rootScope.whichFooter = 1;
-      if(mainPath.indexOf(path) !== -1){
+      if (mainPath.indexOf(path) !== -1) {
         $rootScope.whichFooter = 1;
-      } else if(projectPath.indexOf(path) !== -1){
+      } else if (projectPath.indexOf(path) !== -1) {
         $rootScope.whichFooter = 2;
-      } else if(loginOrMy.indexOf(path) !== -1){
+      } else if (loginOrMy.indexOf(path) !== -1) {
         $rootScope.whichFooter = 3;
       }
     });
@@ -1154,5 +1200,12 @@ p2pSiteMobApp
 .constant('DEFAULT_DOMAIN', '/hongcai/rest')
 
 .constant('WEB_DEFAULT_DOMAIN', '/hongcai/api/v1')
-.constant('projectStatusMap', {"6":"预发布","7":"融资中","8":"融资成功","9":"还款中","10":"还款完成","11":"预约中","12":"预约处理异常"});
-
+  .constant('projectStatusMap', {
+    "6": "预发布",
+    "7": "融资中",
+    "8": "融资成功",
+    "9": "还款中",
+    "10": "还款完成",
+    "11": "预约中",
+    "12": "预约处理异常"
+  });

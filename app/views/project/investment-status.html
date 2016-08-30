@@ -11,9 +11,9 @@
     <p class="ft-black4 display-inb margin-b-0 status-message" ><img class="display-inb fl margin-t-0p8 margin-r-0p3" width="8%" src="/images/user-center/user-balance-icon.png" alt="">您的账户余额 <strong class="ft-orange">{{account.balance | number:2}}</strong> 元</p>
     <button class="button fr ft-1p8 position-ab button-primary border-ra-0p5 btn-sign" ui-sref="root.userCenter.recharge">充值</button>
    </div>
-   <!-- 未开通第三方托管 -->
+   <!-- 未开通第三方存管 -->
    <div ng-show="isLogged && securityStatus.realNameAuthStatus !== 1">
-   <p class="ft-black4 display-inb margin-b-0 status-message">您的账号未开通第三方托管</p>
+   <p class="ft-black4 display-inb margin-b-0 status-message">您的账号未开通第三方存管</p>
    <button class="button fr ft-1p8 position-ab button-primary border-ra-0p5 btn-sign" ng-click="toRealNameAuth()">开通</button>
    </div>
   </div>

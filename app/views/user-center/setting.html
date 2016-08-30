@@ -6,8 +6,9 @@
     {{hasLoggedUser.name || handleMobileNum(hasLoggedUser.mobile)}}
   </div>
   <div class="content-main">
-    <div>
-      <img src="/images/user-center/01.png" alt="">
+    <div class="padding-t-0p5">
+      <!-- <img src="/images/user-center/01.png" alt=""> -->
+      <i class="fa fa-key ft-orange ft-1p8" aria-hidden="true"></i>
     </div>
     <div>
       <p>登录密码：</p>
@@ -16,23 +17,26 @@
     </div>
   </div>
   <div class="content-main">
-    <div>
-      <img src="/images/user-center/02.png" alt="">
+    <div class="padding-t-0p5">
+      <!-- <img src="/images/user-center/02.png" alt=""> -->
+      <i class="fa fa-mobile ft-orange ft-2p5" aria-hidden="true"></i>
     </div>
     <div>
       <p>手机号码：</p>
       <p>{{handleMobileNum(hasLoggedUser.mobile) || '无'}}
-        <span ng-click="checkMobileFlag=true"><a>修改></a></span>
+        <span ng-show="securityStatus.realNameAuthStatus == 1" ng-click="checkMobileFlag=true"><a>修改></a></span>
+        <span ng-show="securityStatus.realNameAuthStatus !== 1" ng-click="toRealNameAuth()"><a>修改></a></span>
         <span ng-show="hasLoggedUser.mobile == null"><i class="fa fa-check-circle-o"></i>&nbsp;未绑定</span>
       </p>
     </div>
   </div>
   <div class="content-main">
-    <div>
-      <img src="/images/user-center/03.png" alt="">
+    <div class="padding-t-0p5">
+      <!-- <img src="/images/user-center/03.png" alt=""> -->
+      <i class="fa fa-lock ft-orange ft-2" aria-hidden="true"></i>
     </div>
     <div>
-      <p>第三方托管账户：</p>
+      <p>第三方存管账户：</p>
       <p>保证您的资金安全
         <span ng-show="securityStatus.trusteeshipAccountStatus === 1"><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已开通</span>
         <span ng-click="toRealNameAuth()" ng-show="securityStatus.trusteeshipAccountStatus !== 1"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通<small class="ft-orange">(立即开通)</small></span>
@@ -40,21 +44,24 @@
     </div>
   </div>
   <div class="content-main">
-    <div>
-      <img src="/images/user-center/03.png" alt="">
+    <div class="padding-t-0p5">
+      <!-- <img src="/images/user-center/03.png" alt=""> -->
+      <i class="fa fa-credit-card ft-orange" aria-hidden="true"></i>
     </div>
     <div>
       <p>我的银行卡：</p>
       <p>用于充值和提现
-        <span ng-click="bindBankcard()" ng-show="simpleBankcard.status !== 'VERIFIED' && simpleBankcard.status !== 'VERIFING'"> <a>去绑定 ></a></span>
-        <span ng-show="simpleBankcard.status == 'VERIFING'"> 绑定中(尾号{{cardNo}})</span>
-        <span ng-show="simpleBankcard.status == 'VERIFIED'" ui-sref="root.userCenter.bankcard"><a class="ft-blue">{{simpleBankcard.openBank}}(尾号{{cardNo}}) ></a></span>
+        <span ng-click="bindBankcard()" ng-show="simpleBankcard.status == 'VERIFY_NOT' || !simpleBankcard"> <a>去绑定 ></a></span>
+        <span ng-show="simpleBankcard.status == 'VERIFING'"> 绑定中(尾号{{simpleBankcard.cardNo}})</span>
+        <span ng-show="simpleBankcard.status == 'INIT'"> 解绑中(尾号{{simpleBankcard.cardNo}})</span>
+        <span ng-show="simpleBankcard.status == 'VERIFIED'" ui-sref="root.userCenter.bankcard"><a class="ft-blue">{{simpleBankcard.openBank}}(尾号{{simpleBankcard.cardNo}}) ></a></span>
       </p>
     </div>
   </div>
   <div class="content-main">
-    <div>
-      <img src="/images/user-center/04.png" alt="">
+    <div class="padding-t-0p5">
+      <!-- <img src="/images/user-center/04.png" alt=""> -->
+      <i class="fa fa-unlock-alt ft-orange ft-2" aria-hidden="true"></i>
     </div>
     <div>
       <p>自动投标权限：</p>
@@ -66,7 +73,7 @@
   </div>
   <div class="contain-last">
     <div>
-      <img src="/images/user-center/05.png" alt="">
+      <img src="/images/user-center/05.png" alt="" class="margin-r-0p5">
     </div>
     <div>
       <p>我的邀请码<span>{{voucher.inviteCode}}</span>
