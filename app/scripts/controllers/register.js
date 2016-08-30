@@ -144,20 +144,18 @@ angular.module('p2pSiteMobApp')
 
     // 用户获取短信验证码
     $scope.sendMobileCaptcha = function(user) {
-      if (user.mobile && phoneNum_regexp.test(user.mobile) && user.picCaptcha && $scope.piccha === true) {
+      if (user.mobile && $rootScope.mobilePattern.test(user.mobile) && user.picCaptcha && $scope.piccha === true) {
         var mobileBtn = document.getElementById('mess');
         var buttonDefaultValue = mobileBtn.innerHTML;
 
         function countDown(obj, second, inOrOut) {
           var getMobile = document.getElementById("mobilesignup");
-          var mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
-
           if (inOrOut === 'out' && window.buttonFlag == 0) {
             return;
           }
 
           // 如果秒数还是大于0，则表示倒计时还没结束
-          if (mobilePattern.test(getMobile.value)) {
+          if ($rootScope.mobilePattern.test(getMobile.value)) {
             if (second >= 0) {
               // 获取默认按钮上的文字
 
