@@ -2,7 +2,7 @@
 * @Author: yuyang
 * @Date:   2016-08-29 14:13:07
 * @Last Modified by:   yuyang
-* @Last Modified time: 2016-08-29 17:59:29
+* @Last Modified time: 2016-08-30 09:49:24
 */
 
 'use strict';
@@ -21,7 +21,6 @@ angular.module('p2pSiteMobApp')
           msg = '密码6-16位，需包含字母和数字';
           $rootScope.showMsg(msg);
         }
-        return msg;
       },
       showPwd2: function(newVal){
         var msg ='';
@@ -41,7 +40,6 @@ angular.module('p2pSiteMobApp')
           msg = '两次密码输入不一致';
           $rootScope.showMsg(msg);
         }
-        return msg;
       }
     }
 
