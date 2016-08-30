@@ -1,5 +1,5 @@
 
-<div class="padding-2 text-center" ng-click="bindBankcard()" ng-disabled="!timeout">
+<div class="padding-2 text-center"  ng-disabled="!timeout">
   <!-- <i class="fa fa-smile-o ft-7"></i> -->
   <!-- ng-if="simpleWithdraw.cardStatus == 'INIT'" -->
   <!-- ng-if="simpleWithdraw.cardStatus == 'VERIFY_NOT'" -->
@@ -7,7 +7,7 @@
     <i class="fa fa-clock-o fa-2x" aria-hidden="true"></i>
   	<p>您的银行卡正在解绑中</p>
   </div>
-  <div class="add-bank text-center" ng-show="simpleWithdraw.cardStatus == 'VERIFY_NOT'">
+  <div class="add-bank text-center" ng-show="simpleWithdraw.cardStatus !== 'INIT'" ng-click="bindBankcard()">
     <i class="fa fa-plus-square fa-2x"></i><br>
     <p>添加提现银行卡</p>
   </div>
