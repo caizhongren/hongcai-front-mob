@@ -29,10 +29,6 @@ angular.module('p2pSiteMobApp')
         $scope.voucher = response;
       });
 
-      HongcaiUser.$find('0').$then(function(response) {
-        console.log(response);
-      });
-
       /**
        * 银行卡信息
        */

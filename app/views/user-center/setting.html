@@ -24,9 +24,9 @@
     <div>
       <p>手机号码：</p>
       <p>{{handleMobileNum(hasLoggedUser.mobile) || '无'}}
-        <span ng-if="securityStatus.realNameAuthStatus == 1" ng-click="checkMobileFlag=true"><a>修改></a></span>
-        <span ng-if="securityStatus.realNameAuthStatus !== 1" ng-click="toRealNameAuth()"><a>修改></a></span>
-        <span ng-if="hasLoggedUser.mobile == null"><i class="fa fa-check-circle-o"></i>&nbsp;未绑定</span>
+        <span ng-show="securityStatus.realNameAuthStatus == 1" ng-click="checkMobileFlag=true"><a>修改></a></span>
+        <span ng-show="securityStatus.realNameAuthStatus !== 1" ng-click="toRealNameAuth()"><a>修改></a></span>
+        <span ng-show="hasLoggedUser.mobile == null"><i class="fa fa-check-circle-o"></i>&nbsp;未绑定</span>
       </p>
     </div>
   </div>

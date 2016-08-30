@@ -35,7 +35,7 @@
       <input id="picCaptcha" name="picCaptcha" ng-model="user.picCaptcha" type="text" placeholder="请输入图形验证码" required class="captchacode"/>
       <span><img src="{{getPicCaptcha}}" id="checkCaptcha" class="pic-verify no-padding margin-t--13 margin-l-5" width="78" height="40" ng-click="refreshCode()"></span>
       <!-- 短信验证码 -->
-      <input id="captchasignup" name="captchasignup" ng-model="user.captcha" type="text" ng-required="getPwdMobileForm.captchasignup.$invalid" placeholder="请输入短信验证码" class="captchacode"/>
+      <input id="captchasignup" name="captchasignup" ng-model="user.captcha" type="number" ng-required="getPwdMobileForm.captchasignup.$invalid" placeholder="请输入短信验证码" class="captchacode"/>
       <span><button id="captcha" type="text" ng-click="sendMobileCaptcha(user);" >短信验证码</button></span>
     </div>
      <!-- 按钮 -->
