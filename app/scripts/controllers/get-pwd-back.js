@@ -89,16 +89,6 @@ angular.module('p2pSiteMobApp')
      */
     $scope.$watch('user.mobile', function(newVal) {
         CheckMobUtil.checkMob(newVal);
-        if ('user.mobile'.length === 11 && $rootScope.mobilePattern.test(newVal)) {
-          Restangular.one('/users/').post('isUnique', {
-            account: newVal
-          }).then(function(response) {
-            if (response.ret == -1) {
-              return;
-            }
-            $rootScope.showMsg("该手机号还未注册");
-          })
-        }
       })
       /**
        * 监测图形验证码

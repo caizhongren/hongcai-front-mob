@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RegisterCtrl', function(checkPwdUtils, $http, DEFAULT_DOMAIN, Restangular, $timeout, $rootScope, $scope, $state, $stateParams, md5, register, wechat, mobileCaptcha, ipCookie) {
+  .controller('RegisterCtrl', function(checkPwdUtils, $http, DEFAULT_DOMAIN, Restangular, $timeout, $rootScope, $scope, $state, $stateParams, CheckMobUtil, md5, register, wechat, mobileCaptcha, ipCookie) {
     // 注册链接上是否有邀请码
     if ($stateParams.inviteCode) {
       $scope.user = {
@@ -20,8 +20,6 @@ angular.module('p2pSiteMobApp')
     $scope.toggle = function() {
       $scope.showRegistrationAgreement = !$scope.showRegistrationAgreement;
     };
-
-    var phoneNum_regexp = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
 
     $scope.checkPassword = function(password){
       var msg = checkPwdUtils.showPwd2(password);
@@ -40,20 +38,17 @@ angular.module('p2pSiteMobApp')
     }
 
     $scope.checkMobile = function(mobile){
-      if(!phoneNum_regexp.test(mobile)){
+      if(!$rootScope.mobilePattern.test(mobile)){
         $rootScope.showMsg("手机号码格式不正确");
         return false;
       }
-
       return true;
     }
 
     var openId = $rootScope.openId;
     var signUpBe = register;
     $scope.signUp = function(user) {
-      if(!$scope.checkMobile(user.mobile)
-        || !$scope.checkPassword(user.password)
-        || !$scope.checkPicCaptchLength(user.picCaptcha)){
+      if (!$scope.checkMobile(user.mobile) || !$scope.checkPassword(user.password) || !$scope.checkPicCaptchLength(user.picCaptcha)) {
         return;
       }
 
@@ -85,25 +80,7 @@ angular.module('p2pSiteMobApp')
 
     //监测手机号码
     $scope.$watch('user.mobile', function(newVal) {
-      if(newVal === undefined){
-        return;
-      }
-
-      $scope.msg = '';
-      var valLgth = newVal.toString().length;
-      if (valLgth >= 11 && !phoneNum_regexp.test(newVal)) {
-        $scope.msg = '手机号码格式不正确';
-        $rootScope.showMsg($scope.msg);
-      } else if (valLgth === 11 && phoneNum_regexp.test(newVal)) {
-        Restangular.one('/users/').post('isUnique', {
-          account: newVal
-        }).then(function(response) {
-          if(response.ret === -1){
-            $scope.msg = response.msg;
-            $rootScope.showMsg($scope.msg);
-          }
-        })
-      }
+      CheckMobUtil.checkMob(newVal);
     })
 
     //监测图形验证码
@@ -122,21 +99,19 @@ angular.module('p2pSiteMobApp')
         }).success(function(data) {
           if (data == true) {
             $scope.piccha = true;
-            $scope.msg = '';
+            $rootScope.msg = '';
           } else {
-            $scope.msg = '图形验证码错误';
-            $rootScope.showMsg($scope.msg);
+            $rootScope.showMsg('图形验证码错误');
           }
         }).error(function() {
-          $scope.msg = '图形验证码错误';
-          $rootScope.showMsg($scope.msg);
+          $rootScope.showMsg('图形验证码错误');
         });
       }
     })
 
     //监测密码
     $scope.$watch('user.password', function(newVal) {
-      if(!newVal){
+      if (!newVal) {
         return;
       }
       //调用checkPwdUtils，判断密码是否含非法字符
@@ -157,23 +132,22 @@ angular.module('p2pSiteMobApp')
           url: '/hongcai/api/v1/activity/checkInviteCode?inviteCode=' + newVal
         }).success(function(response) {
           if (response.data.isValid === 1) {
-            $scope.msg = '';
+            $rootScope.msg = '';
           } else if (response.data.isValid === 0) {
-            $scope.msg = '邀请码不存在';
-            $rootScope.showMsg($scope.msg);
+            $rootScope.showMsg('邀请码不存在');
           }
         }).error(function() {
-          $scope.msg = '邀请码不存在';
-          $rootScope.showMsg($scope.msg);
+          $rootScope.showMsg('邀请码不存在');
         });
       }
     })
 
     // 用户获取短信验证码
     $scope.sendMobileCaptcha = function(user) {
-      if (user.mobile && phoneNum_regexp.test(user.mobile) && user.picCaptcha && $scope.piccha ===true) {
+      if (user.mobile && phoneNum_regexp.test(user.mobile) && user.picCaptcha && $scope.piccha === true) {
         var mobileBtn = document.getElementById('mess');
         var buttonDefaultValue = mobileBtn.innerHTML;
+
         function countDown(obj, second, inOrOut) {
           var getMobile = document.getElementById("mobilesignup");
           var mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
@@ -224,7 +198,7 @@ angular.module('p2pSiteMobApp')
             $scope.msg = response.msg;
             $scope.showMsg();
           }
-          countDown(mobileBtn,60,'out');
+          countDown(mobileBtn, 60, 'out');
         });
       }
 
