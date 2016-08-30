@@ -19,7 +19,7 @@ var _hmt = _hmt || [];
 })();
 </script>
 <style type="text/css">
-
+  .ng-cloak {display: none;}
 </style>
 
 <head>
@@ -66,7 +66,11 @@ var _hmt = _hmt || [];
   <link rel="stylesheet" href="styles/un-min/box-flex.css">
   <link rel="stylesheet" href="styles/un-min/weui.min.css">
 </head>
-
+<style type="text/css">
+  .ng-cloak {
+    display: none;
+  }
+</style>
 <body class="bg-white padding-0" >
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -86,7 +90,7 @@ var _hmt = _hmt || [];
   <!-- loading toast -->
   <div ng-include src='"views/loading-toast.html"' ng-show="showLoadingToast"></div>
   <!-- 错误提示 -->
-  <div class="toast toast1" ng-show="showErrorMsg">
+  <div class="toast toast1 ng-cloak" ng-show="showErrorMsg" ng-cloak>
     <p>{{msg}}</p>
   </div>
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
