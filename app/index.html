@@ -18,9 +18,6 @@ var _hmt = _hmt || [];
     s2.parentNode.insertBefore(bp, s2);
 })();
 </script>
-<style type="text/css">
-  .ng-cloak {display: none;}
-</style>
 
 <head>
   <meta charset="utf-8">
@@ -67,9 +64,9 @@ var _hmt = _hmt || [];
   <link rel="stylesheet" href="styles/un-min/weui.min.css">
 </head>
 <style type="text/css">
-  .ng-cloak {
+/*  .ng-cloak {
     display: none;
-  }
+  }*/
 </style>
 <body class="bg-white padding-0" >
   <!--[if lt IE 7]>
@@ -90,7 +87,7 @@ var _hmt = _hmt || [];
   <!-- loading toast -->
   <div ng-include src='"views/loading-toast.html"' ng-show="showLoadingToast"></div>
   <!-- 错误提示 -->
-  <div class="toast toast1 ng-cloak" ng-show="showErrorMsg" ng-cloak>
+  <div class="toast toast1" ng-show="showErrorMsg" ng-cloak>
     <p>{{msg}}</p>
   </div>
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
