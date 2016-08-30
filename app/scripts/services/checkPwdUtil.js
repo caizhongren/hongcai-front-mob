@@ -2,7 +2,7 @@
 * @Author: yuyang
 * @Date:   2016-08-29 14:13:07
 * @Last Modified by:   yuyang
-* @Last Modified time: 2016-08-30 09:49:24
+* @Last Modified time: 2016-08-30 14:48:51
 */
 
 'use strict';
@@ -13,18 +13,16 @@ angular.module('p2pSiteMobApp')
     return {
       showPwd1: function(newVal){
         var msg ='';
-        var valLgth1 = newVal.toString().length;
         if (!pwdIllegal_regexp.test(newVal)) {
           msg = '密码含非法字符';
           $rootScope.showMsg(msg);
-        } else if (valLgth1 > 16) {
+        } else if (newVal.length > 16) {
           msg = '密码6-16位，需包含字母和数字';
           $rootScope.showMsg(msg);
         }
       },
       showPwd2: function(newVal){
         var msg ='';
-        var valLgth2 = newVal.toString().length;
         if(!pwdIllegal_regexp.test(newVal)){
           msg = '密码含非法字符';
           $rootScope.showMsg(msg);

@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RegisterCtrl', function(checkPwdUtils, $http, DEFAULT_DOMAIN, Restangular, $timeout, $rootScope, $scope, $state, $stateParams, CheckMobUtil, md5, register, wechat, mobileCaptcha, ipCookie) {
+  .controller('RegisterCtrl', function(CheckPicUtil, checkPwdUtils, $http, DEFAULT_DOMAIN, Restangular, $timeout, $rootScope, $scope, $state, $stateParams, CheckMobUtil, md5, register, wechat, mobileCaptcha, ipCookie) {
     // 注册链接上是否有邀请码
     if ($stateParams.inviteCode) {
       $scope.user = {
@@ -86,26 +86,9 @@ angular.module('p2pSiteMobApp')
     //监测图形验证码
     $scope.$watch('user.picCaptcha', function(newVal) {
       $scope.piccha = false;
-      if (newVal === undefined) {
-        return;
-      }
-
-      $scope.msg = '';
-      var valLgth3 = newVal.toString().length;
-      if (valLgth3 >= 4) {
-        $http({
-          method: 'POST',
-          url: DEFAULT_DOMAIN + '/captchas/checkPic?captcha=' + newVal
-        }).success(function(data) {
-          if (data == true) {
-            $scope.piccha = true;
-            $rootScope.msg = '';
-          } else {
-            $rootScope.showMsg('图形验证码错误');
-          }
-        }).error(function() {
-          $rootScope.showMsg('图形验证码错误');
-        });
+      var msg = CheckPicUtil.checkePic(newVal);
+      if(msg){
+        $scope.piccha = true;
       }
     })
 
