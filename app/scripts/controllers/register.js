@@ -29,6 +29,7 @@ angular.module('p2pSiteMobApp')
       return true;
     }
 
+
     $scope.checkPicCaptchLength = function(picCaptcha){
       if(picCaptcha.toString().length<4){
         $rootScope.showMsg('图形验证码错误');
@@ -127,7 +128,7 @@ angular.module('p2pSiteMobApp')
 
     // 用户获取短信验证码
     $scope.sendMobileCaptcha = function(user) {
-      if (user.mobile && $rootScope.mobilePattern.test(user.mobile) && user.picCaptcha && $scope.piccha === true) {
+      if (user.mobile && $rootScope.mobilePattern.test(user.mobile) && user.picCaptcha && $scope.piccha === false) {
         var mobileBtn = document.getElementById('mess');
         var buttonDefaultValue = mobileBtn.innerHTML;
 
@@ -173,13 +174,15 @@ angular.module('p2pSiteMobApp')
           }
         }
         mobileCaptcha.$create({
-          mobile: user.mobile
+          mobile: user.mobile,
+          picCaptcha: user.picCaptcha,
+          type: 1
         }).$then(function(response) {
           if (response.ret === -1) {
-            $scope.msg = response.msg;
-            $scope.showMsg();
+            $scope.showMsg(response.msg);
+          } else {
+            countDown(mobileBtn, 60, 'out');
           }
-          countDown(mobileBtn, 60, 'out');
         });
       }
 
