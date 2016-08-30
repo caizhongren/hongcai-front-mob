@@ -33,6 +33,9 @@ angular.module('p2pSiteMobApp')
      */
     HongcaiUser.$find('0' + '/bankcard').$then(function(response) {
         $scope.simpleBankcard = response;
+        if($scope.simpleBankcard.cardNo){
+          $scope.simpleBankcard.cardNo.substr($scope.simpleBankcard.cardNo.length - 4);
+        }
     });
 
 
