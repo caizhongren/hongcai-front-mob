@@ -89,7 +89,7 @@ angular.module('p2pSiteMobApp')
      * 监测用户手机号
      */
     $scope.$watch('user.mobile', function(newVal) {
-        $rootScope.msg = CheckMobUtil.checkMob(newVal);
+        CheckMobUtil.checkMob(newVal);
         if ('user.mobile'.length === 11 && $rootScope.mobilePattern.test(newVal)) {
           Restangular.one('/users/').post('isUnique', {
             account: newVal
@@ -105,7 +105,7 @@ angular.module('p2pSiteMobApp')
        * 监测图形验证码
        */
     $scope.$watch('user.picCaptcha', function(newVal) {
-      CheckPicUtil.checkePic(newVal, '图形验证码有误');
+      CheckPicUtil.checkePic(newVal);
     })
 
     /**
@@ -118,14 +118,11 @@ angular.module('p2pSiteMobApp')
 
       //判断手机号码
       if (!$rootScope.mobilePattern.test(mobile)) {
-        $scope.msg = '手机号码格式不正确';
-        $rootScope.showMsg($scope.msg);
+        $rootScope.showMsg('手机号码格式不正确');
         return;
       }
       if (picCaptcha.length < 4 || $scope.checkPic == false) {
-        // $scope.checkePicMsg = true;
-        $scope.msg = "图形验证码有误";
-        $rootScope.showMsg($scope.msg);
+        $rootScope.showMsg('图形验证码有误');
         return;
       }
 
@@ -135,10 +132,8 @@ angular.module('p2pSiteMobApp')
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.getCaptchaErr = response.msg;
-          $scope.msg = response.msg;
-          $rootScope.showMsg($scope.msg);
+          $rootScope.showMsg(response.msg);
         } else {
-
           $state.go('root.getPwd2', {
             mobile: mobile,
             captcha: captcha
