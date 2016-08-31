@@ -13,8 +13,7 @@
       <button id="mess" ng-click="sendMobileCaptcha(user);">短信验证码</button></span>
       <!-- 登录密码 -->
       <input id="passwordsignup" name="password" ng-model="user.password" required type="password" placeholder="请输入登录密码" class="input-pwd" />
-      <i class="fa fa-eye pwd-eyes ft-9f text-right" ng-if="!showEyes" ng-click="selectEyes()"></i>
-      <i class="fa fa-eye-slash pwd-eyes ft-9f text-right" ng-if="showEyes" ng-click="selectEyes()"></i>
+      <i class="fa fa-eye-slash pwd-eyes ft-9f text-right" select-eyes></i>
       <!-- 邀请码 -->
       <p class="margin-b-0 margin-t-1 ft-blue8 text-align" ng-click="investCode =!investCode;">邀请码<i class="fa fa-angle-double-down" aria-hidden="true"></i></p>
       <input class="input-invitecode" name="invitationCode" type="text" placeholder="邀请人手机号码（选填）" style="border-radius:0;" ng-model="user.inviteCode" ng-if="investCode"/>
