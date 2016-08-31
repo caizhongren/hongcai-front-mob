@@ -10,12 +10,13 @@
 angular.module('p2pSiteMobApp')
   .controller('RegisterCtrl', function(CheckPicUtil, checkPwdUtils, $http, DEFAULT_DOMAIN, Restangular, $timeout, $rootScope, $scope, $state, $stateParams, CheckMobUtil, md5, register, wechat, mobileCaptcha, ipCookie) {
     // 注册链接上是否有邀请码
+    $scope.btn = 'haha';
     if ($stateParams.inviteCode) {
       $scope.user = {
-        inviteCode: $stateParams.inviteCode
+        inviteCode: $stateParams.inviteCode,
+        mobileCaptchaType:1
       };
     }
-
     $scope.showRegistrationAgreement = false;
     $scope.toggle = function() {
       $scope.showRegistrationAgreement = !$scope.showRegistrationAgreement;
@@ -88,7 +89,7 @@ angular.module('p2pSiteMobApp')
     $scope.$watch('user.picCaptcha', function(newVal) {
       $scope.piccha = false;
       var msg = CheckPicUtil.checkePic(newVal);
-      if(msg){
+      if(!msg){
         $scope.piccha = true;
       }
     })
@@ -125,68 +126,6 @@ angular.module('p2pSiteMobApp')
         });
       }
     })
-
-    // 用户获取短信验证码
-    $scope.sendMobileCaptcha = function(user) {
-      if (user.mobile && $rootScope.mobilePattern.test(user.mobile) && user.picCaptcha && $scope.piccha === false) {
-        var mobileBtn = document.getElementById('mess');
-        var buttonDefaultValue = mobileBtn.innerHTML;
-
-        function countDown(obj, second, inOrOut) {
-          var getMobile = document.getElementById("mobilesignup");
-          if (inOrOut === 'out' && window.buttonFlag == 0) {
-            return;
-          }
-
-          // 如果秒数还是大于0，则表示倒计时还没结束
-          if ($rootScope.mobilePattern.test(getMobile.value)) {
-            if (second >= 0) {
-              // 获取默认按钮上的文字
-
-              if (typeof buttonDefaultValue === 'undefined') {
-                buttonDefaultValue = obj.defaultValue;
-              }
-              // 按钮置为不可点击状态
-              obj.disabled = true;
-              window.buttonFlag = 0;
-              // 按钮里的内容呈现倒计时状态
-              //obj.value = buttonDefaultValue + '(' + second + ')';
-              obj.innerHTML = second + "s";
-              obj.className = '';
-              // 时间减一
-              second--;
-              // 一秒后重复执行
-              setTimeout(function() {
-                countDown(obj, second, 'in');
-              }, 1000);
-              // 否则，按钮重置为初始状态
-            } else {
-              // 按钮置为可点击状态
-              obj.disabled = false;
-              window.buttonFlag = 1;
-              // 按钮里的内容恢复初始状态
-              obj.className = '';
-              obj.innerHTML = "重新发送";
-            }
-          } else {
-            obj.disabled = true;
-            window.buttonFlag = 0;
-          }
-        }
-        mobileCaptcha.$create({
-          mobile: user.mobile,
-          picCaptcha: user.picCaptcha,
-          type: 1
-        }).$then(function(response) {
-          if (response.ret === -1) {
-            $scope.showMsg(response.msg);
-          } else {
-            countDown(mobileBtn, 60, 'out');
-          }
-        });
-      }
-
-    };
 
 
     //邀请码

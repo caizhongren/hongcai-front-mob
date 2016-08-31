@@ -1,8 +1,8 @@
 /*
  * @Author: fuqiang1
  * @Date:   2016-08-29 17:43:41
- * @Last Modified by:   yuyang
- * @Last Modified time: 2016-08-30 14:52:25
+ * @Last Modified by:   fuqiang1
+ * @Last Modified time: 2016-08-31 19:28:36
  */
 
 'use strict';
@@ -28,6 +28,7 @@ angular.module('p2pSiteMobApp')
             $rootScope.showMsg(msg);
           });
         }
+        return msg;
       }
     }
   })

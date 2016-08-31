@@ -10,81 +10,12 @@
 angular.module('p2pSiteMobApp')
   .controller('GetPwdCtrl', function(checkPwdUtils, $rootScope, $scope, $state, $http, $stateParams, $location, $timeout, CheckMobUtil, CheckPicUtil, md5, register, wechat, mobileCaptcha, HongcaiUser, Restangular, restmod, DEFAULT_DOMAIN) {
     //图形验证码
+    $scope.btnText = '按钮';
     $scope.getPicCaptcha = '/hongcai/api/v1/siteUser/getPicCaptcha?';
     $scope.refreshCode = function() {
       angular.element('#checkCaptcha').attr('src', angular.element('#checkCaptcha').attr('src').substr(0, angular.element('#checkCaptcha').attr('src').indexOf('?')) + '?code=' + Math.random());
     };
-    /**
-     * 用户获取手机验证码
-     */
-    $scope.sendMobileCaptcha = function(user) {
-      // 判断手机号码
-      if (!user.mobile || user.mobile.length !== 11 || !$rootScope.mobilePattern.test(user.mobile)) {
-        return;
-      }
-      //判断图片验证码
-      if (!user.picCaptcha) {
-        return;
-      }
-      // 短信验证码倒计时
-      var captcha = document.getElementById("captcha");
 
-      function countDown(obj, second, inOrOut) {
-        var getMobile = document.getElementById("usermobile");
-        var mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678])|(14[0-9]))\d{8}$/;
-        var buttonDefaultValue = captcha.innerHTML;
-        if (inOrOut === 'out' && window.buttonFlag == 0) {
-          return;
-        }
-        // 如果秒数还是大于0，则表示倒计时还没结束
-        if (mobilePattern.test(getMobile.value)) {
-          if (second >= 0) {
-            // 获取默认按钮上的文字
-
-            if (typeof buttonDefaultValue === 'undefined') {
-              buttonDefaultValue = obj.defaultValue;
-            }
-            // 按钮置为不可点击状态
-            obj.disabled = true;
-            window.buttonFlag = 0;
-            // 按钮里的内容呈现倒计时状态
-            //obj.value = buttonDefaultValue + '(' + second + ')';
-            obj.innerHTML = second + "s";
-            obj.className = '';
-            // 时间减一
-            second--;
-            // 一秒后重复执行
-            setTimeout(function() {
-              countDown(obj, second, 'in');
-            }, 1000);
-            // 否则，按钮重置为初始状态
-          } else {
-            // 按钮置为可点击状态
-            obj.disabled = false;
-            window.buttonFlag = 1;
-            // 按钮里的内容恢复初始状态
-            obj.className = '';
-            obj.innerHTML = "重新发送";
-          }
-        } else {
-          obj.disabled = true;
-          window.buttonFlag = 0;
-        }
-      }
-      /**
-       * 获取短信验证码
-       */
-      mobileCaptcha.$create({
-        mobile: user.mobile,
-        picCaptcha: user.picCaptcha,
-      }).$then(function(response) {
-        if (response.ret === -1) {
-          $rootScope.showMsg(response.msg);
-        }else {
-          countDown(captcha, 60, 'out');
-        }
-      });
-    };
     /**
      * 监测用户手机号
      */
@@ -95,7 +26,11 @@ angular.module('p2pSiteMobApp')
        * 监测图形验证码
        */
     $scope.$watch('user.picCaptcha', function(newVal) {
-      CheckPicUtil.checkePic(newVal);
+      $scope.piccha = false;
+      var msg = CheckPicUtil.checkePic(newVal);
+      if (!msg) {
+        $scope.piccha = true;
+      }
     })
 
     /**
@@ -174,7 +109,7 @@ angular.module('p2pSiteMobApp')
       }
 
       var msg = checkPwdUtils.showPwd2(chg.newPassword1);
-      if(msg){
+      if (msg) {
         return;
       }
 
