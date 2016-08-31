@@ -1,6 +1,6 @@
 <div class="padding-l-1 padding-r-1 padding-t-1 text-center margin-b-7">
   <p class="ft-2p5 ft-65 margin-b-1 margin-t-1">注册宏财账号</p>
-  <form autocomplete="off" class="register-form margin-0 padding-b-2 padding-t-1 ft-grey" name="registerForm" autocomplete="on"  id="registerForm" ng-submit="!registerForm.$invalid && signUp(user)">
+  <form autocomplete="off" class="register-form margin-0 padding-b-2 padding-t-1 ft-grey" name="registerForm" autocomplete="on"  id="registerForm" ng-submit="!registerForm.$invalid && signUp(user)" novalidate>
     <div class="to-register">
       <!-- 手机号码 -->
       <input id="mobilesignup" name="mobile" ng-model="user.mobile" type="tel" placeholder="请输入手机号" required/>

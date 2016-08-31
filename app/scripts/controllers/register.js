@@ -128,6 +128,10 @@ angular.module('p2pSiteMobApp')
 
     // 用户获取短信验证码
     $scope.sendMobileCaptcha = function(user) {
+      if(!user){
+        return;
+      }
+
       if (user.mobile && $rootScope.mobilePattern.test(user.mobile) && user.picCaptcha && $scope.piccha === false) {
         var mobileBtn = document.getElementById('mess');
         var buttonDefaultValue = mobileBtn.innerHTML;
