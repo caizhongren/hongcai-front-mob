@@ -4,8 +4,7 @@
     <div class="to-login">
       <input id="username" name="username" required="required" type="text" ng-model="user.account" placeholder="请输入手机号" required><br>
       <input id="password" name="password" ng-model="user.password" required="required" type="password" placeholder="请输入登录密码" class="input-pwd" required/>
-      <i class="fa fa-eye pwd-eyes ft-9f" ng-if="!showEyes" ng-click="selectEyes()"></i>
-      <i class="fa fa-eye-slash pwd-eyes ft-9f" ng-if="showEyes" ng-click="selectEyes()"></i>
+      <i class="fa fa-eye-slash pwd-eyes ft-9f" select-eyes></i>
     </div>
     <p><div ui-sref="root.getPwd1" class="ft-orange0 pull-right margin-t-0p5">忘记密码？</div></p>
     <p class="login margin-0 text-center margin-t-2">

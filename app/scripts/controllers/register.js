@@ -65,8 +65,7 @@ angular.module('p2pSiteMobApp')
         channelParams: ipCookie('channelParams')
       }).$then(function(response) {
         if (response.ret === -1) {
-          $scope.msg = response.msg;
-          $rootScope.showMsg($scope.msg);
+          $rootScope.showMsg(response.msg);
         } else {
           $rootScope.user = {
             id: response.id
@@ -191,17 +190,6 @@ angular.module('p2pSiteMobApp')
 
     //邀请码
     $scope.investCode = false;
-
-    // 设置密码显示方式
-    $scope.showEyes = true;
-    $scope.selectEyes = function() {
-      $scope.showEyes = !$scope.showEyes;
-      if (!$scope.showEyes) {
-        angular.element('.input-pwd').prop("type", "text");
-      } else {
-        angular.element('.input-pwd').prop("type", "password");
-      }
-    }
 
     //图形验证码
     $scope.getPicCaptcha = '/hongcai/api/v1/siteUser/getPicCaptcha?';
