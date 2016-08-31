@@ -35,8 +35,7 @@ angular.module('p2pSiteMobApp')
         openId: openId
       }).$then(function(response) {
         if (response.ret === -1) {
-          $scope.msg = response.msg;
-          $rootScope.showMsg($scope.msg);
+          $rootScope.showMsg(response.msg);
         } else {
 
           if (redirectUrl) {
@@ -51,15 +50,4 @@ angular.module('p2pSiteMobApp')
         }
       });
     };
-
-    //密码显示方式
-    $scope.showEyes = true;
-    $scope.selectEyes = function(){
-      $scope.showEyes = !$scope.showEyes;
-      if(!$scope.showEyes){
-        angular.element('.input-pwd').prop("type","text");
-      }else{
-        angular.element('.input-pwd').prop("type","password");
-      }
-    }
   });

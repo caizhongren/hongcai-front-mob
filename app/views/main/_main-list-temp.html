@@ -1,6 +1,6 @@
 <!-- 宏金保首页 在下面的div class="main-list-temp"上面添加ng-repeat即可  start list   ui-sref="root.project-detail"-->
 
-<div infinite-scroll="loadMore()" infinite-scroll-distance="0" class="main-list">
+<div class="main-list">
   <div class="main-list-temp clear" ng-repeat="item in jigoubaoData track by item.id" ng-click="toDetail(item)">
     <div class="title">
       <span class="title-text" ng-show="widthFlag===0 && item.name.length <= 12">{{item.name}}</span>
@@ -43,6 +43,9 @@
       <span ng-show="item.status === 8" class="title-status-green">融资成功</span>
       <span ng-show="item.status === 10" class="title-status-grey">已完成</span>
     </div>
+  </div>
+  <div class="text-center bg-white" ng-show="pageCount > page">
+    <p class="padding-b-3 padding-t-3"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a class="ft-black" ng-click="loadMore();">查看更多</a></p>
   </div>
   <!--ending repeat-->
 </div>
