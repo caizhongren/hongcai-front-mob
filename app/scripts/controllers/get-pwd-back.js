@@ -26,9 +26,12 @@ angular.module('p2pSiteMobApp')
        * 监测图形验证码
        */
     $scope.$watch('user.picCaptcha', function(newVal) {
+      $rootScope.msg = '';
       CheckPicUtil.checkePic(newVal);
       if ($rootScope.msg) {
         $scope.piccha = false;
+      } else {
+        $scope.piccha = true;
       }
     })
 
@@ -46,7 +49,7 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
-      if ($scope.piccha == false || picCaptcha.lenght !== 4) {
+      if ($scope.piccha == false || picCaptcha.toString().length !== 4) {
         $rootScope.showMsg('图形验证码有误');
         return;
       }
