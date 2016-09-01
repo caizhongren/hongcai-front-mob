@@ -1088,6 +1088,9 @@ p2pSiteMobApp
     });
 
     $rootScope.$on('$stateChangeSuccess', function(event, toState) {
+      alert(window.cordova);
+      alert(!window.cordova);
+
       var title = '宏财理财';
       if (toState.data && toState.data.title) {
         title = toState.data.title;
