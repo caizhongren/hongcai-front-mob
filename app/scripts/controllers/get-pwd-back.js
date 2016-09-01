@@ -26,10 +26,9 @@ angular.module('p2pSiteMobApp')
        * 监测图形验证码
        */
     $scope.$watch('user.picCaptcha', function(newVal) {
-      $scope.piccha = false;
-      var msg = CheckPicUtil.checkePic(newVal);
-      if (!msg) {
-        $scope.piccha = true;
+      CheckPicUtil.checkePic(newVal);
+      if ($rootScope.msg) {
+        $scope.piccha = false;
       }
     })
 
@@ -46,10 +45,12 @@ angular.module('p2pSiteMobApp')
         $rootScope.showMsg('手机号码格式不正确');
         return;
       }
-      if (picCaptcha.length < 4 || $scope.checkPic == false) {
+
+      if ($scope.piccha == false || picCaptcha.lenght !== 4) {
         $rootScope.showMsg('图形验证码有误');
         return;
       }
+
 
       HongcaiUser.$find('/checkMobileCaptcha', {
         mobile: mobile,
