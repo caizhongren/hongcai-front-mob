@@ -169,6 +169,33 @@ p2pSiteMobApp
           }
         }
       })
+      .state('root.investmentplan-details', {
+        url: '/investmentplan/:number',
+        data: {
+          title: '宏金盈'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/project/funds-project-detail.html',
+            controller: 'FundsProjectDetailCtrl',
+            controllerUrl: 'scripts/controllers/project/funds-project-detail'
+          }
+        }
+      })
+      // 零存宝详情
+      .state('root.current-deposit-detail', {
+        url: '/current-deposit/:number',
+        data: {
+          title: '零存宝'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/project/current-deposit-detail.html',
+            controller: 'FundsProjectDetailCtrl',
+            controllerUrl: 'scripts/controllers/project/funds-project-detail'
+          }
+        }
+      })
 
     // 宏金保详情页
     .state('root.project-detail', {
@@ -975,7 +1002,7 @@ p2pSiteMobApp
       if (toState.data && toState.data.title) {
         title = toState.data.title;
       }
-      $rootScope.headerTitle = title + ' - 要理财，上宏财！';
+      $rootScope.headerTitle = title;
 
       $rootScope.timeout = false;
       $timeout(function() {
@@ -1087,11 +1114,12 @@ p2pSiteMobApp
     });
 
     $rootScope.$on('$stateChangeSuccess', function(event, toState) {
+
       var title = '宏财理财';
       if (toState.data && toState.data.title) {
         title = toState.data.title;
       }
-      $rootScope.headerTitle = title + ' - 要理财，上宏财！';
+      $rootScope.headerTitle = title;
       if (toState.name !== 'root.project') {
         Utils.setTitle($rootScope.headerTitle);
       }

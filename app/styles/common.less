@@ -1522,7 +1522,22 @@ input[type="email"], input[type="number"], input[type="search"], input[type="tex
   }
 }
 /* header */
-.position-icon {
-  position: relative;
-  top: 2px;
+#header {
+ position: fixed;
+ top: 0;
+ left: 0;
+ right: 0;
+ z-index: 9999;
+.back {
+  position: absolute;
+  left: 1rem;
+}
+ .position-icon {
+    position: relative;
+    top: 2px;
+  }
+}
+.nav-block {
+  color: transparent;
+  height: 47px;
 }
