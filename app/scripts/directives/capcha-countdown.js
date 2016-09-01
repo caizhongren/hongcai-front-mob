@@ -2,7 +2,7 @@
  * @Author: fuqiang1
  * @Date:   2016-08-31 09:56:54
  * @Last Modified by:   fuqiang1
- * @Last Modified time: 2016-08-31 19:36:26
+ * @Last Modified time: 2016-09-01 17:34:50
  */
 
 'use strict';
@@ -14,8 +14,11 @@ angular.module('p2pSiteMobApp')
       link: function(scope, elem, attrs) {
 
         function capchaCountdown() {
-          if (!scope.user.mobile || !scope.mobilePattern.test(scope.user.mobile) || !scope.user.picCaptcha || scope.piccha === false) {
+          if (!scope.user.mobile || !scope.mobilePattern.test(scope.user.mobile) || !scope.user.picCaptcha) {
             return;
+          }
+          if (scope.piccha === false) {
+            var msg = '图形验证码有误';
           }
           mobileCaptcha.$create({
             mobile: scope.user.mobile,

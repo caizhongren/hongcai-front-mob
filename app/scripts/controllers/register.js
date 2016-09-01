@@ -32,7 +32,7 @@ angular.module('p2pSiteMobApp')
 
 
     $scope.checkPicCaptchLength = function(picCaptcha){
-      if(picCaptcha.toString().length<4){
+      if(picCaptcha.toString().length !== 4){
         $rootScope.showMsg('图形验证码错误');
         return false;
       }
@@ -86,10 +86,9 @@ angular.module('p2pSiteMobApp')
 
     //监测图形验证码
     $scope.$watch('user.picCaptcha', function(newVal) {
-      $scope.piccha = false;
-      var msg = CheckPicUtil.checkePic(newVal);
-      if(!msg){
-        $scope.piccha = true;
+      CheckPicUtil.checkePic(newVal);
+      if($rootScope.msg){
+        $scope.piccha = false;
       }
     })
 
