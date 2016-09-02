@@ -1,4 +1,4 @@
-<div class="credit bg-white margin-b-7" ng-init="toggle.activeTab=0;">
+<div class="credit bg-white margin-b-4" ng-init="toggle.activeTab=0;" auto-height>
   <div class="u-full-width bg-orange text-center padding-3 ft-white"><span class="ft-1p5">累计收益：</span><strong class="ft-white ft-2p5" style="font-weight:bolder;">{{totalProfit.totalProfit || 0}}</strong>&nbsp;元</div>
   <ul class="account-tab1 nav-ul columns bg-white overflow-hid margin-b-1 border-grey2-bottom">
     <li class="column text-center margin-0 padding-t-1 padding-b-1" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)" my-click-once>{{tab.title}}({{$index ===0 ? heldingCount : endProfitCount}})</li>

@@ -871,7 +871,7 @@ p2pSiteMobApp
     $locationProvider.hashPrefix('!');
 
   }])
-  .run(function($templateCache, $rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, $uibModal, ipCookie, restmod, config, Restangular, URLService, Utils) {
+  .run(function(judgeFooter, $templateCache, $rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, $uibModal, ipCookie, restmod, config, Restangular, URLService, Utils) {
     // if ('addEventListener' in document) {
     // document.addEventListener('DOMContentLoaded', function() {
     FastClick.attach(document.body);
@@ -1141,28 +1141,7 @@ p2pSiteMobApp
         });
       }
 
-      // 不需要显示footer的path
-      var notShowFooterRoute = [
-        'share-home',
-        'share-detail',
-        'experience-landing',
-        'experience-activity',
-        'rate-activity',
-        'exchange-code',
-        'share-scene-example',
-        'activity-scene',
-        'share-scene',
-        'share-spring',
-        'grade',
-        'project',
-        'project-info',
-        'project-detail',
-        'activity'
-      ];
-      $rootScope.showFooter = false;
-      if (notShowFooterRoute.indexOf(path) === -1) {
-        $rootScope.showFooter = true;
-      }
+      judgeFooter.showFooter();
 
       var mainPath = [
         'recommend',
