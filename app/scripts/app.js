@@ -976,7 +976,7 @@ p2pSiteMobApp
       if (toState.data && toState.data.title) {
         title = toState.data.title;
       }
-      $rootScope.headerTitle = title + ' - 要理财，上宏财！';
+      $rootScope.headerTitle = title;
 
       $rootScope.timeout = false;
       $timeout(function() {
@@ -1092,7 +1092,7 @@ p2pSiteMobApp
       if (toState.data && toState.data.title) {
         title = toState.data.title;
       }
-      $rootScope.headerTitle = title + ' - 要理财，上宏财！';
+      $rootScope.headerTitle = title;
       if (toState.name !== 'root.project') {
         Utils.setTitle($rootScope.headerTitle);
       }
@@ -1200,7 +1200,7 @@ p2pSiteMobApp
 .constant('DEFAULT_DOMAIN', '/hongcai/rest')
 
 .constant('WEB_DEFAULT_DOMAIN', '/hongcai/api/v1')
-  .constant('projectStatusMap', {
+.constant('projectStatusMap', {
     "6": "预发布",
     "7": "融资中",
     "8": "融资成功",
@@ -1208,4 +1208,4 @@ p2pSiteMobApp
     "10": "还款完成",
     "11": "预约中",
     "12": "预约处理异常"
-  });
+});
