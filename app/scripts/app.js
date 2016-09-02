@@ -871,7 +871,7 @@ p2pSiteMobApp
     $locationProvider.hashPrefix('!');
 
   }])
-  .run(function($templateCache, $rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, $uibModal, ipCookie, restmod, config, Restangular, URLService, Utils) {
+  .run(function($templateCache, $rootScope, $stateParams, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, $uibModal, ipCookie, restmod, config, Restangular, URLService, Utils) {
     // if ('addEventListener' in document) {
     // document.addEventListener('DOMContentLoaded', function() {
     FastClick.attach(document.body);
@@ -1104,6 +1104,14 @@ p2pSiteMobApp
       $rootScope.channelCode = $location.search().f;
       $rootScope.act = $location.search().act;
       $rootScope.channelParamsObj = {};
+
+      if($location.search().appFlag === 'app'){
+        $rootScope.showBack = true;
+        ipCookie('appFlag', 'app', {expires: 60, path: '/'});
+      } else if(ipCookie('appFlag') === 'app'){
+        $rootScope.showBack = true;
+      }
+
 
       //提示激活存管通
       if (path == 'user-center') {
