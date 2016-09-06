@@ -197,8 +197,6 @@ angular.module('p2pSiteMobApp')
 
     };
 
->>>>>>> hotfix/fix_register
-
     //邀请码
     $scope.investCode = false;
 
