@@ -66,25 +66,15 @@ angular.module('p2pSiteMobApp')
           projectId : $scope.project.id,
           amount : project.availableAmount
         }).then(function(response) {
-          $scope.increaseRateCoupons = response;
-          var cashCoupon = [];
-          if(response && $scope.cashType === '' && $scope.rateType === ''){
-            for(var j = 0; j < response.length; j++){
-              if($scope.increaseRateCoupons[j].type === 2){
-                cashCoupon.push(response[j]);
-              }else if(cashCoupon === '' && $scope.increaseRateCoupons[j].type === 1){
-                cashCoupon.push(response[j]);
+
+          if (response && response.ret !== -1) {
+            $scope.increaseRateCoupons = response;
+            for (var i = 0; i < $scope.increaseRateCoupons.length; i++) {
+              if ($scope.rateType === '' && $scope.cashType === '') {
+                $scope.selectIncreaseRateCoupon = $scope.increaseRateCoupons[0];
               }
-            }
-            cashCoupon.sort();
-            $scope.selectIncreaseRateCoupon = cashCoupon[cashCoupon.length-1];
-          }else{
-            for (var i = 0; i < response.length; i++) {
-              if($scope.rateNum == response[i].number){
-                $scope.selectIncreaseRateCoupon = response[i];
-              }
-              if($scope.cashNum == response[i].number){
-                $scope.selectIncreaseRateCoupon = response[i];
+              if ($scope.rateNum == $scope.increaseRateCoupons[i].number || $scope.cashNum == $scope.increaseRateCoupons[i].number) {
+                $scope.selectIncreaseRateCoupon = $scope.increaseRateCoupons[i];
               }
             }
           }

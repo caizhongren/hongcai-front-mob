@@ -19,3 +19,12 @@
   </ul>
 <div class="mask" ng-show="showMe"></div>
 </nav> -->
+
+<!-- 添加导航栏返回上一页 -->
+<div ng-show="showBack">
+<nav id="header" class="position-re bg-greyf7 padding-t-1 padding-b-1 padding-l-1 padding-r-1 overflow-hid text-center margin-ato" >
+  <span class="ft-grey5 back" onClick="javascript: history.go(-1);"><i class="fa fa-angle-left ft-3p6 position-icon" aria-hidden="true"></i><i class="ft-normal1 ft-1p6">返回</i></span>
+  <span ng-bind="headerTitle || '宏财理财'" class="ft-grey5 ft-1p8"></span>
+</nav>
+<div class="nav-block"></div>
+</div>

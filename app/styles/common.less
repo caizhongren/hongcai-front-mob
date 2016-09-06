@@ -3,8 +3,15 @@ body {
   height: 100%;
   margin: 0 auto;
   font-family: "微软雅黑" !important;
+  .ng-cloak {
+    display: none;
+  }
 }
-
+.normal-mid {
+  max-width: 640px;
+  margin: 0 auto;
+  margin-left: none;
+}
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -364,6 +371,10 @@ input[type="button"].button-primary-red:focus {
   font-size: 2rem;
 }
 
+.ft-2p3 {
+  font-size: 2.3rem;
+}
+
 .ft-2p5 {
   font-size: 2.5rem;
 }
@@ -608,6 +619,9 @@ input[type="button"].button-primary-red:focus {
 .bg-grey6{
   background-color:rgba(0,0,0,0.85);
 }
+.bg-greyf7{
+  background-color:#f7f6f6;
+}
 .bg-grey0p5{
   background-color:rgba(0,0,0,0.5);
 }
@@ -763,6 +777,9 @@ input[type="button"].button-primary-red:focus {
 
 .margin-b-2 {
   margin-bottom: 2rem;
+}
+.margin-b-3 {
+  margin-bottom: 3rem;
 }
 .margin-b-4 {
   margin-bottom: 4rem;
@@ -1225,6 +1242,8 @@ Opera
 }
 
 .project-mask {
+  max-width: 640px;
+  margin: 0 auto;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -1514,6 +1533,29 @@ input[type="email"], input[type="number"], input[type="search"], input[type="tex
       }
     }
   }
-
-
+}
+/* header */
+#header {
+ position: fixed;
+ top: 0;
+ left: 0;
+ right: 0;
+ z-index: 9999;
+.back {
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  display: inline-block;
+  height: 49px;
+  width: 50px;
+  line-height: 49px;
+}
+ .position-icon {
+    position: relative;
+    top: 5px;
+  }
+}
+.nav-block {
+  color: transparent;
+  height: 47px;
 }

@@ -10,7 +10,7 @@
 angular.module('p2pSiteMobApp')
   .controller('ProjectListCtrl', function($scope, $rootScope, $state, $timeout, Restangular, ProjectUtils){
   	$scope.page = 1;
-    $scope.pageSize = 4;
+    $scope.pageSize = 5;
   	$scope.widthFlag = "";
   	$scope.jigoubaoData = [];
 

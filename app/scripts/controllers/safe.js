@@ -15,4 +15,7 @@ angular.module('p2pSiteMobApp')
     {name: '风控体系', eName: 'Risk Control System', title: '美国FICO结合三亿大数据', content: '宏财网由美国FICO结合三亿大数据独创宏财信用评价模型。并采用“提前履约+风险备付金+抵押担保”模式，对项目进行线下尽职调查并且实时监控，全面确保客户权益。', fa: 'fa-bell'},
     {name: '法律支持', eName: 'Legal Support', title: '中国法学会理事专业领队', content: '由中国法学会理事蔡曙涛领队的专业律师团队严格控制贷后风险，全面确保客户的法律权益。', fa: 'fa-gavel'}
     ];
+
+
+
   });

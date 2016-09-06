@@ -21,7 +21,7 @@ var _hmt = _hmt || [];
 
 <head>
   <meta charset="utf-8">
-  <title ng-bind="headerTitle || '宏财理财 - 要理财，上宏财！'"></title>
+  <title ng-bind="headerTitle || '宏财理财'"></title>
   <base href="/">
   <meta name="fragment" content="!">
   <meta name="description" content="">
@@ -39,8 +39,6 @@ var _hmt = _hmt || [];
   <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
   <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css" />
   <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
-  <link rel="stylesheet" href="bower_components/angular/angular-csp.css" />
-
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
@@ -60,6 +58,7 @@ var _hmt = _hmt || [];
   <link rel="stylesheet" href="styles/recommend.css">
   <link rel="stylesheet" href="styles/new-project-detail.css">
   <link rel="stylesheet" href="styles/cash-coupon.css">
+  <link rel="stylesheet" href="styles/activity-center.css">
 
   <!-- endbuild -->
   <link rel="stylesheet" href="styles/un-min/box-flex.css">
@@ -84,7 +83,7 @@ var _hmt = _hmt || [];
   <!-- loading toast -->
   <div ng-include src='"views/loading-toast.html"' ng-show="showLoadingToast"></div>
   <!-- 错误提示 -->
-  <div class="toast toast1" ng-show="showErrorMsg" ng-cloak>
+  <div class="toast toast1 ng-cloak" ng-show="showErrorMsg" >
     <p>{{msg}}</p>
   </div>
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -147,6 +146,7 @@ var _hmt = _hmt || [];
   <!-- tool -->
   <!-- global -->
   <script src="scripts/app.js"></script>
+  <script src="scripts/app_run.js"></script>
   <script src="scripts/config.js"></script>
 
   <!-- directives -->
@@ -160,6 +160,8 @@ var _hmt = _hmt || [];
   <script src="scripts/directives/check-password.js"></script>
   <script src="scripts/directives/ensure-mobile-exist.js"></script>
   <script src="scripts/directives/ensure-captcha.js"></script>
+  <script src="scripts/directives/capcha-countdown.js"></script>
+  <script src="scripts/directives/select-eyes.js"></script>
 
   <!-- servies -->
   <script src="scripts/services/users.js"></script>
@@ -202,6 +204,7 @@ var _hmt = _hmt || [];
   <script src="scripts/controllers/project/project-list.js"></script>
   <script src="scripts/controllers/project/new-project-detail.js"></script>
   <script src="scripts/controllers/project/new-orders.js"></script>
+  <script src="scripts/controllers/project/funds-project-detail.js"></script>
 
   <script src="scripts/controllers/register.js"></script>
   <script src="scripts/controllers/register-yeepay.js"></script>
@@ -261,7 +264,7 @@ var _hmt = _hmt || [];
   <script src="scripts/jQueryRotate.2.2.js"></script>
   <!-- endbuild -->
 
-  <!-- <script src="scripts/templates.min.js"></script> -->
+  <script src="scripts/templates.min.js"></script>
 </body>
 
 </html>

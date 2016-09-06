@@ -10,12 +10,13 @@
 angular.module('p2pSiteMobApp')
   .controller('RegisterCtrl', function(CheckPicUtil, checkPwdUtils, $http, DEFAULT_DOMAIN, Restangular, $timeout, $rootScope, $scope, $state, $stateParams, CheckMobUtil, md5, register, wechat, mobileCaptcha, ipCookie) {
     // 注册链接上是否有邀请码
+    $scope.btn = 'haha';
     if ($stateParams.inviteCode) {
       $scope.user = {
-        inviteCode: $stateParams.inviteCode
+        inviteCode: $stateParams.inviteCode,
+        mobileCaptchaType:1
       };
     }
-
     $scope.showRegistrationAgreement = false;
     $scope.toggle = function() {
       $scope.showRegistrationAgreement = !$scope.showRegistrationAgreement;
@@ -31,7 +32,7 @@ angular.module('p2pSiteMobApp')
 
 
     $scope.checkPicCaptchLength = function(picCaptcha){
-      if(picCaptcha.toString().length<4){
+      if(picCaptcha.toString().length !== 4){
         $rootScope.showMsg('图形验证码错误');
         return false;
       }
@@ -70,8 +71,7 @@ angular.module('p2pSiteMobApp')
         channelParams: ipCookie('channelParams')
       }).$then(function(response) {
         if (response.ret === -1) {
-          $scope.msg = response.msg;
-          $rootScope.showMsg($scope.msg);
+          $rootScope.showMsg(response.msg);
         } else {
           $rootScope.user = {
             id: response.id
@@ -197,20 +197,8 @@ angular.module('p2pSiteMobApp')
 
     };
 
-
     //邀请码
     $scope.investCode = false;
-
-    // 设置密码显示方式
-    $scope.showEyes = true;
-    $scope.selectEyes = function() {
-      $scope.showEyes = !$scope.showEyes;
-      if (!$scope.showEyes) {
-        angular.element('.input-pwd').prop("type", "text");
-      } else {
-        angular.element('.input-pwd').prop("type", "password");
-      }
-    }
 
     //图形验证码
     $scope.getPicCaptcha = '/hongcai/api/v1/siteUser/getPicCaptcha?';

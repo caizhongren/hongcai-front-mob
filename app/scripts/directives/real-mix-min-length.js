@@ -11,6 +11,7 @@ angular.module('p2pSiteMobApp')
     return {
       restrict: 'A',
       require: 'ngModel',
+      scope: true,
       link: function(scope, ele, attrs, ctrl) {
         var minLen = + attrs.realMixMinLength;
         //View -> Model的更新
