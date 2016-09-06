@@ -1,0 +1,47 @@
+.activity-center {
+  background-color: #f8f8f8;
+  padding-top: 1.3rem;
+  padding-bottom: 5rem;
+  .content {
+    margin: 1.3rem;
+    margin-top: 0;
+    border: 1px solid #ebebeb;
+    .header {
+      overflow: hidden;
+      border-bottom: 1px solid #ebebeb;
+      background-color: #fff;
+      padding: 0.3rem 1.3rem;
+      color: #757575;
+      font-size: 1.5rem;
+      span:first-child{
+        position: relative;
+        top: 5px;
+      }
+      span:last-child{
+        position: relative;
+        top: -2px;
+      }
+      @media (max-width:320px){
+        padding: 0.3rem 1.3rem;
+        font-size: 1.3rem;
+        span:first-child{
+          position: relative;
+          top: 8px;
+        }
+        span:last-child{
+          position: relative;
+          top: -3px;
+        }
+      }
+      .clock {
+        position: relative;
+        top: 8px;
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        background: url('/images/activity-center/count-down.png') no-repeat 0 -5px;
+        background-size: 92%;
+      }
+    }
+  }
+}

@@ -863,6 +863,19 @@ p2pSiteMobApp
         }
       })
 
+      //活动中心
+      .state('root.activityCenter', {
+        url: '/activity-center',
+        data: {
+          title: '活动中心'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/activity-center.html',
+          }
+        }
+      })
+
 
     ;
     $urlRouterProvider.otherwise('/');
