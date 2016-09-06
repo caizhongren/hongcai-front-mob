@@ -87,7 +87,7 @@
 <!-- 加息券弹出 -->
 <div class="rate-increase " ng-show="(increaseRateCoupons.length > 0 && showSelectIncreaseRateCoupon)">
   <div class="bg-white position-ab rate-increase-list width-pull">
-    <ul class="padding-1 margin-b-0 padding-b-0">
+    <ul class="padding-1 margin-b-0 padding-b-0 normal-mid">
       <!-- 可用奖励 ：加息券 + 现金券-->
       <li class="margin-b-0p5 position-re" ng-click="selectCoupon(coupon)" ng-repeat=" coupon in increaseRateCoupons | orderBy : ['-type','value'] |limitTo : initLimit ">
         <!-- 加息券 -->
