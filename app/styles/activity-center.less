@@ -10,20 +10,28 @@
       overflow: hidden;
       border-bottom: 1px solid #ebebeb;
       background-color: #fff;
-      padding: 0.5rem 1.3rem;
+      padding: 0.3rem 1.3rem;
       color: #757575;
-      font-size: 1.7rem;
-      @media (max-width:320px){
-        padding: 0.4rem 1.3rem;
-        font-size: 1.6rem;
-      }
+      font-size: 1.5rem;
       span:first-child{
         position: relative;
-        top: 4px;
+        top: 5px;
       }
       span:last-child{
         position: relative;
         top: -2px;
+      }
+      @media (max-width:320px){
+        padding: 0.3rem 1.3rem;
+        font-size: 1.3rem;
+        span:first-child{
+          position: relative;
+          top: 8px;
+        }
+        span:last-child{
+          position: relative;
+          top: -3px;
+        }
       }
       .clock {
         position: relative;
