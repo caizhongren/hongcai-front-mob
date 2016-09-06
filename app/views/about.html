@@ -1,7 +1,7 @@
 <div class="about" >
   <div class="bg-offWhite overflow-hid">
     <ul class="about-tab1 columns ten offset-by-one mainorange  margin-b-0">
-      <li class="column text-center margin-0 padding-t-1 padding-b-1" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
+      <li class="column text-center margin-0 padding-t-1 padding-b-1" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs track by $index" ng-click="toggle.switchTab($index)">{{::tab.title}}</li>
     </ul>
   </div>
 
@@ -11,15 +11,15 @@
     <section ng-if="tab.title==='战略伙伴'" class="margin-b-7 bg-offWhite">
       <div class="safe bg-white text-left" ng-repeat="item in partners">
         <div class="border-bottom-safe ft-1p8 item-style">
-          <i class="fa {{item.fa}} ft-orange padding-l-2"></i>
-          <span class="ft-orange">&nbsp {{ item.name }} &nbsp</span>
+          <i class="fa {{::item.fa}} ft-orange padding-l-2"></i>
+          <span class="ft-orange">&nbsp {{::item.name }} &nbsp</span>
            <!-- <span class="font-sub-bule">{{ item.eName }}</span> -->
            <hr class="hr-orange">
         </div>
         <div class="ft-1p5 padding-l-2 padding-r-2">
-          <p><strong>{{ item.title }}</strong>
+          <p><strong>{{::item.title }}</strong>
           </p>
-          <p class="text-justify">{{ item.introduction }}</p>
+          <p class="text-justify">{{::item.introduction}}</p>
         </div>
       </div>
     </section>
@@ -87,12 +87,12 @@
       <div class="bg-offWhite margin-b-7">
         <div class="safe bg-white" ng-repeat="item in NewSafes">
           <div class="border-bottom-safe ft-1p8 item-style">
-            <i class="fa {{item.fa}} ft-orange padding-l-2"></i>
-            <span class="ft-orange">&nbsp {{ item.name }} &nbsp</span>
+            <i class="fa {{::item.fa}} ft-orange padding-l-2"></i>
+            <span class="ft-orange">&nbsp {{ ::item.name }} &nbsp</span>
             <hr class="hr-orange">
           </div>
           <div class="ft-1p5 padding-l-2 padding-r-2">
-            <p class="text-justify">{{ item.content }}</p>
+            <p class="text-justify">{{ ::item.content }}</p>
           </div>
         </div>
       </div>
