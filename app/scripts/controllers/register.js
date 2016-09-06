@@ -53,6 +53,11 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
+      var act;
+      if(ipCookie('act') && !isNaN(ipCookie('act'))){
+        act = ipCookie('act');
+      }
+
       signUpBe.$create({
         // name: user.name,
         picCaptcha: user.picCaptcha,
@@ -61,7 +66,7 @@ angular.module('p2pSiteMobApp')
         captcha: user.captcha,
         inviteCode: user.inviteCode,
         channelCode: ipCookie('utm_from'),
-        act: ipCookie('act'),
+        act: act,
         channelParams: ipCookie('channelParams')
       }).$then(function(response) {
         if (response.ret === -1) {
@@ -87,10 +92,10 @@ angular.module('p2pSiteMobApp')
     //监测图形验证码
     $scope.$watch('user.picCaptcha', function(newVal) {
       $scope.piccha = false;
-      var msg = CheckPicUtil.checkePic(newVal);
-      if(msg){
-        $scope.piccha = true;
-      }
+      // var msg = CheckPicUtil.checkePic(newVal);
+      // if(msg){
+      //   $scope.piccha = true;
+      // }
     })
 
     //监测密码
@@ -132,7 +137,7 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
-      if (user.mobile && $rootScope.mobilePattern.test(user.mobile) && user.picCaptcha && $scope.piccha === false) {
+      if (user.mobile && $scope.checkMobile(user.mobile) && user.picCaptcha && $scope.piccha === false) {
         var mobileBtn = document.getElementById('mess');
         var buttonDefaultValue = mobileBtn.innerHTML;
 
