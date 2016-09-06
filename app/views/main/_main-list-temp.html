@@ -3,20 +3,20 @@
 <div class="main-list">
   <div class="main-list-temp clear" ng-repeat="item in jigoubaoData track by item.id" ng-click="toDetail(item)">
     <div class="title">
-      <span class="title-text" ng-show="widthFlag===0 && item.name.length <= 12">{{item.name}}</span>
-      <span class="title-text" ng-show="widthFlag===0 && item.name.length > 12">{{item.name | limitTo:14}}...</span>
-      <span class="title-text" ng-show="widthFlag===1 || widthFlag===2">{{item.name}}</span>
+      <span class="title-text" ng-show="widthFlag===0 && item.name.length <= 12">{{::item.name}}</span>
+      <span class="title-text" ng-show="widthFlag===0 && item.name.length > 12">{{::item.name | limitTo:14}}...</span>
+      <span class="title-text" ng-show="widthFlag===1 || widthFlag===2">{{::item.name}}</span>
     </div>
     <div class="pro-info">
       <ul>
         <li>
 
-          <p class="text-left" ng-class="{'ft-orange':item.status === 7 || item.status === 6 , 'ft-grey6':item.status !== 6 || item.status !== 7 }"><span class="ft-3p6">{{item.annualEarnings}}</span>%</p>
+          <p class="text-left" ng-class="{'ft-orange':item.status === 7 || item.status === 6 , 'ft-grey6':item.status !== 6 || item.status !== 7 }"><span class="ft-3p6">{{::item.annualEarnings}}</span>%</p>
           <p>预期年化收益率</p>
         </li>
         <li>
-          <p class=""><span ng-class="{'ft-black1':item.status === 7 || item.status === 6 ,'ft-grey6':item.status !== 6 || item.status !== 7 }">{{item.projectDays}}</span>天</p>
-          <p class=""><span ng-class="{'ft-black1':item.status === 7 || item.status === 6 ,'ft-grey6':item.status !== 6 || item.status !== 7 }">{{item.total}}</span>元</p>
+          <p class=""><span ng-class="{'ft-black1':item.status === 7 || item.status === 6 ,'ft-grey6':item.status !== 6 || item.status !== 7 }">{{::item.projectDays}}</span>天</p>
+          <p class=""><span ng-class="{'ft-black1':item.status === 7 || item.status === 6 ,'ft-grey6':item.status !== 6 || item.status !== 7 }">{{::item.total}}</span>元</p>
         </li>
         <li>
           <span class="fa fa-angle-right" ng-class="{'ft-black1':item.status === 7 || item.status === 6 , 'ft-grey6':item.status !== 6 || item.status !== 7 }"></span>
