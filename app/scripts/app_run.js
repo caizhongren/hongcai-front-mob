@@ -1,13 +1,20 @@
 /*
+<<<<<<< HEAD
 * @Author: fuqiang1
 * @Date:   2016-09-02 11:27:21
-* @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-09-02 11:34:06
+* @Last Modified by:   yuyang
+* @Last Modified time: 2016-09-07 10:35:15
+=======
+* @Author: yuyang
+* @Date:   2016-09-02 11:12:13
+* @Last Modified by:   yuyang
+* @Last Modified time: 2016-09-02 11:33:40
+>>>>>>> feature/app_resolve
 */
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .run(function($templateCache, $rootScope, $stateParams, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, $uibModal, ipCookie, restmod, config, Restangular, URLService, Utils) {
+  .run(function($templateCache, $rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, $uibModal, ipCookie, restmod, config, Restangular, URLService, Utils) {
     // if ('addEventListener' in document) {
     // document.addEventListener('DOMContentLoaded', function() {
     FastClick.attach(document.body);
@@ -29,7 +36,8 @@ angular.module('p2pSiteMobApp')
       'safe': '安全保障',
       'account': '账户总览'
     };
-    $rootScope.payCompany = config.pay_company;
+
+
     /**
      * 跳转到登陆页
      */
@@ -81,6 +89,7 @@ angular.module('p2pSiteMobApp')
     /**
      * 激活存管通
      */
+    $rootScope.payCompany = config.pay_company;
     $rootScope.toActivate = function() {
       if ($rootScope.payCompany === 'yeepay'||!$rootScope.isLogged || $rootScope.securityStatus.realNameAuthStatus !== 1 || $rootScope.securityStatus.userAuth.active === true) {
         return;
@@ -340,4 +349,3 @@ angular.module('p2pSiteMobApp')
     /*加载中loading*/
     $rootScope.showLoadingToast = false;
   })
-
