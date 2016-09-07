@@ -1,9 +1,9 @@
 <div class="deal bg-white margin-b-7">
   <h6 class="border-grey text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>资金流水</strong></h6>
-  <div class="row text-center margin-t-5" ng-hide="deals">
-    <img src="images/user-center/deal-list.png" width="50%">
-    <p class="padding-2-t">亲，您还没有产生任何交易呢...</p>
-    <input type="button" class="half margin-0 padding-t-0p5 padding-b-0p5 bg-blue3 ft-white ft-1p8 button button-primary" ui-sref="root.main" value="浏览理财产品">
+  <div class="row text-center margin-t-5 padding-l-1 padding-r-1" ng-show="!loading && deals.length <= 0">
+    <img src="images/user-center/deal-list.png" width="35%">
+    <p class="padding-2-t margin-t-2">亲，您还没有产生任何交易呢...</p>
+    <button type="button" class="u-full-width ft-1p8 button button-primary" ui-sref="root._main-list-temp">浏览理财产品</button>
   </div>
   <div class="padding-t-2 padding-b-2" ng-show="deals.length > 0">
     <table class="u-full-width">
