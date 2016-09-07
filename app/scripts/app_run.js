@@ -2,7 +2,7 @@
 * @Author: yuyang
 * @Date:   2016-09-02 11:12:13
 * @Last Modified by:   yuyang
-* @Last Modified time: 2016-09-07 10:41:42
+* @Last Modified time: 2016-09-07 11:12:23
 */
 
 'use strict';
@@ -120,10 +120,10 @@ angular.module('p2pSiteMobApp')
         $rootScope.timeout = true;
       }, 400);
 
-      // $rootScope.loading = true;
-      // $timeout(function() {
-      //   $rootScope.loading = false;
-      // }, 350);
+      $rootScope.loading = true;
+      $timeout(function() {
+        $rootScope.loading = false;
+      }, 350);
 
 
 

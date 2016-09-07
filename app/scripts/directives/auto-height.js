@@ -2,7 +2,7 @@
 * @Author: yuyang
 * @Date:   2016-09-02 16:55:22
 * @Last Modified by:   yuyang
-* @Last Modified time: 2016-09-02 18:01:09
+* @Last Modified time: 2016-09-07 11:09:49
 */
 
 'use strict';
@@ -11,7 +11,6 @@ angular.module('p2pSiteMobApp')
     return {
       restrict: 'A',
       link : function(scope, element,attrs) {
-        console.log(attrs);
         $('document').ready(function(){
           //初始化宽度、高度
           element.css('min-height', angular.element(window).height()-'50'+"px");
