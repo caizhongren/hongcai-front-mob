@@ -1,15 +1,8 @@
 /*
-<<<<<<< HEAD
-* @Author: fuqiang1
-* @Date:   2016-09-02 11:27:21
-* @Last Modified by:   yuyang
-* @Last Modified time: 2016-09-07 10:35:15
-=======
 * @Author: yuyang
 * @Date:   2016-09-02 11:12:13
 * @Last Modified by:   yuyang
-* @Last Modified time: 2016-09-02 11:33:40
->>>>>>> feature/app_resolve
+* @Last Modified time: 2016-09-07 10:41:42
 */
 
 'use strict';
@@ -36,7 +29,6 @@ angular.module('p2pSiteMobApp')
       'safe': '安全保障',
       'account': '账户总览'
     };
-
 
     /**
      * 跳转到登陆页
