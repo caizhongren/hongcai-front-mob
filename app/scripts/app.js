@@ -872,6 +872,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/activity-center.html',
+            controller: 'ActivityCenter',
+            controllerUrl: 'scripts/controllers/activity-center'
           }
         }
       })

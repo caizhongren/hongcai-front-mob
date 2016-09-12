@@ -61,15 +61,5 @@ angular.module('p2pSiteMobApp')
     ipCookie('cashType', $scope.cashCoupons[$index].type);
   }
 
-
-	/*根据屏幕高度设置内容高度*/
-	angular.element('document').ready(function(){
-		//初始化宽度、高度
-		angular.element(".cash-body").css("min-height",angular.element(window).height()-"220"+"px");
-		//当文档窗口发生改变时 触发
-		angular.element(window).resize(function(){
-		  angular.element(".cash-body").css("min-height",angular.element(window).height()-"220"+"px");
-		});
-  });
 });
 
