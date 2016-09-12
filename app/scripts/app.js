@@ -141,7 +141,7 @@ p2pSiteMobApp
         }
       })
       .state('root.yeepay-callback', {
-        url: '/yeepay-callback/:business/:status?amount',
+        url: '/yeepay-callback/:business/:status?amount&number',
         views: {
           '': {
             templateUrl: 'views/yeepay-callback.html',

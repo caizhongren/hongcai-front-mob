@@ -5,7 +5,7 @@
       <strong ng-switch-default>恭喜您，成功开通存管账户！</strong>
       <strong ng-switch-when="1">恭喜您，成功充值{{amount | number:2}}元！</strong>
       <strong ng-switch-when="2">恭喜您，成功提现{{amount | number:2}}元！</strong>
-      <strong ng-switch-when="3">恭喜您，成功投资{{amount | number:2}}元！</strong>
+      <strong ng-switch-when="3">恭喜您，成功投资{{amount | number:2}}元！<br><span ng-show="coupon.type == 1">额外加息{{coupon.value}}%</span><span ng-show="coupon.type == 2">额外奖励{{coupon.value}}元</span></strong>
       <strong ng-switch-when="4">恭喜您，成功绑定银行卡！</strong>
       <strong ng-switch-when="5">恭喜您，成功修改手机号！</strong>
       <strong ng-switch-when="6">恭喜您，成功投资{{amount | number:2}}元！</strong>
