@@ -20,8 +20,10 @@ angular.module('p2pSiteMobApp')
      */
     $scope.realNameAuth = function(user){
       if (!user.realName || !user.idNo){
-        $scope.errMsg = '请输入姓名或身份证号';
+        // $scope.errMsg = '请输入姓名或身份证号';
+        return;
       }
+
 
       $scope.cancel();
       $state.go('root.yeepay-transfer', {
