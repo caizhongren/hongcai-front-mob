@@ -26,7 +26,7 @@
       <hr class="hr-orange">
     </div>
     <pre ta-bind ng-model="jigoubaoDataMore.riskManagementInfo"></pre>
-    <div class="border-bottom-safe ft-1p8 item-style">
+    <div ng-if="getProjectRisk.length > 0" class="border-bottom-safe ft-1p8 item-style">
       <span class="ft-orange">风控审核</span>
     </div>
     <div ng-repeat='items in getProjectRisk'>
