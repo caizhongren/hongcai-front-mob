@@ -1,13 +1,13 @@
 <div class="about" >
   <div class="bg-White overflow-hid">
     <ul class="about-tab1 columns ten offset-by-one aboutorange  margin-b-0">
-      <li class="column text-center" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs track by $index" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
+      <li class="column text-center ft-1p4" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs track by $index" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
     </ul>
   </div>
 
 
   <!-- 要展示的内容如下 -->
-  <div class="tab-content columns twelve bg-White overflow-hid padding-b-2" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs">
+  <div class="tab-content columns twelve bg-White overflow-hid" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs">
     <section ng-if="tab.title==='战略伙伴'" class="margin-b-7 bg-offWhite">
       <div class="safe bg-white text-left" ng-repeat="item in partners">
         <div class="border-bottom-safe ft-1p8 item-style">
@@ -24,7 +24,58 @@
       </div>
     </section>
     <section class="introduce margin-b-7" ng-if="tab.title==='宏财简介'">
-
+      <div>
+        <img src="/images/about/introduce.png" width="100%">
+      </div>
+      <div class="unit1 padding-l-1 padding-r-1 padding-t-2">
+        <div class="title margin-auto text-center margin-b-1">
+          <p class="margin-b-0 ft-white">公司简介</p>
+        </div>
+        <div>
+          <img src="/images/about/unit1-img.png" width="75%" class="display-bl margin-auto margin-b-2">
+        </div class="content">
+        <p class="ft-1p2 margin-b-0 content">宏财网 014年上线运营，2016年获得1亿元A轮融资，凭借股东广泛的金融资源、博士团队的专业能力和严谨的风控模型与项目管理流程,在项目方十多年积累的金融资源生态圈中，为广大投资者筛选优质的投资项目。</p>
+      </div>
+      <div class="unit2 padding-l-1 padding-r-1 padding-t-2 margin-b-1">
+        <div class="title margin-auto text-center margin-b-1">
+          <p class="margin-b-0 ft-white">股东介绍</p>
+        </div>
+        <div>
+          <img src="/images/about/unit2-img.png" width="53%" class="display-bl margin-auto margin-b-1">
+        </div class="content">
+        <p class="ft-1p2 margin-b-0 content text-center">专注中小企业资产管理业务</p>
+      </div>
+      <div class="unit3 padding-l-1 padding-r-1 padding-t-2 margin-b-1">
+        <div class="title margin-auto text-center margin-b-1">
+          <p class="margin-b-0 ft-white">产品介绍:</p>
+        </div>
+        <div class="content">
+          <ul>
+            <li class="ft-1p2">
+              <p class="margin-b-0p5 ft-1p3">项目来源:</p></br>
+              宏金保项目来源于股东和项目方十多年积累的金融资源生态圈，信息对称、知根知底，安全性极高；
+            </li>
+            <li class="ft-1p2">
+              <p class="margin-b-0p5 ft-1p3">项目优势:</p></br>
+              宏金保是由国有参股的大型担保公司担保、固定资产足值抵押的小微企业和个人借贷项目；
+            </li>
+            <li class="ft-1p2">
+              <p class="margin-b-0p5 ft-1p3">担保优势:</p></br>
+              宏金保担保公司注册资金10亿元以上、全国排名前三（按民营担保计）、成立时间10年以上、历史不存在违约担保案例；
+            </li>
+            <li class="ft-1p2 margin-b-0">
+              <p class="margin-b-0p5 ft-1p3">产品特点:</p></br>
+              宏金保项目以3个月短期为主、流动性好。
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="unit3 padding-l-1 padding-r-1 padding-t-2 margin-b-1">
+        <div class="title margin-auto text-center margin-b-1">
+          <p class="margin-b-0 ft-white">组织架构</p>
+        </div>
+        <img src="/images/about/framework.png" width="93%" class="display-bl margin-auto margin-b-2">
+      </div>
     </section>
     <section ng-if="tab.title==='安全保障'" class="margin-b-7">
       <!-- <div class="row border-solidf5-bottom bg-white padding-t-1 person" ng-class="{'margin-t-0p5': $index !== 0}" ng-repeat="item in consultants">

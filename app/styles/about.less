@@ -19,6 +19,7 @@
     padding-bottom: .4rem;
     margin-top: .5rem;
     color: #757575;
+    margin-bottom: .1rem;
   }
   .aboutorange li.active {
     color: #f5762f;
@@ -28,8 +29,78 @@
 
   // 宏财简介
   .introduce {
+    .content {
+      line-height: 1.4rem;
+      color: #5a5959;
+    }
+    .title {
+        background: url('/images/about/bg_title.png') 0 0 no-repeat;
+        background-size: 100%;
+        width: 68%;
+        height: 3.2rem;
+      }
     .unit1 {
-
+      width: 94%;
+      height: 22.5rem;
+      position: relative;
+      top: -1.5rem;
+      margin-left: 3%;
+      background: url("/images/about/unit1-bg.png") 0 0 no-repeat;
+      background-size: 100%;
+    }
+    .unit2, .unit3, .unit4 {
+      width: 94%;
+      margin-left: 3%;
+      border: .2rem solid #fff4d5;
+      box-sizing: border-box;
+      background-color: #fffdf7;
+    }
+    .unit2 {
+      padding-bottom: 1.5rem !important;
+    }
+    .unit3 {
+      .content {
+        ul>li{
+          padding-left: .3rem;
+          p {
+            display: inline-block;
+            padding: 0.1rem 1rem;
+            background-color: #e6e6e6;
+            border-radius: .8rem;
+            text-align: center;
+            margin-left: -.2rem;
+          }
+        }
+      }
+    }
+    @media (min-width: 360px) {
+      .content {
+        width: 96%;
+        margin: 0 auto;
+        line-height: 1.7rem;
+      }
+      .title {
+        height: 3.5rem;
+      }
+    }
+    @media(min-width:375px) {
+      .title {
+        height: 4rem;
+      }
+      .unit1 {
+        height: 24rem;
+      }
+    }
+    @media(min-width:411px) {
+      .content {
+        line-height: 1.7rem;
+      }
+      .title {
+        height: 4rem;
+      }
+      .unit1 {
+        height: 26rem;
+      }
     }
   }
 
