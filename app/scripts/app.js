@@ -509,12 +509,13 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/about.html',
+            templateUrl: 'views/about-new.html',
             controller: 'AboutCtrl',
             controllerUrl: 'scripts/controllers/about'
           }
         }
       })
+
       //推荐页
       .state('root.recommend', {
         url: '/recommend',

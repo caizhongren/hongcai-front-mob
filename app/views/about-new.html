@@ -1,0 +1,101 @@
+<div class="about" >
+  <div class="bg-White overflow-hid">
+    <ul class="about-tab1 columns ten offset-by-one aboutorange  margin-b-0">
+      <li class="column text-center margin-t-1 padding-b-1 " ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs track by $index" ng-click="toggle.switchTab($index)">{{tab.title}}</li>
+    </ul>
+  </div>
+
+
+  <!-- 要展示的内容如下 -->
+  <div class="tab-content columns twelve bg-White overflow-hid padding-b-2" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs">
+    <section ng-if="tab.title==='战略伙伴'" class="margin-b-7 bg-offWhite">
+      <div class="safe bg-white text-left" ng-repeat="item in partners">
+        <div class="border-bottom-safe ft-1p8 item-style">
+          <i class="fa {{::item.fa}} ft-orange padding-l-2"></i>
+          <span class="ft-orange">&nbsp {{item.name }} &nbsp</span>
+           <!-- <span class="font-sub-bule">{{ item.eName }}</span> -->
+           <hr class="hr-orange">
+        </div>
+        <div class="ft-1p5 padding-l-2 padding-r-2">
+          <p><strong>{{item.title }}</strong>
+          </p>
+          <p class="text-justify">{{item.introduction}}</p>
+        </div>
+      </div>
+    </section>
+    <section class=" margin-b-7" ng-if="tab.title==='宏财简介'">
+      <div class="safe bg-white text-left">
+        <div class="border-bottom-safe ft-1p8 item-style">
+          <i class="fa fa-users ft-orange padding-l-2"></i>
+          <span class="ft-orange">&nbsp 项目推荐方  &nbsp</span>
+          <!-- <small class="font-sub-bule">Background</small> -->
+          <hr class="hr-orange">
+        </div>
+        <div class="ft-1p5">
+          <p class="padding-l-2 padding-r-2 text-justify">宏财网项目推荐方为鑫融基金控股份有限公司（以下简称鑫融基，证券代码：832379）。鑫融基注册资本16.39亿元，是2006年由政府出资发起，多家地方企业共同参与成立的金融机构。是新三板金控第一股和首家全牌照金融服务机构，股本总额位居全国第四。公司在风控体系方面有着独特的优势，项目由政府参与出资的老牌担保公司提供担保。</p>
+        </div>
+      </div>
+      <div class="safe bg-white text-left">
+        <div class="border-bottom-safe ft-1p8 item-style">
+          <i class="fa fa-rocket ft-orange padding-l-2"></i>
+          <span class="ft-orange">&nbsp 成立背景  &nbsp</span>
+          <!-- <small class="font-sub-bule">Background</small> -->
+          <hr class="hr-orange">
+        </div>
+        <div class="ft-1p5">
+          <p class="padding-l-2 padding-r-2 text-justify">宏财网是一家国有企业战略投资的互联网金融平台，2016年A轮融资达1亿元。是国内极少数由国有控股上市金融集团提供专业安全金融资产的平台之一。办公地址位于北京奥运村核心区的国家会议中心。公司员工毕业于北京大学、中国人民大学、墨尔本大学等国内外知名高校，有政府机关，腾讯、新浪等公司，中国银行、中信证券等金融机构工作背景。公司设有董事会、风控委员会、战略委员会等以及研发部、运营部、市场部、商务部、项目部、风控部、客服部等部门；在洛阳、成都和广州等地设有分公司/办事处。</p>
+        </div>
+      </div>
+      <div class="safe bg-white text-left">
+        <div class="border-bottom-safe ft-2 item-style">
+          <i class="fa fa-gift ft-orange padding-l-2"></i>
+          <span class="ft-orange">&nbsp 业务范围  &nbsp</span>
+          <!-- <span class="font-sub-bule">Business</span> -->
+          <hr class="hr-orange">
+        </div>
+        <div class="ft-1p5 padding-l-2 padding-r-2 text-justify">
+          <!-- <p>业务范围涵盖：</p> -->
+          <ol>
+            <li>金融创新产品的咨询、开发、设计、交易等服务；</li>
+            <li>金融类应用软件开发、电子商务；</li>
+            <li>金融市场调研及数据分析。</li>
+          </ol>
+        </div>
+      </div>
+      <div class="safe bg-white text-left overflow-hid">
+        <div class="border-bottom-safe ft-2 item-style">
+          <i class="fa fa-cubes ft-orange padding-l-2"></i>
+          <span class="ft-orange">&nbsp 组织架构  &nbsp</span>
+          <!-- <span class="font-sub-bule">Structure</span> -->
+          <hr class="hr-orange">
+        </div>
+        <div class="ft-1p5">
+          <img src="/images/about-structure.png" width="100%">
+        </div>
+      </div>
+    </section>
+    <section ng-if="tab.title==='安全保障'" class="margin-b-7">
+      <!-- <div class="row border-solidf5-bottom bg-white padding-t-1 person" ng-class="{'margin-t-0p5': $index !== 0}" ng-repeat="item in consultants">
+        <div class="two columns padding-1">
+          <p class="margin-b-1"><img ng-src="{{ item.img }}" width="30%" class="text-center"></p>
+          <div class="about-right">
+          <p class="text-center ft-1p8 margin-b-1 ft-orange"><strong >{{ item.name }}</strong><small>{{ item.title }}</small></p>
+          <p class="text-justify ft-1p5 ft-grey4"><small>{{ item.introduction }}</small></p>
+        </div>
+        </div>
+      </div> -->
+      <div class="bg-offWhite margin-b-7">
+        <div class="safe bg-white" ng-repeat="item in NewSafes">
+          <div class="border-bottom-safe ft-1p8 item-style">
+            <i class="fa {{::item.fa}} ft-orange padding-l-2"></i>
+            <span class="ft-orange">&nbsp {{ item.name }} &nbsp</span>
+            <hr class="hr-orange">
+          </div>
+          <div class="ft-1p5 padding-l-2 padding-r-2">
+            <p class="text-justify">{{ item.content }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
