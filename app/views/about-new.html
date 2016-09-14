@@ -77,29 +77,6 @@
         <img src="/images/about/framework.png" width="93%" class="display-bl margin-auto margin-b-2">
       </div>
     </section>
-    <section ng-if="tab.title==='安全保障'" class="margin-b-7">
-      <!-- <div class="row border-solidf5-bottom bg-white padding-t-1 person" ng-class="{'margin-t-0p5': $index !== 0}" ng-repeat="item in consultants">
-        <div class="two columns padding-1">
-          <p class="margin-b-1"><img ng-src="{{ item.img }}" width="30%" class="text-center"></p>
-          <div class="about-right">
-          <p class="text-center ft-1p8 margin-b-1 ft-orange"><strong >{{ item.name }}</strong><small>{{ item.title }}</small></p>
-          <p class="text-justify ft-1p5 ft-grey4"><small>{{ item.introduction }}</small></p>
-        </div>
-        </div>
-      </div> -->
-      <div class="bg-offWhite margin-b-7">
-        <div class="safe bg-white" ng-repeat="item in NewSafes">
-          <div class="border-bottom-safe ft-1p8 item-style">
-            <i class="fa {{::item.fa}} ft-orange padding-l-2"></i>
-            <span class="ft-orange">&nbsp {{ item.name }} &nbsp</span>
-            <hr class="hr-orange">
-          </div>
-          <div class="ft-1p5 padding-l-2 padding-r-2">
-            <p class="text-justify">{{ item.content }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
     <section ng-if="tab.title==='高管团队'" class="topTeam margin-b-7">
       <!-- 刘刚 -->
       <div class="part1">
@@ -173,6 +150,69 @@
               </span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+    <section ng-if="tab.title==='联系我们'" class="callMe margin-b-7">
+      <!-- 客服电话 -->
+      <div class="content overflow-hid">
+        <div class="icon fl">
+          <i class="fa fa-tty" aria-hidden="true"></i>
+        </div>
+        <div class="text fl">
+          客服电话：<br>
+          400-990-7626（工作时间：09:00-18:00）
+        </div>
+      </div>
+      <!-- 邮件反馈 -->
+      <div class="content overflow-hid">
+        <div class="icon fl">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </div>
+        <div class="text fl">
+          邮件反馈：<br>
+          service@hongcai.com
+        </div>
+      </div>
+      <!-- 网址 -->
+      <div class="content overflow-hid">
+        <div class="icon fl">
+          <i class="fa fa-internet-explorer" aria-hidden="true"></i>
+        </div>
+        <div class="text fl">
+          网址：<br>
+          http://www.hongcai.com
+        </div>
+      </div>
+      <!-- 新浪微博 -->
+      <div class="content overflow-hid">
+        <div class="icon fl">
+          <i class="fa fa-weibo" aria-hidden="true"></i>
+        </div>
+        <div class="text fl">
+          新浪微博：<br>
+          http://weibo.com/u/5611368371
+        </div>
+      </div>
+      <!-- 地址 -->
+      <div class="content overflow-hid">
+        <div class="icon fl">
+          <i class="fa fa-home" aria-hidden="true"></i>
+        </div>
+        <div class="text fl">
+          地址：<br>
+          北京市朝阳区安立路80号马哥孛罗大厦15层
+        </div>
+      </div>
+      <!-- 微信ID -->
+      <div class="content overflow-hid">
+        <div class="icon fl">
+          <i class="fa fa-weixin" aria-hidden="true"></i>
+        </div>
+        <div class="text fl border-none">
+          微信ID：<br>
+          hongcailicai01 <br>
+          <img src="/images/about/weixin.png" alt="" width="45%" class="margin-t-0p5">
         </div>
       </div>
     </section>
