@@ -72,8 +72,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/activate-landing.html',
-            // controller: 'MainCtrl',
-            // controllerUrl: 'scripts/controllers/main'
+            controller: 'ActivateCtrl',
+            controllerUrl: 'scripts/modal/activate'
           }
         }
       })
