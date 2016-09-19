@@ -43,10 +43,9 @@ angular.module('p2pSiteMobApp')
      * 绑定银行卡
      */
     $scope.bindBankcard = function() {
-      // $state.go('root.yeepay-transfer', {
-      //   type: 'BIND_BANK_CARD'
-      // });
-      $rootScope.toActivate();
+      $state.go('root.yeepay-transfer', {
+        type: 'BIND_BANK_CARD'
+      });
     }
 
     $scope.changePassword = function(oldP, newP1, newP2) {
