@@ -4,7 +4,6 @@
  * @name p2pSiteMobApp
  * @description
  * # p2pSiteMobApp
- *
  * Main module of the application.
  */
 var p2pSiteMobApp = angular.module('p2pSiteMobApp', [

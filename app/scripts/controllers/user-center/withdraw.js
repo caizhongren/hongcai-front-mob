@@ -65,7 +65,9 @@ angular.module('p2pSiteMobApp')
       if(!amount || amount < 1){
         return;
       }
-
+      if($rootScope.payCompany == 'cgt' && $rootScope.securityStatus.userAuth.active === false) {
+        $rootScope.toActivate();
+      }
       $state.go('root.yeepay-transfer', {
         type: 'withdraw',
         number: amount
