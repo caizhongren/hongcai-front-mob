@@ -30,14 +30,10 @@ angular.module('p2pSiteMobApp')
           // };
 
           $scope.recharge = function(amount) {
-            if($rootScope.payCompany == 'cgt' && $rootScope.securityStatus.userAuth.active === false) {
-              $rootScope.toActivate();
-            } else {
-              $state.go('root.yeepay-transfer', {
-                type: 'recharge',
-                number: amount
-              });
-            }
+            $state.go('root.yeepay-transfer', {
+              type: 'recharge',
+              number: amount
+            });
           };
         } else {
           // 获取信息失败。

@@ -1,8 +1,8 @@
 /*
 * @Author: yuyang
 * @Date:   2016-09-02 11:12:13
-* @Last Modified by:   yuyang
-* @Last Modified time: 2016-09-07 11:12:23
+* @Last Modified by:   fuqiang1
+* @Last Modified time: 2016-09-19 17:34:44
 */
 
 'use strict';
@@ -44,17 +44,19 @@ angular.module('p2pSiteMobApp')
     }
 
     $rootScope.toRealNameAuth = function() {
-      $uibModal.open({
-        animation: true,
-        templateUrl: 'views/user-center/realname-auth.html',
-        controller: 'RealNameAuthCtrl'
-          // size: size,
-          // resolve: {
-          //   items: function () {
-          //     return $scope.items;
-          //   }
-          // }
-      });
+      // 接入存管通后解开注释
+      // $uibModal.open({
+      //   animation: true,
+      //   templateUrl: 'views/user-center/realname-auth.html',
+      //   controller: 'RealNameAuthCtrl'
+      //     // size: size,
+      //     // resolve: {
+      //     //   items: function () {
+      //     //     return $scope.items;
+      //     //   }
+      //     // }
+      // });
+      $rootScope.toActivate();
     }
 
     /**
@@ -83,16 +85,16 @@ angular.module('p2pSiteMobApp')
      */
     $rootScope.payCompany = config.pay_company;
     $rootScope.toActivate = function() {
-      if ($rootScope.payCompany === 'yeepay'||!$rootScope.isLogged || $rootScope.securityStatus.realNameAuthStatus !== 1 || $rootScope.securityStatus.userAuth.active === true) {
-        return;
-      }
+      // 接入存管通解开注释
+      // if ($rootScope.payCompany === 'yeepay'||!$rootScope.isLogged || $rootScope.securityStatus.realNameAuthStatus !== 1 || $rootScope.securityStatus.userAuth.active === true) {
+      //   return;
+      // }
       $uibModal.open({
         animation: true,
         templateUrl: 'views/user-center/activate.html',
         controller: 'ActivateCtrl'
       });
     }
-
     /**
      * 错误提示
      */
@@ -250,10 +252,10 @@ angular.module('p2pSiteMobApp')
       }
 
 
-      //提示激活存管通
-      if (path == 'user-center') {
-        $rootScope.toActivate();
-      }
+      //提示激活存管通，接入存管通后解开注释
+      // if (path == 'user-center') {
+      //   $rootScope.toActivate();
+      // }
       for (var obj in $location.search()) {
         if (obj !== 'act' && obj !== 'f') {
           $rootScope.channelParamsObj[obj] = $location.search()[obj];

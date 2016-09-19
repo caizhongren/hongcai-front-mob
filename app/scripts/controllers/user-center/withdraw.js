@@ -65,13 +65,12 @@ angular.module('p2pSiteMobApp')
       if(!amount || amount < 1){
         return;
       }
-      if($rootScope.payCompany == 'cgt' && $rootScope.securityStatus.userAuth.active === false) {
-        $rootScope.toActivate();
-      }
-      $state.go('root.yeepay-transfer', {
-        type: 'withdraw',
-        number: amount
-      });
+
+      // $state.go('root.yeepay-transfer', {
+      //   type: 'withdraw',
+      //   number: amount
+      // });
+      $rootScope.toActivate();
     }
 
   /**
@@ -82,9 +81,10 @@ angular.module('p2pSiteMobApp')
       return;
     }
 
-    $state.go('root.yeepay-transfer', {
-      type: 'BIND_BANK_CARD'
-    });
+    // $state.go('root.yeepay-transfer', {
+    //   type: 'BIND_BANK_CARD'
+    // });
+    $rootScope.toActivate();
   }
 
 
