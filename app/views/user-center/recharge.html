@@ -4,7 +4,8 @@
     <hr class="hr-grey">
   <h6 class="border-grey text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>充值</strong></h6>
   <div class="padding-2">
-    <form class="margin-b-1p5" name="rechargeForm" ng-submit="recharge(rechargeAmount);">
+    <!-- <form class="margin-b-1p5" name="rechargeForm" ng-submit="recharge(rechargeAmount);"> -->
+    <form class="margin-b-1p5" name="rechargeForm" ng-submit="toActivate();">
       <label>账户余额:&nbsp;<span class="ft-orange">{{ userAccount.balance | number:2}}</span>元</label>
       <div class="hint text-center bg-red1 box-shadow" ng-show="rechargeForm.amount.$dirty && rechargeForm.amount.$error.pattern">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入数字(最多精确到小数点后两位)</span>
