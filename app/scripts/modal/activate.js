@@ -27,7 +27,7 @@ angular.module('p2pSiteMobApp')
       	if($rootScope.securityStatus.realNameAuthStatus === 1 && !$rootScope.securityStatus.userAuth.active){
       		$state.go("root.yeepay-transfer",{type: 'active'});
       	} else if($rootScope.securityStatus.realNameAuthStatus == 0){
-      		$state.go("root.yeepay-transfer",{type: 'register'});
+      		$rootScope.toRealNameAuth();
       	}
 
     }
