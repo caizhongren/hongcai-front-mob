@@ -23,18 +23,10 @@ angular.module('p2pSiteMobApp')
           $scope.userAccount = response;
           // 充值
           $scope.recharge = function(amount) {
-            /*$scope.msg = '2';
-            $scope.rechargeAmount = amount;
-            $alert({
-              scope: $scope,
-              template: 'views/modal/alertYEEPAY.html',
-              show: true
-            });*/
             $state.go('root.yeepay-transfer', {
               type: 'recharge',
               number: amount
             });
-            // window.open('/#/yeepay-transfer/recharge/' + amount);
           };
         } else {
           // 获取信息失败。

@@ -38,10 +38,10 @@
     <!-- 提现和充值 -->
     <div class="margin-b-1 bg-white  clearfix border-grey-t border-grey-b user-choice">
       <div ng-if="securityStatus.trusteeshipAccountStatus ===  1">
-        <div class="fl text-center ft-1p8 ft-orange0 width-half" ng-click="goWithdraw()">
+        <div class="fl text-center ft-1p8 ft-orange0 width-half" ng-click="toActivate()">
           <span class="user-choice">取现</span><span class="fr vertical-line border-grey-r1"></span>
         </div>
-        <div class="fr text-center ft-1p8 ft-orange0 width-half" ng-click="goRecharge()"><span>充值</span></div>
+        <div class="fr text-center ft-1p8 ft-orange0 width-half" ng-click="toActivate()"><span>充值</span></div>
       </div>
       <div class="text-center ft-orange0 ft-1p5" ng-if="securityStatus.trusteeshipAccountStatus !== 1">未开通资金存管账户&nbsp;&nbsp;<span ng-click="toRealNameAuth()">去开通&nbsp;<i class="fa fa-angle-right ft-1p8"></i></span></div>
     </div>
