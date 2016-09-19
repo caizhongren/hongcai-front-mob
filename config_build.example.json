@@ -1,5 +1,5 @@
 {
-  "YEEPAY_ADDRESS": "https://member.yeepay.com/member/bhawireless/",
+  "YEEPAY_ADDRESS": "https://www.lanmaoly.com/bha-neo-app/lanmaotech/gateway",
   "wechatRedirect": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx643d9b3aa9ca1e64&redirect_uri=http%3A%2F%2Fdz.test321.hongcai.com%2F&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect",
   "consume": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx643d9b3aa9ca1e64&redirect_uri=http%3A%2F%2Fdz.test321.hongcai.com%2Fiou&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect",
   "recharge": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx643d9b3aa9ca1e64&redirect_uri=http%3A%2F%2Fdz.test321.hongcai.com%2F&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect",
@@ -12,6 +12,6 @@
   "domain":"http://m.hongcai.com",
   "base_file_url":"http://www.hongcai.com/uploads/",
   "wechat_id": "gh_9eddaa04a222",
-  "pay_company":"yeepay"
+  "pay_company":"cgt"
 
 }
