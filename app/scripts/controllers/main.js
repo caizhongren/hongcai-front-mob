@@ -39,6 +39,6 @@ angular.module('p2pSiteMobApp')
     /**
      * 是否激活存管通
      */
-     $rootScope.toActivate();
+     // $rootScope.toActivate();
 
   });
