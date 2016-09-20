@@ -138,12 +138,16 @@ angular.module('p2pSiteMobApp')
         });
       } else if ($scope.type === 'autoRepayment') { //自动还款授权
         var autoRepayment = restmod.model(WEB_DEFAULT_DOMAIN + "/yeepay/authorizeAutoRepayment");
-        autoRepayment.$create({}).$then(function(response){
+        autoRepayment.$create({
+          'from': 2
+        }).$then(function(response){
           redirectToYeepay('toAuthorizeAutoRepayment',response);
         });
       } else if ($scope.type === 'active') { //存管通激活
         var active = restmod.model(DEFAULT_DOMAIN + "/userAuths/cgtActive");
-        active.$create({}).$then(function(response){
+        active.$create({
+          'from': 2
+        }).$then(function(response){
           redirectToYeepay('toActive',response);
         });
       }
