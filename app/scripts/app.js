@@ -4,7 +4,6 @@
  * @name p2pSiteMobApp
  * @description
  * # p2pSiteMobApp
- *
  * Main module of the application.
  */
 var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
@@ -73,8 +72,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/activate-landing.html',
-            // controller: 'MainCtrl',
-            // controllerUrl: 'scripts/controllers/main'
+            controller: 'ActivateCtrl',
+            controllerUrl: 'scripts/modal/activate'
           }
         }
       })
@@ -141,7 +140,7 @@ p2pSiteMobApp
         }
       })
       .state('root.yeepay-callback', {
-        url: '/yeepay-callback/:business/:status?amount',
+        url: '/yeepay-callback/:business/:status?amount&number',
         views: {
           '': {
             templateUrl: 'views/yeepay-callback.html',
@@ -509,12 +508,13 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/about.html',
+            templateUrl: 'views/about-new.html',
             controller: 'AboutCtrl',
             controllerUrl: 'scripts/controllers/about'
           }
         }
       })
+
       //推荐页
       .state('root.recommend', {
         url: '/recommend',

@@ -66,11 +66,10 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
-      // $state.go('root.yeepay-transfer', {
-      //   type: 'withdraw',
-      //   number: amount
-      // });
-      $rootScope.toActivate();
+      $state.go('root.yeepay-transfer', {
+        type: 'withdraw',
+        number: amount
+      });
     }
 
   /**
@@ -81,10 +80,9 @@ angular.module('p2pSiteMobApp')
       return;
     }
 
-    // $state.go('root.yeepay-transfer', {
-    //   type: 'BIND_BANK_CARD'
-    // });
-    $rootScope.toActivate();
+    $state.go('root.yeepay-transfer', {
+      type: 'BIND_BANK_CARD'
+    });
   }
 
 

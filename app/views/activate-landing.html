@@ -7,7 +7,7 @@
     <img src="/images/new/members.png" width="27%" height="20%" class="display-inb">
     <div class="fr ft-1p4 wid-71 ft-1p2">
       <p class="ft-1p6 ft-blue0 ft-bold">北京网贷“存管通”平台首批成员</p>
-      <p class="margin-b-0">北京网贷存管通，是北京市金融局 、北京市网贷行业协会懒猫联银联手打造的风险监控与资金存管系统。宏财网首批完成存管通接入工作，标志这宏财网的实力和规范运营获得了主管部门的认可。</p>
+      <p class="margin-b-0">北京网贷存管通，是北京市网贷行业协会懒猫联银联手打造的风险监控与资金存管系统。宏财网首批完成存管通接入工作，标志着宏财网的实力和规范运营获得了主管部门的认可。</p>
     </div>
   </div>
   <div class="section2">
@@ -25,8 +25,7 @@
     </div>
   </div>
   <div class="section2 text-center" ng-hide="isLogged && securityStatus.userAuth.active === true">
-    <button class="btn activate-btn ft-2p5 margin-auto display-bl ft-white ft-bold" ng-if="!isLogged" ui-sref="root.login">立即开通</button>
-    <button class="btn activate-btn ft-2p5 margin-auto display-bl ft-white ft-bold" ng-if="isLogged && securityStatus.userAuth.active === false" ui-sref="root.yeepay-transfer({type:'active'})">立即开通</button>
+    <button class="btn activate-btn ft-2p5 margin-auto display-bl ft-white ft-bold" ng-click="toOpen()">立即开通</button>
     <p class="cue margin-b-0 margin-t-1">您的账户已经升级为北京网贷资金存管账户，</p>
     <p class="cue margin-b-1">请点击上方按钮立即开通。</p>
   </div>

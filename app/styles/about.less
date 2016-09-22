@@ -5,13 +5,280 @@
     width: 100%;
   }
   .about-tab1 li {
-    width: 1/3*100%;
+    width: 20%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
   }
   .half {
     width: 48%;
   }
   .base-background {
     background-color: #F5F5F5;
+  }
+  .aboutorange li {
+    padding-bottom: .4rem;
+    margin-top: .5rem;
+    color: #757575;
+    margin-bottom: .1rem;
+  }
+  .aboutorange li.active {
+    color: #f5762f;
+    border-bottom: .2rem solid #f5762f;
+    box-sizing: border-box;
+  }
+
+  // 宏财简介
+  .introduce {
+    .content {
+      line-height: 1.4rem;
+      color: #5a5959;
+    }
+    .title {
+        background: url('/images/about/bg_title.png') 0 0 no-repeat;
+        background-size: 100%;
+        width: 68%;
+        height: 3.2rem;
+      }
+    .unit1 {
+      width: 94%;
+      height: 23.5rem;
+      position: relative;
+      top: -1.5rem;
+      margin-left: 3%;
+      background: url("/images/about/unit1-bg.png") 0 0 no-repeat;
+      background-size: 100%;
+    }
+    .unit2, .unit3, .unit4 {
+      width: 94%;
+      margin-left: 3%;
+      border: .2rem solid #fff4d5;
+      box-sizing: border-box;
+      background-color: #fffdf7;
+    }
+    .unit2 {
+      padding-bottom: 1.5rem !important;
+    }
+    .unit3 {
+      .content {
+        ul>li{
+          padding-left: .3rem;
+          p {
+            display: inline-block;
+            padding: 0.1rem 1rem;
+            background-color: #e6e6e6;
+            border-radius: .8rem;
+            text-align: center;
+            margin-left: -.2rem;
+          }
+        }
+      }
+    }
+    @media (min-width: 360px) {
+      .content {
+        width: 96%;
+        margin: 0 auto;
+        line-height: 1.7rem;
+      }
+      .title {
+        height: 3.5rem;
+      }
+    }
+    @media(min-width:375px) {
+      .title {
+        height: 4rem;
+      }
+      .unit1 {
+        height: 24.4rem;
+      }
+    }
+    @media(min-width:411px) {
+      .content {
+        line-height: 1.7rem;
+      }
+      .title {
+        height: 4rem;
+      }
+      .unit1 {
+        height: 26.6rem;
+      }
+    }
+  }
+
+  // 高管团队
+  .topTeam {
+    margin: 1rem 1rem 7rem;
+    border: 0.2rem solid #fff4d5;
+    background-color: #fffdf7;
+    .part1 {
+      .top_title, .top_title1, .top_title2, .top_title3 {
+        background: url('/images/about/bg_title.png') no-repeat 0 0;
+        background-size: 69% 83%;
+        height: 3rem;
+        margin: 1rem 0 0 1rem;
+        p{
+          margin-bottom: 0;
+          color: #fff;
+          text-align: center;
+          width: 69%;
+          font-size: 1.3rem;
+          height: 2rem;
+          line-height: 2rem;
+          .t_title {
+            font-size: 1.2rem;
+          }
+        }
+      }
+      .top_title1 {
+        background-size: 79% 83% !important;
+        background-position: right;
+        p{
+          width: 93%;
+          text-align: right;
+          padding-top: 3px;
+        }
+        @media (min-width:320px) {
+          background-size: 91% 83% !important;
+        }
+        @media (min-width:360px) {
+          background-size: 81% 83% !important;
+        }
+        @media (min-width:375px) {
+          background-size: 77% 83% !important;
+        }
+        @media (min-width:414px) {
+          background-size: 71% 83% !important;
+        }
+      }
+      .top_title2 {
+        background-size: 71% 83% !important;
+        p{
+          width: 71%;
+        }
+        @media (min-width:320px) {
+          background-size: 85% 83% !important;
+          p{
+            width: 85%;
+          }
+        }
+        @media (min-width:360px) {
+          background-size: 73% 83% !important;
+          p{
+            width: 73%;
+          }
+        }
+        @media (min-width:375px) {
+          background-size: 70% 83% !important;
+          p{
+            width: 70%;
+          }
+        }
+      }
+      .top_title3 {
+        background-size: 69% 83% !important;
+        background-position: right;
+        p{
+          width: 79%;
+          text-align: right;
+          padding-top: 3px;
+        }
+        @media (min-width:320px) {
+          p{
+            width: 83%;
+          }
+        }
+        @media (min-width:414px) {
+          p{
+            width: 80%;
+          }
+        }
+      }
+      .content {
+        margin-bottom: 2rem;
+        .lf_text {
+          width: 64%;
+          overflow: hidden;
+          margin: 1rem 0 0 1rem;
+          .circle {
+            width: 8%;
+            color: #fcb165;
+            font-size: 1.2rem;
+            margin-top: 3px;
+          }
+          .text {
+            width: 85%;
+            font-size: 1.2rem;
+            padding-bottom: 1rem;
+            color: #5a5959;
+          }
+        }
+      }
+      .img, .img1, .img2 {
+          position: absolute;
+          bottom: 0;
+        }
+      .img {
+        right: -0.9rem;
+      }
+      .img1 {
+        left: -1rem;
+      }
+      .img2 {
+        left: -0.4rem;
+      }
+    }
+  }
+
+  // 联系我们
+  .callMe {
+    margin: 1rem 1rem 7rem;
+    border: 0.2rem solid #fff4d5;
+    background-color: #fffdf7;
+    .content {
+      margin: 1.5rem 0 0 1rem;
+      .icon {
+        width: 8%;
+        color: #fcb165;
+      }
+      .text {
+        width: 85%;
+        color: #757575;
+        border-bottom: 1px solid #fcbc7e;
+        padding-bottom: 1.2rem;
+        font-size: 1.3rem;
+      }
+    }
+  }
+  // 战略伙伴
+  .partner {
+    .partner-units {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      ul {
+        display: block;
+        background-color: #fffdf7;
+        border: .2rem solid #fff4d5;
+        li {
+          p {
+            width: 85%;
+            margin: 0 auto;
+            margin-bottom: 1rem;
+            color: #5a5959;
+          }
+          .line {
+            border-bottom: 1px solid #fff4d5;
+            width: 86%;
+            margin: 1.5rem auto;
+            p{
+              width: 1rem;
+              height: 1rem;
+              background-color: #fff4d5;
+              right: 0;
+              top: -.9rem;
+            }
+          }
+        }
+      }
+    }
   }
 }
 
