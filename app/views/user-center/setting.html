@@ -24,8 +24,8 @@
     <div>
       <p>手机号码：</p>
       <p>{{handleMobileNum(hasLoggedUser.mobile) || '无'}}
-        <span ng-show="securityStatus.realNameAuthStatus == 1" ng-click="checkMobileFlag=true"><a>修改></a></span>
-        <span ng-show="securityStatus.realNameAuthStatus !== 1" ng-click="toRealNameAuth()"><a>修改></a></span>
+        <span ng-show="securityStatus.realNameAuthStatus !== 1" ui-sref="root.userCenter.resetMobile"><a>修改></a></span>
+        <span ng-show="securityStatus.realNameAuthStatus == 1" ng-click="toRealNameAuth()"><a>修改></a></span>
         <span ng-show="hasLoggedUser.mobile == null"><i class="fa fa-check-circle-o"></i>&nbsp;未绑定</span>
       </p>
     </div>
@@ -85,7 +85,7 @@
   </div>
 </div>
 <!-- 修改密码蒙层 checkPwdFlag-->
-<div ng-show="false" class="project-mask">
+<!-- <div ng-show="false" class="project-mask">
   <div class="bg-white setting-mask project-mask-inner">
     <form name="passwordResetForm" class="margin-b-0">
       <p class="margin-b-1p5">
@@ -108,7 +108,7 @@
     </p>
   </div>
 </div>
-</div>
+</div> -->
 <!-- 开通自动投标权限蒙层 -->
 <div ng-show="checkAutoFlag" class="project-mask">
   <div class="bg-white email-mask project-mask-inner">
@@ -121,13 +121,12 @@
   </div>
 </div>
 <!-- 手机号码蒙层 -->
-<div ng-show="checkMobileFlag" class="project-mask">
+<!-- <div ng-show="checkMobileFlag" class="project-mask">
   <div class="bg-white email-mask project-mask-inner">
     <form name="resetMobileForm" class="margin-b-0">
       <p class="margin-b-0 text-center">
         <span>手机号码&nbsp;&nbsp;</span>
         <input type="text" id="mobileNum" name="mobileNum" ng-model="mobileNum" ng-pattern="/^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/" ensure-unique-mobile="mobileNum" placeholder="请输入手机号码" ng-focus required/>
-        <!-- <input type="password" placeholder="请输入手机号码" ng-model="mobile"> -->
       </p>
       <div ng-show="resetMobileForm.mobileNum.$dirty && resetMobileForm.mobileNum.$invalid && !resetMobileForm.mobileNum.$focused" class="text-center">
         <div class="user-tips-area row" ng-show="resetMobileForm.mobileNum.$error.required &&
@@ -147,4 +146,4 @@
       <span ng-click="checkMobileFlag=false">取消</span>
       <span ng-disabled="resetMobileForm.$invalid" ng-click="resetMobile(mobileNum)" my-click-once ng-class="{'active-span': !resetMobileForm.$invalid}">确定</span></p>
   </div>
-</div>
+</div> -->

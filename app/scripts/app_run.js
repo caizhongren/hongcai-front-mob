@@ -2,7 +2,7 @@
 * @Author: yuyang
 * @Date:   2016-09-02 11:12:13
 * @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-09-19 19:44:27
+* @Last Modified time: 2016-09-22 15:38:10
 */
 
 'use strict';
@@ -56,7 +56,6 @@ angular.module('p2pSiteMobApp')
           // }
       });
     }
-
     /**
      * 未支付订单
      */

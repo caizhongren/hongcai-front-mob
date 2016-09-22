@@ -306,6 +306,20 @@ p2pSiteMobApp
           }
         }
       })
+      //修改手机号码
+      .state('root.userCenter.resetMobile', {
+        url: '/reset-mobile',
+        data: {
+          title: '修改手机号'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/reset-mobile.html',
+            controller: 'resetMobileCtrl',
+            controllerUrl: 'scripts/controllers/user-center/resetMobile'
+          }
+        }
+      })
       // 投资统计
       .state('root.userCenter.investments-stat', {
         url: '/investments-stat',
