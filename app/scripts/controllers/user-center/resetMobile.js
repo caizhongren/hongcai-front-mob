@@ -2,7 +2,7 @@
 * @Author: fuqiang1
 * @Date:   2016-09-22 15:50:26
 * @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-09-23 17:09:27
+* @Last Modified time: 2016-09-23 18:07:39
 */
 
 'use strict';
@@ -35,32 +35,7 @@
           $scope.piccha = true;
         }
       })
-      /**
-       * 校验短信验证码
-       */
-      $scope.checkMobileCaptcha = function(mobile,captcha) {
-        HongcaiUser.$find('/checkMobileCaptcha', {
-          mobile: mobile,
-          captcha: captcha
-        }).$then(function(response) {
-          if (response.ret === -1) {
-            $scope.getCaptchaErr = response.msg;
-            $rootScope.showMsg(response.msg);
-          } else {
-            //短信验证码正确，修改手机号
-            Restangular.one('/users/').one('0/').post('resetMobile', {
-              mobile: mobile,
-              captcha: captcha
-            }).then(function(response) {
-              if(response.ret == -1){
-                $rootScope.showMsg(response.msg);
-                return;
-              }
-              $state.go('root.userCenter.setting');
-            })
-          }
-        });
-      }
+
     /**
      * 确认修改手机号
      */
@@ -88,16 +63,16 @@
         })
 
 
-        //判断手机号是否被占用,
-
-        Restangular.one('/users/').post('isUnique', {
-          account: mobile
+        //判断手机号是否被占用,短信验证码是否正确
+        Restangular.one('/users/').one('0/').post('resetMobile', {
+          mobile: mobile,
+          captcha: captcha
         }).then(function(response) {
-          if (response.ret === -1) {
-           $rootScope.showMsg('手机号码已被占用');
-          }else {
-            $scope.checkMobileCaptcha(mobile, captcha);
+          if(response.ret == -1){
+            $rootScope.showMsg(response.msg);
+            return;
           }
+          $state.go('root.userCenter.setting');
         })
       }
 
