@@ -2,7 +2,7 @@
 * @Author: fuqiang1
 * @Date:   2016-09-22 15:50:26
 * @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-09-23 18:07:39
+* @Last Modified time: 2016-09-23 18:47:07
 */
 
 'use strict';
@@ -68,11 +68,12 @@
           mobile: mobile,
           captcha: captcha
         }).then(function(response) {
-          if(response.ret == -1){
+          if(response.ret === -1){
             $rootScope.showMsg(response.msg);
             return;
+          }else{
+            $state.go('root.userCenter.setting');
           }
-          $state.go('root.userCenter.setting');
         })
       }
 
