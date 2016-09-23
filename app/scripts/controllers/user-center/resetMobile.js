@@ -2,7 +2,7 @@
 * @Author: fuqiang1
 * @Date:   2016-09-22 15:50:26
 * @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-09-23 10:10:21
+* @Last Modified time: 2016-09-23 17:09:27
 */
 
 'use strict';
@@ -10,7 +10,7 @@
  * 修改手机号码（针对已绑定手机号）
  */
  angular.module('p2pSiteMobApp')
-   .controller('resetMobileCtrl', function(checkPwdUtils, $rootScope, $scope, $state, $http, $stateParams, $location, $timeout, CheckMobUtil, CheckPicUtil, md5, register, wechat, mobileCaptcha, HongcaiUser, Restangular, restmod, DEFAULT_DOMAIN){
+   .controller('resetMobileCtrl', function(checkPwdUtils, $rootScope, $scope, $state, $http, CheckMobUtil, CheckPicUtil, md5, register, wechat, mobileCaptcha, HongcaiUser, Restangular){
       //图形验证码
       $scope.getPicCaptcha = '/hongcai/api/v1/siteUser/getPicCaptcha?';
       $scope.refreshCode = function() {
@@ -47,10 +47,17 @@
             $scope.getCaptchaErr = response.msg;
             $rootScope.showMsg(response.msg);
           } else {
-            $state.go('root.yeepay-transfer', {
-              type: 'RESET_MOBILE',
-              number: mobile
-            });
+            //短信验证码正确，修改手机号
+            Restangular.one('/users/').one('0/').post('resetMobile', {
+              mobile: mobile,
+              captcha: captcha
+            }).then(function(response) {
+              if(response.ret == -1){
+                $rootScope.showMsg(response.msg);
+                return;
+              }
+              $state.go('root.userCenter.setting');
+            })
           }
         });
       }
@@ -80,6 +87,7 @@
           }
         })
 
+
         //判断手机号是否被占用,
 
         Restangular.one('/users/').post('isUnique', {
@@ -92,5 +100,6 @@
           }
         })
       }
+
    })
 
