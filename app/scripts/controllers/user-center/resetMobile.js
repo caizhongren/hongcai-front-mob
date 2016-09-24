@@ -2,7 +2,7 @@
 * @Author: fuqiang1
 * @Date:   2016-09-22 15:50:26
 * @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-09-23 18:47:07
+* @Last Modified time: 2016-09-24 11:12:43
 */
 
 'use strict';
@@ -73,6 +73,7 @@
             return;
           }else{
             $state.go('root.userCenter.setting');
+            $rootScope.showMsg("修改成功！");
           }
         })
       }
