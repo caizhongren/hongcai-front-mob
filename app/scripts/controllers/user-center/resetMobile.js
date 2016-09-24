@@ -2,7 +2,7 @@
 * @Author: fuqiang1
 * @Date:   2016-09-22 15:50:26
 * @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-09-24 11:12:43
+* @Last Modified time: 2016-09-24 17:45:42
 */
 
 'use strict';
@@ -23,15 +23,11 @@
       $scope.$watch('user.mobile', function(newVal) {
           CheckMobUtil.checkMob(newVal);
         })
-      /**
-       * 校验图形验证码
-       */
+      //校验图形验证码
       $scope.$watch('user.picCaptcha', function(newVal) {
-        $rootScope.msg = '';
-        CheckPicUtil.checkePic(newVal);
-        if ($rootScope.msg) {
-          $scope.piccha = false;
-        } else {
+        $scope.piccha = false;
+        var msg = CheckPicUtil.checkePic(newVal);
+        if(msg){
           $scope.piccha = true;
         }
       })
