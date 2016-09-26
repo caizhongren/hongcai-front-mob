@@ -582,7 +582,7 @@ input::-webkit-inner-spin-button {
     }
 }
 
-.activity-landing, .novice-landing{
+.activity-landing, .novice-landing, .invite-act{
   background-color: #f9513b;
   margin-bottom: 0;
   padding-bottom: 1%;
@@ -614,7 +614,6 @@ input::-webkit-inner-spin-button {
             font-size: 1.4rem;
           }
         }
-
       }
     }
     .explain{
@@ -1690,6 +1689,247 @@ input::-webkit-inner-spin-button {
           }
         }
       }
+    }
+  }
+}
+
+// 新邀请活动
+.invite-act {
+  background-color: #37c6ff;
+  .border-blue {
+    border: .8rem solid #4ad9ff;
+  }
+  .unit1 {
+    .invite-tit {
+      height: 6rem;
+      line-height: 5rem;
+      width: 80%;
+      left: 10%;
+      top: -27%;
+      color: #1a779c;
+      background: url("/images/activity/invite-title.png") no-repeat 0 0;
+      background-size: 100%;
+    }
+    background-color: #94ffff;
+    p.content {
+      padding-left: 1.2rem;
+      padding-right: 1.5rem;
+      line-height: 1.9rem;
+    }
+  }
+}
+@media (min-width:320px) {
+ .invite-act {
+   .explain {
+     background: url('/images/activity/invt-bottom.png') no-repeat 0 0;
+     background-size: 100%;
+     p{
+       color:#ffffff;
+       font-size:1.3rem;
+       margin:0 auto;
+       text-align:center;
+     }
+   }
+   .unit1 {
+     .invite-tit {
+       height: 6rem;
+       line-height: 3.8rem;
+       width: 80%;
+       top: -17%;
+       p {
+        font-size: 1.3rem;
+       }
+     }
+     p.content {
+       font-size: 1.2rem;
+       padding-left: 1.2rem;
+       padding-right: 1.5rem;
+       line-height: 1.7rem;
+     }
+   }
+   .unit2 {
+    background-color: #DBF7FF;
+    .invite-tit {
+      top: -5%;
+    }
+    .inv-btn {
+      background: url('/images/activity/inv-btn.png') no-repeat 0 0;
+      background-size: 100%;
+      width: 95%;
+      height: 5rem;
+      line-height: 3.5rem;
+    }
+   }
+   .unit3 {
+     background-color: #94FFFF;
+    .invite-tit {
+      top: -11%;
+    }
+   }
+   .unit4 {
+    background-color: #37c6ff;
+    .landing-bottom {
+      ul {
+        li {
+          background: url("/images/activity/inv-aboutus.png") no-repeat 0 0;
+          background-size: 100%;
+          img {
+            width: 14%;
+          }
+          p {
+            font-size: 1.2rem;
+            margin-top: .8rem;
+          }
+          span {
+            font-size: 1.2rem;
+            line-height: 1.1rem;
+          }
+        }
+      }
+    }
+   }
+ }
+}
+@media (min-width:360px) {
+ .invite-act {
+   .unit1 {
+     .invite-tit {
+       height: 6rem;
+       line-height: 4rem;
+       width: 80%;
+       top: -20%;
+       p {
+        font-size: 1.4rem;
+       }
+     }
+     p.content {
+       font-size: 1.3rem;
+       padding-left: 1.2rem;
+       padding-right: 1.5rem;
+       line-height: 1.7rem;
+     }
+   }
+   .unit2 {
+    .invite-tit {
+      top: -5%;
+    }
+    .inv-btn {
+      font-size: 1.6rem;
+      height: 6rem;
+      line-height: 4rem;
+    }
+   }
+   .unit3 {
+    .invite-tit {
+      top: -16%;
+    }
+   }
+   .unit4 {
+    .landing-bottom {
+      ul {
+        li {
+          p {
+            font-size: 1.3rem;
+            margin-top: .8rem;
+          }
+          span {
+            font-size: 1.2rem;
+            line-height: 1.6rem;
+          }
+        }
+      }
+    }
+   }
+ }
+}
+@media (min-width:375px) {
+ .invite-act {
+   .explain {
+    p{
+      color:#ffffff;
+      font-size:1.4rem;
+      margin:0 auto;
+      text-align:center;
+    }
+   }
+   .unit1 {
+     .invite-tit {
+       height: 6rem;
+       line-height: 4.5rem;
+       width: 80%;
+       top: -24%;
+       p {
+        font-size: 1.5rem;
+       }
+     }
+     p.content {
+       font-size: 1.3rem;
+       padding-left: 1.2rem;
+       padding-right: 1.5rem;
+       line-height: 1.7rem;
+     }
+   }
+   .unit2 {
+    .invite-tit {
+      top: -5%;
+    }
+   }
+   .unit3 {
+    .invite-tit {
+      top: -16%;
+    }
+   }
+ }
+}
+@media (min-width:411px) {
+  .invite-act {
+    background-color: #37c6ff;
+    .border-blue {
+      border: .8rem solid #4ad9ff;
+    }
+    .unit1 {
+      .invite-tit {
+        height: 6rem;
+        line-height: 5rem;
+        p {
+          font-size: 1.6rem;
+        }
+      }
+      p.content {
+        padding-left: 1.2rem;
+        padding-right: 1.5rem;
+        line-height: 1.9rem;
+      }
+    }
+    .unit2 {
+     .invite-tit {
+       top: -5%;
+     }
+     .inv-btn {
+       height: 7rem;
+       line-height: 4.5rem;
+     }
+    }
+    .unit3 {
+     .invite-tit {
+       top: -16%;
+     }
+    }
+    .unit4 {
+     .landing-bottom {
+       ul {
+         li {
+           p {
+             font-size: 1.4rem;
+             margin-top: 1rem;
+           }
+           span {
+             font-size: 1.35rem;
+             line-height: 1.8rem;
+           }
+         }
+       }
+     }
     }
   }
 }

@@ -822,7 +822,20 @@ p2pSiteMobApp
       //     }
       //   }
       // })
-
+      //邀请活动
+      .state('root.activity.newInvite-landing', {
+        url: '/invite-activity',
+        views: {
+          '': {
+            templateUrl: 'views/activity/newInvite.html',
+            // controller: 'newInviteCtrl',
+            // controllerUrl: 'scripts/controllers/activity/new-invite-ctrl'
+          }
+        },
+        data: {
+          title: '邀请好友投资送60元现金'
+        }
+      })
     //体验金新手标
     .state('root.experience-project-detail', {
         url: '/experience-project',
