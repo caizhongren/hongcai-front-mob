@@ -1,8 +1,8 @@
 /*
 * @Author: fuqiang1
 * @Date:   2016-07-18 10:32:33
-* @Last Modified by:   Administrator
-* @Last Modified time: 2016-08-08 17:55:07
+* @Last Modified by:   fuqiang1
+* @Last Modified time: 2016-09-26 10:04:28
 */
 
 'use strict';
@@ -48,9 +48,17 @@ angular.module('p2pSiteMobApp')
     };
   /*跳转到体验金投资页*/
     $scope.quickInvest  = function(){
-      if($scope.account.experienceAmount <= 0){
+      if($scope.account.experienceAmount <= 100){
         return;
       }
-      $location.url('/experience-project');
+      if($rootScope.securityStatus.realNameAuthStatus !== 1){
+        $rootScope.toRealNameAuth();
+      }
+      if($rootScope.securityStatus.realNameAuthStatus == 1 && $rootScope.securityStatus.userAuth.active === false){
+        $rootScope.activate();
+      }
+      if($rootScope.securityStatus.realNameAuthStatus == 1 && $rootScope.securityStatus.userAuth.active === true){
+        $location.url('/experience-project');
+      }
     }
 });
