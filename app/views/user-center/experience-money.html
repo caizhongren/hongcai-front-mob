@@ -8,8 +8,8 @@
         <p class="margin-b-0">{{account.experienceAmount || 0.00}}</p>
       </div>
       <div class="fr">
-        <!-- <button class="btn" ng-click="quickInvest()" ng-disabled="account.experienceAmount <= 0">立即投资</button> -->
-        <button class="btn" ng-click="toActivate()" ng-disabled="account.experienceAmount <= 0">立即投资</button>
+        <button class="btn" ng-click="quickInvest()" ng-disabled="account.experienceAmount <= 0">立即投资</button>
+        <!-- <button class="btn" ng-click="toActivate()" ng-disabled="account.experienceAmount <= 0" ng-show="securityStatus.userAuth.active === false">立即投资</button> -->
       </div>
     </div>
   </div>
