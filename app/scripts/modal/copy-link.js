@@ -2,12 +2,12 @@
 * @Author: fuqiang1
 * @Date:   2016-09-27 17:16:52
 * @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-09-27 17:32:35
+* @Last Modified time: 2016-09-27 19:18:34
 */
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('CopyLinkCtrl', function($scope, $state, $uibModalInstance) {
+  .controller('CopyLinkCtrl', function($scope, $state, $location, $uibModalInstance, HongcaiUser) {
 
     $scope.cancel = function () {
       $uibModalInstance.dismiss('cancel');
@@ -21,5 +21,15 @@ angular.module('p2pSiteMobApp')
       // $scope.showCopyWindow = true;
       $scope.btnInner = '复制成功';
     }
+    /**
+     * 邀请码
+     */
+    $scope.voucher = HongcaiUser.$find('0' + '/voucher').$then();
+    //链接
+    $scope.inviteUrl = "http://www.hongcai.com/register?inviteCode=" + $scope.voucher.inviteCode;
+
+    //实例化clipboard对象
+    new Clipboard('#copt-btn');
+
 
   });

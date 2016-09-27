@@ -3,6 +3,7 @@
     <p class="position-ab bg-white text-center wid-close ft-3" ng-click="cancel()">×</p>
     <p class="margin-b-0 text-center">复制邀请链接</p>
     <p class="margin-b-0 text-center">分享给好友<span class="margin-l-1">赚取奖金吧</span></p>
-    <p class="copy-link-btn ft-white ft-1p8 text-center margin-auto margin-t-1p5 margin-b-2 copy-before" ng-click="copyLink()">{{btnInner}}</p>
+    <p id="Target" class="margin-b-0 opacity0 position-ab">{{inviteUrl}}</p>
+    <p class="copy-link-btn ft-white ft-1p8 text-center margin-auto margin-b-2 margin-t-1p5 copy-before" id="copt-btn" data-clipboard-target="#Target" ng-click="copyLink()">{{btnInner}}</p>
   </div>
 </div>

@@ -66,9 +66,6 @@ angular.module('p2pSiteMobApp')
     /**
      * 跳转到邀请落地页
      */
-    $scope.goInviteLanding = function(){
-      $location.url('/activity/invite-activity');
-    }
 
   });
 
