@@ -141,6 +141,9 @@ angular.module('p2pSiteMobApp')
 
     //邀请码
     $scope.investCode = false;
+    if($stateParams.inviteCode){
+      $scope.investCode = true;
+    }
 
     //图形验证码
     $scope.getPicCaptcha = '/hongcai/api/v1/siteUser/getPicCaptcha?';
