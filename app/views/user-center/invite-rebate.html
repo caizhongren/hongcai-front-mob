@@ -24,7 +24,7 @@
     <div class="account-panel bg-white">
       <div class="icon"><img src="/images/new/get-grade.png" alt=""></div>
       <div class="title-text">我的邀请码</div>
-      <div class="more">15313895650</div>
+      <div class="more">{{voucher.inviteCode}}</div>
     </div>
     <div class="account-panel bg-white">
       <div class="icon"><img src="/images/new/register-true.png" alt=""></div>
@@ -32,7 +32,7 @@
       <div class="more">hongcai.com/.../</div>
     </div>
     <div class="account-panel account-panel0 bg-white text-center border-none">
-      <p class="margin-auto ft-white ft-1p8 copy-btn">复制邀请链接</p>
+      <p class="margin-auto ft-white ft-1p8 copy-btn" ng-click="toCopyLink()">复制邀请链接</p>
       <span class="margin-auto display-bl ft-grey4 share-words margin-t--0p5">分享给好友，赚取奖金吧</span>
     </div>
    </div>

@@ -13,9 +13,12 @@ angular.module('p2pSiteMobApp')
     $scope.pageSize = 4;
     $scope.datas = [];
     $scope.totalPage = 1;
+
+
     /**
      * 邀请统计
      */
+
     $scope.getInviteStat = function(){
       HongcaiUser.$find('0' + '/inviteStat', {}).$then(function(response){
         if(response.$status === 'ok' && response.ret !== -1){
@@ -26,6 +29,9 @@ angular.module('p2pSiteMobApp')
       });
     }
     $scope.getInviteStat();
+    //邀请码
+    $scope.voucher = HongcaiUser.$find('0' + '/voucher').$then();
+
     $scope.inviteList = function(){
 
       if ($scope.totalPage < $scope.page){
