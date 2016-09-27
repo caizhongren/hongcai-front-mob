@@ -861,6 +861,17 @@ p2pSiteMobApp
           }
         }
       })
+      //我的邀请
+      .state('root.userCenter.invite-rebate', {
+        url: '/invite-rebate',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/invite-rebate.html',
+            controller: 'InviteRebateCtrl',
+            controllerUrl: 'scripts/controller/user-center/invite-rebate'
+          }
+        }
+      })
       //个人中心体验金详情页
       .state('root.userCenter.experience-money', {
         url: '/experience-money',
