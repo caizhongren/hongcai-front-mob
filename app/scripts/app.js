@@ -837,12 +837,12 @@ p2pSiteMobApp
       // })
       //邀请活动
       .state('root.activity.newInvite-landing', {
-        url: '/invite-activity',
+        url: '/invite-activity?act&f',
         views: {
           '': {
             templateUrl: 'views/activity/newInvite.html',
-            // controller: 'newInviteCtrl',
-            // controllerUrl: 'scripts/controllers/activity/new-invite-ctrl'
+            controller: 'newInviteCtrl',
+            controllerUrl: 'scripts/controllers/activity/new-invite-ctrl'
           }
         },
         data: {
