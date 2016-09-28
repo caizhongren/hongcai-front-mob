@@ -129,6 +129,19 @@ p2pSiteMobApp
           }
         }
       })
+      .state('root.register2', {
+        url: '/register?inviteCode',
+        data: {
+          title: '注册'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/register-new.html',
+            controller: 'RegisterCtrl',
+            controllerUrl: 'scripts/controllers/register'
+          }
+        }
+      })
       .state('root.register-success', {
         url: '/register-success/:userId',
         views: {
