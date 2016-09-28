@@ -2,7 +2,7 @@
 * @Author: fuqiang1
 * @Date:   2016-09-27 17:16:52
 * @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-09-28 09:16:25
+* @Last Modified time: 2016-09-28 09:29:53
 */
 
 'use strict';
@@ -28,7 +28,7 @@ angular.module('p2pSiteMobApp')
     $scope.inviteUrl = "http://www.hongcai.com/register?inviteCode=" + $scope.voucher.inviteCode;
 
     //实例化clipboard对象
-    var ClipboardCopy = new Clipboard('#copy-btn');
+    // var ClipboardCopy = new Clipboard('#copy-btn');
 
 
   });
