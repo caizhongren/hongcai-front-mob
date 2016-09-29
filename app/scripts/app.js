@@ -129,6 +129,19 @@ p2pSiteMobApp
           }
         }
       })
+      .state('root.register2', {
+        url: '/register?inviteCode',
+        data: {
+          title: '注册'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/register-new.html',
+            controller: 'RegisterCtrl',
+            controllerUrl: 'scripts/controllers/register'
+          }
+        }
+      })
       .state('root.register-success', {
         url: '/register-success/:userId',
         views: {
@@ -799,7 +812,7 @@ p2pSiteMobApp
       })
       //新手活动落地页
       .state('root.activity.novice-landing', {
-        url: '/novice-activity?act&f',
+        url: '/novice-activity/:inviteCode?act&f',
         views: {
           '': {
             templateUrl: 'views/activity/novice-landing.html',
@@ -824,12 +837,12 @@ p2pSiteMobApp
       // })
       //邀请活动
       .state('root.activity.newInvite-landing', {
-        url: '/invite-activity',
+        url: '/invite-activity?act&f',
         views: {
           '': {
             templateUrl: 'views/activity/newInvite.html',
-            // controller: 'newInviteCtrl',
-            // controllerUrl: 'scripts/controllers/activity/new-invite-ctrl'
+            controller: 'newInviteCtrl',
+            controllerUrl: 'scripts/controllers/activity/new-invite-ctrl'
           }
         },
         data: {
@@ -858,6 +871,17 @@ p2pSiteMobApp
             templateUrl: 'views/user-center/grade.html',
             controller: 'GradeCtrl',
             controllerUrl: 'scripts/controllers/user-center/grade'
+          }
+        }
+      })
+      //我的邀请
+      .state('root.userCenter.invite-rebate', {
+        url: '/invite-rebate',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/invite-rebate.html',
+            controller: 'InviteRebateCtrl',
+            controllerUrl: 'scripts/controller/user-center/invite-rebate'
           }
         }
       })
