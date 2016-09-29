@@ -812,7 +812,7 @@ p2pSiteMobApp
       })
       //新手活动落地页
       .state('root.activity.novice-landing', {
-        url: '/novice-activity?act&f',
+        url: '/novice-activity/:inviteCode?act&f',
         views: {
           '': {
             templateUrl: 'views/activity/novice-landing.html',

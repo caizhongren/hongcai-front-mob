@@ -2,12 +2,13 @@
 * @Author: fuqiang1
 * @Date:   2016-09-28 16:15:10
 * @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-09-28 17:22:40
+* @Last Modified time: 2016-09-29 14:49:11
 */
 
 'use strict';
 angular.module('p2pSiteMobApp')
   .controller('newInviteCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, config) {
+
     /**
      * 调用微信接口，申请此页的分享接口调用
      * @param
@@ -40,16 +41,16 @@ angular.module('p2pSiteMobApp')
      * 设置用户分享的标题以及描述以及图片等。
      */
     $scope.onMenuShareAppMessage = function(){
-      var shareLink = config.domain + '/activity/invite-activity';
+      var shareLink = config.domain + '/activity/novice-activity/'+ $rootScope.user.mobile;
       if ($rootScope.channelCode){
         shareLink = shareLink + '?f=' + $rootScope.channelCode + '&act=' + $rootScope.act;
       }
-      // 分享到朋友
+
       wx.onMenuShareAppMessage({
-        title: '邀好友投资，送60元现金！',
-        desc: '邀请壕友加入国资控股宏财网，即可得60元现金奖励！多邀多得，返现金额上不封顶！',
+        title: '688元现金奖励+3%加息券！！',
+        desc: '现在宏财网注册，即可获得以上奖励！现金奖励，投资即可提现！',
         link: shareLink,
-        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak6XibeP4rtlnYOfaCFneic3dYdZU9Gy2CCwjHpjNot1KNxB5XQdsDuTQgUNdVnZlJw38qHm7qsggeg/0?wx_fmt=png',
+        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak5t5pVMCyJsOvnmGG6obPj8qU2yXy8WA78oSwHPNRfIic4uW9X7Rbs652IQzBX65ycTU6JbYXQWWg/0?wx_fmt=jpeg',
         trigger: function (res) {
         },
         success: function (res) {
@@ -66,11 +67,11 @@ angular.module('p2pSiteMobApp')
         fail: function (res) {
         }
       });
-      //分享到朋友圈
+
       wx.onMenuShareTimeline({
-        title: '邀好友投资，送60元现金！',
+        title: '688元现金奖励+3%加息券！！',
         link: shareLink,
-        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak6XibeP4rtlnYOfaCFneic3dYdZU9Gy2CCwjHpjNot1KNxB5XQdsDuTQgUNdVnZlJw38qHm7qsggeg/0?wx_fmt=png',
+        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak5t5pVMCyJsOvnmGG6obPj8qU2yXy8WA78oSwHPNRfIic4uW9X7Rbs652IQzBX65ycTU6JbYXQWWg/0?wx_fmt=jpeg',
         trigger: function (res) {
         },
         success: function (res) {
@@ -91,7 +92,7 @@ angular.module('p2pSiteMobApp')
 
     wx.error(function(res){
         $timeout(function() {
-          window.location.href=config.domain + '/activity/invite-activity?' + Math.round(Math.random()* 1000);
+          window.location.href=config.domain + '/activity/novice-activity?' + Math.round(Math.random()* 1000);
         }, 100);
     });
 

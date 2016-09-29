@@ -1,13 +1,15 @@
 /*
 * @Author: yuyang
 * @Date:   2016-07-28 17:08:11
-* @Last Modified by:   Administrator
-* @Last Modified time: 2016-08-02 17:49:40
+* @Last Modified by:   fuqiang1
+* @Last Modified time: 2016-09-29 14:46:30
 */
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('NoviceCtrl', function($scope, Restangular, $rootScope, config) {
+  .controller('NoviceCtrl', function($scope, Restangular, $rootScope, $stateParams, config) {
+
+    $scope.inviteCode = $stateParams.inviteCode,
     /**
      * 获取新手标项目
      */
