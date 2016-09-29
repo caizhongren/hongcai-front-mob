@@ -16,7 +16,13 @@ angular.module('p2pSiteMobApp')
         inviteCode: $stateParams.inviteCode,
         mobileCaptchaType:1
       };
+    } else {//链接没有邀请码时ipCookie接受带来的inviteCode
+      $scope.user = {
+        inviteCode: ipCookie('inviteCode'),
+        mobileCaptchaType:1
+      }
     }
+
     $scope.showRegistrationAgreement = false;
     $scope.toggle = function() {
       $scope.showRegistrationAgreement = !$scope.showRegistrationAgreement;
