@@ -2,7 +2,7 @@
 * @Author: fuqiang1
 * @Date:   2016-09-28 16:15:10
 * @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-09-30 18:51:49
+* @Last Modified time: 2016-09-30 19:00:25
 */
 
 'use strict';
@@ -49,7 +49,7 @@ angular.module('p2pSiteMobApp')
         shareLink = shareLink + '?f=' + $rootScope.channelCode + '&act=' + $rootScope.act;
       }
       if($scope.voucher.inviteCode){
-        shareLink = shareLink + (shareLink.indexof('?') === -1 ? '?' : '&') + 'inviteCode='  + $scope.voucher.inviteCode;
+        shareLink = shareLink + (shareLink.indexOf('?') === -1 ? '?' : '&') + 'inviteCode='  + $scope.voucher.inviteCode;
       }
 
       wx.onMenuShareAppMessage({
