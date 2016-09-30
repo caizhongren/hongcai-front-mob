@@ -2,7 +2,7 @@
 * @Author: yuyang
 * @Date:   2016-07-28 17:08:11
 * @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-09-29 17:13:02
+* @Last Modified time: 2016-09-30 09:31:09
 */
 
 'use strict';
@@ -12,7 +12,7 @@ angular.module('p2pSiteMobApp')
     ipCookie('inviteCode', $stateParams.inviteCode);
     //去注册
     $scope.goRegister = function(){
-      $state.go('root.register');
+      $state.go('root.register2');
     }
     /**
      * 获取新手标项目
