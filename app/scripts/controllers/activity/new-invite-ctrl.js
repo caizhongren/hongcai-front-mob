@@ -2,7 +2,7 @@
 * @Author: fuqiang1
 * @Date:   2016-09-28 16:15:10
 * @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-09-29 17:38:33
+* @Last Modified time: 2016-09-30 17:16:25
 */
 
 'use strict';
@@ -41,9 +41,9 @@ angular.module('p2pSiteMobApp')
      * 设置用户分享的标题以及描述以及图片等。
      */
     $scope.onMenuShareAppMessage = function(){
-      var shareLink = config.domain + '/activity/novice-activity/'+ $rootScope.userInfo.mobile;
+      var shareLink = config.domain + '/activity/novice-activity/';
       if ($rootScope.channelCode){
-        shareLink = shareLink + '?f=' + $rootScope.channelCode + '&act=' + $rootScope.act;
+        shareLink = shareLink + '?f=' + $rootScope.channelCode + '&act=' + $rootScope.act + '&inviteCode' + $rootScope.userInfo.mobile;
       }
 
       wx.onMenuShareAppMessage({
