@@ -2,12 +2,12 @@
 * @Author: fuqiang1
 * @Date:   2016-09-28 16:15:10
 * @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-09-30 17:38:11
+* @Last Modified time: 2016-09-30 18:26:34
 */
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('newInviteCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, config) {
+  .controller('newInviteCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, config, HongcaiUser) {
 
     /**
      * 调用微信接口，申请此页的分享接口调用
@@ -36,14 +36,17 @@ angular.module('p2pSiteMobApp')
         });
       });
     };
-
+    /**
+     * 邀请码
+     */
+    $scope.voucher = HongcaiUser.$find('0' + '/voucher').$then();
     /**
      * 设置用户分享的标题以及描述以及图片等。
      */
     $scope.onMenuShareAppMessage = function(){
       var shareLink = config.domain + '/activity/novice-activity';
       if ($rootScope.channelCode){
-        shareLink = shareLink + '?f=' + $rootScope.channelCode + '&act=' + $rootScope.act + '&inviteCode=' + $rootScope.userInfo.mobile;
+        shareLink = shareLink + '?f=' + $rootScope.channelCode + '&act=' + $rootScope.act + '&inviteCode=' + $scope.voucher.inviteCode;
       }
 
       wx.onMenuShareAppMessage({
