@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2016-08-29 14:03:25
  * @Last Modified by:   fuqiang1
- * @Last Modified time: 2016-08-30 10:05:45
+ * @Last Modified time: 2016-09-22 17:44:23
  */
 
 'use strict';
@@ -32,7 +32,7 @@ angular.module('p2pSiteMobApp')
               }
               if (path !== 'getPwd1') {
                 if (response.ret === -1) {
-                  msg = '账号已存在';
+                  msg = '手机号已被占用';
                   $rootScope.showMsg(msg);
                 }
               }
