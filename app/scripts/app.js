@@ -66,6 +66,17 @@ p2pSiteMobApp
           }
         }
       })
+      //隐私条款
+      .state('root.privacy-policy ', {
+        url: '/privacy-policy',
+        views: {
+          '': {
+            templateUrl: 'views/privacy-policy.html',
+            // controller: 'MainCtrl',
+            // controllerUrl: 'scripts/controllers/main'
+          }
+        }
+      })
     // 开通存管通落地页
     .state('root.activate-landing', {
         url: '/activate',
