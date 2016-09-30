@@ -85,16 +85,7 @@ angular.module('p2pSiteMobApp')
       });
     }
 
-    /**
-     * 修改手机号码（针对已绑定手机号）
-     */
-    $scope.resetMobile = function(mobileNum) {
-        console.log(mobileNum);
-        $state.go('root.yeepay-transfer', {
-          type: 'RESET_MOBILE',
-          number: mobileNum
-        });
-      }
+
       // 退出登录功能
     $scope.toLogout = function() {
       if ($rootScope.hasLoggedUser) {

@@ -1,42 +1,13 @@
 /*
-* @Author: yuyang
-* @Date:   2016-07-28 17:08:11
+* @Author: fuqiang1
+* @Date:   2016-09-28 16:15:10
 * @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-09-29 17:13:02
+* @Last Modified time: 2016-09-29 17:38:33
 */
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('NoviceCtrl', function($scope, Restangular, $rootScope, $stateParams, config, $state, ipCookie) {
-    //记录分享传来的inviteCode
-    ipCookie('inviteCode', $stateParams.inviteCode);
-    //去注册
-    $scope.goRegister = function(){
-      $state.go('root.register');
-    }
-    /**
-     * 获取新手标项目
-     */
-    Restangular.one('projects').one('newbieBiaoProject').get().then(function(response) {
-      if(!response || response.ret === -1){
-          return;
-      }
-      $scope.newbieBiaoProject = response;
-      // 可投资金额
-      $scope.newbieBiaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
-
-    });
-
-    $rootScope.showFooter = false;
-    $scope.test = config.test;
-
-    if($rootScope.channelCode){
-      Restangular.one('users').post('channel', {
-        openId: $rootScope.openid,
-        act: $rootScope.act,
-        channelCode: $rootScope.channelCode
-      });
-    }
+  .controller('newInviteCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, config) {
 
     /**
      * 调用微信接口，申请此页的分享接口调用
@@ -70,7 +41,7 @@ angular.module('p2pSiteMobApp')
      * 设置用户分享的标题以及描述以及图片等。
      */
     $scope.onMenuShareAppMessage = function(){
-      var shareLink = config.domain + '/activity/novice-activity';
+      var shareLink = config.domain + '/activity/novice-activity/'+ $rootScope.userInfo.mobile;
       if ($rootScope.channelCode){
         shareLink = shareLink + '?f=' + $rootScope.channelCode + '&act=' + $rootScope.act;
       }
@@ -130,4 +101,5 @@ angular.module('p2pSiteMobApp')
     });
 
     $scope.configJsApi();
-  });
+
+  })

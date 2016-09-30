@@ -129,6 +129,19 @@ p2pSiteMobApp
           }
         }
       })
+      .state('root.register2', {
+        url: '/register?inviteCode',
+        data: {
+          title: '注册'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/register-new.html',
+            controller: 'RegisterCtrl',
+            controllerUrl: 'scripts/controllers/register'
+          }
+        }
+      })
       .state('root.register-success', {
         url: '/register-success/:userId',
         views: {
@@ -303,6 +316,20 @@ p2pSiteMobApp
             templateUrl: 'views/user-center/setting.html',
             controller: 'SettingsCtrl',
             controllerUrl: 'scripts/controllers/user-center/settings'
+          }
+        }
+      })
+      //修改手机号码
+      .state('root.userCenter.resetMobile', {
+        url: '/reset-mobile',
+        data: {
+          title: '修改手机号'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/reset-mobile.html',
+            controller: 'resetMobileCtrl',
+            controllerUrl: 'scripts/controllers/user-center/resetMobile'
           }
         }
       })
@@ -785,7 +812,7 @@ p2pSiteMobApp
       })
       //新手活动落地页
       .state('root.activity.novice-landing', {
-        url: '/novice-activity?act&f',
+        url: '/novice-activity/:inviteCode?act&f',
         views: {
           '': {
             templateUrl: 'views/activity/novice-landing.html',
@@ -808,7 +835,20 @@ p2pSiteMobApp
       //     }
       //   }
       // })
-
+      //邀请活动
+      .state('root.activity.newInvite-landing', {
+        url: '/invite-activity?act&f',
+        views: {
+          '': {
+            templateUrl: 'views/activity/newInvite.html',
+            controller: 'newInviteCtrl',
+            controllerUrl: 'scripts/controllers/activity/new-invite-ctrl'
+          }
+        },
+        data: {
+          title: '邀请好友投资送60元现金'
+        }
+      })
     //体验金新手标
     .state('root.experience-project-detail', {
         url: '/experience-project',
@@ -831,6 +871,17 @@ p2pSiteMobApp
             templateUrl: 'views/user-center/grade.html',
             controller: 'GradeCtrl',
             controllerUrl: 'scripts/controllers/user-center/grade'
+          }
+        }
+      })
+      //我的邀请
+      .state('root.userCenter.invite-rebate', {
+        url: '/invite-rebate',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/invite-rebate.html',
+            controller: 'InviteRebateCtrl',
+            controllerUrl: 'scripts/controller/user-center/invite-rebate'
           }
         }
       })

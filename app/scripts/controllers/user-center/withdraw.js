@@ -12,8 +12,8 @@ angular.module('p2pSiteMobApp')
     $rootScope.selectedSide = 'account';
 
 
-    $rootScope.checkSession.promise.then(function(){
-      if(!$rootScope.isLogged){
+    $rootScope.checkSession.promise.then(function() {
+      if (!$rootScope.isLogged) {
         $state.go('root.login');
       }
 
@@ -27,7 +27,7 @@ angular.module('p2pSiteMobApp')
         } else {
           // 获取信息失败。
         }
-        });
+      });
 
       HongcaiUser.$find('0' + '/bankcard').$then(function(response) {
         if (response.$status === 'ok') {
@@ -42,12 +42,14 @@ angular.module('p2pSiteMobApp')
 
 
     // 跳转到零存宝详情页
-    $scope.toInvestCurrentDeposit = function(){
+    $scope.toInvestCurrentDeposit = function() {
       fundsProjects.$find('recommendations', {
         productType: 1
       }).$then(function(response) {
-        if (response.ret  !== -1) {
-          $state.go('root.current-deposit-detail', {number: response.number});
+        if (response.ret !== -1) {
+          $state.go('root.current-deposit-detail', {
+            number: response.number
+          });
         } else {
 
         }
@@ -62,7 +64,7 @@ angular.module('p2pSiteMobApp')
     $scope.toWithdraw = function(simpleWithdraw) {
       // $scope.msg = '3';
       var amount = simpleWithdraw.amountDraw;
-      if(!amount || amount < 1){
+      if (!amount || amount < 1) {
         return;
       }
 
@@ -72,18 +74,18 @@ angular.module('p2pSiteMobApp')
       });
     }
 
-  /**
-   * 绑定银行卡
-   */
-  $scope.bindBankcard = function(){
-    if($scope.simpleWithdraw.cardStatus == 'VERIFIED' || $scope.simpleWithdraw.cardStatus == 'VERIFYING'){
-      return;
-    }
+    /**
+     * 绑定银行卡
+     */
+    $scope.bindBankcard = function() {
+      if ($scope.simpleWithdraw.cardStatus == 'VERIFIED' || $scope.simpleWithdraw.cardStatus == 'VERIFYING') {
+        return;
+      }
 
-    $state.go('root.yeepay-transfer', {
-      type: 'BIND_BANK_CARD'
-    });
-  }
+      $state.go('root.yeepay-transfer', {
+        type: 'BIND_BANK_CARD'
+      });
+    }
 
 
     $scope.checkMaxAmount = function(simpleWithdraw) {

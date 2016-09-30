@@ -2,7 +2,7 @@
 * @Author: yuyang
 * @Date:   2016-09-02 11:12:13
 * @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-09-19 19:44:27
+* @Last Modified time: 2016-09-29 11:42:38
 */
 
 'use strict';
@@ -56,7 +56,6 @@ angular.module('p2pSiteMobApp')
           // }
       });
     }
-
     /**
      * 未支付订单
      */
@@ -77,7 +76,20 @@ angular.module('p2pSiteMobApp')
         return true;
       });
     }
-
+    /**
+     * 复制邀请链接弹窗
+     */
+    $rootScope.toCopyLink = function() {
+      if(!$rootScope.isLogged) {
+        $rootScope.toLogin();
+        return;
+      }
+      $uibModal.open({
+        animation: true,
+        templateUrl: 'views/user-center/copy-link.html',
+        controller: 'CopyLinkCtrl'
+      });
+    }
     /**
      * 激活存管通
      */
