@@ -2,19 +2,17 @@
 * @Author: yuyang
 * @Date:   2016-07-28 17:08:11
 * @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-09-30 17:16:54
+* @Last Modified time: 2016-09-30 18:11:30
 */
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('NoviceCtrl', function($scope, Restangular, $rootScope, $stateParams, config, $state, ipCookie) {
+  .controller('NoviceCtrl', function($scope, Restangular, $rootScope, $stateParams, config, $state, $location) {
     //记录分享传来的inviteCode
-    if($stateParams.invitCode) {
-      ipCookie('inviteCode', $stateParams.inviteCode);
-    }
+    $scope.inviteCode = $stateParams.inviteCode;
     //去注册
     $scope.goRegister = function(){
-      $state.go('root.register2');
+      $location.url('/register?inviteCode='+ $scope.inviteCode);
     }
     /**
      * 获取新手标项目
