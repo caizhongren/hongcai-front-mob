@@ -2,7 +2,7 @@
 * @Author: yuyang
 * @Date:   2016-07-28 17:08:11
 * @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-09-30 18:16:10
+* @Last Modified time: 2016-10-09 10:18:26
 */
 
 'use strict';
@@ -10,7 +10,11 @@ angular.module('p2pSiteMobApp')
   .controller('NoviceCtrl', function($scope, Restangular, $rootScope, $stateParams, config, $state, $location) {
     //去注册
     $scope.goRegister = function(){
-      $location.url('/register?inviteCode='+ $stateParams.inviteCode);
+      if($stateParams.inviteCode){
+        $location.url('/register?inviteCode='+ $stateParams.inviteCode);
+      }else {
+        $location.url('/register');
+      }
     }
     /**
      * 获取新手标项目
