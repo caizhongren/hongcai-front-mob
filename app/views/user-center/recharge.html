@@ -12,7 +12,7 @@
       <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeForm.amount.$dirty && rechargeForm.amount.$error.pattern">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入数字(最多精确到小数点后两位)</span>
       </div>
-      <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeForm.amount.$error.min && !rechargeForm.amount.$error.pattern">
+      <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeForm.amount.$error.min && !rechargeForm.amount.$error.pattern && !rechargeForm.amount.$error.max">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>充值金额不能小于2元</span>
       </div>
       <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeForm.amount.$error.max && !rechargeForm.amount.$error.pattern">
