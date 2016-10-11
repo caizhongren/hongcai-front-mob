@@ -8,13 +8,23 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RechargeCtrl', function($scope, $rootScope, $stateParams, HongcaiUser, $state, restmod, DEFAULT_DOMAIN) {
+  .controller('RechargeCtrl', function($scope, $rootScope, $stateParams, HongcaiUser, $state, restmod, DEFAULT_DOMAIN, WEB_DEFAULT_DOMAIN, Restangular) {
     $rootScope.selectedSide = 'account';
     $scope.rechargeAmount = $stateParams.amount;
+
+    // 获取用户的银行卡剩余额度
+    var siteBankLimit = restmod.model(WEB_DEFAULT_DOMAIN + "/bank/getUserRechargeRemainLimit?bankCode="+$rootScope.securityStatus.userId+"&payCompany="+"FUIOU");
+    siteBankLimit.$create({}).$then(function(response) {
+        if (response.ret !== -1) {
+          $scope.bankRemain = response.data.bankRemain;
+        }
+      });
+
 
     $rootScope.checkSession.promise.then(function(){
       if(!$rootScope.isLogged){
         $state.go('root.login');
+        return;
       }
 
       HongcaiUser.$find('0' + '/account').$then(function(response) {
@@ -62,7 +72,12 @@ angular.module('p2pSiteMobApp')
         });
       }
 
-    });
 
+      /**
+       * 获取用户银行限额
+       */
+
+
+    });
 
   });

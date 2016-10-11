@@ -9,13 +9,16 @@
     <!-- 绑定银行卡 -->
     <form class="margin-b-1p5 margin-t-2" name="rechargeForm" ng-submit="recharge(rechargeAmount);" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
       <label>账户余额:&nbsp;<span class="ft-orange">{{ userAccount.balance | number:2}}</span>元</label>
-      <div class="hint text-center bg-red1 box-shadow" ng-show="rechargeForm.amount.$dirty && rechargeForm.amount.$error.pattern">
+      <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeForm.amount.$dirty && rechargeForm.amount.$error.pattern">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入数字(最多精确到小数点后两位)</span>
       </div>
-      <div class="hint text-center bg-red1 box-shadow" ng-show="rechargeForm.amount.$error.min && !rechargeForm.amount.$error.pattern">
+      <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeForm.amount.$error.min && !rechargeForm.amount.$error.pattern && !rechargeForm.amount.$error.max">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>充值金额不能小于2元</span>
       </div>
-      <input name="amount" type="number" class="u-full-width padding-t-1 padding-b-1 padding-l-1 padding-r-1 margin-t-1" ng-model="rechargeAmount" min="2"  ng-pattern="/^[0-9]*(\.[0-9]{1,2})?$/" ng-focus required placeholder="请输入充值金额">
+      <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeForm.amount.$error.max && !rechargeForm.amount.$error.pattern">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>该卡本次最多充值{{bankRemain}}元</span>
+      </div>
+      <input name="amount" type="number" class="u-full-width padding-t-1 padding-b-1 padding-l-1 padding-r-1 margin-t-1" ng-model="rechargeAmount" max="{{bankRemain}}" min="2"  ng-pattern="/^[0-9]*(\.[0-9]{1,2})?$/" ng-focus required placeholder="该卡本次最多充值{{bankRemain}}元">
       <button type="submit" class="u-full-width ft-1p6 button button-primary margin-t-0p5 {{rechargeForm.$invalid ? 'button-disabled' : ''}}" ng-disabled="rechargeForm.$invalid">立即充值</button>
     </form>
     <hr class="margin-0">
