@@ -12,23 +12,14 @@ angular.module('p2pSiteMobApp')
     $rootScope.selectedSide = 'account';
     $scope.rechargeAmount = $stateParams.amount;
 
-    /**
-     * 获取银行卡信息
-     */
-    HongcaiUser.$find('0' + '/bankcard').$then(function(response) {
-      if (response.$status === 'ok') {
-        // 获取用户的银行卡信息
-        $scope.simpleBankcard = response;
-        var siteBankLimit = restmod.model(WEB_DEFAULT_DOMAIN + "/bank/getBankRechargeLimit?bankCode="+$scope.simpleBankcard.bankCode+"&payCompany="+"FUIOU");
-        siteBankLimit.$create({}).$then(function(response) {
-            if (response.ret !== -1) {
-              $scope.bankLimit = response.data.bankLimit[0];
-            }
-          });
-      } else {
-        // 获取信息失败。
-      }
-    })
+    // 获取用户的银行卡剩余额度
+    var siteBankLimit = restmod.model(WEB_DEFAULT_DOMAIN + "/bank/getUserRechargeRemainLimit?bankCode="+$rootScope.securityStatus.userId+"&payCompany="+"FUIOU");
+    siteBankLimit.$create({}).$then(function(response) {
+        if (response.ret !== -1) {
+          $scope.bankRemain = response.data.bankRemain;
+        }
+      });
+
 
     $rootScope.checkSession.promise.then(function(){
       if(!$rootScope.isLogged){
