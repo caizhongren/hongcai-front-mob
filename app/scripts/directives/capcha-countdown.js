@@ -23,7 +23,8 @@ angular.module('p2pSiteMobApp')
           mobileCaptcha.$create({
             mobile: scope.user.mobile,
             picCaptcha: scope.user.picCaptcha,
-            type: scope.user.mobileCaptchaType
+            type: scope.user.mobileCaptchaType,
+            business: scope.user.mobileCaptchaBusiness
           }).$then(function(response) {
             if (response.ret === -1) {
               scope.showMsg(response.msg);

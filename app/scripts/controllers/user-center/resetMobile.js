@@ -11,6 +11,10 @@
  */
  angular.module('p2pSiteMobApp')
    .controller('resetMobileCtrl', function(checkPwdUtils, $rootScope, $scope, $state, $http, CheckMobUtil, CheckPicUtil, md5, register, wechat, mobileCaptcha, HongcaiUser, Restangular){
+      $scope.user = {
+        mobileCaptchaBusiness:2
+      };
+
       //图形验证码
       $scope.getPicCaptcha = '/hongcai/api/v1/siteUser/getPicCaptcha?';
       $scope.refreshCode = function() {

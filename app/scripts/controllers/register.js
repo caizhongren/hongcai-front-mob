@@ -11,11 +11,12 @@ angular.module('p2pSiteMobApp')
   .controller('RegisterCtrl', function(CheckPicUtil, checkPwdUtils, $http, DEFAULT_DOMAIN, Restangular, $timeout, $rootScope, $scope, $state, $stateParams, CheckMobUtil, md5, register, wechat, mobileCaptcha, ipCookie) {
     // 注册链接上是否有邀请码
     $scope.btn = 'haha';
+    $scope.user = {
+      mobileCaptchaType:1,
+      mobileCaptchaBusiness:0
+    };
     if ($stateParams.inviteCode) {
-      $scope.user = {
-        inviteCode: $stateParams.inviteCode,
-        mobileCaptchaType:1
-      };
+      $scope.user.inviteCode = $stateParams.inviteCode;
     }
     $scope.showRegistrationAgreement = false;
     $scope.toggle = function() {
