@@ -13,13 +13,12 @@ angular.module('p2pSiteMobApp')
     $scope.rechargeAmount = $stateParams.amount;
 
     // 获取用户的银行卡剩余额度
-    var siteBankLimit = restmod.model(WEB_DEFAULT_DOMAIN + "/bank/getUserRechargeRemainLimit?bankCode="+$rootScope.securityStatus.userId+"&payCompany="+"FUIOU");
+    var siteBankLimit = restmod.model(WEB_DEFAULT_DOMAIN + "/bank/getUserRechargeRemainLimit?&payCompany=FUIOU");
     siteBankLimit.$create({}).$then(function(response) {
         if (response.ret !== -1) {
           $scope.bankRemain = response.data.bankRemain;
         }
       });
-
 
     $rootScope.checkSession.promise.then(function(){
       if(!$rootScope.isLogged){
