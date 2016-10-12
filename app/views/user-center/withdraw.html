@@ -15,10 +15,10 @@
       <label class="margin-t-1"><span>可用余额：&nbsp;</span><span><b class="ft-orange">{{ simpleWithdraw.account.balance | number:2}}&nbsp;</b>元</span></label>
       <label><span>手续费：&nbsp;</span><span><b class="ft-orange">2.00&nbsp;</b>元<b class="ft-grey3">&nbsp;(第三方支付收取)</b></span></label>
       <label><span>可提现金额：&nbsp;</span><span><b class="ft-orange">{{ availableCashRealNo | number:2}}&nbsp;</b>元</span></label>
-      <div class="hint text-center bg-red1 box-shadow margin-t-8" ng-show="withdrawForm.amount.$dirty && withdrawForm.amount.$error.pattern">
+      <div class="hint text-center bg-red1 box-shadow margin-t-9" ng-show="withdrawForm.amount.$dirty && withdrawForm.amount.$error.pattern">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入数字(最多精确到小数点后两位)</span>
       </div>
-      <div class="hint text-center bg-red1 box-shadow margin-t-8" ng-show="simpleWithdraw.amountDraw > availableCashRealNo || simpleWithdraw.amountDraw<1">
+      <div class="hint text-center bg-red1 box-shadow margin-t-9" ng-show="simpleWithdraw.amountDraw > availableCashRealNo || simpleWithdraw.amountDraw<1">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入一个介于 1 -- {{availableCash | number:2}}之间的值</span>
       </div>
       <label class="padding-l-2 padding-r-2">
