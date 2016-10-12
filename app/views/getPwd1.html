@@ -1,30 +1,4 @@
-<!-- <div class="activity margin-t-2">
-  <div class="padding-l-2 padding-r-2 input-msg">
-    <div class="margin-0 activity-getpwd clear">
-      <!-- <label for="username">  </label> -->
-      <!-- <p>请输入您的手机号，并发送验证码</p>
-      <form  name="getPwdMobileForm">
-        <input id="usermobile" name="usermobile" required="required" type="tel" ng-model="user.mobile" placeholder="请输入手机号" ng-pattern="/^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0678])|(14[0-9]))\d{8}$/" ensure-mobile-exist>
-        <br>
-        <p class="ft-red" ng-if="getPwdMobileForm.usermobile.$dirty && getPwdMobileForm.usermobile.$invalid">
-          <small ng-if="getPwdMobileForm.usermobile.$error.unique">账户不存在</small>
-          <small ng-if="getPwdMobileForm.usermobile.$error.pattern">手机号码格式不正确</small>
-          <small ng-if="getCaptchaErr">{{getCaptchaErr}}</small>
-        </p>
 
-        <p class="fl width-full">
-          <input type="number" placeholder="请输入验证码" class="border-grey border-ra-left" ng-model="user.captcha">
-          <button class="button-getpwd border-ra-right {{getPwdMobileForm.usermobile.$invalid ? 'button-disabled border-ra-0 ft-orange' : 'border-ra-0 border-none'}}"  onclick="countDown(this,60,'out');" ng-click="getPwdMobileForm.usermobile.$error.unique || sendMobileCaptcha(user);" ng-disabled="getPwdMobileForm.usermobile.$invalid">获取验证码
-          </button>
-        </p>
-        <p class="ft-red" ng-if="getCaptchaErr">
-          <small>{{getCaptchaErr}}</small>
-        </p>
-        <button class="width-full margin-t-2 button button-primary" ng-click="newPwd(user.mobile,user.captcha)" my-click-once>下一步</button>
-      </form>
-    </div>
-  </div>
-</div> -->
 <div class="padding-l-1 padding-r-1 padding-t-1 text-center margin-b-7">
   <p class="ft-2p5 ft-89 margin-b-1 margin-t-1">找回密码</p>
   <form autocomplete="off" class="getpwd-form margin-0 padding-b-2 padding-t-1 ft-grey" name="getPwdMobileForm" autocomplete="on"  id="">
