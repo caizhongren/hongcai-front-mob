@@ -1,8 +1,9 @@
 <div class="withdraw bg-white margin-b-7">
-  <div class=" margin-0 padding-1">您好，亲爱的&nbsp;<strong class="ft-orange">{{ hasLoggedUser.name }}</strong>&nbsp;<i class="fa fa-newspaper-o"></i>
+  <div class=" margin-0 padding-1 padding-t-3">
+  <!-- 您好，亲爱的&nbsp;<strong class="ft-orange">{{ hasLoggedUser.name }}</strong>&nbsp;<i class="fa fa-newspaper-o"></i> -->
     <!-- <span class="pull-right" ui-sref="root.userCenter.setting">基本资料></span></div> -->
-  <hr class="hr-grey">
-  <h6 class="border-grey text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>提现</strong></h6>
+  <!-- <hr class="hr-grey"> -->
+  <!-- <h6 class="text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>提现</strong></h6> -->
   <div class="with-bank">
     <!-- 未绑定银行卡 simpleWithdraw.cardStatus !== 'VERIFIED'-->
     <div ng-include src="'views/user-center/_bankcardless-hint.html'" ng-show="simpleWithdraw.cardStatus !== 'VERIFIED'"></div>
@@ -27,7 +28,7 @@
       </button>
       </div>
     </form>
-    <hr class="margin-0">
+    <hr class="margin-0" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
     <div class="ft-grey4 margin-t-0p5 padding-2" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
       <h7>温馨提示：</h7>
       <div class="margin-b-1 margin-t-1">

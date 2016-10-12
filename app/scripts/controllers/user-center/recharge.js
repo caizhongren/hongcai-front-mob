@@ -15,10 +15,10 @@ angular.module('p2pSiteMobApp')
     // 获取用户的银行卡剩余额度
     var siteBankLimit = restmod.model(WEB_DEFAULT_DOMAIN + "/bank/getUserRechargeRemainLimit?&payCompany=FUIOU");
     siteBankLimit.$create({}).$then(function(response) {
-        if (response.ret !== -1) {
-          $scope.bankRemain = response.data.bankRemain;
-        }
-      });
+      if (response.ret !== -1) {
+        $scope.bankRemain = response.data.bankRemain;
+      }
+    });
 
     $rootScope.checkSession.promise.then(function(){
       if(!$rootScope.isLogged){
@@ -53,6 +53,7 @@ angular.module('p2pSiteMobApp')
         if (response.ret !== -1) {
           // 获取用户充值信息
           $scope.simpleWithdraw = response;
+          console.log($scope.simpleWithdraw.bankcard.openBank);
         } else {
           // 获取信息失败。
         }
