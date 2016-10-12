@@ -81,7 +81,7 @@ window.onload = function(){
       }
     })
   }
-
+  var gameCounts = 0
   //更新游戏剩余次数
   function updateCount () {
     $.ajax({
@@ -90,6 +90,7 @@ window.onload = function(){
       success: function (res) {
         console.log(res)
         if (res && res.ret !== -1) {
+          gameCounts = res.count
           console.log('分享成功游戏次数减少')
         } else {
           alert(res.msg)
@@ -117,6 +118,8 @@ window.onload = function(){
         updateCount()
         if (location.pathname === '/views/games/game-counting-share.html') {
           window.location.href = location.origin + '/views/games/game-counting-start.html'
+        } else if (location.pathname === '/views/games/game-counting.html') {
+          $('#gameCounts').html(gameCounts)
         } else {
           location.reload()
         }
