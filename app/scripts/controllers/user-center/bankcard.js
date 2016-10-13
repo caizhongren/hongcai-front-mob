@@ -16,7 +16,7 @@ angular.module('p2pSiteMobApp')
       }
 
       HongcaiUser.$find('0' + '/bankcard').$then(function(response) {
-        if (response.ret === 1) {
+        if (response.$status === "ok" && response.ret !== -1) {
           // 获取用户的银行卡信息
           $scope.simpleBankcard = response;
         } else {
