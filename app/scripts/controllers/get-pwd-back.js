@@ -16,6 +16,10 @@ angular.module('p2pSiteMobApp')
       angular.element('#checkCaptcha').attr('src', angular.element('#checkCaptcha').attr('src').substr(0, angular.element('#checkCaptcha').attr('src').indexOf('?')) + '?code=' + Math.random());
     };
 
+    $scope.user = {
+      mobileCaptchaBusiness:1
+    };
+
     /**
      * 监测用户手机号
      */
@@ -57,7 +61,8 @@ angular.module('p2pSiteMobApp')
 
       HongcaiUser.$find('/checkMobileCaptcha', {
         mobile: mobile,
-        captcha: captcha
+        captcha: captcha,
+        business:1
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.getCaptchaErr = response.msg;

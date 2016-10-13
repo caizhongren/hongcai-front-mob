@@ -67,7 +67,9 @@ angular.module('p2pSiteMobApp')
       if (!amount || amount < 1) {
         return;
       }
-
+      if ($scope.simpleWithdraw.amountDraw > $scope.availableCashRealNo) {
+        return;
+      }
       $state.go('root.yeepay-transfer', {
         type: 'withdraw',
         number: amount

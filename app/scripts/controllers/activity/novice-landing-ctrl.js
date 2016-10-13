@@ -11,9 +11,9 @@ angular.module('p2pSiteMobApp')
     //去注册
     $scope.goRegister = function(){
       if($stateParams.inviteCode){
-        $location.url('/register?inviteCode='+ $stateParams.inviteCode);
+        $state.go('root.register2', {inviteCode: $stateParams.inviteCode});
       }else {
-        $location.url('/register');
+        $state.go('root.register2');
       }
     }
     /**
