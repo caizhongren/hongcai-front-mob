@@ -21,7 +21,7 @@ angular.module('p2pSiteMobApp')
         if (response.ret !== -1) {
           // 获取用户充值信息
           $scope.simpleWithdraw = response;
-          $scope.availableCash = $scope.simpleWithdraw.account.availableCash;
+          $scope.availableCash = $scope.simpleWithdraw.account.balance;
           $scope.availableCashRealNo = $scope.availableCash >= 2 ? $scope.availableCash - 2 : 0;
 
         } else {
