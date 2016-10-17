@@ -1,4 +1,7 @@
 <html>
+  <script type="text/javascript" src="/styles/un-min/jquery.min.js"></script>
+  <script src="/styles/un-min/jweixin-1.0.0.js"></script>
+  <script type="text/javascript" src="/styles/un-min/gameWechatUtils.js"></script>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
@@ -335,9 +338,6 @@
       <p></p>
     </div>
   </body>
-  <script type="text/javascript" src="/styles/un-min/jquery.min.js"></script>
-  <script src="/styles/un-min/jweixin-1.0.0.js"></script>
-  <script type="text/javascript" src="/styles/un-min/gameWechatUtils.js"></script>
   <script type="text/javascript">
     $(function () {
       /**
@@ -395,6 +395,7 @@
           countWrong = false, // 是否数错钞,
           isPlay = true, // 是否静音
           wrongSecond,
+          gameOver = false,
           getAudio = document.getElementById('getAudio'),
           warningAudio = document.getElementById('warning'),
           receiveMoney = document.getElementsByClassName('totalMoney'),
@@ -482,19 +483,21 @@
               percentWidth -= 16
               
             }else {
-              second -= 1
-              percentWidth -= 3.2
+              second -= .1
+              percentWidth -= .32
             }
             // 进度条递减
-            $processBar.animate({width: percentWidth + '%'}, {duration: 800});
-            $time.html(second + 's');
+            $processBar.animate({width: percentWidth + '%'}, {duration: 0});
+            var secondInt = Math.floor(second) > 0 ? Math.floor(second) : 0;
+            $time.html(secondInt + 's');
             // 一秒后重复执行
             countTimer = setTimeout(function () {
               _this.countDown();
-            }, 1000)
+            }, 100)
           } else {
             clearTimeout(countTimer)
             $('#registerBox').show()
+            registerObj.playAgain($('#startAgin'))
             _this.showRewardMoney(receiveMoney, _this.totalMoney, 0, 800, 0)
             $('#registerBox .totalMoney').html(_this.totalMoney)
             document.addEventListener("WeixinJSBridgeReady", _this.forceSafariPlayAudio(getAudio), false);
@@ -502,7 +505,6 @@
         },
         showRewardMoney: function(elem, endVal, startVal, duration, decimal) {  
           //传入参数依次为 数字要变化的元素，最终显示数字，数字变化开始值，变化持续时间，小数点位数
-          console.log(elem.innerHTML)
           var startTime = 0;
           var dec = Math.pow(10, decimal);
           var progress,value;
@@ -550,13 +552,9 @@
             } else {
               step += 150
             }
-            var outTimer = setTimeout(function () {
-              $($('.count-list li img')[turn]).addClass('out')
-              $($('.count-list li img')[turn]).css('transform', 'translateX(' + step + '%)')
-              document.querySelector('.count-list li img').style.webkitTransform = 'translateX(' + step + '%)'
-            }, 200)
-          } else {
-            clearTimeout(outTimert)
+            $($('.count-list li img')[turn]).addClass('out')
+            $($('.count-list li img')[turn]).css('transform', 'translateX(' + step + '%)')
+            document.querySelector('.count-list li img').style.webkitTransform = 'translateX(' + step + '%)'
           }
         },
         /*
@@ -565,10 +563,11 @@
         countStart: function (clickEle, showEle, type) { // 点击元素， 显示的元素， 点击的按钮类型 50 ／ 100
           var _this = countObj;
           $(clickEle).on('touchstart', function () {
-            console.log(_this.num)
             if (_this.num < 1 || second <= 0) {
               return;
             }
+            _this.firstMoneyOut(countList[_this.num], _this.num) // 钞票收起
+            _this.countSlideDown() // 出钞票列表
             if (countList[_this.num] == type && type == 50) {
               _this.playOrPaused('/styles/un-min/yes.mp3')
               _this.showMoneyTip(clickEle, showEle);
@@ -587,8 +586,6 @@
             $('.hand-100').hide()
             $('.hand-50').hide()
             $('#totalMoney').html(_this.totalMoney)
-            _this.countSlideDown() // 出钞票列表
-            _this.firstMoneyOut(countList[_this.num], _this.num) // 钞票收起
             _this.num --
           })
         },
@@ -626,19 +623,6 @@
             }
           }, 4000)
         },
-        // 获取游戏规则
-        getGameRules: function () {
-          var _this = this
-          $.get('/hongcai/rest/activity/countingKings/' + getCookie('openid') + '/userCountingInfo' , function (res, status) {
-            if (res && res.ret !== -1) {
-              _this.gameCounts = res.count
-              res.usedCount <=0 ? _this.firstEntry = true : _this.firstEntry = false
-            } else {
-              alert('获取用户游戏参与信息接口报错')
-            }
-            $gameCounts.html(_this.gameCounts);
-          })
-        },
         // 判断是否首次进入游戏页
         getGameState: function () {
           var _this = this
@@ -646,23 +630,24 @@
             if (res && res.ret !== -1) {
               _this.gameCounts = res.count
               res.usedCount <=0 ? _this.firstEntry = true : _this.firstEntry = false
-              if (_this.firstEntry) {
-                $ruleBox.show();
-                $('#closeBtn').hide()
+              if (_this.gameCounts <=0) {
+                window.location.href= location.origin + '/views/games/game-counting-share.html'
+                  return
               } else {
-                $ruleBox.hide();
-                $RuleStartGame.hide()
-                _this.RuleStartGame()
+                _this.getCountList();
+                if (_this.firstEntry) {
+                  $ruleBox.show();
+                  $('#closeBtn').hide()
+                } else {
+                  $ruleBox.hide();
+                  $RuleStartGame.hide()
+                  _this.RuleStartGame()
+                }
+                $gameCounts.html(_this.gameCounts);
               }
-              // if (_this.firstEntry && countList[countList.length - 1].value == '50') {
-              //   $('.hand-50').show()
-              // } else if (_this.firstEntry && countList[countList.length - 1].value == '100') {
-              //   $('.hand-100').show()
-              // }
             } else {
               alert('获取用户游戏参与信息接口报错')
             }
-            $gameCounts.html(_this.gameCounts);
           })
         },
         //获取钞票列表
@@ -672,7 +657,6 @@
             if (res && res.ret !== -1) {
               countList = res.countingValues
               countObj.moneyConfig(countList)
-              _this.getGameState();
               _this.num = countList.length -1
               scrollDirection =  -1.437 * (countList.length - 3)
               $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
@@ -701,16 +685,12 @@
           })
         },
         startGameConfig: function () {
+          this.getGameState()
           this.toggleRuleBox($showRule, $ruleBox);
-          this.getCountList();
           $RuleStartGame.on('touchstart', this.RuleStartGame)
           $('#totalMoney').html(0);
           this.countStart('#count-100', '#add-100', 100)
           this.countStart('#count-50', '#add-50', 50)
-          if (this.gameCounts <=0) {
-            location.href= location.origin + '/views/games/game-counting-share.html'
-            return
-          }
         }
       };
       countObj.startGameConfig();
@@ -881,13 +861,11 @@
         },
         playAgain: function (clickEle) {
           var _this = this
-          clickEle.on('touchstart', function () {
-            if (countObj.gameCounts <= 0) { //判断游戏剩余次数
-              window.location.href= location.origin + '/views/games/game-counting-share.html'
-            } else {
+          setTimeout(function() {
+            clickEle.on('touchstart', function () {
               location.reload()
-            }
-          })
+            })
+          }, 1000)
         },
         windowChange: function (ele) {
           var winHeight = $(window).height()
@@ -898,13 +876,27 @@
               isAndroid() ? ele.removeClass('input-focus') : null
             }
           })
+        },
+        watchInput: function () {
+          $('#mobilesignup').bind('input propertychange', function() {
+            $(this).val($(this).val().replace(/\D/g, ''))
+            $(this).val($(this).val().length > 11 ? $(this).val().slice(0, 11) : $(this).val())
+          });
+          $('#mobileCaptcha').bind('input propertychange', function() {
+            $(this).val($(this).val().replace(/\D/g, ''))
+            $(this).val($(this).val().length > 6 ? $(this).val().slice(0, 6) : $(this).val())
+          });
+          $('#picCaptcha').bind('input propertychange', function() {
+            $(this).val($(this).val().replace(/[\W]/g, ''))
+            $(this).val($(this).val().length > 4 ? $(this).val().slice(0, 4) : $(this).val())
+          });
         }
       }
       registerObj.refreshCode($('#checkCaptcha'))
       registerObj.getCaptcha(registerObj.mobilecode)
       registerObj.signUp($('#getPrize'))
-      registerObj.playAgain($('#startAgin'))
       registerObj.windowChange($('#register'))
+      registerObj.watchInput()
       $voice.on('touchstart', function () {
         isPlay = !isPlay;
         if (isPlay) {

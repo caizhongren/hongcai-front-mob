@@ -92,7 +92,8 @@ window.onload = function(){
         console.log(res)
         if (res && res.ret !== -1) {
           gameCounts = res.count
-          console.log('分享成功游戏次数减少')
+          console.log('分享成功游戏次数增加')
+          shareSuccess()
         } else {
           alert(res.msg)
         }
@@ -100,7 +101,16 @@ window.onload = function(){
       data: 'openid=' + getCookie('openid') + '&type=2'
     })
   }
-
+  // 统一分享成功页面跳转
+  function shareSuccess () {
+    if (location.pathname === '/views/games/game-counting-share.html') {
+      window.location.href = location.origin + '/views/games/game-counting-start.html'
+    } else if (location.pathname === '/views/games/game-counting.html') {
+      $('#gameCounts').html(gameCounts)
+    } else {
+      location.reload()
+    }
+  }
   /**
    * 设置用户分享的标题以及描述以及图片等。
    */
@@ -117,13 +127,6 @@ window.onload = function(){
         // 分享成功后隐藏分享引导窗口
         console.log('onMenuShareAppMessage: success')
         updateCount()
-        if (location.pathname === '/views/games/game-counting-share.html') {
-          window.location.href = location.origin + '/views/games/game-counting-start.html'
-        } else if (location.pathname === '/views/games/game-counting.html') {
-          $('#gameCounts').html(gameCounts)
-        } else {
-          location.reload()
-        }
       },
       cancel: function (res) {
       },
@@ -142,11 +145,6 @@ window.onload = function(){
         // 分享成功后隐藏分享引导窗口
         console.log('onMenuShareTimeline: success')
         updateCount()
-        if (location.pathname === '/views/games/game-counting-share.html') {
-          window.location.href = location.origin + '/views/games/game-counting-start.html'
-        } else {
-          location.reload()
-        }
       },
       cancel: function (res) {
       },
@@ -166,11 +164,6 @@ window.onload = function(){
         // 分享成功后隐藏分享引导窗口
         console.log('onMenuShareQQ: success')
         updateCount()
-        if (location.pathname === '/views/games/game-counting-share.html') {
-          window.location.href = location.origin + '/views/games/game-counting-start.html'
-        } else {
-          location.reload()
-        }
       },
       cancel: function (res) {
       },
@@ -190,11 +183,6 @@ window.onload = function(){
         // 分享成功后隐藏分享引导窗口
         console.log('onMenuShareQZone: success')
         updateCount()
-        if (location.pathname === '/views/games/game-counting-share.html') {
-          window.location.href = location.origin + '/views/games/game-counting-start.html'
-        } else {
-          location.reload()
-        }
       },
       cancel: function (res) {
       },
@@ -209,8 +197,6 @@ window.onload = function(){
   function redirectToWechatAuth (redirect_uri){
     var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + 'wx02dfe579709d2d95' +
               "&redirect_uri=" + encodeURIComponent(removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"
-    alert(redirect_uri)
-    alert(wechatRedirectUrl)
     window.location.href = wechatRedirectUrl
   }
   /**
@@ -237,10 +223,9 @@ window.onload = function(){
     var shareItem = {
       title : '我正在疯狂数钱中…',
       subTitle : '论手速，你不一定能比过我！不信就来试试看！数出多少送多少！',
-      linkUrl : 'http://m.test321.hongcai.com/views/games/game-counting-start.html',
+      linkUrl : location.origin + '/views/games/game-counting-start.html?act=' + getCookie('act') + '&f=' + getCookie('f'),
       imageUrl : 'https://mmbiz.qpic.cn/mmbiz_png/8MZDOEkib8AlSSicY3du8iciaLhZly5kkUP3PSrln8puqracuY9T3W79wJW4kh1BFV59zgG2T5nm7qictF9IicvC4gyw/0?wx_fmt=png'
     }
-    // setCookie('openid', 'oBBBjs6uL13Z7E03h5E2hEOnM_l8', {'expires': 0.1, 'domain': 'http://localhost:9000'})
     if (getQueryString('act')) {
       setCookie('act', getQueryString('act'), 1)
     }
