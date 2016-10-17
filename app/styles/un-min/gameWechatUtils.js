@@ -34,7 +34,8 @@ window.onload = function(){
   }
   function setCookie(c_name,value,expiredays) {
     var exdate=new Date()
-    exdate.setDate(exdate.getDate()+expiredays)
+    // exdate.setDate(exdate.getDate()+expiredays)
+    exdate.setTime(exdate.getTime()+expiredays*1000)
     document.cookie=c_name+ "=" +escape(value)+
     ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
   }
@@ -228,7 +229,7 @@ window.onload = function(){
         return
       } else if (response){
         openid = getCookie('openid') || response.openid
-        setCookie('openid', openid, 1)
+        setCookie('openid', openid, 60)
       }
     })
   }
