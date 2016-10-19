@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+  <style type="text/css">
+   /*通用样式*/
+   * {
+       margin: 0;
+       padding: 0;
+     }
+     html {
+      width: 100%;
+      font-size: 63.5%;
+     }
+     body {
+      background: #ffe47f;
+      font-family: 'Microsoft Yahei', helvetica, arial;
+      max-width: 640px;
+      margin: 0 auto;
+     }
+     input, button {
+       border: none;
+       outline: none;
+       font-family: "Microsoft Yahei";
+       background: none;
+     }
+    /************************************/
+     .content {
+      padding: 1rem;
+     }
+     form {
+      margin: 0 auto;
+     }
+     .sign-up {
+      width: 85%;
+      margin: 0 auto;
+     }
+     input {
+      width: 10rem;
+     }
+     .sign-list {
+      font-size: 1.4rem;
+      width: 83%;
+      height: 38px;
+      line-height: 38px;
+      margin: 0.6rem auto;
+      background-color: #EAE4E4 !important;
+
+     }
+     .sign-list span {
+      margin-left: 1rem;
+      margin-right: 1rem;
+     }
+     button {
+      width: 16.5rem;
+      height: 3rem;
+      display: block;
+      line-height: 3rem;
+      text-align: center;
+      background-color: #fd8f3f;
+      margin: 2rem auto;
+      border-radius: .5rem;
+      font-size: 2.5rem;
+      color: #fff;
+     }
+     .error-msg {
+       color: red;
+       font-size: 1.2rem;
+       text-align: center;
+       display: none;
+     }
+     @media (min-width: 360px) {
+        .sign-list {
+          width: 78%;
+        }
+        button {
+          width: 18rem;
+        }
+     }
+     @media (min-width: 375px) {
+        button {
+          width: 19rem;
+        }
+     }
+     @media (min-width: 411px) {
+        .sign-list {
+          width: 70%;
+        }
+     }
+  </style>
+</head>
+  <body>
+    <div class="CEO-body">
+      <img src="/images/activity/invite-top.jpg" width="100%">
+      <div class="content">
+        <div class="rules">
+          活动规则：
+          </br>
+          </br>
+          </br>
+          </br>
+          </br>
+        </div>
+        <div class="sign-up">
+          <form name="signUpForm">
+            <div class="sign-list"><span>姓名：</span><input name="signName" type="text"></input></div>
+            <div class="error-msg" id="errMsg1">姓名不能为空哦~</div>
+            <div class="sign-list" id="mobile"><span>手机号：</span><input name="mobile" type="number"></input></div>
+            <div class="error-msg" id="errMsg2">请填写正确的手机号~</div>
+            <div class="sign-list"><span>孩子年龄：</span><input name="age" type="number"></input></div>
+            <div class="error-msg" id="errMsg3">年龄不能为空哦~</div>
+            <button id="signBtn" type="button" onclick="signUp();">立即报名</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  <script type="text/javascript">
+    //fortest
+    var signBtn = document.getElementById('signBtn');
+    var errMsg1 = document.getElementById('errMsg1');
+    var errMsg2 = document.getElementById('errMsg2');
+    var errMsg3 = document.getElementById('errMsg3');
+    var mob = document.getElementById('mobile');
+    var name = signUpForm.signName;
+    var age = signUpForm.age;
+    var pattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
+    //点击立即报名
+    function signUp (){
+      var mobVal = signUpForm.mobile.value;
+      var nameVal = signUpForm.signName.value;
+      var ageVal = signUpForm.age.value;
+      if(!pattern.test(mobVal)) {
+        errMsg2.style.display = 'block';
+      }else{
+        errMsg2.style.display = 'none';
+      }
+      if(!nameVal) {
+        errMsg1.style.display = 'block';
+      }else {
+        errMsg1.style.display = 'none';
+      }
+      if(!ageVal) {
+        errMsg3.style.display = 'block';
+      }else {
+        errMsg3.style.display = 'none';
+      }
+      if(pattern.test(mobVal) && nameVal && ageVal) {
+        ajax({
+          url: "/hongcai/api/v1/littleCeo/apply",//报名接口
+          type: "POST",
+          data: { name: signUpForm.signName.value, mobile: mob.value, childAge: age.value},
+          dataType: "json",
+          success: function (response, xml) {
+              // 此处放成功后执行的代码
+          },
+          fail: function (status) {
+              // 此处放失败后执行的代码
+          }
+        });
+      }
+    };
+    //ajax请求
+    function ajax(options) {
+      options = options || {};
+      options.type = (options.type || "GET").toUpperCase();
+      options.dataType = options.dataType || "json";
+      var params = formatParams(options.data);
+
+      //创建 - 非IE6 - 第一步
+      if (window.XMLHttpRequest) {
+        var xhr = new XMLHttpRequest();
+      } else { //IE6及其以下版本浏览器
+        var xhr = new ActiveXObject('Microsoft.XMLHTTP');
+      }
+      //接收 - 第三步
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            var status = xhr.status;
+            if (status >= 200 && status < 300) {
+                options.success && options.success(xhr.responseText, xhr.responseXML);
+            } else {
+                options.fail && options.fail(status);
+            }
+        }
+      }
+      //连接 和 发送 - 第二步
+        xhr.open("POST", options.url, true);
+        //设置表单提交时的内容类型
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(params);
+
+    }
+
+    //格式化参数
+    function formatParams(data) {
+      var arr = [];
+      for (var name in data) {
+          arr.push(encodeURIComponent(name) + "=" + encodeURIComponent(data[name]));
+      }
+      arr.push(("v=" + Math.random()).replace("."));
+      return arr.join("&");
+    }
+  </script>
+  </body>
+
+</html>
