@@ -127,7 +127,8 @@ angular.module('p2pSiteMobApp')
         .$create({
           mobile: $scope.mobileNum,
           captcha: $scope.captchaNum,
-          password: md5.createHash(chg.newPassword2)
+          password: md5.createHash(chg.newPassword2),
+          device: Utils.deviceCode()
         }).$then(function(response) {
           if (response.ret === -1) {
             $scope.changePasswordMsg = response.msg;

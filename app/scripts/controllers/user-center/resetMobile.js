@@ -10,7 +10,7 @@
  * 修改手机号码（针对已绑定手机号）
  */
  angular.module('p2pSiteMobApp')
-   .controller('resetMobileCtrl', function(checkPwdUtils, $rootScope, $scope, $state, $http, CheckMobUtil, CheckPicUtil, md5, register, wechat, mobileCaptcha, HongcaiUser, Restangular){
+   .controller('resetMobileCtrl', function(checkPwdUtils, $rootScope, $scope, $state, $http, CheckMobUtil, CheckPicUtil, md5, register, wechat, mobileCaptcha, HongcaiUser, Restangular, Utils){
       $scope.user = {
         mobileCaptchaBusiness:2
       };
@@ -67,7 +67,8 @@
         Restangular.one('/users/').one('0/').post('resetMobile', {
           mobile: mobile,
           captcha: captcha,
-          type: 1
+          type: 1,
+          device: Utils.deviceCode()
         }).then(function(response) {
           if(response.ret === -1){
             $rootScope.showMsg(response.msg);

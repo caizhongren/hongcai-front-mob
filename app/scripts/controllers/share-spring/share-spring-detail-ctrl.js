@@ -5,7 +5,7 @@ angular.module('p2pSiteMobApp').filter('slice', function() {
   };
 });
 angular.module('p2pSiteMobApp')
-  .controller('ShareSpringDetailCtrl', function($rootScope, $scope, $state, $stateParams,$anchorScroll, $location, $timeout, ipCookie, Restangular, config, register1, WEB_DEFAULT_DOMAIN, mobileCaptcha, md5) {
+  .controller('ShareSpringDetailCtrl', function($rootScope, $scope, $state, $stateParams,$anchorScroll, $location, $timeout, ipCookie, Restangular, config, register1, WEB_DEFAULT_DOMAIN, mobileCaptcha, md5, Utils) {
     $rootScope.showFooter = false;
     $scope.act = $stateParams.act;
     $scope.channelCode = $stateParams.f;
@@ -306,7 +306,8 @@ angular.module('p2pSiteMobApp')
 
       mobileCaptcha.$create({
         mobile: user.mobile,
-        guestId: ipCookie('guestId')
+        guestId: ipCookie('guestId'),
+        device: Utils.deviceCode()
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.captchaShow = true;
@@ -351,6 +352,7 @@ angular.module('p2pSiteMobApp')
         act: ipCookie('act'),
         channelParams: ipCookie('channelParams'),
         guestId: ipCookie('guestId'),
+        device: Utils.deviceCode()
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.msg = response.msg;

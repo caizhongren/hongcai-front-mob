@@ -7,7 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .directive('capchaCountdown', function($http, DEFAULT_DOMAIN, mobileCaptcha, ipCookie, $lacation) { //定义指令时的名称用驼峰命名，使用时用中划线方式
+  .directive('capchaCountdown', function($http, DEFAULT_DOMAIN, mobileCaptcha, ipCookie, Utils, $location) { //定义指令时的名称用驼峰命名，使用时用中划线方式
     return {
       restrict: 'EA',
       scope: false,
@@ -25,6 +25,7 @@ angular.module('p2pSiteMobApp')
             picCaptcha: scope.user.picCaptcha,
             type: scope.user.mobileCaptchaType,
             business: scope.user.mobileCaptchaBusiness,
+            device: Utils.deviceCode(),
             guestId: ipCookie('guestId')
           }).$then(function(response) {
             if (response.ret === -1) {
