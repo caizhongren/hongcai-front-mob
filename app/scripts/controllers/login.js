@@ -32,7 +32,8 @@ angular.module('p2pSiteMobApp')
       HongcaiLogin.userLogin.$create({
         account: user.account,
         password: md5.createHash(user.password),
-        openId: openId
+        openId: openId,
+        guestId: ipCookie('guestId')
       }).$then(function(response) {
         if (response.ret === -1) {
           $rootScope.showMsg(response.msg);

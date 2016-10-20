@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('p2pSiteMobApp')
-  .controller('ExperienceActivityCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, mobileCaptcha) {
+  .controller('ExperienceActivityCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, mobileCaptcha, ipCookie) {
     
     $scope.channelCode = $stateParams.f; // 推广渠道
     $scope.number = $stateParams.number;
@@ -25,7 +25,8 @@ angular.module('p2pSiteMobApp')
         channelCode: $scope.channelCode,
         openId: $rootScope.openid,
         nickName: $rootScope.nickName,
-        headImgUrl: $rootScope.headImgUrl
+        headImgUrl: $rootScope.headImgUrl,
+        guestId: ipCookie('guestId')
       }).then(function(response){
         if (response.ret === -1) {
           $scope.msg = response.msg;
@@ -49,7 +50,8 @@ angular.module('p2pSiteMobApp')
       }
 
       mobileCaptcha.$create({
-        mobile: user.mobile
+        mobile: user.mobile,
+        guestId: ipCookie('guestId')
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.msg = response.msg;

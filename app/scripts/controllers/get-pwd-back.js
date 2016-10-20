@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('GetPwdCtrl', function(checkPwdUtils, $rootScope, $scope, $state, $http, $stateParams, $location, $timeout, CheckMobUtil, CheckPicUtil, md5, register, wechat, mobileCaptcha, HongcaiUser, Restangular, restmod, DEFAULT_DOMAIN) {
+  .controller('GetPwdCtrl', function(checkPwdUtils, $rootScope, $scope, $state, $http, $stateParams, $location, $timeout, CheckMobUtil, CheckPicUtil, md5, register, wechat, mobileCaptcha, HongcaiUser, Restangular, restmod, ipCookie, DEFAULT_DOMAIN) {
     //图形验证码
     $scope.btnText = '按钮';
     $scope.getPicCaptcha = '/hongcai/api/v1/siteUser/getPicCaptcha?';
@@ -62,7 +62,8 @@ angular.module('p2pSiteMobApp')
       HongcaiUser.$find('/checkMobileCaptcha', {
         mobile: mobile,
         captcha: captcha,
-        business:1
+        business:1,
+        guestId: ipCookie('guestId')
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.getCaptchaErr = response.msg;

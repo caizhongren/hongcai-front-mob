@@ -305,7 +305,8 @@ angular.module('p2pSiteMobApp')
       
 
       mobileCaptcha.$create({
-        mobile: user.mobile
+        mobile: user.mobile,
+        guestId: ipCookie('guestId')
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.captchaShow = true;
@@ -348,7 +349,8 @@ angular.module('p2pSiteMobApp')
         headImgUrl: $rootScope.headImgUrl || '无',
         channelCode: ipCookie('utm_from'),
         act: ipCookie('act'),
-        channelParams: ipCookie('channelParams')
+        channelParams: ipCookie('channelParams'),
+        guestId: ipCookie('guestId'),
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.msg = response.msg;

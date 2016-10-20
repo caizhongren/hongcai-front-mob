@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('p2pSiteMobApp')
-  .controller('RateActivityCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, mobileCaptcha) {
+  .controller('RateActivityCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, mobileCaptcha, ipCookie) {
 
     $scope.register = function(user) {
       if(!user || !user.mobile || !user.captcha){
@@ -34,7 +34,8 @@ angular.module('p2pSiteMobApp')
       }
 
       mobileCaptcha.$create({
-        mobile: user.mobile
+        mobile: user.mobile,
+        guestId: ipCookie('guestId')
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.msg = response.msg;
