@@ -92,9 +92,9 @@ angular.module('p2pSiteMobApp')
       if ($rootScope.hasLoggedUser) {
         // TODO  登出的model在这里不太好吧。
         var logoutModel = restmod.model(DEFAULT_DOMAIN + '/users/' + '0' + '/logout');
-        logoutModel.$create(
+        logoutModel.$create({
           device: Utils.deviceCode()
-        ).$then(function(response) {
+        }).$then(function(response) {
           if (response.ret === 1) {
             $rootScope.hasLoggedUser = null;
             $rootScope.isLogged = false;
