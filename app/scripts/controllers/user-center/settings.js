@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('SettingsCtrl', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5) {
+  .controller('SettingsCtrl', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, Utils) {
 
     $scope.userHeadImgUrl = '/images/user-center/head.png';
 
@@ -61,7 +61,8 @@ angular.module('p2pSiteMobApp')
       restmod.model(DEFAULT_DOMAIN + '/users/' + '0' + '/changePassword')
         .$create({
           oldPassword: md5.createHash(oldP),
-          newPassword: md5.createHash(newP2)
+          newPassword: md5.createHash(newP2),
+          device: Utils.deviceCode()
         }).$then(function(response) {
           if (response.ret === -1) {
             $scope.changePasswordMsg = response.msg;
@@ -91,7 +92,9 @@ angular.module('p2pSiteMobApp')
       if ($rootScope.hasLoggedUser) {
         // TODO  登出的model在这里不太好吧。
         var logoutModel = restmod.model(DEFAULT_DOMAIN + '/users/' + '0' + '/logout');
-        logoutModel.$create().$then(function(response) {
+        logoutModel.$create({
+          device: Utils.deviceCode()
+        }).$then(function(response) {
           if (response.ret === 1) {
             $rootScope.hasLoggedUser = null;
             $rootScope.isLogged = false;

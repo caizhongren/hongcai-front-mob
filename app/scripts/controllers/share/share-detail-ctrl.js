@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('p2pSiteMobApp')
-  .controller('ShareDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, $location, ipCookie, register1, mobileCaptcha, Restangular, config, DialogService) {
+  .controller('ShareDetailCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, $location, ipCookie, register1, mobileCaptcha, Restangular, config, DialogService, Utils) {
 
     $rootScope.showButton = false;
     $rootScope.showFooter = false;
@@ -321,7 +321,9 @@ angular.module('p2pSiteMobApp')
         headImgUrl: $rootScope.headImgUrl || '无',
         channelCode: ipCookie('utm_from'),
         act: ipCookie('act'),
-        channelParams: ipCookie('channelParams')
+        channelParams: ipCookie('channelParams'),
+        guestId: ipCookie('guestId'),
+        device: Utils.deviceCode()
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.errorMobileMsg = response.msg;
@@ -343,7 +345,9 @@ angular.module('p2pSiteMobApp')
       $scope.buttonFlag = 0;
 
       mobileCaptcha.$create({
-        mobile: user.mobile
+        mobile: user.mobile,
+        guestId: ipCookie('guestId'),
+        device: Utils.deviceCode()
       }).$then(function(response) {
         if (response.ret === -1) {
           $scope.errorMobileMsg = response.msg;
