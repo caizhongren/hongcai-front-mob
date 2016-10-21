@@ -257,16 +257,16 @@ p2pSiteMobApp
         }
       })
       // 立即投资页
-      .state('root.investment-status', {
-        url: '/investment-status/:number',
-        views: {
-          '': {
-            templateUrl: 'views/project/investment-status.html',
-            controller: 'InvestCtrl',
-            controllerUrl: 'scripts/controllers/project/invest'
-          }
-        }
-      })
+      // .state('root.investment-status', {
+      //   url: '/investment-status/:number',
+      //   views: {
+      //     '': {
+      //       templateUrl: 'views/project/investment-status.html',
+      //       controller: 'InvestCtrl',
+      //       controllerUrl: 'scripts/controllers/project/invest'
+      //     }
+      //   }
+      // })
       .state('root.registration-agreement', {
         url: '/registration-agreement',
         views: {
