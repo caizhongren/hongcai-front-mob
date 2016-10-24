@@ -17,7 +17,7 @@
       </thead>
       <tbody>
         <div >
-          <tr ng-repeat="item in deals">
+          <tr ng-repeat="item in deals track by $index">
             <td>{{item.createTime | date: 'yy-MM-dd'}}</td>
             <td>{{ dealMap[item.type] }}</td>
             <!-- <td><strong class="ft-orange">{{ item.description }}</strong></td> -->

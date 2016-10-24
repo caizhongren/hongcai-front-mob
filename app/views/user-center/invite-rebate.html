@@ -52,7 +52,7 @@
       <div class="list-cell">用户名</div>
       <div class="list-cell-title">状态</div>
     </div>
-    <div class="use-list-head" ng-repeat="item in datas">
+    <div class="use-list-head" ng-repeat="item in datas track by $index">
       <div class="list-cell">{{item.user.mobile || item.user.name}}</div>
       <div class="list-cell">
         <div ng-switch="item.userAuth.yeepayAccountStatus">

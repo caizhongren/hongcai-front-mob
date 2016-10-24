@@ -32,7 +32,7 @@
     <li class="text-center margin-0" ng-class="{'active':status === 2}" ng-click="selectStat(2)">已提现</li>
   </ul>
   <!-- 可提 -->
-	<div class="outer-panel margin-b-1" ng-if="status === 1 && cashCoupons.length >0" ng-repeat="item in cashCoupons | orderBy : '-value'">
+	<div class="outer-panel margin-b-1" ng-if="status === 1 && cashCoupons.length >0" ng-repeat="item in cashCoupons track by $index | orderBy : '-value'">
 		<div>
   		<img src="/images/user-center/cash-coupon01.png">
   		<div class="inner-panel-left">
@@ -48,7 +48,7 @@
 		</div>
 	</div>
 	<!-- 已提 -->
-	<div class="outer-panel margin-b-1" ng-if="status === 2 && cashCoupons.length >0" ng-repeat="item in cashCoupons">
+	<div class="outer-panel margin-b-1" ng-if="status === 2 && cashCoupons.length >0" ng-repeat="item in cashCoupons track by $index">
 		<div>
   		<img src="/images/user-center/cash-coupon01.png">
   		<div class="inner-panel-left">

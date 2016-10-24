@@ -1,6 +1,6 @@
 <div class="grade">
   <!-- 要展示的内容如下 -->
-  <div class="tab-content columns twelve bg-offWhite overflow-hid padding-b-0 text-center " ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs">
+  <div class="tab-content columns twelve bg-offWhite overflow-hid padding-b-0 text-center " ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs track by $index">
     <section ng-if="tab.title==='体验金'">
       <div class="padding-1 minHeight">
        <div class="tiyanjin-tab">
@@ -11,7 +11,7 @@
         	<div class="list-cell">收益</div>
         </div>
         <div>
-	        <div class="use-list-head" ng-repeat="item in datas">
+	        <div class="use-list-head" ng-repeat="item in datas track by $index">
 	        	<div class="list-cell">{{item.createTime | date:'yyyy-MM-dd'}}</div>
 	        	<div class="list-cell">{{item.amount | number:0}}元</div>
 	        	<div class="list-cell ft-orange">{{item.profit | number:2}}元</div>
@@ -24,13 +24,13 @@
     <section ng-if="tab.title==='加息券'" class="padding-b-4" auto-height>
 	    <div class="padding-t-0p5 bg-white padding-b-0p5 overflow-aut">
 		    <ul class="grade-tab2 columns ten offset-by-one margin-b-0">
-		      <li class="column text-center margin-0" ng-class="{insub: toggle.activesubTab===$index}" ng-repeat="tabitem in subtabs" ng-click="toggle.switchsubTab($index)">{{tabitem.titles}}</li>
+		      <li class="column text-center margin-0" ng-class="{insub: toggle.activesubTab===$index}" ng-repeat="tabitem in subtabs track by $index" ng-click="toggle.switchsubTab($index)">{{tabitem.titles}}</li>
 		    </ul>
 	    </div>
-	    <div ng-class="{'ng-hide': toggle.activesubTab!==$index}" ng-repeat="item in subtabs">
+	    <div ng-class="{'ng-hide': toggle.activesubTab!==$index}" ng-repeat="item in subtabs track by $index">
 		    <div ng-if="item.titles ==='未使用'" class="jiaxiquan-tab">
 		    	<div ng-show="datas.length > 0">
-		    		<div  ng-repeat="item in datas">
+		    		<div  ng-repeat="item in datas track by $index">
 				    	<div class="margin-t-1 outer-panel" ng-if="item.status === 1">
 				    		<div>
 					    		<img src="/images/new/rate.png">
@@ -85,7 +85,7 @@
 		    </div>
 		    <div  ng-if="item.titles ==='已使用'" class="jiaxiquan-tab">
 		    	<div ng-show="datas.length > 0">
-			    	<div class="margin-t-1 outer-panel" ng-repeat="item in datas">
+			    	<div class="margin-t-1 outer-panel" ng-repeat="item in datas track by $index">
 			    		<img src="/images/new/rate.png">
 			    		<div class="inner-panel-left">
 			    			<!-- <p class="top-margin">活动奖励</p> -->
@@ -138,7 +138,7 @@
         	<div class="list-cell">用户名</div>
         	<div class="list-cell-title">状态</div>
         </div>
-        <div class="use-list-head" ng-repeat="item in datas">
+        <div class="use-list-head" ng-repeat="item in datas track by $index">
         	<div class="list-cell">{{item.user.mobile || item.user.name}}</div>
         	<div class="list-cell">
         		<div ng-switch="item.userAuth.yeepayAccountStatus">

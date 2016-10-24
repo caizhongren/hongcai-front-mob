@@ -560,7 +560,7 @@ p2pSiteMobApp
         url: '/recommend',
         views: {
           '': {
-            templateUrl: 'views/recommend.html',
+            templateUrl: 'views/activity/recommend.html',
             controller: 'DailyLotteryCtrl',
             controllerUrl: 'scripts/controllers/daily-lottery/daily-lottery-ctrl'
           }
