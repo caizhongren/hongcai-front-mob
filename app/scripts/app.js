@@ -513,19 +513,19 @@ p2pSiteMobApp
         }
       })
       // 常见问题
-      .state('root.issue', {
-        url: '/issue',
-        data: {
-          title: '常见问题'
-        },
-        views: {
-          '': {
-            templateUrl: 'views/issue.html',
-            controller: 'IssueCtrl',
-            controllerUrl: 'scripts/controllers/issue'
-          }
-        }
-      })
+      // .state('root.issue', {
+      //   url: '/issue',
+      //   data: {
+      //     title: '常见问题'
+      //   },
+      //   views: {
+      //     '': {
+      //       templateUrl: 'views/issue.html',
+      //       controller: 'IssueCtrl',
+      //       controllerUrl: 'scripts/controllers/issue'
+      //     }
+      //   }
+      // })
       // 安全保障
       .state('root.safe', {
         url: '/safe',
