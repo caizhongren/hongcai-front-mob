@@ -12,9 +12,9 @@
         </div>
         <div>
 	        <div class="use-list-head" ng-repeat="item in datas track by $index">
-	        	<div class="list-cell">{{item.createTime | date:'yyyy-MM-dd'}}</div>
-	        	<div class="list-cell">{{item.amount | number:0}}元</div>
-	        	<div class="list-cell ft-orange">{{item.profit | number:2}}元</div>
+	        	<div class="list-cell">{{::item.createTime | date:'yyyy-MM-dd'}}</div>
+	        	<div class="list-cell">{{::item.amount | number:0}}元</div>
+	        	<div class="list-cell ft-orange">{{::item.profit | number:2}}元</div>
 	        </div>
         </div>
        </div>
@@ -24,7 +24,7 @@
     <section ng-if="tab.title==='加息券'" class="padding-b-4" auto-height>
 	    <div class="padding-t-0p5 bg-white padding-b-0p5 overflow-aut">
 		    <ul class="grade-tab2 columns ten offset-by-one margin-b-0">
-		      <li class="column text-center margin-0" ng-class="{insub: toggle.activesubTab===$index}" ng-repeat="tabitem in subtabs track by $index" ng-click="toggle.switchsubTab($index)">{{tabitem.titles}}</li>
+		      <li class="column text-center margin-0" ng-class="{insub: toggle.activesubTab===$index}" ng-repeat="tabitem in subtabs track by $index" ng-click="toggle.switchsubTab($index)">{{::tabitem.titles}}</li>
 		    </ul>
 	    </div>
 	    <div ng-class="{'ng-hide': toggle.activesubTab!==$index}" ng-repeat="item in subtabs track by $index">
@@ -36,13 +36,13 @@
 					    		<img src="/images/new/rate.png">
 					    		<div class="inner-panel-left">
 					    			<!-- <p class="top-margin">活动奖励</p> -->
-					    			<p class="margin-b-0 top-margin"><strong class="ft-4">{{item.value | number:1}}</strong>%</p>
+					    			<p class="margin-b-0 top-margin"><strong class="ft-4">{{::item.value | number:1}}</strong>%</p>
 					    		</div>
 					    		<div class="inner-panel-center">
-					    			<p class="margin-b-0 padding-l-1">•{{item.description}}</p>
+					    			<p class="margin-b-0 padding-l-1">•{{::item.description}}</p>
 					    			<p class="padding-l-1 middle-margin" ng-if="item.projectDays <= 0">•适用于宏金保项目</p>
 					    			<p class="padding-l-1 middle-margin" ng-if="item.projectDays > 0">•适用宏金保&ge;30天项目</p>
-					    			<p class="margin-b-0 padding-l-1">•有效期至{{item.endTime | date:"yyyy-MM-dd"}}</p>
+					    			<p class="margin-b-0 padding-l-1">•有效期至{{::item.endTime | date:"yyyy-MM-dd"}}</p>
 					    		</div>
 					    		<div class="inner-panel-right" ng-click="toProjectList($index)">
 					    			<span>立</span>
@@ -58,13 +58,13 @@
 				    	  <img src="/images/new/rate1.png">
 				    	  <div class="inner-panel-left">
 				    	    <!-- <p class="top-margin">活动奖励</p> -->
-				    	    <p class="margin-b-0 top-margin"><strong class="ft-4">{{item.value | number:1}}</strong>%</p>
+				    	    <p class="margin-b-0 top-margin"><strong class="ft-4">{{::item.value | number:1}}</strong>%</p>
 				    	  </div>
 				    	  <div class="inner-panel-center1">
-				    	    <p class="margin-b-0 padding-l-1">•{{item.description}}</p>
+				    	    <p class="margin-b-0 padding-l-1">•{{::item.description}}</p>
 				    	    <p class="padding-l-1 middle-margin" ng-if="item.projectDays <= 0">•适用于宏金保项目</p>
 				    	    <p class="padding-l-1 middle-margin" ng-if="item.projectDays > 0">•适用宏金保&ge;30天项目</p>
-				    	    <p class="margin-b-0 padding-l-1">•有效期至{{item.endTime | date:"yyyy-MM-dd"}}</p>
+				    	    <p class="margin-b-0 padding-l-1">•有效期至{{::item.endTime | date:"yyyy-MM-dd"}}</p>
 				    	  </div>
 				    	  <div class="inner-panel-right1">
 				    	    <span>已</span>
@@ -89,11 +89,11 @@
 			    		<img src="/images/new/rate.png">
 			    		<div class="inner-panel-left">
 			    			<!-- <p class="top-margin">活动奖励</p> -->
-			    			<p class="margin-b-0 top-margin"><strong class="ft-4">{{item.value | number:1}}</strong>%</p>
+			    			<p class="margin-b-0 top-margin"><strong class="ft-4">{{::item.value | number:1}}</strong>%</p>
 			    		</div>
 			    		<div class="inner-model-center">
 			    			<p class="model-margin ft-orange">收益：{{item.profit | number:2}}元</p>
-			    			<p class="margin-b-0">使用日期({{item.usedTime | date:"yyyy-MM-dd"}})</p>
+			    			<p class="margin-b-0">使用日期({{::item.usedTime | date:"yyyy-MM-dd"}})</p>
 			    		</div>
 			    		<div class="inner-model-right">
 			    			<img src="/images/new/used.png" alt="">
@@ -139,7 +139,7 @@
         	<div class="list-cell-title">状态</div>
         </div>
         <div class="use-list-head" ng-repeat="item in datas track by $index">
-        	<div class="list-cell">{{item.user.mobile || item.user.name}}</div>
+        	<div class="list-cell">{{::item.user.mobile || ::item.user.name}}</div>
         	<div class="list-cell">
         		<div ng-switch="item.userAuth.yeepayAccountStatus">
         		<span ng-switch-default>未认证</span>

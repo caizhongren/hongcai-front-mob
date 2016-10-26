@@ -1,7 +1,7 @@
 <!-- ng-show="project.status === 1" -->
 <div class="investment bg-grey4 overflow-hid">
   <div class="invest-confirm">
-    <p>账户余额：<strong>{{ account.balance | currency:"":2 || 0}}</strong>元</p>
+    <p>账户余额：<strong>{{::account.balance | currency:"":2 || 0}}</strong>元</p>
     <p>可投金额：<strong>{{project.projectInvestAmount | currency:"":2 || 0}}</strong>元</p>
   </div>
   <form name="investForm" class="invest-form overflow-hid" >
@@ -54,7 +54,7 @@
 <div class="project-mask" ng-show="rewardFlag">
   <div class="bg-white project-mask-inner">
     <p class="margin-b-1 padding-l-2 padding-t-2" ng-show="account.experienceAmount > 0 && project.product.type === 1">
-      <input type="checkbox" ng-model="project.useExperience">使用体验金:{{account.experienceAmount | currency : "":0 || 0}}</p>
+      <input type="checkbox" ng-model="project.useExperience">使用体验金:{{::account.experienceAmount | currency : "":0 || 0}}</p>
     <p class="margin-b-1 padding-l-2 padding-t-1" ng-show="selectCoupon !== null && project.product.type !== 1">
       <select type="button" class="btn btn-default" ng-model="selectCoupon" data-html="1" data-animation="am-flip-x" ng-options="coupon as coupon.rateText for coupon in increaseRateCoupons" required>
       </select>

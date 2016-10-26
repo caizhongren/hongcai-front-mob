@@ -30,7 +30,7 @@
       <span class="ft-orange">风控审核</span>
     </div>
     <div ng-repeat='items in getProjectRisk track by items.id'>
-      <p class="margin-b-0"><i class="fa fa-check-circle ft-green padding-r-0p5" aria-hidden="true"></i>{{items.name}}</p>
+      <p class="margin-b-0"><i class="fa fa-check-circle ft-green padding-r-0p5" aria-hidden="true"></i>{{::items.name}}</p>
     </div>
   </div>
 </div>

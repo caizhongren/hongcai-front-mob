@@ -11,9 +11,9 @@
     <tbody>
       <!-- 有投资 -->
       <tr ng-repeat="order in orderList track by order.id| limitTo : initLimit" ng-show="orderList.length >0 ">
-        <td class="ft-grey4">{{order.createTime | date: "yyyy-MM-dd"}}</td>
-        <td class="ft-blue">{{order.userName}}</td>
-        <td><span class="ft-orange0">{{order.orderAmount| number : 0}}</span>元</td>
+        <td class="ft-grey4">{{::order.createTime | date: "yyyy-MM-dd"}}</td>
+        <td class="ft-blue">{{::order.userName}}</td>
+        <td><span class="ft-orange0">{{::order.orderAmount| number : 0}}</span>元</td>
       </tr>
       <!-- 没投资 -->
       <tr class="text-center" ng-show="orderList.length <=0 ">

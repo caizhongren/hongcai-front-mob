@@ -11,7 +11,7 @@
       {{freeWish.user.nickName || '金鱼公主'}}
     </div> -->
     <div class="head-money">
-      {{freeWish.amount || 0}}<span class="ft-2 ft-bold">元</span>
+      {{::freeWish.amount || 0}}<span class="ft-2 ft-bold">元</span>
     </div>
 
     <div ng-switch="bindWechat || isLogged" >
@@ -47,7 +47,7 @@
         <div class="left-line fl"></div>
         <div class="tips-content">砸罐小能手</div>
         <div class="right-line fr"></div>
-      </div>  
+      </div>
     </div>
     <div class="padding-l-1 padding-r-1 margin-t-1">
       <div ng-include src='"views/share-spring/_head-tmpl.html"'>
@@ -147,7 +147,7 @@
         <p class="ft-1p8 ft-black bottom-white">恭喜您！获得&nbsp;<span class="ft-red6">{{myFreeWish.amount || 0}}元</span>&nbsp;现金！</p>
         <p class="ft-1p8 ft-red6 ft-bold bottom-white text-line">点击领取自己的现金</p>
       </div>
-    </div>  
+    </div>
   </div>
 </div>
 <!-- 砸罐成功弹出已进行任务弹出的蒙层 goOnMyWay-->

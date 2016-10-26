@@ -1,11 +1,11 @@
 <p class="choice-font">请选择任意场景完成你自己的旅程</p>
 <div class="scene-container">
-  <div class="scene-item" ng-repeat="item in scenesData track by item.id">
+  <div class="scene-item" ng-repeat="item in scenesData track by $index">
     <div class="img-area">
       <img src="{{baseFileUrl + item.url}}" alt="" width="100%" ng-click="goSceneDetail(item.id)">
       <!-- <div class="icon-checked"><span><i class="fa fa-check-circle fa-2x ft-white"></i></span></div> -->
     </div>
-    <p>{{item.name}}</p>
+    <p>{{::item.name}}</p>
   </div>
 </div>
 <div class="activity-us">

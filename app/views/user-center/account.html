@@ -14,17 +14,17 @@
     </div>
     <div class="text-cneter bg-orange0 ft-white">
       <p class="text-center margin-b-0 padding-t-1 ft-white1 ft-1p4">当前资产(元)</p>
-      <p class="text-center ft-2p8 margin-b-1 ft-1p6">{{ userAccount.tTotalAssets || 0 | number:2}}</strong></p>
+      <p class="text-center ft-2p8 margin-b-1 ft-1p6">{{ ::userAccount.tTotalAssets || 0 | number:2}}</strong></p>
       <div class="overflow-hid">
         <ul class="colums">
           <li class="text-center fl width-0p3 position-re ft-1p4">
             <p class="margin-b-0 ft-1p4  ft-white1">累计收益(元)</p>
-            <p class="margin-b-0 ft-1p6">{{userAccount.totalProfit || 0  | number:2 }}</p>
+            <p class="margin-b-0 ft-1p6">{{::userAccount.totalProfit || 0  | number:2 }}</p>
             <i class="fl border-white-right position-ab right-0 line"></i>
           </li>
           <li class="text-center fl width-0p3 position-re ft-1p4">
             <p class="margin-b-0  ft-white1">可用余额(元)</p>
-            <p class="margin-b-0 ft-1p6">{{ userAccount.balance || 0  | number:2 }}</p>
+            <p class="margin-b-0 ft-1p6">{{ ::userAccount.balance || 0  | number:2 }}</p>
             <i class="fl border-white-right position-ab right-0 line"></i>
           </li>
           <li class="text-center fl width-0p3 ft-1p4" ui-sref="root.userCenter.cash-coupon">
