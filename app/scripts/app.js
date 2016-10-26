@@ -9,7 +9,7 @@
 var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   // 'angular-loading-bar',
   // 'ngCookies',
-  'angular-cache',
+  // 'angular-cache',
   'ngAnimate',
   // 'ngTouch',
   'famous.angular',
@@ -27,9 +27,8 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
 ]);
 
 p2pSiteMobApp
-  .config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpProvider', '$uiViewScrollProvider','CacheFactoryProvider', function($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, $uiViewScrollProvider, CacheFactoryProvider) {
+  .config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpProvider', '$uiViewScrollProvider', function($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, $uiViewScrollProvider) {
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
-    angular.extend(CacheFactoryProvider.defaults, { maxAge: 15 * 60 * 1000 });
     $uiViewScrollProvider.useAnchorScroll();
     $stateProvider
       .state('landing-page', {
