@@ -9,6 +9,7 @@
 var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   // 'angular-loading-bar',
   // 'ngCookies',
+  // 'angular-cache',
   'ngAnimate',
   // 'ngTouch',
   'famous.angular',
@@ -255,16 +256,16 @@ p2pSiteMobApp
         }
       })
       // 立即投资页
-      .state('root.investment-status', {
-        url: '/investment-status/:number',
-        views: {
-          '': {
-            templateUrl: 'views/project/investment-status.html',
-            controller: 'InvestCtrl',
-            controllerUrl: 'scripts/controllers/project/invest'
-          }
-        }
-      })
+      // .state('root.investment-status', {
+      //   url: '/investment-status/:number',
+      //   views: {
+      //     '': {
+      //       templateUrl: 'views/project/investment-status.html',
+      //       controller: 'InvestCtrl',
+      //       controllerUrl: 'scripts/controllers/project/invest'
+      //     }
+      //   }
+      // })
       .state('root.registration-agreement', {
         url: '/registration-agreement',
         views: {
@@ -511,19 +512,19 @@ p2pSiteMobApp
         }
       })
       // 常见问题
-      .state('root.issue', {
-        url: '/issue',
-        data: {
-          title: '常见问题'
-        },
-        views: {
-          '': {
-            templateUrl: 'views/issue.html',
-            controller: 'IssueCtrl',
-            controllerUrl: 'scripts/controllers/issue'
-          }
-        }
-      })
+      // .state('root.issue', {
+      //   url: '/issue',
+      //   data: {
+      //     title: '常见问题'
+      //   },
+      //   views: {
+      //     '': {
+      //       templateUrl: 'views/issue.html',
+      //       controller: 'IssueCtrl',
+      //       controllerUrl: 'scripts/controllers/issue'
+      //     }
+      //   }
+      // })
       // 安全保障
       .state('root.safe', {
         url: '/safe',
@@ -558,7 +559,7 @@ p2pSiteMobApp
         url: '/recommend',
         views: {
           '': {
-            templateUrl: 'views/recommend.html',
+            templateUrl: 'views/activity/recommend.html',
             controller: 'DailyLotteryCtrl',
             controllerUrl: 'scripts/controllers/daily-lottery/daily-lottery-ctrl'
           }

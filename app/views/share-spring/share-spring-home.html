@@ -39,19 +39,19 @@
           我要现金
         </div>
         <div class="open-btn" ng-switch-when="2" ng-click="openFreeWish()">
-          已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.freeWishActivityRules.secondReward | number:0}}元
+          已到账{{::freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{::activity.freeWishActivityRules.secondReward | number:0}}元
         </div>
 
         <div class="open-btn" ng-switch-when="3" ng-click="goOn()">
-          已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.freeWishActivityRules.secondReward | number:0}}元
+          已到账{{::freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{::activity.freeWishActivityRules.secondReward | number:0}}元
         </div>
 
         <div class="open-btn" ng-switch-when="4" ng-click="openFreeWish()">
-          已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.freeWishActivityRules.thirdReward | number:0}}元
+          已到账{{::freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{::activity.freeWishActivityRules.thirdReward | number:0}}元
         </div>
 
         <div class="open-btn" ng-switch-when="5" ng-click="goOn()">
-          已到账{{freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{activity.freeWishActivityRules.thirdReward | number:0}}元
+          已到账{{::freeWishStatics.receiveAmount| number:0}}元&nbsp;再拿{{::activity.freeWishActivityRules.thirdReward | number:0}}元
         </div>
 
         <div class="open-btn" ng-switch-when="6" ui-sref="root.userCenter.account">
@@ -72,12 +72,12 @@
       </div> -->
       <div class="list-content" ng-show="freeWishes.length > 0 ">
         <div class="row">
-          <div class="table-cell" ng-repeat="freeWish in freeWishes">
+          <div class="table-cell" ng-repeat="freeWish in freeWishes track by $index">
             <div class="img-border">
               <img ng-src="{{ freeWish.user.headImgUrl || '/images/share/4head.jpg'}}" alt="" width="100%">
               <div class="img-tip">
                 <p class="ft-1">已领</p>
-                <p>{{freeWish.amount | number:1}}元</p>
+                <p>{{::freeWish.amount | number:1}}元</p>
               </div>
             </div>
           </div>
@@ -85,7 +85,7 @@
       </div>
       <div class="list-content" ng-show="freeWishes.length <=0 ">
         <div class="row">
-          <div class="table-cell" ng-repeat="item in [1,2,3,4,5]">
+          <div class="table-cell" ng-repeat="item in [1,2,3,4,5] track by $index">
             <div class="img-border">
               <img src="/images/activity/dubai.png" alt="" width="100%">
               <div class="img-tip">

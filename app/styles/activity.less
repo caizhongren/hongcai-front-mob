@@ -1,3 +1,4 @@
+//旧加息券活动，体验金活动，串码活动，
 .activity {
     .input-msg {
         margin-top: -0.5rem;
@@ -343,7 +344,7 @@ input::-webkit-inner-spin-button {
     background-repeat: no-repeat;
     text-align: center;
 }
-
+//朋友圈生成页，分享朋友圈活动案例页（固定案例页），分享朋友圈活动场景选择页
 .act-example {
     width: 93.3%;
     margin: 1rem auto 7.5rem;
@@ -581,60 +582,61 @@ input::-webkit-inner-spin-button {
         }
     }
 }
-
-.activity-landing, .novice-landing, .invite-act{
-  background-color: #f9513b;
-  margin-bottom: 0;
-  padding-bottom: 1%;
-  .landing-bottom{
-    ul{
-      margin-bottom: 0.5rem;
-      li{
-        padding-left: 1.2rem;
-        img {
-          width: 17%;
-          margin: 1.5rem 1rem 1.5rem 0;
+//加息券落地页，送现金落地页，新手活动页,新邀请活动增信公用
+.landing-bottom{
+  ul{
+    margin-bottom: 0.5rem;
+    li{
+      padding-left: 1.2rem;
+      img {
+        width: 17%;
+        margin: 1.5rem 1rem 1.5rem 0;
+      }
+      span{
+        display: inline;
+        width: 77%;
+        font-size: 1.4rem;
+        color: #a3a2a2;
+        @media (max-width:360px) {
+          font-size: 1.3rem;
         }
-        span{
-          display: inline;
-          width: 77%;
+      }
+      p{
+        display: inline;
+        margin-bottom: 0;
+        font-size: 1.6rem;
+        color: #333333;
+        margin: 1rem 0 0.3rem 0;
+        @media (max-width:360px) {
           font-size: 1.4rem;
-          color: #a3a2a2;
-          @media (max-width:360px) {
-            font-size: 1.3rem;
-          }
-        }
-        p{
-          display: inline;
-          margin-bottom: 0;
-          font-size: 1.6rem;
-          color: #333333;
-          margin: 1rem 0 0.3rem 0;
-          @media (max-width:360px) {
-            font-size: 1.4rem;
-          }
-        }
-      }
-    }
-    .explain{
-       @media (min-width: 320px) {
-        p{
-          color:#ffffff;
-          font-size:1.3rem;
-          margin:0 auto;
-          text-align:center;
-        }
-      }
-      @media (min-width: 375px) {
-        p{
-          color:#ffffff;
-          font-size:1.4rem;
-          margin:0 auto;
-          text-align:center;
         }
       }
     }
   }
+  .explain{
+     @media (min-width: 320px) {
+      p{
+        color:#ffffff;
+        font-size:1.3rem;
+        margin:0 auto;
+        text-align:center;
+      }
+    }
+    @media (min-width: 375px) {
+      p{
+        color:#ffffff;
+        font-size:1.4rem;
+        margin:0 auto;
+        text-align:center;
+      }
+    }
+  }
+}
+//send-money,send-coupon公用样式
+.activity-landing {
+  background-color: #f9513b;
+  margin-bottom: 0;
+  padding-bottom: 1%;
   .rmb369 {
     img{
       left:10%;
@@ -699,15 +701,10 @@ input::-webkit-inner-spin-button {
   }
   .deadline{
     text-align: center;
-    left: 40%;
-    bottom: 10%;
-    font-size: 2.8rem;
+    font-size: 1.2rem;
+    left: 22%;
+    bottom: 25%;
     color: #ffffff;
-    @media (min-width:320px) {
-      font-size: 1.2rem;
-      left: 22%;
-      bottom: 25%;
-    }
     @media (min-width:360px) {
       font-size: 1.3rem;
       left: 24%;
@@ -736,10 +733,7 @@ input::-webkit-inner-spin-button {
       text-align: center;
       color:#e11b28;
       font-weight: bold;
-      font-size: 1.8rem;
-    }
-    @media (min-width: 320px) {
-      .gift-text{font-size: 1.5rem;}
+      font-size: 1.5rem;
     }
     @media (min-width: 375px) {
       .gift-text{font-size: 1.8rem;top:0;}
@@ -751,35 +745,33 @@ input::-webkit-inner-spin-button {
       .gift-text{font-size: 2.6rem;top:-0.6rem;}
     }
     .gift-table{
+      span {
+        display: inline-block;
+        text-align: right;
+      }
       .gift-title{
-        font-size: 1.6rem;
+        font-size: 1.3rem;
         clear: both;
         white-space: nowrap;
         margin-top: 1rem;
         padding-left: 1.5rem;
         overflow: auto;
         span:nth-child(1),span:nth-child(2){
-          display: inline-block;
           width: 20%;
           float: left;
           margin-right: 17%;
-          text-align: center;
         }
         span:nth-child(3){
-          display: inline-block;
           width: 23%;
           float: left;
-          text-align: center;
         }
         span:nth-child(4){
-          display: inline-block;
           float: right;
           width: 19%;
-          text-align: right;
         }
       }
       .gift-content{
-        font-size: 1.7rem;
+        font-size: 1.4rem;
         color: #000000;
         white-space: nowrap;
         background-color: #f7f7f7;
@@ -788,10 +780,8 @@ input::-webkit-inner-spin-button {
         width: 100%;
         overflow: auto;
         span:nth-child(1){
-          display: inline-block;
           width: 15%;
           float: left;
-          text-align: center;
           color: #cd000d;
           font-weight: bold;
           font-size: 1.8rem;
@@ -804,21 +794,13 @@ input::-webkit-inner-spin-button {
           text-align: center;
         }
         span:nth-child(3){
-          display: inline-block;
           width: 19%;
           float: right;
-          text-align: center;
         }
         span:nth-child(4){
-          display: inline-block;
           float: right;
           width: 19%;
-          text-align: right;
         }
-      }
-      @media (min-width: 320px) {
-        .gift-title{font-size: 1.3rem;}
-        .gift-content{font-size: 1.4rem;}
       }
       @media (min-width: 375px) {
         .gift-title{font-size: 1.6rem;}
@@ -944,20 +926,14 @@ input::-webkit-inner-spin-button {
       p{
         color:#ffffff;
         font-weight:bold;
-        @media (min-width: 320px){
-          font-size:1.2rem;
-          padding:0 3.1rem;
-          top:0.9rem;
-        }
+        font-size:1.2rem;
+        padding:0 3.1rem;
+        top:0.9rem;
         @media (min-width: 360px){
-          font-size:1.2rem;
           padding:0 3.4rem;
-          top:0.9rem;
         }
          @media (min-width: 375px){
           font-size:1.27rem;
-          padding:0 3.4rem;
-          top:0.9rem;
         }
         @media (min-width: 414px){
           font-size:1.4rem;
@@ -1005,46 +981,31 @@ input::-webkit-inner-spin-button {
       p:nth-child(1){
         margin-bottom:0;
         font-weight:bold;
-        @media (min-width: 320px){
-          top:0.3rem;
-          left:35%;
-          font-size:1.6rem;
-        }
-        @media (min-width: 360px){
-          top:0.3rem;
-          left:35%;
-          font-size:1.6rem;
-        }
+        top:0.3rem;
+        left:35%;
+        font-size:1.6rem;
          @media (min-width: 375px){
-          top:0.3rem;
-          left:35%;
           font-size:1.8rem;
         }
          @media (min-width: 414px){
           top:0.5rem;
-          left:35%;
           font-size:2rem;
         }
       }
       p.formula{
         margin-bottom:0;
-        @media (min-width: 320px){
-          bottom:2.5rem;
-          left:6.5%;
-          font-size:1.4rem;
-        }
+        bottom:2.5rem;
+        left:6.5%;
+        font-size:1.4rem;
         @media (min-width: 360px){
           bottom:3.5rem;
           left:11.5%;
-          font-size:1.4rem;
         }
          @media (min-width: 375px){
           bottom:2.5rem;
           left:7%;
-          font-size:1.6rem;
         }
          @media (min-width: 414px){
-          bottom:2.5rem;
           left:6.5%;
           font-size:1.8rem;
         }
@@ -1073,14 +1034,11 @@ input::-webkit-inner-spin-button {
       .btn-text{
         width: 100%;
         position: absolute;
-        top:0;
+        top: 5%;
         text-align: center;
         color: #cd000d;
         font-weight: bolder;
         font-size: 2.5rem;
-      }
-      @media (min-width: 320px)  {
-        .btn-text{top: 5%;}
       }
       @media (min-width: 375px)  {
         .btn-text{top: 11%;}
@@ -1088,7 +1046,6 @@ input::-webkit-inner-spin-button {
       @media (min-width: 414px)  {
         .btn-text{top: 14%;}
       }
-
     }
   }
   .step-three{
@@ -1107,7 +1064,7 @@ input::-webkit-inner-spin-button {
     .left-line,
     .right-line {
       height: 0;
-      width: 35%;
+      width: 30%;
       border-bottom: 1px solid #ecb463;
       display: inline-block;
       zoom: 1;
@@ -1118,17 +1075,11 @@ input::-webkit-inner-spin-button {
       font-size: 1.8rem;
       color: #ffffff;
       display: inline-block;
-      width: 30%;
+      width: 32%;
       text-align: center;
     }
     .font-red{
       color:#fe4830;
-    }
-    @media (min-width: 320px) {
-      .left-line,.right-line {
-          width: 30%;
-      }
-      .tips-content{width: 32%;}
     }
     @media (min-width: 375px) {
       .left-line,.right-line {
@@ -1138,21 +1089,11 @@ input::-webkit-inner-spin-button {
     }
   }
   .rules-landing{
-    color: #ffffff;
-    font-size:1.4rem;
-    margin-top: 1rem;
-    padding-bottom: 1.5rem;
-    overflow:auto;
     .font-red{
       color:#fe4830;
     }
     span.acticity-limit {
-
-    }
-    @media (min-width:320px) {
-      span.acticity-limit{
-        width:76%;
-      }
+      width:76%;
     }
     @media (min-width:411px) {
       span.acticity-limit{
