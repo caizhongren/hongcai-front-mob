@@ -11,6 +11,13 @@ angular.module('p2pSiteMobApp')
   .controller('RechargeCtrl', function($scope, $rootScope, $stateParams, HongcaiUser, $state, restmod, DEFAULT_DOMAIN, WEB_DEFAULT_DOMAIN, Restangular) {
     $rootScope.selectedSide = 'account';
     $scope.rechargeAmount = $stateParams.amount;
+    $scope.showLimit = false;
+    $scope.getIt = function(){
+      $scope.showLimit = false;
+    }
+    $scope.showbankLimit = function() {
+      $scope.showLimit = true;
+    }
 
     // 获取用户的银行卡剩余额度
     var siteBankLimit = restmod.model(WEB_DEFAULT_DOMAIN + "/bank/getUserRechargeRemainLimit?&payCompany=FUIOU");
@@ -63,5 +70,14 @@ angular.module('p2pSiteMobApp')
         // 获取信息失败。
       }
     });
+
+    // 银行卡限额
+    // $scope.bankAndLimit = [
+    //   {
+    //     imgUrl: '/images/user-center/1.png',
+    //     bankName: '工商银行'，
+    //     limit：'5w/5w/20w'
+    //   }
+    // ]
 
   });
