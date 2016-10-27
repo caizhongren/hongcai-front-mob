@@ -334,11 +334,17 @@
 .withdraw,
 .recharge {
   font-family: "微软雅黑" !important;
+  -webkit-overflow-scrolling : touch; 
   button {
     font-family: "微软雅黑" !important;
   }
   input {
     font-family: "微软雅黑" !important;
+  }
+}
+@media(min-width:360px) {
+  .recharge {
+    position: fixed;
   }
 }
 .project-mask {
@@ -356,7 +362,8 @@
     }
   }
   .limit-bg {
-    height: 35rem;
+    height: 37rem;
+    border-ragius: 5px;
     .contain {
       //width: 94%;
         height: 75%;
@@ -410,10 +417,10 @@
       }
     }
     .get {
-      width: 50%;
+      width: 46%;
       p {
-        height: 3rem;
-        line-height: 3rem;
+        height: 4rem;
+        line-height: 4rem;
         color: #fff !important;
         border-radius: 4px;
       }
