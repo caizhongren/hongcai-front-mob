@@ -32,31 +32,31 @@
     <li class="text-center margin-0" ng-class="{'active':status === 2}" ng-click="selectStat(2)">已提现</li>
   </ul>
   <!-- 可提 -->
-	<div class="outer-panel margin-b-1" ng-if="status === 1 && cashCoupons.length >0" ng-repeat="item in cashCoupons | orderBy : '-value'">
+	<div class="outer-panel margin-b-1" ng-if="status === 1 && cashCoupons.length >0" ng-repeat="item in cashCoupons| orderBy : '-value' track by $index">
 		<div>
   		<img src="/images/user-center/cash-coupon01.png">
   		<div class="inner-panel-left">
-  			<p class="margin-b-0 top-margin ft-4"><small class="ft-1p6">￥</small>{{item.value}}</p>
+  			<p class="margin-b-0 top-margin ft-4"><small class="ft-1p6">￥</small>{{::item.value}}</p>
   		</div>
   		<div class="inner-panel-center1">
   			<p class="margin-b-0" ng-if="item.projectDays >0">期限要求：&ge;{{item.projectDays}}天</p>
   			<p class="margin-b-0" ng-if="item.projectDays <=0">期限要求：无</p>
-  			<p class="margin-b-0">投资要求：&ge;{{item.minInvestAmount}}元</p>
+  			<p class="margin-b-0">投资要求：&ge;{{::item.minInvestAmount}}元</p>
   			<p class="margin-b-0">有效期：{{item.createTime | date :'yyyy.MM.dd'}}-{{item.endTime | date :'yyyy.MM.dd'}}</p>
   			<p class="withdraw margin-b-0 pull-right" ng-click="toProjectList($index)">马上提现</p>
   		</div>
 		</div>
 	</div>
 	<!-- 已提 -->
-	<div class="outer-panel margin-b-1" ng-if="status === 2 && cashCoupons.length >0" ng-repeat="item in cashCoupons">
+	<div class="outer-panel margin-b-1" ng-if="status === 2 && cashCoupons.length >0" ng-repeat="item in cashCoupons track by $index">
 		<div>
   		<img src="/images/user-center/cash-coupon01.png">
   		<div class="inner-panel-left">
-  			<p class="margin-b-0 top-margin ft-4"><small class="ft-1p6">￥</small>{{item.value}}</p>
+  			<p class="margin-b-0 top-margin ft-4"><small class="ft-1p6">￥</small>{{::item.value}}</p>
   		</div>
   		<div class="inner-panel-center1">
-  			<p class="margin-b-0"><span class="fl">投资项目：</span><span class="col-2">{{item.order.projectName}}</span></p>
-  			<p class="margin-b-0">使用时间：{{item.usedTime | date: 'yyyy-MM-dd'}}</p>
+  			<p class="margin-b-0"><span class="fl">投资项目：</span><span class="col-2">{{::item.order.projectName}}</span></p>
+  			<p class="margin-b-0">使用时间：{{::item.usedTime | date: 'yyyy-MM-dd'}}</p>
   			<img class="received" src="/images/user-center/cash-coupon02.png" alt="">
   		</div>
 		</div>

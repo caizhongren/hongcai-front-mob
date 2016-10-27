@@ -14,9 +14,11 @@ angular.module('p2pSiteMobApp')
     $scope.showLimit = false;
     $scope.getIt = function(){
       $scope.showLimit = false;
+      $rootScope.showFooter = true;
     }
     $scope.showbankLimit = function() {
       $scope.showLimit = true;
+      $rootScope.showFooter = false;
     }
 
     // 获取用户的银行卡剩余额度

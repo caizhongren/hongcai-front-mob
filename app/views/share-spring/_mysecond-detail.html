@@ -4,8 +4,8 @@
     <div class="second-head text-center">
     <!-- ng-show="freeWishStatics.status <= 3" ng-show="freeWishStatics.status > 3" -->
       <div ng-show="freeWishStatics.status <= 3">
-        <p class="margin-b-0 ft-3 ft-red7 ft-bold">我要再拿{{freeWish.amount || 0}}元现金</p>
-        <p class="margin-b-1 ft-1p6 ft-red8">拉{{activity.freeWishActivityRules.secondPersonNum || 20}}个好友帮你砸罐</p>
+        <p class="margin-b-0 ft-3 ft-red7 ft-bold">我要再拿{{::freeWish.amount || 0}}元现金</p>
+        <p class="margin-b-1 ft-1p6 ft-red8">拉{{::activity.freeWishActivityRules.secondPersonNum || 20}}个好友帮你砸罐</p>
       </div>
       <div ng-show="freeWishStatics.status > 3">
         <p class="margin-b-0 ft-3 ft-red7 ft-bold">已累计获得{{freeWishStatics.receiveAmount || 0}}元</p>
@@ -35,7 +35,7 @@
         </div>
         <div ng-switch-when="5">
           <button class="second-btn ft-red7 ft-2p5 ft-bold" ng-click="goOn()">
-            再拿{{activity.freeWishActivityRules.thirdReward| number:0 || 0}}元
+            再拿{{::activity.freeWishActivityRules.thirdReward| number:0 || 0}}元
           </button>
         </div>
         <div ng-switch-when="6">
@@ -64,7 +64,7 @@
         <div class="left-line fl border-yellow2"></div>
         <div class="tips-content ft-yellow2">砸罐小能手</div>
         <div class="right-line fr border-yellow2"></div>
-      </div>  
+      </div>
     </div>
     <div class="padding-l-1 padding-r-1 margin-t-1">
       <div ng-include src='"views/share-spring/_head-tmpl.html"'>

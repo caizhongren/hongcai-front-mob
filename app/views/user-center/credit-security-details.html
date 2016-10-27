@@ -44,7 +44,7 @@
       </li>
       <!-- 每次回款 -->
           <!-- 宏金保 -->
-      <li class="margin-b--0p5" ng-repeat="card in credits" ng-show="creditRight.type !== 3">
+      <li class="margin-b--0p5" ng-repeat="card in credits track by $index" ng-show="creditRight.type !== 3">
         <div class="timeline display-inb">
           <p  class="margin-b-0 {{card.status==1 ?'grey-bg':'orange-bg'}}"></p>
           <div class="margin-t--0p5">
