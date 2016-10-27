@@ -363,7 +363,7 @@
   }
   .limit-bg {
     height: 37rem;
-    border-ragius: 5px;
+    border-radius: 5px;
     .contain {
       //width: 94%;
         height: 75%;
@@ -372,6 +372,9 @@
           border-right: 1px dashed #ddd;
         }
       ul {
+        .border-t-dashed {
+          border-top: 1px dashed #ddd; 
+        }
         li {
           height: 42px;
           border: 1px solid #ddd;
@@ -388,13 +391,16 @@
             p:nth-child(1) {
               padding-right: 2rem;
             }
+            p:nth-child(2) {
+              margin-left: 1rem;
+            }
             @media(min-width:360px){
               width: 78.5%;
               p:nth-child(1) {
                 padding-right: 2rem;
               }
               p:nth-child(2){
-                margin-right: 2rem;
+                margin-left: 4rem;
               }
             }
             @media(min-width: 411px){
@@ -403,7 +409,7 @@
                 padding-right: 3rem;
               }
               p:nth-child(2){
-                margin-right: 3rem;
+                margin-left: 4.3rem;
               }
             }
             @media(min-width: 760px){
