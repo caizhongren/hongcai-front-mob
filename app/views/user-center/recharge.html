@@ -1,4 +1,4 @@
-<div class="recharge bg-white margin-b-7 {{showLimit==true? 'position-fix' : ''}}">
+<div class="recharge bg-white margin-b-7">
   <div class=" margin-0 padding-1 padding-t-2">
     <!-- <span class="pull-right" ui-sref="root.userCenter.setting">基本资料></span></div> -->
     <!-- <hr class="hr-grey"> -->
@@ -23,7 +23,7 @@
       </div>
       <label class="padding-l-2 padding-r-2">
         <input name="amount" type="number" class="u-full-width padding-t-1 padding-b-1 padding-l-1 padding-r-1 margin-t-0p5" ng-model="rechargeAmount" max="{{bankRemain}}" min="2"  ng-pattern="/^[0-9]*(\.[0-9]{1,2})?$/" ng-focus required placeholder="该卡本次最多充值{{bankRemain ||0}}元">
-        <button type="submit" class="u-full-width ft-1p6 button button-primary margin-t-0p5 {{rechargeForm.$invalid ? 'button-disabled' : ''}}" ng-disabled="rechargeForm.$invalid">{{showLimit}}立即充值</button>
+        <button type="submit" class="u-full-width ft-1p6 button button-primary margin-t-0p5 {{rechargeForm.$invalid ? 'button-disabled' : ''}}" ng-disabled="rechargeForm.$invalid">立即充值</button>
       </label>
     </form>
     <hr class="margin-0" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
@@ -117,7 +117,7 @@
         </ul>
       </div>
       <div class="get margin-auto margin-t-1p5" ng-click="getIt();">
-        <p class="margin-b-0 bg-orange text-center ft-white">我知道了{{showLimit}}</p>
+        <p class="margin-b-0 bg-orange text-center ft-white">我知道了</p>
       </div>
     </div>
   </div>
