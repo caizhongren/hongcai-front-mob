@@ -7,7 +7,7 @@
 
 
   <!-- 要展示的内容如下 -->
-  <div class="tab-content columns twelve bg-White overflow-hid" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs">
+  <div class="tab-content columns twelve bg-White overflow-hid" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs track by $index">
     <section ng-if="tab.title==='战略伙伴'" class="partner margin-b-7 bg-White">
       <div class="partner-units padding-t-1">
         <ul>

@@ -18,7 +18,7 @@
     <!-- 不可融资状态下 -->
     <div ng-show="project.status !== 7">
       <div class="width-pull overflow-hid bg-orange1 padding-l-1 padding-r-1 padding-t-1 padding-b-1 border-orange3 ft-1p5">
-        <span class="u-pull-left"><i class="fa fa-jpy ft-orange"></i>&nbsp;账户余额&nbsp;<strong class="ft-orange">{{ account.balance | currency:"":2 || 0}}</strong>元</span>
+        <span class="u-pull-left"><i class="fa fa-jpy ft-orange"></i>&nbsp;账户余额&nbsp;<strong class="ft-orange">{{ ::account.balance | currency:"":2 || 0}}</strong>元</span>
         <span class="u-pull-right"><i class="fa fa-pie-chart ft-orange"></i>&nbsp;可投金额&nbsp;<strong class="ft-orange">{{jigoubaoProjectInvestNum/10000 | currency:"":2 || 0}}</strong>万元</span>
       </div>
     </div>
@@ -28,7 +28,7 @@
     <!-- 可融资状态下 -->
     <div ng-show="project.status === 7">
       <div class="width-pull overflow-hid bg-orange1 padding-l-1 padding-r-1 padding-t-1 padding-b-1 border-orange3 ft-1p5">
-        <span class="u-pull-left"><i class="fa fa-jpy ft-orange"></i>&nbsp;账户余额&nbsp;<strong class="ft-orange">{{ account.balance | currency:"":2 || 0}}</strong>元</span>
+        <span class="u-pull-left"><i class="fa fa-jpy ft-orange"></i>&nbsp;账户余额&nbsp;<strong class="ft-orange">{{ ::account.balance | currency:"":2 || 0}}</strong>元</span>
         <span class="u-pull-right"><i class="fa fa-pie-chart ft-orange"></i>&nbsp;可投金额&nbsp;<strong class="ft-orange">{{jigoubaoProjectInvestNum/10000 | currency:"":2 || 0}}</strong>万元</span>
       </div>
       <form name="investForm" class="investForm overflow-hid">
@@ -47,7 +47,7 @@
     <div ng-show="project.status !== 7">
       <!-- 不可投资时 -->
       <div class="width-pull overflow-hid bg-orange1 padding-l-1 padding-r-1 padding-t-1 padding-b-1 border-orange3 ft-1p5">
-        <span class="u-pull-left"><i class="fa fa-users ft-orange"></i>&nbsp;账户余额&nbsp;<strong class="ft-orange">{{ account.balance | currency:"":2 || 0}}</strong>元</span>
+        <span class="u-pull-left"><i class="fa fa-users ft-orange"></i>&nbsp;账户余额&nbsp;<strong class="ft-orange">{{ ::account.balance | currency:"":2 || 0}}</strong>元</span>
         <span class="u-pull-right"><i class="fa fa-pie-chart ft-orange"></i>&nbsp;可投金额&nbsp;<strong class="ft-orange">{{jigoubaoProjectInvestNum/10000 | currency:"":2 || 0}}</strong>万元</span>
       </div>
     </div>
