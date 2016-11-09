@@ -334,6 +334,7 @@
 .withdraw,
 .recharge {
   font-family: "微软雅黑" !important;
+  -webkit-overflow-scrolling : touch; 
   button {
     font-family: "微软雅黑" !important;
   }
@@ -341,7 +342,82 @@
     font-family: "微软雅黑" !important;
   }
 }
-
+@media(min-width:360px){
+  .recharge {
+    position: fixed;
+  }
+}
+.project-mask {
+  p {
+    margin-bottom: 0;
+    color: #666;
+  }
+  .title {
+    height: 3rem;
+    p:nth-child(1){
+      width: 45%;
+    }
+    p:nth-child(2){
+      width: 40%;
+    }
+  }
+  .limit-bg {
+    height: 37rem;
+    border-radius: 5px;
+    .contain {
+      //width: 94%;
+        height: 75%;
+        overflow: auto;
+      ul {
+        .border-t-dashed {
+          border-top: 1px dashed #ddd; 
+        }
+        li {
+          height: 42px;
+          border: 1px solid #ddd;
+          padding-top: .3rem;
+          padding-bottom: .3rem;
+          @media(min-width: 411px) {
+            padding-left: 1rem;
+          }
+          div {
+            width: 75.5%;
+            text-algn: left;
+            height: 42px;
+            line-height: 42px;
+            p:nth-child(1) {
+              width: 54%;
+            }
+            @media(min-width:360px){
+              width: 78.5%;
+              p:nth-child(1) {
+                width: 58%;
+              }
+            }
+            @media(min-width: 411px){
+              width: 82%;
+            }
+            @media(min-width: 760px){
+              width: 88%;
+            }
+          }
+          img {
+            margin-top: 5px;
+          }
+        }
+      }
+    }
+    .get {
+      width: 46%;
+      p {
+        height: 4rem;
+        line-height: 4rem;
+        color: #fff !important;
+        border-radius: 4px;
+      }
+    }
+  }
+}
 .add-bank {
   padding: 1rem 2rem;
   background-color: #f2f2f2;
