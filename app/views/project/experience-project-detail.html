@@ -4,7 +4,7 @@
   <div class="left-right">
     <div>
       <p class="ft-7a name-tip margin-b-0"><img src="/images/new/nianhua.png" alt="">年化收益率</p>
-      <p class="ft-orange ft-1p2 margin-b-0"><span class="ft-3">{{::experienceProject.annualEarnings | number:1}}</span>%</p>
+      <p class="ft-orange ft-1p2 margin-b-0"><span class="ft-3">{{experienceProject.annualEarnings | number:1}}</span>%</p>
     </div>
     <div>
       <p class="ft-7a name-tip margin-b-0"><img src="/images/new/deadline.png" alt="">投资期限</p>
@@ -23,7 +23,7 @@
   <p class="text-tip margin-b-1"><img src="/images/new/platform-text.png">层层把关，优秀的风控团队</p>
 </div>
 <div class="new-invment">
-  <div class="input-false">{{::userAccount.experienceAmount | number:0}}体验金</div>
+  <div class="input-false">{{userAccount.experienceAmount | number:0}}体验金</div>
   <div class="btn-orange" ng-click="quickInvest()">立即投资</div>
 </div>
 <div class="hint text-center bg-red1 padding-t-0p5 padding-b-0p5 box-shadow" ng-show="showMsg">
@@ -33,10 +33,10 @@
 <div class="project-mask" ng-show="useExperience">
   <div class="bg-white email-mask project-mask-inner">
     <p class="margin-b-0 text-center ft-1p8">
-      您将投资&nbsp;<strong class="ft-orange">{{::userAccount.experienceAmount | number:0}}</strong>&nbsp;元体验金到体验金专享标
+      您将投资&nbsp;<strong class="ft-orange">{{userAccount.experienceAmount | number:0}}</strong>&nbsp;元体验金到体验金专享标
     </p>
     <p class="margin-b-0 text-center ft-1p8">
-      并获得&nbsp;<strong class="ft-orange">{{::userAccount.experienceAmount * experienceProject.annualEarnings * 1 /36500 | number:2}}</strong>&nbsp;元收益
+      并获得&nbsp;<strong class="ft-orange">{{userAccount.experienceAmount * experienceProject.annualEarnings * 1 /36500 | number:2}}</strong>&nbsp;元收益
     </p>
     <p class="project-mask-btn2">
       <span ng-click="useExperience=false;">取消</span>
