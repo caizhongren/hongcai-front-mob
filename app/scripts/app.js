@@ -397,6 +397,20 @@ p2pSiteMobApp
           }
         }
       })
+      // 债权管理
+      .state('root.userCenter.assignments', {
+        url: '/assignments/:tab',
+        data: {
+          title: '债权转让'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/assignments.html',
+            controller: 'assignmentsCtrl',
+            controllerUrl: 'scripts/controllers/user-center/assignments-ctrl'
+          }
+        }
+      })
       // 债权详情
       .state('root.userCenter.credit-security-details', {
         url: '/credit-security-details/:id',
