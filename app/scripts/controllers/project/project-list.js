@@ -8,24 +8,13 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('ProjectListCtrl', function($scope, $rootScope, $state, $timeout, Restangular, ProjectUtils){
+  .controller('ProjectListCtrl', function($scope, $rootScope, $state, $timeout, Restangular, ProjectUtils, ScreenWidthUtil){
   	$scope.page = 1;
     $scope.pageSize = 5;
   	$scope.widthFlag = "";
   	$scope.jigoubaoData = [];
-
-  	$scope.screenWidth = function(){
-      $scope.width = document.body.scrollWidth; //用系统返回宽度除以分辨率
-      if ($scope.width >= 320 && $scope.width < 375) {
-        $scope.widthFlag = 0;
-      } else if ($scope.width >= 375 && $scope.width < 414) {
-        $scope.widthFlag = 1;
-      } else if ($scope.width >= 414) {
-        $scope.widthFlag = 2;
-      }
-      return $scope.widthFlag;
-    }
-    $scope.screenWidth();
+    //限制项目名长度
+  	$scope.widthFlag = ScreenWidthUtil.screenWidth();
 
     /**
      * 当前页项目列表

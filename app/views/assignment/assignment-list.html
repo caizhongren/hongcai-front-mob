@@ -1,0 +1,35 @@
+<div id ="main-list-title">
+  <div class="display-inb padding-l-2"><a class="margin-b-0 ft-grey6 margin-auto" ui-sref="root._main-list-temp">宏金保</a></div>
+  <div class="display-inb padding-r-2"><a class="margin-b-0 ft-grey6 margin-auto title-border">债权转让</a></div>
+</div>
+<div class="main-list">
+  <div class="main-list-temp clear" ng-repeat="item in assignments" ng-click="toDetail(item)">
+    <div class="title">
+      <span class="title-text" ng-show="widthFlag===0 && item.name.length <= 12">{{item.name}}</span>
+      <span class="title-text" ng-show="widthFlag===0 && item.name.length > 12">{{item.name | limitTo:14}}...</span>
+      <span class="title-text" ng-show="widthFlag===1 || widthFlag===2">{{item.name}}</span>
+      <span ng-show="item.status === 1" class="title-status-orange status">转让中</span>
+      <span ng-show="item.status === 2" class="title-status-orange status">撤销中</span>
+      <span ng-show="item.status === 3" class="title-status-grey status">已撤销</span>
+      <span ng-show="item.status === 4" class="title-status-grey status">已转让</span>
+      <span ng-show="item.status === 5" class="title-status-grey status">冻结中</span>
+      </span>
+    </div>
+     <div class="pro-info">
+      <ul>
+        <li><span class="ft-3">{{item.annualEarnings || 0.00}}</span>%</li>
+        <li><span class="ft-2">{{item.currentStock * 100}}</span>元</li>
+        <li><span ng-class="{'ft-black1':item.status === 7 || item.status === 6 ,'ft-grey6':item.status !== 6 || item.status !== 7 }">{{item.remainDay || 0}}</span>天</li>
+      </ul>
+      <ul class="padding-t-0 margin-b-0">
+        <li>预期年化收益率</li>
+        <li class="border-none">可投金额</li>
+        <li>剩余期限</li>
+      </ul>
+    </div>
+  </div>
+  <div class="text-center bg-white" ng-show="pageCount > page">
+    <p class="padding-b-3 padding-t-3"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a class="ft-black" ng-click="loadMore(page);">查看更多</a></p>
+  </div>
+  <!--ending repeat-->
+</div>

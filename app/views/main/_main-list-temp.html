@@ -1,4 +1,9 @@
 <!-- 宏金保首页 在下面的div class="main-list-temp"上面添加ng-repeat即可  start list   ui-sref="root.project-detail"-->
+<div id ="main-list-title">
+  <div class="display-inb padding-l-2"><a class="margin-b-0 ft-grey6 margin-auto title-border">宏金保</a></div>
+  <div class="display-inb padding-r-2"><a class="margin-b-0 ft-grey6 margin-auto" ui-sref="root.assignments">债权转让</a></div>
+</div>
+
 
 <div class="main-list">
   <div class="main-list-temp clear" ng-repeat="item in jigoubaoData track by item.id" ng-click="toDetail(item)">
@@ -6,42 +11,25 @@
       <span class="title-text" ng-show="widthFlag===0 && item.name.length <= 12">{{item.name}}</span>
       <span class="title-text" ng-show="widthFlag===0 && item.name.length > 12">{{item.name | limitTo:14}}...</span>
       <span class="title-text" ng-show="widthFlag===1 || widthFlag===2">{{item.name}}</span>
+      <span ng-show="item.status === 6" class="title-status-orange status">预发布</span>
+      <span ng-show="item.status === 11" class="title-status-orange status">预约中</span>
+      <span ng-show="item.status === 7" class="title-status-orange status">融资中</span>
+      <span ng-show="item.status === 9" class="title-status-grey status">还款中</span>
+      <span ng-show="item.status === 8" class="title-status-grey status">融资成功</span>
+      <span ng-show="item.status === 10" class="title-status-grey status">已完成</span>  
+      </span>
     </div>
-    <div class="pro-info">
+     <div class="pro-info">
       <ul>
-        <li>
-
-          <p class="text-left" ng-class="{'ft-orange':item.status === 7 || item.status === 6 , 'ft-grey6':item.status !== 6 || item.status !== 7 }"><span class="ft-3p6">{{item.annualEarnings}}</span>%</p>
-          <p>预期年化收益率</p>
-        </li>
-        <li>
-          <p class=""><span ng-class="{'ft-black1':item.status === 7 || item.status === 6 ,'ft-grey6':item.status !== 6 || item.status !== 7 }">{{item.projectDays}}</span>天</p>
-          <p class=""><span ng-class="{'ft-black1':item.status === 7 || item.status === 6 ,'ft-grey6':item.status !== 6 || item.status !== 7 }">{{item.total}}</span>元</p>
-        </li>
-        <li>
-          <span class="fa fa-angle-right" ng-class="{'ft-black1':item.status === 7 || item.status === 6 , 'ft-grey6':item.status !== 6 || item.status !== 7 }"></span>
-        </li>
+        <li><span class="ft-3">{{item.annualEarnings}}</span>%</li>
+        <li><span>{{(  item.soldStock + item.occupancyStock) * item.increaseAmount}}</span>元</li>
+        <li><span ng-class="{'ft-black1':item.status === 7 || item.status === 6 ,'ft-grey6':item.status !== 6 || item.status !== 7 }">{{item.projectDays}}</span>天</li>
       </ul>
-      <div class="pro-info2" ng-hide="item.status === 6">
-        <div class="process">
-          <div class="progress-bar" ng-class="{'bg-orange':item.status === 7 || item.status === 6 ,'bg-grey5':item.status === 11 || item.status === 9 || item.status === 10}" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{(item.soldStock + item.occupancyStock) * item.increaseAmount / item.total * 100}}%;">
-            <div class="type-img"></div>
-          </div>
-        </div>
-
-        <div class="join-in">{{(item.soldStock + item.occupancyStock) * item.increaseAmount / item.total * 100| number:1}}%</div>
-      </div>
-      <span class="count-down" ng-show="item.status === 6">倒计时：{{ item._timeDown.hour }}:{{ item._timeDown.min }}:{{ item._timeDown.seconds }}</span>
-    </div>
-    <div class="status">
-      <img ng-show="item.status === 7 || item.status === 6" src="/images/main-list/status1.png" alt="">
-      <img ng-show="item.status !== 7 && item.status !== 6 " src="/images/main-list/status2.png" alt="">
-      <span ng-show="item.status === 6" class="title-status-orange">预发布</span>
-      <span ng-show="item.status === 11" class="title-status-orange">预约中</span>
-      <span ng-show="item.status === 7" class="title-status-orange">融资中</span>
-      <span ng-show="item.status === 9" class="title-status-green">还款中</span>
-      <span ng-show="item.status === 8" class="title-status-green">融资成功</span>
-      <span ng-show="item.status === 10" class="title-status-grey">已完成</span>
+      <ul class="padding-t-0 margin-b-0">
+        <li>预期年化收益率</li>
+        <li class="border-none">可投金额</li>
+        <li>剩余期限</li>
+      </ul>
     </div>
   </div>
   <div class="text-center bg-white" ng-show="pageCount > page">
@@ -49,3 +37,4 @@
   </div>
   <!--ending repeat-->
 </div>
+
