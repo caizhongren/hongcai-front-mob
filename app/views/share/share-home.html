@@ -477,7 +477,7 @@
       <div class="words-list" ng-show="freeWishes.length >0 ">
         <div class="words-list-item" ng-repeat="freeWish in freeWishes">
           <img ng-src="{{ freeWish.user.headImgUrl || '/images/wishes/headAssistor.png'}}" alt="">
-          <div class="para"><span>{{::freeWish.user.nickName || '稀饭'}}</span><span class="add-money">+{{::freeWish.amount | number:1}}元</span></div>
+          <div class="para"><span>{{freeWish.user.nickName || '稀饭'}}</span><span class="add-money">+{{freeWish.amount | number:1}}元</span></div>
         </div>
 
       </div>

@@ -3,22 +3,22 @@
   <div class="account-panel bg-white">
     <div class="icon"><img src="/images/user-center/balance1.png" alt=""></div>
     <div class="title-text">可用余额</div>
-    <div class="more"><strong class="ft-orange ft-1p8">{{ ::userAccount.balance | number:2 }}</strong>元</div>
+    <div class="more"><strong class="ft-orange ft-1p8">{{ userAccount.balance | number:2 }}</strong>元</div>
   </div>
   <div class="account-panel bg-white">
     <div class="icon"><img src="/images/user-center/balance2.png" alt=""></div>
     <div class="title-text">累计收益</div>
-    <div class="more"><strong class="ft-orange ft-1p8">{{ ::userAccount.totalProfit | number:2 }}</strong>元</div>
+    <div class="more"><strong class="ft-orange ft-1p8">{{ userAccount.totalProfit | number:2 }}</strong>元</div>
   </div>
   <div class="account-panel bg-white">
     <div class="icon"><img src="/images/user-center/balance3.png" alt=""></div>
     <div class="title-text">待收本金</div>
-    <div class="more"><strong class="ft-orange ft-1p8">{{ ::userAccount.waitingCapital | number:2 }}</strong>元</div>
+    <div class="more"><strong class="ft-orange ft-1p8">{{ userAccount.waitingCapital | number:2 }}</strong>元</div>
   </div>
   <div class="account-panel bg-white">
     <div class="icon"><img src="/images/user-center/balance4.png" alt=""></div>
     <div class="title-text">待收收益</div>
-    <div class="more"><strong class="ft-orange ft-1p8">{{ ::userAccount.waitingProfit  | number:2}}</strong>元</div>
+    <div class="more"><strong class="ft-orange ft-1p8">{{ userAccount.waitingProfit  | number:2}}</strong>元</div>
   </div>
   <!-- <p><img src="/images/user-center/balance1.png" alt="">可用余额<span class="u-pull-right">
         <strong class="ft-orange ft-1p8">{{ userAccount.balance | number:2 }}</strong>

@@ -9,7 +9,7 @@
     <!-- 绑定银行卡 -->
     <form class="margin-b-1p5 margin-t-1" name="rechargeForm" ng-submit="recharge(rechargeAmount);" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
       <div class="bank-span">
-        <span>{{::simpleWithdraw.bankcard.openBank || '交通银行'}}：&nbsp;</span><span>{{::simpleWithdraw.bankcard.cardNo || '6222************1213'}}</span>
+        <span>{{simpleWithdraw.bankcard.openBank || '交通银行'}}：&nbsp;</span><span>{{simpleWithdraw.bankcard.cardNo || '6222************1213'}}</span>
       </div>
       <label class="margin-t-1 padding-l-2">账户余额:&nbsp;<span class="ft-orange">{{ simpleWithdraw.account.balance | number:2}}</span>元<span class="ft-blue ft-1p2 fr margin-r-2 line-h2" ng-click="showbankLimit();">支持银行</span></label>
       <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeForm.amount.$dirty && rechargeForm.amount.$error.pattern">
