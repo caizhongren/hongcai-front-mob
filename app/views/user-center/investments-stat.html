@@ -6,7 +6,7 @@
     </div>
     <div class="bg-orange padding-tip text-center ft-white ft-1p8">
       <p class="margin-b-0"><img src="/images/user-center/project2.png" alt="" width="28" style="vertical-align:top;">&nbsp;累计投资(个)</p>
-      <p class="margin-b-0 ft-4">{{ ::investmentsStat.totalInvestCount }}</p>
+      <p class="margin-b-0 ft-4">{{investmentsStat.totalInvestCount }}</p>
     </div>
     <!-- 已开通易宝时展示 投资项目状态详情-->
     <div class="u-full-width bg-white" ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus !== 0">
@@ -14,12 +14,12 @@
         <tr>
           <td class="padding-0p5 text-center ft-grey1 padding-t-1 padding-b-1">
             <div class="u-full-width border-right-tip">
-              <p class="margin-b-0"><span class="position-re right-icon1"><span class="right-tip2">{{ ::investmentsStat.heldingCount }}</span></span></p>
+              <p class="margin-b-0"><span class="position-re right-icon1"><span class="right-tip2">{{investmentsStat.heldingCount }}</span></span></p>
             <span class="">回款中项目</span>
             </div>
           </td>
           <td class="padding-0p5 ft-grey1 text-center padding-t-1 padding-b-1">
-            <p class="margin-b-0"><span class="right-icon2 position-re"><span class="right-tip2">{{ ::investmentsStat.endProfitCount }}</span></span></p>
+            <p class="margin-b-0"><span class="right-icon2 position-re"><span class="right-tip2">{{investmentsStat.endProfitCount }}</span></span></p>
             <span class="">已结清项目</span>
           </td>
         </tr>
@@ -31,7 +31,7 @@
   <!-- 未支付订单提示  ng-if="investmentsStat.notPayOrder"-->
   <div class="text-center padding-l-2 padding-r-2 padding-t-1 padding-b-1 border-orange ft-grey1 margin-t-2 overflow-hid bg-yellow1" ng-if="investmentsStat.notPayOrder">
     <i class="fa fa-exclamation-triangle ft-grey2 u-pull-left ft-2p5 margin-t-1"></i>
-    <small class="u-pull-left">您有订单尚未支付<br>({{::investmentsStat.notPayOrder.dueTime || 5 | number:0}}分钟后失效)</small>
+    <small class="u-pull-left">您有订单尚未支付<br>({investmentsStat.notPayOrder.dueTime || 5 | number:0}}分钟后失效)</small>
     <button class="u-pull-right margin-0 margin-t-0p5 bg-orange ft-white border-none ft-1p5 half" ng-click="toInvest(investmentsStat.notPayOrder);">立即支付</button>
   </div>
   <!-- 尚未开通易宝提示 -->
@@ -42,7 +42,7 @@
     <a class="column border-grey padding-l-2 padding-r-2 padding-t-1 padding-b-1" ui-sref="root.userCenter.credits">
       <span class="u-pull-left ft-black ft-1p8"><i class="fa fa-money ft-orange ft-1p8 text-center" style="width:2.5rem;margin-right:0.5rem;"></i>我的投资</span>
       <span class="u-pull-right ft-grey2">
-        <span><strong class="ft-orange">{{ ::investmentsStat.heldingCount }}</strong>个持有中</span>
+        <span><strong class="ft-orange">{{investmentsStat.heldingCount }}</strong>个持有中</span>
       <i class="fa fa-chevron-right"></i>
       </span>
     </a>

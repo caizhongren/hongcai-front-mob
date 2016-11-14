@@ -3,7 +3,7 @@
   <div>
     <div class="border-blue margin-0 text-center bg-blue2 padding-1">您好，亲爱的&nbsp;<strong class="ft-blue">{{ hasLoggedUser.name }}</strong>&nbsp;!</div>
     <div class="investments-stat-bg padding-3 padding-l-4">
-      <span class="ft-blue bg-white border-ra-20 padding-1 padding-t-0p2 padding-b-0p2">累计投资项目</span>&nbsp;&nbsp;&nbsp;<strong class="ft-white">{{ ::investmentsStat.totalInvestCount }}</strong><span class="ft-white">&nbsp;个</span>
+      <span class="ft-blue bg-white border-ra-20 padding-1 padding-t-0p2 padding-b-0p2">累计投资项目</span>&nbsp;&nbsp;&nbsp;<strong class="ft-white">{{ investmentsStat.totalInvestCount }}</strong><span class="ft-white">&nbsp;个</span>
     </div>
     <!-- 已开通易宝时展示 投资项目状态详情-->
     <div ng-include src="'views/user-center/_investments-stat-info.html'" ng-if="hasLoggedUser.securityStatus.trusteeshipAccountStatus !== 0">
@@ -25,7 +25,7 @@
     <a class="column border-grey padding-l-2 padding-r-2 padding-t-0p5 padding-b-0p5" ui-sref="root.userCenter.credits">
       <span class="u-pull-left ft-grey"><i class="fa fa-money ft-blue ft-1p8">&nbsp;&nbsp;</i>我的债权</span>
       <span class="u-pull-right ft-grey2">
-        <small><strong class="ft-orange">{{ ::investmentsStat.heldingCount }}</strong>个回款中</small>
+        <small><strong class="ft-orange">{{ investmentsStat.heldingCount }}</strong>个回款中</small>
         <i class="fa fa-chevron-right"></i>
       </span>
     </a>

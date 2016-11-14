@@ -64,14 +64,6 @@ angular.module('p2pSiteMobApp')
       });
     };
 
-    HongcaiUser.$find('0' + '/availableCash').$then(function(response) {
-      if (response.ret !== -1) {
-        // 获取用户充值信息
-        $scope.simpleWithdraw = response;
-      } else {
-        // 获取信息失败。
-      }
-    });
 
     // 银行卡限额
     // $scope.bankAndLimit = [
