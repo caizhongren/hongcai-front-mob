@@ -285,6 +285,19 @@ p2pSiteMobApp
           }
         }
       })
+
+      //债权转让列表页
+      .state('root.assignments', {
+        url: '/assignments',
+        views: {
+          '': {
+            templateUrl: 'views/assignment/assignment-list.html',
+            controller: 'AssignmentListCtrl',
+            controllerUrl: 'scripts/controller/assignment/assignment-list'
+          }
+        }
+      })
+
       // 个人中心
       .state('root.userCenter', {
         abstract: true,
