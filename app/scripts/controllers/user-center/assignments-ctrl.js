@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('assignmentsCtrl', function($scope, $rootScope, $state, $stateParams, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN) {
+  .controller('assignmentsCtrl', function(config, Restangular, $scope, $rootScope, $state, $stateParams, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN) {
     $scope.tab = 0;
     $scope.widthFlag = "";
     $scope.screenWidth = function() {
@@ -34,13 +34,10 @@ angular.module('p2pSiteMobApp')
       title: '已转让',
     }];
 
-    $rootScope.selectedSide = 'investments-stat';
     $scope.page = 1;
     $scope.pageSize = 5;
-    //$scope.creditsDetail = [];
     $scope.credits = [];
 
-    console.log($scope.tabs.title);
     /**
      * 切换标签
      */
@@ -55,50 +52,60 @@ angular.module('p2pSiteMobApp')
 
       $scope.toggle.activeTab = tabIndex;
       if (tabIndex === 0) {
-        $scope.creditStatus = '1';
         $scope.searchStatus = '1';
+        $scope.getAssignments(1);
       } else if(tabIndex === 1){
-        $scope.creditStatus = '4';
         $scope.searchStatus = '2';
+        $scope.getTranferingAssignmentsList('1,2,5');
       }else {
-        $scope.creditStatus = '4';
         $scope.searchStatus = '3';
+        $scope.getTranferingAssignmentsList('3,4');
       }
       $scope.credits = [];
       $scope.page = 1;
-      $scope.getCredits($scope.creditStatus);
-      //$scope.getCreditList($scope.creditStatus);
     };
 
-    var siteCredits = restmod.model(WEB_DEFAULT_DOMAIN + '/siteCredit');
 
-    //统计持有、已回款项目数量
-    siteCredits.$find('/getCreditRightStatistics', {}).$then(function(response) {
-      $scope.creditRightStatis = response.data.creditRightStatis;
-      $scope.heldingCount = $scope.creditRightStatis.heldingCount;
-      $scope.endProfitCount = $scope.creditRightStatis.endProfitCount;
-    });
-
-    $scope.getCredits = function(status) {
-      siteCredits.$find('/getHeldInCreditRightList', {
+    $scope.getAssignments = function(status) {
+      Restangular.one('users/').one('transferables').get({
         status: status,
         page: $scope.page,
         pageSize: $scope.pageSize
-      }).$then(function(response) {
-        $scope.totalPage = Math.ceil(response.data.count / $scope.page);
-        var credits = response.data.heldIdCreditList;
-        for (var i = 0; i <= credits.length - 1; i++) {
-          if (credits[i].increaseRateCoupon) {
-            var oriRate = credits[i].creditRight.riseRate + credits[i].creditRight.baseRate;
-            credits[i].rateCouponProfit = credits[i].creditRight.profit * (credits[i].increaseRateCoupon.value + oriRate) / oriRate - credits[i].creditRight.profit;
+      }).then(function(response) {
+        if (response && response.ret !== -1) {
+          $scope.transferablesList = response.transferables;
+         
+          // 测试环境放开限制
+          var currentDate = new Date().getTime();
+          if(status === 1){
+            for (var i = $scope.transferablesList.length - 1; i >= 0; i--) {
+              $scope.transferablesList[i].canTransfer = config.isTest || (currentDate - $scope.transferablesList[i].createTime > 10*24*3600*1000);
+            }
           }
-
-          $scope.credits.push(credits[i]);
-        };
-        $scope.loading = false;
-      })
-
+          $scope.loading = false;
+        } else {
+        }
+      });
     };
+
+
+    /**
+     * 获取转让中债权列表
+     */
+    $scope.getTranferingAssignmentsList = function(Status) {
+      Restangular.one('users/0').one('assignments').get({
+        page: $scope.page,
+        pageSize: $scope.pageSize,
+        status: Status
+      },function(response){
+        $scope.assignmentsList = [];
+        if (response.data.length>0) {
+
+          $scope.assignmentsList = response.data; 
+
+        }
+      });
+    }
 
     $scope.toggle.switchTab(0);
 
@@ -107,7 +114,7 @@ angular.module('p2pSiteMobApp')
      */
     $scope.loadCreditMore = function() {
       $scope.page = $scope.page + 1;
-      $scope.getCredits($scope.creditStatus);
+      $scope.getAssignments($scope.creditStatus);
     };
 
 
