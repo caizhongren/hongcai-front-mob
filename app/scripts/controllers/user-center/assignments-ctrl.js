@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc function
- * @name p2pSiteMobApp.controller:CreditCtrl
+ * @name p2pSiteMobApp.controller:assignmentsCtrl
  * @description
- * # CreditCtrl
+ * # assignmentsCtrl
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
@@ -36,7 +36,6 @@ angular.module('p2pSiteMobApp')
 
     $scope.page = 1;
     $scope.pageSize = 5;
-    $scope.credits = [];
 
     /**
      * 切换标签
@@ -61,7 +60,6 @@ angular.module('p2pSiteMobApp')
         $scope.searchStatus = '3';
         $scope.getTranferingAssignmentsList('3,4');
       }
-      $scope.credits = [];
       $scope.page = 1;
     };
 
