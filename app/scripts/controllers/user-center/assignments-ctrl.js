@@ -100,9 +100,8 @@ angular.module('p2pSiteMobApp')
       },function(response){
         $scope.assignmentsList = [];
         if (response.data.length>0) {
-
           $scope.assignmentsList = response.data; 
-
+          $scope.loading = false;
         }
       });
     }
