@@ -399,7 +399,7 @@ p2pSiteMobApp
       })
       // 债权管理
       .state('root.userCenter.assignments', {
-        url: '/assignments/:tab',
+        url: '/assignments?tab',
         data: {
           title: '债权转让'
         },

@@ -35,40 +35,46 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4 col-md-offset-4 text-center" ng-if="transferablesList.length<=0">暂无可转让项目</div>
+    <div class="col-md-4 col-md-offset-4 text-center ft-black6 margin-t-10" ng-if="transferablesList.length<=0">暂无可转让项目</div>
+    <div class="text-center bg-white" ng-show="transferablesList.length>0 && !loading && pageSize < transferableCounts">
+      <p class="margin-b-0 padding-t-3 padding-b-3"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a ng-click="loadAssignmentMore(searchStatus);" class="ft-black">查看更多</a></p>
+    </div>
   </div>
-  <div ng-if="searchStatus=='2' || searchStatus=='3'" >
-    <div ng-repeat="item in assignmentsList track by $index">
-      <div class="assignment-item margin-b-1" ui-sref ='root.userCenter.credit-security-details({id:item.creditRight.id})'>
-        <div class=" padding-l-1p5 padding-r-1p5 padding-t-1 padding-b-1 overflow-hid bg-white">
-          <div class="border-grey2-bottom overflow-hid padding-b-0p5 position-re">
+  <div ng-if="searchStatus=='2' || searchStatus=='3'">
+    <div ng-repeat="data in assignmentsList track by $index" class="border-grey-top">
+      <div class="assignment-item margin-b-1" ui-sref ='root.userCenter.credit-security-details({id:data.creditRight.id})'>
+        <div class=" padding-l-1p5 padding-r-1p5 padding-t-0p5 padding-b-1 overflow-hid bg-white">
+          <div class="border-grey2-bottom overflow-hid padding-b-0p5 position-re content-title">
             <span class="u-pull-left assignmentsZhuan text-center">转</span>
-            <span class="u-pull-left border-left1 border-none padding-l-0p2" ng-show="widthFlag===0 && item.projectName.length <= 11">{{item.name | limitTo: 15 }}</span>
-            <span class="u-pull-left border-left1" ng-show="widthFlag===0 && item.name.length > 11">{{item.name | limitTo:8}}... </span>
-            <span class="u-pull-left border-left1"  ng-show="widthFlag===1 || widthFlag===2">{{item.name}}</span>
+            <span class="u-pull-left border-left1 border-none padding-l-0p2" ng-show="widthFlag===0 && data.name  .length <= 11">{{data.name | limitTo: 15 }}</span>
+            <span class="u-pull-left border-left1" ng-show="widthFlag===0 && data.name.length > 11">{{data.name | limitTo:8}}... </span>
+            <span class="u-pull-left border-left1"  ng-show="widthFlag===1 || widthFlag===2">{{data.name}}</span>
           </div>
         </div>
-        <div class="u-full-width padding-t-1p2 padding-b-1p2 padding-r-1 padding-l-0p5 overflow-hid bg-white">
+        <div class="u-full-width padding-t-0p5 padding-b-1p5 padding-r-1 padding-l-0p5 overflow-hid bg-white border-grey2-bottom">
           <div class="assignment-item-info u-pull-left text-center ft-1p4 border-greye-right">
-            <strong class="ft-grey999 content-number">{{item.amount || 0 | number: 2}}</strong>
+            <strong class="ft-grey999 content-number">{{data.amount || 0 | number: 2}}</strong>
             <br>
             <span class="ft-greyaaa padding-l-0p5">转让(元)</span>
           </div>
           <div class="assignment-item-info u-pull-left text-center ft-1p4 border-greye-right">
-            <strong class="ft-grey999 content-number">{{item.soldStock * 100 || 0 | number: 2}}</strong>
+            <strong class="ft-grey999 content-number">{{data.soldStock * 100 || 0 | number: 2}}</strong>
             <br>
             <span class="ft-greyaaa">已转(元)</span>
           </div>
           <div class="assignment-item-info u-pull-right text-center ft-1p4">
-            <strong class="ft-orange2 content-number">{{item.transferedIncome || 0 | number: 2}}</strong>
+            <strong class="ft-orange2 content-number">{{data.transferedIncome || 0 | number: 2}}</strong>
             <br>
             <span class="ft-greyaaa">收入(元)</span>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-4 col-md-offset-4 text-center ft-black6 margin-t-10" ng-if="searchStatus=='2' && !assignmentsList">暂无转让中项目</div>
-    <div class="col-md-4 col-md-offset-4 text-center ft-black6 margin-t-10" ng-if="searchStatus=='3' && !assignmentsList">暂无已转让项目</div>
+    <div class="col-md-4 col-md-offset-4 text-center ft-black6 margin-t-10" ng-if="searchStatus=='2' && assignmentsList.length<=0">暂无转让中项目</div>
+    <div class="col-md-4 col-md-offset-4 text-center ft-black6 margin-t-10" ng-if="searchStatus=='3' && assignmentsList.length<=0">暂无已转让项目</div>
+    <div class="text-center bg-white" ng-show="assignmentsList.length>0 && !loading && pageSize < total">
+      <p class="margin-b-0 padding-t-3 padding-b-3"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a ng-click="loadAssignmentMore(searchStatus);" class="ft-black">查看更多</a></p>
+    </div>
   </div>
   <div ng-if="false" >
 		<div>
@@ -101,16 +107,5 @@
   		</div>
 		</div>
 	</div>
-	<!--<div class="tab-content u-full-width overflow-hid text-center" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs track by $index" ng-show="credits">
-	    <div ng-repeat="item in credits track by $index" ng-include src='"views/user-center/_assignment-detail.html"'>
-	    </div>
-	    <div class="text-center bg-white" ng-show="!loading && totalPage > page">
-	      <p class="margin-b-0 padding-t-3 padding-b-3"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a ng-click="loadCreditMore();" class="ft-black">查看更多投资信息</a></p>
-	    </div>
-	</div>
-	<div class="row text-center margin-t-5 padding-l-1 padding-r-1" ng-show="!loading && credits.length <= 0">
-	    <img src="images/user-center/deal-list.png" width="35%">
-	    <p class="padding-2-t margin-t-2">亲，您尚未在宏财网购买过产品...</p>
-	    <button type="button" class="u-full-width content-number button button-primary" ui-sref="root._main-list-temp">浏览理财产品</button>
-	</div>-->
+  
 </div>
