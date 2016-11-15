@@ -7,28 +7,28 @@
     <div ng-repeat="item in transferablesList track by $index" class="border-grey-top">
       <div class="assignment-item margin-b-1" ui-sref ='root.userCenter.credit-security-details({id:item.creditRight.id})'>
         <div class=" padding-l-1p5 padding-r-1p5 padding-t-0p5 padding-b-1 overflow-hid bg-white">
-          <div class="border-grey2-bottom overflow-hid padding-b-0p5">
+          <div class="border-grey2-bottom overflow-hid padding-b-0p5 content-title">
             <span class="u-pull-left border-left1" ng-show="widthFlag===0 && item.projectName.length <= 11">{{item.projectName}} </span>
             <span class="u-pull-left border-left1" ng-show="widthFlag===0 && item.projectName.length > 11">{{item.projectName | limitTo:8}}... </span>
             <span class="u-pull-left border-left1"  ng-show="widthFlag===1 || widthFlag===2">{{item.projectName}}</span>
             <img class="fl" src="/images/user-center/rate-icon.png" alt="" width="9%" ng-show="item.coupon && item.coupon.type === 1">
-            <span class="u-pull-right ft-orange2 ft-1p3 margin-t-0p5" ng-show="!item.canTransfer">&nbsp;暂不可转&nbsp;</span>
-            <span class="u-pull-right ft-orange2 ft-1p3 margin-t-0p5" ng-show="item.canTransfer">&nbsp;可转&nbsp;</span>
+            <span class="u-pull-right ft-orange2 ft-1p3" ng-show="!item.canTransfer">&nbsp;暂不可转&nbsp;</span>
+            <span class="u-pull-right ft-orange2 ft-1p3" ng-show="item.canTransfer">&nbsp;可转&nbsp;</span>
           </div>
         </div>
         <div class="u-full-width padding-t-0p5 padding-b-1p5 padding-r-1 padding-l-0p5 overflow-hid bg-white border-grey2-bottom ">
           <div class="assignment-item-info u-pull-left text-center ft-1p4 border-greye-right">
-            <strong class="ft-grey999 ft-1p8">{{item.transferableAmount | number:2 || 0}}</strong>
+            <strong class="ft-grey999 content-number">{{item.transferableAmount | number:2 || 0}}</strong>
             <br>
             <span class="ft-greyaaa padding-l-0p5">本(元)</span>
           </div>
           <div class="assignment-item-info u-pull-left text-center ft-1p4 border-greye-right">
-            <strong class="ft-grey999 ft-1p8">{{item.profit - item.returnProfit | number:2 || 0}}</strong><strong class="ft-red0 ft-1p6" ng-show="item.coupon && item.coupon.type === 1">+{{(item.baseRate + item.riseRate + item.coupon.value) * (item.profit - item.returnProfit) / (item.baseRate + item.riseRate) - (item.profit - item.returnProfit) | number:2 || 0 }}</strong>
+            <strong class="ft-grey999 content-number">{{item.profit - item.returnProfit | number:2 || 0}}</strong><strong class="ft-red0 ft-1p6" ng-show="item.coupon && item.coupon.type === 1">+{{(item.baseRate + item.riseRate + item.coupon.value) * (item.profit - item.returnProfit) / (item.baseRate + item.riseRate) - (item.profit - item.returnProfit) | number:2 || 0 }}</strong>
             <br>
             <span class="ft-greyaaa">息(元)</span>
           </div>
           <div class="assignment-item-info u-pull-right text-center ft-1p4">
-            <strong class="ft-grey999 ft-1p8">{{item.repaymentDate | date : 'yyyy/MM/dd'}}</strong>
+            <strong class="ft-grey999 content-number">{{item.repaymentDate | date : 'yyyy/MM/dd'}}</strong>
             <br>
             <span class="ft-greyaaa">到期日</span>
           </div>
@@ -50,17 +50,17 @@
         </div>
         <div class="u-full-width padding-t-1p2 padding-b-1p2 padding-r-1 padding-l-0p5 overflow-hid bg-white">
           <div class="assignment-item-info u-pull-left text-center ft-1p4 border-greye-right">
-            <strong class="ft-grey999 ft-1p8">{{item.amount || 0 | number: 2}}</strong>
+            <strong class="ft-grey999 content-number">{{item.amount || 0 | number: 2}}</strong>
             <br>
             <span class="ft-greyaaa padding-l-0p5">转让(元)</span>
           </div>
           <div class="assignment-item-info u-pull-left text-center ft-1p4 border-greye-right">
-            <strong class="ft-grey999 ft-1p8">{{item.soldStock * 100 || 0 | number: 2}}</strong>
+            <strong class="ft-grey999 content-number">{{item.soldStock * 100 || 0 | number: 2}}</strong>
             <br>
             <span class="ft-greyaaa">已转(元)</span>
           </div>
           <div class="assignment-item-info u-pull-right text-center ft-1p4">
-            <strong class="ft-orange2 ft-1p8">{{item.transferedIncome || 0 | number: 2}}</strong>
+            <strong class="ft-orange2 content-number">{{item.transferedIncome || 0 | number: 2}}</strong>
             <br>
             <span class="ft-greyaaa">收入(元)</span>
           </div>
@@ -111,6 +111,6 @@
 	<div class="row text-center margin-t-5 padding-l-1 padding-r-1" ng-show="!loading && credits.length <= 0">
 	    <img src="images/user-center/deal-list.png" width="35%">
 	    <p class="padding-2-t margin-t-2">亲，您尚未在宏财网购买过产品...</p>
-	    <button type="button" class="u-full-width ft-1p8 button button-primary" ui-sref="root._main-list-temp">浏览理财产品</button>
+	    <button type="button" class="u-full-width content-number button button-primary" ui-sref="root._main-list-temp">浏览理财产品</button>
 	</div>-->
 </div>
