@@ -232,7 +232,7 @@ p2pSiteMobApp
       })
       // 宏金保列表页
       .state('root._main-list-temp', {
-        url: '/guaranteepro-list',
+        url: '/guaranteepro-list?tab',
         data: {
           title: '宏金保'
         },
@@ -244,6 +244,17 @@ p2pSiteMobApp
           }
         }
       })
+      //债权转让列表页
+      // .state('root.assignments', {
+      //   url: '/guaranteepro-list/:tab',
+      //   views: {
+      //     '': {
+      //       templateUrl: 'views/main/_main-list-temp.html',
+      //       controller: 'ProjectListCtrl',
+      //       controllerUrl: 'scripts/controllers/project/project-list'
+      //     }
+      //   }
+      // })
       // 宏金保详情页更多详情
       .state('root.project-detail-more', {
         url: '/project-detail-more/:number',
@@ -286,17 +297,6 @@ p2pSiteMobApp
         }
       })
 
-      //债权转让列表页
-      .state('root.assignments', {
-        url: '/assignments',
-        views: {
-          '': {
-            templateUrl: 'views/assignment/assignment-list.html',
-            controller: 'AssignmentListCtrl',
-            controllerUrl: 'scripts/controller/assignment/assignment-list'
-          }
-        }
-      })
 
       // 个人中心
       .state('root.userCenter', {

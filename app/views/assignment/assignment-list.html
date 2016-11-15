@@ -1,7 +1,7 @@
 
 <div class="main-list">
   <div id ="main-list-title" class="bg-white">
-    <div class="display-inb padding-l-2"><a class="margin-b-0 ft-666 margin-auto" ui-sref="root._main-list-temp">宏金保</a></div>
+    <div class="display-inb padding-l-2"><a class="margin-b-0 ft-666 margin-auto">宏金保</a></div>
     <div class="display-inb padding-r-2"><a class="margin-b-0 ft-666 margin-auto title-border">债权转让</a></div>
   </div>
   <div class="main-list-temp clear" ng-repeat="item in assignments" ng-click="toDetail(item)">
@@ -18,9 +18,9 @@
     </div>
      <div class="pro-info">
       <ul>
-        <li class=" ft-ccc"><span class="ft-2p8 margin-r-0p3" ng-class= "{'ft-orange2':item.status === 1,'ft-grey7':item.status !== 1}">{{item.annualEarnings || 0.00}}</span>%</li>
-        <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3" ng-class= "{'ft-black4':item.status === 1,'ft-grey6':item.status !== 1}">{{item.currentStock * 100}}</span>元</li>
-        <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3"  ng-class= "{'ft-black4':item.status === 1,'ft-grey6':item.status !== 1}">{{item.remainDay || 0}}</span>天</li>
+        <li class=" ft-ccc"><span class="ft-2p8 margin-r-0p3 ft-Arial" ng-class= "{'ft-orange2':item.status === 1,'ft-grey7':item.status !== 1}">{{item.annualEarnings || 0.00}}</span>%</li>
+        <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3 ft-Arial" ng-class= "{'ft-black4':item.status === 1,'ft-grey6':item.status !== 1}">{{item.currentStock * 100}}</span>元</li>
+        <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3 ft-Arial"  ng-class= "{'ft-black4':item.status === 1,'ft-grey6':item.status !== 1}">{{item.remainDay || 0}}</span>天</li>
       </ul>
       <ul class="padding-t-0 margin-b-0 ft-grey7">
         <li>预期年化收益率</li>
