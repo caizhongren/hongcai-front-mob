@@ -1,13 +1,12 @@
 <!-- 宏金保首页 在下面的div class="main-list-temp"上面添加ng-repeat即可  start list   ui-sref="root.project-detail"-->
-<div id ="main-list-title">
-  <div class="display-inb padding-l-2"><a class="margin-b-0 ft-grey6 margin-auto title-border">宏金保</a></div>
-  <div class="display-inb padding-r-2"><a class="margin-b-0 ft-grey6 margin-auto" ui-sref="root.assignments">债权转让</a></div>
-</div>
-
 
 <div class="main-list">
+  <div id ="main-list-title" class="bg-white">
+    <div class="display-inb padding-l-2"><a class="margin-b-0 ft-666 margin-auto title-border">宏金保</a></div>
+    <div class="display-inb padding-r-2"><a class="margin-b-0 ft-666 margin-auto" ui-sref="root.assignments">债权转让</a></div>
+  </div>
   <div class="main-list-temp clear" ng-repeat="item in jigoubaoData track by item.id" ng-click="toDetail(item)">
-    <div class="title">
+    <div class="title ft-666">
       <span class="title-text" ng-show="widthFlag===0 && item.name.length <= 12">{{item.name}}</span>
       <span class="title-text" ng-show="widthFlag===0 && item.name.length > 12">{{item.name | limitTo:14}}...</span>
       <span class="title-text" ng-show="widthFlag===1 || widthFlag===2">{{item.name}}</span>
@@ -21,11 +20,11 @@
     </div>
      <div class="pro-info">
       <ul>
-        <li><span class="ft-3">{{item.annualEarnings}}</span>%</li>
-        <li><span>{{(  item.soldStock + item.occupancyStock) * item.increaseAmount}}</span>元</li>
-        <li><span ng-class="{'ft-black1':item.status === 7 || item.status === 6 ,'ft-grey6':item.status !== 6 || item.status !== 7 }">{{item.projectDays}}</span>天</li>
+        <li class=" ft-ccc"><span class="ft-2p8 margin-r-0p3" ng-class="{'ft-orange2':item.status === 7 || item.status === 6 ,'ft-grey7':item.status !== 6 || item.status !== 7 }">{{item.annualEarnings}}</span>%</li>
+        <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3" ng-class="{'ft-black4':item.status === 7 || item.status === 6 ,'ft-grey7':item.status !== 6 || item.status !== 7 }">{{(item.soldStock + item.occupancyStock) * item.increaseAmount}}</span>元</li>
+        <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3" ng-class="{'ft-black4':item.status === 7 || item.status === 6 ,'ft-grey7':item.status !== 6 || item.status !== 7 }">{{item.projectDays}}</span>天</li>
       </ul>
-      <ul class="padding-t-0 margin-b-0">
+      <ul class="padding-t-0 margin-b-0 ft-grey7">
         <li>预期年化收益率</li>
         <li class="border-none">可投金额</li>
         <li>剩余期限</li>
