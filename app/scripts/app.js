@@ -245,16 +245,16 @@ p2pSiteMobApp
         }
       })
       //债权转让列表页
-      // .state('root.assignments', {
-      //   url: '/guaranteepro-list/:tab',
-      //   views: {
-      //     '': {
-      //       templateUrl: 'views/main/_main-list-temp.html',
-      //       controller: 'ProjectListCtrl',
-      //       controllerUrl: 'scripts/controllers/project/project-list'
-      //     }
-      //   }
-      // })
+      .state('root._main-list-temp0', {
+        url: '/assignments',
+        views: {
+          '': {
+            templateUrl: 'views/assignment/assignment-list.html',
+            controller: 'ProjectListCtrl',
+            controllerUrl: 'scripts/controllers/project/project-list'
+          }
+        }
+      })
       // 宏金保详情页更多详情
       .state('root.project-detail-more', {
         url: '/project-detail-more/:number',

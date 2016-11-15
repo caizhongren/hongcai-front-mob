@@ -24,10 +24,10 @@ angular.module('p2pSiteMobApp')
     // $scope.toggle = {};
     $scope.activeTab = 0;
     $scope.tabParam = $stateParams.tab == undefined ? '0' : $stateParams.tab;
+    $scope.tabParam = parseInt($scope.tabParam);
+    console.log($scope.tabParam);
     $scope.switchTab = function(tabIndex) {
-      $stateParams.tab = tabIndex;
-      // console.log($stateParams.tab);
-      $scope.activeTab = tabIndex;
+      $scope.tabParam = tabIndex;
       $location.search('tab', tabIndex);
     };
     
