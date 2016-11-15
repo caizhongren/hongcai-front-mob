@@ -38,9 +38,9 @@
   <section  ng-if="activeTab === 1">
     <div class="main-list-temp clear" ng-repeat="item in assignments" ng-click="toDetail(item)">
       <div class="title ft-666">
-        <span class="title-text" ng-show="widthFlag===0 && item.name.length <= 12">{{item.name}}</span>
-        <span class="title-text" ng-show="widthFlag===0 && item.name.length > 12">{{item.name | limitTo:14}}...</span>
-        <span class="title-text" ng-show="widthFlag===1 || widthFlag===2">{{item.name}}</span>
+        <span class="title-text" ng-show="widthFlag===0 && item.name.length <= 12"><span class="zhuan">转</span>{{item.name}}</span>
+        <span class="title-text" ng-show="widthFlag===0 && item.name.length > 12"><span class="zhuan">转</span>{{item.name | limitTo:14}}...</span>
+        <span class="title-text" ng-show="widthFlag===1 || widthFlag===2"><span class="zhuan">转</span>{{item.name}}</span>
         <span ng-show="item.status === 1" class="title-status-orange status">转让中</span>
         <span ng-show="item.status === 2" class="title-status-orange status">撤销中</span>
         <span ng-show="item.status === 3" class="title-status-grey status">已撤销</span>
@@ -62,7 +62,7 @@
       </div>
     </div>
     <div class="text-center bg-white" ng-show="pageCount0 > page">
-      <p class="padding-b-3 padding-t-3"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a class="ft-black" ng-click="loadMore(getAssignmentList);">查看更多{{pageCount0}}{{page}}</a></p>
+      <p class="padding-b-3 padding-t-3"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a class="ft-black" ng-click="loadMore(getAssignmentList);">查看更多</a></p>
     </div>
   </section>
   <!--ending repeat-->
