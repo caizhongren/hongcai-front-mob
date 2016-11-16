@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('assignmentsCtrl', function(config, Restangular, $scope, $rootScope, $state, $stateParams, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN) {
+  .controller('assignmentsCtrl', function(config, Restangular, $scope) {
     $scope.tab = 0;
     $scope.widthFlag = "";
     $scope.screenWidth = function() {
@@ -23,7 +23,15 @@ angular.module('p2pSiteMobApp')
       return $scope.widthFlag;
     }
     $scope.screenWidth();
-
+    //暂不可转弹窗
+    $scope.modalMsg = false;
+    $scope.showRule = function(createTime){
+      $scope.createTime = createTime;
+      $scope.modalMsg = true;
+    }
+    $scope.closeRule = function() {
+      $scope.modalMsg = false;
+    }
     // tab
     $scope.toggle = {};
     $scope.tabs = [{
