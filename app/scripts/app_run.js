@@ -122,15 +122,10 @@ angular.module('p2pSiteMobApp')
     $rootScope.$on('$stateChangeStart', function(event, toState) {
       var title = '宏财理财';
       if (toState.data && toState.data.title) {
-        if(($location.url() === '/guaranteepro-list?tab=1')){
-          title = '债权转让';       
-        } else {
-          title = toState.data.title;
-        }
+        title = toState.data.title; 
       }
-      
       $rootScope.headerTitle = title;
-
+      
       $rootScope.timeout = false;
       $timeout(function() {
         $rootScope.timeout = true;
@@ -250,7 +245,13 @@ angular.module('p2pSiteMobApp')
       var title = '宏财理财';
       if (toState.data && toState.data.title) {
         title = toState.data.title;
+      }else if($location.url() === '/guaranteepro-list?tab=1'){
+        title = '债权转让';       
+      } else if ($location.url() === '/guaranteepro-list?tab=0' || $location.url() === '/guaranteepro-list') {
+        title = '宏金保'; 
       }
+      console.log(title);
+      
       $rootScope.headerTitle = title;
       if (toState.name !== 'root.project') {
         Utils.setTitle($rootScope.headerTitle);

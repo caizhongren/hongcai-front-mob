@@ -233,9 +233,6 @@ p2pSiteMobApp
       // 宏金保列表页
       .state('root._main-list-temp', {
         url: '/guaranteepro-list?tab',
-        data: {
-          title: '宏金保'
-        },
         views: {
           '': {
             templateUrl: 'views/main/_main-list-temp.html',
