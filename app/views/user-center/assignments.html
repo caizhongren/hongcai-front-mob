@@ -1,5 +1,5 @@
 <!--债权管理-->
-<div class="assignments bg-white margin-b-4" ng-init="toggle.activeTab=0;" auto-height>
+<div class="assignments bg-white margin-b-5" ng-init="toggle.activeTab=0;" auto-height>
 	<ul class="assignments-tab nav-ul bg-white overflow-hid margin-b-1 border-grey2-bottom">
 		<li class="column text-center margin-0 padding-t-1 padding-b-1" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs track by $index" ng-click="toggle.switchTab($index)" my-click-once>{{tab.title}}</li>
 	</ul>
@@ -12,8 +12,8 @@
             <span class="u-pull-left border-left1" ng-show="widthFlag===0 && item.projectName.length > 11">{{item.projectName | limitTo:8}}... </span>
             <span class="u-pull-left border-left1"  ng-show="widthFlag===1 || widthFlag===2">{{item.projectName}}</span>
             <img class="fl" src="/images/user-center/rate-icon.png" alt="" width="9%" ng-show="item.coupon && item.coupon.type === 1">
-            <span class="u-pull-right ft-orange2 ft-1p3" ng-show="!item.canTransfer" ng-click="showRule(item.createTime)">&nbsp;暂不可转&nbsp;</span>
-            <span class="u-pull-right ft-orange2 ft-1p3" ng-show="item.canTransfer">&nbsp;转让&nbsp;</span>
+            <span class="u-pull-right ft-orange2 ft-1p3" ng-show="!item.canTransfer">&nbsp;暂不可转&nbsp;</span>
+            <span class="u-pull-right ft-orange2 ft-1p3" ng-show="item.canTransfer" ng-click="showRule(item.createTime)">&nbsp;转让&nbsp;</span>
           </div>
         </div>
         <div class="u-full-width padding-t-0p5 padding-b-1p5 padding-r-1 padding-l-0p5 overflow-hid bg-white border-grey2-bottom ">
@@ -94,7 +94,7 @@
       <div class="rule padding-t-2 padding-r-1 padding-l-1p8 padding-b-1p5 text-center">
         <p class="margin-b-0">您该笔债权持有时间不足10日，</p>
         <p class="margin-b-0 margin-l-p1 padding-b-2">{{createTime +  10*24*3600*1000 | date:'yyyy.MM.dd'}}日起可以进行转让</p>
-        <input class="rec-rule-btn button" type="button" value="我知道了" ng-click="closeRule()">
+        <button class="rec-rule-btn button" ng-click="closeRule()">我知道了</button>
       </div>
     </section>
   </div>
