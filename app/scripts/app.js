@@ -247,6 +247,9 @@ p2pSiteMobApp
       //债权转让列表页
       .state('root._main-list-temp0', {
         url: '/assignments',
+        data: {
+          title: '债权转让'
+        },
         views: {
           '': {
             templateUrl: 'views/assignment/assignment-list.html',
