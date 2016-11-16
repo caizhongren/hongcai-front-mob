@@ -55,10 +55,10 @@ angular.module('p2pSiteMobApp')
         $scope.getAssignments(1);
       } else if(tabIndex === 1){
         $scope.searchStatus = '2';
-        $scope.getTranferingAssignmentsList('1,2,5');
+        $scope.getTranferingAssignmentsList(1, '1,2,5');
       }else {
         $scope.searchStatus = '3';
-        $scope.getTranferingAssignmentsList('3,4');
+        $scope.getTranferingAssignmentsList(1, '3,4');
       }
       $scope.page = 1;
     };
@@ -74,6 +74,7 @@ angular.module('p2pSiteMobApp')
           $scope.searchStatus = '1';
           $scope.transferablesList = response.transferables;
           $scope.transferableCounts = response.count;
+    
           // 测试环境放开限制
           var currentDate = new Date().getTime();
           if(status === 1){
@@ -90,17 +91,26 @@ angular.module('p2pSiteMobApp')
     /**
      * 获取转让中债权列表
      */
-    $scope.getTranferingAssignmentsList = function(Status) {
+    $scope.page2 =1;
+    $scope.page3 = 1
+    $scope.getTranferingAssignmentsList = function(page, Status) {
       $scope.searchStatus = Status == '1,2,5' ? '2' : '3';
       Restangular.one('users', '0').one('assignments').get({
-        page: $scope.page,
+        page: page,
         pageSize: $scope.pageSize,
         status: Status
       }).then(function(response) {
-        $scope.assignmentsList = [];
+        $scope.assignmentsList = page ==1 ? [] : $scope.assignmentsList;
+        $scope.page2 = page ==1 ? 1 : $scope.page2;
+        $scope.page3 = page ==1 ? 1 : $scope.page3;
         if (response.data.length>0) {
-          $scope.assignmentsList = response.data; 
+          for (var i = 0; i < response.data.length; i++) {
+            $scope.assignmentsList.push(response.data[i]);
+          };
           $scope.total = response.total; 
+          $scope.index = response.index; 
+          $scope.totalPage = response.totalPage; 
+ 
           $scope.loading = false;
         }
       });
@@ -111,16 +121,17 @@ angular.module('p2pSiteMobApp')
     /**
      * 加载更多
      */
+    
     $scope.loadAssignmentMore = function(status) {
       if (status == '1') {
         $scope.pageSize = $scope.transferableCounts-$scope.pageSize >5 ? $scope.transferableCounts-$scope.pageSize + 1 :$scope.transferableCounts;
         $scope.getAssignments(1);
       }else if (status == '2') {
-        $scope.pageSize = $scope.transferableCounts-$scope.pageSize >5 ? $scope.transferableCounts-$scope.pageSize + 1 :$scope.transferableCounts;
-        $scope.getTranferingAssignmentsList('1,2,5');
+        $scope.page2 += 1;
+        $scope.getTranferingAssignmentsList($scope.page2, '1,2,5');
       }else if (status == '3') {
-        $scope.pageSize = $scope.total-$scope.pageSize >5 ? $scope.total-$scope.pageSize + 1 :$scope.total;
-        $scope.getTranferingAssignmentsList('3,4');
+        $scope.page3 = $scope.page3 + 1;
+        $scope.getTranferingAssignmentsList($scope.page3, '3,4');
       }
       
       
