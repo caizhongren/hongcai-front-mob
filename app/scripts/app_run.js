@@ -122,8 +122,13 @@ angular.module('p2pSiteMobApp')
     $rootScope.$on('$stateChangeStart', function(event, toState) {
       var title = '宏财理财';
       if (toState.data && toState.data.title) {
-        title = toState.data.title;
+        if(($location.url() === '/guaranteepro-list?tab=1')){
+          title = '债权转让';       
+        } else {
+          title = toState.data.title;
+        }
       }
+      
       $rootScope.headerTitle = title;
 
       $rootScope.timeout = false;
