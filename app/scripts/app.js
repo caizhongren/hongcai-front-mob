@@ -412,6 +412,20 @@ p2pSiteMobApp
           }
         }
       })
+      // 债权转让列表业详情
+      .state('root.userCenter.assignmentList-details', {
+        url: '/assignmentList-details/:number',
+        data: {
+          title: '转让详情'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/assignmentList-details.html',
+            // controller: 'assignmentListDetailsCtrl',
+            // controllerUrl: 'scripts/controllers/user-center/assignmentList-details-ctrl'
+          }
+        }
+      })
       /**
        * 债权管理-债权转让页面
        */
