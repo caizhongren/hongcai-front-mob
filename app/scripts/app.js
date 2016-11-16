@@ -316,6 +316,7 @@ p2pSiteMobApp
           }
         }
       })
+      
       //我的账户
       .state('root.userCenter.account', {
         url: '/account',
@@ -409,6 +410,22 @@ p2pSiteMobApp
             controller: 'assignmentsCtrl',
             controllerUrl: 'scripts/controllers/user-center/assignments-ctrl'
           }
+        }
+      })
+      /**
+       * 债权管理-债权转让页面
+       */
+      .state('root.userCenter.assignments-transfer-details', {
+        url: '/assignments-transfer-details/:number',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/assignments-transfer-details.html',
+            controller: 'AssignmentsTransferCtrl',
+            controllerUrl: 'scripts/controller/user-center/assignments-transfer-details.js'
+          }
+        },
+        data: {
+          title: '债权详情'
         }
       })
       // 债权详情

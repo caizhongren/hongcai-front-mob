@@ -12,8 +12,8 @@
             <span class="u-pull-left border-left1" ng-show="widthFlag===0 && item.projectName.length > 11">{{item.projectName | limitTo:8}}... </span>
             <span class="u-pull-left border-left1"  ng-show="widthFlag===1 || widthFlag===2">{{item.projectName}}</span>
             <img class="fl" src="/images/user-center/rate-icon.png" alt="" width="9%" ng-show="item.coupon && item.coupon.type === 1">
-            <span class="u-pull-right ft-orange2 ft-1p3" ng-show="!item.canTransfer" ng-click="showRule(item.createTime)">&nbsp;暂不可转&nbsp;</span>
-            <span class="u-pull-right ft-orange2 ft-1p3" ng-show="item.canTransfer">&nbsp;转让&nbsp;</span>
+            <span class="u-pull-right ft-orange2 ft-1p3" ng-show="!item.canTransfer" ng-click="showRule(item.createTime)" ui-sref="root.userCenter.assignments-transfer-details({number:item.number})">&nbsp;暂不可转&nbsp;</span>
+            <span class="u-pull-right ft-orange2 ft-1p3" ng-show="item.canTransfer" ui-sref="root.userCenter.assignments-transfer-details({number:item.number})">&nbsp;可转&nbsp;</span>
           </div>
         </div>
         <div class="u-full-width padding-t-0p5 padding-b-1p5 padding-r-1 padding-l-0p5 overflow-hid bg-white border-grey2-bottom ">
