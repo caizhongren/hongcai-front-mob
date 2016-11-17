@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc function
  * @name p2pSiteMobApp.controller:assignmentsCtrl
@@ -7,9 +5,10 @@
  * # assignmentsCtrl
  * Controller of the p2pSiteMobApp
  */
+'use strict';
 angular.module('p2pSiteMobApp')
   .controller('assignmentsCtrl', function($location, $stateParams, config, Restangular, $scope) {
-    $scope.tab = 0;
+
     $scope.widthFlag = "";
     $scope.screenWidth = function() {
       $scope.width = document.body.scrollWidth; //用系统返回宽度除以分辨率
@@ -23,6 +22,7 @@ angular.module('p2pSiteMobApp')
       return $scope.widthFlag;
     }
     $scope.screenWidth();
+
     //暂不可转弹窗
     $scope.modalMsg = false;
     $scope.showRule = function(createTime){
@@ -47,11 +47,9 @@ angular.module('p2pSiteMobApp')
     /**
      * 切换标签
      */
-    $scope.searchStatus = $stateParams.tab == undefined ? '0' : $stateParams.tab;
-    $scope.searchStatus = parseInt($scope.searchStatus);
+    $scope.searchStatus = parseInt($stateParams.tab || 0);
     $scope.switchTab = function(tabIndex) {
       $scope.loading = true;
-      $location.search('tab', tabIndex);
       $scope.searchStatus = tabIndex;
 
       if (tabIndex == 0) {
@@ -87,17 +85,17 @@ angular.module('p2pSiteMobApp')
         }
       });
     };
-    $scope.getAssignments(1);
+    
     /**
      * 获取转让中债权列表
      */
-    $scope.page2 =1;
-    $scope.page3 = 1
-    $scope.getTranferingAssignmentsList = function(page, Status) {
+    $scope.page2 = 1;
+    $scope.page3 = 1;
+    $scope.getTranferingAssignmentsList = function(page, status) {
       Restangular.one('users', '0').one('assignments').get({
         page: page,
         pageSize: $scope.pageSize,
-        status: Status
+        status: status
       }).then(function(response) {
         $scope.assignmentsList = page ==1 ? [] : $scope.assignmentsList;
         $scope.page2 = page ==1 ? 1 : $scope.page2;
@@ -113,13 +111,13 @@ angular.module('p2pSiteMobApp')
           $scope.loading = false;
         }
       });
-    }
-    $scope.getTranferingAssignmentsList(1, '1,2,5');
+    };
 
+    $scope.switchTab($scope.searchStatus);
+    
     /**
      * 加载更多
      */
-    
     $scope.loadAssignmentMore = function(status) {
       if (status == '0') {
         $scope.pageSize = $scope.transferableCounts-$scope.pageSize >5 ? $scope.transferableCounts-$scope.pageSize + 1 :$scope.transferableCounts;

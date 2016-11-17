@@ -1,5 +1,5 @@
 <!-- 转让详情 -->
-<div class="assignmentList-details margin-b-4" ng-init="showAssignmentList=false;cancelAssignment=false">
+<div class="assignmentList-details margin-b-5" ng-init="showAssignmentList=false;cancelAssignment=false">
   <!-- 转让信息 -->
   <div class="content border-grey-bottom">
     <div class="column">
@@ -32,7 +32,8 @@
     <div class="column {{assignment.status =='3' || assignment.status =='4' || showAssignmentList ?'border-none':' '}}">
       <div class="txt-left fl">债权转让记录</div>
       <div class="txt-right fr">
-        <i class="angle-down fa fa-angle-down"></i>
+        <i class="angle-down fa fa-angle-down" ng-if="!showAssignmentList"></i>
+        <i class="angle-down fa fa-angle-up" ng-if="showAssignmentList"></i>
       </div>
     </div>
   </div>
@@ -61,7 +62,8 @@
       <div class="column border-none">
         <div class="txt-left fl">撤销转让</div>
         <div class="txt-right fr">
-          <i class="angle-down fa fa-angle-down"></i>
+          <i class="angle-down fa fa-angle-down" ng-if="!cancelAssignment"></i>
+          <i class="angle-down fa fa-angle-up" ng-if="cancelAssignment"></i>
         </div>
       </div>
     </div>
