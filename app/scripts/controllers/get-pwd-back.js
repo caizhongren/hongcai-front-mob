@@ -112,6 +112,9 @@ angular.module('p2pSiteMobApp')
 
     })
     $scope.changePassword = function(chg) {
+      chg.newPassword1 = chg.newPassword1.replace(/\s/g, "");
+      chg.newPassword2 = chg.newPassword2.replace(/\s/g, "");
+
       $scope.msg = '';
       if (chg.newPassword1 !== chg.newPassword2) {
         $rootScope.showMsg('两次密码输入不一致');
