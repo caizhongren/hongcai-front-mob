@@ -250,7 +250,6 @@ angular.module('p2pSiteMobApp')
       } else if ($location.url() === '/guaranteepro-list?tab=0' || $location.url() === '/guaranteepro-list') {
         title = '宏金保'; 
       }
-      console.log(title);
       
       $rootScope.headerTitle = title;
       if (toState.name !== 'root.project') {
