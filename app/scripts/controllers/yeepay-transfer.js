@@ -114,7 +114,10 @@ angular.module('p2pSiteMobApp')
         });
       } else if ($scope.type === 'transfer') { //投资
 
-        restmod.model(DEFAULT_DOMAIN + '/orders/' + $scope.number + '/users/' + '0' + '/payment').$create().$then(function(response) {
+        restmod.model(DEFAULT_DOMAIN + '/orders/' + $scope.number + '/users/' + '0' + '/payment').$create({
+          'from': 2,
+          'device': Utils.deviceCode()
+        }).$then(function(response) {
           redirectToYeepay('toTransfer', response);
         });
 

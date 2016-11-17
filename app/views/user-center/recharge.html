@@ -12,7 +12,6 @@
         <span>{{simpleWithdraw.bankcard.openBank || '交通银行'}}：&nbsp;</span><span>{{simpleWithdraw.bankcard.cardNo || '6222************1213'}}</span>
       </div>
       <label class="margin-t-1 padding-l-2">账户余额:&nbsp;<span class="ft-orange">{{ simpleWithdraw.account.balance | number:2}}</span>元<span class="ft-blue ft-1p2 fr margin-r-2 line-h2" ng-click="showbankLimit();">支持银行</span></label>
-
       <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeForm.amount.$dirty && rechargeForm.amount.$error.pattern">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入数字(最多精确到小数点后两位)</span>
       </div>
