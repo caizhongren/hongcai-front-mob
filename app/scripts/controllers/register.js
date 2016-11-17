@@ -51,6 +51,8 @@ angular.module('p2pSiteMobApp')
     var openId = $rootScope.openId;
     var signUpBe = register;
     $scope.signUp = function(user) {
+      user.password = user.password..replace(/\s/g, ""); //去除所有空格
+
       if (!$scope.checkMobile(user.mobile) || !$scope.checkPassword(user.password) || !$scope.checkPicCaptchLength(user.picCaptcha)) {
         return;
       }
