@@ -89,7 +89,7 @@ angular.module('p2pSiteMobApp')
 
       if(newVal){
         if(newVal == 0 ){
-          $scope.msg = '请输入大于0的数字(最多精确到小数点后两位)';
+          $scope.msg = '请输入大于0的数字';
         }else if(newVal < $scope.increaseAmount ){
           $scope.msg = '转让金额必须大于' + $scope.increaseAmount;
         }else if(newVal % $scope.increaseAmount !==0 ){

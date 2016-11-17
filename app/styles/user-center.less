@@ -1006,6 +1006,9 @@
       }
     }
     .transfer-annual {
+      .test {
+        top: -3.3rem !important;
+      }
       margin-bottom: 1.3rem;
       p {
         height: 3.3rem;
@@ -1022,7 +1025,42 @@
         }
       }
     }
+    
     .transfer-amount, .transfer-annual {
+      .test{
+        width: 47%;
+        height: 2.5rem;
+        border-radius: .6rem;
+        line-height: 2.5rem;
+        text-align: center;
+        color: #fff;
+        font-size: 1.2rem;
+        background: rgba(0, 0, 0, 0.7);
+        position: absolute;
+        left: 10.8rem;
+        top: -1rem;
+          @media(min-width:360px) {
+            width: 44%;
+          }
+          @media(min-width:341px) {
+            width: 42%;
+          }
+        }
+      .test span{width:0; height:0; font-size:0; overflow:hidden; position:absolute;}
+      .test span.bot{
+        border-width: .3rem .8rem; 
+        border-style:solid; 
+        border-color: rgba(0, 0, 0, 0.7) rgba(0, 0, 0, 0.7) transparent transparent; 
+        left:83px; 
+        top:30px;
+      }
+      .test span.top{
+        border-width:.4rem .3rem; 
+        border-style:dashed solid solid dashed; 
+        border-color: #FFF #FFF transparent transparent; 
+        left:95px; 
+        top:30.5px;
+      }
       .border-change {
         border: 1px solid #ff0000;
       }
