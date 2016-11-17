@@ -24,6 +24,14 @@ angular.module('p2pSiteMobApp')
     }
 
     $scope.toLogin = function(user) {
+
+      user.password = user.password.replace(/\s/g, "");
+
+      if(!user.password || !user.account){
+        $rootScope.showMsg('账号或密码不能为空');
+        return;
+      }
+
       if ($scope.rememberUserName) {
         ipCookie('userName', user.account, {
           expires: 60
