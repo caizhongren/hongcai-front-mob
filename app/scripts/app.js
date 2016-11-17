@@ -211,8 +211,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/project/new-project-detail.html',
-            controller: 'NewProjectDetailCtrl',
-            controllerUrl: 'scripts/controllers/project/new-project-detail'
+            controller: 'ProjectDetailCtrl',
+            controllerUrl: 'scripts/controllers/project/project-detail'
           }
         }
       })

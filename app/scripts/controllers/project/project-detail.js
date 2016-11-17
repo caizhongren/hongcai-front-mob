@@ -2,244 +2,263 @@
 
 /**
  * @ngdoc function
- * @name p2pSiteMobApp.controller:ProjectDetailCtrl
+ * @name p2pSiteMobApp.controller:NewProjectDetailCtrl
  * @description
- * # ProjectDetailCtrl
+ * # NewProjectDetailCtrl
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('ProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects,$interval, Restangular, restmod, DEFAULT_DOMAIN, config, projectStatusMap,DateUtils, Utils) {
-    // 宏金盈详情页面
+  .controller('ProjectDetailCtrl', function(ipCookie, $scope, $timeout, $state, $rootScope, $stateParams, $location,$interval, Restangular, projectStatusMap, ProjectUtils, Utils) {
+    // 项目详情页面
     var number = $stateParams.number;
     if (!$stateParams.number) {
       $state.go('root.main');
     }
-
+    $scope.profit = 0;
+    $scope.increaseRateProfit = 0;
     $scope.projectStatusMap = projectStatusMap;
+    $scope.unSelectCouponMsg = '暂无可用奖励';
+    $scope.initLimit = 3;
+    $scope.resetInitLimit = function(){
+        $scope.initLimit = 3;
+    }
 
-
-    $scope.repaymentTypeMap = {'1': '按月付息 到期还本', '2': '按月返还 等额本息', '3': '按季付息 到期还本', '4': '半年付息 到期还本', '5': '到期还本付息'};
+    /**
+     * 项目信息
+     */
     Restangular.one('projects').one($stateParams.number).get().then(function(response) {
       $rootScope.headerTitle = response.name;
       Utils.setTitle($rootScope.headerTitle);
 
-      $scope.project = response;
-      $scope.serverTime = response.createTime || (new Date().getTime());
-      $scope.project.countdown = new Date(response.releaseStartTime).getTime() - $scope.serverTime;
-      $scope.project._timeDown = DateUtils.toHourMinSeconds($scope.project.countdown);
-      if($scope.project.status === 7){
-        $rootScope.tofinishedOrder();
+      var project = response;
+      $scope.project = project;
+      project.percent = (project.soldStock + project.occupancyStock) * project.increaseAmount / project.total * 100;
+      project.availableAmount = project.total - (project.soldStock + project.occupancyStock) * project.increaseAmount;
+
+      ProjectUtils.projectTimedown(project, project.createTime);
+
+
+      /**
+       * 新手标判断
+       */
+      if($scope.project.category.code === '0112'){
+          Restangular.one('projects').one('investNewbieBiaoProjectVerify').get({
+            number: $stateParams.number
+          }).then(function(response) {
+            if(response.ret === -1){
+              return;
+            }
+            if(!response.isOk){
+              $scope.msg = '仅限首次投资后一周内参与';
+              $scope.showMsg();
+            }
+        });
+
       }
-      Restangular.one('projects').one($scope.project.id+'/info').get().then(function(response){
-        $scope.jigoubaoDataMore = response;
-      });
 
-      // 可投资金额
-      $scope.jigoubaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
-      // 当status===1可融资状态的时候，判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。
-      $rootScope.checkSession.promise.then(function() {
-        if ($rootScope.isLogged) {
-          // 用户可投资金额
-          var plusNum = $rootScope.securityStatus.realNameAuthStatus;
-
-          switch (plusNum) {
-            case 1:
-              $scope.fundsFlag = 2;
-              break;
-            case 0:
-              $scope.fundsFlag = 1;
-              break;
+      /**
+       * 可用券
+       */
+      if($rootScope.isLogged){
+        $scope.increaseRateCoupons = [];
+        $scope.selectIncreaseRateCoupon = [];
+        Restangular.one('projects').one('investIncreaseRateCoupon').get({
+          projectId : $scope.project.id,
+          amount : project.availableAmount
+        }).then(function(response) {
+          if (response && response.ret && response.ret !== -1) {
+            $scope.increaseRateCoupons = response;
+            for (var i = 0; i < $scope.increaseRateCoupons.length; i++) {
+              if ($scope.rateType === '' && $scope.cashType === '') {
+                $scope.selectIncreaseRateCoupon = $scope.increaseRateCoupons[0];
+              }
+              if ($scope.rateNum == $scope.increaseRateCoupons[i].number || $scope.cashNum == $scope.increaseRateCoupons[i].number) {
+                $scope.selectIncreaseRateCoupon = $scope.increaseRateCoupons[i];
+              }
+            }
+          }else {
+            $scope.selectIncreaseRateCoupon = [];
           }
-        } else {
-          $scope.userCanCreditInvestNum = 0;
-          $scope.fundsFlag = 0;
-        }
-        if (!$rootScope.hasLoggedUser || !$rootScope.hasLoggedUser.id) {
-          return;
-        }
-      });
+          $scope.project.investAmount =  1000 ;
+        });
+      }
     });
-
-    $interval(function() {
-        $scope.project.countdown -= 1000;
-        if ($scope.project.countdown <= 0 && $scope.project.status === 6) {
-          $scope.project.status = 7;
-        }
-        $scope.project._timeDown = DateUtils.toHourMinSeconds($scope.project.countdown);
-    }, 1000);
 
     $rootScope.tofinishedOrder();
 
-    $scope.goMoreDetail = function(project) {
-      $state.go('root.project-detail-more', {
-        number: project.number
-      });
-    }
-    $scope.checkLargeUserCanAmount = function(project) {
-      return $rootScope.isLogged && $rootScope.account.balance < project.investAmount;
-    };
+    /**
+     * 下单并支付
+     */
+    $scope.clicked = true;
+    $scope.toInvest = function(project) {
+      $scope.clicked = false;
+      if($scope.msg || project.investAmount < project.minInvest){
+        return;
+      }
 
-    $scope.checkStepAmount = function(project) {
-      if (project.investAmount >= project.increaseAmount) {
-        if (project.investAmount % project.increaseAmount === 0) {
-          return false;
+      $scope.showMsg();
+      $rootScope.tofinishedOrder();
+      var couponNumber = $scope.selectIncreaseRateCoupon != null ? $scope.selectIncreaseRateCoupon.number : '';
+      $rootScope.showLoadingToast = true;
+      Restangular.one('projects').one(number+'/users/' + '0').post('investment', {
+        investAmount: project.investAmount,
+        couponNumber: couponNumber,
+        device: Utils.deviceCode()
+      }).then(function(order){
+        $rootScope.showLoadingToast = false;
+        $scope.clicked = true;
+        // 重复下单后，response.number为undefined
+        if (order && order.ret !== -1) {
+          $state.go('root.yeepay-transfer', {
+            type: 'transfer',
+            number: order.number
+         });
         } else {
-          return true;
+          $scope.msg = order.msg;
+          $scope.showMsg();
         }
-      }
+      });
     };
 
 
-    $scope.experienceAmount = 0;
-    $scope.confirmUseReward = function(project, selectCoupon) {
-      if (project.useExperience) {
-        $scope.experienceAmount = parseInt($rootScope.account.experienceAmount / 100) * 100;
-        if ($scope.experienceAmount > project.investAmount) {
-          project.investAmount = $scope.experienceAmount;
+    $scope.$watch('project.investAmount', function(newVal, oldVal){
+      if(!$rootScope.isLogged){
+        return;
+      }
+
+      if(newVal !== oldVal){
+        $scope.msg = undefined;
+      }
+
+      if($rootScope.account.balance <= 0){
+        $scope.msg = '账户余额不足，请先充值';
+      }
+
+      if(newVal){
+        if(newVal > $scope.availableAmount){
+          $scope.msg = '投资金额必须小于' + $scope.availableAmount;
+        }else if(newVal > $rootScope.account.balance){
+          $scope.msg = '账户余额不足，请先充值';
+        } else if(newVal < $scope.project.minInvest ){
+          $scope.msg = '投资金额必须大于' + $scope.project.minInvest;
+        } else if(newVal % $scope.project.increaseAmount !==0 ){
+          $scope.msg = '投资金额必须为' + $scope.project.increaseAmount + '的整数倍';
         }
       }
-      $scope.couponNumber = selectCoupon == null ? "" : selectCoupon.number;
-      $scope.rewardFlag = false;
-      $scope.selectCoupon = selectCoupon;
-    }
 
-    function newForm() {
-      var f = document.createElement('form');
-      document.body.appendChild(f);
-      f.method = 'post';
-      // f.target = '_blank';
-      return f;
-    }
-
-    function createElements(eForm, eName, eValue) {
-      var e = document.createElement('input');
-      eForm.appendChild(e);
-      e.type = 'text';
-      e.name = eName;
-      if (!document.all) {
-        e.style.display = 'none';
-      } else {
-        e.style.display = 'block';
-        e.style.width = '0px';
-        e.style.height = '0px';
+      if($scope.selectIncreaseRateCoupon && $scope.project){
+        $scope.profit = $scope.calcProfit($scope.project.annualEarnings) || 0;
+        if($scope.selectIncreaseRateCoupon.type ===1){
+          $scope.increaseRateProfit = $scope.selectIncreaseRateCoupon != null ? $scope.calcProfit($scope.selectIncreaseRateCoupon.value) : 0;
+        } else{
+          $scope.showCashMsg(newVal);
+          $scope.cashProfit = $scope.project.investAmount >= $scope.selectIncreaseRateCoupon.minInvestAmount ? $scope.selectIncreaseRateCoupon.value : 0;
+        }
       }
-      e.value = eValue;
-      return e;
-    }
-    $scope.toLog = function() {
-      var redirectUrl = $location.path();
-      $state.go('root.login', {
-        redirectUrl: redirectUrl
 
-      });
+      $scope.showMsg();
+    });
 
+    // 判断现金券投资金额显示错误提示
+    $scope.showCashMsg = function(investAmount){
+      if(investAmount < $scope.selectIncreaseRateCoupon.minInvestAmount){
+        $scope.msg = '投资金额不满足返现条件';
+        $scope.showMsg();
+      }
       return;
-      // var locationUrl = $location.path();
-      //  window.location.href = locationUrl;
-
     }
 
+    //显示信息
+    $scope.showMsg = function(){
+      if($scope.project && $scope.project.status == 7){
+        $rootScope.showMsg($scope.msg);
+      }
+    }
+    // 记录券的来源
+    $scope.cashNum = ipCookie('cashNum') || '';
+    $scope.cashType = ipCookie('cashType') || '';
+    $scope.rateNum = ipCookie('rateNum') || '';
+    $scope.rateType = ipCookie('rateType') || '';
+
+    //选择券
+    $scope.showSelectIncreaseRateCoupon = false;
+    $scope.selectCoupon = function(coupon){
+        $scope.selectIncreaseRateCoupon = coupon;
+        $scope.showSelectIncreaseRateCoupon = false;
+        $scope.increaseRateProfit = $scope.calcProfit(coupon.value);
+        $scope.cashProfit = $scope.project.investAmount >= $scope.selectIncreaseRateCoupon.minInvestAmount ? $scope.selectIncreaseRateCoupon.value : 0;
+        $scope.resetInitLimit();
+        //选择现金券时判断投资金额是否满足条件
+        if(coupon.type ===2){
+          $scope.msg = '';
+          if($scope.msg){
+            $scope.showCashMsg($scope.project.investAmount);
+          }else{
+            $scope.showCashMsg($scope.project.investAmount);
+          }
+        }else{
+          $scope.msg = '';
+        }
+    }
+    //不使用券
+    $scope.unUseIncreaseRateCoupon = function(){
+        $scope.selectIncreaseRateCoupon = null;
+        $scope.showSelectIncreaseRateCoupon = false;
+        $scope.increaseRateProfit = 0;
+        $scope.resetInitLimit();
+        $scope.unSelectCouponMsg = '暂不使用';
+        if($scope.msg){
+          $scope.msg = '';
+        }
+    }
+
+    //跳转到充值页面
+    $scope.toRecharge = function(){
+      if($rootScope.timeout){
+        $state.go('root.userCenter.recharge');
+      }
+    }
 
     /**
-     * 跳转到充值页面
+     * 跳转到投资记录页
      */
-    $scope.toRecharge = function(){
-      $state.go('root.userCenter.recharge');
+    $scope.toOrderList = function(){
+      if(!$rootScope.isLogged){
+        return;
+      }else{
+        $state.go('root.orders', {
+          number: $stateParams.number
+       });
+      }
     }
 
-
-    $scope.toInvest = function(project) {
-      // console.log(project);
-      if (!project.investAmount) {
-        $scope.msg = '请输入投资金额';
-        return;
-      } else if(project.investAmount < project.minInvest){
-        $scope.msg = '投资金额必须大于' + project.minInvest;
-        return;
-      } else if(project.investAmount % project.increaseAmount){
-        $scope.msg = '投资金额必须为' + project.increaseAmount + '的整数倍';
-        return;
-      }
-
-      $scope.investAmount = project.investAmount;
-      var payAmount = $scope.investAmount - $scope.experienceAmount;
-      var couponNumber = $scope.couponNumber;
-      if ($scope.fundsFlag === 0) {
-        // $state.go('root.login', {
-        //   redirectUrl: $location.path()
-        // });
-      } else if ($scope.fundsFlag === 1) {
-        // 需要跳到实名认证页面
-      } else if ($scope.checkLargeUserCanAmount(project)) {
-        // $state.go('root.yeepay-transfer', {
-        //       type: 'recharge',
-        //       number: payAmount - $rootScope.account.balance + ($rootScope.account.reward == null ? 0 : $rootScope.account.reward)
-        // });
-        $state.go('root.userCenter.recharge');
-      } else if ($scope.fundsFlag === 2) {
-        // how to bulid investment path restmod.model
-        // restmod.model(DEFAULT_DOMAIN + '/projects')
-        if (payAmount > 0) {
-          restmod.model(DEFAULT_DOMAIN + '/projects/' + number + '/users/' + '0' + '/investment').$create({
-            // fundsProjects.$find(number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
-            investAmount: project.investAmount,
-            couponNumber: couponNumber,
-            device: Utils.deviceCode()
-          }).$then(function(order) {
-            // 重复下单后，response.number为undefined
-            if (order.ret !== -1) {
-              if (order.number !== null && order.number !== undefined) {
-                restmod.model(DEFAULT_DOMAIN + '/projects/' + number + '/users/' + '0' + '/payment').$create({
-                  orderNumber: order.number
-                }).$then(function(response) {
-                  if (response.$status === 'ok') {
-                    var req = response.req;
-                    var sign = response.sign;
-                    var _f = newForm(); //创建一个form表单
-                    createElements(_f, 'req', req); //创建form中的input对象
-                    createElements(_f, 'sign', sign);
-                    _f.action = config.YEEPAY_ADDRESS + 'toTransfer'; //form提交地址
-                    _f.submit(); //提交
-                  }
-                  // $state.go('');
-                })
-              } else if (response.ret === -1) {
-                $scope.msg = response.msg;
-              }
-          } else {
-              $scope.msg = order.msg;
-            }
-          })
-        }
-      }
-    };
-
-    $scope.goToInvestVerify = function(){
-      $state.go('root.investment-status', {number: $scope.project.number});
+    //计算预计收益
+    $scope.calcProfit = function(annualEarnings){
+        var profit = $scope.project.investAmount * $scope.project.projectDays * annualEarnings / 36500 ;
+        return profit;
     }
 
-
-    // $scope.$watch('project.investAmount', function(newVal, oldVal){
-    //   if(newVal !== oldVal){
-    //     $scope.msg = undefined;
-    //   }
-
-    //   if($rootScope.account.balance <= 0){
-    //     $scope.msg = '账户余额不足，请先充值';
-    //   }
-
-    //   if(newVal){
-    //     if(newVal % $scope.project.increaseAmount){
-    //       $scope.msg = '投资金额必须为' + $scope.project.increaseAmount + '的整数倍';
-    //       return;
-    //     }
-    //     if(newVal > $rootScope.account.balance){
-    //       $scope.msg = '账户余额不足，请先充值'
-    //     }
-    //     if(newVal > $scope.jigoubaoProjectInvestNum){
-    //       $scope.msg = '投资金额必须小于' + $scope.jigoubaoProjectInvestNum;
-    //     }
-    //   }
-    // });
-
+    /**
+     * 修改投资金额
+     */
+    $scope.modInvestAmout = function(offset,$event){
+      $event.stopPropagation();
+      $scope.project.investAmount = $scope.project.investAmount ? $scope.project.investAmount + offset : offset;
+      $scope.project.investAmount = $scope.project.investAmount < 100 ? 100 : $scope.project.investAmount;
+    }
+    //查看更多
+    $scope.viewMoreCoupon = function(){
+      $scope.initLimit = $scope.initLimit + 3 < $scope.increaseRateCoupons.length ? $scope.initLimit + 3 : $scope.increaseRateCoupons.length;
+    }
+    /**
+     * 虚拟键盘弹出遮住输入框问题
+     */
+    angular.element('.invest-input').bind({
+      focus: function(){
+        angular.element('.new-project-detail').css('margin-bottom','100px');
+      },
+      blur: function(){
+        angular.element('.new-project-detail').css('margin-bottom','0');
+      }
+    })
   });
