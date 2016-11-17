@@ -74,10 +74,12 @@ angular.module('p2pSiteMobApp')
         if(response && response.ret !== -1){
           $rootScope.showMsg('转让成功！');
           $state.go('root.userCenter.assignments');
+        } else {
+          $rootScope.showMsg(response.msg);
         }
       });
     }
-    console.log( $scope.busy );
+    // console.log( $scope.busy );
     //监测转让金额
     $scope.$watch('transferAmount', function(newVal, oldVal){
       $scope.transferAmount = newVal;

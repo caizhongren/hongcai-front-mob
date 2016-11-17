@@ -9,11 +9,11 @@
 		<form name="" class="margin-b-1p3">
 			<div class="transfer-amount padding-l-1p5 padding-r-1p5 padding-t-2p3 bg-white">
 				<span>转让金额（元）</span>
-				<input class="margin-b-1p3 border-grey ft-1p7 ft-grey7 ft-Arial" type="number" name="transAmount" placeholder="请输入转让金额" value="请输入转让金额" ng-model="transferAmount" ng-disabled="creditRight.transferableAmount === 0">
+				<input class="margin-b-1p3 ft-1p7 ft-grey7 ft-Arial" type="number" name="transAmount" placeholder="请输入转让金额" value="请输入转让金额" ng-model="transferAmount" ng-disabled="creditRight.transferableAmount === 0">
 			</div>
 			<div class="transfer-annual bg-white padding-l-1p5 padding-r-1p5 margin-b-1p3  bg-white border-grey-bottom">
 				<span class="">转让利率（%）</span>
-				<input class="border-grey ft-1p7 ft-grey7 margin-b-0 ft-Arial" type="number" name="transAnunal" placeholder="请输入转让利率" value="请输入转让利率" ng-model="transferPercent" ng-disabled="creditRight.transferableAmount === 0">
+				<input class="ft-1p7 ft-grey7 margin-b-0 ft-Arial" type="number" name="transAnunal" placeholder="请输入转让利率" value="请输入转让利率" ng-model="transferPercent" ng-disabled="creditRight.transferableAmount === 0" ng-focus>
 				<p class="margin-b-0 ft-1p3">当前转让奖金预计 <span class="ft-1p3 ft-orange2 ft-Arial">{{transferAmount && transferPercent ? transferAmount * remainDay * (transferPercent - creditBaseRate) / 36500 : 0  | number: 2}}</span>元 </p>
 			</div>
 			<div class="return bg-white border-grey-bottom border-grey-top padding-l-1p5 padding-r-1p5 padding-t-1p2 padding-b-1p2">
@@ -25,6 +25,6 @@
 		<span>常见问题</span><span class="fr ft-Arial ft-2p8 margin-t--1"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
 	</div>
 	<div class="transfer-btn">
-		<div class="text-center"><button class="ft-white ft-1p7 text-center" ng-class="{'btn-disabled': msg || errMsg || !transferPercent || !transferAmount || busy == true}" ng-disabled="msg || errMsg || !transferPercent || !transferAmount || busy == true" ng-click="assignmentsTransfer(transferAmount, transferPercent);">确认转让</button></div>{{msg}}{{errMsg}}
+		<div class="text-center"><button class="ft-white ft-1p7 text-center" ng-class="{'btn-disabled': msg || errMsg || !transferPercent || !transferAmount || busy == true}"  ng-click="assignmentsTransfer(transferAmount, transferPercent);">确认转让</button></div>{{msg}}{{errMsg}}
 	</div>
 </div>

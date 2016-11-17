@@ -21,9 +21,8 @@ angular.module('p2pSiteMobApp')
       }, {
         title: '债权转让',
       }];
-    // $scope.toggle = {};
-    $scope.activeTab = 0;
     $scope.tabParam = $stateParams.tab == undefined ? '0' : $stateParams.tab;
+    //pc端路由保持一致
     if($location.path().split('/')[1] == 'assignments') {
       $scope.tabParam = 1;
     }
