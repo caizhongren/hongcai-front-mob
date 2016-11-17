@@ -439,7 +439,7 @@ p2pSiteMobApp
           }
         },
         data: {
-          title: '债权详情'
+          title: '立即转出'
         }
       })
       // 债权详情
