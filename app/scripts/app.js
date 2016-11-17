@@ -421,8 +421,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/user-center/assignmentList-details.html',
-            // controller: 'assignmentListDetailsCtrl',
-            // controllerUrl: 'scripts/controllers/user-center/assignmentList-details-ctrl'
+            controller: 'assignmentListDetailsCtrl',
+            controllerUrl: 'scripts/controllers/user-center/assignmentList-details-ctrl'
           }
         }
       })

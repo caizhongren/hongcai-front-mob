@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('assignmentsCtrl', function(config, Restangular, $scope) {
+  .controller('assignmentsCtrl', function($location, $stateParams, config, Restangular, $scope) {
     $scope.tab = 0;
     $scope.widthFlag = "";
     $scope.screenWidth = function() {
@@ -33,7 +33,6 @@ angular.module('p2pSiteMobApp')
       $scope.modalMsg = false;
     }
     // tab
-    $scope.toggle = {};
     $scope.tabs = [{
       title: '可转让',
     }, {
@@ -48,24 +47,18 @@ angular.module('p2pSiteMobApp')
     /**
      * 切换标签
      */
-    $scope.searchStatus = 1;
-    $scope.toggle.switchTab = function(tabIndex) {
+    $scope.searchStatus = $stateParams.tab == undefined ? '0' : $stateParams.tab;
+    $scope.searchStatus = parseInt($scope.searchStatus);
+    $scope.switchTab = function(tabIndex) {
       $scope.loading = true;
+      $location.search('tab', tabIndex);
+      $scope.searchStatus = tabIndex;
 
-      // 与当前活动标签相同，不刷新数据
-      if ($scope.toggle.activeTab === tabIndex) {
-        return;
-      }
-
-      $scope.toggle.activeTab = tabIndex;
-      if (tabIndex === 0) {
-        $scope.searchStatus = '1';
+      if (tabIndex == 0) {
         $scope.getAssignments(1);
-      } else if(tabIndex === 1){
-        $scope.searchStatus = '2';
+      } else if(tabIndex == 1){
         $scope.getTranferingAssignmentsList(1, '1,2,5');
       }else {
-        $scope.searchStatus = '3';
         $scope.getTranferingAssignmentsList(1, '3,4');
       }
       $scope.page = 1;
@@ -79,7 +72,6 @@ angular.module('p2pSiteMobApp')
         pageSize: $scope.pageSize
       }).then(function(response) {
         if (response && response.ret !== -1) {
-          $scope.searchStatus = '1';
           $scope.transferablesList = response.transferables;
           $scope.transferableCounts = response.count;
     
@@ -95,14 +87,13 @@ angular.module('p2pSiteMobApp')
         }
       });
     };
-
+    $scope.getAssignments(1);
     /**
      * 获取转让中债权列表
      */
     $scope.page2 =1;
     $scope.page3 = 1
     $scope.getTranferingAssignmentsList = function(page, Status) {
-      $scope.searchStatus = Status == '1,2,5' ? '2' : '3';
       Restangular.one('users', '0').one('assignments').get({
         page: page,
         pageSize: $scope.pageSize,
@@ -123,21 +114,20 @@ angular.module('p2pSiteMobApp')
         }
       });
     }
-
-    $scope.toggle.switchTab(0);
+    $scope.getTranferingAssignmentsList(1, '1,2,5');
 
     /**
      * 加载更多
      */
     
     $scope.loadAssignmentMore = function(status) {
-      if (status == '1') {
+      if (status == '0') {
         $scope.pageSize = $scope.transferableCounts-$scope.pageSize >5 ? $scope.transferableCounts-$scope.pageSize + 1 :$scope.transferableCounts;
         $scope.getAssignments(1);
-      }else if (status == '2') {
+      }else if (status == '1') {
         $scope.page2 += 1;
         $scope.getTranferingAssignmentsList($scope.page2, '1,2,5');
-      }else if (status == '3') {
+      }else if (status == '2') {
         $scope.page3 = $scope.page3 + 1;
         $scope.getTranferingAssignmentsList($scope.page3, '3,4');
       }
