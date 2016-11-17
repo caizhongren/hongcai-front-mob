@@ -73,6 +73,18 @@ angular.module('p2pSiteMobApp')
         time.seconds = dateStr.substring(6, 8);
 
         return time;
+      },
+
+      /**
+       * 两个long型时间的时间间隔
+       */
+      intervalDay: function(timeInMills1, timeInMills2){
+        var DAY_TIME_IN_MILLS = 24 * 60 * 60 * 1000;
+
+        var time1 = Math.floor(timeInMills1/DAY_TIME_IN_MILLS) * DAY_TIME_IN_MILLS;
+        var time2 = Math.floor(timeInMills2/DAY_TIME_IN_MILLS) * DAY_TIME_IN_MILLS;
+
+        return Math.abs((time2 - time1)/DAY_TIME_IN_MILLS);
       }
 
 

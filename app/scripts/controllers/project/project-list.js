@@ -31,9 +31,6 @@ angular.module('p2pSiteMobApp')
     $scope.switchTab = function(tabIndex) {
       $scope.tabParam = tabIndex;
       $location.search('tab', tabIndex);
-      if(tabIndex === '1') {
-        $rootScope.headerTitle = "债券转让";
-      }
     };
     
     /**

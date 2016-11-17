@@ -984,3 +984,86 @@
       height: 36rem;
     }
   }
+//债权转让操作页
+.assignments-trans {
+  background-color: #f5f5f5;
+  .transferable {
+    border-bottom: 1px solid #ddd;
+  }
+  .transfer {
+    .return {
+      .return-amount {
+        width: 61%;
+        @media(min-width: 360px) {
+          width: 66.2%;
+        }
+        @media(min-width: 375px) {
+          width: 67.5%;
+        }
+        @media(min-width: 411px) {
+          width: 71%;
+        }
+      }
+    }
+    .transfer-annual {
+      margin-bottom: 1.3rem;
+      p {
+        height: 3.3rem;
+        line-height: 3.3rem;
+        margin-left: 38%;
+        @media(min-width: 360px) {
+          margin-left: 34%;
+        }
+        @media(min-width: 375px) {
+          margin-left: 32%;
+        }
+        @media(min-width: 411px) {
+          margin-left: 29%;
+        }
+      }
+    }
+    .transfer-amount, .transfer-annual {
+      //input::-webkit-input-placeholder,
+      //textarea::-webkit-input-placeholder {
+        //font-size: 1.4rem;
+        //font-weight: "微软雅黑"; 
+        //margin-top: -.2rem;
+      //}
+      .border-change {
+        border: 1px solid #ff0000;
+      }
+      input {
+        padding-left: 12px;
+        width: 61%;
+        height: 4.2rem;
+        line-height: 4.2rem;
+        @media(min-width: 360px) {
+          width: 66.2%;
+        }
+        @media(min-width: 375px) {
+          width: 67.5%;
+        }
+        @media(min-width: 411px) {
+          width: 71%;
+        }
+      }
+    }
+  }
+  .transfer-btn {
+    button {
+      width: 76%;
+      height: 4.5rem;
+      line-height: 4.5rem;
+      font-weight: normal;
+      margin: 0 auto;
+      text-align: center;
+      background-color: #fd8f3f;
+      border-color: #fd8f3f;
+    }
+    button.btn-disabled{
+      background-color: #FEB682;
+      border-color: #FEB682;
+      color:#fff;
+    }
+  }
+}
