@@ -69,9 +69,9 @@ angular.module('p2pSiteMobApp')
     }
     $scope.checkAnuual = function(annual) {
       if(annual < $scope.creditBaseRate ){
-        $scope.transferErrMsg = '最小转让利率为' + $scope.creditBaseRate + '%';
+        $scope.earningErrMsg = '最小转让利率为' + $scope.creditBaseRate + '%';
       }else if(annual > $scope.profitMax ){
-        $scope.transferErrMsg = '最大转让利率为'+ $scope.profitMax.toFixed(2) +'%';
+        $scope.earningErrMsg = '最大转让利率为'+ $scope.profitMax.toFixed(2) +'%';
       }
     }
 
