@@ -107,10 +107,15 @@ angular.module('p2pSiteMobApp')
     * 确认转让
     */
     $scope.assignmentsTransfer = function(transferAmount, transferPercent) {
+      if ($scope.msg || $scope.errMsg||transferAmount ==undefined || transferPercent == undefined || $scope.transferAmount <=0 ) {
+        return;
+      }
       if(transferAmount && transferPercent) {
         checkAmount(transferAmount);
         checkAnuual(transferPercent);
-        return;
+        if(transferAmount < $scope.increaseAmount || transferAmount % $scope.increaseAmount !==0  || transferAmount > $scope.creditRightAmount || transferPercent < $scope.creditBaseRate || transferPercent > $scope.profitMax) {
+          return;
+        }
       }
       $rootScope.showLoadingToast = true;
       Restangular.one('/creditRights/' + $scope.assignmentsNumber).post('assign',{
@@ -128,8 +133,7 @@ angular.module('p2pSiteMobApp')
         }
       });
     }
-    // console.log( $scope.busy );
-
   
+
 
   });
