@@ -59,20 +59,19 @@ angular.module('p2pSiteMobApp')
     /*
     * 确认转让
     */
-    $scope.busy = false;
     $scope.assignmentsTransfer = function(transferAmount, transferPercent) {
-      $scope.busy = true;
       if ($scope.msg || $scope.errMsg || $scope.transferAmount ==undefined || $scope.showErrMsg || $scope.transferAmount <=0) {
         return;
       }
+      $rootScope.showLoadingToast = true;
       Restangular.one('/creditRights/' + $scope.assignmentsNumber).post('assign',{
         creditRightId: $scope.creditRight.id,
         amount: transferAmount,
         annualEarnings: transferPercent
       }).then(function(response){
-          $scope.busy = false;
         if(response && response.ret !== -1){
-          $rootScope.showMsg('转让成功！');
+          // $rootScope.showMsg('转让成功！');
+          $rootScope.showLoadingToast = false;
           $state.go('root.userCenter.assignments');
         } else {
           $rootScope.showMsg(response.msg);
