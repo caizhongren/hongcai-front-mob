@@ -212,13 +212,6 @@ angular.module('p2pSiteMobApp')
         }
     }
 
-    //跳转到充值页面
-    $scope.toRecharge = function(){
-      if($rootScope.timeout){
-        $state.go('root.userCenter.recharge');
-      }
-    }
-
     /**
      * 跳转到投资记录页
      */

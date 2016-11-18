@@ -42,6 +42,12 @@ angular.module('p2pSiteMobApp')
       });
       return;
     }
+    //跳转到充值页面
+    $rootScope.toRecharge = function(){
+      if($rootScope.timeout){
+        $state.go('root.userCenter.recharge');
+      }
+    }
 
     $rootScope.toRealNameAuth = function() {
       $uibModal.open({

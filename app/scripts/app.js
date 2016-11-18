@@ -241,6 +241,20 @@ p2pSiteMobApp
           }
         }
       })
+
+      /**
+       * 债权转让项目详情页
+       */
+      .state('root.assignments-detail', {
+        url: '/assignments/:number',
+        views: {
+          '': {
+            templateUrl: 'views/project/assignments-detail.html',
+            controller: 'AssignmentDetailCtrl',
+            controllerUrl: 'scripts/controller/assignment/assignment-detail-ctrl'
+          }
+        }
+      })
       //债权转让列表页
       .state('root._main-list-temp0', {
         url: '/assignments',
