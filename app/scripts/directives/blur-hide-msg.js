@@ -7,7 +7,7 @@ angular.module('p2pSiteMobApp')
       require: 'ngModel',
       link: function(scope, element, attrs, ctrl) {
         ctrl.$focused = false;
-        element.bind('blur', function() {
+        element.bind('focus', function() {
           // element.removeClass(FOCUS_CLASS);
           // scope.$apply(function() {ctrl.$focused = false;});
           scope.msg ? scope.msg = !scope.msg : scope.msg;
