@@ -55,33 +55,33 @@ angular.module('p2pSiteMobApp')
         $scope.profitDate = DateUtils.intervalDay($scope.currentDate, lastRepaymentTime) * ($scope.currentDate > lastRepaymentTime ? 1 : -1);
       }
     });
+    $scope.checkAmount = function(amount) {
 
-    var checkAmount = function(amount) {
       if(amount == 0 ){
-        $scope.msg = '请输入大于0的数字';
+        $scope.isShow = true;
       }else if(amount < $scope.increaseAmount ){
-        $scope.msg = '转让金额必须大于等于' + $scope.increaseAmount;
+        $scope.transferErrMsg = '转让金额必须大于等于' + $scope.increaseAmount;
       }else if(amount % $scope.increaseAmount !==0 ){
-        $scope.msg = '转让金额必须为'+ $scope.increaseAmount +'的整数倍';
+        $scope.transferErrMsg = '转让金额必须为'+ $scope.increaseAmount +'的整数倍';
       }else if(amount > $scope.creditRightAmount){
-        $scope.msg = '转让金额必须小于债权金额';
+        $scope.transferErrMsg = '转让金额必须小于债权金额';
       }
     }
-    var checkAnuual = function(annual) {
+    $scope.checkAnuual = function(annual) {
       if(annual < $scope.creditBaseRate ){
-        $scope.errMsg = '最小转让利率为' + $scope.creditBaseRate + '%';
+        $scope.transferErrMsg = '最小转让利率为' + $scope.creditBaseRate + '%';
       }else if(annual > $scope.profitMax ){
-        $scope.errMsg = '最大转让利率为'+ $scope.profitMax.toFixed(2) +'%';
+        $scope.transferErrMsg = '最大转让利率为'+ $scope.profitMax.toFixed(2) +'%';
       }
     }
 
     //监测转让金额
     $scope.$watch('transferAmount', function(newVal, oldVal){
-      if(newVal !== oldVal){
-        $scope.msg = undefined;
-      }
+      $scope.earningErrMsg = undefined;
+      $scope.transferErrMsg = undefined;
+
       if(newVal){
-        checkAmount(newVal);
+        $scope.checkAmount(newVal);
       }
       //手续费计算   
       if ($scope.currentDate - $scope.creatTime <= $scope.borderDay*24*60*60*1000) {
@@ -96,23 +96,24 @@ angular.module('p2pSiteMobApp')
 
     //监测转让利率
     $scope.$watch('transferPercent', function(newVal, oldVal){
-      if(newVal !== oldVal){
-        $scope.errMsg = undefined;
-      }
+
+      $scope.earningErrMsg = undefined;
+      $scope.transferErrMsg = undefined;
+
       if(newVal){
-        checkAnuual(newVal);
+        $scope.checkAnuual(newVal);
       }
     });
     /*
     * 确认转让
     */
     $scope.assignmentsTransfer = function(transferAmount, transferPercent) {
-      if ($scope.msg || $scope.errMsg||transferAmount ==undefined || transferPercent == undefined || $scope.transferAmount <=0 ) {
+      if (transferAmount ==undefined || transferPercent == undefined || $scope.transferAmount <=0 ) {
         return;
       }
       if(transferAmount && transferPercent) {
-        checkAmount(transferAmount);
-        checkAnuual(transferPercent);
+        $scope.checkAmount(transferAmount);
+        $scope.checkAnuual(transferPercent);
         if(transferAmount < $scope.increaseAmount || transferAmount % $scope.increaseAmount !==0  || transferAmount > $scope.creditRightAmount || transferPercent < $scope.creditBaseRate || transferPercent > $scope.profitMax) {
           return;
         }
