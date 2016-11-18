@@ -31,6 +31,6 @@
 		<span>常见问题</span><span class="fr ft-2p8 margin-t--1"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
 	</div>
 	<div class="transfer-btn">
-		<div class="text-center"><button class="ft-white ft-1p7 text-center" type="button" ng-class="{'btn-disabled': earningErrMsg || transferErrMsg}"  ng-click="assignmentsTransfer(transferAmount, transferPercent);" ng-disabled="earningErrMsg || transferErrMsg">确认转让</button></div>
+		<div class="text-center"><button class="ft-white ft-1p7 text-center" type="button" ng-class="{'btn-disabled': !transferAmount || !transferPercent|| earningErrMsg || transferErrMsg}"  ng-click="assignmentsTransfer(transferAmount, transferPercent);" ng-disabled="earningErrMsg || transferErrMsg">确认转让</button></div>
 	</div>
 </div>
