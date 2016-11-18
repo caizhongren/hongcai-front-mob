@@ -56,46 +56,32 @@ angular.module('p2pSiteMobApp')
       }
     });
 
-    /*
-    * 确认转让
-    */
-    $scope.assignmentsTransfer = function(transferAmount, transferPercent) {
-      if ($scope.msg || $scope.errMsg || $scope.transferAmount ==undefined || $scope.showErrMsg || $scope.transferAmount <=0) {
-        return;
+    var checkAmount = function(amount) {
+      if(amount == 0 ){
+        $scope.msg = '请输入大于0的数字';
+      }else if(amount < $scope.increaseAmount ){
+        $scope.msg = '转让金额必须大于等于' + $scope.increaseAmount;
+      }else if(amount % $scope.increaseAmount !==0 ){
+        $scope.msg = '转让金额必须为'+ $scope.increaseAmount +'的整数倍';
+      }else if(amount > $scope.creditRightAmount){
+        $scope.msg = '转让金额必须小于债权金额';
       }
-      $rootScope.showLoadingToast = true;
-      Restangular.one('/creditRights/' + $scope.assignmentsNumber).post('assign',{
-        creditRightId: $scope.creditRight.id,
-        amount: transferAmount,
-        annualEarnings: transferPercent
-      }).then(function(response){
-        if(response && response.ret !== -1){
-          // $rootScope.showMsg('转让成功！');
-          $rootScope.showLoadingToast = false;
-          $state.go('root.userCenter.assignments');
-        } else {
-          $rootScope.showMsg(response.msg);
-        }
-      });
     }
-    // console.log( $scope.busy );
+    var checkAnuual = function(annual) {
+      if(annual < $scope.creditBaseRate ){
+        $scope.errMsg = '最小转让利率为' + $scope.creditBaseRate + '%';
+      }else if(annual > $scope.profitMax ){
+        $scope.errMsg = '最大转让利率为'+ $scope.profitMax.toFixed(2) +'%';
+      }
+    }
+
     //监测转让金额
     $scope.$watch('transferAmount', function(newVal, oldVal){
-      $scope.transferAmount = newVal;
       if(newVal !== oldVal){
         $scope.msg = undefined;
       }
-
       if(newVal){
-        if(newVal == 0 ){
-          $scope.msg = '请输入大于0的数字';
-        }else if(newVal < $scope.increaseAmount ){
-          $scope.msg = '转让金额必须大于' + $scope.increaseAmount;
-        }else if(newVal % $scope.increaseAmount !==0 ){
-          $scope.msg = '转让金额必须为'+ $scope.increaseAmount +'的整数倍';
-        }else if(newVal > $scope.creditRightAmount){
-          $scope.msg = '转让金额必须小于债权金额';
-        }
+        checkAmount(newVal);
       }
       //手续费计算   
       if ($scope.currentDate - $scope.creatTime <= $scope.borderDay*24*60*60*1000) {
@@ -110,18 +96,40 @@ angular.module('p2pSiteMobApp')
 
     //监测转让利率
     $scope.$watch('transferPercent', function(newVal, oldVal){
-      $scope.transferPercent = newVal;
       if(newVal !== oldVal){
         $scope.errMsg = undefined;
       }
       if(newVal){
-        if(newVal < $scope.creditBaseRate ){
-          $scope.errMsg = '最小转让利率为' + $scope.creditBaseRate + '%';
-        }else if(newVal > $scope.profitMax ){
-          $scope.errMsg = '最大转让利率为'+ $scope.profitMax.toFixed(2) +'%';
-        }
+        checkAnuual(newVal);
       }
     });
+    /*
+    * 确认转让
+    */
+    $scope.assignmentsTransfer = function(transferAmount, transferPercent) {
+      if(transferAmount && transferPercent) {
+        checkAmount(transferAmount);
+        checkAnuual(transferPercent);
+        return;
+      }
+      $rootScope.showLoadingToast = true;
+      Restangular.one('/creditRights/' + $scope.assignmentsNumber).post('assign',{
+        creditRightId: $scope.creditRight.id,
+        amount: transferAmount,
+        annualEarnings: transferPercent
+      }).then(function(response){
+        if(response && response.ret !== -1){
+          // $rootScope.showMsg('转让成功！');
+          $rootScope.showLoadingToast = false;
+          $state.go('root.userCenter.assignments');
+        } else {
+          $rootScope.showLoadingToast = false;
+          $rootScope.showMsg(response.msg);
+        }
+      });
+    }
+    // console.log( $scope.busy );
+
   
 
   });
