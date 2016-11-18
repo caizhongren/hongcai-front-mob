@@ -139,15 +139,6 @@ angular.module('p2pSiteMobApp')
 
     }
 
-
-    /**
-     * 跳转到充值页面
-     */
-    $scope.toRecharge = function(){
-      $state.go('root.userCenter.recharge');
-    }
-
-
     $scope.toInvest = function(project) {
       // console.log(project);
       if (!project.investAmount) {

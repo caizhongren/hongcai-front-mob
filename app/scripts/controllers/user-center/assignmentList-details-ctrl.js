@@ -8,7 +8,7 @@ angular.module('p2pSiteMobApp')
     Restangular.one('assignments').one(number).get({}).then(function(response) {
       if(response && response.ret !== -1) {
         $scope.assignment = response; 
-        $scope.assignmentNumber = response.projectNumber; 
+        // $scope.assignmentNumber = response.projectNumber; 
       }
     });
     /**
@@ -44,7 +44,7 @@ angular.module('p2pSiteMobApp')
     };
     
     //确认撤销
-    $scope.deleteCreditAssignment = function(assignmentNumber){
+    $scope.deleteCreditAssignment = function(){
       Restangular.one('users/0/assignments/'+number).remove({}).then(function(response){
         if (response.status ===3 || response.status ===6) {
           $state.go('root.userCenter.assignments',{tab: 1});

@@ -36,7 +36,7 @@
     </div>
   </section>
   <section  ng-if="tabParam === 1">
-    <div class="main-list-temp clear" ng-repeat="item in assignments" ng-click="toDetail(item)">
+    <div class="main-list-temp clear" ng-repeat="item in assignments" ui-sref="root.assignments-detail({number: item.number})">
       <div class="title ft-666">
         <span class="title-text" ng-show="widthFlag===0 && item.name.length <= 12"><span class="zhuan">转</span>{{item.name}}</span>
         <span class="title-text" ng-show="widthFlag===0 && item.name.length > 12"><span class="zhuan">转</span>{{item.name | limitTo:14}}...</span>
