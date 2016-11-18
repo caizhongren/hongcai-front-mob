@@ -67,7 +67,11 @@ angular.module('p2pSiteMobApp')
         $scope.transferErrMsg = '转让金额必须小于债权金额';
       }
     }
+    var pattern=/^[0-9]*(\.[0-9]{1,2})?$/;
     $scope.checkAnuual = function(annual) {
+      if(!pattern.test(annual)){
+        $scope.earningErrMsg = '转让利率保留两位小数';
+      }
       if(annual < $scope.creditBaseRate ){
         $scope.earningErrMsg = '最小转让利率为' + $scope.creditBaseRate + '%';
       }else if(annual > $scope.profitMax ){
@@ -95,6 +99,7 @@ angular.module('p2pSiteMobApp')
     });
 
     //监测转让利率
+
     $scope.$watch('transferPercent', function(newVal, oldVal){
 
       $scope.earningErrMsg = undefined;
