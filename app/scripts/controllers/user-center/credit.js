@@ -105,7 +105,7 @@ angular.module('p2pSiteMobApp')
       if(item == 3) {
         return;
       }
-      $state.go('root.userCenter.credit-security-details',{number:item});
+      $state.go('root.userCenter.credit-security-details',{type: 1,number:item});
     }
 
     /**
