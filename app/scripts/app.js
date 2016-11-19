@@ -458,7 +458,7 @@ p2pSiteMobApp
       })
       // 债权详情
       .state('root.userCenter.credit-security-details', {
-        url: '/credit-security-details/:id',
+        url: '/credit-security-details/:number',
         data: {
           title: '债权详情'
         },

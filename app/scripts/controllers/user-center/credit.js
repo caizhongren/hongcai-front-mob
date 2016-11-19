@@ -88,9 +88,6 @@ angular.module('p2pSiteMobApp')
         for (var i = 0; i <= credits.length - 1; i++) {
           if (credits[i].increaseRateCoupon) {
             var oriRate = credits[i].creditRight.riseRate + credits[i].creditRight.baseRate;
-
-            // credits[i].waitRateCouponProfit = credits[i].creditRight.profit * (credits[i].increaseRateCoupon.value + oriRate) / oriRate - credits[i].creditRight.profit;
-            // credits[i].returnRateCouponProfit = credits[i].creditRight.returnProfit * (credits[i].increaseRateCoupon.value + oriRate) / oriRate - credits[i].creditRight.returnProfit;
             credits[i].rateCouponProfit = credits[i].creditRight.profit * (credits[i].increaseRateCoupon.value + oriRate) / oriRate - credits[i].creditRight.profit;
           }
 
@@ -99,21 +96,17 @@ angular.module('p2pSiteMobApp')
         $scope.loading = false;
       })
 
-      // $scope.creditStatus = status;
-      // HongcaiUser.$find($rootScope.hasLoggedUser.id + '/credits', {
-      //   status: $scope.creditStatus,
-      //   page: $scope.page,
-      //   pageSize: $scope.pageSize
-      // }).$then(function(response){
-      //   $scope.totalPage = response.totalPage;
-      //   var credits = response.data;
-      //   for (var i = 0; i <= credits.length - 1; i++) {
-      //     $scope.credits.push(credits[i]);
-      //   };
-      // });
+    
     };
 
     $scope.toggle.switchTab(0);
+    //跳转详情页
+    $scope.goDtail = function(item) {
+      if(item == 3) {
+        return;
+      }
+      $state.go('root.userCenter.credit-security-details',{number:item});
+    }
 
     /**
      * 加载更多
