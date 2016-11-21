@@ -29,7 +29,7 @@
         </div>
       </li>
       <!-- 计息日期 -->
-      <li class="margin-b--0p5"  ng-hide="creditRight.type === 6">
+      <li class="margin-b--0p5">
         <div class="timeline display-inb">
           <p  class="margin-b-0" ng-class="{'grey-bg':project.loanTime > 0,'orange-bg':project.loanTime <= 0}"></p>
           <div class="margin-t--0p5">
@@ -40,7 +40,7 @@
         <div class="step display-inb position-ab margin-l--0p5">
           <span class="hyphen display-inb" ng-class="{'grey-bg':project.loanTime > 0,'orange-bg':project.loanTime <= 0}"></span>
           <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="project.loanTime > 0">计息日期：{{project.loanTime | date:'yyyy-MM-dd'}}</p>
-          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="project.loanTime <= 0">项目募集中</p>
+          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="project.loanTime <= 0" ng-hide="creditRight.type === 6">项目募集中</p>
         </div>
       </li>
       <!-- 每次回款 -->
@@ -50,15 +50,29 @@
           <p  class="margin-b-0" ng-class="{'grey-bg':item.status === 1,'orange-bg':item.status === 0}"></p>
           <div class="margin-t--0p5">
             <img src="/images/user-center/circle-ed.png" width="19%" class="display-inb" ng-if="item.status==1">
-            <img src="/images/user-center/circle-ex.png" width="19%" class="display-inb" ng-if="item.status==0 || item.status==2">
+            <img src="/images/user-center/circle-ex.png" width="19%" class="display-inb" ng-if="item.status==0">
           </div>
         </div>
         <div class="step display-inb position-ab margin-l--0p5">
           <span class="display-inb" ng-class="{'grey-bg':item.status === 1,'orange-bg':item.status === 0}"></span>
           <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="item.creditAssignmentId <= 0">回款：利息{{ item.profit | number: 2 }}元<b class="ft-red0 display-inb ft-normal" ng-show="increaseRateCoupon.value && increaseRateCoupon.type == 1">+{{(creditRight.baseRate + increaseRateCoupon.value) * item.profit/creditRight.baseRate - item.profit | number:2 || 0}}元</b><br><span class="ft-1p2 margin-t--0p5" ng-class="{'ft-blue7':item.status === 1,'orange-ft':item.status === 0}">{{ item.createTime | date:'yyyy-MM-dd'}}</span></p>
-          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="item.creditAssignmentId > 0">债权转让{{ item.createTime | date:'yyyy-MM-dd'}}<br><span class="ft-1p2 margin-t--0p5" ng-class="{'ft-blue7':item.status==1,'orange-ft':item.status==0}">{{ item.createTime | date:'yyyy-MM-dd'}}</span></p>
+          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="item.creditAssignmentId > 0">债权转让：利息{{ item.profit | number: 2 }}元<br><span class="ft-1p2 margin-t--0p5" ng-class="{'ft-blue7':item.status==1,'orange-ft':item.status==0}">{{ item.createTime | date:'yyyy-MM-dd'}}</span></p>
+        </div>
+        <div ng-if="item.creditAssignmentId > 0">
+          <div class="timeline display-inb">
+            <p  class="margin-b-0" ng-class="{'grey-bg':item.status === 1,'orange-bg':item.status === 0}"></p>
+            <div class="margin-t--0p5">
+              <img src="/images/user-center/circle-ed.png" width="19%" class="display-inb" ng-if="item.status==1">
+              <img src="/images/user-center/circle-ex.png" width="19%" class="display-inb" ng-if="item.status==0">
+            </div>
+          </div>
+          <div class="step display-inb position-ab margin-l--0p5">
+            <span class="display-inb" ng-class="{'grey-bg':item.status === 1,'orange-bg':item.status === 0}"></span>
+            <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="item.creditAssignmentId <= 0">债权转让：本金{{ item.principal || 0 | number: 2 }}元<br><span class="ft-1p2 margin-t--0p5" ng-class="{'ft-blue7':item.status==1,'orange-ft':item.status==0}">{{ item.createTime | date:'yyyy-MM-dd'}}</span></p>
+          </div>
         </div>
       </li>
+      <!-- 最后一次本金和利息 -->
       <li class="margin-b--0p5">
         <div class="timeline display-inb">
           <p  class="margin-b-0 {{credits[credits.length-1].status == 1 ?'grey-bg':'orange-bg'}}"></p>
