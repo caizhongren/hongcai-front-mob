@@ -244,7 +244,7 @@
         line-height:4rem;
         padding-top:0;
         padding-bottom:0;
-        margin: 0 0.6rem 0.7rem;
+        margin: 0 0.6rem 1rem;
         position:relative;
         top: -0.3rem;
         @media (max-width:375px) {
@@ -259,10 +259,18 @@
           width:60%;
         }
       }
+      /* 通用 */
+      ::-webkit-input-placeholder { color:#666 !important; font-size: 1.5rem;}
+      ::-moz-placeholder { color:#666 !important;  font-size: 1.5rem; margin-bottom: 1rem;} /* firefox 19+ */
+      input:-moz-placeholder { color:#666 !important;  font-size: 1.5rem;}
+      /* webkit专用 */
+      #invest-input::-webkit-input-placeholder { color:#666 !important;  font-size: 1.5rem;}
+      /* mozilla专用 */
+      #invest-input::-moz-placeholder { color:#666 !important;  font-size: 1.5rem;}
     }
     .payMoney {
       .payMessage {
-        padding: 1rem 1.5rem;
+        padding: 1rem 1.5rem 0.6rem;
         width: 80%;
         margin: 0 auto;
         background: url('/images/project/assignment-rect.png');

@@ -9,8 +9,7 @@
 angular.module('p2pSiteMobApp')
   .controller('AssignmentDetailCtrl', function($state, DateUtils, $stateParams, Restangular, $scope, $rootScope) {
     var number = $stateParams.number; 
-    $scope.lastRepayDay = 0;
-    $scope.currentStock = 0;
+
     /**
      * 债权转让信息详情
      */
@@ -35,10 +34,11 @@ angular.module('p2pSiteMobApp')
               }
             }
             $scope.lastRepayDay = $scope.latestProjectBill.lastRepaymentTime;
-            $scope.assignmentInvestAmount = 100;
+            var minBalanceAccount = $rootScope.account.balance - $rootScope.account.balance % 100;
+            var minInvestAccount = $scope.currentStock * 100;
+            $scope.assignmentInvestAmount = $rootScope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;
             //监测投资金额
             $scope.$watch('assignmentInvestAmount', function(newVal, oldVal){
-              console.log($scope.currentStock);
               if(!$rootScope.isLogged || $scope.currentStock <=0){
                 return;
               }
@@ -47,21 +47,15 @@ angular.module('p2pSiteMobApp')
                 $scope.msg = undefined;
               }
 
-              if($rootScope.account.balance <= 0){
-                $scope.msg = '账户余额不足，请先充值';
-              }
-
               if(newVal){
-                if(newVal == 100 && $rootScope.account.balance >=100 && $scope.currentStock *100 >=100){
-                  $scope.msg = '';
-                }else if(newVal >  $rootScope.account.balance || (newVal <= $rootScope.account.balancenewVal && $rootScope.account.balancenewVal < $scope.realPayAmount)){
+                if(newVal >  $rootScope.account.balance || (newVal <= $rootScope.account.balancenewVal && $rootScope.account.balancenewVal < $scope.realPayAmount)){
                   $scope.msg = '账户余额不足，请先充值';
-                } else if(newVal < 100 ){
-                  $scope.msg = '投资金额必须大于100';
-                } else if(newVal % 100 !==0 ){
+                }else if(newVal % 100 !==0 ){
                   $scope.msg = '投资金额必须为100的整数倍';
                 }else if(newVal > $scope.currentStock *100){
                   $scope.msg = '投资金额必须小于' + $scope.currentStock *100;
+                }else if(newVal < 100 ){
+                  $scope.msg = '投资金额必须大于100';
                 }
               }
               $scope.showMsg();
@@ -74,6 +68,7 @@ angular.module('p2pSiteMobApp')
               $scope.realPayAmount = newVal + $scope.exProfit - reward;
               //待收利息
               $scope.profit = newVal * $scope.remainDay * $scope.annual / 36500;
+
             });
           }
         });
@@ -93,7 +88,7 @@ angular.module('p2pSiteMobApp')
     $scope.clicked = true;
     $scope.toInvest = function(assignmentNum, assignmentAmount) {
       $scope.clicked = false;
-      if($scope.msg || assignmentAmount < 100){
+      if($scope.msg){
         return;
       }
 
@@ -112,7 +107,8 @@ angular.module('p2pSiteMobApp')
             number: order.number
          });
         } else {
-          $rootScope.tofinishedOrder();
+          $scope.msg = order.msg;
+          $scope.showMsg();
         }
       });
     };
