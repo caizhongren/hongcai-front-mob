@@ -332,8 +332,8 @@ p2pSiteMobApp
       })
       
       //我的账户
-      .state('root.userCenter.account', {
-        url: '/account',
+      .state('root.userCenter.account-overview', {
+        url: '/account-overview',
         data: {
           title: '个人中心'
         },
