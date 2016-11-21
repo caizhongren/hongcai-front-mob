@@ -23,7 +23,7 @@
 				<p class="margin-b-0 ft-1p3">当前转让奖金预计 <span class="ft-1p3 ft-orange2 ft-Arial">{{transferAmount && transferPercent ? transferAmount * remainDay * (transferPercent - creditBaseRate) / 36500 : 0  | number: 2}}</span>元 </p>
 			</div>
 			<div class="return bg-white border-grey-bottom border-grey-top padding-l-1p5 padding-r-1p5 padding-t-1p2 padding-b-1p2">
-				<span>预计回款（元）</span><span class="ft-Arial ft-1p7 display-inb text-right return-amount">{{(transferAmount && transferPercent ? transferAmount + profit - counterFee - (transferAmount * remainDay * (transferPercent - creditBaseRate) / 36500) - cashCoupon * (transferAmount / creditRight.amount) : 0) || 0 | number: 2}}</span>
+				<span>预计回款（元）</span><span class="ft-Arial ft-orange2 ft-1p7 display-inb text-right return-amount">{{(transferAmount && transferPercent ? transferAmount + profit - counterFee - (transferAmount * remainDay * (transferPercent - creditBaseRate) / 36500) - cashCoupon * (transferAmount / creditRight.amount) : 0) || 0 | number: 2}}</span>
 			</div>
 		</form>
 	</div>

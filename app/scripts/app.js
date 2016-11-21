@@ -400,7 +400,7 @@ p2pSiteMobApp
       })
       // 我的债权
       .state('root.userCenter.credits', {
-        url: '/credits/:tab',
+        url: '/credit',
         data: {
           title: '我的投资'
         },
@@ -458,7 +458,7 @@ p2pSiteMobApp
       })
       // 债权详情
       .state('root.userCenter.credit-security-details', {
-        url: '/credit-security-details/:id',
+        url: '/credit-security-details/:type/:number',
         data: {
           title: '债权详情'
         },
