@@ -36,7 +36,9 @@ angular.module('p2pSiteMobApp')
       project.availableAmount = project.total - (project.soldStock + project.occupancyStock) * project.increaseAmount;
 
       ProjectUtils.projectTimedown(project, project.createTime);
-
+      var minBalanceAccount = $rootScope.account.balance - $rootScope.account.balance % 100;
+      var minInvestAccount = project.availableAmount;
+      $scope.project.investAmount = $rootScope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;
 
       /**
        * 新手标判断
@@ -79,7 +81,6 @@ angular.module('p2pSiteMobApp')
           }else {
             $scope.selectIncreaseRateCoupon = [];
           }
-          $scope.project.investAmount =  1000 ;
         });
       }
     });
@@ -128,10 +129,6 @@ angular.module('p2pSiteMobApp')
 
       if(newVal !== oldVal){
         $scope.msg = undefined;
-      }
-
-      if($rootScope.account.balance <= 0){
-        $scope.msg = '账户余额不足，请先充值';
       }
 
       if(newVal){
