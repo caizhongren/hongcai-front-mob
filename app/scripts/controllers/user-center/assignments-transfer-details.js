@@ -139,7 +139,12 @@ angular.module('p2pSiteMobApp')
         }
       });
     }
-  
+    
+    //转让协议
+    $scope.isShowAgreement = false;
+    $scope.showAgreement = function() {
+      $scope.isShowAgreement = !$scope.isShowAgreement;
+    }
 
 
   });

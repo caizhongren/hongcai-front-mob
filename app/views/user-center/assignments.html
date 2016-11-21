@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="col-md-4 col-md-offset-4 text-center ft-black6 margin-t-10" ng-if="transferablesList.length<=0">
-      <img src="images/user-center/deal-list.png" width="35%">
+      <img src="images/user-center/deal-list.png" width="35%" ui-sref="root.userCenter.assignments-transfer-details({number:item.number})">
       <p class="margin-t-2">暂无可转让项目</p>
     </div>
     <div class="text-center bg-white" ng-show="transferablesList.length>0 && !loading && pageSize < transferableCounts" ng-click="loadAssignmentMore(searchStatus);">
