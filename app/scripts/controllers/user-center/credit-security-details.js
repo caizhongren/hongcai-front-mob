@@ -29,7 +29,6 @@ angular.module('p2pSiteMobApp')
       $scope.projectBill = response.projectBill;
       // 年化收益率
       $scope.annualEarnings = $scope.creditRight.type == 1 ? $scope.project.annualEarnings : $scope.creditRight.baseRate + $scope.creditRight.riseRate;
-      // $scope.projectDays = $scope.creditRight.type == 1 ? $scope.project.projectDays : new Date($scope.fundsProject.repaymentDate - $scope.fundsProject.loanTime).getDate();
     });
 
 

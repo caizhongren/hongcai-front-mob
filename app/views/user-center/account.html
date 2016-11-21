@@ -51,12 +51,13 @@
      <div class="main-list-temp clear">
         <div class="title ft-666">
           <span class="title-text display-inb">{{recommends.data[0].name || '无'}}</span>
-          <span class="display-inb hot"></span>
+          <span class="display-inb ft-white text-center HOT">HOT</span>
+          <span class="u-pull-right ft-2p5 margin-t-0p3 ft-greyddd"><i class="fa fa-angle-right margin-t-0p4"></i></span>
         </div>
         <div class="pro-info">
          <ul>
            <li class=" ft-ccc"><span class="ft-2p8 margin-r-0p3 ft-Arial" ng-class= "{'ft-orange2':recommends.data[0].status === 7 || recommends.data[0].status === 6 ,'ft-grey7':recommends.data[0].status !== 6 || recommends.data[0].status !== 7 }">{{recommends.data[0].annualEarnings | number:2 || 0}}</span>%</li>
-           <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3 ft-Arial" ng-class= "{'ft-black4':recommends.data[0].status === 7 || recommends.data[0].status === 6 ,'ft-grey7':recommends.data[0].status !== 6 || recommends.data[0].status !== 7 }">{{recommends.data[0].total || 0}}</span>元</li>
+           <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3 ft-Arial" ng-class= "{'ft-black4':recommends.data[0].status === 7 || recommends.data[0].status === 6 ,'ft-grey7':recommends.data[0].status !== 6 || recommends.data[0].status !== 7 }">{{recommends.data[0].currentStock * 100 || 0}}</span>元</li>
            <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3 ft-Arial"  ng-class= "{'ft-black4':recommends.data[0].status === 7 || recommends.data[0].status === 6 ,'ft-grey7':recommends.data[0].status !== 6 || recommends.data[0].status !== 7 }">{{recommends.data[0].projectDays || 0}}</span>天</li>
          </ul>
          <ul class="padding-t-0 margin-b-0 ft-grey7">
