@@ -86,6 +86,7 @@ angular.module('p2pSiteMobApp')
       }
     }
 
+    $rootScope.tofinishedOrder();
     /**
      * 下单并支付
      */
@@ -111,8 +112,7 @@ angular.module('p2pSiteMobApp')
             number: order.number
          });
         } else {
-          $scope.msg = order.msg;
-          $scope.showMsg();
+          $rootScope.tofinishedOrder();
         }
       });
     };
