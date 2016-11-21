@@ -4,7 +4,7 @@
     <ul>
       <li>
         <p>{{assignment.annualEarnings || 0 | number : 2}}<span class="ft-2">%</span></p>
-        <p class="margin-t-0">预期年化利率</p>
+        <p class="">预期年化利率</p>
       </li>
       <li>
         <p>{{assignment.amount || 0 | number: 0}}<span class="ft-1p3">元</span></p>
@@ -30,19 +30,19 @@
       </div>
     </div>
     <a class="column border-none" ng-show="isLogged && securityStatus.realNameAuthStatus !== 1">
-      <span class="txt-left fl">账户余额：<i class="ft-orange2 ft-normal1">{{account.balance || 0 | number:2}}</i> 元</span>
+      <span class="txt-left fl padding-t-0p2">账户余额：<i class="ft-orange2 ft-normal1">{{account.balance || 0 | number:2}}</i> 元</span>
       <div class="txt-right fr" ng-click="toRealNameAuth()">
         <span><b class="ft-normal">开通 </b></span>
       </div>
     </a>
     <a class="column border-none" ng-show="isLogged && securityStatus.realNameAuthStatus === 1">
-      <span class="txt-left fl">账户余额：<i class="ft-orange2 ft-normal1">{{account.balance || 0 | number:2}}</i> 元</span>
+      <span class="txt-left fl padding-t-0p2">账户余额：<i class="ft-orange2 ft-normal1">{{account.balance || 0 | number:2}}</i> 元</span>
       <div class="txt-right fr" ng-click="toRecharge()">
         <span><b class="ft-normal">充值 </b></span>
       </div>
     </a>
     <a class="column border-none" ng-show="!isLogged">
-      <span class="txt-left fl">您的账号未登录，请先登录</span>
+      <span class="txt-left fl padding-t-0p2">您的账号未登录，请先登录</span>
       <div class="txt-right fr" ng-click="toLogin()">
         <span><b class="ft-normal">登录 </b></span>
       </div>
