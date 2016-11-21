@@ -74,6 +74,7 @@ angular.module('p2pSiteMobApp')
               $scope.realPayAmount = newVal + $scope.exProfit - reward;
               //待收利息
               $scope.profit = newVal * $scope.remainDay * $scope.annual / 36500;
+
             });
           }
         });
@@ -112,7 +113,8 @@ angular.module('p2pSiteMobApp')
             number: order.number
          });
         } else {
-          $rootScope.tofinishedOrder();
+          $scope.msg = order.msg;
+          $scope.showMsg();
         }
       });
     };

@@ -41,7 +41,7 @@ angular.module('p2pSiteMobApp')
 
       intervalDays: function(time1, time2) {
 
-        return (Math.abs(Math.floor((time2 - time1) / (24 * 60 * 60 * 1000))) + 1) * (time2 > time1 ? 1 : -1);
+        return (Math.abs(Math.floor((time2 - time1)) / (24 * 60 * 60 * 1000))) * (time1 > time2 ? 1 : -1);
       },
 
 

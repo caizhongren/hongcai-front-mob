@@ -30,13 +30,13 @@
       </div>
     </div>
     <a class="column border-none" ng-show="isLogged && securityStatus.realNameAuthStatus !== 1">
-      <span class="txt-left fl padding-t-0p2">账户余额：<i class="ft-orange2 ft-normal1">{{account.balance || 0 | number:2}}</i> 元</span>
+      <span class="txt-left fl padding-t-0p2">账户余额：<i class="ft-orange2 ft-normal1 ft-Arial">{{account.balance || 0 | number:2}}</i> 元</span>
       <div class="txt-right fr" ng-click="toRealNameAuth()">
         <span><b class="ft-normal">开通 </b></span>
       </div>
     </a>
     <a class="column border-none" ng-show="isLogged && securityStatus.realNameAuthStatus === 1">
-      <span class="txt-left fl padding-t-0p2">账户余额：<i class="ft-orange2 ft-normal1">{{account.balance || 0 | number:2}}</i> 元</span>
+      <span class="txt-left fl padding-t-0p2">账户余额：<i class="ft-orange2 ft-normal1 ft-Arial">{{account.balance || 0 | number:2}}</i> 元</span>
       <div class="txt-right fr" ng-click="toRecharge()">
         <span><b class="ft-normal">充值 </b></span>
       </div>
@@ -69,11 +69,11 @@
     <!-- 实际支付金额 -->
     <div class="payMoney" ng-init="showMessage = false">
       <p class="margin-b-0 ft-orange text-center ft-1p3"><span>您需要实际支付<b class="ft-normal ft-Arial">{{realPayAmount || 0 | number:2}}</b>元&nbsp;&nbsp;</span><i class="fa fa-question-circle ft-orange2 ft-16 margin-l-10" aria-hidden="true" ng-click="showMessage = !showMessage;"></i></p>
-      <p class="payMessage ft-grey999 ft-1p3 " ng-show="showMessage && exProfit > 0">您需先行垫付投资人该笔债权当期已产生利息{{exProfit || 0 | number:2}}元，该部分资金会在下个还款日归还给您。</p>
-      <p class="payMessage ft-grey999 ft-1p3 " ng-show="showMessage && exProfit < 0">该笔债权当期已产生利息{{amount ? -exProfit : 0 | number:2}}元。</p>
+      <p class="payMessage ft-grey999 ft-1p3 ft-Arial" ng-show="showMessage && exProfit > 0">您需先行垫付投资人该笔债权当期已产生利息{{exProfit || 0 | number:2}}元，该部分资金会在下个还款日归还给您。</p>
+      <p class="payMessage ft-grey999 ft-1p3 ft-Arial" ng-show="showMessage && exProfit < 0">该笔债权当期已产生利息{{-exProfit || 0 | number:2}}元。</p>
     </div>
     <!-- 状态按钮 -->
-    <div class="invest-btn margin-t-2 margin-b-2">
+    <div class="invest-btn margin-t-1p3 margin-b-2">
       <button id="invest-btn1" class="button button-primary" type="button" ng-click="toInvest(assignment.number, assignmentInvestAmount);" ng-if="!msg && assignment.status === 1 && securityStatus.realNameAuthStatus === 1 && isLogged" ng-disabled="clicked">立即认购</button>
       <button class="button btn-disabled" ng-show="assignment.status ===1 && securityStatus.realNameAuthStatus === 1 && msg && isLogged">立即认购</button>
       <button class="button btn-disabled" ng-if="assignment.status === 5  && isLogged && securityStatus.realNameAuthStatus === 1">冻结中</button>
