@@ -331,7 +331,8 @@ angular.module('p2pSiteMobApp')
         'project-detail',
         'activity',
         'privacy-policy',
-        'assignments'
+        'assignments',
+        'assignment_qr'
       ];
       $rootScope.showFooter = false;
       if (notShowFooterRoute.indexOf(path) === -1) {
