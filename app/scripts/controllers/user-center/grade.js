@@ -34,28 +34,6 @@ angular.module('p2pSiteMobApp')
       titles: '已使用',
     }];
 
-    //体验金查询
-    $scope.dealList = function(){
-      if ($scope.totalPage < $scope.page){
-        return;
-      }
-      var dealsReq = HongcaiUser.$find('0' + '/userInvestExperienceMoneyDeals', {
-        page: $scope.page,
-        pageSize: $scope.pageSize
-      });
-      dealsReq.$then(function(response){
-        if(response.$status === 'ok'){
-          $scope.totalPage = response.totalPage;
-          for (var i = 0; i < response.data.length; i++) {
-            $scope.datas.push(response.data[i]);
-          };
-       } else{
-            $scope.msg = '获取信息失败';
-        }
-      });
-     //$scope.DealBusy = false;
-    };
-
     //查询加息券
     $scope.couponList = function(subtabIndex){
       var totalPage = 0;
@@ -97,54 +75,13 @@ angular.module('p2pSiteMobApp')
      //$scope.DealBusy = false;
     };
 
-    //查询加息券
-    $scope.inviteList = function(){
 
-      if ($scope.totalPage < $scope.page){
-        return;
-      }
-
-      var couponsReq = HongcaiUser.$find('0' + '/inviteList' , {
-        page: $scope.page,
-        pageSize: $scope.pageSize,
-        status: status
-      });
-      couponsReq.$then(function(response){
-        if(response.$status === 'ok'){
-          $scope.totalPage = response.totalPage;
-          for (var i = 0; i < response.data.length; i++) {
-            $scope.datas.push(response.data[i]);
-          };
-        } else{
-            $scope.msg = '获取信息失败';
-        }
-      });
-     //$scope.DealBusy = false;
-    };
-
-    /**
-     * 邀请统计
-     */
-    $scope.getInviteStat = function(){
-      HongcaiUser.$find('0' + '/inviteStat', {}).$then(function(response){
-        if(response.$status === 'ok' && response.ret !== -1){
-          $scope.inviteStat = response;
-        } else{
-            $scope.msg = '获取信息失败';
-        }
-      });
-    }
 
     $scope.initData = function(tabIndex, subtabIndex){
       $scope.toggle.activeTab = tabIndex;
       $scope.toggle.activesubTab = subtabIndex;
-      if(tabIndex === 0){
-        $scope.dealList();
-      }else if(tabIndex === 1){
+      if(tabIndex === 1){
         $scope.couponList(subtabIndex);
-      }else if(tabIndex === 2){
-        $scope.inviteList();
-        $scope.getInviteStat();
       }
     };
 
@@ -170,13 +107,7 @@ angular.module('p2pSiteMobApp')
       $scope.initData(tabIndex, subtabIndex);
     };
 
-    /**
-     * 跳转到邀请落地页
-     */
-    $scope.goInviteLanding = function(){
-      $location.url('/activity/invite');
-    }
-
+   
     /**
      *跳转到列表页
      */

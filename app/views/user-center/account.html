@@ -1,7 +1,7 @@
 <!-- 我的账户 -->
 <div class="account-userInfo bg-accountcolor padding-b-7 ft-black5" auto-height>
   <div class="bg-orange0">
-    <div class="text-center ft-white padding-t-0p5 padding-l-0p5 padding-r-0p5 ">
+    <div class="text-center ft-white padding-l-0p5 padding-r-0p5 ">
       <div class="margin-t-1p3 text-left margin-l-1 fl setting-icon" ui-sref="root.userCenter.setting"><!--<i class="fa fa-cog" aria-hidden="true"></i>--><img src="/images/user-center/setting.png" class="display-inb margin-t-0p6" width="40%"></div>
         <div class="display-inb text-center">
           <div class="display-inb clearfix">
@@ -15,7 +15,7 @@
     </div>
       <div class="text-center ft-white">
         <p class="text-center margin-b-0 padding-t-1 ft-white ft-1p4">当前资产(元)</p>
-        <p class="text-center ft-2p8 margin-b-1 ft-1p6 Arial">{{ userAccount.tTotalAssets || 0 | number:2}}</strong></p>
+        <p class="text-center ft-2p5 margin-b-1 ft-1p6 Arial">{{ userAccount.tTotalAssets || 0 | number:2}}</strong></p>
         <div class="overflow-hid">
           <ul class="colums">
             <li class="text-center fl width-0p3 position-re ft-1p4">
@@ -38,7 +38,7 @@
   </div>
 
     <!-- 提现和充值 -->
-    <div class="margin-b-1 bg-white  clearfix border-grey-t border-grey-b user-choice" ng-if="securityStatus.trusteeshipAccountStatus ===  1">
+    <div class="margin-b-1 bg-white  clearfix border-grey-t border-grey-bottom user-choice" ng-if="securityStatus.trusteeshipAccountStatus ===  1">
       <div>
         <div class="fl text-center ft-1p8 ft-orange width-half" ng-click="goWithdraw()">
           <span class="user-choice">取现</span><span class="fr vertical-line border-grey-r1"></span>
@@ -76,7 +76,7 @@
           <img class="display-bl margin-auto" src="/images/user-center/investment-record.png" width="18%" alt="">
           <p class="ft-1p5 ft-666 margin-b-0 ">我的投资</p>
         </li>
-        <li class="fl border-grey-r border-grey-l" ui-sref="root._main-list-temp({tab: 1})">
+        <li class="fl border-grey-r border-grey-l" ui-sref="root.userCenter.assignments">
           <img class="display-bl margin-auto" src="/images/user-center/user-assignment.png" width="18%" alt="">
           <p class="ft-1p5 ft-666 margin-b-0 ">债权转让</p>  
         </li>
@@ -101,7 +101,7 @@
         </li>
       </ul>
       <ul class="clearfix border-grey-bottom margin-b-0">
-        <li class="fl" ng-click="viewMore(1)">
+        <li class="fl" ng-click="goIncreaseRateCoupon(1);">
           <img class="display-bl margin-auto" src="/images/user-center/user-rate-ticket.png" width="18%" alt="">
           <p class="ft-1p5 ft-666 margin-b-0 ">我的加息券</p>
           <!-- <sup class="green-sup">{{couponStatis.unUsedCoupon || 0}}</sup> -->
