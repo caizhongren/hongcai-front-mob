@@ -16,6 +16,7 @@ angular.module('p2pSiteMobApp')
     /**
      * 债权转让信息详情
      */
+    $scope.msg = '';
     Restangular.one('assignments').one(number).get({}).then(function(response) {
       if(response && response.ret !== -1) {
         $scope.assignment = response; 
@@ -79,6 +80,7 @@ angular.module('p2pSiteMobApp')
     });
 
     $scope.showMsg = function(){
+      $scope.msg = '';
       if($scope.assignment && $scope.assignment.status == 1){
         $rootScope.showMsg($scope.msg);
       }
@@ -97,11 +99,11 @@ angular.module('p2pSiteMobApp')
 
       $scope.showMsg();
       $rootScope.tofinishedOrder();
-      // $rootScope.showLoadingToast = true;
+      $rootScope.showLoadingToast = true;
       Restangular.one('assignments/' + assignmentNum + '/orders' + '?amount=' + assignmentAmount).post('', {
        
       }).then(function(order){
-        // $rootScope.showLoadingToast = false;
+        $rootScope.showLoadingToast = false;
         $scope.clicked = true;
         // 重复下单后，response.number为undefined
         if (order && order.ret !== -1) {
