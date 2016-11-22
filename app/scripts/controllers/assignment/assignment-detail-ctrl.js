@@ -9,13 +9,11 @@
 angular.module('p2pSiteMobApp')
   .controller('AssignmentDetailCtrl', function($state, DateUtils, $stateParams, Restangular, $scope, $rootScope) {
     var number = $stateParams.number; 
-    
-    // deviceIsAndroid ? $('input::-webkit-input-placeholder').css('top','0.6rem'):$('input::-webkit-input-placeholder').css('top','10px');
-    // deviceIsAndroid ? angular.element('input::-moz-placeholder').css('top','0.6rem') :  angular.element('.invest-input::-webkit-input-placeholder').css('top','10px');
-    // deviceIsAndroid ? angular.element('input:-moz-placeholder').css('top','0.6rem') :  angular.element('.invest-input::-webkit-input-placeholder').css('top','10px');
+
     /**
      * 债权转让信息详情
      */
+    $scope.msg = '';
     Restangular.one('assignments').one(number).get({}).then(function(response) {
       if(response && response.ret !== -1) {
         $scope.assignment = response; 
@@ -97,11 +95,11 @@ angular.module('p2pSiteMobApp')
 
       $scope.showMsg();
       $rootScope.tofinishedOrder();
-      // $rootScope.showLoadingToast = true;
+      $rootScope.showLoadingToast = true;
       Restangular.one('assignments/' + assignmentNum + '/orders' + '?amount=' + assignmentAmount).post('', {
        
       }).then(function(order){
-        // $rootScope.showLoadingToast = false;
+        $rootScope.showLoadingToast = false;
         $scope.clicked = true;
         // 重复下单后，response.number为undefined
         if (order && order.ret !== -1) {
