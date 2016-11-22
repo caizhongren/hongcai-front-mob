@@ -18,9 +18,10 @@ angular.module('p2pSiteMobApp')
 
     $scope.userAccount = Restangular.one('users').one('0/account').get().$object;
 
-    $scope.voucher = Restangular.one('users').one('0/userInviteNum').get().$object;
+    // $scope.voucher = Restangular.one('users').one('0/userInviteNum').get().$object;
 
     $scope.couponStatis = Restangular.one('users').one('0/increaseRateCoupon').get().$object;
+    $scope.cashCouponStatis = Restangular.one('users').one('0/cashCoupon').get().$object;
 
     $scope.unGotCash = Restangular.one('cashCoupons').one('stat').get().$object;
 
