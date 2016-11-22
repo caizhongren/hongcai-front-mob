@@ -52,7 +52,7 @@ angular.module('p2pSiteMobApp')
             }
             if(!response.isOk){
               $scope.msg = '仅限首次投资后一周内参与';
-              $scope.showMsg();
+              $rootScope.showMsg($scope.msg);
             }
         });
 
@@ -101,7 +101,7 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
-      $scope.showMsg();
+      $rootScope.showMsg($scope.msg);
       $rootScope.tofinishedOrder();
       var couponNumber = $scope.selectIncreaseRateCoupon != null ? $scope.selectIncreaseRateCoupon.number : '';
       $rootScope.showLoadingToast = true;
@@ -120,7 +120,7 @@ angular.module('p2pSiteMobApp')
          });
         } else {
           $scope.msg = order.msg;
-          $scope.showMsg();
+          $rootScope.showMsg($scope.msg);
         }
       });
     };
@@ -157,24 +157,19 @@ angular.module('p2pSiteMobApp')
         }
       }
 
-      $scope.showMsg();
+      $rootScope.showMsg($scope.msg);
     });
 
     // 判断现金券投资金额显示错误提示
     $scope.showCashMsg = function(investAmount){
       if(investAmount < $scope.selectIncreaseRateCoupon.minInvestAmount){
         $scope.msg = '投资金额不满足返现条件';
-        $scope.showMsg();
+        $rootScope.showMsg($scope.msg);
       }
       return;
     }
 
-    //显示信息
-    $scope.showMsg = function(){
-      if($scope.project && $scope.project.status == 7){
-        $rootScope.showMsg($scope.msg);
-      }
-    }
+    
     // 记录券的来源
     $scope.cashNum = ipCookie('cashNum') || '';
     $scope.cashType = ipCookie('cashType') || '';
