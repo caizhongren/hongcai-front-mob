@@ -91,7 +91,7 @@ angular.module('p2pSiteMobApp')
     $scope.clicked = true;
     $scope.toInvest = function(assignmentNum, assignmentAmount) {
       $scope.clicked = false;
-      if($scope.msg || !assignmentNum || !assignmentNum){
+      if($scope.msg || !assignmentNum || !assignmentAmount){
         return;
       }
 
