@@ -73,7 +73,7 @@
     <div class="user-center-list bg-white ft-1p6">
       <ul class="clearfix border-grey-top margin-b-0">
         <li class="fl" ui-sref="root.userCenter.credits">
-          <img class="display-bl margin-auto" src="/images/user-center/investment-record.png" width="18%" alt="">
+          <img class="display-bl margin-auto padding-t-0p2" src="/images/user-center/investment-record.png" width="18%" alt="">
           <p class="ft-1p5 ft-666 margin-b-0 ">我的投资</p>
         </li>
         <li class="fl border-grey-r border-grey-l" ui-sref="root.userCenter.assignments">
@@ -87,24 +87,27 @@
       </ul>
       <ul class="clearfix border-grey-t margin-b-0 border-grey-b">
         <li class="fl" ui-sref="root.userCenter.invite-rebate">
-          <img class="display-bl margin-auto" src="/images/user-center/user-invite.png" width="18%" alt="">
-          <p class="ft-1p5 ft-666 margin-b-0 ">我的邀请</p>
+          <img class="display-bl margin-auto padding-t-0p3" src="/images/user-center/user-invite.png" width="18%" alt="">
+          <p class="ft-1p5 ft-666 margin-b-0">我的邀请<sup class="green-sup">12</sup></p>
+          
           <!-- <sup class="green-sup">{{voucher.inviteNum || 0}}</sup> -->
         </li>
         <li class="fl border-grey-r border-grey-l" ui-sref="root.userCenter.cash-coupon">
           <img class="display-bl margin-auto" src="/images/user-center/user-prize.png" width="18%" alt="">
-          <p class="ft-1p5 ft-666 margin-b-0 ">我的奖金</p>
+          <p class="ft-1p5 ft-666 margin-b-0 ">我的奖金<sup class="green-sup orange-sup">{{couponStatis.unUsedCoupon || 0}}</sup></p>
+          
         </li>
         <li class="fl" ui-sref="root.userCenter.experience-money">
-          <img class="display-bl margin-auto" src="/images/user-center/user-experience.png" width="18%" alt="">
-          <p class="ft-1p5 ft-666 margin-b-0 ">我的体验金</p>
+          <img class="display-bl margin-auto padding-t-0p5" src="/images/user-center/user-experience.png" width="18%" alt="">
+          <p class="ft-1p5 ft-666 margin-b-0 ">我的体验金<sup class="green-sup red-sup">{{couponStatis.unUsedCoupon || 0}}</sup></p>
+          
         </li>
       </ul>
       <ul class="clearfix border-grey-bottom margin-b-0">
         <li class="fl" ng-click="goIncreaseRateCoupon(1);">
-          <img class="display-bl margin-auto" src="/images/user-center/user-rate-ticket.png" width="18%" alt="">
-          <p class="ft-1p5 ft-666 margin-b-0 ">我的加息券</p>
-          <!-- <sup class="green-sup">{{couponStatis.unUsedCoupon || 0}}</sup> -->
+          <img class="display-bl margin-auto padding-t-0p7" src="/images/user-center/user-rate-ticket.png" width="18%" alt="">
+          <p class="ft-1p5 ft-666 margin-b-0 ">我的加息券<sup class="green-sup">{{couponStatis.unUsedCoupon || 0}}</sup></p>
+          
         </li>
         <li class="fl border-grey-r border-grey-l" ng-click="viewMore(1)">
           <img class="display-bl margin-auto" src="/images/user-center/help-center.png" width="18%" alt="">
