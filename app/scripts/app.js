@@ -249,11 +249,25 @@ p2pSiteMobApp
         url: '/assignments/:number',
         views: {
           '': {
-            templateUrl: 'views/project/assignments-detail.html',
+            templateUrl: 'views/assignment/assignments-detail.html',
             controller: 'AssignmentDetailCtrl',
             controllerUrl: 'scripts/controller/assignment/assignment-detail-ctrl'
           }
         }
+      })
+      // 债权转让记录页
+      .state('root.assignmentOrders', {
+        url: '/assignments/:number/orders',
+        views: {
+          '': {
+            templateUrl: 'views/assignment/assignment-orders.html',
+            controller: 'assignmentOrdersCtrl',
+            controllerUrl: 'scripts/controllers/assignment/assignment-orders'
+          }
+        },
+        data: {
+          title: '项目投资人'
+        },
       })
       //债权转让列表页
       .state('root._main-list-temp0', {
