@@ -9,7 +9,10 @@
 angular.module('p2pSiteMobApp')
   .controller('AssignmentDetailCtrl', function($state, DateUtils, $stateParams, Restangular, $scope, $rootScope) {
     var number = $stateParams.number; 
-
+    
+    // deviceIsAndroid ? $('input::-webkit-input-placeholder').css('top','0.6rem'):$('input::-webkit-input-placeholder').css('top','10px');
+    // deviceIsAndroid ? angular.element('input::-moz-placeholder').css('top','0.6rem') :  angular.element('.invest-input::-webkit-input-placeholder').css('top','10px');
+    // deviceIsAndroid ? angular.element('input:-moz-placeholder').css('top','0.6rem') :  angular.element('.invest-input::-webkit-input-placeholder').css('top','10px');
     /**
      * 债权转让信息详情
      */
@@ -88,7 +91,7 @@ angular.module('p2pSiteMobApp')
     $scope.clicked = true;
     $scope.toInvest = function(assignmentNum, assignmentAmount) {
       $scope.clicked = false;
-      if($scope.msg){
+      if($scope.msg || !assignmentNum || !assignmentNum){
         return;
       }
 
@@ -134,4 +137,10 @@ angular.module('p2pSiteMobApp')
        });
       }
     }
+    var deviceIsWindowsPhone = navigator.userAgent.indexOf("Windows Phone") >= 0;
+    $scope.deviceIsAndroid = navigator.userAgent.indexOf('Android') > 0;
+    $scope.deviceIsIOS = /iP(ad|hone|od)/.test(navigator.userAgent) ;
+    console.log($scope.deviceIsAndroid);
+    console.log($scope.deviceIsIOS);
+    console.log(deviceIsWindowsPhone);
   });

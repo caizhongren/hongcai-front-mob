@@ -238,15 +238,14 @@
         border:0.1rem solid #e8e8e8;
         text-align:left;
         color:#333 !important;
-        font-size:2.8rem;
+        font-size:2.4rem;
         width:64%;
         height:4rem;
         // line-height:4rem;
-        // padding-top:0;
-        // padding-bottom:0;
+        padding: 6px 10px !important;
         margin: 0 0.6rem 1rem;
         position:relative;
-        // top: -0.3rem;
+        top: -0.3rem;
         @media (max-width:375px) {
           width:62%;
           top: -0.5rem;
@@ -257,16 +256,14 @@
         }
         @media (max-width:360px) {
           width:60%;
+          top: -0.3rem;
         }
       }
       /* 通用 */
-      ::-webkit-input-placeholder { color:#666 !important; font-size: 1.4rem; position: relative;top: 1rem !important;}
-      ::-moz-placeholder { color:#666 !important;  font-size: 1.4rem; position: relative;top: 1rem !important;} /* firefox 19+ */
-      input:-moz-placeholder { color:#666 !important;  font-size: 1.4rem; position: relative;top: 1rem !important;}
-      /* webkit专用 */
-      #invest-input::-webkit-input-placeholder { color:#666 !important;  font-size: 1.4rem; position: relative;top: 1rem !important;}
-      /* mozilla专用 */
-      #invest-input::-moz-placeholder { color:#666 !important;  font-size: 1.4rem; position: relative;top: 1rem !important;}
+      .invest-input::-webkit-input-placeholder { color:#666 !important; font-size: 1.4rem; position: relative;top: 10px;}
+      // ::-moz-placeholder { color:#666 !important;  font-size: 1.4rem; position: relative;} /* firefox 19+ */
+      // .sinvest-input:-moz-placeholder { color:#666 !important;  font-size: 1.4rem; position: relative;top: 10px}
+
     }
     .payMoney {
       .payMessage {
