@@ -100,13 +100,13 @@ angular.module('p2pSiteMobApp')
       $scope.showMsg();
       $rootScope.tofinishedOrder();
       var couponNumber = $scope.selectIncreaseRateCoupon != null ? $scope.selectIncreaseRateCoupon.number : '';
-      $rootScope.showLoadingToast = true;
+      // $rootScope.showLoadingToast = true;
       Restangular.one('projects').one(number+'/users/' + '0').post('investment', {
         investAmount: project.investAmount,
         couponNumber: couponNumber,
         device: Utils.deviceCode()
       }).then(function(order){
-        $rootScope.showLoadingToast = false;
+        // $rootScope.showLoadingToast = false;
         $scope.clicked = true;
         // 重复下单后，response.number为undefined
         if (order && order.ret !== -1) {
