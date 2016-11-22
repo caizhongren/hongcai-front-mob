@@ -949,7 +949,7 @@ p2pSiteMobApp
       })
       //我的奖励
       .state('root.userCenter.grade', {
-        url: '/grade?tab&subTab',
+        url: '/rate-coupon?tab&subTab',
         views: {
           '': {
             templateUrl: 'views/user-center/grade.html',
