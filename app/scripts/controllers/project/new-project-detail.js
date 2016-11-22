@@ -68,7 +68,7 @@ angular.module('p2pSiteMobApp')
           projectId : $scope.project.id,
           amount : project.availableAmount
         }).then(function(response) {
-          if (response && response.ret && response.ret !== -1) {
+          if (response  && response.ret !== -1) {
             $scope.increaseRateCoupons = response;
             for (var i = 0; i < $scope.increaseRateCoupons.length; i++) {
               if ($scope.rateType === '' && $scope.cashType === '') {

@@ -94,7 +94,7 @@
         </li>
         <li class="fl border-grey-r border-grey-l" ui-sref="root.userCenter.cash-coupon">
           <img class="display-bl margin-auto" src="/images/user-center/user-prize.png" width="18%" alt="">
-          <p class="ft-1p5 ft-666 margin-b-0 ">我的奖金<sup class="green-sup">{{cashCouponStatis.unUsedCoupon || 0}}</sup></p>
+          <p class="ft-1p5 ft-666 margin-b-0 ">我的奖金<sup class="green-sup" ng-hide="cashCouponStatis.unUsedCoupon <= 0">{{cashCouponStatis.unUsedCoupon || 0}}</sup></p>
           
         </li>
         <li class="fl" ui-sref="root.userCenter.experience-money">
