@@ -80,7 +80,6 @@ angular.module('p2pSiteMobApp')
     });
 
     $scope.showMsg = function(){
-      $scope.msg = '';
       if($scope.assignment && $scope.assignment.status == 1){
         $rootScope.showMsg($scope.msg);
       }
