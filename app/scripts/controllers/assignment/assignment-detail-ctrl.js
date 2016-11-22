@@ -97,11 +97,11 @@ angular.module('p2pSiteMobApp')
 
       $scope.showMsg();
       $rootScope.tofinishedOrder();
-      $rootScope.showLoadingToast = true;
+      // $rootScope.showLoadingToast = true;
       Restangular.one('assignments/' + assignmentNum + '/orders' + '?amount=' + assignmentAmount).post('', {
        
       }).then(function(order){
-        $rootScope.showLoadingToast = false;
+        // $rootScope.showLoadingToast = false;
         $scope.clicked = true;
         // 重复下单后，response.number为undefined
         if (order && order.ret !== -1) {
