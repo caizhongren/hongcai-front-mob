@@ -17,7 +17,7 @@ angular.module('p2pSiteMobApp')
     $scope.profit = 0;
     $scope.increaseRateProfit = 0;
     $scope.projectStatusMap = projectStatusMap;
-    $scope.unSelectCouponMsg = '暂无可用奖励';
+    $scope.unSelectCouponMsg = '';
     $scope.initLimit = 3;
     $scope.resetInitLimit = function(){
         $scope.initLimit = 3;
@@ -70,6 +70,10 @@ angular.module('p2pSiteMobApp')
         }).then(function(response) {
           if (response  && response.ret !== -1) {
             $scope.increaseRateCoupons = response;
+            if(response.length === 0) {
+              $scope.selectIncreaseRateCoupon = null;
+              $scope.unSelectCouponMsg = '暂无可用奖励';
+            }
             for (var i = 0; i < $scope.increaseRateCoupons.length; i++) {
               if ($scope.rateType === '' && $scope.cashType === '') {
                 $scope.selectIncreaseRateCoupon = $scope.increaseRateCoupons[0];
@@ -180,6 +184,7 @@ angular.module('p2pSiteMobApp')
     //选择券
     $scope.showSelectIncreaseRateCoupon = false;
     $scope.selectCoupon = function(coupon){
+        $scope.unSelectCouponMsg = '';
         $scope.selectIncreaseRateCoupon = coupon;
         $scope.showSelectIncreaseRateCoupon = false;
         $scope.increaseRateProfit = $scope.calcProfit(coupon.value);
