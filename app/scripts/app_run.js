@@ -123,6 +123,9 @@ angular.module('p2pSiteMobApp')
           $rootScope.showErrorMsg = false;
         }, 2000);
       }
+      if(msg == undefined) {
+        $rootScope.showErrorMsg = false;
+      }
     }
 
     $rootScope.$on('$stateChangeStart', function(event, toState) {
