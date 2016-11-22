@@ -232,6 +232,10 @@ angular.module('p2pSiteMobApp')
      * 修改投资金额
      */
     $scope.modInvestAmout = function(offset,$event){
+      if($scope.project && $scope.project.status != 7){
+        return;
+      }
+
       $event.stopPropagation();
       $scope.project.investAmount = $scope.project.investAmount ? $scope.project.investAmount + offset : offset;
       $scope.project.investAmount = $scope.project.investAmount < 100 ? 100 : $scope.project.investAmount;

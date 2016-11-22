@@ -59,7 +59,7 @@ angular.module('p2pSiteMobApp')
                   $scope.msg = '投资金额必须大于100';
                 }
               }
-              $scope.showMsg();
+              $rootScope.showMsg($scope.msg);
               //上次还款到认购当日的天数
               var lastPayDays = DateUtils.intervalDays(new Date().getTime(), $scope.lastRepayDay); 
               var reward = ($scope.annual - $scope.originalAnnual) * newVal * $scope.remainDay / 36500;
@@ -76,12 +76,6 @@ angular.module('p2pSiteMobApp')
       }
     });
 
-    $scope.showMsg = function(){
-      if($scope.assignment && $scope.assignment.status == 1){
-        $rootScope.showMsg($scope.msg);
-      }
-    }
-
     $rootScope.tofinishedOrder();
     /**
      * 下单并支付
@@ -93,7 +87,7 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
-      $scope.showMsg();
+      $rootScope.showMsg($scope.msg);
       $rootScope.tofinishedOrder();
       $rootScope.showLoadingToast = true;
       Restangular.one('assignments/' + assignmentNum + '/orders' + '?amount=' + assignmentAmount).post('', {
@@ -109,7 +103,7 @@ angular.module('p2pSiteMobApp')
          });
         } else {
           $scope.msg = order.msg;
-          $scope.showMsg();
+          $rootScope.showMsg($scope.msg);
         }
       });
     };
@@ -118,6 +112,9 @@ angular.module('p2pSiteMobApp')
      * 修改投资金额
      */
     $scope.modInvestAmout = function(offset,$event){
+      if($scope.assignment && $scope.assignment.status != 1){
+        return;
+      }
       $event.stopPropagation();
       $scope.assignmentInvestAmount = $scope.assignmentInvestAmount ? $scope.assignmentInvestAmount + offset : offset;
       $scope.assignmentInvestAmount = $scope.assignmentInvestAmount < 100 ? 100 : $scope.assignmentInvestAmount;
