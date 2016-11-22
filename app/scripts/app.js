@@ -266,8 +266,21 @@ p2pSiteMobApp
           }
         },
         data: {
-          title: '项目投资人'
-        },
+          title: '债权转让记录'
+        }
+      })
+      //常见问题
+      .state('root.assignment_qr', {
+        url: '/assignment_qr',
+        views: {
+          '': {
+            templateUrl: 'views/help-center/assignment_qr.html',
+            controller: 'HelpCenterCtrl',
+            controllerUrl: 'scripts/controller/help-center/help-center-ctrl'
+          }
+        },data: {
+          title: '常见问题'
+        }
       })
       //债权转让列表页
       .state('root._main-list-temp0', {
