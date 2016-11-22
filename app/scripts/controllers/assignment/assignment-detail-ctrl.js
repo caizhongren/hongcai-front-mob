@@ -9,10 +9,7 @@
 angular.module('p2pSiteMobApp')
   .controller('AssignmentDetailCtrl', function($state, DateUtils, $stateParams, Restangular, $scope, $rootScope) {
     var number = $stateParams.number; 
-    
-    // deviceIsAndroid ? $('input::-webkit-input-placeholder').css('top','0.6rem'):$('input::-webkit-input-placeholder').css('top','10px');
-    // deviceIsAndroid ? angular.element('input::-moz-placeholder').css('top','0.6rem') :  angular.element('.invest-input::-webkit-input-placeholder').css('top','10px');
-    // deviceIsAndroid ? angular.element('input:-moz-placeholder').css('top','0.6rem') :  angular.element('.invest-input::-webkit-input-placeholder').css('top','10px');
+
     /**
      * 债权转让信息详情
      */
