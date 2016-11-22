@@ -122,4 +122,16 @@ angular.module('p2pSiteMobApp')
       $scope.assignmentInvestAmount = $scope.assignmentInvestAmount < 100 ? 100 : $scope.assignmentInvestAmount;
     }    
 
+    /**
+     * 跳转到投资记录页
+     */
+    $scope.toOrderList = function(){
+      if(!$rootScope.isLogged){
+        return;
+      }else{
+        $state.go('root.assignmentOrders', {
+          number: $stateParams.number
+       });
+      }
+    }
   });
