@@ -24,7 +24,7 @@ angular.module('p2pSiteMobApp')
     /**
      * 加载更多
      */
-    $scope.initLimit = 6;
+    $scope.initLimit = 8;
     $scope.loadMore = function() {
       $scope.initLimit = $scope.initLimit + 3 < $scope.assignmentOrders.length ? $scope.initLimit + 3 : $scope.assignmentOrders.length;
     };

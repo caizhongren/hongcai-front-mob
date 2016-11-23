@@ -7,7 +7,7 @@
  */
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('AssignmentDetailCtrl', function($state, DateUtils, $stateParams, Restangular, $scope, $rootScope) {
+  .controller('AssignmentDetailCtrl', function($state, DateUtils, $stateParams, Restangular, $scope, $rootScope, Utils) {
     var number = $stateParams.number; 
 
     /**
@@ -91,7 +91,8 @@ angular.module('p2pSiteMobApp')
       $rootScope.tofinishedOrder();
       $rootScope.showLoadingToast = true;
       Restangular.one('assignments/' + assignmentNum + '/orders' + '?amount=' + assignmentAmount).post('', {
-       
+        amount: assignmentAmount,
+        device: Utils.deviceCode()
       }).then(function(order){
         $rootScope.showLoadingToast = false;
         $scope.clicked = true;
