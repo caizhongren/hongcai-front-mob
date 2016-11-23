@@ -10,7 +10,7 @@
     </div>
     <tbody>
       <!-- 有投资 -->
-      <tr ng-repeat="order in assignmentOrders track by order.id| limitTo : initLimit" ng-show="assignmentOrders.length >0 " class="bg-greyf8">
+      <tr ng-repeat="order in assignmentOrders track by order.id| limitTo : initLimit" ng-show="assignmentOrders.length >0 ">
         <td class="ft-Arial">{{order.createTime | date: "yyyy-MM-dd"}}</td>
         <td class="ft-Arial">{{order.userName}}</td>
         <td class="ft-Arial">{{order.orderAmount| number : 0 || 0}}</td>
