@@ -95,7 +95,7 @@ angular.module('p2pSiteMobApp')
         $scope.counterFee = $scope.transferAmount * $scope.greaterThanBorderDayFee /100 * $scope.discountFeeRate > $scope.minFee ? $scope.transferAmount * $scope.greaterThanBorderDayFee /100 * $scope.discountFeeRate : $scope.minFee;
       }
       //待收未收利息
-      $scope.profit = $scope.creditBaseRate * newVal * $scope.profitDate /36500;
+      $scope.profit = $scope.annualEarnings * newVal * $scope.profitDate /36500;
 
     });
 
