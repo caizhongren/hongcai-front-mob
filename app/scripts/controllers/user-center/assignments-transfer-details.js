@@ -120,7 +120,7 @@ angular.module('p2pSiteMobApp')
       if(transferAmount && transferPercent) {
         $scope.checkAmount(transferAmount);
         $scope.checkAnuual(transferPercent);
-        if(transferAmount < $scope.increaseAmount || transferAmount % $scope.increaseAmount !==0  || transferAmount > $scope.creditRightAmount || transferPercent < annualEarnings || transferPercent > $scope.profitMax) {
+        if(transferAmount < $scope.increaseAmount || transferAmount % $scope.increaseAmount !==0  || transferAmount > $scope.creditRightAmount || transferPercent < $scope.annualEarnings || transferPercent > $scope.profitMax) {
           return;
         }
       }
