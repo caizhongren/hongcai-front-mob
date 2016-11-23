@@ -13,7 +13,7 @@
   </div>
   <div class="u-full-width padding-t-1p2 padding-b-1p2 padding-r-1 padding-l-0p5 overflow-hid bg-white">
     <div class="credit-item-info u-pull-left text-center ft-1p4 border-greye-right">
-      <span class="ft-grey999 ft-Arial ft-1p6">{{item.creditRight.amount |currency:"":2 || 0}}</span>
+      <span class="ft-grey999 ft-Arial ft-1p6">{{item.creditRight.amount - item.creditRight.transferedAmount |currency:"":2 || 0}}</span>
       <br>
       <span class="ft-greyaaa padding-l-0p5">本（元）</span>
     </div>
