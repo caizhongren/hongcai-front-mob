@@ -61,7 +61,7 @@ angular.module('p2pSiteMobApp')
               }
               $rootScope.showMsg($scope.msg);
               //上次还款到认购当日的天数
-              var lastPayDays = DateUtils.intervalDays(new Date().getTime(), $scope.lastRepayDay); 
+              var lastPayDays = DateUtils.intervalDays(new Date().getTime(), $scope.lastRepayDay) * (new Date().getTime() > $scope.lastRepayDay ? 1 : -1); 
               var reward = ($scope.annual - $scope.originalAnnual) * newVal * $scope.remainDay / 36500;
               //  代收未收利息
               $scope.exProfit = newVal * $scope.originalAnnual * lastPayDays / 36500;

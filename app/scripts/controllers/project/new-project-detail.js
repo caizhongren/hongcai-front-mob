@@ -162,7 +162,7 @@ angular.module('p2pSiteMobApp')
 
     // 判断现金券投资金额显示错误提示
     $scope.showCashMsg = function(investAmount){
-      if(investAmount < $scope.selectIncreaseRateCoupon.minInvestAmount){
+      if(investAmount && investAmount < $scope.selectIncreaseRateCoupon.minInvestAmount){
         $scope.msg = '投资金额不满足返现条件';
         $rootScope.showMsg($scope.msg);
       }
