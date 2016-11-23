@@ -33,11 +33,12 @@ angular.module('p2pSiteMobApp')
         //原有债权金额
         $scope.creditRightAmount = response.creditRight.transferableAmount;
         $scope.assignmentsNumber = response.creditRight.number;
+        $scope.annualEarnings = response.project.annualEarnings;
         //步进值
         $scope.increaseAmount = response.project.increaseAmount;
         //原标利率
         $scope.creditBaseRate = response.creditRight.baseRate;
-        $scope.transferPercent = $scope.creditBaseRate;
+        $scope.transferPercent = $scope.annualEarnings;
         //creatTime(ms)
         $scope.creatTime = response.creditRight.createTime;
         //当前时间
@@ -49,7 +50,7 @@ angular.module('p2pSiteMobApp')
         $scope.remainDay = DateUtils.intervalDay(response.project.repaymentDate, $scope.currentDate);
 
         //利率最大值
-        $scope.profitMax = 36500 * (1 - $scope.maxReceivedPaymentsRate) / $scope.remainDay + $scope.creditBaseRate;
+        $scope.profitMax = 36500 * (1 - $scope.maxReceivedPaymentsRate) / $scope.remainDay + $scope.annualEarnings;
 
         //应收利息天数
         $scope.profitDate = DateUtils.intervalDay($scope.currentDate, lastRepaymentTime) * ($scope.currentDate > lastRepaymentTime ? 1 : -1);
@@ -72,8 +73,8 @@ angular.module('p2pSiteMobApp')
       if(!pattern.test(annual)){
         $scope.earningErrMsg = '转让利率保留两位小数';
       }
-      if(annual < $scope.creditBaseRate ){
-        $scope.earningErrMsg = '最小转让利率为' + $scope.creditBaseRate + '%';
+      if(annual < $scope.annualEarnings ){
+        $scope.earningErrMsg = '最小转让利率为' + $scope.annualEarnings + '%';
       }else if(annual > $scope.profitMax ){
         $scope.earningErrMsg = '最大转让利率为'+ $scope.profitMax.toFixed(2) +'%';
       }
@@ -119,7 +120,7 @@ angular.module('p2pSiteMobApp')
       if(transferAmount && transferPercent) {
         $scope.checkAmount(transferAmount);
         $scope.checkAnuual(transferPercent);
-        if(transferAmount < $scope.increaseAmount || transferAmount % $scope.increaseAmount !==0  || transferAmount > $scope.creditRightAmount || transferPercent < $scope.creditBaseRate || transferPercent > $scope.profitMax) {
+        if(transferAmount < $scope.increaseAmount || transferAmount % $scope.increaseAmount !==0  || transferAmount > $scope.creditRightAmount || transferPercent < annualEarnings || transferPercent > $scope.profitMax) {
           return;
         }
       }
