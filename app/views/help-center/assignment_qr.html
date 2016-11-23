@@ -1,5 +1,5 @@
 <!-- 常见问题 -->
-<div class="assignmentList-details">
+<div class="assignmentList-details {{changeAssignment_qrQ16 ? 'margin-b-4p5' : ''}}">
   <!-- 样式公用转让详情页面的-->
   <div class="content {{changeAssignment_qrQ1 ? 'bg-greyf8' : ''}}">
     <div class="column {{changeAssignment_qrQ1 ? 'border-bottom-transparent bg-greyf8' : ''}}" ng-click="changeAssignment_qrQ1 = !changeAssignment_qrQ1;">
@@ -119,7 +119,7 @@
       </div>
     </div>
     <div ng-if="changeAssignment_qrQ11">
-      <span class="padding-l-1 ft-grey7 display-inb padding-b-1p2">该笔债权持有时间 &lt; 30天，手续费 = 转让本金 * 0.5%，持有时间 &ge; 30天，手续费 = 转让本金 * 0.2%，2017.01.01号前手续费率为上述定价的五折。单笔转让的手续费最低为3元。</span>  
+      <span class="padding-l-1 ft-grey7 display-inb padding-b-1p2">该笔债权持有时间 &lt; 30天，手续费 = 转让本金 * 0.1%，持有时间 &ge; 30天，手续费 = 转让本金 * 0.5%，2017.01.01号前手续费率为上述定价的五折。单笔转让的手续费最低为3元。</span>  
     </div>
   </div>
   <div class="content {{changeAssignment_qrQ12 ? 'bg-greyf8' : ''}}">
@@ -166,7 +166,7 @@
       <span class="padding-l-1 ft-grey7 display-inb padding-b-1p2">可以。如果撤销操作时存在投资者的正在认购，将暂时不能撤销。</span>  
     </div>
   </div>
-  <div class="content border-grey-bottom {{changeAssignment_qrQ16 ? 'border-none bg-greyf8' : ''}}">
+  <div class="content border-grey-bottom {{changeAssignment_qrQ16 ? 'border-none bg-greyf8 margin-b-4p5' : ''}}">
     <div class="column border-none {{changeAssignment_qrQ16 ? 'bg-greyf8' : ''}}" ng-click="changeAssignment_qrQ16 = !changeAssignment_qrQ16;">
       <div class="txt-left fl">16.为何待转让债权会被自动撤销？</div>
       <div class="txt-right fr">
