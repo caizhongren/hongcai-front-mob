@@ -255,4 +255,8 @@ angular.module('p2pSiteMobApp')
         angular.element('.new-project-detail').css('margin-bottom','0');
       }
     })
+    $scope.blurNumber = function(){
+      $("#invest-input").blur();
+    }
+    
   });
