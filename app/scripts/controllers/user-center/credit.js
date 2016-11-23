@@ -8,21 +8,9 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('CreditCtrl', function($scope, $rootScope, $state, $stateParams, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN) {
+  .controller('CreditCtrl', function($scope, $rootScope, $state, $stateParams, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN, ScreenWidthUtil) {
     $scope.tab = 0;
-    $scope.widthFlag = "";
-    $scope.screenWidth = function() {
-      $scope.width = document.body.scrollWidth; //用系统返回宽度除以分辨率
-      if ($scope.width >= 320 && $scope.width < 375) {
-        $scope.widthFlag = 0;
-      } else if ($scope.width >= 375 && $scope.width < 414) {
-        $scope.widthFlag = 1;
-      } else if ($scope.width >= 414) {
-        $scope.widthFlag = 2;
-      }
-      return $scope.widthFlag;
-    }
-    $scope.screenWidth();
+    $scope.widthFlag = ScreenWidthUtil.screenWidth();
 
     // tab
     $scope.toggle = {};
