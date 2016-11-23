@@ -15,7 +15,7 @@
     </div>
       <div class="text-center ft-white">
         <p class="text-center margin-b-0 padding-t-1 ft-white ft-1p4">当前资产(元)</p>
-        <p class="text-center ft-2p5 margin-b-1 ft-1p6 Arial">{{ userAccount.tTotalAssets || 0 | number:2}}</strong></p>
+        <p class="text-center ft-2p5 margin-b-1 ft-1p6 ft-Arial">{{ userAccount.tTotalAssets || 0 | number:2}}</strong></p>
         <div class="overflow-hid">
           <ul class="colums">
             <li class="text-center fl width-0p3 position-re ft-1p4">
@@ -59,7 +59,7 @@
         <div class="pro-info">
          <ul>
            <li class=" ft-ccc"><span class="ft-2p8 margin-r-0p3 ft-Arial" ng-class= "{'ft-orange2':recommends.data[0].status === 7 || recommends.data[0].status === 6 ,'ft-grey7':recommends.data[0].status !== 6 || recommends.data[0].status !== 7 }">{{recommends.data[0].annualEarnings | number:2 || 0}}</span>%</li>
-           <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3 ft-Arial" ng-class= "{'ft-black4':recommends.data[0].status === 7 || recommends.data[0].status === 6 ,'ft-grey7':recommends.data[0].status !== 6 || recommends.data[0].status !== 7 }">{{recommends.data[0].currentStock * 100 || 0}}</span>元</li>
+           <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3 ft-Arial" ng-class= "{'ft-black4':recommends.data[0].status === 7 || recommends.data[0].status === 6 ,'ft-grey7':recommends.data[0].status !== 6 || recommends.data[0].status !== 7 }">{{recommends.data[0].currentStock * 100 || 0 | number:2}}</span>元</li>
            <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3 ft-Arial"  ng-class= "{'ft-black4':recommends.data[0].status === 7 || recommends.data[0].status === 6 ,'ft-grey7':recommends.data[0].status !== 6 || recommends.data[0].status !== 7 }">{{recommends.data[0].projectDays || 0}}</span>天</li>
          </ul>
          <ul class="padding-t-0 margin-b-0 ft-grey7">
