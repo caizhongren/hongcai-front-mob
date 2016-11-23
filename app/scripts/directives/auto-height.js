@@ -13,10 +13,10 @@ angular.module('p2pSiteMobApp')
       link : function(scope, element,attrs) {
         $('document').ready(function(){
           //初始化宽度、高度
-          element.css('min-height', angular.element(window).height()-'50'+"px");
+          element.css('min-height', angular.element(window).height()+"px");
           //当文档窗口发生改变时 触发
           angular.element(window).resize(function(){
-            element.css('min-height', angular.element(window).height()-'50'+"px");
+            element.css('min-height', angular.element(window).height()+"px");
           });
         });
       }
