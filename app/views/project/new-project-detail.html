@@ -8,7 +8,7 @@
 			</li>
 			<li>
 				<p>{{project.projectDays}}<span>天(项目期限)</span></p>
-				<p>{{project.total}}<span>元</span></p>
+				<p>{{project.total || 0 | currency:"":0}}<span>元</span></p>
 				<div class="pro-info3">
 					<div class="process">
 		        <div class="progress-bar bg-orange" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{project.percent | number: 1}}%;">
@@ -55,7 +55,7 @@
     <ul>
     	<li>
     		<p>剩余可投(元)</p>
-    		<p>{{project.availableAmount || 0}}</p>
+    		<p>{{project.availableAmount || 0 | currency:"":0}}</p>
     	</li>
     	<li>
     		<p>预计收益(元)</p>

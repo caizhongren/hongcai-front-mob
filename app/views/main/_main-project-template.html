@@ -14,7 +14,7 @@
       <div class="project-limit">
         <div class="project-amounts display-inb position-re">
           <p class="ft-grey6 margin-t-1 ft-1p4 margin-b-0">项目金额(元)</p>
-          <p class="ft-orange0 ft-Arial">{{newbieBiaoProject.total || 0 | number:2}}</p>
+          <p class="ft-orange0 ft-Arial">{{newbieBiaoProject.total || 0 | currency:"":0}}</p>
           <span class="vertical-line position-ab"></span>
         </div>
         <div class="project-date display-inb">
@@ -50,7 +50,7 @@
       <div class="project-limit">
         <div class="project-amounts display-inb position-re">
           <p class="ft-grey6 margin-t-1 ft-1p4 margin-b-0">项目金额(元)</p>
-          <p class="ft-orange0 ft-Arial">{{recommends.total || 0 | number: 2}}</p>
+          <p class="ft-orange0 ft-Arial">{{recommends.total || 0 | currency:"":0}}</p>
           <span class="vertical-line position-ab"></span>
         </div>
         <div class="project-date display-inb">
