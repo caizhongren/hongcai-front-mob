@@ -32,7 +32,7 @@
 	</div>
 	<div class="transfer-btn">
 		<div class="text-center margin-b-1p3"><button class="ft-white ft-1p7 text-center" type="button" ng-class="{'btn-disabled': !transferAmount || !transferPercent|| earningErrMsg || transferErrMsg}"  ng-click="assignmentsTransfer(transferAmount, transferPercent);" ng-disabled="earningErrMsg || transferErrMsg">确认转让</button></div>
-		<p class="ft-1p2 text-center">转让表示您已阅读 <a class="ft-blue49" ng-click="showAgreement();">《债权转让协议》</a></p>
+		<p class="ft-1p2 text-center">转让表示您已阅读并同意 <a class="ft-blue49" ng-click="showAgreement();">《债权转让协议》</a></p>
 	</div>
 </div>
 <div class="alert-agreement" ng-show="isShowAgreement" ng-include src="'views/_assignment-agreement.html'">
