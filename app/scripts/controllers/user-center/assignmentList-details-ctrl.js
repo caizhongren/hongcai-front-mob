@@ -44,11 +44,20 @@ angular.module('p2pSiteMobApp')
     };
     
     //确认撤销
+    $scope.toList = function() {
+      $state.go('root.userCenter.assignments',{tab: 1});
+    }
     $scope.deleteCreditAssignment = function(){
       Restangular.one('users/0/assignments/'+number).remove({}).then(function(response){
         if (response.status ===3 || response.status ===6) {
-          $state.go('root.userCenter.assignments',{tab: 1});
-        }
+          $rootScope.successMsg = '撤销成功！';
+          $rootScope.showSuccessToast = true;
+          $timeout(function() {
+            $rootScope.showSuccessToast = false;
+            $rootScope.successMsg = '';
+            $scope.toList();
+          }, 2000);
+        } 
       });
     };
     

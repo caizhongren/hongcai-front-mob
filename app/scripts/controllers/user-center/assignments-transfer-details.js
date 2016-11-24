@@ -113,6 +113,9 @@ angular.module('p2pSiteMobApp')
     /*
     * 确认转让
     */
+    $scope.toList = function() {
+      $state.go('root.userCenter.assignments');
+    }
     $scope.assignmentsTransfer = function(transferAmount, transferPercent) {
       $rootScope.showLoadingToast = true;
       if (transferAmount ==undefined || transferPercent == undefined || $scope.transferAmount <=0 ) {
@@ -133,12 +136,11 @@ angular.module('p2pSiteMobApp')
         if(response && response.ret !== -1){
           // $rootScope.showMsg('转让成功！');
           $rootScope.showLoadingToast = false;
+          $rootScope.successMsg = '转让成功！';
           $rootScope.showSuccessToast = true;
-          $scope.toList = function() {
-            $state.go('root.userCenter.assignments');
-          }
           $timeout(function() {
-            $rootScope.showLoadingToast = false;
+            $rootScope.showSuccessToast = false;
+            $rootScope.successMsg = '';
             $scope.toList();
           }, 1000);
 
