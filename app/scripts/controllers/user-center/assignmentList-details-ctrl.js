@@ -1,6 +1,6 @@
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('assignmentListDetailsCtrl', function($state, $scope, $stateParams, Restangular) {
+  .controller('assignmentListDetailsCtrl', function($state, $scope, $stateParams, $rootScope, $timeout, Restangular) {
     var number = $stateParams.number;  
     /**
      * 债权转让信息详情
