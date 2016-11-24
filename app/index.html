@@ -57,6 +57,10 @@ var _hmt = _hmt || [];
   <link rel="stylesheet" href="styles/new-project-detail.css">
   <link rel="stylesheet" href="styles/cash-coupon.css">
   <link rel="stylesheet" href="styles/activity-center.css">
+  <link rel="stylesheet" href="styles/assignments.css">
+  <link rel="stylesheet" href="styles/assignmentList-details.css">
+  <link rel="stylesheet" href="styles/assignments-detail.css">
+  <link rel="stylesheet" href="styles/weui.min.css">
 
   <!-- endbuild -->
   <link rel="stylesheet" href="styles/un-min/box-flex.css">
@@ -80,11 +84,11 @@ var _hmt = _hmt || [];
   </div>
   <!-- loading toast -->
   <div ng-include src='"views/loading-toast.html"' ng-show="showLoadingToast"></div>
+  <div ng-include src='"views/succcess-toast.html"' ng-show="showSuccessToast"></div>
   <!-- 错误提示 -->
   <div class="toast toast1 ng-cloak" ng-show="showErrorMsg" >
     <p>{{msg}}</p>
   </div>
-
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
   <!--      <script>
        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -161,7 +165,6 @@ var _hmt = _hmt || [];
   <script src="scripts/directives/capcha-countdown.js"></script>
   <script src="scripts/directives/select-eyes.js"></script>
   <script src="scripts/directives/auto-height.js"></script>
-
   <!-- servies -->
   <script src="scripts/services/users.js"></script>
   <script src="scripts/services/hongcai-users.js"></script>
@@ -189,6 +192,7 @@ var _hmt = _hmt || [];
   <script src="scripts/services/URLService.js"></script>
   <script src="scripts/services/checkPwdUtil.js"></script>
   <script src="scripts/services/showFooter.js"></script>
+  <script src="scripts/services/screenWidthUtil.js"></script>
 
   <!-- controller -->
   <script src="scripts/controllers/main.js"></script>
@@ -201,9 +205,13 @@ var _hmt = _hmt || [];
   <script src="scripts/controllers/project/investment-confirmation.js"></script>
   <script src="scripts/controllers/project/experience-project-detail.js"></script>
   <script src="scripts/controllers/project/project-list.js"></script>
-  <script src="scripts/controllers/project/new-project-detail.js"></script>
   <script src="scripts/controllers/project/new-orders.js"></script>
   <script src="scripts/controllers/project/funds-project-detail.js"></script>
+  
+  <script src="scripts/controllers/assignment/assignment-detail-ctrl.js"></script>
+  <script src="scripts/controllers/assignment/assignment-orders.js"></script>
+  
+  <script src="scripts/controllers/help-center/help-center-ctrl.js"></script>
 
   <script src="scripts/controllers/register.js"></script>
   <script src="scripts/controllers/register-yeepay.js"></script>
@@ -232,6 +240,9 @@ var _hmt = _hmt || [];
   <script src="scripts/controllers/user-center/experience-money.js"></script>
   <script src="scripts/controllers/user-center/cash-coupon.js"></script>
   <script src="scripts/controllers/user-center/invite-rebate.js"></script>
+  <script src="scripts/controllers/user-center/assignments-ctrl.js"></script>
+  <script src="scripts/controllers/user-center/assignments-transfer-details.js"></script>
+  <script src="scripts/controllers/user-center/assignmentList-details-ctrl.js"></script>
 
   <script src="scripts/controllers/share/share-detail-ctrl.js"></script>
   <script src="scripts/controllers/share/share-home-ctrl.js"></script>

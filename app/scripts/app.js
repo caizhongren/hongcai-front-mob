@@ -211,8 +211,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/project/new-project-detail.html',
-            controller: 'NewProjectDetailCtrl',
-            controllerUrl: 'scripts/controllers/project/new-project-detail'
+            controller: 'ProjectDetailCtrl',
+            controllerUrl: 'scripts/controllers/project/project-detail'
           }
         }
       })
@@ -232,13 +232,65 @@ p2pSiteMobApp
       })
       // 宏金保列表页
       .state('root._main-list-temp', {
-        url: '/guaranteepro-list',
-        data: {
-          title: '宏金保'
-        },
+        url: '/guaranteepro-list?tab',
         views: {
           '': {
             templateUrl: 'views/main/_main-list-temp.html',
+            controller: 'ProjectListCtrl',
+            controllerUrl: 'scripts/controllers/project/project-list'
+          }
+        }
+      })
+
+      /**
+       * 债权转让项目详情页
+       */
+      .state('root.assignments-detail', {
+        url: '/assignments/:number',
+        views: {
+          '': {
+            templateUrl: 'views/assignment/assignments-detail.html',
+            controller: 'AssignmentDetailCtrl',
+            controllerUrl: 'scripts/controller/assignment/assignment-detail-ctrl'
+          }
+        }
+      })
+      // 债权转让记录页
+      .state('root.assignmentOrders', {
+        url: '/assignments/:number/orders',
+        views: {
+          '': {
+            templateUrl: 'views/assignment/assignment-orders.html',
+            controller: 'assignmentOrdersCtrl',
+            controllerUrl: 'scripts/controllers/assignment/assignment-orders'
+          }
+        },
+        data: {
+          title: '债权转让记录'
+        }
+      })
+      //常见问题
+      .state('root.assignment_qr', {
+        url: '/assignment_qr',
+        views: {
+          '': {
+            templateUrl: 'views/help-center/assignment_qr.html',
+            controller: 'HelpCenterCtrl',
+            controllerUrl: 'scripts/controller/help-center/help-center-ctrl'
+          }
+        },data: {
+          title: '常见问题'
+        }
+      })
+      //债权转让列表页
+      .state('root._main-list-temp0', {
+        url: '/assignments',
+        data: {
+          title: '债权转让'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/assignment/assignment-list.html',
             controller: 'ProjectListCtrl',
             controllerUrl: 'scripts/controllers/project/project-list'
           }
@@ -285,6 +337,8 @@ p2pSiteMobApp
           }
         }
       })
+
+
       // 个人中心
       .state('root.userCenter', {
         abstract: true,
@@ -303,9 +357,10 @@ p2pSiteMobApp
           }
         }
       })
+      
       //我的账户
-      .state('root.userCenter.account', {
-        url: '/account',
+      .state('root.userCenter.account-overview', {
+        url: '/account-overview',
         data: {
           title: '个人中心'
         },
@@ -372,7 +427,7 @@ p2pSiteMobApp
       })
       // 我的债权
       .state('root.userCenter.credits', {
-        url: '/credits/:tab',
+        url: '/credit',
         data: {
           title: '我的投资'
         },
@@ -384,9 +439,53 @@ p2pSiteMobApp
           }
         }
       })
+      // 债权管理
+      .state('root.userCenter.assignments', {
+        url: '/assignments?tab',
+        data: {
+          title: '债权转让'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/assignments.html',
+            controller: 'assignmentsCtrl',
+            controllerUrl: 'scripts/controllers/user-center/assignments-ctrl'
+          }
+        }
+      })
+      // 债权转让列表业详情
+      .state('root.userCenter.assignmentList-details', {
+        url: '/assignmentList-details/:number',
+        data: {
+          title: '转让详情'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/assignmentList-details.html',
+            controller: 'assignmentListDetailsCtrl',
+            controllerUrl: 'scripts/controllers/user-center/assignmentList-details-ctrl'
+          }
+        }
+      })
+      /**
+       * 债权管理-债权转让页面
+       */
+      .state('root.userCenter.assignments-transfer-details', {
+        url: '/assignments-transfer-details/:number',
+        views: {
+          '': {
+            templateUrl: 'views/user-center/assignments-transfer-details.html',
+            controller: 'AssignmentsTransferCtrl',
+            controllerUrl: 'scripts/controller/user-center/assignments-transfer-details.js'
+          }
+        },
+        data: {
+          title: '立即转出'
+        }
+      })
       // 债权详情
       .state('root.userCenter.credit-security-details', {
-        url: '/credit-security-details/:id',
+        url: '/credit-security-details/:type/:number',
         data: {
           title: '债权详情'
         },
@@ -877,7 +976,7 @@ p2pSiteMobApp
       })
       //我的奖励
       .state('root.userCenter.grade', {
-        url: '/grade?tab&subTab',
+        url: '/rate-coupon?tab&subTab',
         views: {
           '': {
             templateUrl: 'views/user-center/grade.html',

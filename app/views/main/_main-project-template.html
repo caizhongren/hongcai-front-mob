@@ -9,17 +9,17 @@
       <span class="margin-r-2 fr ft-1p4 ft-black1 details" ng-show="newbieBiaoProject.status !== 6">详情<i class="fa fa-angle-right ft-black1 ft-1p8 margin-l-1"></i></span>
     </div>
     <div class="text-center margin-t-0p5 project-show">
-      <p class="ft-orange0 project-profit margin-b-0">8<span class="ft-1p6">%</span><span class="ft-3 add-rate">+{{newbieBiaoProject.annualEarnings-8 || 0 }}</span><span class="ft-1p5 add-rate">%</span></p>
+      <p class="ft-orange0 project-profit margin-b-0">8<span class="ft-1p6">%</span><span class="ft-3 add-rate ft-Arial">+{{newbieBiaoProject.annualEarnings-8 || 0  | number:2}}</span><span class="ft-1p5 add-rate">%</span></p>
       <p class="ft-1p4 ft-grey6 benefits margin-b-0">预期年化收益率</p>
       <div class="project-limit">
         <div class="project-amounts display-inb position-re">
           <p class="ft-grey6 margin-t-1 ft-1p4 margin-b-0">项目金额(元)</p>
-          <p class="ft-orange0">{{newbieBiaoProject.total || 0}}</p>
+          <p class="ft-orange0 ft-Arial">{{newbieBiaoProject.total || 0 | currency:"":0}}</p>
           <span class="vertical-line position-ab"></span>
         </div>
         <div class="project-date display-inb">
           <p class="ft-grey6 margin-t-1 ft-1p4 margin-b-0">投资期限</p>
-          <p class="ft-orange0">{{newbieBiaoProject.projectDays || 0 }}天</p>
+          <p class="ft-orange0 ft-Arial">{{newbieBiaoProject.projectDays || 0 }}天</p>
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
             <div class="type-img"></div>
           </div>
         </div>
-        <div class="join-in">{{(newbieBiaoProject.soldStock + newbieBiaoProject.occupancyStock) * newbieBiaoProject.increaseAmount / newbieBiaoProject.total * 100 | number:2}}%</div>
+        <div class="join-in ft-Arial">{{(newbieBiaoProject.soldStock + newbieBiaoProject.occupancyStock) * newbieBiaoProject.increaseAmount / newbieBiaoProject.total * 100 | number:2}}%</div>
     </div>
   </div>
 </div>
@@ -45,17 +45,17 @@
       <span class="margin-r-2 fr ft-1p4 ft-black1 details" ng-show="recommends.status !== 6">详情<i class="fa fa-angle-right ft-black1 ft-1p8 margin-l-1"></i></span>
     </div>
     <div class="text-center margin-t-0p5 project-show">
-      <p class="ft-orange0 project-profit margin-b-0">{{recommends.annualEarnings || 0}}<span class="ft-1p6">%</span></p>
+      <p class="ft-orange0 project-profit margin-b-0 ft-Arial">{{recommends.annualEarnings || 0 | number:2}}<span class="ft-1p6">%</span></p>
       <p class="ft-1p4 ft-grey6 benefits margin-b-0">预期年化收益率</p>
       <div class="project-limit">
         <div class="project-amounts display-inb position-re">
           <p class="ft-grey6 margin-t-1 ft-1p4 margin-b-0">项目金额(元)</p>
-          <p class="ft-orange0">{{recommends.total || 0}}</p>
+          <p class="ft-orange0 ft-Arial">{{recommends.total || 0 | currency:"":0}}</p>
           <span class="vertical-line position-ab"></span>
         </div>
         <div class="project-date display-inb">
           <p class="ft-grey6 margin-t-1 ft-1p4 margin-b-0">投资期限</p>
-          <p class="ft-orange0">{{recommends.projectDays || 0 }}天</p>
+          <p class="ft-orange0 ft-Arial">{{recommends.projectDays || 0 }}天</p>
         </div>
       </div>
     </div>

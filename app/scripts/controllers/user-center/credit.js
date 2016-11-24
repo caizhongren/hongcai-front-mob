@@ -8,21 +8,9 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('CreditCtrl', function($scope, $rootScope, $state, $stateParams, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN) {
+  .controller('CreditCtrl', function($scope, $rootScope, $state, $stateParams, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN, ScreenWidthUtil) {
     $scope.tab = 0;
-    $scope.widthFlag = "";
-    $scope.screenWidth = function() {
-      $scope.width = document.body.scrollWidth; //用系统返回宽度除以分辨率
-      if ($scope.width >= 320 && $scope.width < 375) {
-        $scope.widthFlag = 0;
-      } else if ($scope.width >= 375 && $scope.width < 414) {
-        $scope.widthFlag = 1;
-      } else if ($scope.width >= 414) {
-        $scope.widthFlag = 2;
-      }
-      return $scope.widthFlag;
-    }
-    $scope.screenWidth();
+    $scope.widthFlag = ScreenWidthUtil.screenWidth();
 
     // tab
     $scope.toggle = {};
@@ -88,9 +76,6 @@ angular.module('p2pSiteMobApp')
         for (var i = 0; i <= credits.length - 1; i++) {
           if (credits[i].increaseRateCoupon) {
             var oriRate = credits[i].creditRight.riseRate + credits[i].creditRight.baseRate;
-
-            // credits[i].waitRateCouponProfit = credits[i].creditRight.profit * (credits[i].increaseRateCoupon.value + oriRate) / oriRate - credits[i].creditRight.profit;
-            // credits[i].returnRateCouponProfit = credits[i].creditRight.returnProfit * (credits[i].increaseRateCoupon.value + oriRate) / oriRate - credits[i].creditRight.returnProfit;
             credits[i].rateCouponProfit = credits[i].creditRight.profit * (credits[i].increaseRateCoupon.value + oriRate) / oriRate - credits[i].creditRight.profit;
           }
 
@@ -99,21 +84,17 @@ angular.module('p2pSiteMobApp')
         $scope.loading = false;
       })
 
-      // $scope.creditStatus = status;
-      // HongcaiUser.$find($rootScope.hasLoggedUser.id + '/credits', {
-      //   status: $scope.creditStatus,
-      //   page: $scope.page,
-      //   pageSize: $scope.pageSize
-      // }).$then(function(response){
-      //   $scope.totalPage = response.totalPage;
-      //   var credits = response.data;
-      //   for (var i = 0; i <= credits.length - 1; i++) {
-      //     $scope.credits.push(credits[i]);
-      //   };
-      // });
+    
     };
 
     $scope.toggle.switchTab(0);
+    //跳转详情页
+    $scope.goDtail = function(item) {
+      if(item == 3) {
+        return;
+      }
+      $state.go('root.userCenter.credit-security-details',{type: 1,number:item});
+    }
 
     /**
      * 加载更多

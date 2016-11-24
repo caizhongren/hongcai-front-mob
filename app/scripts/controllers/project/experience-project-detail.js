@@ -25,7 +25,7 @@ angular.module('p2pSiteMobApp')
       Restangular.one('projects').one('experienceProject').get().then(function(response) {
         if(response.ret === -1){
             alert(response.msg);
-            $state.go('root.userCenter.account');
+            $state.go('root.userCenter.account-overview');
           }
 
           $scope.experienceProject = response;
