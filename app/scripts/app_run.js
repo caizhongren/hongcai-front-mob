@@ -373,6 +373,7 @@ angular.module('p2pSiteMobApp')
 
     /*加载中loading*/
     $rootScope.showLoadingToast = false;
+    $rootScope.showSuccessToast = false;
 
     $rootScope.uuid = function(len, radix){
       var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');

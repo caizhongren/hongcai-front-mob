@@ -114,6 +114,7 @@ angular.module('p2pSiteMobApp')
     * 确认转让
     */
     $scope.assignmentsTransfer = function(transferAmount, transferPercent) {
+      $rootScope.showLoadingToast = true;
       if (transferAmount ==undefined || transferPercent == undefined || $scope.transferAmount <=0 ) {
         return;
       }
@@ -124,7 +125,6 @@ angular.module('p2pSiteMobApp')
           return;
         }
       }
-      $rootScope.showLoadingToast = true;
       Restangular.one('/creditRights/' + $scope.assignmentsNumber).post('assign',{
         creditRightId: $scope.creditRight.id,
         amount: transferAmount,
@@ -133,7 +133,15 @@ angular.module('p2pSiteMobApp')
         if(response && response.ret !== -1){
           // $rootScope.showMsg('转让成功！');
           $rootScope.showLoadingToast = false;
-          $state.go('root.userCenter.assignments');
+          $rootScope.showSuccessToast = true;
+          $scope.toList = function() {
+            $state.go('root.userCenter.assignments');
+          }
+          $timeout(function() {
+            $rootScope.showLoadingToast = false;
+            $scope.toList();
+          }, 1000);
+
         } else {
           $rootScope.showLoadingToast = false;
           $rootScope.showMsg(response.msg);
