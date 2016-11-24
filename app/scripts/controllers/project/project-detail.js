@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc function
- * @name p2pSiteMobApp.controller:NewProjectDetailCtrl
+ * @name p2pSiteMobApp.controller:ProjectDetailCtrl
  * @description
- * # NewProjectDetailCtrl
+ * # ProjectDetailCtrl
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
@@ -17,7 +17,7 @@ angular.module('p2pSiteMobApp')
     $scope.profit = 0;
     $scope.increaseRateProfit = 0;
     $scope.projectStatusMap = projectStatusMap;
-    $scope.unSelectCouponMsg = '暂无可用奖励';
+    $scope.unSelectCouponMsg = '';
     $scope.initLimit = 3;
     $scope.resetInitLimit = function(){
         $scope.initLimit = 3;
@@ -36,7 +36,9 @@ angular.module('p2pSiteMobApp')
       project.availableAmount = project.total - (project.soldStock + project.occupancyStock) * project.increaseAmount;
 
       ProjectUtils.projectTimedown(project, project.createTime);
-
+      var minBalanceAccount = $rootScope.account.balance - $rootScope.account.balance % 100;
+      var minInvestAccount = project.availableAmount;
+      $scope.project.investAmount = $rootScope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;
 
       /**
        * 新手标判断
@@ -50,7 +52,7 @@ angular.module('p2pSiteMobApp')
             }
             if(!response.isOk){
               $scope.msg = '仅限首次投资后一周内参与';
-              $scope.showMsg();
+              $rootScope.showMsg($scope.msg);
             }
         });
 
@@ -66,8 +68,12 @@ angular.module('p2pSiteMobApp')
           projectId : $scope.project.id,
           amount : project.availableAmount
         }).then(function(response) {
-          if (response && response.ret && response.ret !== -1) {
+          if (response  && response.ret !== -1) {
             $scope.increaseRateCoupons = response;
+            if(response.length === 0) {
+              $scope.selectIncreaseRateCoupon = null;
+              $scope.unSelectCouponMsg = '暂无可用奖励';
+            }
             for (var i = 0; i < $scope.increaseRateCoupons.length; i++) {
               if ($scope.rateType === '' && $scope.cashType === '') {
                 $scope.selectIncreaseRateCoupon = $scope.increaseRateCoupons[0];
@@ -79,7 +85,6 @@ angular.module('p2pSiteMobApp')
           }else {
             $scope.selectIncreaseRateCoupon = [];
           }
-          $scope.project.investAmount =  1000 ;
         });
       }
     });
@@ -92,11 +97,11 @@ angular.module('p2pSiteMobApp')
     $scope.clicked = true;
     $scope.toInvest = function(project) {
       $scope.clicked = false;
-      if($scope.msg || project.investAmount < project.minInvest){
+      if($scope.msg || project.investAmount < project.minInvest || !project.investAmount){
         return;
       }
 
-      $scope.showMsg();
+      $rootScope.showMsg($scope.msg);
       $rootScope.tofinishedOrder();
       var couponNumber = $scope.selectIncreaseRateCoupon != null ? $scope.selectIncreaseRateCoupon.number : '';
       $rootScope.showLoadingToast = true;
@@ -115,7 +120,7 @@ angular.module('p2pSiteMobApp')
          });
         } else {
           $scope.msg = order.msg;
-          $scope.showMsg();
+          $rootScope.showMsg($scope.msg);
         }
       });
     };
@@ -128,10 +133,6 @@ angular.module('p2pSiteMobApp')
 
       if(newVal !== oldVal){
         $scope.msg = undefined;
-      }
-
-      if($rootScope.account.balance <= 0){
-        $scope.msg = '账户余额不足，请先充值';
       }
 
       if(newVal){
@@ -156,24 +157,19 @@ angular.module('p2pSiteMobApp')
         }
       }
 
-      $scope.showMsg();
+      $rootScope.showMsg($scope.msg);
     });
 
     // 判断现金券投资金额显示错误提示
     $scope.showCashMsg = function(investAmount){
-      if(investAmount < $scope.selectIncreaseRateCoupon.minInvestAmount){
+      if(investAmount && investAmount < $scope.selectIncreaseRateCoupon.minInvestAmount){
         $scope.msg = '投资金额不满足返现条件';
-        $scope.showMsg();
+        $rootScope.showMsg($scope.msg);
       }
       return;
     }
 
-    //显示信息
-    $scope.showMsg = function(){
-      if($scope.project && $scope.project.status == 7){
-        $rootScope.showMsg($scope.msg);
-      }
-    }
+    
     // 记录券的来源
     $scope.cashNum = ipCookie('cashNum') || '';
     $scope.cashType = ipCookie('cashType') || '';
@@ -183,39 +179,33 @@ angular.module('p2pSiteMobApp')
     //选择券
     $scope.showSelectIncreaseRateCoupon = false;
     $scope.selectCoupon = function(coupon){
-        $scope.selectIncreaseRateCoupon = coupon;
-        $scope.showSelectIncreaseRateCoupon = false;
-        $scope.increaseRateProfit = $scope.calcProfit(coupon.value);
-        $scope.cashProfit = $scope.project.investAmount >= $scope.selectIncreaseRateCoupon.minInvestAmount ? $scope.selectIncreaseRateCoupon.value : 0;
-        $scope.resetInitLimit();
-        //选择现金券时判断投资金额是否满足条件
-        if(coupon.type ===2){
-          $scope.msg = '';
-          if($scope.msg){
-            $scope.showCashMsg($scope.project.investAmount);
-          }else{
-            $scope.showCashMsg($scope.project.investAmount);
-          }
+      $scope.unSelectCouponMsg = '';
+      $scope.selectIncreaseRateCoupon = coupon;
+      $scope.showSelectIncreaseRateCoupon = false;
+      $scope.increaseRateProfit = $scope.calcProfit(coupon.value);
+      $scope.cashProfit = $scope.project.investAmount >= $scope.selectIncreaseRateCoupon.minInvestAmount ? $scope.selectIncreaseRateCoupon.value : 0;
+      $scope.resetInitLimit();
+      //选择现金券时判断投资金额是否满足条件
+      if(coupon.type ===2){
+        $scope.msg = '';
+        if($scope.msg){
+          $scope.showCashMsg($scope.project.investAmount);
         }else{
-          $scope.msg = '';
+          $scope.showCashMsg($scope.project.investAmount);
         }
+      }else{
+        $scope.msg = '';
+      }
     }
     //不使用券
     $scope.unUseIncreaseRateCoupon = function(){
-        $scope.selectIncreaseRateCoupon = null;
-        $scope.showSelectIncreaseRateCoupon = false;
-        $scope.increaseRateProfit = 0;
-        $scope.resetInitLimit();
-        $scope.unSelectCouponMsg = '暂不使用';
-        if($scope.msg){
-          $scope.msg = '';
-        }
-    }
-
-    //跳转到充值页面
-    $scope.toRecharge = function(){
-      if($rootScope.timeout){
-        $state.go('root.userCenter.recharge');
+      $scope.selectIncreaseRateCoupon = null;
+      $scope.showSelectIncreaseRateCoupon = false;
+      $scope.increaseRateProfit = 0;
+      $scope.resetInitLimit();
+      $scope.unSelectCouponMsg = '暂不使用';
+      if($scope.msg){
+        $scope.msg = '';
       }
     }
 
@@ -234,14 +224,18 @@ angular.module('p2pSiteMobApp')
 
     //计算预计收益
     $scope.calcProfit = function(annualEarnings){
-        var profit = $scope.project.investAmount * $scope.project.projectDays * annualEarnings / 36500 ;
-        return profit;
+      var profit = $scope.project.investAmount * $scope.project.projectDays * annualEarnings / 36500 ;
+      return profit;
     }
 
     /**
      * 修改投资金额
      */
     $scope.modInvestAmout = function(offset,$event){
+      if($scope.project && $scope.project.status != 7){
+        return;
+      }
+
       $event.stopPropagation();
       $scope.project.investAmount = $scope.project.investAmount ? $scope.project.investAmount + offset : offset;
       $scope.project.investAmount = $scope.project.investAmount < 100 ? 100 : $scope.project.investAmount;
@@ -261,4 +255,8 @@ angular.module('p2pSiteMobApp')
         angular.element('.new-project-detail').css('margin-bottom','0');
       }
     })
+    $scope.blurNumber = function(){
+      $("#invest-input").blur();
+    }
+    
   });

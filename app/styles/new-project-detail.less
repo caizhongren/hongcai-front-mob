@@ -230,20 +230,20 @@
 			.invest-input{
 				border-radius:0;
 				border:0.1rem solid #e8e8e8;
-				text-align:center;
-				color:#4548f !important;
-				font-size:2.8rem;
+				color: #333 !important;
+				font-size:2.4rem;
 				width:64%;
 				height:4rem;
-				line-height:4rem;
-				padding-top:0;
-				padding-bottom:0;
+				// line-height:4rem;
+				// padding-top:0;
+				// padding-bottom:0;
 				margin: 0 0.6rem 2rem;
 				position:relative;
-				top: -0.3rem;
+				top: -0.7rem;
+        text-align: left;
 				@media (max-width:375px) {
 					width:62%;
-					top: -0.5rem;
+					top: -0.7rem;
 				}
 				@media (max-width:320px) {
 					margin: 0 0rem 2rem;
@@ -251,8 +251,12 @@
 				}
 				@media (max-width:360px) {
 					width:60%;
+          top: -0.7rem;
 				}
 			}
+      /* 通用 */
+      .invest-input::-webkit-input-placeholder { color:#666 !important; font-size: 1.4rem; position: relative;top: 0.7rem !important;}
+      
 		}
 	}
 	button.btn-disabled {
