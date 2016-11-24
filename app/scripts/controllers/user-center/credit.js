@@ -27,11 +27,11 @@ angular.module('p2pSiteMobApp')
     $scope.credits = [];
 
 
-    HongcaiUser.$find(0 + '/totalProfit').$then(function(response) {
-      if (response.ret !== -1) {
-        $scope.totalProfit = response;
-      }
-    });
+    // HongcaiUser.$find(0 + '/totalProfit').$then(function(response) {
+    //   if (response.ret !== -1) {
+    //     $scope.totalProfit = response;
+    //   }
+    // });
 
     /**
      * 切换标签
