@@ -18,9 +18,10 @@ angular.module('p2pSiteMobApp')
 
     $scope.userAccount = Restangular.one('users').one('0/account').get().$object;
 
-    $scope.voucher = Restangular.one('users').one('0/userInviteNum').get().$object;
+    // $scope.voucher = Restangular.one('users').one('0/userInviteNum').get().$object;
 
     $scope.couponStatis = Restangular.one('users').one('0/increaseRateCoupon').get().$object;
+    $scope.cashCouponStatis = Restangular.one('users').one('0/cashCoupon').get().$object;
 
     $scope.unGotCash = Restangular.one('cashCoupons').one('stat').get().$object;
 
@@ -49,7 +50,7 @@ angular.module('p2pSiteMobApp')
     }
 
     //查看更多 index:0体验金，1加息券，2邀请
-    $scope.viewMore = function(index){
+    $scope.goIncreaseRateCoupon = function(index){
       $state.go('root.userCenter.grade',{
         tab : index
       });

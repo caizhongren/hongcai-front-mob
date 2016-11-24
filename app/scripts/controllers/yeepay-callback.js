@@ -12,7 +12,7 @@ angular.module('p2pSiteMobApp')
     $scope.page = '0';
     $scope.amount = $stateParams.amount;
     var business = $stateParams.business;
-    console.log($stateParams.number);
+
     if (business === 'RECHARGE') {
       $scope.page = 1;
     } else if (business === 'WITHDRAW') {

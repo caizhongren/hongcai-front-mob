@@ -42,6 +42,12 @@ angular.module('p2pSiteMobApp')
       });
       return;
     }
+    //跳转到充值页面
+    $rootScope.toRecharge = function(){
+      if($rootScope.timeout){
+        $state.go('root.userCenter.recharge');
+      }
+    }
 
     $rootScope.toRealNameAuth = function() {
       $uibModal.open({
@@ -117,15 +123,18 @@ angular.module('p2pSiteMobApp')
           $rootScope.showErrorMsg = false;
         }, 2000);
       }
+      if(msg == undefined) {
+        $rootScope.showErrorMsg = false;
+      }
     }
 
     $rootScope.$on('$stateChangeStart', function(event, toState) {
       var title = '宏财理财';
       if (toState.data && toState.data.title) {
-        title = toState.data.title;
+        title = toState.data.title; 
       }
       $rootScope.headerTitle = title;
-
+      
       $rootScope.timeout = false;
       $timeout(function() {
         $rootScope.timeout = true;
@@ -245,7 +254,12 @@ angular.module('p2pSiteMobApp')
       var title = '宏财理财';
       if (toState.data && toState.data.title) {
         title = toState.data.title;
+      }else if($location.url() === '/guaranteepro-list?tab=1'){
+        title = '债权转让';       
+      } else if ($location.url() === '/guaranteepro-list?tab=0' || $location.url() === '/guaranteepro-list') {
+        title = '宏金保'; 
       }
+      
       $rootScope.headerTitle = title;
       if (toState.name !== 'root.project') {
         Utils.setTitle($rootScope.headerTitle);
@@ -319,7 +333,9 @@ angular.module('p2pSiteMobApp')
         'project-info',
         'project-detail',
         'activity',
-        'privacy-policy'
+        'privacy-policy',
+        'assignments',
+        'assignment_qr'
       ];
       $rootScope.showFooter = false;
       if (notShowFooterRoute.indexOf(path) === -1) {
@@ -357,6 +373,8 @@ angular.module('p2pSiteMobApp')
 
     /*加载中loading*/
     $rootScope.showLoadingToast = false;
+    $rootScope.showSuccessToast = false;
+    $rootScope.successMsg = '';
 
     $rootScope.uuid = function(len, radix){
       var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');

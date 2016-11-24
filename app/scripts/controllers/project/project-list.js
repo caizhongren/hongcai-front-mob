@@ -8,25 +8,30 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('ProjectListCtrl', function($scope, $rootScope, $state, $timeout, Restangular, ProjectUtils){
+  .controller('ProjectListCtrl', function($scope, $rootScope, $state, $timeout, $stateParams, $location, Restangular, ProjectUtils, ScreenWidthUtil){
   	$scope.page = 1;
     $scope.pageSize = 5;
   	$scope.widthFlag = "";
   	$scope.jigoubaoData = [];
-
-  	$scope.screenWidth = function(){
-      $scope.width = document.body.scrollWidth; //用系统返回宽度除以分辨率
-      if ($scope.width >= 320 && $scope.width < 375) {
-        $scope.widthFlag = 0;
-      } else if ($scope.width >= 375 && $scope.width < 414) {
-        $scope.widthFlag = 1;
-      } else if ($scope.width >= 414) {
-        $scope.widthFlag = 2;
-      }
-      return $scope.widthFlag;
+    $scope.assignments = [];
+    //限制项目名长度
+  	$scope.widthFlag = ScreenWidthUtil.screenWidth();
+    $scope.tabs = [{
+        title: '宏金保',
+      }, {
+        title: '债权转让',
+      }];
+    $scope.tabParam = $stateParams.tab == undefined ? '0' : $stateParams.tab;
+    //pc端路由保持一致
+    if($location.path().split('/')[1] == 'assignments') {
+      $scope.tabParam = 1;
     }
-    $scope.screenWidth();
-
+    $scope.tabParam = parseInt($scope.tabParam);
+    $scope.switchTab = function(tabIndex) {
+      $scope.tabParam = tabIndex;
+      $location.search('tab', tabIndex);
+    };
+    
     /**
      * 当前页项目列表
      */
@@ -55,7 +60,29 @@ angular.module('p2pSiteMobApp')
 
       });
     }
-
+    /**
+    *债权转让列表
+    */
+    $scope.getAssignmentList = function(page, pageSize) {
+      $scope.busy = true;
+      Restangular.one("assignments").get({
+        page: page,
+        pageSize: pageSize
+      }).then(function(response){
+        if(response && response.ret !== -1) {
+          // $scope.assignments =  response.assignments;
+          $scope.pageCount0 = response.pageCount;
+           for (var i = 0; i < response.assignments.length; i++) {
+            // ProjectUtils.projectTimedown(response.projectList[i], serverTime);
+            $scope.assignments.push(response.assignments[i]);
+          };
+          $timeout(function() {
+            $scope.busy = false;
+          }, 100);
+        }
+      })
+    }
+    $scope.getAssignmentList($scope.page, $scope.pageSize);
     /**
      * 跳转到详情页
      */
@@ -70,14 +97,13 @@ angular.module('p2pSiteMobApp')
     /**
      * 加载更多项目
      */
-    $scope.loadMore = function() {
+    $scope.loadMore = function(project) {
       if($scope.busy){
         return;
       }
       $scope.busy = true;
       $scope.page = $scope.page + 1;
-      $scope.pageSize = $scope.pageSize;
-      $scope.getProjectList($scope.page, $scope.pageSize);
+      project($scope.page, $scope.pageSize);
     };
 
   })

@@ -15,7 +15,7 @@
   .credit {
     background-color: #f5f5f5;
     li.active {
-      border-bottom: 0.2rem solid #ee7822;
+      border-bottom: 0.2rem solid #fd8f3f;
       color: #fd8f3f;
       background-color: #fff;
     }
@@ -34,7 +34,24 @@
     .credit-item-info:nth-child(3){
       width: 29%;
     }
+    .credit-head {
+      background: linear-gradient(to bottom, #e4532b, #f28340);
+    }
     .credit-item{
+      .zhuan {
+        display: inline-block;
+        float: left;
+        width: 1.6rem;
+        height: 1.6rem;
+        line-height: 1.6rem;
+        border-radius: 50%;
+        text-align: center;
+        background-color: #FA683E;
+        color: #fff;
+        font-size: 1.2rem;
+        margin-right: 0.1rem;
+        margin-top: .35rem;
+      }
       .endtime{
         height: 24px;
         line-height: 24px;
@@ -456,7 +473,7 @@
       float: right;
       width: 64%;
       height: 38px;
-      line-height: 38px;
+      // line-height: 38px;
       padding: 0 0 0 0.5rem;
       border-radius: 0;
     }
@@ -554,7 +571,7 @@
   line-height: 1.3rem;
   height: 1.3rem;
   margin-top: .5rem;
-  border-left: 0.4rem solid #fd8f3f;
+  border-left: 0.4rem solid #ff5f00;
   padding-left: 0.6rem;
   font-weight: bold;
 }
@@ -671,6 +688,7 @@
 
 // 债权详情页
 .credit-detail {
+  background-color: #f5f5f5;
   .orange-bg {
     background-color: #fd8f3e;
   }
@@ -712,6 +730,7 @@
       }
     }
     .detail-steps {
+      background-color: #fff;
       ul {
         li {
           .timeline {
@@ -743,7 +762,6 @@
       }
     }
     .project-details {
-      background-color: #f5f5f5;
       padding: 2rem 0 4rem 0;
       p {
         color: #6c6c6c;
@@ -984,3 +1002,113 @@
       height: 36rem;
     }
   }
+//债权转让操作页
+.assignments-trans {
+  background-color: #f5f5f5;
+  .transferable {
+    border-bottom: 1px solid #ddd;
+  }
+  .transfer {
+    .return {
+      .return-amount {
+        width: 61%;
+        @media(min-width: 360px) {
+          width: 66.2%;
+        }
+        @media(min-width: 375px) {
+          width: 67.5%;
+        }
+        @media(min-width: 411px) {
+          width: 71%;
+        }
+      }
+    }
+    .transfer-annual {
+      .test {
+        top: -3.3rem !important;
+      }
+      margin-bottom: 1.3rem;
+      p {
+        height: 3.3rem;
+        line-height: 3.3rem;
+        margin-left: 38%;
+        @media(min-width: 360px) {
+          margin-left: 34%;
+        }
+        @media(min-width: 375px) {
+          margin-left: 32%;
+        }
+        @media(min-width: 411px) {
+          margin-left: 29%;
+        }
+      }
+    }
+    
+    .transfer-amount, .transfer-annual {
+      .test{
+        width: 47%;
+        height: 4rem;
+        border-radius: .6rem;
+        line-height: 3.2rem;
+        text-align: center;
+        color: #fff;
+        font-size: 1.2rem;
+        background: url(/images/user-center/transfer-msg.png) no-repeat;
+        background-size: 100%;
+        position: absolute;
+        left: 12.8rem;
+        top: -1.2rem;
+
+          @media(min-width:360px) {
+            width: 44%;
+          }
+          @media(min-width:341px) {
+            width: 42%;
+          }
+        }
+      
+      .border-change {
+        border: 1px solid #ff0000;
+      }
+      input {
+        padding-left: 12px;
+        width: 61%;
+        height: 4.2rem;
+        border: 1px solid #ddd;
+        @media(min-width: 360px) {
+          width: 66.2%;
+        }
+        @media(min-width: 375px) {
+          width: 67.5%;
+        }
+        @media(min-width: 411px) {
+          width: 71%;
+        }
+      }
+      input:focus {
+        border: 1px solid #e94828 !important;
+      }
+    }
+  }
+  .transfer-btn {
+    button {
+      width: 76%;
+      height: 4.5rem;
+      line-height: 4.5rem;
+      font-weight: normal;
+      margin: 0 auto;
+      text-align: center;
+      background-color: #fd8f3f;
+      border-color: #fd8f3f;
+      color: #fff !important;
+    }
+    button.btn-disabled{
+      background-color: #FEB682;
+      border-color: #FEB682;
+      color:#fff !important;
+    }
+    @media(min-width: 320px) {
+      padding-bottom: 3rem;
+    }
+  }
+}

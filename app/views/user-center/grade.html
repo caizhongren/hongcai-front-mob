@@ -1,26 +1,6 @@
-<div class="grade">
+<div class="grade" auto-height>
   <!-- 要展示的内容如下 -->
   <div class="tab-content columns twelve bg-offWhite overflow-hid padding-b-0 text-center " ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs track by $index">
-    <section ng-if="tab.title==='体验金'">
-      <div class="padding-1 minHeight">
-       <div class="tiyanjin-tab">
-        <div class="use-list-title">使用记录</div>
-        <div class="use-list-head">
-        	<div class="list-cell">日期</div>
-        	<div class="list-cell">金额</div>
-        	<div class="list-cell">收益</div>
-        </div>
-        <div>
-	        <div class="use-list-head" ng-repeat="item in datas track by $index">
-	        	<div class="list-cell">{{item.createTime | date:'yyyy-MM-dd'}}</div>
-	        	<div class="list-cell">{{item.amount | number:0}}元</div>
-	        	<div class="list-cell ft-orange">{{item.profit | number:2}}元</div>
-	        </div>
-        </div>
-       </div>
-       <div class="margin-t-2" ng-click="loadMuch(toggle.activeTab, 0)" ng-show="totalPage > page"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<span class="cursor-hand ft-black2 text-line">查看更多</span></div>
-      </div>
-    </section>
     <section ng-if="tab.title==='加息券'" class="padding-b-4" auto-height>
 	    <div class="padding-t-0p5 bg-white padding-b-0p5 overflow-aut">
 		    <ul class="grade-tab2 columns ten offset-by-one margin-b-0">
@@ -109,50 +89,6 @@
 			    </div>
 		    </div>
 	    </div>
-    </section>
-    <section ng-if="tab.title==='邀请'" class="" auto-height>
-    	<!-- <div class="margin-t-1" ng-click="goInviteLanding()"><img src="/images/new/ad1.png" width="100%"></div> -->
-      <div class="padding-1 margin-b-4">
-       <div class="tiyanjin-tab">
-        <div class="use-list-title">奖励信息</div>
-        <div class="account-panel bg-white">
-			    <div class="icon"><img src="/images/new/get-grade.png" alt=""></div>
-			    <div class="title-text">已获奖金</div>
-			    <div class="more"><strong class="ft-orange ft-1p8">{{inviteStat.reward || 0 | number:2}}</strong>元</div>
-			  </div>
-			  <div class="account-panel bg-white">
-			    <div class="icon"><img src="/images/new/register-true.png" alt=""></div>
-			    <div class="title-text">注册认证</div>
-			    <div class="more"><strong class="ft-orange ft-1p8">{{inviteStat.realNameAuthNum || 0}}</strong>人</div>
-			  </div>
-			  <div class="account-panel bg-white">
-			    <div class="icon"><img src="/images/new/first-invest.png" alt=""></div>
-			    <div class="title-text">首次投资</div>
-			    <div class="more"><strong class="ft-orange ft-1p8">{{inviteStat.investNum || 0}}</strong>人</div>
-			  </div>
-       </div>
-       <div class="tiyanjin-tab margin-t-1">
-        <div class="use-list-title">邀请名单</div>
-
-        <div class="use-list-head">
-        	<div class="list-cell">用户名</div>
-        	<div class="list-cell-title">状态</div>
-        </div>
-        <div class="use-list-head" ng-repeat="item in datas track by $index">
-        	<div class="list-cell">{{item.user.mobile || item.user.name}}</div>
-        	<div class="list-cell">
-        		<div ng-switch="item.userAuth.yeepayAccountStatus">
-        		<span ng-switch-default>未认证</span>
-        		<span class="ft-orange" ng-switch-when="1">已认证</span>
-        		</div>
-        	</div>
-        	<div class="list-cell">
-        		<span ng-show="item.account.investAmount <= 0">未投资</span>
-        		<span class="ft-orange" ng-show="item.account.investAmount > 0">已投资</span>
-        	</div>
-        </div>
-       </div>
-       <div class="margin-t-2" ng-click="loadMoreInvites()" ng-show="totalPage > page"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<span class="cursor-hand ft-black2 text-line">查看更多</span></div>
     </section>
   </div>
 </div>
