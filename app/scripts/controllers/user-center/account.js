@@ -16,7 +16,7 @@ angular.module('p2pSiteMobApp')
      */
     $scope.userHeadImgUrl = '/images/user-center/avatar.png';
 
-    // $scope.userAccount = Restangular.one('users').one('0/account').get().$object;
+    $scope.userAccount = Restangular.one('users').one('0/account').get().$object;
 
     // $scope.voucher = Restangular.one('users').one('0/userInviteNum').get().$object;
 
