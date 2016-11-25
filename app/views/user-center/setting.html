@@ -65,9 +65,9 @@
     </div>
     <div>
       <p>自动投标权限：</p>
-      <p>方便您预约
-        <span ng-show="securityStatus.autoTransfer === 1"><i class="fa fa-check-circle-o ft-green" ></i>&nbsp;已开通</span>
-        <span ng-click="checkAutoFlag=true" ng-show="securityStatus.autoTransfer !== 1"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通<small class="ft-orange">(立即开通)</small></span>
+      <p>避免余额资金闲置
+        <span><a class="ft-blue" ng-show="securityStatus.autoTransfer === 1" ui-sref="root.userCenter.security-settings">&nbsp;已开启 ></a></span>
+        <span><a class="ft-blue" ng-show="securityStatus.autoTransfer !== 1" ui-sref="root.userCenter.security-settings">&nbsp;立即开启 ></a></span>
       </p>
     </div>
   </div>

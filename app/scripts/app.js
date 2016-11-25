@@ -386,6 +386,22 @@ p2pSiteMobApp
           }
         }
       })
+
+      // 新自动投标
+      .state('root.userCenter.security-settings', {
+        url: '/security-settings',
+        data: {
+          title: '自动投标'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/security-settings.html',
+            // controller: 'SecuritySettingsCtrl',
+            // controllerUrl: 'scripts/controllers/user-center/security-settings'
+          }
+        }
+      })
+
       //修改手机号码
       .state('root.userCenter.resetMobile', {
         url: '/reset-mobile',
