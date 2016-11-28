@@ -1,5 +1,5 @@
 <!-- 未开启待编辑状态-->
-<section>
+<section ng-show = "false">
 	<div class="security-setted ft-1p5" auto-height>
 		<div class="balance bg-white padding-l-1p5 padding-r-1p5 margin-b-1p2 border-grey-bottom">
 			<p class="margin-b-0 padding-t-1 padding-b-1 ft-666">账户可用余额
@@ -15,12 +15,13 @@
 				</div>
 				<div class="fr edit-amount">
 					<span class="ft-grey999 fr">元</span>
-					<input type="number" name="investAmount" placeholder="100" class="fr margin-b-0">
+					<input type="number" name="investAmount" placeholder="100" class="fr margin-b-0 ft-Arial text-center">
+					<!-- <input type="number" name="investAmount" placeholder="100" class="fr margin-b-0 ft-Arial text-center border-none" disabled="disabled"> -->
 					<span class="ft-1p2 fr ft-greyaaa margin-l-2">每笔投资金额都将大于此数值</span>
 				</div>
 			</div>
 
-			<div class="padding-t-1 border-grey-bottom clearfix">
+			<div class="padding-t-1 border-greye-bottom clearfix">
 				<div class="fl padding-t-0p6 edit-text">
 					<p class="margin-b-0 ft-666">
 						最高标的期限
@@ -30,8 +31,8 @@
 					<span class="ft-grey999 fr">
 						<i class="angle-down fa fa-angle-down ft-1p8"></i>
 					</span>
-					<input type="number" name="investAmount" placeholder="100" class="fr margin-b-1" disabled="disabled">
-					<ul class="position-ab ft-1p4 ft-grey999 bg-white border-grey text-center" ng-show=false>
+					<input type="number" name="investAmount" placeholder="100" class="fr margin-b-1 text-center" disabled="disabled">
+					<ul class="position-ab ft-1p4 ft-grey999 bg-white border-grey text-center ft-Arial" ng-show=false>
 						<li>30</li>
 						<li>60</li>
 						<li>90</li>
@@ -43,7 +44,7 @@
 				</div>
 			</div>
 
-			<div class="padding-t-1 border-grey-bottom clearfix">
+			<div class="padding-t-1 border-greye-bottom clearfix">
 				<div class="fl padding-t-0p6 edit-text">
 					<p class="margin-b-0 ft-666">
 						最低预期收益
@@ -53,8 +54,8 @@
 					<span class="ft-grey999 fr">
 						<i class="angle-down fa fa-angle-down ft-1p8"></i>
 					</span>
-					<input type="number" name="investAmount" placeholder="7" class="fr margin-b-1" disabled="disabled">
-					<ul class="position-ab ft-1p4 ft-grey999 bg-white border-grey text-center" ng-show=false>
+					<input type="number" name="investAmount" placeholder="7" class="fr margin-b-1 text-center" disabled="disabled">
+					<ul class="position-ab ft-1p4 ft-grey999 bg-white border-grey text-center ft-Arial" ng-show=false>
 						<li>7</li>
 						<li>8</li>
 						<li>9</li>
@@ -66,7 +67,7 @@
 				</div>
 			</div>
 
-			<div class="padding-t-1 border-grey-bottom clearfix">
+			<div class="padding-t-1 border-greye-bottom clearfix">
 				<div class="fl padding-t-0p6 edit-text">
 					<p class="margin-b-0 ft-666">
 						标的类型
@@ -76,7 +77,7 @@
 					<span class="ft-grey999 fr">
 						<i class="angle-down fa fa-angle-down ft-1p8"></i>
 					</span>
-					<input type="number" name="investAmount" placeholder="不限" class="fr margin-b-1" disabled="disabled">
+					<input type="text" name="investAmount" placeholder="不限" class="fr margin-b-1 text-center" disabled="disabled">
 					<ul class="position-ab ft-1p4 ft-grey999 bg-white border-grey text-center" ng-show="false">
 						<li>宏金保</li>
 						<li>债权转让</li>
@@ -85,7 +86,7 @@
 				</div>
 			</div>
 
-			<div class="padding-t-1 border-grey-bottom clearfix">
+			<div class="padding-t-1 border-greye-bottom clearfix">
 				<div class="fl padding-t-1 edit-text">
 					<p class="margin-b-0 ft-666">
 						账户保留金额
@@ -93,7 +94,7 @@
 				</div>
 				<div class="fr edit-amount edit-remain">
 					<span class="ft-grey999 fr">元</span>
-					<input type="number" name="remainAmount" placeholder="100" class="fr margin-b-0">
+					<input type="number" name="remainAmount" placeholder="100" class="fr margin-b-0 ft-Arial text-center">
 					<span class="ft-1p2 fr ft-greyaaa margin-l-1">这部分资金将不会加入自动投标</span>
 				</div>
 			</div>
@@ -120,16 +121,87 @@
 		</div>
 	</div>
 </section>
-<section ng-show="false">
-	<div class="security-set">
-		<div class="balance bg-white padding-l-1p5 padding-r-1p5">
-			
+<section ng-show="true">
+	<div class="security-setted ft-1p5" auto-height>
+			<div class="balance bg-white padding-l-1p5 padding-r-1p5 margin-b-1p2 border-grey-bottom">
+				<p class="margin-b-0 padding-t-1 padding-b-1 ft-666">账户可用余额
+					<span class="ft-orange fr ft-Arial ft-1p7 margin-r-3">2222222.00元</span>
+				</p>
+			</div>
+			<div class="security-edit bg-white padding-l-1p5 padding-r-1p5 clearfix border-grey-bottom border-grey-top">
+				<div class="padding-t-1 padding-b-1 border-grey-bottom clearfix">
+					<div class="fl padding-t-0p6 edit-text">
+						<p class="margin-b-0 ft-666">
+							最小投标金额
+						</p>
+					</div>
+					<div class="fr edit-amount">
+						<input type="number" name="investAmount" placeholder="100元" class="fr margin-b-0 ft-Arial text-center border-none" disabled="disabled">
+					</div>
+				</div>
+
+				<div class="padding-t-1 border-greye-bottom clearfix">
+					<div class="fl padding-t-0p6 edit-text">
+						<p class="margin-b-0 ft-666">
+							最高标的期限
+						</p>
+					</div>
+					<div class="fr edit-amount edit-range position-re">
+						<input type="number" name="investAmount" placeholder="100天" class="fr margin-b-1 text-center border-none" disabled="disabled">
+					</div>
+				</div>
+
+				<div class="padding-t-1 border-greye-bottom clearfix">
+					<div class="fl padding-t-0p6 edit-text">
+						<p class="margin-b-0 ft-666">
+							最低预期收益
+						</p>
+					</div>
+					<div class="fr edit-amount edit-annual position-re">
+						<input type="number" name="investAmount" placeholder="7%" class="fr margin-b-1 text-center border-none" disabled="disabled">
+					</div>
+				</div>
+
+				<div class="padding-t-1 border-greye-bottom clearfix">
+					<div class="fl padding-t-0p6 edit-text">
+						<p class="margin-b-0 ft-666">
+							标的类型
+						</p>
+					</div>
+					<div class="fr edit-amount edit-type position-re">
+						<input type="text" name="investAmount" placeholder="不限" class="fr margin-b-1 text-center border-none" disabled="disabled">
+					</div>
+				</div>
+
+				<div class="padding-t-1 padding-b-1 border-greye-bottom clearfix">
+					<div class="fl padding-t-0p6 edit-text">
+						<p class="margin-b-0 ft-666">
+							账户保留金额
+						</p>
+					</div>
+					<div class="fr edit-amount edit-remain">
+						<input type="number" name="remainAmount" placeholder="100元" class="fr margin-b-0 ft-Arial text-center border-none" disabled="disabled">
+					</div>
+				</div>
+
+				<div class="padding-t-1 clearfix">
+					<div class="fl padding-t-0p6 edit-text">
+						<p class="margin-b-0 ft-666">
+							有效日期
+						</p>
+					</div>
+					<div class="fr edit-amount edit-type position-re">
+						<span class="ft-grey999 fr">
+							<i class="angle-down fa fa-angle-down ft-1p8"></i>
+						</span>
+						<input type="number" name="investAmount" placeholder="不限" class="fr margin-b-1" disabled="disabled">
+					</div>
+				</div>
+
+			</div>
+			<div class="virify text-center">
+				<button class="turn-to text-center ft-1p6 ft-white bg-orange">修改</button>
+				<button class="turn-off text-center ft-1p6 ft-white bg-greya1">禁用</button>
+			</div>
 		</div>
-		<div class="security-edit bg-white padding-l-1p5 padding-r-1p5">
-			
-		</div>
-		<div class="virify">
-			
-		</div>
-	</div>
 </section>
