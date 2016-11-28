@@ -23,7 +23,8 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   'restangular',
   'ui.bootstrap',
   //'restangular',
-  'textAngular'
+  'textAngular',
+  'angular-datepicker'
 ]);
 
 p2pSiteMobApp
@@ -396,8 +397,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/user-center/security-settings.html',
-            // controller: 'SecuritySettingsCtrl',
-            // controllerUrl: 'scripts/controllers/user-center/security-settings'
+            controller: 'SecuritySettingsCtrl',
+            controllerUrl: 'scripts/controllers/user-center/security-settings'
           }
         }
       })
