@@ -91,7 +91,7 @@ angular.module('p2pSiteMobApp')
      */
     $scope.toAuthAutoTransfer = function() {
       if($rootScope.securityStatus.autoTransfer = 1) {
-        $state.go('root.userCenter.security-settings');
+        $state.go('root.userCenter.autotender');
         return;
       } 
       $state.go('root.yeepay-transfer', {

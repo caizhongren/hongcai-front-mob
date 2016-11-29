@@ -9,7 +9,7 @@
  */
 angular.module('p2pSiteMobApp')
 
-.controller('SecuritySettingsCtrl', function ($rootScope, $scope, $state, $timeout, Restangular) {
+.controller('AutoTenderCtrl', function ($rootScope, $scope, $state, $timeout, Restangular, DateUtils) {
   $scope.showStatus = false;
   $scope.showDateLimit = false;
   $scope.showAnnual = false;
@@ -18,52 +18,41 @@ angular.module('p2pSiteMobApp')
   $scope.toggle.dateList = ['30','60','90','120','180','360','不限'];
   $scope.toggle.annualList = ['7','8','9','10','11','12','不限'];
   $scope.toggle.typeList = ['宏金保','债权转让','全部'];
-  $scope.selectedDate = $scope.selectedDate? $scope.selectedDate : '不限';
+  $scope.selectedDate = $scope.selectedDate ? $scope.selectedDate : 360;
   $scope.selectedAnnual = $scope.selectedAnnual? $scope.selectedAnnual : 7;
   $scope.selectedType = $scope.selectedType? $scope.selectedType : '全部';
   $scope.amountErrMsg = $scope.amountErrMsg? $scope.amountErrMsg : null;
   $scope.remainErrMsg = $scope.remainErrMsg? $scope.remainErrMsg : null;
   $scope.selectDate = function(date) {
-    $scope.selectedDate = null;
     $scope.selectedDate = date;
-    // $scope.showAnnual = false;
-    // $scope.showType = false;
   }
+
   $scope.selectAnnual = function(annual) {
-    $scope.selectedAnnual = null;
     $scope.selectedAnnual = annual;
-    // $scope.showDateLimit = false;
-    // $scope.showType = false;
   }
+
   $scope.selectType = function(type) {
-    $scope.selectedType = null;
     $scope.selectedType = type;
-    console.log($scope.selectedType);
-    console.log($scope.selectedDate);
-    // $scope.showDateLimit = false;
-    // $scope.showAnnual = false;
   }
 
 
   var pattern1 = /^\+?[1-9][0-9]*$/;
   var pattern2 = /^[0-9]*(\.[0-9]{1,2})?$/;
   var checkMinAmount = function(val) {
-    if(val == undefined || !val) {
+    if(val == undefined || val == undefined) {
       $scope.amountErrMsg = '最小投标金额不能为空';
-    }
-    if(val > 1000000){
+    }else if(val > 1000000){
       $scope.amountErrMsg = '最小投标金额必须小于1000000';
     }else if(val < 100 || val % 100 !==0 || !(pattern1.test(val))){
       $scope.amountErrMsg = '请输入100的正整数倍';
     }
   };
   var checkRemainAmount = function(val) {
-    if(val == undefined || !val) {
+    if(val == undefined || val == undefined) {
       $scope.remainErrMsg = '账户保留金额不能为空'
-    }
-    if(val > 1000000){
+    }else if(val > 1000000){
       $scope.remainErrMsg = '账户保留金额必须小于1000000';
-    }else if(val <= 0 || !(pattern2.test(val))){
+    }else if(val < 0 || !(pattern2.test(val))){
       $scope.remainErrMsg = '最多保留两位小数';
     }
   }
@@ -97,9 +86,21 @@ angular.module('p2pSiteMobApp')
    Restangular.one('/users/' + $rootScope.securityStatus.userId + '/autoTender' ).get({
      userId: $rootScope.securityStatus.userId
    }).then(function(response){
+      // response
+
+
     $scope.autoTenders = response;
     $scope.autoTenders.maxRemainDay = $scope.autoTenders.maxRemainDay == 1825 ? '不限' : $scope.autoTenders.maxRemainDay;
     $scope.autoTenders.annualEarnings = $scope.autoTenders.annualEarnings == 0 ? '不限' : $scope.autoTenders.annualEarnings;
+
+    $scope.autoTenders.minInvestAmount = !$scope.autoTenders.minInvestAmount  ? 100 : $scope.autoTenders.minInvestAmount ;
+    $scope.autoTenders.remainAmount = !$scope.autoTenders.remainAmount  ? 0 : $scope.autoTenders.remainAmount ;
+    $scope.autoTenders.startTime = !$scope.autoTenders.startTime ? new Date().getTime() : $scope.autoTenders.startTime;
+    $scope.autoTenders.endTime = !$scope.autoTenders.endTime ? new Date().getTime() + 365 * 24 * 3600 * 1000 : $scope.autoTenders.endTime;
+
+    $scope.autoTenders.startDate = DateUtils.longTimeToDate($scope.autoTenders.startTime);
+    $scope.autoTenders.endDate = DateUtils.longTimeToDate($scope.autoTenders.endTime);
+
    })
  };
  $scope.autoTendersDetail();
@@ -131,30 +132,32 @@ var toSetting = function() {
 /*
 *开启、编辑自动投标
 */
-$scope.onAutoTenders = function(form) {
-  var startDate = getMs(form.startDate);
-  var endDate = getMs(form.endDate);
+$scope.onAutoTenders = function(autoTender) {
+
+  
+  var startTime = getMs(autoTender.startDate) ;
+  var endTime = getMs(autoTender.endDate);
   var Type = selectInvestType($scope.selectedType);
   var annual = $scope.selectedAnnual == "不限"? 0 : $scope.selectedAnnual;
   var days = $scope.selectedDate == "不限"? 1825 : $scope.selectedDate;
-  checkMinAmount(form.amount);
-  checkRemainAmount(form.remain);
-  if($scope.amountErrMsg !== null || $scope.remainErrMsg !== null) {
+  checkMinAmount(autoTender.minInvestAmount);
+  checkRemainAmount(autoTender.remainAmount);
+  if($scope.amountErrMsg || $scope.remainErrMsg) {
     return;
   }
   Restangular.one('/autoTenders').post('',{
     userId: $rootScope.securityStatus.userId,
-    minInvestAmount: form.amount,
+    minInvestAmount: autoTender.minInvestAmount,
     minRemainDay: 0,
     maxRemainDay: days,
     annualEarnings: annual,
     investType: Type,
-    remainAmount: form.remain,
-    startTime: startDate,
-    endTime: endDate
+    remainAmount: autoTender.remainAmount,
+    startTime: startTime,
+    endTime: endTime
   }).then(function(response){
     if(response && response.ret !== -1) {
-      $rootScope.successMsg = '开启成功！';
+      $rootScope.successMsg = '已开启！';
       $rootScope.showSuccessToast = true;
       $timeout(function() {
         $rootScope.showSuccessToast = false;
@@ -166,8 +169,7 @@ $scope.onAutoTenders = function(form) {
 };
 
 /*
-*关闭自动投标userId:用户ID,
-          status:1:启用，2:过期，3:禁用
+*关闭自动投标
 */
 $scope.offAutoTenders = function() {
   Restangular.one('/users/' + $rootScope.securityStatus.userId + '/disabledAutoTender').put({
@@ -175,7 +177,7 @@ $scope.offAutoTenders = function() {
     status: 3
   }).then(function(response){
     if(response && response.ret !== -1){
-      $rootScope.successMsg = '禁用成功！';
+      $rootScope.successMsg = '已禁用！';
       $rootScope.showSuccessToast = true;
       $timeout(function() {
         $rootScope.showSuccessToast = false;

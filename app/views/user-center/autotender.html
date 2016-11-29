@@ -1,6 +1,6 @@
 <!-- 未开启或可修改状态-->
 
-<form ng-show = "autoTenders.userId === null || showStatus" name="securityForm">
+<form ng-show = "autoTenders.status !== 1 || showStatus" name="autoTenderForm">
 	<div class="security-setted ft-1p5" auto-height>
 		<div class="balance bg-white padding-l-1p5 padding-r-1p5 margin-b-1p2 border-grey-bottom">
 			<p class="margin-b-0 padding-t-1 padding-b-1 ft-666">账户可用余额
@@ -16,10 +16,10 @@
 				</div>
 				<div class="fr edit-amount position-re">
 					<span class="ft-grey999 fr">元</span>
-					<input type="number" name="minInvestAmount" placeholder="100" class="fr margin-b-0 ft-Arial text-center" ng-model="form.amount">
+					<input type="number" name="minInvestAmount" class="fr margin-b-0 ft-Arial text-center" ng-model="autoTenders.minInvestAmount">
 					<span class="ft-1p2 fr ft-greyaaa margin-l-2">每笔投资金额都将大于此数值</span>
 					<div class="test" ng-show="amountErrMsg !== null">{{amountErrMsg}}</div>
-					<div class="test" ng-show="form.amount === 0">请输入100的正整数倍</div>
+					<div class="test" ng-show="autoTenders.amount === 0">请输入100的正整数倍</div>
 				</div>
 			</div>
 
@@ -33,7 +33,7 @@
 					<span class="ft-grey999 fr">
 						<i class="angle-down fa fa-angle-down ft-1p8"></i>
 					</span>
-					<p class="display-inb fr  margin-b-0 ft-Arial ft-666" ng-model="form.maxDays">{{selectedDate || '不限'}}<small class="ft-1p5" ng-hide="selectedDate == '不限' ">天</small></p>
+					<p class="display-inb fr  margin-b-0 ft-Arial ft-666" ng-model="autoTenders.maxDays">{{selectedDate || '不限'}}<small class="ft-1p5" ng-hide="selectedDate == '不限' ">天</small></p>
 					<ul class="position-ab ft-1p4 ft-grey999 bg-white border-grey text-center ft-Arial" ng-show="showDateLimit">
 						<li ng-repeat="date in toggle.dateList" ng-click="selectDate(date)">{{date}}<small class="ft-1p5" ng-hide="date == '不限' ">天</small></li>
 					</ul>
@@ -50,9 +50,9 @@
 					<span class="ft-grey999 fr">
 						<i class="angle-down fa fa-angle-down ft-1p8"></i>
 					</span>
-					<p class="display-inb fr  margin-b-0 ft-Arial text-center ft-666" ng-model="form.minAnnual">{{selectedAnnual || 7}}<small class="ft-qp5" ng-hide="selectedAnnual == '不限' ">%</small></p>
+					<p class="display-inb fr  margin-b-0 ft-Arial text-center ft-666" >{{autoTenders.annualEarnings || 7}}<small class="ft-qp5" ng-hide="autoTenders.annualEarnings !== 0 ">%</small></p>
 					<ul class="position-ab ft-1p4 ft-grey999 bg-white border-grey text-center ft-Arial" ng-show="showAnnual">
-						<li ng-repeat="annual in toggle.annualList" ng-click="selectAnnual(annual)">{{annual}}<small class="ft-qp5" ng-hide="annual == '不限' ">%</small></li>
+						<li ng-repeat="annual in toggle.annualList" ng-click="selectAnnual(annual)">{{annual}}<small class="ft-qp5" ng-hide="autoTenders.annualEarnings === 0">%</small></li>
 					</ul>
 				</div>
 			</div>
@@ -67,7 +67,7 @@
 					<span class="ft-grey999 fr">
 						<i class="angle-down fa fa-angle-down ft-1p8"></i>
 					</span>
-					<p class="display-inb fr  margin-b-0 ft-Arial text-center ft-666" ng-model="form.invetType">{{selectedType || '宏金保'}}</p>
+					<p class="display-inb fr  margin-b-0 ft-Arial text-center ft-666" ng-model="autoTenders.investType">{{selectedType || '宏金保'}}</p>
 					<ul class="position-ab ft-1p4 ft-grey999 bg-white border-grey text-center" ng-show="showType">
 						<li ng-repeat="type in toggle.typeList" ng-click="selectType(type)">{{type}}</li>
 					</ul>
@@ -82,10 +82,9 @@
 				</div>
 				<div class="fr edit-amount edit-remain position-re">
 					<span class="ft-grey999 fr">元</span>
-					<input type="number" name="remainAmount" placeholder="100" class="fr margin-b-0 ft-Arial text-center" ng-model="form.remain">
+					<input type="number" name="remainAmount" class="fr margin-b-0 ft-Arial text-center" ng-model="autoTenders.remainAmount">
 					<span class="ft-1p2 fr ft-greyaaa margin-l-1">这部分资金将不会加入自动投标</span>
 					<div class="test" ng-show="remainErrMsg !== null">{{remainErrMsg}}</div>
-					<div class="test" ng-show="form.remain === 0">保留金额必须大于0</div>
 				</div>
 			</div>
 
@@ -97,23 +96,23 @@
 				</div>
 				<div class="fr edit-amount edit-date position-re">
 					<div>
-						<input type="text" name="startTime" placeholder="开始时间" class="fl" id ="picker" onblur="(this.type='text')" onfocus="(this.type='date')" oninput="(this.type='text')" onchange="(this.type='text')" ng-model="form.startDate">
+						<input type="text" name="startTime"  class="fl" id ="picker" onblur="(this.type='text')" onfocus="(this.type='date')" oninput="(this.type='text')" onchange="(this.type='text')" ng-model="autoTenders.startDate">
 						<i class="fa fa-calendar fl ft-orange ft-2" aria-hidden="true"></i>
 					</div>
-					<div><input type="text" name="endTime" placeholder="结束时间"  class="fl" onblur="(this.type='text')" onfocus="(this.type='date')" oninput="(this.type='text')" onchange="(this.type='text')" ng-model="form.endDate">
+					<div><input type="text" name="endTime" class="fl" onblur="(this.type='text')" onfocus="(this.type='date')" oninput="(this.type='text')" onchange="(this.type='text')" ng-model="autoTenders.endDate">
 					<i class="fa fa-calendar fl ft-orange ft-2" aria-hidden="true"></i></div>
 				</div>
 			</div>
 
 		</div>
 		<div class="virify text-center">
-			<button class="turn-on text-center ft-1p6 ft-white bg-orange" type="submit" ng-click="onAutoTenders(form);">开启</button>
+			<button class="turn-on text-center ft-1p6 ft-white bg-orange" type="submit" ng-click="onAutoTenders(autoTenders);">开启</button>
 		</div>
 	</div>
 </form>
 
 <!-- 已开启查看状态 -->
-<form ng-show="autoTenders.userId !== null" ng-hide="showStatus === true">
+<form ng-show="autoTenders.status === 1 " ng-hide="showStatus === true || autoTenders.status !== 1">
 	<div class="security-setted ft-1p5" auto-height>
 			<div class="balance bg-white padding-l-1p5 padding-r-1p5 margin-b-1p2 border-grey-bottom padding-t-1p5 padding-b-1p5">
 				<span class="ft666">账户可用余额</span>
@@ -196,7 +195,7 @@
 			</div>
 			<div class="virify text-center">
 				<button class="turn-to text-center ft-1p6 ft-white bg-orange" ng-click="showStatus = true">修改</button>
-				<button class="turn-off text-center ft-1p6 ft-white bg-greya1" ng-click="offAutoTenders();">禁用</button>
+				<button class="turn-off text-center ft-1p6 ft-white" ng-click="offAutoTenders();">禁用</button>
 			</div>
 		</div>
 		

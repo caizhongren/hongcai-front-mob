@@ -389,16 +389,16 @@ p2pSiteMobApp
       })
 
       // 新自动投标
-      .state('root.userCenter.security-settings', {
-        url: '/security-settings',
+      .state('root.userCenter.autotender', {
+        url: '/autotender',
         data: {
           title: '自动投标'
         },
         views: {
           '': {
-            templateUrl: 'views/user-center/security-settings.html',
-            controller: 'SecuritySettingsCtrl',
-            controllerUrl: 'scripts/controllers/user-center/security-settings'
+            templateUrl: 'views/user-center/autotender.html',
+            controller: 'AutoTenderCtrl',
+            controllerUrl: 'scripts/controllers/user-center/autotender'
           }
         }
       })
