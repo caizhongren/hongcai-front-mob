@@ -1116,6 +1116,33 @@
 // 自动投标页面
 
 .security-setted, .security-set  {
+  .test{
+    width: 86%;
+    height: 4.5rem;
+    border-radius: .6rem;
+    line-height: 3rem;
+    text-align: center;
+    color: #fff;
+    font-size: 1.2rem;
+    background: url(/images/user-center/transfer-msg.png) no-repeat;
+    background-size: 100%;
+    position: absolute;
+    left: 1rem;
+    top: -3.2rem;
+
+      @media(min-width:360px) {
+        line-height: 3.5rem;
+        left: 1.5rem;
+        top: -3.8rem;
+      }
+      @media(min-width:341px) {
+        line-height: 4rem;
+        font-size: 1.3rem;
+      }
+    }
+  .bg-eee {
+    background-color: #eee;
+  }
   .ft-trans {
     color: transparent !important;
     background-color: #fff !important;
@@ -1170,6 +1197,7 @@
         width: 74%;
         top: 38px;
         right: 37px;
+        z-index: 999;
         @media(min-width: 375px) {
           width: 81%;
         }
@@ -1180,6 +1208,9 @@
           text-align: center;
           color: #999;
           top: 0;
+        }
+        li:hover {
+          background-color: #eee !important;
         }
       }
       input::-webkit-input-placeholder{ text-align: center; }
@@ -1207,6 +1238,16 @@
         background-color: #eee;
         border-left: none;
         text-align: center;
+      }
+    }
+    .edit-amount.edit-date {
+      width: 60%;
+      input[type="date"] {
+        margin-bottom: 0.8rem;
+        text-align: center;
+      }
+      input[type="date"]:focus {
+        border: 1px solid #fe8f3f !important;
       }
     }
   }

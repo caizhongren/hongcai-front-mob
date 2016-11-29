@@ -10,7 +10,7 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   // 'angular-loading-bar',
   // 'ngCookies',
   // 'angular-cache',
-  'angular-datepicker',
+  // 'angular-datepicker',
   'ngAnimate',
   // 'ngTouch',
   'famous.angular',

@@ -10,26 +10,33 @@
 angular.module('p2pSiteMobApp')
 
 .controller('SecuritySettingsCtrl', function ($scope, $state, DEFAULT_DOMAIN, Restangular) {
+  $scope.showDateLimit = false;
+  $scope.showAnnual = false;
+  $scope.showType = false;
+  $scope.toggle = {};
+  $scope.toggle.dateList = ['30','60','90','120','180','360','不限'];
+  $scope.toggle.annualList = ['7','8','9','10','11','12','不限'];
+  $scope.toggle.typeList = ['宏金保','债权转让','不限'];
+  $scope.selectedDate = $scope.selectedDate? $scope.selectedDate : '不限';
+  $scope.selectedAnnual = $scope.selectedAnnual? $scope.selectedAnnual : '不限';
+  $scope.selectedType = $scope.selectedType? $scope.selectedType : '不限';
+  $scope.selectDate = function(date) {
+    $scope.selectedDate = null;
+    $scope.selectedDate = date;
+    $scope.showAnnual = false;
+    $scope.showType = false;
+  }
+  $scope.selectAnnual = function(annual) {
+    $scope.selectedAnnual = null;
+    $scope.selectedAnnual = annual;
+    $scope.showDateLimit = false;
+    $scope.showType = false;
+  }
+  $scope.selectType = function(type) {
+    $scope.selectedType = null;
+    $scope.selectedType = type;
+    $scope.showDateLimit = false;
+    $scope.showAnnual = false;
+  }
 
-    $scope.options = {
-      format: 'yyyy-mm-dd', // ISO formatted date
-      monthsFull: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-      // monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-      // weekdaysFull: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      // weekdaysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-      weekdaysFull: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
-      showWeekdaysFull: true,
-      showMonthsFull: true,
-      today: '',
-      clear: '清除',
-      clise: 'cancle',
-      onClose: function(e) {
-        console.log(2);  
-      }
-    }
-
-    $('.datepicker').pickadate({
-      weekdaysShort: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
-      showMonthsShort: true
-    })
-  });
+});

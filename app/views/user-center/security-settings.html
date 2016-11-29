@@ -1,5 +1,6 @@
 <!-- 未开启待编辑状态-->
-<section ng-show = "false">
+
+<section ng-show = "true">
 	<div class="security-setted ft-1p5" auto-height>
 		<div class="balance bg-white padding-l-1p5 padding-r-1p5 margin-b-1p2 border-grey-bottom">
 			<p class="margin-b-0 padding-t-1 padding-b-1 ft-666">账户可用余额
@@ -13,11 +14,12 @@
 						最小投标金额
 					</p>
 				</div>
-				<div class="fr edit-amount">
+				<div class="fr edit-amount position-re">
 					<span class="ft-grey999 fr">元</span>
-					<input type="number" name="investAmount" placeholder="100" class="fr margin-b-0 ft-Arial text-center">
+					<input type="number" name="investAmount" placeholder="100" class="fr margin-b-0 ft-Arial text-center" min="100" >
 					<!-- <input type="number" name="investAmount" placeholder="100" class="fr margin-b-0 ft-Arial text-center border-none" disabled="disabled"> -->
 					<span class="ft-1p2 fr ft-greyaaa margin-l-2">每笔投资金额都将大于此数值</span>
+					<div class="test">投资金额不能大于1000000</div>
 				</div>
 			</div>
 
@@ -27,19 +29,13 @@
 						最高标的期限
 					</p>
 				</div>
-				<div class="fr edit-amount edit-range position-re">
+				<div class="fr edit-amount edit-range position-re" ng-click="showDateLimit = !showDateLimit">
 					<span class="ft-grey999 fr">
 						<i class="angle-down fa fa-angle-down ft-1p8"></i>
 					</span>
-					<input type="number" name="investAmount" placeholder="100" class="fr margin-b-1 text-center" disabled="disabled">
-					<ul class="position-ab ft-1p4 ft-grey999 bg-white border-grey text-center ft-Arial" ng-show=false>
-						<li>30</li>
-						<li>60</li>
-						<li>90</li>
-						<li>120</li>
-						<li>180</li>
-						<li>360</li>
-						<li>不限</li>
+					<input type="number" name="investAmount" placeholder="{{selectedDate}}"  class="fr margin-b-1 text-center" disabled="disabled">
+					<ul class="position-ab ft-1p4 ft-grey999 bg-white border-grey text-center ft-Arial" ng-show="showDateLimit" ng-blur="showDateLimit = false">
+						<li ng-repeat="date in toggle.dateList" ng-click="selectDate(date)">{{date}}</li>
 					</ul>
 				</div>
 			</div>
@@ -50,19 +46,13 @@
 						最低预期收益
 					</p>
 				</div>
-				<div class="fr edit-amount edit-annual position-re">
+				<div class="fr edit-amount edit-annual position-re" ng-click="showAnnual = !showAnnual">
 					<span class="ft-grey999 fr">
 						<i class="angle-down fa fa-angle-down ft-1p8"></i>
 					</span>
-					<input type="number" name="investAmount" placeholder="7" class="fr margin-b-1 text-center" disabled="disabled">
-					<ul class="position-ab ft-1p4 ft-grey999 bg-white border-grey text-center ft-Arial" ng-show=false>
-						<li>7</li>
-						<li>8</li>
-						<li>9</li>
-						<li>10</li>
-						<li>11</li>
-						<li>12</li>
-						<li>不限</li>
+					<input type="number" name="investAmount" placeholder="{{selectedAnnual}}" class="fr margin-b-1 text-center" disabled="disabled">
+					<ul class="position-ab ft-1p4 ft-grey999 bg-white border-grey text-center ft-Arial" ng-show="showAnnual">
+						<li ng-repeat="annual in toggle.annualList" ng-click="selectAnnual(annual)">{{annual}}</li>
 					</ul>
 				</div>
 			</div>
@@ -73,15 +63,13 @@
 						标的类型
 					</p>
 				</div>
-				<div class="fr edit-amount edit-type position-re">
+				<div class="fr edit-amount edit-type position-re" ng-click="showType = !showType">
 					<span class="ft-grey999 fr">
 						<i class="angle-down fa fa-angle-down ft-1p8"></i>
 					</span>
-					<input type="text" name="investAmount" placeholder="不限" class="fr margin-b-1 text-center" disabled="disabled">
-					<ul class="position-ab ft-1p4 ft-grey999 bg-white border-grey text-center" ng-show="false">
-						<li>宏金保</li>
-						<li>债权转让</li>
-						<li>不限</li>
+					<input type="text" name="investAmount" placeholder="{{selectedType}}" class="fr margin-b-1 text-center" disabled="disabled">
+					<ul class="position-ab ft-1p4 ft-grey999 bg-white border-grey text-center" ng-show="showType">
+						<li ng-repeat="type in toggle.typeList" ng-click="selectType(type)">{{type}}</li>
 					</ul>
 				</div>
 			</div>
@@ -92,24 +80,23 @@
 						账户保留金额
 					</p>
 				</div>
-				<div class="fr edit-amount edit-remain">
+				<div class="fr edit-amount edit-remain position-re">
 					<span class="ft-grey999 fr">元</span>
 					<input type="number" name="remainAmount" placeholder="100" class="fr margin-b-0 ft-Arial text-center">
 					<span class="ft-1p2 fr ft-greyaaa margin-l-1">这部分资金将不会加入自动投标</span>
+					<div class="test">投资金额不能大于1000000</div>
 				</div>
 			</div>
 
 			<div class="padding-t-1 clearfix">
-				<div class="fl padding-t-0p6 edit-text">
+				<div class="fl edit-text">
 					<p class="margin-b-0 ft-666">
 						有效日期
 					</p>
 				</div>
-				<div class="fr edit-amount edit-type position-re">
-					<span class="ft-grey999 fr">
-						<i class="angle-down fa fa-angle-down ft-1p8"></i>
-					</span>
-					<input type="number" name="investAmount" placeholder="不限" class="fr margin-b-1" disabled="disabled">
+				<div class="fr edit-amount edit-date position-re">
+					<div><input type="date" placeholder="开始选择" class="fl" ><i class="fa fa-calendar fl ft-orange" aria-hidden="true"></i></div>
+					<div><input type="date" placeholder="开始选择"  class="fl" /><i class="fa fa-calendar fl ft-orange" aria-hidden="true"></i></div>
 				</div>
 			</div>
 
@@ -121,7 +108,7 @@
 		</div>
 	</div>
 </section>
-<section ng-show="true">
+<section ng-show="false">
 	<div class="security-setted ft-1p5" auto-height>
 			<div class="balance bg-white padding-l-1p5 padding-r-1p5 margin-b-1p2 border-grey-bottom">
 				<p class="margin-b-0 padding-t-1 padding-b-1 ft-666">账户可用余额
@@ -184,18 +171,15 @@
 					</div>
 				</div>
 
-				<div class="padding-t-1 clearfix">
-					<div class="fl padding-t-0p6 edit-text">
+				<div class="padding-t-1p5 padding-b-1p5 clearfix">
+					<div class="fl  edit-text">
 						<p class="margin-b-0 ft-666">
 							有效日期
 						</p>
 					</div>
-					<div class="fr edit-amount edit-type position-re">
-						<span class="ft-grey999 fr">
-							<i class="angle-down fa fa-angle-down ft-1p8"></i>
-						</span>
-						<input type="text" name="investAmount" placeholder=" 选择日期" class="fr margin-b-1" pick-a-date="date" pick-a-date-options="options" data-value=''>
-						<!-- <input type="text" pick-a-date="date" pick-a-date-options="options" /> -->
+					<div class="fr edit-amount edit-date ft-grey999">
+						2016/01/08 —
+						2017/01/08
 					</div>
 				</div>
 
@@ -205,4 +189,9 @@
 				<button class="turn-off text-center ft-1p6 ft-white bg-greya1">禁用</button>
 			</div>
 		</div>
+		
+
+		
+		
 </section>
+
