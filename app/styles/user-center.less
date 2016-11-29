@@ -1179,10 +1179,11 @@
     } 
     @media(min-width: 360px){
       padding-top: 4rem;
-      padding-bottom: 0;
+      margin-bottom: 3rem;
     }
     @media(min-width: 375px){
-      padding-top: 5rem;
+      padding-top: 4rem;
+      margin-bottom: 0;
     }
   }
 }
@@ -1193,6 +1194,17 @@
     }
     .edit-amount, .edit-range {
       width: 66%;
+      p {
+        width: 75%;
+        height: 38px;
+        line-height: 38px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        @media(min-width:375px) {
+          width: 82%;
+        }
+      }
       ul {
         width: 74%;
         top: 38px;
@@ -1223,7 +1235,7 @@
         text-align:center;
       }
       input:focus { border: 1px solid #e94828; }
-      input, select {
+      input, select, p{
         width: 75%;
         @media(min-width: 375px) {
           width: 82%;
@@ -1241,10 +1253,25 @@
       }
     }
     .edit-amount.edit-date {
-      width: 60%;
+      width: 63%;
+      @media(min-width: 375px) {
+        width: 65%;
+      }
+      i {
+        margin-top: .2rem;
+      }
+      input[type="text"] {
+        height: 30px;
+        text-align: center;
+        color: #666;
+      }
       input[type="date"] {
+        height: 2rem;
+        width: 86%;
+        -webkit-appearance:none;
         margin-bottom: 0.8rem;
         text-align: center;
+        border: 1px solid #ccc;
       }
       input[type="date"]:focus {
         border: 1px solid #fe8f3f !important;

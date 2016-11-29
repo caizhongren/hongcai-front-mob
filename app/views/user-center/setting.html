@@ -66,8 +66,8 @@
     <div>
       <p>自动投标权限：</p>
       <p>避免余额资金闲置
-        <span><a class="ft-blue" ng-show="securityStatus.autoTransfer === 1" ui-sref="root.userCenter.security-settings">&nbsp;已开启 ></a></span>
-        <span><a class="ft-blue" ng-show="securityStatus.autoTransfer !== 1" ui-sref="root.userCenter.security-settings">&nbsp;立即开启 ></a></span>
+        <span><a class="ft-blue" ng-show="autoTenders.status === 1" ng-click="toAuthAutoTransfer();">&nbsp;已开启 ></a></span>
+        <span><a class="ft-blue" ng-show="autoTenders.status !== 1" ng-click="toAuthAutoTransfer();">&nbsp;立即开启 ></a></span>
       </p>
     </div>
   </div>

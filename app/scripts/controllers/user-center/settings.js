@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('SettingsCtrl', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, Utils) {
+  .controller('SettingsCtrl', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, Utils, Restangular) {
 
     $scope.userHeadImgUrl = '/images/user-center/head.png';
 
@@ -75,11 +75,25 @@ angular.module('p2pSiteMobApp')
         });
     }
 
-
+    /*
+    *自动投标详情
+    */
+    $scope.autoTendersDetail = function() {
+      Restangular.one('/users/' + $rootScope.securityStatus.userId + '/autoTender' ).get({
+        userId: $rootScope.securityStatus.userId
+      }).then(function(response){
+       $scope.autoTenders = response;
+      })
+    };
+    $scope.autoTendersDetail();
     /**
      * 开通自动投标权限
      */
     $scope.toAuthAutoTransfer = function() {
+      if($rootScope.securityStatus.autoTransfer = 1) {
+        $state.go('root.userCenter.security-settings');
+        return;
+      } 
       $state.go('root.yeepay-transfer', {
         type: 'autoTransfer',
         number: "null"
