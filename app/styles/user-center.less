@@ -1265,11 +1265,17 @@
     }
     .edit-amount.edit-date {
       width: 63%;
+      @media(min-width: 360px) {
+        width: 61%;
+      }
       @media(min-width: 375px) {
         width: 65%;
       }
+      @media(min-width: 411px) {
+        width: 64%;
+      }
       i {
-        margin-top: .2rem;
+        margin-top: .1rem;
       }
       input[type="text"] {
         height: 30px;
@@ -1278,11 +1284,22 @@
       }
       input[type="date"] {
         height: 2rem;
-        width: 86%;
+        width: 58%;
+        padding-left: 4rem;
         -webkit-appearance:none;
         margin-bottom: 0.8rem;
         text-align: center;
         border: 1px solid #ccc;
+        background-color: #fff !important;
+        @media(min-width: 360px) {
+          width: 60%;
+        }
+        @media(min-width: 375px) {
+          width: 64%;
+        }
+        @media(min-width: 411px) {
+          padding-left: 5rem;
+        }
       }
       input[type="date"]:focus {
         border: 1px solid #fe8f3f !important;
