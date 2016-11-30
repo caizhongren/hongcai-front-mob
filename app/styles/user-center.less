@@ -1217,12 +1217,18 @@
         }
       }
       ul {
-        width: 74%;
+        width: 94%;
         top: 38px;
-        right: 37px;
+        right: 0;
         z-index: 999;
+        @media(min-width: 360px) {
+          width: 91%;
+        }
         @media(min-width: 375px) {
-          width: 81%;
+          width: 97.5%;
+        }
+        @media(min-width: 411px) {
+          width: 96.2%;
         }
         li {
           margin-bottom: 0;
@@ -1274,9 +1280,6 @@
       @media(min-width: 411px) {
         width: 64%;
       }
-      i {
-        margin-top: .1rem;
-      }
       input[type="text"] {
         height: 30px;
         text-align: center;
@@ -1295,10 +1298,11 @@
           width: 60%;
         }
         @media(min-width: 375px) {
-          width: 64%;
+          width: 62%;
+          padding-left: 5rem;
         }
         @media(min-width: 411px) {
-          padding-left: 5rem;
+          width: 64%;
         }
       }
       input[type="date"]:focus {

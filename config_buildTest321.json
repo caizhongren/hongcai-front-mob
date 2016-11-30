@@ -12,5 +12,6 @@
 	"domain":"http://m.test321.hongcai.com",
   	"base_file_url":"http://test321.hongcai.com/uploads/",
   	"wechat_id": "gh_34771f7f6e08",
-  	"pay_company":"cgt"
+  	"pay_company":"cgt",
+  	"isTest": true
 }
