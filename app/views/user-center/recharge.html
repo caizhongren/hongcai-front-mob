@@ -5,7 +5,7 @@
   <!-- <h6 class="text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>充值</strong></h6> -->
   <div>
     <!-- 未绑定银行卡 simpleWithdraw.cardStatus !== 'VERIFIED'-->
-    <div ng-include src="'views/user-center/_bankcardless-hint.html'" ng-show="simpleWithdraw.cardStatus !== 'VERIFIED'"></div>
+    <div ng-include src="'views/user-center/_bankcardless-hint.html'" ng-show="simpleWithdraw.cardStatus && simpleWithdraw.cardStatus !== 'VERIFIED'"></div>
     <!-- 绑定银行卡 -->
     <form class="margin-b-1p5 margin-t-1" name="rechargeForm" ng-submit="recharge(rechargeAmount);" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
       <div class="bank-span">
