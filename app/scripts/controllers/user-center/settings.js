@@ -90,15 +90,20 @@ angular.module('p2pSiteMobApp')
      * 开通自动投标权限
      */
     $scope.toAuthAutoTransfer = function() {
-      if($rootScope.securityStatus.autoTransfer = 1) {
-        $state.go('root.userCenter.autotender');
+      if($rootScope.securityStatus.realNameAuthStatus !== 1) {
+        $rootScope.toRealNameAuth();
         return;
-      } 
-      $state.go('root.yeepay-transfer', {
-        type: 'autoTransfer',
-        number: "null"
-      });
-    }
+      }
+      if($rootScope.securityStatus.autoTransfer === 1) {
+        $state.go('root.userCenter.autotender');
+      } else {
+        $state.go('root.yeepay-transfer', {
+          type: 'autoTransfer',
+          number: "null"
+        });
+      }
+    
+    };
 
 
       // 退出登录功能

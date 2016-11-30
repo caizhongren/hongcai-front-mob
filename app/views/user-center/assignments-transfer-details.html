@@ -38,3 +38,12 @@
 <div class="alert-agreement" ng-show="isShowAgreement" ng-include src="'views/_assignment-agreement.html'">
 </div>
 <div class="mask" ng-show="isShowAgreement"></div>
+<div class="project-mask autotender-tip" ng-show="showAutoTenderTip">
+  <div class="project-mask-inner margin-t-20 text-center bg-white ft-black4 ft-1p6 padding-t-3 padding-b-3">
+      <small class="padding-l-1 padding-r-1 margin-b-3 ft-1p4 display-bl">当前已开启自动投标功能，可能导致债权转让的回款资金自动出借，强烈建议您禁用此功能后再进行转让操作。</small>
+      <div class="padding-l-2 padding-r-2 clearfix">
+        <button class="fl text-center bg-orange ft-white ft-normal" ng-click="showAutoTenderTip = false">继续转让</button>
+        <button class="fr text-center ft-white ft-normal" ng-click="offAutoTenders()">立即禁用</button>
+      </div>
+  </div>
+</div>

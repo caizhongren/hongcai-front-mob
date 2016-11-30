@@ -6,8 +6,9 @@ angular.module('p2pSiteMobApp')
 
       longTimeToDate: function(longTime) {
         var date1 = new Date(longTime);
-
-        return date1.getFullYear() + '-' + (date1.getMonth() + 1) + '-' + date1.getDate();
+        var month = date1.getMonth() < 9 ? '0'+ date1.getMonth() : date1.getMonth();
+        var day = date1.getDate() < 10 ? '0' + date1.getDate() : date1.getDate();
+        return date1.getFullYear() + '-' + (month + 1) + '-' + day;
       },
 
       /**
