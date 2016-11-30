@@ -9,7 +9,7 @@
  */
 angular.module('p2pSiteMobApp')
 
-.controller('AutoTenderCtrl', function ($rootScope, $scope, $state, $timeout, Restangular, DateUtils) {
+.controller('AutoTenderCtrl',['$rootScope', '$scope', '$state', '$timeout', 'Restangular', 'DateUtils', function ($rootScope, $scope, $state, $timeout, Restangular, DateUtils) {
   $scope.showStatus = false;
   $scope.showDateLimit = false;
   $scope.showAnnual = false;
@@ -216,4 +216,4 @@ $scope.offAutoTenders = function() {
 
 
 
-});
+}]);

@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('AssignmentsTransferCtrl', function(config, Restangular, $scope, $rootScope, $state, $stateParams, $timeout, DateUtils) {
+  .controller('AssignmentsTransferCtrl',['Restangular', '$scope', '$rootScope', '$state', '$stateParams', '$timeout', 'DateUtils', function(Restangular, $scope, $rootScope, $state, $stateParams, $timeout, DateUtils) {
     var num = $stateParams.number;
     $scope.showAutoTenderTip = false;
     /*
@@ -203,4 +203,4 @@ angular.module('p2pSiteMobApp')
 
     };
 
-  });
+  }]);
