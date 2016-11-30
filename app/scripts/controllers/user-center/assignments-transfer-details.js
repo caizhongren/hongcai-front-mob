@@ -116,8 +116,8 @@ angular.module('p2pSiteMobApp')
     *自动投标详情
     */
 
-    Restangular.one('/users/' + $rootScope.hasLoggedUser.userId + '/autoTender' ).get({
-      userId: $rootScope.hasLoggedUser.userId
+    Restangular.one('/users/' + $rootScope.account.userId + '/autoTender' ).get({
+      userId: $rootScope.account.userId
     }).then(function(response){
        // response
       $scope.autoTender = response;
@@ -186,8 +186,8 @@ angular.module('p2pSiteMobApp')
     
     $scope.offAutoTenders = function() {
       $scope.showAutoTenderTip = false;
-      Restangular.one('/users/' + $rootScope.hasLoggedUser.userId + '/disabledAutoTender').put({
-        userId: $rootScope.hasLoggedUser.userId,
+      Restangular.one('/users/' + $rootScope.account.userId + '/disabledAutoTender').put({
+        userId: $rootScope.account.userId,
         status: 3
       }).then(function(response){
         if(response && response.ret !== -1){

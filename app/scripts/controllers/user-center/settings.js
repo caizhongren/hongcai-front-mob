@@ -83,8 +83,8 @@ angular.module('p2pSiteMobApp')
     *自动投标详情
     */
     $scope.autoTendersDetail = function() {
-      Restangular.one('/users/' + $rootScope.hasLoggedUser.userId + '/autoTender' ).get({
-        userId: $rootScope.hasLoggedUser.userId
+      Restangular.one('/users/' + $rootScope.hasLoggedUser.id + '/autoTender' ).get({
+        userId: $rootScope.hasLoggedUser.id
       }).then(function(response){
        $scope.autoTenders = response;
       })
