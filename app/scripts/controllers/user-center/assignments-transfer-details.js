@@ -8,8 +8,9 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('AssignmentsTransferCtrl', function(config, Restangular, $scope, $rootScope, $state, $stateParams, $timeout, DateUtils) {
+  .controller('AssignmentsTransferCtrl',['Restangular', '$scope', '$rootScope', '$state', '$stateParams', '$timeout', 'DateUtils', function(Restangular, $scope, $rootScope, $state, $stateParams, $timeout, DateUtils) {
     var num = $stateParams.number;
+    $scope.showAutoTenderTip = false;
     /*
     *获取债券认购规则
     */
@@ -110,14 +111,55 @@ angular.module('p2pSiteMobApp')
         $scope.checkAnuual(newVal);
       }
     });
+
+    /*
+    *自动投标详情
+    */
+
+    Restangular.one('/users/' + '0' + '/autoTender' ).get().then(function(response){
+       // response
+      $scope.autoTender = response;
+     
+    })
+
+    
+
+
     /*
     * 确认转让
     */
     $scope.toList = function() {
       $state.go('root.userCenter.assignments');
     }
+    $scope.goOnTransfer = function(transferAmount, transferPercent) {
+      $scope.showAutoTenderTip = false;
+      $scope.transfer(transferAmount, transferPercent);
+    }
+    $scope.transfer = function(transferAmount, transferPercent) {
+      Restangular.one('/creditRights/' + $scope.assignmentsNumber).post('assign',{
+        creditRightId: $scope.creditRight.id,
+        amount: transferAmount,
+        annualEarnings: transferPercent
+      }).then(function(response){
+        if(response && response.ret !== -1){
+          // $rootScope.showMsg('转让成功！');
+          $rootScope.showLoadingToast = false;
+          $rootScope.successMsg = '转让成功！';
+          $rootScope.showSuccessToast = true;
+          $timeout(function() {
+            $rootScope.showSuccessToast = false;
+            $rootScope.successMsg = '';
+            $scope.toList();
+          }, 1000);
+
+        } else {
+          $rootScope.showLoadingToast = false;
+          $rootScope.showMsg(response.msg);
+        }
+      });
+    }
     $scope.assignmentsTransfer = function(transferAmount, transferPercent) {
-      $rootScope.showLoadingToast = true;
+      
       if (transferAmount ==undefined || transferPercent == undefined || $scope.transferAmount <=0 ) {
         return;
       }
@@ -128,6 +170,12 @@ angular.module('p2pSiteMobApp')
           return;
         }
       }
+      if($scope.autoTender.status === 0 || $scope.autoTender.status === 1) {
+        $scope.showAutoTenderTip = true;
+        return;
+      }
+      $rootScope.showLoadingToast = true;
+      $scope.transfer(transferAmount, transferPercent);
       Restangular.one('/creditRights/' + $scope.assignmentsNumber).post('assign',{
         creditRightId: $scope.creditRight.id,
         amount: transferAmount,
@@ -158,4 +206,28 @@ angular.module('p2pSiteMobApp')
     }
 
 
-  });
+    /*
+    *关闭自动投标
+    */
+    
+    
+    $scope.offAutoTenders = function() {
+      $scope.showAutoTenderTip = false;
+      Restangular.one('/users/' + '0' + '/disabledAutoTender').put({
+        status: 3
+      }).then(function(response){
+        if(response && response.ret !== -1){
+          $rootScope.successMsg = '已禁用！';
+          $rootScope.showSuccessToast = true;
+          $timeout(function() {
+            $rootScope.showSuccessToast = false;
+            $rootScope.successMsg = '';
+            toSetting();
+          }, 1000);
+        }
+        $state.reload();
+      })
+
+    };
+
+  }]);
