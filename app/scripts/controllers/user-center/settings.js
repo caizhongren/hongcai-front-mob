@@ -43,6 +43,10 @@ angular.module('p2pSiteMobApp')
      * 绑定银行卡
      */
     $scope.bindBankcard = function() {
+      if($rootScope.securityStatus.realNameAuthStatus !== 1) {
+        $rootScope.toRealNameAuth();
+        return;
+      }
       $state.go('root.yeepay-transfer', {
         type: 'BIND_BANK_CARD'
       });
@@ -79,8 +83,8 @@ angular.module('p2pSiteMobApp')
     *自动投标详情
     */
     $scope.autoTendersDetail = function() {
-      Restangular.one('/users/' + $rootScope.securityStatus.userId + '/autoTender' ).get({
-        userId: $rootScope.securityStatus.userId
+      Restangular.one('/users/' + $rootScope.hasLoggedUser.userId + '/autoTender' ).get({
+        userId: $rootScope.hasLoggedUser.userId
       }).then(function(response){
        $scope.autoTenders = response;
       })
