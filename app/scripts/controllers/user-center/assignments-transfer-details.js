@@ -176,27 +176,6 @@ angular.module('p2pSiteMobApp')
       }
       $rootScope.showLoadingToast = true;
       $scope.transfer(transferAmount, transferPercent);
-      Restangular.one('/creditRights/' + $scope.assignmentsNumber).post('assign',{
-        creditRightId: $scope.creditRight.id,
-        amount: transferAmount,
-        annualEarnings: transferPercent
-      }).then(function(response){
-        if(response && response.ret !== -1){
-          // $rootScope.showMsg('转让成功！');
-          $rootScope.showLoadingToast = false;
-          $rootScope.successMsg = '转让成功！';
-          $rootScope.showSuccessToast = true;
-          $timeout(function() {
-            $rootScope.showSuccessToast = false;
-            $rootScope.successMsg = '';
-            $scope.toList();
-          }, 1000);
-
-        } else {
-          $rootScope.showLoadingToast = false;
-          $rootScope.showMsg(response.msg);
-        }
-      });
     }
     
     //转让协议

@@ -10,6 +10,12 @@
 angular.module('p2pSiteMobApp')
 
 .controller('AutoTenderCtrl',['$rootScope', '$scope', '$state', '$timeout', 'Restangular', 'DateUtils', function ($rootScope, $scope, $state, $timeout, Restangular, DateUtils) {
+
+
+
+  $scope.testDate = new Date();
+
+
   $scope.showStatus = false;
   $scope.showDateLimit = false;
   $scope.showAnnual = false;
@@ -123,7 +129,7 @@ angular.module('p2pSiteMobApp')
     $scope.autoTenders.maxRemainDay = !$scope.autoTenders.maxRemainDay ? 360 : $scope.autoTenders.maxRemainDay;
     $scope.autoTenders.maxRemainDay = $scope.autoTenders.maxRemainDay && $scope.autoTenders.maxRemainDay == 1825 ? '不限' : $scope.autoTenders.maxRemainDay;
     $scope.autoTenders.annualEarnings = !$scope.autoTenders.annualEarnings ? 7 : $scope.autoTenders.annualEarnings;
-    $scope.autoTenders.annualEarnings = $scope.autoTenders.annualEarnings == 0 ? '不限' : $scope.autoTenders.annualEarnings;
+    $scope.autoTenders.annualEarnings = $scope.autoTenders.annualEarnings && $scope.autoTenders.annualEarnings == 0 ? '不限' : $scope.autoTenders.annualEarnings;
     $scope.autoTenders.investnum = !$scope.autoTenders.investType ? 0 : $scope.autoTenders.investType;
     //没有选择类型，期限，利率，默认是后端传来的值，后端传来null,就是设置的默认值
     $scope.selectedType = $scope.selectedType ? $scope.selectedType : typeToNum($scope.autoTenders.investType);

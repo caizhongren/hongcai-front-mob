@@ -50,9 +50,9 @@
 					<span class="ft-grey999 fr">
 						<i class="angle-down fa fa-angle-down ft-1p8"></i>
 					</span>
-					<p class="display-inb fr  margin-b-0 ft-Arial text-center ft-666" >{{selectedAnnual || 7}}<small class="ft-qp5" ng-hide="autoTenders.annualEarnings === 0 ">%</small></p>
+					<p class="display-inb fr  margin-b-0 ft-Arial text-center ft-666" >{{selectedAnnual || 7}}<small class="ft-qp5" ng-hide="selectedAnnual === '不限' ">%</small></p>
 					<ul class="position-ab ft-1p4 ft-grey999 bg-white border-grey text-center ft-Arial" ng-show="showAnnual">
-						<li ng-repeat="annual in toggle.annualList" ng-click="selectAnnual(annual)">{{annual}}<small class="ft-qp5" ng-hide="autoTenders.annualEarnings === 0">%</small></li>
+						<li ng-repeat="annual in toggle.annualList" ng-click="selectAnnual(annual)">{{annual}}<small class="ft-qp5" ng-hide="annual == '不限'">%</small></li>
 					</ul>
 				</div>
 			</div>
@@ -96,10 +96,10 @@
 				</div>
 				<div class="fr edit-amount edit-date position-re">
 					<div>
-						<input type="date" name="startTime"  class="fl" id ="picker"  ng-model="autoTenders.startDate" value="autoTenders.startDate">
+						<input type="date" name="startTime"  class="fl" id ="picker"  ng-model="testDate" value="autoTenders.startDate" >
 						<i class="fa fa-calendar fl ft-orange ft-2" aria-hidden="true"></i>
 					</div>
-					<div><input type="date" name="endTime" class="fl" ng-model="autoTenders.endDate" value="autoTenders.endDate">
+					<div><input type="date" name="endTime" class="fl" ng-model="testDate" value="autoTenders.endDate">
 					<i class="fa fa-calendar fl ft-orange ft-2" aria-hidden="true"></i></div>
 				</div>
 			</div>
@@ -115,67 +115,67 @@
 <form ng-show="autoTenders.status !==null " ng-hide="showStatus === true || autoTenders.status === null">
 	<div class="security-setted ft-1p5" auto-height>
 			<div class="balance bg-white padding-l-1p5 padding-r-1p5 margin-b-1p2 border-grey-bottom padding-t-1p5 padding-b-1p5">
-				<span class="ft666">账户可用余额</span>
+				<span class="ft-666">账户可用余额</span>
 				<span class="ft-orange fr ft-Arial ft-1p7 margin-r-3">{{account.balance || 0 | number: 2}}元</span>
 			</div>
 			<div class="security-edit bg-white padding-l-1p5 padding-r-1p5 clearfix border-grey-bottom border-grey-top">
 				<div class="padding-t-1 padding-b-1 border-greye-bottom clearfix">
-					<div class="fl padding-t-0p6 edit-text">
+					<div class="fl padding-t-0p5 edit-text">
 						<p class="margin-b-0 ft-666">
 							最小投标金额
 						</p>
 					</div>
-					<div class="fr edit-amount padding-t-0p6 ft-grey999 text-center">
+					<div class="fr edit-amount padding-t-0p5 ft-grey999 text-center">
 						{{autoTenders.minInvestAmount || 100}}元
 					</div>
 				</div>
 
 				<div class="padding-t-1 padding-b-1 border-greye-bottom clearfix">
-					<div class="fl padding-t-0p6 edit-text">
+					<div class="fl padding-t-0p5 edit-text">
 						<p class="margin-b-0 ft-666">
 							最高标的期限
 						</p>
 					</div>
-					<div class="fr edit-amount padding-t-0p6 ft-grey999 text-center">
+					<div class="fr edit-amount padding-t-0p5 ft-grey999 text-center">
 						{{autoTenders.maxRemainDay || 0}}<small class="ft-1p5" ng-hide="autoTenders.maxRemainDay=='不限'">天</small>
 					</div>
 				</div>
 
 				<div class="padding-t-1 padding-b-1 border-greye-bottom clearfix">
-					<div class="fl padding-t-0p6 edit-text">
+					<div class="fl padding-t-0p5 edit-text">
 						<p class="margin-b-0 ft-666">
 							最低预期收益
 						</p>
 					</div>
-					<div class="fr edit-amount padding-t-0p6 ft-grey999 text-center">
-						{{autoTenders.annualEarnings || 7}}<small class="ft-1p5" ng-hide="autoTenders.maxRemainDay=='不限'">%</small>
+					<div class="fr edit-amount padding-t-0p5 ft-grey999 text-center">
+						{{autoTenders.annualEarnings}}<small class="ft-1p5" ng-hide="autoTenders.annualEarnings== 0">%</small>
 					</div>
 				</div>
 
 				<div class="padding-t-1 padding-b-1 border-greye-bottom clearfix">
-					<div class="fl padding-t-0p6 edit-text">
+					<div class="fl padding-t-0p5 edit-text">
 						<p class="margin-b-0 ft-666">
 							标的类型
 						</p>
 					</div>
-					<div class="fr edit-amount padding-t-0p6 ft-grey999 text-center" ng-if="autoTenders.investType === 1">
+					<div class="fr edit-amount padding-t-0p5 ft-grey999 text-center" ng-if="autoTenders.investType === 1">
 						宏金保
 					</div>
-					<div class="fr edit-amount padding-t-0p6 ft-grey999 text-center" ng-if="autoTenders.investType === 2">
+					<div class="fr edit-amount padding-t-0p5 ft-grey999 text-center" ng-if="autoTenders.investType === 2">
 						债权转让
 					</div>
-					<div class="fr edit-amount padding-t-0p6 ft-grey999 text-center" ng-if="autoTenders.investType === 0">
+					<div class="fr edit-amount padding-t-0p5 ft-grey999 text-center" ng-if="autoTenders.investType === 0">
 						全部
 					</div>
 				</div>
 
 				<div class="padding-t-1 padding-b-1 border-greye-bottom clearfix">
-					<div class="fl padding-t-0p6 edit-text">
+					<div class="fl padding-t-0p5 edit-text">
 						<p class="margin-b-0 ft-666">
 							账户保留金额
 						</p>
 					</div>
-					<div class="fr edit-amount padding-t-0p6 ft-grey999 text-center">
+					<div class="fr edit-amount padding-t-0p5 ft-grey999 text-center">
 						{{autoTenders.remainAmount || 0 }}
 					</div>
 				</div>
@@ -194,7 +194,7 @@
 
 			</div>
 			<div class="virify text-center">
-				<button class="turn-to text-center ft-1p6 ft-white bg-orange" ng-click="showStatus = true">修改</button>
+				<button class="turn-to text-center ft-1p6 ft-white bg-orange" ng-click="showStatus = true" >修改</button>
 				<button class="turn-off text-center ft-1p6 ft-white" ng-click="offAutoTenders();">禁用</button>
 			</div>
 		</div>
