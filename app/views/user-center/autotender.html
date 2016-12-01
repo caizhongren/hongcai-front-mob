@@ -97,18 +97,18 @@
 				<div class="fr edit-amount edit-date position-re">
 					<div class="end-time margin-t--0p5">
 						<input type="date" name="endTime" id="endTime" class="fr" ng-model="autoTenders.endDate" value="autoTenders.endDate">
-						<label for='endTime'><i class="fa fa-calendar fr ft-orange ft-2" aria-hidden="true" id="datepickericon1"></i></label>
+						<!-- <label for='endTime'><i class="fa fa-calendar fr ft-orange ft-2" aria-hidden="true" id="datepickericon1"></i></label> -->
 					</div><div class="fr line">－</div>
 					<div class="start-time margin-t--0p5">
 						<input type="date" name="startTime"  class="fr" id ="startTime"  ng-model="autoTenders.startDate" value="autoTenders.startDate" >
-						<label for='startTime'><i class="fa fa-calendar fr ft-orange ft-2" aria-hidden="true" id="datepickericon2"></i></label>
+						<!-- <label for='startTime'><i class="fa fa-calendar fr ft-orange ft-2" aria-hidden="true" id="datepickericon2"></i></label> -->
 					</div>
 				</div>
 			</div>
 
 		</div>
 		<div class="virify text-center">
-			<button class="turn-on text-center ft-1p6 ft-white bg-orange {{(amountErrMsg || remainErrMsg || autoTenders.minInvestAmount === 0) ? 'btn-disabled' : ''}}" type="submit" ng-click="onAutoTenders(autoTenders);" ng-disabled="amountErrMsg || remainErrMsg || autoTenders.minInvestAmount === 0">开启</button>
+			<button class="turn-on text-center ft-1p6 ft-white bg-orange {{(amountErrMsg || remainErrMsg || autoTenders.minInvestAmount === 0) ? 'btn-disabled' : ''}}" type="submit" ng-click="onAutoTenders(autoTenders);" ng-disabled="amountErrMsg || remainErrMsg || autoTenders.minInvestAmount === 0" my-click-once>开启</button>
 		</div>
 	</div>
 </form>
@@ -190,8 +190,8 @@
 
 			</div>
 			<div class="virify text-center">
-				<button class="turn-to text-center ft-1p6 ft-white bg-orange" ng-click="toEdit()" >修改</button>
-				<button class="turn-off text-center ft-1p6 ft-white" ng-click="offAutoTenders();">禁用</button>
+				<button class="turn-to text-center ft-1p6 ft-white bg-orange" ng-click="toEdit()" my-click-once>修改</button>
+				<button class="turn-off text-center ft-1p6 ft-white" ng-click="offAutoTenders();" my-click-once>禁用</button>
 			</div>
 		</div>
 		
@@ -199,12 +199,5 @@
 		
 		
 </form>
-<script type="text/javascript">
-	document.getElementById("datepickericon1").onclick = function(e){
-	  document.getElementById("endTime").focus();
-	};
-	document.getElementById("datepickericon2").onclick = function(e){
-	  document.getElementById("startTime").focus();
-	};
-</script>
+
 

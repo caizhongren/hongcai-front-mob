@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('YeepayCallbackCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN) {
+  .controller('YeepayCallbackCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, ipCookie) {
     $scope.page = '0';
     $scope.amount = $stateParams.amount;
     var business = $stateParams.business;
@@ -39,5 +39,5 @@ angular.module('p2pSiteMobApp')
       $scope.page = 10;
       $state.go('root.userCenter.autotender');
     } 
-
+    ipCookie('mark', 'callbackSuccess');
   });
