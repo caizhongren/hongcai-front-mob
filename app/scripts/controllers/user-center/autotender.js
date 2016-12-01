@@ -99,6 +99,27 @@ angular.module('p2pSiteMobApp')
       $scope.remainErrMsg = '最多保留两位小数';
     }
   }
+  var checkStartTime = function(time) {
+    if(time < currentDate) {
+      $scope.timeErrMsg = '开始日期不能为过去的时间';
+      return;
+    }
+    if(time > $scope.autoTenders.endDate) {
+      $scope.timeErrMsg = '开始日期不能晚于结束日期';
+      return;
+    }
+  }
+  var checkEndTime = function(time) {
+    if(time < currentDate) {
+      $scope.timeErrMsg = '截止日期不能为过去的时间';
+      return;
+    }
+    if(time < $scope.autoTenders.startDate) {
+      $scope.timeErrMsg = '开始日期不能晚于结束日期';
+      return;
+    }
+  }
+
   //校验最小投标金额
   $scope.$watch('autoTenders.minInvestAmount', function(newVal, oldVal) {
     $scope.amountErrMsg = null;
@@ -107,6 +128,7 @@ angular.module('p2pSiteMobApp')
     }
     if(newVal){
       checkMinAmount(newVal);
+      $scope.endTimeNewVal = newVal;
     }
   });
   //校验账户保留金额
@@ -119,8 +141,9 @@ angular.module('p2pSiteMobApp')
      checkRemainAmount(newVal);
    }
  });
- 
-
+ var startTimeNewVal = $('#startTime').val();
+ var endTimeNewVal = $('#endTime').val();
+console.log(endTimeNewVal);
 
  /*
  *自动投标详情
@@ -142,6 +165,22 @@ angular.module('p2pSiteMobApp')
 
     $scope.autoTenders.startDate = new Date($scope.autoTenders.startTime);
     $scope.autoTenders.endDate = new Date($scope.autoTenders.endTime);
+
+    //校验开始日期
+    $scope.$watch('autoTenders.startDate', function(newVal, oldVal) {
+     // console.log($scope.autoTenders.startDate);
+     $scope.timeErrMsg = null;
+      if(newVal){
+        checkStartTime(newVal);
+      }
+    });
+    //校验结束日期
+    $scope.$watch('autoTenders.endDate', function(newVal, oldVal) {
+     $scope.timeErrMsg = null;
+      if(newVal){
+        checkEndTime(newVal);
+      }
+    });
    })
  };
  $scope.autoTendersDetail();
@@ -171,13 +210,6 @@ $scope.onAutoTenders = function(autoTender) {
     return;
   }
   if($scope.amountErrMsg || $scope.remainErrMsg) {
-    return;
-  }
-  if(startTime < currentDate) {
-    $scope.timeErrMsg = '开始日期不能为过去的时间';
-  }
-  if(startTime > endTime) {
-    $scope.timeErrMsg = '开始日期不能晚于结束日期';
     return;
   }
   Restangular.one('/autoTenders').post('',{
