@@ -1201,12 +1201,15 @@
 .security-setted {
   .security-edit {
     .edit-text {
-      width: 34%;
+      width: 33%;
+      @media(min-width: 360px) {
+        width: 30%;
+      }
     }
     .edit-amount, .edit-range {
       width: 66%;
       p {
-        width: 75%;
+        width: 78%;
         height: 38px;
         line-height: 38px;
         background-color: #fff;
@@ -1253,7 +1256,7 @@
       }
       input:focus { border: 1px solid #e94828; }
       input, select, p{
-        width: 75%;
+        width: 78%;
         @media(min-width: 375px) {
           width: 82%;
         }
@@ -1270,7 +1273,7 @@
       }
     }
     .edit-amount.edit-date {
-      width: 64%;
+      width: 66%;
       .line {
         height: 38px;
         line-height: 38px;
@@ -1281,17 +1284,25 @@
       }
       .start-time i{
         top: 17%;
-        right: 54%;
+        right: 53.1%;
       }
       .end-time i{
         top: 17%;
-        right: 1%;
+        right: 0;
       }
       @media(min-width: 360px) {
-        width: 61.2%;
+        width: 66.5%;
+        .start-time i{
+          top: 17%;
+          right: 51.1%;
+        }
       }
       @media(min-width: 375px) {
         width: 66%;
+        .start-time i{
+          top: 17%;
+          right: 53.1%;
+        }
       }
       @media(min-width: 411px) {
         width: 64%;
@@ -1303,8 +1314,7 @@
       }
       input[type="date"] {
         height: 36px;
-        width: 41.4%;
-        padding-left: .3rem;
+        width: 43.4%;
         -webkit-appearance:none;
         margin-bottom: 1rem;
         text-align: center;
