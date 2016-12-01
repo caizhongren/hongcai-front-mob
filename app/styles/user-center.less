@@ -1201,12 +1201,15 @@
 .security-setted {
   .security-edit {
     .edit-text {
-      width: 34%;
+      width: 33%;
+      @media(min-width: 360px) {
+        width: 30%;
+      }
     }
     .edit-amount, .edit-range {
       width: 66%;
       p {
-        width: 75%;
+        width: 78%;
         height: 38px;
         line-height: 38px;
         background-color: #fff;
@@ -1253,7 +1256,7 @@
       }
       input:focus { border: 1px solid #e94828; }
       input, select, p{
-        width: 75%;
+        width: 78%;
         @media(min-width: 375px) {
           width: 82%;
         }
@@ -1270,12 +1273,36 @@
       }
     }
     .edit-amount.edit-date {
-      width: 63%;
+      width: 66%;
+      .line {
+        height: 38px;
+        line-height: 38px;
+        color: #ccc
+      }
+      i {
+        position: absolute;
+      }
+      .start-time i{
+        top: 17%;
+        right: 53.1%;
+      }
+      .end-time i{
+        top: 17%;
+        right: 0;
+      }
       @media(min-width: 360px) {
-        width: 61%;
+        width: 66.5%;
+        .start-time i{
+          top: 17%;
+          right: 51.1%;
+        }
       }
       @media(min-width: 375px) {
-        width: 65%;
+        width: 66%;
+        .start-time i{
+          top: 17%;
+          right: 53.1%;
+        }
       }
       @media(min-width: 411px) {
         width: 64%;
@@ -1286,23 +1313,24 @@
         color: #666;
       }
       input[type="date"] {
-        height: 2rem;
-        width: 58%;
-        padding-left: 4rem;
+        height: 36px;
+        width: 43.4%;
         -webkit-appearance:none;
-        margin-bottom: 0.8rem;
+        margin-bottom: 1rem;
         text-align: center;
         border: 1px solid #ccc;
         background-color: #fff !important;
+        background: url('/images/user-center/date-picker.png') no-repeat;
+        background-position: right center;
         @media(min-width: 360px) {
-          width: 60%;
+          width: 42.8%;
         }
         @media(min-width: 375px) {
-          width: 62%;
-          padding-left: 5rem;
+          width: 45%;
+          padding-left: 0;
         }
         @media(min-width: 411px) {
-          width: 64%;
+          width: 46%;
         }
       }
       input[type="date"]:focus {

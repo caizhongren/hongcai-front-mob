@@ -9,10 +9,12 @@
  */
 angular.module('p2pSiteMobApp')
 
-.controller('AutoTenderCtrl',['$rootScope', '$scope', '$state', '$timeout', 'Restangular', 'DateUtils', function ($rootScope, $scope, $state, $timeout, Restangular, DateUtils) {
+.controller('AutoTenderCtrl',['$rootScope', '$scope', '$state', '$timeout', 'Restangular', 'DateUtils','ipCookie', function ($rootScope, $scope, $state, $timeout, Restangular, DateUtils, ipCookie) {
 
 
-
+  if(ipCookie('mark') && ipCookie('mark') == 'callbackSuccess') {
+    $state.reload();
+  }
   $scope.testDate = new Date();
 
 
