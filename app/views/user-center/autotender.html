@@ -8,7 +8,7 @@
 		</div>
 		<div class="security-edit bg-white padding-l-1p5 padding-r-1p5 clearfix border-grey-bottom border-grey-top">
 			<div class="padding-t-1 border-grey-bottom clearfix">
-				<div class="fl padding-t-0p6 edit-text">
+				<div class="fl padding-t-1 edit-text">
 					<p class="margin-b-0 ft-666">
 						最小投标金额
 					</p>
@@ -90,17 +90,19 @@
 
 			<div class="padding-t-1 clearfix">
 				<div class="fl edit-text">
-					<p class="margin-b-0 ft-666">
+					<p class="margin-b-0 ft-666 padding-t-0p6">
 						有效日期
 					</p>
 				</div>
 				<div class="fr edit-amount edit-date position-re">
-					<div>
-						<input type="date" name="startTime"  class="fl" id ="picker"  ng-model="autoTenders.startDate" value="autoTenders.startDate" >
-						<i class="fa fa-calendar fl ft-orange ft-2" aria-hidden="true"></i>
+					<div class="end-time">
+						<input type="date" name="endTime" class="fr" ng-model="autoTenders.endDate" value="autoTenders.endDate">
+						<i class="fa fa-calendar fr ft-orange ft-2" aria-hidden="true"></i>
+					</div><div class="fr line">－</div>
+					<div class="start-time">
+						<input type="date" name="startTime"  class="fr" id ="picker"  ng-model="autoTenders.startDate" value="autoTenders.startDate" >
+						<i class="fa fa-calendar fr ft-orange ft-2" aria-hidden="true"></i>
 					</div>
-					<div><input type="date" name="endTime" class="fl" ng-model="autoTenders.endDate" value="autoTenders.endDate">
-					<i class="fa fa-calendar fl ft-orange ft-2" aria-hidden="true"></i></div>
 				</div>
 			</div>
 
@@ -119,7 +121,7 @@
 				<span class="ft-orange fr ft-Arial ft-1p7 margin-r-3">{{account.balance || 0 | number: 2}}元</span>
 			</div>
 			<div class="security-edit bg-white padding-l-1p5 padding-r-1p5 clearfix border-grey-bottom border-grey-top">
-				<div class="padding-t-1 padding-b-1 border-greye-bottom clearfix">
+				<div class="padding-t-1p2 padding-b-1p2 border-greye-bottom clearfix">
 					<div class="fl padding-t-0p5 edit-text">
 						<p class="margin-b-0 ft-666">
 							最小投标金额
@@ -130,7 +132,7 @@
 					</div>
 				</div>
 
-				<div class="padding-t-1 padding-b-1 border-greye-bottom clearfix">
+				<div class="padding-t-1p2 padding-b-1p2 border-greye-bottom clearfix">
 					<div class="fl padding-t-0p5 edit-text">
 						<p class="margin-b-0 ft-666">
 							最高标的期限
@@ -141,7 +143,7 @@
 					</div>
 				</div>
 
-				<div class="padding-t-1 padding-b-1 border-greye-bottom clearfix">
+				<div class="padding-t-1p2 padding-b-1p2 border-greye-bottom clearfix">
 					<div class="fl padding-t-0p5 edit-text">
 						<p class="margin-b-0 ft-666">
 							最低预期收益
@@ -152,7 +154,7 @@
 					</div>
 				</div>
 
-				<div class="padding-t-1 padding-b-1 border-greye-bottom clearfix">
+				<div class="padding-t-1p2 padding-b-1p2 border-greye-bottom clearfix">
 					<div class="fl padding-t-0p5 edit-text">
 						<p class="margin-b-0 ft-666">
 							标的类型
@@ -163,7 +165,7 @@
 					</div>
 				</div>
 
-				<div class="padding-t-1 padding-b-1 border-greye-bottom clearfix">
+				<div class="padding-t-1p2 padding-b-1p2 border-greye-bottom clearfix">
 					<div class="fl padding-t-0p5 edit-text">
 						<p class="margin-b-0 ft-666">
 							账户保留金额

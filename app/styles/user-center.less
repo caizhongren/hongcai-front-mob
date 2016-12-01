@@ -1270,12 +1270,28 @@
       }
     }
     .edit-amount.edit-date {
-      width: 63%;
+      width: 64%;
+      .line {
+        height: 38px;
+        line-height: 38px;
+        color: #ccc
+      }
+      i {
+        position: absolute;
+      }
+      .start-time i{
+        top: 17%;
+        right: 54%;
+      }
+      .end-time i{
+        top: 17%;
+        right: 1%;
+      }
       @media(min-width: 360px) {
-        width: 61%;
+        width: 61.2%;
       }
       @media(min-width: 375px) {
-        width: 65%;
+        width: 66%;
       }
       @media(min-width: 411px) {
         width: 64%;
@@ -1286,23 +1302,23 @@
         color: #666;
       }
       input[type="date"] {
-        height: 2rem;
-        width: 58%;
-        padding-left: 4rem;
+        height: 36px;
+        width: 41.4%;
+        padding-left: .3rem;
         -webkit-appearance:none;
-        margin-bottom: 0.8rem;
+        margin-bottom: 1rem;
         text-align: center;
         border: 1px solid #ccc;
         background-color: #fff !important;
         @media(min-width: 360px) {
-          width: 60%;
+          width: 42.8%;
         }
         @media(min-width: 375px) {
-          width: 62%;
-          padding-left: 5rem;
+          width: 45%;
+          padding-left: 0;
         }
         @media(min-width: 411px) {
-          width: 64%;
+          width: 46%;
         }
       }
       input[type="date"]:focus {
