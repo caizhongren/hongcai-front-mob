@@ -1121,9 +1121,10 @@
 // 自动投标页面
 
 .security-setted, .security-set  {
+  .border-warning { border: 1px solid #fe8f3f !important;}
   .test{
     width: 91%;
-    height: 4.5rem;
+    height: 5.5rem;
     border-radius: .6rem;
     line-height: 3rem;
     text-align: center;
@@ -1141,6 +1142,7 @@
         top: -3.8rem;
       }
       @media(min-width:341px) {
+        width: 83%;
         line-height: 4rem;
         font-size: 1.3rem;
       }
@@ -1169,8 +1171,8 @@
       font-weight: normal;
       border: none !important;
     }
-    .btn-disabled {
-      background-color: #FEB682;
+    .button-disabled {
+      background-color: #feb682 !important;
     }
     .turn-off {
       background-color: #ff6600;
@@ -1220,12 +1222,12 @@
         }
       }
       ul {
-        width: 94%;
+        width: 96%;
         top: 38px;
         right: 0;
         z-index: 999;
         @media(min-width: 360px) {
-          width: 91%;
+          width: 94%;
         }
         @media(min-width: 375px) {
           width: 97.5%;
@@ -1256,20 +1258,28 @@
       }
       input:focus { border: 1px solid #e94828; }
       input, select, p{
-        width: 78%;
+        width: 98%;
+        padding-right: 19px;
+        @media(min-width: 360px) {
+          width: 95%;
+        }
         @media(min-width: 375px) {
-          width: 82%;
+          width: 98%;
+        }
+        @media(min-width: 375px) {
+          width: 97%;
         }
       }
       span:first-child {
         height: 36px;
         line-height: 36px;
         display: inline-block;
-        border: 1px solid #ccc;
+        border-left: 1px solid #ccc;
         width: 36px;
         background-color: #eee;
-        border-left: none;
         text-align: center;
+        right: 1px;
+        top: 1px;
       }
     }
     .edit-amount.edit-date {
@@ -1322,6 +1332,7 @@
         background-color: #fff !important;
         background: url('/images/user-center/date-picker.png') no-repeat;
         background-position: right center;
+        padding-right: 0;
         @media(min-width: 360px) {
           width: 42.8%;
         }

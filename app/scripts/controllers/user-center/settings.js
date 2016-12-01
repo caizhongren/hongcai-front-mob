@@ -79,6 +79,8 @@ angular.module('p2pSiteMobApp')
         });
     }
 
+
+
     /*
     *自动投标详情
     */
@@ -91,7 +93,7 @@ angular.module('p2pSiteMobApp')
     /**
      * 开通自动投标权限
      */
-    $scope.toAuthAutoTransfer = function() {
+    $scope.toAutoTender = function() {
       if($rootScope.securityStatus.realNameAuthStatus !== 1) {
         $rootScope.toRealNameAuth();
         return;

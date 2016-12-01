@@ -12,13 +12,13 @@ angular.module('p2pSiteMobApp')
 .controller('AutoTenderCtrl',['$rootScope', '$scope', '$state', '$timeout', 'Restangular', 'DateUtils','ipCookie', function ($rootScope, $scope, $state, $timeout, Restangular, DateUtils, ipCookie) {
 
 
-  if(ipCookie('mark')) {
-    $state.reload();
-    ipCookie.remove('mark');
-  }
-  $scope.testDate = new Date();
+  // if(ipCookie('mark') && ipCookie('mark') == 'callbackSuccess') {
+  //   $state.reload();
+  //   ipCookie.remove('mark');
+  // }
+  var currentDate = new Date();
 
-
+  $scope.limitStartDate = DateUtils.longTimeToDate(new Date());
   $scope.showStatus = false;
   $scope.showDateLimit = false;
   $scope.showAnnual = false;
@@ -31,7 +31,6 @@ angular.module('p2pSiteMobApp')
     '10': '10%',
     '11': '11%',
     '12': '12%',
-    "0": '不限'
   };
   $scope.toggle.dateList = {
     '30': '30天',
@@ -40,17 +39,34 @@ angular.module('p2pSiteMobApp')
     '120': '120天',
     '180': '180天',
     '360': '360天',
-    '1825': '不限'
   };
   $scope.toggle.typeList = {
     '1':'宏金保',
     '2':'债权转让',
     '0':'全部'
   };
+  $scope.clickHideOtherOption = function(){
+    $scope.showDateLimit = !$scope.showDateLimit;
+    $scope.showAnnual = false;
+    $scope.showType = false;
+  };
+  $scope.clickHideOtherOption1 = function(){
+    $scope.showAnnual = !$scope.showAnnual;
+    $scope.showDateLimit = false;
+    $scope.showType = false;
+  };
+  $scope.clickHideOtherOption2 = function(){
+    $scope.showType = !$scope.showType;
+    $scope.showAnnual = false;
+    $scope.showDateLimit = false;
+  };
   $scope.amountErrMsg = $scope.amountErrMsg? $scope.amountErrMsg : null;
   $scope.remainErrMsg = $scope.remainErrMsg? $scope.remainErrMsg : null;
+  $scope.timeErrMsg = $scope.timeErrMsg? $scope.timeErrMsg : null;
+  
   $scope.selectDate = function(date) {
     $scope.autoTenders.maxRemainDay = date;
+    
   }
 
   $scope.selectAnnual = function(annual) {
@@ -59,6 +75,7 @@ angular.module('p2pSiteMobApp')
 
   $scope.selectType = function(type) {
     $scope.autoTenders.investType = type;
+  
   }
 
 
@@ -154,6 +171,13 @@ $scope.onAutoTenders = function(autoTender) {
     return;
   }
   if($scope.amountErrMsg || $scope.remainErrMsg) {
+    return;
+  }
+  if(startTime < currentDate) {
+    $scope.timeErrMsg = '开始日期不能为过去的时间';
+  }
+  if(startTime > endTime) {
+    $scope.timeErrMsg = '开始日期不能晚于结束日期';
     return;
   }
   Restangular.one('/autoTenders').post('',{
