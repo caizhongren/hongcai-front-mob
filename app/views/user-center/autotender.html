@@ -97,11 +97,11 @@
 				<div class="fr edit-amount edit-date position-re">
 					<div class="end-time margin-t--0p5">
 						<input type="date" name="endTime" id="endTime" class="fr" ng-model="autoTenders.endDate" value="autoTenders.endDate">
-						<label for='endTime'><i class="fa fa-calendar fr ft-orange ft-2" aria-hidden="true"></i></label>
+						<label for='endTime'><i class="fa fa-calendar fr ft-orange ft-2" aria-hidden="true" id="datepickericon1"></i></label>
 					</div><div class="fr line">－</div>
 					<div class="start-time margin-t--0p5">
 						<input type="date" name="startTime"  class="fr" id ="startTime"  ng-model="autoTenders.startDate" value="autoTenders.startDate" >
-						<label for='startTime'><i class="fa fa-calendar fr ft-orange ft-2" aria-hidden="true"></i></label>
+						<label for='startTime'><i class="fa fa-calendar fr ft-orange ft-2" aria-hidden="true" id="datepickericon2"></i></label>
 					</div>
 				</div>
 			</div>
@@ -199,4 +199,12 @@
 		
 		
 </form>
+<script type="text/javascript">
+	document.getElementById("datepickericon1").onclick = function(e){
+	  document.getElementById("endTime").focus();
+	};
+	document.getElementById("datepickericon2").onclick = function(e){
+	  document.getElementById("startTime").focus();
+	};
+</script>
 

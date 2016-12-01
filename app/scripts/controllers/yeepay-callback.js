@@ -36,6 +36,7 @@ angular.module('p2pSiteMobApp')
     } else if (business === 'UNBIND_BANK_CARD_ING') {
       $scope.page = 9;
     } else if(business === 'AUTHORIZATION_AUTO_TRANSFER'){
+      $scope.page = 10;
       $state.go('root.userCenter.autotender');
     } 
 
