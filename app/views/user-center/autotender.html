@@ -2,7 +2,7 @@
 <form ng-if = "autoTenders && (autoTenders.status == null || showStatus == true)" name="autoTenderForm">
 	<div class="security-setted ft-1p5" auto-height>
 		<div class="balance bg-white padding-l-1p5 padding-r-1p5 margin-b-1p2 border-grey-bottom">
-			<p class="margin-b-0 padding-t-1 padding-b-1 ft-666">账户可用余额{{autoTenders && (autoTenders.status == null || showStatus == true)}}
+			<p class="margin-b-0 padding-t-1 padding-b-1 ft-666">账户可用余额
 				<span class="ft-orange fr ft-Arial ft-1p7">{{account.balance || 0 | number: 2}}元</span>
 			</p>
 		</div>
@@ -118,7 +118,7 @@
 <form ng-if="autoTenders && autoTenders.status !==null " ng-hide="showStatus === true">
 	<div class="security-setted ft-1p5" auto-height>
 			<div class="balance bg-white padding-l-1p5 padding-r-1p5 margin-b-1p2 border-grey-bottom padding-t-1p5 padding-b-1p5">
-				<span class="ft-666">账户可用余额</span>{{autoTenders && (autoTenders.status == null || showStatus == true)}}
+				<span class="ft-666">账户可用余额</span>
 				<span class="ft-orange fr ft-Arial ft-1p7 margin-r-3">{{account.balance || 0 | number: 2}}元</span>
 			</div>
 			<div class="security-edit bg-white padding-l-1p5 padding-r-1p5 clearfix border-grey-bottom border-grey-top">

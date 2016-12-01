@@ -141,9 +141,6 @@ angular.module('p2pSiteMobApp')
      checkRemainAmount(newVal);
    }
  });
- var startTimeNewVal = $('#startTime').val();
- var endTimeNewVal = $('#endTime').val();
-console.log(endTimeNewVal);
 
  /*
  *自动投标详情
@@ -206,10 +203,10 @@ $scope.onAutoTenders = function(autoTender) {
   var endTime = autoTender.endDate.getTime();
   checkMinAmount(autoTender.minInvestAmount);
   checkRemainAmount(autoTender.remainAmount);
-  if($scope.amountErrMsg || $scope.remainErrMsg || autoTender.minInvestAmount === 0) {
-    return;
-  }
-  if($scope.amountErrMsg || $scope.remainErrMsg) {
+  checkStartTime(startTime);
+  checkEndTime(endTime);
+
+  if($scope.amountErrMsg || $scope.remainErrMsg || $scope.timeErrMsg|| autoTender.minInvestAmount === 0) {
     return;
   }
   Restangular.one('/autoTenders').post('',{
