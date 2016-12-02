@@ -3,6 +3,14 @@ angular.module('p2pSiteMobApp')
   .factory('DateUtils', function() {
     return {
 
+
+      longTimeToDate: function(longTime) {
+        var date1 = new Date(longTime);
+        var month = date1.getMonth() < 9 ? '0'+ date1.getMonth() : date1.getMonth();
+        var day = date1.getDate() < 10 ? '0' + date1.getDate() : date1.getDate();
+        return date1.getFullYear() + '-' + (month + 1) + '-' + day;
+      },
+
       /**
        * 在开始时间的基础上，加上多少个月份
        * @param {long} startTimeInLong 开始时间，long型

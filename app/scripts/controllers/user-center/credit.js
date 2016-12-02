@@ -27,11 +27,11 @@ angular.module('p2pSiteMobApp')
     $scope.credits = [];
 
 
-    HongcaiUser.$find(0 + '/totalProfit').$then(function(response) {
-      if (response.ret !== -1) {
-        $scope.totalProfit = response;
-      }
-    });
+    // HongcaiUser.$find(0 + '/totalProfit').$then(function(response) {
+    //   if (response.ret !== -1) {
+    //     $scope.totalProfit = response;
+    //   }
+    // });
 
     /**
      * 切换标签
@@ -71,7 +71,7 @@ angular.module('p2pSiteMobApp')
         page: $scope.page,
         pageSize: $scope.pageSize
       }).$then(function(response) {
-        $scope.totalPage = Math.ceil(response.data.count / $scope.page);
+        $scope.totalPage = Math.ceil(response.data.count / $scope.pageSize);
         var credits = response.data.heldIdCreditList;
         for (var i = 0; i <= credits.length - 1; i++) {
           if (credits[i].increaseRateCoupon) {
@@ -95,7 +95,6 @@ angular.module('p2pSiteMobApp')
       }
       $state.go('root.userCenter.credit-security-details',{type: 1,number:item});
     }
-
     /**
      * 加载更多
      */

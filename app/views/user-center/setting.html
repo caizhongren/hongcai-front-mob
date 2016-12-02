@@ -65,9 +65,9 @@
     </div>
     <div>
       <p>自动投标权限：</p>
-      <p>方便您预约
-        <span ng-show="securityStatus.autoTransfer === 1"><i class="fa fa-check-circle-o ft-green" ></i>&nbsp;已开通</span>
-        <span ng-click="checkAutoFlag=true" ng-show="securityStatus.autoTransfer !== 1"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通<small class="ft-orange">(立即开通)</small></span>
+      <p>避免余额资金闲置
+        <span><a class="ft-blue" ng-show="autoTenders.status === 1 || autoTenders.status === 0" ng-click="toAutoTender();">&nbsp;已开启 ></a></span>
+        <span><a class="ft-blue" ng-show="autoTenders.status !== 1 && autoTenders.status !== 0" ng-click="toAutoTender();">&nbsp;立即开启 ></a></span>
       </p>
     </div>
   </div>
@@ -84,33 +84,9 @@
     <p>安全退出</p>
   </div>
 </div>
-<!-- 修改密码蒙层 checkPwdFlag-->
-<!-- <div ng-show="false" class="project-mask">
-  <div class="bg-white setting-mask project-mask-inner">
-    <form name="passwordResetForm" class="margin-b-0">
-      <p class="margin-b-1p5">
-        <span>旧密码&nbsp;&nbsp;</span>
-        <input type="password" placeholder="请输入旧密码" ng-model="oldPassword" name="oldPassword" id="oldPassword" required>
-      </p>
-      <p class="margin-b-1p5">
-        <span>新密码&nbsp;&nbsp;</span>
-        <input type="password" placeholder="请输入新密码" ng-model="newPassword1" name="newPassword1" id="newPassword1" required>
-      </p>
-      <p class="margin-b-1p5">
-        <span>确认密码&nbsp;&nbsp;</span>
-        <input type="password" placeholder="再次输入新密码" ng-model="newPassword2" name="newPassword2" id="newPassword2" required>
-      </p>
-      <p class="margin-b-0 text-center ft-red margin-b-0" ng-show="changePasswordMsg">{{changePasswordMsg}}</p>
-    </form>
-    <p class="project-mask-btn">
-      <span ng-click="checkPwdFlag=false">取消</span>
-      <span ng-disabled="passwordResetForm.$invalid" my-click-once ng-class="{'active-span': passwordResetForm.$valid}" ng-click="changePassword(oldPassword, newPassword1, newPassword2)">修改</span>
-    </p>
-  </div>
-</div>
-</div> -->
+
 <!-- 开通自动投标权限蒙层 -->
-<div ng-show="checkAutoFlag" class="project-mask">
+<!-- <div ng-show="checkAutoFlag" class="project-mask">
   <div class="bg-white email-mask project-mask-inner">
     <p class="margin-b-0 text-center">
       您还未开通自动投标权限，确定去开通？
@@ -119,31 +95,5 @@
       <span ng-click="checkAutoFlag=false">取消</span>
       <span ng-click="toAuthAutoTransfer()">确定</span></p>
   </div>
-</div>
-<!-- 手机号码蒙层 -->
-<!-- <div ng-show="checkMobileFlag" class="project-mask">
-  <div class="bg-white email-mask project-mask-inner">
-    <form name="resetMobileForm" class="margin-b-0">
-      <p class="margin-b-0 text-center">
-        <span>手机号码&nbsp;&nbsp;</span>
-        <input type="text" id="mobileNum" name="mobileNum" ng-model="mobileNum" ng-pattern="/^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/" ensure-unique-mobile="mobileNum" placeholder="请输入手机号码" ng-focus required/>
-      </p>
-      <div ng-show="resetMobileForm.mobileNum.$dirty && resetMobileForm.mobileNum.$invalid && !resetMobileForm.mobileNum.$focused" class="text-center">
-        <div class="user-tips-area row" ng-show="resetMobileForm.mobileNum.$error.required &&
-                    !resetMobileForm.mobileNum.$focused">
-          <p class="input-tips user-input-tips security-stl"><i class="fa fa-times-circle-o login-check-img"></i>不能为空</p>
-        </div>
-        <div class="user-tips-area row" ng-show="resetMobileForm.mobileNum.$error.pattern &&
-                      !resetMobileForm.mobileNum.$focused">
-          <p class="input-tips user-input-tips security-stl"><i class="fa fa-times-circle-o login-check-img"></i>格式错误</p>
-        </div>
-        <div class="user-tips-area row" ng-show="resetMobileForm.mobileNum.$error.unique">
-          <p class="input-tips user-input-tips security-stl"><i class="fa fa-times-circle-o login-check-img"></i>已被占用</p>
-        </div>
-      </div>
-    </form>
-    <p class="project-mask-btn2">
-      <span ng-click="checkMobileFlag=false">取消</span>
-      <span ng-disabled="resetMobileForm.$invalid" ng-click="resetMobile(mobileNum)" my-click-once ng-class="{'active-span': !resetMobileForm.$invalid}">确定</span></p>
-  </div>
 </div> -->
+

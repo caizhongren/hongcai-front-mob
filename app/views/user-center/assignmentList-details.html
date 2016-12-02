@@ -70,7 +70,7 @@
     <div class="cancelAssignment" ng-if="cancelAssignment">
       <p ng-if="!msg">已转让债权金额{{data.soldStock * 100 || 0}}元，未转让债权金额{{data.currentStock * 100 || 0}}元，是否确认撤销？</p>
       <p ng-if="msg">{{msg}}</p>
-      <button type="button"  ng-if="!msg" ng-click="deleteCreditAssignment()">撤销转让</button>
+      <button type="button"  ng-if="!msg" ng-click="deleteCreditAssignment()" mg-click-once>撤销转让</button>
     </div>
   </div> 
 </div>

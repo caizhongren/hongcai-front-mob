@@ -6,7 +6,7 @@
   <!-- <h6 class="text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>提现</strong></h6> -->
   <div class="with-bank">
     <!-- 未绑定银行卡 simpleWithdraw.cardStatus !== 'VERIFIED'-->
-    <div ng-include src="'views/user-center/_bankcardless-hint.html'" ng-show="simpleWithdraw.cardStatus !== 'VERIFIED'"></div>
+    <div ng-include src="'views/user-center/_bankcardless-hint.html'" ng-show="simpleWithdraw.cardStatus && simpleWithdraw.cardStatus !== 'VERIFIED'"></div>
     <!-- 已经绑定银行卡 simpleWithdraw.cardStatus == 'VERIFIED'-->
     <form class="margin-b-1p5 ft-1p5" name="withdrawForm" ng-submit="toWithdraw(simpleWithdraw)" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
       <div class="bank-span">

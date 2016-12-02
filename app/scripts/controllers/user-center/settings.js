@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('SettingsCtrl', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, Utils) {
+  .controller('SettingsCtrl',['$scope', '$rootScope', '$state', 'HongcaiUser', 'restmod', 'DEFAULT_DOMAIN', 'md5', 'Utils', 'Restangular', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, Utils, Restangular) {
 
     $scope.userHeadImgUrl = '/images/user-center/head.png';
 
@@ -43,6 +43,10 @@ angular.module('p2pSiteMobApp')
      * 绑定银行卡
      */
     $scope.bindBankcard = function() {
+      if($rootScope.securityStatus.realNameAuthStatus !== 1) {
+        $rootScope.toRealNameAuth();
+        return;
+      }
       $state.go('root.yeepay-transfer', {
         type: 'BIND_BANK_CARD'
       });
@@ -76,15 +80,34 @@ angular.module('p2pSiteMobApp')
     }
 
 
+
+    /*
+    *自动投标详情
+    */
+    $scope.autoTendersDetail = function() {
+      Restangular.one('/users/' + '0' + '/autoTender' ).get().then(function(response){
+       $scope.autoTenders = response;
+      })
+    };
+    $scope.autoTendersDetail();
     /**
      * 开通自动投标权限
      */
-    $scope.toAuthAutoTransfer = function() {
-      $state.go('root.yeepay-transfer', {
-        type: 'autoTransfer',
-        number: "null"
-      });
-    }
+    $scope.toAutoTender = function() {
+      if($rootScope.securityStatus.realNameAuthStatus !== 1) {
+        $rootScope.toRealNameAuth();
+        return;
+      }
+      if($rootScope.securityStatus.autoTransfer === 1) {
+        $state.go('root.userCenter.autotender');
+      } else {
+        $state.go('root.yeepay-transfer', {
+          type: 'autoTransfer',
+          number: "null"
+        });
+      }
+    
+    };
 
 
       // 退出登录功能
@@ -152,4 +175,4 @@ angular.module('p2pSiteMobApp')
       }
       return emailADArray.join('') + emailEnd
     }
-  });
+  }]);

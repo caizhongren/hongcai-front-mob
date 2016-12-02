@@ -9,6 +9,9 @@
 angular.module('p2pSiteMobApp')
   .controller('assignmentsCtrl', function($location, $stateParams, config, Restangular, $scope) {
 
+
+    $scope.config = config;
+
     $scope.widthFlag = "";
     $scope.screenWidth = function() {
       $scope.width = document.body.scrollWidth; //用系统返回宽度除以分辨率
@@ -132,6 +135,7 @@ angular.module('p2pSiteMobApp')
       
       
     };
+
 
 
   });

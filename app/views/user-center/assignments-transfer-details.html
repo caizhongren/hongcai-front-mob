@@ -31,10 +31,19 @@
 		<span>常见问题</span><span class="fr ft-2p8 margin-t--1"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
 	</div>
 	<div class="transfer-btn">
-		<div class="text-center margin-b-1p3"><button class="ft-white ft-1p7 text-center" type="button" ng-class="{'btn-disabled': !transferAmount || !transferPercent|| earningErrMsg || transferErrMsg}"  ng-click="assignmentsTransfer(transferAmount, transferPercent);" ng-disabled="earningErrMsg || transferErrMsg">确认转让</button></div>
+		<div class="text-center margin-b-1p3"><button class="ft-white ft-1p7 text-center" type="button" ng-class="{'btn-disabled': !transferAmount || !transferPercent|| earningErrMsg || transferErrMsg}"  ng-click="assignmentsTransfer(transferAmount, transferPercent);" ng-disabled="earningErrMsg || transferErrMsg" my-click-once>确认转让</button></div>
 		<p class="ft-1p2 text-center">转让表示您已阅读并同意 <a class="ft-blue49" ng-click="showAgreement();">《债权转让协议》</a></p>
 	</div>
 </div>
 <div class="alert-agreement" ng-show="isShowAgreement" ng-include src="'views/_assignment-agreement.html'">
 </div>
 <div class="mask" ng-show="isShowAgreement"></div>
+<div class="project-mask autotender-tip" ng-show="showAutoTenderTip">
+  <div class="project-mask-inner margin-t-20 text-center bg-white ft-black4 ft-1p6 padding-t-3 padding-b-3">
+      <small class="padding-l-1 padding-r-1 margin-b-3 ft-1p4 display-bl">当前已开启自动投标功能，可能导致债权转让的回款资金自动出借，强烈建议您禁用此功能后再进行转让操作。</small>
+      <div class="padding-l-2 padding-r-2 clearfix">
+        <button class="fl text-center bg-orange ft-white ft-normal" ng-click="goOnTransfer(transferAmount, transferPercent);" my-click-once>继续转让</button>
+        <button class="fr text-center ft-white ft-normal" ng-click="offAutoTenders()" my-click-once>立即禁用</button>
+      </div>
+  </div>
+</div>

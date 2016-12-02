@@ -10,6 +10,7 @@ var p2pSiteMobApp = angular.module('p2pSiteMobApp', [
   // 'angular-loading-bar',
   // 'ngCookies',
   // 'angular-cache',
+  // 'angular-datepicker',
   'ngAnimate',
   // 'ngTouch',
   'famous.angular',
@@ -386,6 +387,22 @@ p2pSiteMobApp
           }
         }
       })
+
+      // 新自动投标
+      .state('root.userCenter.autotender', {
+        url: '/autotender',
+        data: {
+          title: '自动投标'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/autotender.html',
+            controller: 'AutoTenderCtrl',
+            controllerUrl: 'scripts/controllers/user-center/autotender'
+          }
+        }
+      })
+
       //修改手机号码
       .state('root.userCenter.resetMobile', {
         url: '/reset-mobile',
