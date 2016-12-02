@@ -12,10 +12,7 @@ angular.module('p2pSiteMobApp')
 .controller('AutoTenderCtrl',['$rootScope', '$scope', '$state', '$timeout', 'Restangular', 'DateUtils','ipCookie', function ($rootScope, $scope, $state, $timeout, Restangular, DateUtils, ipCookie) {
 
 
-  // if(ipCookie('mark') && ipCookie('mark') == 'callbackSuccess') {
-  //   $state.reload();
-  //   ipCookie.remove('mark');
-  // }
+  
   var currentDate = new Date(new Date().toLocaleDateString()).getTime();
   $scope.limitStartDate = DateUtils.longTimeToDate(new Date());
   $scope.showStatus = false;
@@ -61,7 +58,6 @@ angular.module('p2pSiteMobApp')
   };
   $scope.amountErrMsg = $scope.amountErrMsg? $scope.amountErrMsg : null;
   $scope.remainErrMsg = $scope.remainErrMsg? $scope.remainErrMsg : null;
-  $scope.timeErrMsg = $scope.timeErrMsg? $scope.timeErrMsg : null;
   
   $scope.selectDate = function(date) {
     $scope.autoTenders.maxRemainDay = date;
@@ -76,7 +72,12 @@ angular.module('p2pSiteMobApp')
     $scope.autoTenders.investType = type;
   
   }
-
+  //输入时所有错误提示小时
+  $scope.focusHide = function(){
+    $scope.showDateLimit = false;
+    $scope.showAnnual = false;
+    $scope.showType = false;
+  }
 
   var pattern1 = /^\+?[1-9][0-9]*$/;
   var pattern2 = /^[0-9]*(\.[0-9]{1,2})?$/;
@@ -100,13 +101,15 @@ angular.module('p2pSiteMobApp')
   }
   var checkStartTime = function(time) {
     if(time < currentDate) {
-      $scope.timeErrMsg = '开始日期不能为过去的时间';
-      return;
+      $scope.satartTimeErrMsg = '开始日期不能为过去的时间';
+      return false;
     }
     if(time > $scope.autoTenders.endDate.getTime()) {
-      $scope.timeErrMsg = '开始日期不能晚于结束日期';
-      return;
+      $scope.satartTimeErrMsg = '开始日期不能晚于结束日期';
+      return false;
     }
+
+    return true;
   }
   var checkEndTime = function(time) {
     if(time < currentDate) {
@@ -162,15 +165,19 @@ angular.module('p2pSiteMobApp')
     $scope.autoTenders.startDate = new Date($scope.autoTenders.startTime);
     $scope.autoTenders.endDate = new Date($scope.autoTenders.endTime);
 
+
     //校验开始日期
     $scope.$watch('autoTenders.startDate', function(newVal, oldVal) {
+     $scope.satartTimeErrMsg = null;
      $scope.timeErrMsg = null;
       if(newVal){
         checkStartTime(newVal);
       }
+
     });
     //校验结束日期
     $scope.$watch('autoTenders.endDate', function(newVal, oldVal) {
+     $scope.satartTimeErrMsg = null;
      $scope.timeErrMsg = null;
       if(newVal){
         checkEndTime(newVal);
@@ -202,9 +209,13 @@ $scope.onAutoTenders = function(autoTender) {
   checkMinAmount(autoTender.minInvestAmount);
   checkRemainAmount(autoTender.remainAmount);
   checkStartTime(startTime);
-  checkEndTime(endTime);
+  if($scope.satartTimeErrMsg !== null) {
+    $scope.timeErrMsg = null;
+  }else {
+    checkEndTime();
+  }
 
-  if($scope.amountErrMsg || $scope.remainErrMsg || $scope.timeErrMsg|| autoTender.minInvestAmount === 0) {
+  if($scope.amountErrMsg || $scope.remainErrMsg || $scope.timeErrMsg || $scope.satartTimeErrMsg || autoTender.minInvestAmount === 0) {
     return;
   }
   Restangular.one('/autoTenders').post('',{
