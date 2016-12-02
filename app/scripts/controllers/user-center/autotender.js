@@ -104,7 +104,7 @@ angular.module('p2pSiteMobApp')
       $scope.timeErrMsg = '开始日期不能为过去的时间';
       return;
     }
-    if(time > $scope.autoTenders.endDate) {
+    if(time >= $scope.autoTenders.endDate) {
       $scope.timeErrMsg = '开始日期不能晚于结束日期';
       return;
     }
@@ -114,7 +114,7 @@ angular.module('p2pSiteMobApp')
       $scope.timeErrMsg = '截止日期不能为过去的时间';
       return;
     }
-    if(time < $scope.autoTenders.startDate) {
+    if(time <= $scope.autoTenders.startDate) {
       $scope.timeErrMsg = '开始日期不能晚于结束日期';
       return;
     }
@@ -152,7 +152,7 @@ angular.module('p2pSiteMobApp')
 
     $scope.autoTenders = response;
     $scope.autoTenders.maxRemainDay = $scope.autoTenders.maxRemainDay  == null ? 360 : $scope.autoTenders.maxRemainDay;
-    $scope.autoTenders.annualEarnings = $scope.autoTenders.annualEarnings == null ? 7 : $scope.autoTenders.annualEarnings;
+    $scope.autoTenders.annualEarnings = ($scope.autoTenders.annualEarnings == null || $scope.autoTenders.annualEarnings == 0) ? 7 : $scope.autoTenders.annualEarnings;
     $scope.autoTenders.investType = $scope.autoTenders.investType == null ? 0 : $scope.autoTenders.investType;
     
     $scope.autoTenders.minInvestAmount = $scope.autoTenders.minInvestAmount ==null  ? 100 : $scope.autoTenders.minInvestAmount ;
