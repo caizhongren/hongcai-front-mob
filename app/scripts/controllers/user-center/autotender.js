@@ -16,8 +16,7 @@ angular.module('p2pSiteMobApp')
   //   $state.reload();
   //   ipCookie.remove('mark');
   // }
-  var currentDate = new Date();
-
+  var currentDate = new Date(new Date().toLocaleDateString()).getTime();
   $scope.limitStartDate = DateUtils.longTimeToDate(new Date());
   $scope.showStatus = false;
   $scope.showDateLimit = false;
@@ -104,7 +103,7 @@ angular.module('p2pSiteMobApp')
       $scope.timeErrMsg = '开始日期不能为过去的时间';
       return;
     }
-    if(time >= $scope.autoTenders.endDate) {
+    if(time > $scope.autoTenders.endDate.getTime()) {
       $scope.timeErrMsg = '开始日期不能晚于结束日期';
       return;
     }
@@ -114,7 +113,7 @@ angular.module('p2pSiteMobApp')
       $scope.timeErrMsg = '截止日期不能为过去的时间';
       return;
     }
-    if(time <= $scope.autoTenders.startDate) {
+    if(time < $scope.autoTenders.startDate.getTime()) {
       $scope.timeErrMsg = '开始日期不能晚于结束日期';
       return;
     }
@@ -165,7 +164,6 @@ angular.module('p2pSiteMobApp')
 
     //校验开始日期
     $scope.$watch('autoTenders.startDate', function(newVal, oldVal) {
-     // console.log($scope.autoTenders.startDate);
      $scope.timeErrMsg = null;
       if(newVal){
         checkStartTime(newVal);
