@@ -6,7 +6,7 @@
   <div class="tab-content u-full-width overflow-hid text-center" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs track by $index" ng-show="credits">
     <div ng-repeat="item in credits track by $index" ng-include src='"views/user-center/_credit-detail.html"'>
     </div>
-    <div class="text-center bg-white ft-666" ng-show="!loading && totalPage > page">
+    <div class="text-center bg-white ft-666" ng-show="!loading && totalPage > page ">
       <p class="margin-b-0 padding-t-3 padding-b-3"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a ng-click="loadCreditMore();" class="ft-black">查看更多投资信息</a></p>
     </div>
   </div>
