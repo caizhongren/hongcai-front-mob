@@ -20,6 +20,23 @@ angular.module('p2pSiteMobApp')
       $scope.showLimit = true;
       $rootScope.showFooter = false;
     }
+    $scope.bankCardList = [
+      {'src': '/images/user-center/ICBK.png', 'cardName': '工商银行', 'limit': '5w/5w/20w'},
+      {'src': '/images/user-center/BKCH.png', 'cardName': '中国银行', 'limit': '5w/10w/20w'},
+      {'src': '/images/user-center/PCBC.png', 'cardName': '建设银行', 'limit': '5w/10w/20w'},
+      {'src': '/images/user-center/ABOC.png', 'cardName': '农业银行', 'limit': '5w/10w/20w'},
+      {'src': '/images/user-center/COMM.png', 'cardName': '交通银行', 'limit': '5w/10w/20w'},
+      {'src': '/images/user-center/CMBC.png', 'cardName': '招商银行', 'limit': '5w/5w/20w'},
+      {'src': '/images/user-center/CIBK.png', 'cardName': '中信银行', 'limit': '5w/20w/20w'},
+      {'src': '/images/user-center/SZDB.png', 'cardName': '平安银行', 'limit': '5w/20w/20w'},
+      {'src': '/images/user-center/MSBC.png', 'cardName': '民生银行', 'limit': '5w/20w/20w'},
+      {'src': '/images/user-center/EVER.png', 'cardName': '光大银行', 'limit': '5w/20w/20w'},
+      {'src': '/images/user-center/HXBK.png', 'cardName': '华夏银行', 'limit': '5w/20w/20w'},
+      {'src': '/images/user-center/GDBK.png', 'cardName': '广发银行', 'limit': '5w/20w/20w'},
+      {'src': '/images/user-center/PSBC.png', 'cardName': '邮政银行', 'limit': '5w/20w/20w'},
+      {'src': '/images/user-center/FJIB.png', 'cardName': '兴业银行', 'limit': '5w/5w/20w'},
+      {'src': '/images/user-center/SPDB.png', 'cardName': '浦发银行', 'limit': '5w/5w/20w'},
+    ]
     //更换银行卡
     $scope.showChange = false;
     $scope.Iknow = function(){
