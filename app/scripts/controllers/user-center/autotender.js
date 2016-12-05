@@ -14,13 +14,11 @@ angular.module('p2pSiteMobApp')
 
   
   var currentDate = new Date(new Date().toLocaleDateString()).getTime();
-  $scope.limitStartDate = DateUtils.longTimeToDate(new Date());
   $scope.showStatus = false;
   $scope.showDateLimit = false;
   $scope.showAnnual = false;
   $scope.showType = false;
-  $scope.toggle = {};
-  $scope.toggle.annualList = {
+  $scope.annualList = {
     "7": '7%',
     '8': '8%',
     '9': '9%',
@@ -28,7 +26,7 @@ angular.module('p2pSiteMobApp')
     '11': '11%',
     '12': '12%',
   };
-  $scope.toggle.dateList = {
+  $scope.dateList = {
     '30': '30天',
     '60': '60天',
     '90': '90天',
@@ -36,11 +34,12 @@ angular.module('p2pSiteMobApp')
     '180': '180天',
     '360': '360天',
   };
-  $scope.toggle.typeList = {
+  $scope.typeList = {
     '1':'宏金保',
     '2':'债权转让',
     '0':'全部'
   };
+
   $scope.clickHideOtherOption = function(){
     $scope.showDateLimit = !$scope.showDateLimit;
     $scope.showAnnual = false;
@@ -56,14 +55,12 @@ angular.module('p2pSiteMobApp')
     $scope.showAnnual = false;
     $scope.showDateLimit = false;
   };
-  $scope.amountErrMsg = $scope.amountErrMsg? $scope.amountErrMsg : null;
-  $scope.remainErrMsg = $scope.remainErrMsg? $scope.remainErrMsg : null;
   
   $scope.selectDate = function(date) {
     $scope.autoTenders.maxRemainDay = date;
     
   }
-
+ 
   $scope.selectAnnual = function(annual) {
     $scope.autoTenders.annualEarnings = annual;
   }
@@ -72,13 +69,7 @@ angular.module('p2pSiteMobApp')
     $scope.autoTenders.investType = type;
   
   }
-  //输入时所有错误提示小时
-  $scope.focusHide = function(){
-    $scope.showDateLimit = false;
-    $scope.showAnnual = false;
-    $scope.showType = false;
-  }
-
+  //整数 、保留两位小数
   var pattern1 = /^\+?[1-9][0-9]*$/;
   var pattern2 = /^[0-9]*(\.[0-9]{1,2})?$/;
   var checkMinAmount = function(val) {
@@ -113,11 +104,11 @@ angular.module('p2pSiteMobApp')
   }
   var checkEndTime = function(time) {
     if(time < currentDate) {
-      $scope.timeErrMsg = '截止日期不能为过去的时间';
+      $scope.endTimeErrMsg = '截止日期不能为过去的时间';
       return;
     }
     if(time < $scope.autoTenders.startDate.getTime()) {
-      $scope.timeErrMsg = '开始日期不能晚于结束日期';
+      $scope.endTimeErrMsg = '开始日期不能晚于结束日期';
       return;
     }
   }
@@ -169,7 +160,7 @@ angular.module('p2pSiteMobApp')
     //校验开始日期
     $scope.$watch('autoTenders.startDate', function(newVal, oldVal) {
      $scope.satartTimeErrMsg = null;
-     $scope.timeErrMsg = null;
+     $scope.endTimeErrMsg = null;
       if(newVal){
         checkStartTime(newVal);
       }
@@ -178,7 +169,7 @@ angular.module('p2pSiteMobApp')
     //校验结束日期
     $scope.$watch('autoTenders.endDate', function(newVal, oldVal) {
      $scope.satartTimeErrMsg = null;
-     $scope.timeErrMsg = null;
+     $scope.endTimeErrMsg = null;
       if(newVal){
         checkEndTime(newVal);
       }
@@ -187,7 +178,7 @@ angular.module('p2pSiteMobApp')
  };
  $scope.autoTendersDetail();
 
-
+//控制界面显示
 $scope.toEdit = function(){
   $scope.showStatus = true;
 }
@@ -210,13 +201,13 @@ $scope.onAutoTenders = function(autoTender) {
   checkRemainAmount(autoTender.remainAmount);
   checkStartTime(startTime);
   if($scope.satartTimeErrMsg !== null) {
-    $scope.timeErrMsg = null;
+    $scope.endTimeErrMsg = null;
   }else {
     checkEndTime();
   }
 
-  if($scope.amountErrMsg || $scope.remainErrMsg || $scope.timeErrMsg || $scope.satartTimeErrMsg || autoTender.minInvestAmount === 0) {
-    return;
+  if($scope.amountErrMsg || $scope.remainErrMsg || $scope.endTimeErrMsg || $scope.satartTimeErrMsg || autoTender.minInvestAmount === 0) {
+    return ;
   }
   Restangular.one('/autoTenders').post('',{
     userId: $rootScope.account.userId,
