@@ -316,7 +316,7 @@
   padding: 0;
   margin: 0;
   span:nth-child(1) {
-    width: 33%;
+    padding-left: 2rem;
     display: inline-block;
     float: left;
     text-align: right;
@@ -328,12 +328,23 @@
     text-align: left;
   }
   span:nth-child(3) {
-    width: 22%;
+    padding-right: 2rem;
     display: inline-block;
-    float: left;
+    float: right;
     text-align: left;
     font-size: 1.2rem;
     text-decoration: underline;
+  }
+  @media(max-width:320px){
+    span:nth-child(1) {
+      width: 33%;
+      padding-left:0rem; 
+    }
+    span:nth-child(3) {
+      width: 22%;
+      float: left;
+      padding-right: 0rem;
+    }
   }
 }
 
