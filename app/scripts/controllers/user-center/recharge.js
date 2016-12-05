@@ -20,6 +20,28 @@ angular.module('p2pSiteMobApp')
       $scope.showLimit = true;
       $rootScope.showFooter = false;
     }
+    //更换银行卡
+    $scope.showChange = false;
+    $scope.Iknow = function(){
+      $scope.showChange = false;
+      $rootScope.showFooter = true;
+    }
+    $scope.changeCard = function() {
+      $scope.showChange = true;
+      $rootScope.showFooter = false;
+    }
+    var unBindBankcardModel = restmod.model(WEB_DEFAULT_DOMAIN + '/yeepay');
+    $scope.unBindBankcard = function() {
+      unBindBankcardModel.$find('/unbindBankCard').$then(function(response) {
+        $scope.showChange = false;
+        if (!response || response.ret == -1) {
+          return;
+        }
+        $state.go('root.yeepay-transfer', {
+          type: 'BIND_BANK_CARD'
+        });
+      });
+    }
 
     // 获取用户的银行卡剩余额度
     var siteBankLimit = restmod.model(WEB_DEFAULT_DOMAIN + "/bank/getUserRechargeRemainLimit?&payCompany=FUIOU");
