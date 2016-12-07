@@ -1,5 +1,5 @@
 <!-- 未开启或可修改状态-->
-<form ng-show = "autoTenders && (autoTenders.status == null || showStatus == true)" name="autoTenderForm" ng-submit = "onAutoTenders(autoTenders)">
+<form ng-show = "autoTenders && (autoTenders.status == null || showStatus == true)" name="autoTenderForm">
 	<div class="security-setted ft-1p5" auto-height>
 		<div class="balance bg-white padding-l-1p5 padding-r-1p5 margin-b-1p2 border-grey-bottom">
 			<p class="margin-b-0 padding-t-1 padding-b-1 ft-666">账户可用余额
@@ -108,7 +108,7 @@
 
 		</div>
 		<div class="virify text-center">
-			<button class="turn-on text-center ft-1p6 ft-white {{(amountErrMsg !==null || remainErrMsg !==null || endTimeErrMsg !== null|| satartTimeErrMsg !==null ||autoTenders.minInvestAmount === 0) ? 'button-disabled' : 'bg-orange'}}" type="submit"  ng-disabled="amountErrMsg !==null || remainErrMsg !==null || endTimeErrMsg !== null || satartTimeErrMsg !==null||autoTenders.minInvestAmount === 0" >开启</button>
+			<button class="turn-on text-center ft-1p6 ft-white {{(amountErrMsg !==null || remainErrMsg !==null || endTimeErrMsg !== null|| satartTimeErrMsg !==null ||autoTenders.minInvestAmount === 0) ? 'button-disabled' : 'bg-orange'}}" type="submit"  ng-disabled="amountErrMsg !==null || remainErrMsg !==null || endTimeErrMsg !== null || satartTimeErrMsg !==null||autoTenders.minInvestAmount === 0" ng-click = "onAutoTenders(autoTenders);" my-click-once>开启</button>
 		</div>
 	</div>
 </form>
