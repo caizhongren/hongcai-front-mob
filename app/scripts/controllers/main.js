@@ -7,7 +7,7 @@
  * Controller of the p2pSiteMobApp
 + */
 angular.module('p2pSiteMobApp')
-  .controller('MainCtrl', function($scope, $rootScope, Restangular, ProjectUtils) {
+  .controller('MainCtrl', function($scope, $rootScope, $state, Restangular, ProjectUtils) {
 
 
     /**
@@ -40,5 +40,16 @@ angular.module('p2pSiteMobApp')
      * 是否激活存管通
      */
      $rootScope.toActivate();
+
+   /**
+    * 查看自动投标
+    */
+    $scope.goAutoTender = function(){
+      if(!$rootScope.isLogged) {
+        $rootScope.toLogin();
+        return;
+      }
+      $state.go('root.userCenter.setting');
+    }
 
   });
