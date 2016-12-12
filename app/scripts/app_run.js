@@ -96,20 +96,7 @@ angular.module('p2pSiteMobApp')
         controller: 'CopyLinkCtrl'
       });
     }
-    /**
-     * 激活存管通
-     */
-    $rootScope.payCompany = config.pay_company;
-    $rootScope.toActivate = function() {
-      if ($rootScope.payCompany === 'yeepay'||!$rootScope.isLogged || $rootScope.securityStatus.realNameAuthStatus !== 1 || $rootScope.securityStatus.userAuth.active === true) {
-        return;
-      }
-      $uibModal.open({
-        animation: true,
-        templateUrl: 'views/user-center/activate.html',
-        controller: 'ActivateCtrl'
-      });
-    }
+
     /**
      * 错误提示
      */
@@ -247,6 +234,22 @@ angular.module('p2pSiteMobApp')
 
           }
         }
+      
+        /**
+         * 激活存管通
+         */
+        $rootScope.payCompany = config.pay_company;
+        $rootScope.toActivate = function() {
+          if ($rootScope.payCompany === 'yeepay'||!$rootScope.isLogged || $rootScope.securityStatus.realNameAuthStatus !== 1 || $rootScope.securityStatus.userAuth.active === true) {
+            return;
+          }
+          $uibModal.open({
+            animation: true,
+            templateUrl: 'views/user-center/activate.html',
+            controller: 'ActivateCtrl'
+          });
+        }
+        
       });
     });
 

@@ -36,10 +36,15 @@ angular.module('p2pSiteMobApp')
       ProjectUtils.projectTimedown($scope.recommends, serverTime);
     });
 
-    /**
-     * 是否激活存管通
-     */
-     $rootScope.toActivate();
+
+    $rootScope.checkSession.promise.then(function() {
+      /**
+       * 是否激活存管通
+       */
+       $rootScope.toActivate();
+    });
+
+
 
    /**
     * 查看自动投标
