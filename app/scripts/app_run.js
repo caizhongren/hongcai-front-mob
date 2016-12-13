@@ -161,6 +161,7 @@ angular.module('p2pSiteMobApp')
             $rootScope.bindWechat = true;
           }
 
+
           if (!$rootScope.isLogged && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
             $location.path('/login');
             return;
@@ -234,13 +235,17 @@ angular.module('p2pSiteMobApp')
 
           }
         }
-      
+        
+      });
+
+
+      $rootScope.checkSession.promise.then(function() {
         /**
          * 激活存管通
          */
         $rootScope.payCompany = config.pay_company;
         $rootScope.toActivate = function() {
-          if ($rootScope.payCompany === 'yeepay'||!$rootScope.isLogged || $rootScope.securityStatus.realNameAuthStatus !== 1 || $rootScope.securityStatus.userAuth.active === true) {
+          if ($rootScope.payCompany === 'yeepay'|| !$rootScope.isLogged || $rootScope.securityStatus.realNameAuthStatus !== 1 || $rootScope.securityStatus.userAuth.active === true) {
             return;
           }
           $uibModal.open({
@@ -249,9 +254,15 @@ angular.module('p2pSiteMobApp')
             controller: 'ActivateCtrl'
           });
         }
-        
       });
     });
+
+
+
+
+
+
+
 
     $rootScope.$on('$stateChangeSuccess', function(event, toState) {
       var title = '宏财理财';
