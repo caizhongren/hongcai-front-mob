@@ -56,5 +56,15 @@ angular.module('p2pSiteMobApp')
       }
       $state.go('root.userCenter.setting');
     }
+    /**
+     * 查看体验金
+     */
+    $scope.toExperience =function() {
+      if(!$rootScope.isLogged) {
+        $state.go('root.register');
+        return;
+      }
+      $state.go('root.userCenter.experience-money');
+    }
 
   });
