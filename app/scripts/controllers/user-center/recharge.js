@@ -27,7 +27,7 @@ angular.module('p2pSiteMobApp')
       {'src': '/images/user-center/ABOC.png', 'cardName': '农业银行', 'limit': '5w/10w/20w'},
       {'src': '/images/user-center/COMM.png', 'cardName': '交通银行', 'limit': '5w/10w/20w'},
       {'src': '/images/user-center/CMBC.png', 'cardName': '招商银行', 'limit': '5w/5w/20w'},
-      {'src': '/images/user-center/CIBK.png', 'cardName': '中信银行', 'limit': '5w/20w/20w'},
+      {'src': '/images/user-center/CIBK.png', 'cardName': '中信银行', 'limit': '1w/1w/2w'},
       {'src': '/images/user-center/SZDB.png', 'cardName': '平安银行', 'limit': '5w/20w/20w'},
       {'src': '/images/user-center/MSBC.png', 'cardName': '民生银行', 'limit': '5w/20w/20w'},
       {'src': '/images/user-center/EVER.png', 'cardName': '光大银行', 'limit': '5w/20w/20w'},
@@ -103,14 +103,5 @@ angular.module('p2pSiteMobApp')
       });
     };
 
-
-    // 银行卡限额
-    // $scope.bankAndLimit = [
-    //   {
-    //     imgUrl: '/images/user-center/1.png',
-    //     bankName: '工商银行'，
-    //     limit：'5w/5w/20w'
-    //   }
-    // ]
 
   });
