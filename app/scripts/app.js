@@ -939,17 +939,31 @@ p2pSiteMobApp
         }
       })
       //新手活动落地页
+      // .state('root.activity.novice-landing', {
+      //   url: '/novice-activity?act&f&inviteCode',
+      //   views: {
+      //     '': {
+      //       templateUrl: 'views/activity/novice-landing.html',
+      //       controller: 'NoviceCtrl',
+      //       controllerUrl: 'scripts/controllers/activity/novice-landing-ctrl'
+      //     }
+      //   },
+      //   data: {
+      //     title: '注册立拿688元现金+3%加息券'
+      //   }
+      // })
+      //新手活动落地页
       .state('root.activity.novice-landing', {
-        url: '/novice-activity?act&f&inviteCode',
+        url: '/novice-activity',
         views: {
           '': {
-            templateUrl: 'views/activity/novice-landing.html',
+            templateUrl: 'views/activity/new-year-novice-landing.html',
             controller: 'NoviceCtrl',
             controllerUrl: 'scripts/controllers/activity/novice-landing-ctrl'
           }
         },
         data: {
-          title: '注册立拿688元现金+3%加息券'
+          title: '宏运当投，财源滚滚'
         }
       })
       // //邀请活动落地落地页
