@@ -17,6 +17,9 @@ angular.module('p2pSiteMobApp')
         if (val.length >= 4) {
           $http({
             method: 'POST',
+            headers: {
+               'Content-Type': 'application/json'
+            },
             url: DEFAULT_DOMAIN + '/captchas/checkPic?captcha=' + val
           }).success(function(data) {
             if (data == true) {} else {
