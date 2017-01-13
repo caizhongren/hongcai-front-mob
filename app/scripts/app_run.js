@@ -286,7 +286,7 @@ angular.module('p2pSiteMobApp')
       $rootScope.channelCode = $location.search().f;
       $rootScope.act = $location.search().act;
       $rootScope.channelParamsObj = {};
-
+      
       if($location.search().appFlag === 'app'){
         $rootScope.showBack = true;
         ipCookie('appFlag', 'app', {expires: 60, path: '/'});

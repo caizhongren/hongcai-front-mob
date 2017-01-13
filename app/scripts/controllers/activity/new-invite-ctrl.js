@@ -7,8 +7,16 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('newInviteCtrl', function($rootScope, $scope, $state, $stateParams, Restangular, restmod, DEFAULT_DOMAIN, config, HongcaiUser) {
+  .controller('newInviteCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, Restangular, restmod, DEFAULT_DOMAIN, config, HongcaiUser) {
 
+
+    //立即邀请
+    $scope.toInvite = function(){
+      if(!$rootScope.isLogged) {
+        $state.go('root.login');
+      }
+      $rootScope.toCopyLink();
+    }
     /**
      * 调用微信接口，申请此页的分享接口调用
      * @param
@@ -16,14 +24,14 @@ angular.module('p2pSiteMobApp')
      */
     $scope.configJsApi = function(){
       var url = location.href.split('#')[0];
-
+      console.log(url);
       Restangular.one("wechat").one("jsApiConfig").get({
         requestUrl : url
       }).then(function(apiConfig){
-        // console.log('apiConfig: ' + apiConfig);
+        console.log('apiConfig: ' + config.wechatAppid);
         wx.config({
             debug: false,
-            appId: config.wechatAppid, // 必填，公众号的唯一标识
+            appId: apiConfig.appId, // 必填，公众号的唯一标识
             timestamp: apiConfig.timestamp, // 必填，生成签名的时间戳
             nonceStr: apiConfig.nonceStr, // 必填，生成签名的随机串
             signature: apiConfig.signature,// 必填，签名，见附录1
@@ -53,10 +61,10 @@ angular.module('p2pSiteMobApp')
       }
 
       wx.onMenuShareAppMessage({
-        title: '688元现金奖励+3%加息券！！',
-        desc: '现在宏财网注册，即可获得以上奖励！现金奖励，投资即可提现！',
+        title: '邀请好友，双重奖励等你哟!!',
+        desc: '邀请好友,投资收益的30%全部属于你！上不封顶的奖金券也属于你！',
         link: shareLink,
-        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak5t5pVMCyJsOvnmGG6obPj8qU2yXy8WA78oSwHPNRfIic4uW9X7Rbs652IQzBX65ycTU6JbYXQWWg/0?wx_fmt=jpeg',
+        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz_jpg/8MZDOEkib8AlesZAUd6woODtlJbnNpuQHbBib1VSOomErWq3iblnczkbqoFwEgrYVFoFn3LI81SiaUDkkwPtmaVMkA/0?wx_fmt=jpeg',
         trigger: function (res) {
         },
         success: function (res) {
@@ -75,9 +83,9 @@ angular.module('p2pSiteMobApp')
       });
 
       wx.onMenuShareTimeline({
-        title: '688元现金奖励+3%加息券！！',
+        title: '邀请好友，双重奖励等你哟!!',
         link: shareLink,
-        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak5t5pVMCyJsOvnmGG6obPj8qU2yXy8WA78oSwHPNRfIic4uW9X7Rbs652IQzBX65ycTU6JbYXQWWg/0?wx_fmt=jpeg',
+        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz_jpg/8MZDOEkib8AlesZAUd6woODtlJbnNpuQHbBib1VSOomErWq3iblnczkbqoFwEgrYVFoFn3LI81SiaUDkkwPtmaVMkA/0?wx_fmt=jpeg',
         trigger: function (res) {
         },
         success: function (res) {

@@ -7,28 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('NoviceCtrl', function($scope, Restangular, $rootScope, $stateParams, config, $state, $timeout, $location) {
-    //去注册
-    $scope.goRegister = function(){
-      if($stateParams.inviteCode){
-        $state.go('root.register2', {inviteCode: $stateParams.inviteCode});
-      }else {
-        $state.go('root.register2');
-      }
-    }
-    /**
-     * 获取新手标项目
-     */
-    Restangular.one('projects').one('newbieBiaoProject').get().then(function(response) {
-      if(!response || response.ret === -1){
-          return;
-      }
-      $scope.newbieBiaoProject = response;
-      // 可投资金额
-      $scope.newbieBiaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
-
-    });
-
+  .controller('NewYearNoviceCtrl', function($scope, Restangular, $rootScope, $stateParams, config, $state, $timeout, $location) {
     $rootScope.showFooter = false;
     $scope.test = config.test;
 
@@ -39,16 +18,24 @@ angular.module('p2pSiteMobApp')
         channelCode: $rootScope.channelCode
       });
     }
+    // 点击立即领取
    
+    $scope.toReceive = function() {
+      if(!$rootScope.isLogged) {
+        $state.go('root.register');
+      }else {
+        $state.go('root._main-list-temp');
+      }
+    }
 
-    /**
+      /**
      * 调用微信接口，申请此页的分享接口调用
      * @param
      * @return
      */
     $scope.configJsApi = function(){
       var url = location.href.split('#')[0];
-
+      console.log(url);
       Restangular.one("wechat").one("jsApiConfig").get({
         requestUrl : url
       }).then(function(apiConfig){
@@ -79,10 +66,10 @@ angular.module('p2pSiteMobApp')
       }
 
       wx.onMenuShareAppMessage({
-        title: '688元现金奖励+3%加息券！！',
-        desc: '现在宏财网注册，即可获得以上奖励！现金奖励，投资即可提现！',
+        title: '8888体验金 + 300元现金！',
+        desc: '宏运当头，8888体验金注册即送！财源滚滚，300元现金投资立领！',
         link: shareLink,
-        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak5t5pVMCyJsOvnmGG6obPj8qU2yXy8WA78oSwHPNRfIic4uW9X7Rbs652IQzBX65ycTU6JbYXQWWg/0?wx_fmt=jpeg',
+        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz_jpg/8MZDOEkib8AlesZAUd6woODtlJbnNpuQHYibUasRbts0teKicv4JpcggcOVxvMvI32ASyw42VoPv04aZvYQdgicmKw/0?wx_fmt=jpeg',
         trigger: function (res) {
         },
         success: function (res) {
@@ -101,9 +88,9 @@ angular.module('p2pSiteMobApp')
       });
 
       wx.onMenuShareTimeline({
-        title: '688元现金奖励+3%加息券！！',
+        title: '8888体验金 + 300元现金！',
         link: shareLink,
-        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak5t5pVMCyJsOvnmGG6obPj8qU2yXy8WA78oSwHPNRfIic4uW9X7Rbs652IQzBX65ycTU6JbYXQWWg/0?wx_fmt=jpeg',
+        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz_jpg/8MZDOEkib8AlesZAUd6woODtlJbnNpuQHYibUasRbts0teKicv4JpcggcOVxvMvI32ASyw42VoPv04aZvYQdgicmKw/0?wx_fmt=jpeg',
         trigger: function (res) {
         },
         success: function (res) {
