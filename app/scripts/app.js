@@ -938,7 +938,7 @@ p2pSiteMobApp
           title: '2%加息券，投资即送！'
         }
       })
-      //新手活动落地页
+      // 新手活动落地页
       // .state('root.activity.novice-landing', {
       //   url: '/novice-activity?act&f&inviteCode',
       //   views: {
@@ -954,12 +954,12 @@ p2pSiteMobApp
       // })
       //新手活动落地页
       .state('root.activity.novice-landing', {
-        url: '/novice-activity',
+        url: '/novice-activity?act&f',
         views: {
           '': {
             templateUrl: 'views/activity/new-year-novice-landing.html',
-            controller: 'NoviceCtrl',
-            controllerUrl: 'scripts/controllers/activity/novice-landing-ctrl'
+            controller: 'NewYearNoviceCtrl',
+            controllerUrl: 'scripts/controllers/activity/new-year-novice-ctrl'
           }
         },
         data: {
@@ -982,7 +982,7 @@ p2pSiteMobApp
         url: '/invite-activity?act&f&inviteCode',
         views: {
           '': {
-            templateUrl: 'views/activity/newInvite.html',
+            templateUrl: 'views/activity/new-year-invite.html',
             controller: 'newInviteCtrl',
             controllerUrl: 'scripts/controllers/activity/new-invite-ctrl'
           }

@@ -1,23 +1,37 @@
 /*
-* @Author: fuqiang1
-* @Date:   2016-09-28 16:15:10
+* @Author: yuyang
+* @Date:   2016-07-28 17:08:11
 * @Last Modified by:   fuqiang1
-* @Last Modified time: 2016-09-30 19:00:25
+* @Last Modified time: 2016-10-09 10:18:26
 */
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('newInviteCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, Restangular, restmod, DEFAULT_DOMAIN, config, HongcaiUser) {
+  .controller('NewYearNoviceCtrl', function($scope, Restangular, $rootScope, $stateParams, config, $state, $timeout, $location) {
+    $rootScope.showFooter = false;
+    $scope.test = config.test;
 
-
-    //立即邀请
-    $scope.toInvite = function(){
-      if(!$rootScope.isLogged) {
-        $state.go('root.login');
-      }
-      $rootScope.toCopyLink();
+    if($rootScope.channelCode){
+      Restangular.one('users').post('channel', {
+        openId: $rootScope.openid,
+        act: $rootScope.act,
+        channelCode: $rootScope.channelCode
+      });
     }
-    /**
+    // 点击立即领取
+   
+    $scope.toReceive = function() {
+      if(!$rootScope.isLogged) {
+        $state.go('root.register');
+      }else {
+        $state.go('root._main-list-temp');
+      }
+    }
+    console.log($rootScope.channelCode);
+    console.log($rootScope.act);
+    console.log($rootScope.openid);
+
+      /**
      * 调用微信接口，申请此页的分享接口调用
      * @param
      * @return
@@ -28,10 +42,10 @@ angular.module('p2pSiteMobApp')
       Restangular.one("wechat").one("jsApiConfig").get({
         requestUrl : url
       }).then(function(apiConfig){
-        console.log('apiConfig: ' + config.wechatAppid);
+        // console.log('apiConfig: ' + apiConfig);
         wx.config({
-            debug: true,
-            appId: apiConfig.appId, // 必填，公众号的唯一标识
+            debug: false,
+            appId: config.wechatAppid, // 必填，公众号的唯一标识
             timestamp: apiConfig.timestamp, // 必填，生成签名的时间戳
             nonceStr: apiConfig.nonceStr, // 必填，生成签名的随机串
             signature: apiConfig.signature,// 必填，签名，见附录1
@@ -44,27 +58,21 @@ angular.module('p2pSiteMobApp')
         });
       });
     };
-    /**
-     * 邀请码
-     */
-    $scope.voucher = HongcaiUser.$find('0' + '/voucher').$then();
+
     /**
      * 设置用户分享的标题以及描述以及图片等。
      */
     $scope.onMenuShareAppMessage = function(){
-      var shareLink = config.domain + '/activity/novice-activity' ;
+      var shareLink = config.domain + '/activity/novice-activity';
       if ($rootScope.channelCode){
         shareLink = shareLink + '?f=' + $rootScope.channelCode + '&act=' + $rootScope.act;
       }
-      if($scope.voucher.inviteCode){
-        shareLink = shareLink + (shareLink.indexOf('?') === -1 ? '?' : '&') + 'inviteCode='  + $scope.voucher.inviteCode;
-      }
 
       wx.onMenuShareAppMessage({
-        title: '邀请好友，双重奖励等你哟!!',
-        desc: '邀请好友,投资收益的30%全部属于你！上不封顶的奖金券也属于你！',
+        title: '8888体验金 + 300元现金！',
+        desc: '宏运当头，8888体验金注册即送！财源滚滚，300元现金投资立领！',
         link: shareLink,
-        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak5t5pVMCyJsOvnmGG6obPj8qU2yXy8WA78oSwHPNRfIic4uW9X7Rbs652IQzBX65ycTU6JbYXQWWg/0?wx_fmt=jpeg',
+        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak6XibeP4rtlnYOfaCFneic3dYdZU9Gy2CCwjHpjNot1KNxB5XQdsDuTQgUNdVnZlJw38qHm7qsggeg/0?wx_fmt=png',
         trigger: function (res) {
         },
         success: function (res) {
@@ -83,9 +91,9 @@ angular.module('p2pSiteMobApp')
       });
 
       wx.onMenuShareTimeline({
-        title: '邀请好友，双重奖励等你哟!!',
+        title: '8888体验金 + 300元现金！',
         link: shareLink,
-        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak5t5pVMCyJsOvnmGG6obPj8qU2yXy8WA78oSwHPNRfIic4uW9X7Rbs652IQzBX65ycTU6JbYXQWWg/0?wx_fmt=jpeg',
+        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak6XibeP4rtlnYOfaCFneic3dYdZU9Gy2CCwjHpjNot1KNxB5XQdsDuTQgUNdVnZlJw38qHm7qsggeg/0?wx_fmt=png',
         trigger: function (res) {
         },
         success: function (res) {
@@ -115,5 +123,4 @@ angular.module('p2pSiteMobApp')
     });
 
     $scope.configJsApi();
-
-  })
+  });
