@@ -27,9 +27,6 @@ angular.module('p2pSiteMobApp')
         $state.go('root._main-list-temp');
       }
     }
-    console.log($rootScope.channelCode);
-    console.log($rootScope.act);
-    console.log($rootScope.openid);
 
       /**
      * 调用微信接口，申请此页的分享接口调用
@@ -72,7 +69,7 @@ angular.module('p2pSiteMobApp')
         title: '8888体验金 + 300元现金！',
         desc: '宏运当头，8888体验金注册即送！财源滚滚，300元现金投资立领！',
         link: shareLink,
-        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak6XibeP4rtlnYOfaCFneic3dYdZU9Gy2CCwjHpjNot1KNxB5XQdsDuTQgUNdVnZlJw38qHm7qsggeg/0?wx_fmt=png',
+        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz_jpg/8MZDOEkib8AlesZAUd6woODtlJbnNpuQHYibUasRbts0teKicv4JpcggcOVxvMvI32ASyw42VoPv04aZvYQdgicmKw/0?wx_fmt=jpeg',
         trigger: function (res) {
         },
         success: function (res) {
@@ -93,7 +90,7 @@ angular.module('p2pSiteMobApp')
       wx.onMenuShareTimeline({
         title: '8888体验金 + 300元现金！',
         link: shareLink,
-        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak6XibeP4rtlnYOfaCFneic3dYdZU9Gy2CCwjHpjNot1KNxB5XQdsDuTQgUNdVnZlJw38qHm7qsggeg/0?wx_fmt=png',
+        imgUrl: 'https://mmbiz.qlogo.cn/mmbiz_jpg/8MZDOEkib8AlesZAUd6woODtlJbnNpuQHYibUasRbts0teKicv4JpcggcOVxvMvI32ASyw42VoPv04aZvYQdgicmKw/0?wx_fmt=jpeg',
         trigger: function (res) {
         },
         success: function (res) {
