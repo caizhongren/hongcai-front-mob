@@ -938,18 +938,32 @@ p2pSiteMobApp
           title: '2%加息券，投资即送！'
         }
       })
+      // 新手活动落地页
+      // .state('root.activity.novice-landing', {
+      //   url: '/novice-activity?act&f&inviteCode',
+      //   views: {
+      //     '': {
+      //       templateUrl: 'views/activity/novice-landing.html',
+      //       controller: 'NoviceCtrl',
+      //       controllerUrl: 'scripts/controllers/activity/novice-landing-ctrl'
+      //     }
+      //   },
+      //   data: {
+      //     title: '注册立拿688元现金+3%加息券'
+      //   }
+      // })
       //新手活动落地页
       .state('root.activity.novice-landing', {
-        url: '/novice-activity?act&f&inviteCode',
+        url: '/novice-activity?act&f',
         views: {
           '': {
-            templateUrl: 'views/activity/novice-landing.html',
-            controller: 'NoviceCtrl',
-            controllerUrl: 'scripts/controllers/activity/novice-landing-ctrl'
+            templateUrl: 'views/activity/new-year-novice-landing.html',
+            controller: 'NewYearNoviceCtrl',
+            controllerUrl: 'scripts/controllers/activity/new-year-novice-ctrl'
           }
         },
         data: {
-          title: '注册立拿688元现金+3%加息券'
+          title: '宏运当投，财源滚滚'
         }
       })
       // //邀请活动落地落地页
@@ -968,13 +982,13 @@ p2pSiteMobApp
         url: '/invite-activity?act&f&inviteCode',
         views: {
           '': {
-            templateUrl: 'views/activity/newInvite.html',
+            templateUrl: 'views/activity/new-year-invite.html',
             controller: 'newInviteCtrl',
             controllerUrl: 'scripts/controllers/activity/new-invite-ctrl'
           }
         },
         data: {
-          title: '邀请好友投资送80元现金'
+          title: '邀请好友，双重奖励'
         }
       })
     //体验金新手标

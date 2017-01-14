@@ -59,7 +59,9 @@ angular.module('p2pSiteMobApp')
         });
       });
     }
-
+    // $rootScope.$on('$locationChangeSuccess',function(){//返回前页时，刷新前页
+    //   parent.location.reload(); 
+    // });
     // 获取用户的银行卡剩余额度
     var siteBankLimit = restmod.model(WEB_DEFAULT_DOMAIN + "/bank/getUserRechargeRemainLimit?&payCompany=FUIOU");
     siteBankLimit.$create({}).$then(function(response) {
