@@ -18,7 +18,7 @@ angular.module('p2pSiteMobApp')
 	$scope.couponStatis = Restangular.one('users').one('0/increaseRateCoupon').get().$object;
 	/*如何获取*/
 	$scope.toGet = function() {
-		$state.go('root.activity.newInvite-landing');
+		$state.go('root.activity.send-coupon');
 	}
 	/*使用规则*/
 	$scope.showRules = false;
