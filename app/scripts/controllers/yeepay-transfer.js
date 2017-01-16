@@ -65,6 +65,10 @@ angular.module('p2pSiteMobApp')
     $scope.number = $stateParams.number;
     $scope.realName = $stateParams.realName;
     $scope.idNo = $stateParams.idNo;
+    $scope.rechargeWay = $stateParams.rechargeWay;
+    $scope.expectPayCompany = $stateParams.expectPayCompany;
+    alert($stateParams.rechargeWay);
+    alert($stateParams.expectPayCompany);
 
     $rootScope.checkSession.promise.then(function() {
       $scope.HongcaiUser = DEFAULT_DOMAIN + '/users/' + '0';
@@ -74,6 +78,8 @@ angular.module('p2pSiteMobApp')
         var rechargeModel = restmod.model($scope.HongcaiUser + '/recharge');
         rechargeModel.$create({
           'amount': $scope.number,
+          'rechargeWay': $scope.rechargeWay,
+          'expectPayCompany': $scope.expectPayCompany,
           'from': 2,
           'device': Utils.deviceCode()
         }).$then(function(response) {

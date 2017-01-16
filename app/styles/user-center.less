@@ -418,12 +418,12 @@
             height: 42px;
             line-height: 42px;
             p:nth-child(1) {
-              width: 54%;
+              width: 41%;
             }
             @media(min-width:360px){
               width: 78.5%;
               p:nth-child(1) {
-                width: 58%;
+                width: 53 %;
               }
             }
             @media(min-width: 411px){
@@ -1362,6 +1362,78 @@
       input[type="date"]:focus {
         border: 1px solid #fe8f3f !important;
       }
+    }
+  }
+}
+
+.recharge {
+  .input-amount {
+    height: 45px;
+  }
+  .pay-active {
+    color: #ff6600;
+  }
+  .balance {
+    padding: 0.5rem 2rem 1rem;
+    margin-bottom: 1.5rem;
+    .account {
+      color: #ff6c01;
+    }
+  }
+  .payment {
+    overflow: hidden;
+    clear: both;
+    font-size: 1.5rem;
+    padding: 2rem 2rem 0.5rem;
+    .col-xs-3 {
+      width: 38%;
+      display: inline-block;
+      float: left;
+    }
+    .bankLimit {
+      color: #68a9d0;
+    }
+  }
+  .hr {
+    border-top: 1px solid #eee;
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: 3rem;
+  }
+  .pay-typeUCF {
+    background: url(/images/user-center/UCFPAY.png) no-repeat 0 0;
+    background-size: 17%;
+    padding-left: 2.5rem;
+  }
+  .pay-typeFU {
+    background: url(/images/user-center/FUIOU.png) no-repeat 5px 4px;
+    background-size: 21%;
+    padding-left: 3.5rem;
+  }
+  .bankCard {
+    width: 66%;
+    height: 12.5rem;
+    background: url('/images/user-center/bankCard-bg.png') no-repeat center center;
+    background-size: contain;
+    background-color: #fff !important;
+    .cardName {
+      text-align: right;
+      padding-top: 1.5rem;
+      padding-right: 1.5rem;
+      color: #fffefe;
+      font-size: 2rem;
+    }
+    .cardNo {
+      color: #fffefe;
+      font-size: 1.8rem;
+      text-align: center;
+      padding-top: 1.4rem;
+    }
+    .changeCard {
+      color: #e1c68e;
+      font-size: 1.4rem;
+      text-align: center;
+      padding-top: 1rem;
     }
   }
 }
