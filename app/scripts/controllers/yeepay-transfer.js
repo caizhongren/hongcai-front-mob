@@ -67,8 +67,8 @@ angular.module('p2pSiteMobApp')
     $scope.idNo = $stateParams.idNo;
     $scope.rechargeWay = $stateParams.rechargeWay;
     $scope.expectPayCompany = $stateParams.expectPayCompany;
-    alert($stateParams.rechargeWay);
-    alert($stateParams.expectPayCompany);
+    // alert($stateParams.rechargeWay);
+    // alert($stateParams.expectPayCompany);
 
     $rootScope.checkSession.promise.then(function() {
       $scope.HongcaiUser = DEFAULT_DOMAIN + '/users/' + '0';
