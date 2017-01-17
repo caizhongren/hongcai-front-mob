@@ -1374,7 +1374,7 @@
     color: #ff6600;
   }
   .balance {
-    padding: 0.5rem 2rem 1rem;
+    padding: 0.2rem 2rem 1rem;
     margin-bottom: 1.5rem;
     .account {
       color: #ff6c01;
@@ -1392,7 +1392,7 @@
     }
     .bankLimit {
       color: #68a9d0;
-      margin-top: 2px;
+      margin-top: 3px;
     }
   }
   .hr {
@@ -1418,7 +1418,31 @@
       padding-left: 2rem;
     }
     .pay-typeFU {
-      background: url(/images/user-center/FUIOU.png) no-repeat 4px 6px;
+      background: url(/images/user-center/FUIOU.png) no-repeat 4px 4px;
+      background-size: 21%;
+      padding-left: 3.3rem;
+    }
+  }
+  @media(min-width:360px){
+    .pay-typeUCF {
+      background: url(/images/user-center/UCFPAY.png) no-repeat 0 0px;
+      background-size: 17%;
+      padding-left: 2rem;
+    }
+    .pay-typeFU {
+      background: url(/images/user-center/FUIOU.png) no-repeat 4px 3px;
+      background-size: 21%;
+      padding-left: 3.3rem;
+    }
+  }
+  @media(min-width:375px){
+    .pay-typeUCF {
+      background: url(/images/user-center/UCFPAY.png) no-repeat 0px 1px;
+      background-size: 17%;
+      padding-left: 2rem;
+    }
+    .pay-typeFU {
+      background: url(/images/user-center/FUIOU.png) no-repeat 4px 4px;
       background-size: 21%;
       padding-left: 3.3rem;
     }
@@ -1430,9 +1454,12 @@
       padding-left: 2.5rem;
     }
     .pay-typeFU {
-      background: url(/images/user-center/FUIOU.png) no-repeat 8px 3px;
+      background: url(/images/user-center/FUIOU.png) no-repeat 8px 2px;
       background-size: 21%;
       padding-left: 4.1rem;
+    }
+    .bankLimit {
+      margin-top: 3px;
     }
   }
   .bankCard {
@@ -1460,7 +1487,7 @@
       color: #e1c68e;
       font-size: 1.4rem;
       text-align: center;
-      padding-top: .9rem;
+      padding-top: .8rem;
     }
     @media(min-width:320px){
       .cardName {
@@ -1480,12 +1507,23 @@
         padding-top: 1.5rem;
       }
       .changeCard {
-        padding-top: .9rem;
+        padding-top: .8rem;
+      }
+    }
+    @media(min-width:375px){
+      .cardName {
+        padding-top: 1.5rem;
+      }
+      .changeCard {
+        padding-top: .8rem;
       }
     }
     @media (min-width:414px) {
       .cardName {
-        padding-right: 3.8rem;
+        padding-right: 5rem;
+      }
+      .changeCard {
+        padding-top: .7rem;
       }
     }
   }
