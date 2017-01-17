@@ -1410,6 +1410,30 @@
     background-size: 21%;
     padding-left: 3.5rem;
   }
+  @media(min-width:320px){
+    .pay-typeUCF {
+      background: url(/images/user-center/UCFPAY.png) no-repeat 0 4px;
+      background-size: 17%;
+      padding-left: 2rem;
+    }
+    .pay-typeFU {
+      background: url(/images/user-center/FUIOU.png) no-repeat 11px 6px;
+      background-size: 21%;
+      padding-left: 3.3rem;
+    }
+  }
+  @media(min-width:414px){
+    .pay-typeUCF {
+      background: url(/images/user-center/UCFPAY.png) no-repeat 0 0px;
+      background-size: 17%;
+      padding-left: 2.5rem;
+    }
+    .pay-typeFU {
+      background: url(/images/user-center/FUIOU.png) no-repeat 11px 3px;
+      background-size: 21%;
+      padding-left: 4.1rem;
+    }
+  }
   .bankCard {
     width: 66%;
     height: 12.5rem;
@@ -1425,7 +1449,8 @@
     }
     .cardNo {
       color: #fffefe;
-      font-size: 1.8rem;
+      font-family: monospace;
+      font-size: 2.1rem;
       text-align: center;
       padding-top: 1.4rem;
     }
@@ -1433,7 +1458,33 @@
       color: #e1c68e;
       font-size: 1.4rem;
       text-align: center;
-      padding-top: 1rem;
+      padding-top: 1.4rem;
+    }
+    @media(min-width:320px){
+      .cardName {
+        font-size: 1.8rem;
+        padding-top: 2rem;
+      }
+      .cardNo {
+        padding-top: 1rem;
+        
+      }
+      .changeCard {
+        padding-top: 1rem;
+      }
+    }
+    @media(min-width:360px){
+      .cardName {
+        padding-top: 1.7rem;
+      }
+      .changeCard {
+        padding-top: 1.7rem;
+      }
+    }
+    @media (min-width:414px) {
+      .cardName {
+        padding-right: 3.4rem;
+      }
     }
   }
 }
