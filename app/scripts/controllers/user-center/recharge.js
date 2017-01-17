@@ -81,8 +81,8 @@ angular.module('p2pSiteMobApp')
     //   parent.location.reload(); 
     // });
     // 获取用户的银行卡剩余额度
-    $scope.getUserBankCard = function(){
-      var siteBankLimit = restmod.model(WEB_DEFAULT_DOMAIN + "/bank/getUserRechargeRemainLimit?&payCompany=FUIOU");
+    $scope.getUserBankCard = function(expectPayCompany){
+      var siteBankLimit = restmod.model(WEB_DEFAULT_DOMAIN + "/bank/getUserRechargeRemainLimit?&payCompany=" + expectPayCompany);
       siteBankLimit.$create({}).$then(function(response) {
         if (response.ret !== -1) {
           $scope.bankRemain = response.data.bankRemain;
