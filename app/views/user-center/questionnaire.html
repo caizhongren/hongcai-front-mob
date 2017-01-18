@@ -9,7 +9,8 @@
       </div>
       <div class="answers">
         <div class="answer overflow-hid clearfix" ng-repeat="answer in item.answers" id="{{answer.id}}" ng-click="select(item.id,answer.id)">
-          <input type="radio" ng-model="item.id"  id="a{{answer.id}}" class="fl" required> <label class="fl" for="a{{answer.id}}">{{ answer.answer || '30岁以下' }}</label>
+          <span class="unselected fl"></span>
+          <!-- <input type="radio" ng-model="item.id"  id="a{{answer.id}}" class="fl" required>  --><label class="fl" >{{ answer.answer || '30岁以下' }}</label>
         </div>
       </div>
     </div>
@@ -17,7 +18,7 @@
     <div class="position-re margin-t-5"> 
       <div class="errMsg position-ab" ng-show="errMsg">
         {{errMsg}}
-      </div>
+      </div>  
       <button type="button" ng-disabled="!questionnaireForm.$invalid" class="button button-primary submit-btn {{!questionnaireForm.$invalid ? 'button-disabled1' : ''}} "  ng-click="submitForm()">提交</button>
     </div>
     

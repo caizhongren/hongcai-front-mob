@@ -1400,6 +1400,21 @@
         background: #fff;
         padding: .5rem .6rem .3rem;
         margin-bottom: 1rem;
+        .unselected, .selected {
+          width: 1rem;
+          height: 1rem;
+          display: inline-block;
+          margin-right: 5px;
+          margin-top: 5px;
+        }
+        .unselected {
+          background: url(/images/user-center/unselected.png) no-repeat;
+          background-size: contain;
+        }
+        .selected {
+          background: url(/images/user-center/selected.png) no-repeat;
+          background-size: contain;
+        }
         input {
           margin-bottom: 0;
           margin-right: 5px;
@@ -1419,7 +1434,7 @@
     }
   }
   .errMsg {
-    width: 60%;
+    width: 44%;
     height: 4rem;
     border-radius: .6rem;
     line-height: 3.2rem;
@@ -1428,13 +1443,24 @@
     font-size: 1.2rem;
     background: url('/images/user-center/transfer-msg.png') no-repeat;
     background-size: 100%;
-    left: 4rem;
-    top: -3.3rem;
+    left: 28%;
+    bottom: 24px;
+    @media (min-width: 320px) {
+      width: 50%;
+      left: 25%;
+    }
+    @media (min-width: 360px) {
+      width: 44%;
+      left: 28%;
+    }
+    @media (min-width: 414px) {
+      bottom: 29px;
+    }
   }
   .submit-btn {
-    width: 80%;
+    width: 54%;
     height: 38px;
-    margin: 0 10%;
+    margin: 0 23%;
     font-weight: normal;
     font-size: 1.5rem;
     line-height: 38px;

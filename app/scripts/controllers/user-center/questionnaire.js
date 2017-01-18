@@ -19,7 +19,9 @@ angular.module('p2pSiteMobApp')
   	$scope.answerJson = {};
   	$scope.select = function(question_id,answer_id){
   		$('#'+answer_id).siblings().removeClass('active');
+  		$('#'+answer_id).siblings().children('span').removeClass('selected');
   		$('#'+answer_id).addClass('active');
+  		$('#'+answer_id).children('span').addClass('selected');
   		$scope.answerJson[question_id] = answer_id;
   		console.log($scope.answerJson);
   		if (!$scope.answerJson) {
@@ -31,7 +33,7 @@ angular.module('p2pSiteMobApp')
 
   	$scope.submitForm = function(){
 
-  		if($scope.errMsg || $scope.showMsk || !$scope.answerJson){
+  		if($scope.errMsg || $scope.showMsk || $.isEmptyObject($scope.answerJson)){
   			return;
   		}
   		Restangular.one('/users/0').post('questionnaire',{
