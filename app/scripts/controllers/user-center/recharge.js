@@ -15,10 +15,27 @@ angular.module('p2pSiteMobApp')
     $scope.getIt = function(){
       $scope.showLimit = false;
       $rootScope.showFooter = true;
+      $('.recharge').removeClass('position-fix'); 
+      // 滚回到老地方！
+      to(scrollTop);
     }
+    var scrollTop = 0;
     $scope.showbankLimit = function() {
+      // 在弹出层显示之前，记录当前的滚动位置
+      scrollTop = getScrollTop();
+
+      // 使body脱离文档流
+      $('.recharge').addClass('position-fix'); 
+      // 把脱离文档流的body拉上去！否则页面会回到顶部！
+      document.body.style.top = -scrollTop + 'px';
       $scope.showLimit = true;
       $rootScope.showFooter = false;
+    }
+    function to(scrollTop){
+      document.body.scrollTop = document.documentElement.scrollTop = scrollTop;
+    }
+    function getScrollTop(){
+      return document.body.scrollTop || document.documentElement.scrollTop;
     }
     $scope.bankCardList_FU = [
       {'src': '/images/user-center/ICBK.png', 'cardName': '工商银行', 'limit': '5w/5w/20w'},
