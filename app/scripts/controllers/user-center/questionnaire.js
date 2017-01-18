@@ -8,13 +8,16 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('QuestionnaireCtrl', function($state, $timeout, Restangular, $scope, $rootScope) {
-
+  .controller('QuestionnaireCtrl', function($location, $state, $timeout, Restangular, $scope, $rootScope) {
+  	
+  	if ($location.path().split('/')[2] === 'questionnaire') {
+	    $rootScope.showFooter = false;
+	}
   	//风险测评题目详情:
   	Restangular.one('/users/' + '0' + '/getQuestionnaire' ).get({
   		'surveyType': 1
   	}).then(function(response){
-  		$scope.questionnaires = response.questionnaires;
+  		$scope.questionnaires = response;
   	})
   	$scope.answerJson = {};
   	$scope.select = function(question_id,answer_id){
@@ -23,7 +26,6 @@ angular.module('p2pSiteMobApp')
   		$('#'+answer_id).addClass('active');
   		$('#'+answer_id).children('span').addClass('selected');
   		$scope.answerJson[question_id] = answer_id;
-  		console.log($scope.answerJson);
   		if (!$scope.answerJson) {
   			$('.submit-btn').addClass('button-disabled1');
   		}else {
@@ -47,20 +49,20 @@ angular.module('p2pSiteMobApp')
   				},2000)
   			}else {
   				$scope.showMsk = true;
-  				if(response.score >= 22 && response.score <= 40){
+  				if(response >= 22 && response <= 40){
   					$scope.riskTolerance = '一般'
-  				}else if(response.score >= 41 && response.score <= 55){
+  				}else if(response >= 41 && response <= 55){
   					$scope.riskTolerance = '较强'
-  				}else if(response.score >= 56 && response.score <= 70){
+  				}else if(response >= 56 && response <= 70){
   					$scope.riskTolerance = '很强'
   				}else {
   					$scope.riskTolerance = '超赞'
   				}
-  				if(response.score < 35){
+  				if(response < 35){
   					$scope.riskPreference = '保守型'
-  				}else if(response.score >= 35 && response.score <= 59){
+  				}else if(response >= 35 && response <= 59){
   					$scope.riskPreference = '稳健型'
-  				}else if(response.score > 59){
+  				}else if(response > 59){
   					$scope.riskPreference = '进取型'
   				}
   				

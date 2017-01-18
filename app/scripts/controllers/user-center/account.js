@@ -45,8 +45,8 @@ angular.module('p2pSiteMobApp')
     */
     $scope.recentlyQuestionnaire = function() {
       Restangular.one('/users/' + '0' + '/recentlyQuestionnaire' ).get().then(function(response){
-       $scope.isQuestionnaire = response.score;
-       if(response.score == -1){
+       $scope.isQuestionnaire = response;
+       if(response == -1){
         $scope.showQuestionnaire = true;
        }else {
         $scope.showQuestionnaire = false;
