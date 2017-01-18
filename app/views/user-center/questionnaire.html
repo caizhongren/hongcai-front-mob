@@ -16,8 +16,8 @@
     </div>
     <!-- 提交按钮 -->
     <div class="position-re margin-t-5"> 
-      <div class="errMsg position-ab" ng-show="errMsg">
-        {{errMsg}}
+      <div class="errMsg position-ab" ng-show="true">
+        {{errMsg || '提交'}}
       </div>  
       <button type="button" ng-disabled="!questionnaireForm.$invalid" class="button button-primary submit-btn {{!questionnaireForm.$invalid ? 'button-disabled1' : ''}} "  ng-click="submitForm()">提交</button>
     </div>
