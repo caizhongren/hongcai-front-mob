@@ -79,6 +79,25 @@ angular.module('p2pSiteMobApp')
         });
     }
 
+    /*
+    *风险测评 结果
+    */
+    $scope.recentlyQuestionnaire = function() {
+      Restangular.one('/users/' + '0' + '/recentlyQuestionnaire' ).get().then(function(response){
+       $scope.isQuestionnaire = response.score;
+       if(response.score !== -1){
+        if(response.score < 35){
+          $scope.riskPreference = '保守型';
+        }else if(response.score >= 35 && response.score <= 59){
+          $scope.riskPreference = '稳健型';
+        }else if(response.score > 59){
+          $scope.riskPreference = '进取型';
+        }
+        $scope.msgRisk = '您的投资风格为' + $scope.riskPreference;
+       }
+      })
+    };
+    $scope.recentlyQuestionnaire();
 
 
     /*

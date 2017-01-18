@@ -71,6 +71,20 @@
       </p>
     </div>
   </div>
+  <div class="content-main">
+    <div class="padding-t-0p5">
+      <!-- <img src="/images/user-center/04.png" alt=""> -->
+      <i class="fa fa-unlock-alt ft-orange ft-2" aria-hidden="true"></i>
+    </div>
+    <div>
+      <p>风险测评：</p>
+      <p>{{ isQuestionnaire == -1 ? '帮助您了解自己的风险承受能力' : msgRisk }}
+        <!-- <span>您的投资风格为：稳健型</span> -->
+        <!-- <span><a class="ft-blue" ng-show="isQuestionnaire !== -1">&nbsp;已测评 ></a></span> -->
+        <span><a class="ft-blue" ui-sref="root.userCenter.questionnaire">&nbsp;去测评 ></a></span>
+      </p>
+    </div>
+  </div>
   <div class="contain-last">
     <div>
       <img src="/images/user-center/05.png" alt="" class="margin-r-0p5">
