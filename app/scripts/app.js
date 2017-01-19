@@ -606,6 +606,21 @@ p2pSiteMobApp
           }
         }
       })
+      // 风险测评
+      .state('root.userCenter.questionnaire', {
+        url: '/questionnaire',
+        data: {
+          title: '风险测评'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/questionnaire.html',
+            controller: 'QuestionnaireCtrl',
+            controllerUrl: 'scripts/controllers/user-center/questionnaire'
+          }
+        }
+      })
+
       // 易宝新页面打开中转页
       .state('root.yeepay-transfer', {
         url: '/yeepay-transfer/:type/:number?realName&idNo',

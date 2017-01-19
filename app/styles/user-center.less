@@ -1365,3 +1365,118 @@
     }
   }
 }
+
+.questionnaire {
+  background: #f8f8f8;
+  padding: 2rem;
+  font-family: '微软雅黑', MicrosoftYaiHei !important;
+  padding-bottom: 4rem;
+  .question {
+    .title {
+      color: #444;
+      .no {
+        font-family: Arial;
+        display: inline-block;
+        background: #fff;
+        border-radius: 50%;
+        width: 1.8rem;
+        height: 1.8rem;
+        text-align: center;
+        margin-right: 5px;
+      }
+      .content {
+        font-size: 1.6rem;
+        width: 86%;
+        padding-left: 6px;
+      }
+    }
+    .answers {
+      padding: 1rem 2.6rem 2rem;
+      .answer {
+        color: #666;
+        font-size: 1.4rem;
+        border: 1px solid #eee;
+        background: #fff;
+        padding: .5rem .6rem .3rem;
+        margin-bottom: 1rem;
+        .unselected, .selected {
+          width: 1rem;
+          height: 1rem;
+          display: inline-block;
+          margin-right: 5px;
+          margin-top: 5px;
+        }
+        .unselected {
+          background: url(/images/user-center/unselected.png) no-repeat;
+          background-size: contain;
+        }
+        .selected {
+          background: url(/images/user-center/selected.png) no-repeat;
+          background-size: contain;
+        }
+        input {
+          margin-bottom: 0;
+          margin-right: 5px;
+          margin-top: 5px;
+        }
+        label {
+          display: inline-block;
+          margin-bottom: 0;
+          font-weight: normal;
+          width: 90%;
+        }
+      }
+      .active {
+        background: #fd8f3f;
+        color: #fff;
+      }
+    }
+  }
+  .errMsg {
+    width: 44%;
+    height: 4rem;
+    border-radius: .6rem;
+    line-height: 2.8rem;
+    text-align: center;
+    color: #fff;
+    font-size: 1.2rem;
+    background: url('/images/user-center/transfer-msg.png') no-repeat;
+    background-size: 100%;
+    left: 28%;
+    bottom: 32px;
+    @media (min-width: 320px) {
+      width: 50%;
+      left: 25%;
+    }
+    @media (min-width: 360px) {
+      width: 44%;
+      left: 28%;
+    }
+    @media (min-width: 414px) {
+      bottom: 38px;
+      line-height: 3.2rem;
+    }
+  }
+  .submit-btn {
+    width: 54%;
+    height: 38px;
+    margin: 0 23%;
+    font-weight: normal;
+    font-size: 1.5rem;
+    line-height: 38px;
+  }
+}
+.question-btn {
+  width: 43%;
+  height: 3rem;
+  display: block;
+  background-color: #fd8f3f;
+  border: 1px solid #fd8f3f;
+  border-radius: .5em;
+  line-height: 3rem;
+  text-align: center;
+  margin: 2rem 29% 1rem 29%;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: initial;
+}
