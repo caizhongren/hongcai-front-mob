@@ -20,7 +20,8 @@ angular.module('p2pSiteMobApp')
             headers: {
                'Content-Type': 'application/json'
             },
-            url: DEFAULT_DOMAIN + '/captchas/checkPic?captcha=' + val
+            url: DEFAULT_DOMAIN + '/captchas/checkPic',
+            data: {'captcha': val}
           }).success(function(data) {
             if (data == true) {} else {
               msg = '图形验证码错误';

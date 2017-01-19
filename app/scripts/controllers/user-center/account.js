@@ -40,6 +40,20 @@ angular.module('p2pSiteMobApp')
       });
     }
 
+    /*
+    *风险测评 结果
+    */
+    $scope.recentlyQuestionnaire = function() {
+      Restangular.one('/users/' + '0' + '/recentlyQuestionnaire' ).get().then(function(response){
+       $scope.isQuestionnaire = response;
+       if(response == -1){
+        $scope.showQuestionnaire = true;
+       }else {
+        $scope.showQuestionnaire = false;
+       }
+      })
+    }
+    $scope.recentlyQuestionnaire();
 
     $scope.goWithdraw = function() {
       $state.go("root.userCenter.withdraw");
