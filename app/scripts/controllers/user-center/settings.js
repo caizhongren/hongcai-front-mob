@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('SettingsCtrl',['$scope', '$rootScope', '$state', 'HongcaiUser', 'restmod', 'DEFAULT_DOMAIN', 'md5', 'Utils', 'Restangular', 'WEB_DEFAULT_DOMAIN', '$timeout', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout) {
+  .controller('SettingsCtrl',['$scope', '$rootScope', '$state', 'HongcaiUser', 'restmod', 'DEFAULT_DOMAIN', 'md5', 'Utils', 'Restangular', 'WEB_DEFAULT_DOMAIN', '$timeout', '$location', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location) {
 
     $scope.userHeadImgUrl = '/images/user-center/head.png';
 
@@ -21,6 +21,9 @@ angular.module('p2pSiteMobApp')
         $scope.userHeadImgUrl = $rootScope.hasLoggedUser.headImgUrl
       }
     });
+    if ($location.path().split('/')[2] === 'setting') {
+      $rootScope.showFooter = false;
+    }
 
     /**
      * 邀请码
