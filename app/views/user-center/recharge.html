@@ -1,33 +1,55 @@
-<div class="recharge bg-white margin-b-7 width-pull">
-  <div class=" margin-0 padding-1 padding-t-2">
-    <!-- <span class="pull-right" ui-sref="root.userCenter.setting">基本资料></span></div> -->
-    <!-- <hr class="hr-grey"> -->
-  <!-- <h6 class="text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>充值</strong></h6> -->
-  <div>
+<div class="recharge bg-offWhite margin-b-7 width-pull">
+  <!-- <div class=" margin-0 padding-1 padding-t-0">
+    <span class="pull-right" ui-sref="root.userCenter.setting">基本资料></span></div>
+    <hr class="hr-grey">
+    <h6 class="text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>充值</strong></h6> 
+  <div> -->
     <!-- 未绑定银行卡 simpleWithdraw.cardStatus !== 'VERIFIED'-->
     <div ng-include src="'views/user-center/_bankcardless-hint.html'" ng-show="simpleWithdraw.cardStatus && simpleWithdraw.cardStatus !== 'VERIFIED'"></div>
     <!-- 绑定银行卡 -->
-    <form class="margin-b-1p5 margin-t-1" name="rechargeForm" ng-submit="recharge(rechargeAmount);" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
-      <div class="bank-span">
+    <form class="margin-t-1 margin-b-0" name="rechargeForm" ng-submit="recharge(rechargeAmount);" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
+      <div class="balance ft-black4 ft-1p6 bg-white">
+        账户余额 : <span class="account ft-Arial">{{ simpleWithdraw.account.balance | number:2}} </span>元
+      </div>
+      <div class="payment bg-white">
+        <div class="col-xs-3 pay-typeUCF" ng-class="{'pay-active':payment ==3}" ng-click="selectPay(3)">先锋支付</div>
+        <div class="col-xs-3 pay-typeFU" ng-class="{'pay-active':payment ==1}" ng-click="selectPay(1)">富有支付</div>
+        <span class="bankLimit ft-1p2 fr line-h2" ng-click="showbankLimit();">支持银行</span>
+      </div>
+      <div class="bg-white">
+        <hr class="hr">
+      </div>
+      <div class="bg-white">
+        <div class="bankCard bg-white margin-auto">
+          <div class="cardName">{{simpleWithdraw.bankcard.openBank || '交通银行'}}</div>
+          <div class="cardNo">{{simpleWithdraw.bankcard.cardNo || '6222************1213'}}</div>
+          <div class="changeCard" ng-click="changeCard()">更换银行卡</div>
+        </div>
+      </div>
+     <!--  <div class="bank-span">
         <span>{{simpleWithdraw.bankcard.openBank || '交通银行'}}：&nbsp;</span><span>{{simpleWithdraw.bankcard.cardNo || '6222************1213'}}</span><span ng-click="changeCard()">更换银行卡</span>
       </div>
-      <label class="margin-t-1 padding-l-2">账户余额:&nbsp;<span class="ft-orange">{{ simpleWithdraw.account.balance | number:2}}</span>元<span class="ft-blue ft-1p2 fr margin-r-2 line-h2" ng-click="showbankLimit();">支持银行</span></label>
-      <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeForm.amount.$dirty && rechargeForm.amount.$error.pattern">
+      <label class="margin-t-1 padding-l-2">账户余额:&nbsp;<span class="ft-orange">{{ simpleWithdraw.account.balance | number:2}}</span>元<span class="ft-blue ft-1p2 fr margin-r-2 line-h2" ng-click="showbankLimit();">支持银行</span></label> -->
+      <div class="padding-t-3p5 bg-white">
+        <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeForm.amount.$dirty && rechargeForm.amount.$error.pattern">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入数字(最多精确到小数点后两位)</span>
+        </div>
+        <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeForm.amount.$error.min && !rechargeForm.amount.$error.pattern && !rechargeForm.amount.$error.max">
+          <span class="ft-white"><i class="fa fa-info">&nbsp;</i>充值金额不能小于3元</span>
+        </div>
+        <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeForm.amount.$error.max && !rechargeForm.amount.$error.pattern">
+          <span class="ft-white"><i class="fa fa-info">&nbsp;</i>该卡本次最多充值{{bankRemain || 0}}元</span>
+        </div>
+        <label class="padding-l-2 padding-r-2 bg-white margin-b-0">
+          <input name="amount" type="number" class="input-amount u-full-width padding-t-1 padding-b-1 padding-l-1 padding-r-1 margin-t-0p5" ng-model="rechargeAmount" max="{{bankRemain}}" min="3"  ng-pattern="/^[0-9]*(\.[0-9]{1,2})?$/" ng-focus required placeholder="该卡本次最多充值{{bankRemain ||0}}元">
+          <button type="submit" class="u-full-width ft-1p6 button button-primary margin-t-0p5 {{rechargeForm.$invalid ? 'button-disabled' : ''}}" ng-disabled="rechargeForm.$invalid">立即充值</button>
+        </label>
       </div>
-      <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeForm.amount.$error.min && !rechargeForm.amount.$error.pattern && !rechargeForm.amount.$error.max">
-        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>充值金额不能小于2元</span>
-      </div>
-      <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeForm.amount.$error.max && !rechargeForm.amount.$error.pattern">
-        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>该卡本次最多充值{{bankRemain || 0}}元</span>
-      </div>
-      <label class="padding-l-2 padding-r-2">
-        <input name="amount" type="number" class="u-full-width padding-t-1 padding-b-1 padding-l-1 padding-r-1 margin-t-0p5" ng-model="rechargeAmount" max="{{bankRemain}}" min="2"  ng-pattern="/^[0-9]*(\.[0-9]{1,2})?$/" ng-focus required placeholder="该卡本次最多充值{{bankRemain ||0}}元">
-        <button type="submit" class="u-full-width ft-1p6 button button-primary margin-t-0p5 {{rechargeForm.$invalid ? 'button-disabled' : ''}}" ng-disabled="rechargeForm.$invalid">立即充值</button>
-      </label>
     </form>
-    <hr class="margin-0" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
-    <div class="ft-grey4 padding-2" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
+    <!-- <div class="bg-white">
+      <hr class="margin-0" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
+    </div> -->
+    <div class="ft-grey4 padding-2 bg-white" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
       <h7>温馨提示：</h7>
       <div>
         <span class="u-pull-left"><small>1.</small></span>
@@ -54,7 +76,11 @@
       </div>
       <div class="contain">
         <ul class="display-bl margin-auto">
-          <li class="clearfix margin-b-0 padding-r-1 border-t-dashed {{card.cardName !=='浦发银行' ? 'border-bottom-none' : ''}}" ng-repeat="card in bankCardList">
+          <li ng-if="payment == 1" class="clearfix margin-b-0 padding-r-1 border-t-dashed {{card.cardName !=='浦发银行' ? 'border-bottom-none' : ''}}" ng-repeat="card in bankCardList_FU">
+            <img ng-src="{{card.src}}" class="fl margin-l-1 margin-r-1">
+            <div class="display-inb"><p class="margin-b-0 display-inb ft-1p4">{{card.cardName}}</p><p class="display-inb ft-1p3">{{card.limit}}</p></div>
+          </li>
+          <li ng-if="payment == 3" class="clearfix margin-b-0 padding-r-1 border-t-dashed {{card.cardName !=='浦发银行' ? 'border-bottom-none' : ''}}" ng-repeat="card in bankCardList_UCF">
             <img ng-src="{{card.src}}" class="fl margin-l-1 margin-r-1">
             <div class="display-inb"><p class="margin-b-0 display-inb ft-1p4">{{card.cardName}}</p><p class="display-inb ft-1p3">{{card.limit}}</p></div>
           </li>
