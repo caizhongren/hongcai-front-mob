@@ -7,7 +7,7 @@
     <!-- 未绑定银行卡 simpleWithdraw.cardStatus !== 'VERIFIED'-->
     <div ng-include src="'views/user-center/_bankcardless-hint.html'" ng-show="simpleWithdraw.cardStatus && simpleWithdraw.cardStatus !== 'VERIFIED'"></div>
     <!-- 绑定银行卡 -->
-    <form class="margin-t-1 margin-b-0" name="rechargeForm" ng-submit="recharge(rechargeAmount);" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
+    <form class="margin-t-1 margin-b-0" name="rechargeForm" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
       <div class="balance ft-black4 ft-1p6 bg-white">
         账户余额 : <span class="account ft-Arial">{{ simpleWithdraw.account.balance | number:2}} </span>元
       </div>
@@ -42,7 +42,7 @@
         </div>
         <label class="padding-l-2 padding-r-2 bg-white margin-b-0">
           <input name="amount" type="number" class="input-amount u-full-width padding-t-1 padding-b-1 padding-l-1 padding-r-1 margin-t-0p5" ng-model="rechargeAmount" max="{{bankRemain}}" min="3"  ng-pattern="/^[0-9]*(\.[0-9]{1,2})?$/" ng-focus required placeholder="该卡本次最多充值{{bankRemain ||0}}元">
-          <button type="submit" class="u-full-width ft-1p6 button button-primary margin-t-0p5 {{rechargeForm.$invalid ? 'button-disabled' : ''}}" ng-disabled="rechargeForm.$invalid">立即充值</button>
+          <button type="submit" class="u-full-width ft-1p6 button button-primary margin-t-0p5 {{rechargeForm.$invalid || busy ? 'button-disabled' : ''}}" ng-disabled="rechargeForm.$invalid || busy" ng-click="recharge(rechargeAmount);">立即充值</button>
         </label>
       </div>
     </form>

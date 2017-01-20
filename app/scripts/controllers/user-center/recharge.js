@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RechargeCtrl', function($scope, $rootScope, $stateParams, HongcaiUser, $state, restmod, DEFAULT_DOMAIN, WEB_DEFAULT_DOMAIN, Restangular) {
+  .controller('RechargeCtrl', function($timeout, $scope, $rootScope, $stateParams, HongcaiUser, $state, restmod, DEFAULT_DOMAIN, WEB_DEFAULT_DOMAIN, Restangular) {
     $rootScope.selectedSide = 'account';
     $scope.rechargeAmount = $stateParams.amount;
     $scope.showLimit = false;
@@ -114,10 +114,18 @@ angular.module('p2pSiteMobApp')
       }
     });
 
+    $scope.busy = false;
     $scope.recharge = function(amount) {
       if (amount < 3) {
         return;
       }
+      if($scope.busy){
+        return;
+      }
+      $scope.busy = true;
+      $timeout(function() {
+        $scope.busy = false;
+      }, 1000);
       $state.go('root.yeepay-transfer', {
         type: 'recharge',
         number: amount,
