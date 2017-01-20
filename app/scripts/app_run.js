@@ -266,6 +266,9 @@ angular.module('p2pSiteMobApp')
 
 
     $rootScope.$on('$stateChangeSuccess', function(event, toState) {
+      setTimeout(function(){
+        $rootScope.showLoadingToast = false;
+      },100)
       var title = '宏财理财';
       if (toState.data && toState.data.title) {
         title = toState.data.title;
@@ -348,7 +351,6 @@ angular.module('p2pSiteMobApp')
         'assignments',
         'assignment_qr'
       ];
-      $rootScope.showFooter = false;
       if (notShowFooterRoute.indexOf(path) === -1) {
         $rootScope.showFooter = true;
       }
