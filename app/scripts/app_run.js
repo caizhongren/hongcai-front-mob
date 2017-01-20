@@ -352,8 +352,9 @@ angular.module('p2pSiteMobApp')
         'assignment_qr'
       ];
       $rootScope.showFooter = false;
-      if (notShowFooterRoute.indexOf(path) === -1) {
+      if (notShowFooterRoute.indexOf(path) === -1 || 'user-center'.indexOf(path) !== -1) {
         $rootScope.showFooter = true;
+        alert('user-center'.indexOf(path) !== -1);
       }
 
       var mainPath = [
