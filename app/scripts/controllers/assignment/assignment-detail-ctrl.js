@@ -136,7 +136,4 @@ angular.module('p2pSiteMobApp')
     var deviceIsWindowsPhone = navigator.userAgent.indexOf("Windows Phone") >= 0;
     $scope.deviceIsAndroid = navigator.userAgent.indexOf('Android') > 0;
     $scope.deviceIsIOS = /iP(ad|hone|od)/.test(navigator.userAgent) ;
-    console.log($scope.deviceIsAndroid);
-    console.log($scope.deviceIsIOS);
-    console.log(deviceIsWindowsPhone);
   });
