@@ -295,9 +295,9 @@ angular.module('p2pSiteMobApp')
       }
 
 
-      if (path == 'user-center') {
-        $rootScope.toActivate();
-      }
+      // if (path == 'user-center') {
+      //   $rootScope.toActivate();
+      // }
       for (var obj in $location.search()) {
         if (obj !== 'act' && obj !== 'f') {
           $rootScope.channelParamsObj[obj] = $location.search()[obj];
@@ -352,9 +352,9 @@ angular.module('p2pSiteMobApp')
         'assignment_qr'
       ];
       $rootScope.showFooter = false;
-      if (notShowFooterRoute.indexOf(path) === -1 || 'user-center'.indexOf(path) !== -1) {
+      if (notShowFooterRoute.indexOf(path) === -1) {
         $rootScope.showFooter = true;
-        alert('user-center'.indexOf(path) !== -1);
+        console('user-center'.indexOf(path) !== -1);
       }
 
       var mainPath = [
