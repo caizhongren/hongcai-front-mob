@@ -8,11 +8,11 @@
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
   })();
-  window.onload=function(){
-    setTimeout(function(){
-      document.getElementById('loadingTip').style.display = 'none';
-    },200)
-  }
+  // window.onload=function(){
+  //   setTimeout(function(){
+  //     document.getElementById('loadingTip').style.display = 'none';
+  //   },200)
+  // }
 </script>
 
 <script>
@@ -89,7 +89,7 @@
   </div>
   <!-- loading toast -->
   
-  <div ng-include src='"views/loading-toast.html"'></div>
+  <div ng-include src='"views/loading-toast.html"' ng-show="showLoadingToast"></div>
   <div ng-include src='"views/succcess-toast.html"' ng-show="showSuccessToast"></div>
   <!-- 错误提示 -->
   <div class="toast toast1 ng-cloak" ng-show="showErrorMsg" >

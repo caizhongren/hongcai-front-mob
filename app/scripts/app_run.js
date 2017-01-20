@@ -266,7 +266,6 @@ angular.module('p2pSiteMobApp')
 
 
     $rootScope.$on('$stateChangeSuccess', function(event, toState) {
-      $rootScope.showLoadingToast = false;
       var title = '宏财理财';
       if (toState.data && toState.data.title) {
         title = toState.data.title;
@@ -381,6 +380,7 @@ angular.module('p2pSiteMobApp')
       } else if (loginOrMy.indexOf(path) !== -1) {
         $rootScope.whichFooter = 3;
       }
+      $rootScope.showLoadingToast = false;
     });
 
     /*加载中loading*/
