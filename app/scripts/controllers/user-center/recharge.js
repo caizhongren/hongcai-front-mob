@@ -162,7 +162,7 @@ angular.module('p2pSiteMobApp')
       $scope.getUserBankCard($scope.expectPayCompany);
       
     }
-    $scope.selectPay(3);
+    $scope.selectPay(1);
 
 
   });
