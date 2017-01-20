@@ -116,6 +116,7 @@ angular.module('p2pSiteMobApp')
     }
 
     $rootScope.$on('$stateChangeStart', function(event, toState) {
+      $rootScope.showLoadingToast = true;
       var title = '宏财理财';
       if (toState.data && toState.data.title) {
         title = toState.data.title; 
@@ -265,6 +266,7 @@ angular.module('p2pSiteMobApp')
 
 
     $rootScope.$on('$stateChangeSuccess', function(event, toState) {
+      $rootScope.showLoadingToast = false;
       var title = '宏财理财';
       if (toState.data && toState.data.title) {
         title = toState.data.title;
@@ -294,10 +296,6 @@ angular.module('p2pSiteMobApp')
         $rootScope.showBack = true;
       }
 
-
-      // if (path == 'user-center') {
-      //   $rootScope.toActivate();
-      // }
       for (var obj in $location.search()) {
         if (obj !== 'act' && obj !== 'f') {
           $rootScope.channelParamsObj[obj] = $location.search()[obj];
@@ -354,7 +352,6 @@ angular.module('p2pSiteMobApp')
       $rootScope.showFooter = false;
       if (notShowFooterRoute.indexOf(path) === -1) {
         $rootScope.showFooter = true;
-        console('user-center'.indexOf(path) !== -1);
       }
 
       var mainPath = [
