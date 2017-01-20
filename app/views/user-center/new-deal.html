@@ -1,0 +1,41 @@
+<div class="new-deal bg-white margin-b-7">
+  <div class="row text-center margin-t-5 padding-l-1 padding-r-1" ng-if="!loading && deals.length <= 0">
+    <img src="images/user-center/deal-list.png" width="35%">
+    <p class="padding-2-t margin-t-2">亲，您还没有产生任何交易呢...</p>
+    <button type="button" class="u-full-width ft-1p8 button button-primary" ui-sref="root._main-list-temp">浏览理财产品</button>
+  </div>
+  <div class="" ng-show="deals.length > 0">
+    <div class="column dealType">
+      <span class="txt-left fl">全部</span>
+      <div class="txt-right fr">
+        <span class="deal-angle-down"></span>
+      </div>
+    </div>
+    <div class="mask-type" auto-height>
+      <ul class="allType">
+        <li>全部</li>
+        <li>充值</li>
+        <li>投资</li>
+        <li>回款</li>
+        <li>提现</li>
+        <li>奖励</li>
+        <li>其他</li>
+      </ul>
+    </div>
+    <ul class="padding-l-1p5 padding-r-1p5 overflow-hid">
+      <li class="column overflow-hid padding-t-1 border-greye-bottom margin-b-0" ng-repeat="item in deals track by $index">
+        <div class="overflow-hid ft-1p4 padding-b-0p5">
+          <span class="txt-left fl dealMap ft-666">{{ dealMap[item.type] }}</span>
+          <span class="txt-right fr payAmount ft-Arial" ng-class="{'ft-3e' : item.getAmount > 0, 'ft-green' : item.payAmount > 0}"><span ng-show="item.getAmount > 0">+</span><span ng-show="item.payAmount > 0">-</span>{{item.amount |currency:"":2 || 0}} 元</span>
+        </div>
+        <div class="overflow-hid ft-ccc ft-1p3 padding-b-0p8">
+          <span class="txt-left fl createTime ft-Arial">{{item.createTime | date: 'yyyy-MM-dd'}}</span>
+          <span class="txt-right fr balance">余额 : <span class="ft-Arial">{{item.balance |currency:"":2 || 0}} </span>元</span>
+        </div>
+      </li>
+    </ul>
+    <div class="text-center bg-white" ng-show="totalPage > page">
+      <p class="margin-b-0"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a ng-click="loadDealMuch();" style="cursor:pointer;color:black;">查看更多交易记录</a></p>
+    </div>
+  </div>
+</div>
