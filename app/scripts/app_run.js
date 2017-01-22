@@ -381,9 +381,15 @@ angular.module('p2pSiteMobApp')
 
     });
     $rootScope.$on('$viewContentLoaded', function () {
-      $rootScope.showLoadingToast = false;
+      $timeout(function() {
+        $rootScope.showLoadingToast = false;
+      }, 2000);
     });
-
+    // $rootScope.stopLoading =function(){
+    //   $timeout(function() {
+    //     $rootScope.showLoadingToast = false;
+    //   }, 1000);
+    // }
     /*加载中loading*/
     $rootScope.showLoadingToast = true;
     $rootScope.showSuccessToast = false;
