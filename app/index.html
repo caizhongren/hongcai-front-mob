@@ -8,11 +8,11 @@
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
   })();
-  window.onload=function(){
-    setTimeout(function(){
-      document.getElementById('loadingTip').style.display = 'none';
-    },100)
-  }
+  // window.onload=function(){
+  //   setTimeout(function(){
+  //     document.getElementById('loadingTip').style.display = 'none';
+  //   },100)
+  // }
 </script>
 
 <script>
@@ -88,7 +88,7 @@
 
   </div>
   <!-- loading toast -->
-  <div id="loadingTip" class="weui_loading_toast">
+ <!--  <div id="loadingTip" class="weui_loading_toast">
     <div class="weui_mask_transparent"></div>
     <div class="weui_toast">
       <div class="weui_loading">
@@ -107,7 +107,7 @@
       </div>
       <p class="weui_toast_content">数据加载中</p>
     </div>
-  </div>
+  </div> -->
   <div ng-include src='"views/loading-toast.html"' ng-show="showLoadingToast"></div>
   <div ng-include src='"views/succcess-toast.html"' ng-show="showSuccessToast"></div>
   <!-- 错误提示 -->
