@@ -330,6 +330,7 @@ angular.module('p2pSiteMobApp')
       var notShowFooterRoute = [
         'share-home',
         'share-detail',
+        'assignments',
         'experience-landing',
         'experience-activity',
         'rate-activity',
@@ -357,6 +358,8 @@ angular.module('p2pSiteMobApp')
         'about'
       ];
       var projectPath = [
+        'project',
+        'project-info',
         'issue',
         'novice-guide',
         'guaranteepro-list',
@@ -381,9 +384,7 @@ angular.module('p2pSiteMobApp')
 
     });
     $rootScope.$on('$viewContentLoaded', function () {
-      $timeout(function() {
-        $rootScope.showLoadingToast = false;
-      }, 300);
+      $rootScope.showLoadingToast = false;
     });
     /*加载中loading*/
     $rootScope.showLoadingToast = true;

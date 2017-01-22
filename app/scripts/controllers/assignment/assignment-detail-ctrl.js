@@ -9,7 +9,7 @@
 angular.module('p2pSiteMobApp')
   .controller('AssignmentDetailCtrl', function($state, DateUtils, $stateParams, Restangular, $scope, $rootScope, Utils) {
     var number = $stateParams.number; 
-
+    $rootScope.showFooter = false;
     /**
      * 债权转让信息详情
      */

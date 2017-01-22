@@ -9,6 +9,7 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('ProjectDetailCtrl', function(ipCookie, $scope, $timeout, $state, $rootScope, $stateParams, $location,$interval, Restangular, projectStatusMap, ProjectUtils, Utils) {
+    $rootScope.showFooter = false;
     // 项目详情页面
     var number = $stateParams.number;
     if (!$stateParams.number) {
