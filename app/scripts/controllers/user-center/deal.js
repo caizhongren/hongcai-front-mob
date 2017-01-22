@@ -26,8 +26,9 @@ angular.module('p2pSiteMobApp')
     //
     //
     //
+    $rootScope.showLoadingToast = true;
     $scope.dealList = function(types){
-
+      $rootScope.showLoadingToast = true;
       if ($scope.totalPage < $scope.page){
         return;
       }
@@ -42,8 +43,10 @@ angular.module('p2pSiteMobApp')
           for (var i = 0; i < response.data.length; i++) {
             $scope.deals.push(response.data[i]);
           };
+          $rootScope.showLoadingToast = false;
        } else{
-            $scope.msg = '获取信息失败';
+          $scope.msg = '获取信息失败';
+          $rootScope.showLoadingToast = true;
         }
       });
      //$scope.DealBusy = false;
