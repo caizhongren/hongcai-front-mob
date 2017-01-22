@@ -1,4 +1,4 @@
-<div class="new-deal bg-white margin-b-7 {{ showSelect ? 'position-fix' : ''}}">
+<div class="new-deal bg-white margin-b-7 {{ showSelect ? 'position-fix' : ''}}" ng-if="!showLoadingToast">
   <!-- <div class="row text-center margin-t-5 padding-l-3 padding-r-3" ng-if="!loading && deals.length <= 0">
     <img src="images/user-center/deal-list.png" width="35%">
     <p class="padding-2-t margin-t-2">亲，您还没有产生任何交易呢...</p>
@@ -30,7 +30,7 @@
         </div>
       </li>
     </ul>
-    <div class="padding-l-3 padding-r-3 text-center padding-t-5" ng-if="!loading && deals.length <= 0">
+    <div class="padding-l-3 padding-r-3 text-center padding-t-5" ng-if="!showLoadingToast && deals.length <= 0">
       <img src="images/user-center/deal-list.png" width="35%" class="margin-t-3">
       <p class="text-center padding-t-2">暂无记录哦~</p>
       <button type="button" class="u-full-width ft-1p8 button button-primary" ui-sref="root._main-list-temp">浏览理财产品</button>
