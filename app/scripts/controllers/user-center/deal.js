@@ -167,6 +167,7 @@ angular.module('p2pSiteMobApp')
       $scope.dealNo = dealType.no;
       $scope.deals = [];
       $scope.page = 1;
+      $scope.totalPage = 1;
       $scope.select();
       $scope.dealList(dealType.no);
     }
