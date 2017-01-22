@@ -383,13 +383,8 @@ angular.module('p2pSiteMobApp')
     $rootScope.$on('$viewContentLoaded', function () {
       $timeout(function() {
         $rootScope.showLoadingToast = false;
-      }, 2000);
+      }, 300);
     });
-    // $rootScope.stopLoading =function(){
-    //   $timeout(function() {
-    //     $rootScope.showLoadingToast = false;
-    //   }, 1000);
-    // }
     /*加载中loading*/
     $rootScope.showLoadingToast = true;
     $rootScope.showSuccessToast = false;
