@@ -11,7 +11,7 @@
         <span class="deal-angle-down {{ showSelect ? 'deal-angle-up' : ''}}"></span>
       </div>
     </div>
-    <div class="mask-type" auto-height ng-show="showSelect">
+    <div class="mask-type" ng-show="showSelect">
       <ul class="allType">
         <li class="ft-666 {{ selected == dealType.type ? 'ft-orange' : ''}}" ng-repeat=" dealType in dealType" ng-click="selectDealType(dealType)">{{dealType.type}}</li>
       </ul>
