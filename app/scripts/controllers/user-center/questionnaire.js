@@ -10,9 +10,9 @@
 angular.module('p2pSiteMobApp')
   .controller('QuestionnaireCtrl', function($location, $state, $timeout, Restangular, $scope, $rootScope) {
   	
-  	if ($location.path().split('/')[2] === 'questionnaire') {
+    if ($location.path().split('/')[2] === 'questionnaire') {
 	    $rootScope.showFooter = false;
-	}
+	  }
   	//风险测评题目详情:
   	Restangular.one('/users/' + '0' + '/getQuestionnaire' ).get({
   		'surveyType': 1
