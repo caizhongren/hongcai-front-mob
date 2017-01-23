@@ -202,7 +202,12 @@ angular.module('p2pSiteMobApp')
     }
 
     //提交反馈意见
+    $scope.busy = false;
     $scope.releaseComm = function(user){
+      if($scope.busy){
+        return;
+      }
+      
       if(user.mobile && user.mobile.toString().length !== 11){
         $rootScope.showMsg("手机号码格式不正确");
         return;
@@ -210,6 +215,10 @@ angular.module('p2pSiteMobApp')
       var saveFeedback = restmod.model(WEB_DEFAULT_DOMAIN + "/feedback/saveFeedback?feedbackInfo="+ user.textarea +"&contackWay=" + user.mobile);
       saveFeedback.$create({}).$then(function(response) {
         if(response && response.ret !== -1){
+          $scope.busy = true;
+          $timeout(function() {
+            $scope.busy = false;
+          }, 1000);
           $scope.closeRule();
           $rootScope.successMsg = '反馈成功！';
           $rootScope.showSuccessToast = true;
@@ -221,7 +230,6 @@ angular.module('p2pSiteMobApp')
           $scope.showMask = true;
         }
       })
-      console.log($scope.user.textarea);
     }
     //监测手机号位数 11位
     $scope.$watch('user.mobile', function(newVal, oldVal){
