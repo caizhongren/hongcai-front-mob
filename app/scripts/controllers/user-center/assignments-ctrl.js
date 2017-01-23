@@ -7,9 +7,9 @@
  */
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('assignmentsCtrl', function($location, $stateParams, config, Restangular, $scope) {
+  .controller('assignmentsCtrl', function($timeout, $rootScope, $location, $stateParams, config, Restangular, $scope) {
 
-
+    $rootScope.showLoadingToast = true;
     $scope.config = config;
 
     $scope.widthFlag = "";
@@ -67,6 +67,7 @@ angular.module('p2pSiteMobApp')
 
 
     $scope.getAssignments = function(status) {
+      $rootScope.showLoadingToast = true;
       Restangular.one('users').one('transferables').get({
         status: status,
         page: $scope.page,
@@ -84,6 +85,9 @@ angular.module('p2pSiteMobApp')
             }
           }
           $scope.loading = false;
+          $timeout(function() {
+            $rootScope.showLoadingToast = false;
+          }, 200);
         } else {
         }
       });
@@ -95,6 +99,7 @@ angular.module('p2pSiteMobApp')
     $scope.page2 = 1;
     $scope.page3 = 1;
     $scope.getTranferingAssignmentsList = function(page, status) {
+      $rootScope.showLoadingToast = true;
       Restangular.one('users', '0').one('assignments').get({
         page: page,
         pageSize: $scope.pageSize,
@@ -112,7 +117,11 @@ angular.module('p2pSiteMobApp')
           $scope.totalPage = response.totalPage; 
  
           $scope.loading = false;
+
         }
+        $timeout(function() {
+          $rootScope.showLoadingToast = false;
+        }, 200);
       });
     };
 

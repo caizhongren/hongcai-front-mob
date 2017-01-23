@@ -114,7 +114,6 @@ angular.module('p2pSiteMobApp')
         $rootScope.showErrorMsg = false;
       }
     }
-
     $rootScope.$on('$stateChangeStart', function(event, toState) {
       var title = '宏财理财';
       if (toState.data && toState.data.title) {
@@ -258,12 +257,6 @@ angular.module('p2pSiteMobApp')
     });
 
 
-
-
-
-
-
-
     $rootScope.$on('$stateChangeSuccess', function(event, toState) {
       var title = '宏财理财';
       if (toState.data && toState.data.title) {
@@ -294,10 +287,6 @@ angular.module('p2pSiteMobApp')
         $rootScope.showBack = true;
       }
 
-
-      if (path == 'user-center') {
-        $rootScope.toActivate();
-      }
       for (var obj in $location.search()) {
         if (obj !== 'act' && obj !== 'f') {
           $rootScope.channelParamsObj[obj] = $location.search()[obj];
@@ -334,6 +323,7 @@ angular.module('p2pSiteMobApp')
       var notShowFooterRoute = [
         'share-home',
         'share-detail',
+        'assignments',
         'experience-landing',
         'experience-activity',
         'rate-activity',
@@ -351,7 +341,6 @@ angular.module('p2pSiteMobApp')
         'assignments',
         'assignment_qr'
       ];
-      $rootScope.showFooter = false;
       if (notShowFooterRoute.indexOf(path) === -1) {
         $rootScope.showFooter = true;
       }
@@ -362,6 +351,8 @@ angular.module('p2pSiteMobApp')
         'about'
       ];
       var projectPath = [
+        'project',
+        'project-info',
         'issue',
         'novice-guide',
         'guaranteepro-list',
@@ -383,6 +374,7 @@ angular.module('p2pSiteMobApp')
       } else if (loginOrMy.indexOf(path) !== -1) {
         $rootScope.whichFooter = 3;
       }
+
     });
 
     /*加载中loading*/

@@ -14,6 +14,7 @@ angular.module('p2pSiteMobApp')
   	$scope.widthFlag = "";
   	$scope.jigoubaoData = [];
     $scope.assignments = [];
+    $rootScope.showLoadingToast = true;
     //限制项目名长度
   	$scope.widthFlag = ScreenWidthUtil.screenWidth();
     $scope.tabs = [{
@@ -36,6 +37,7 @@ angular.module('p2pSiteMobApp')
      * 当前页项目列表
      */
     $scope.getProjectList = function(page, pageSize) {
+      $rootScope.showLoadingToast = true;
       $scope.busy = true;
 
       if ($scope.pageCount < $scope.page) {
@@ -45,9 +47,11 @@ angular.module('p2pSiteMobApp')
         page: page,
         pageSize: pageSize
       }).then(function(response) {
+        $timeout(function(){
+          $rootScope.showLoadingToast = false;
+        },200);
         $scope.pageCount = response.pageCount;
         $scope.projectStatusMap = response.projectStatusMap;
-
         var serverTime = response.serverTime || (new Date().getTime());
         for (var i = 0; i < response.projectList.length; i++) {
           ProjectUtils.projectTimedown(response.projectList[i], serverTime);
@@ -64,13 +68,16 @@ angular.module('p2pSiteMobApp')
     *债权转让列表
     */
     $scope.getAssignmentList = function(page, pageSize) {
+      $rootScope.showLoadingToast = true;
       $scope.busy = true;
       Restangular.one("assignments").get({
         page: page,
         pageSize: pageSize
       }).then(function(response){
         if(response && response.ret !== -1) {
-          // $scope.assignments =  response.assignments;
+          $timeout(function(){
+            $rootScope.showLoadingToast = false;
+          },200);
           $scope.pageCount0 = response.pageCount;
            for (var i = 0; i < response.assignments.length; i++) {
             // ProjectUtils.projectTimedown(response.projectList[i], serverTime);

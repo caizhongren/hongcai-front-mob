@@ -1,13 +1,13 @@
 <!doctype html>
 <html class="no-js" lang="zh-cn" xmlns:ng="http://angularjs.org" ng-app="p2pSiteMobApp">
 <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "http://hm.baidu.com/hm.js?6f5c59f1c6d58e6768671fc0254d72f2";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "http://hm.baidu.com/hm.js?6f5c59f1c6d58e6768671fc0254d72f2";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
 </script>
 
 <script>
@@ -73,7 +73,7 @@ var _hmt = _hmt || [];
 
   <!-- Add your site or application content here -->
 
-  <div >
+  <div>
     <div class="padding-0">
       <section ui-view="header"></section>
       <section ui-view autoscroll="true"></section>
@@ -82,7 +82,6 @@ var _hmt = _hmt || [];
     </div>
 
   </div>
-  <!-- loading toast -->
   <div ng-include src='"views/loading-toast.html"' ng-show="showLoadingToast"></div>
   <div ng-include src='"views/succcess-toast.html"' ng-show="showSuccessToast"></div>
   <!-- 错误提示 -->
