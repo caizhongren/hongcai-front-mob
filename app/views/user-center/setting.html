@@ -129,7 +129,7 @@
       <span class="ft-1p6 display-inb">意见反馈</span> <span class="closeRule fr" ng-click="closeRule(); "></span>
     </div>
     <div class=" rec-act-rule-btm margin-l-1 margin-r-1 ft-1p5 margin-t-0p5">
-      <form name="commentsForm" ng-submit="releaseComm(user)">
+      <form name="commentsForm">
         <div class="comment-main">
           <div class="description">
             <span class="fl">尊敬的用户 :</span><span class="fr">为了给您更好的服务，请详细描述您的问题或建议，我们将及时跟进解决，不断优化产品！</span>
@@ -140,7 +140,7 @@
           <p class="tips ft-666 text-center margin-b-0">请您留下联系方式，我们将第一时间帮你解决</p>
           <div class="btns">
             <input class="mobile" ng-model="user.mobile" type="number" placeholder="手机号 ( 选填 )">
-            <button type="submit" ng-disabled="commentsForm.$invalid" class="button-primary button {{commentsForm.$invalid ? 'button-disabled1' : ''}}">提交</button>
+            <button type="submit" ng-disabled="commentsForm.$invalid || busy" class="button-primary button {{commentsForm.$invalid || busy ? 'button-disabled1' : ''}}" ng-click="releaseComm(user)">提交</button>
           </div>
         </div>
       </form>
