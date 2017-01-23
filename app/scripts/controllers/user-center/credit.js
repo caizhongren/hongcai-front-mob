@@ -8,9 +8,10 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('CreditCtrl', function($scope, $rootScope, $state, $stateParams, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN, ScreenWidthUtil, Restangular) {
+  .controller('CreditCtrl', function($timeout, $scope, $rootScope, $state, $stateParams, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN, ScreenWidthUtil, Restangular) {
     $scope.tab = 0;
     $scope.widthFlag = ScreenWidthUtil.screenWidth();
+    $rootScope.showLoadingToast = true;
 
     // tab
     $scope.toggle = {};
@@ -66,6 +67,7 @@ angular.module('p2pSiteMobApp')
     });
 
     $scope.getCredits = function(status) {
+      $rootScope.showLoadingToast = true;
       siteCredits.$find('/getHeldInCreditRightList', {
         status: status,
         page: $scope.page,
@@ -82,6 +84,10 @@ angular.module('p2pSiteMobApp')
           $scope.credits.push(credits[i]);
         };
         $scope.loading = false;
+        $timeout(function() {
+          $rootScope.showLoadingToast = false;
+        }, 200);
+        
       })
 
     
