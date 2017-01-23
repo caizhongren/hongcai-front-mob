@@ -7,15 +7,20 @@
  */
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('AssignmentDetailCtrl', function($state, DateUtils, $stateParams, Restangular, $scope, $rootScope, Utils) {
+  .controller('AssignmentDetailCtrl', function($state, $timeout, DateUtils, $stateParams, Restangular, $scope, $rootScope, Utils) {
     var number = $stateParams.number; 
     $rootScope.showFooter = false;
+    $rootScope.showLoadingToast = true;
+
     /**
      * 债权转让信息详情
      */
     $scope.msg = '';
     Restangular.one('assignments').one(number).get({}).then(function(response) {
       if(response && response.ret !== -1) {
+        $timeout(function(){
+          $rootScope.showLoadingToast = false;
+        },100)
         $scope.assignment = response; 
         $scope.assignmentNum = $scope.assignment.number; 
         $scope.currentStock = response.currentStock;

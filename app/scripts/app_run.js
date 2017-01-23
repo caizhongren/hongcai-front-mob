@@ -115,7 +115,6 @@ angular.module('p2pSiteMobApp')
       }
     }
     $rootScope.$on('$stateChangeStart', function(event, toState) {
-      $rootScope.showLoadingToast = true;
       var title = '宏财理财';
       if (toState.data && toState.data.title) {
         title = toState.data.title; 
@@ -378,11 +377,8 @@ angular.module('p2pSiteMobApp')
 
     });
 
-    $rootScope.$on('$viewContentLoaded', function () {
-      $rootScope.showLoadingToast = false;
-    });
     /*加载中loading*/
-    $rootScope.showLoadingToast = true;
+    $rootScope.showLoadingToast = false;
     $rootScope.showSuccessToast = false;
     $rootScope.successMsg = '';
 
