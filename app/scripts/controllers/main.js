@@ -8,7 +8,7 @@
 + */
 angular.module('p2pSiteMobApp')
   .controller('MainCtrl', function($scope, $rootScope, $state, Restangular, ProjectUtils) {
-
+    $rootScope.showLoadingToast = true;
 
     /**
      * 获取新手标项目
@@ -18,6 +18,7 @@ angular.module('p2pSiteMobApp')
           return;
       }
       $scope.newbieBiaoProject = response;
+      $rootScope.showLoadingToast = false;
       // 可投资金额
       $scope.newbieBiaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
       var serverTime = response.createTime || (new Date().getTime());
@@ -31,6 +32,7 @@ angular.module('p2pSiteMobApp')
     Restangular.one('projects').one('recommends').get({
       pageSize : 1
     }).then(function(response) {
+      $rootScope.showLoadingToast = false;
       $scope.recommends = response.data[0];
       var serverTime = response.data[0].createTime || (new Date().getTime());
       ProjectUtils.projectTimedown($scope.recommends, serverTime);

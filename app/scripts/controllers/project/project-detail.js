@@ -14,7 +14,7 @@ angular.module('p2pSiteMobApp')
     var number = $stateParams.number;
     if (!$stateParams.number) {
       $state.go('root.main');
-    }
+    } 
     $scope.profit = 0;
     $scope.increaseRateProfit = 0;
     $scope.projectStatusMap = projectStatusMap;
@@ -28,6 +28,7 @@ angular.module('p2pSiteMobApp')
      * 项目信息
      */
     Restangular.one('projects').one($stateParams.number).get().then(function(response) {
+      $rootScope.showLoadingToast = true;
       $rootScope.headerTitle = response.name;
       Utils.setTitle($rootScope.headerTitle);
 
@@ -40,7 +41,9 @@ angular.module('p2pSiteMobApp')
       var minBalanceAccount = $rootScope.account.balance - $rootScope.account.balance % 100;
       var minInvestAccount = project.availableAmount;
       $scope.project.investAmount = $rootScope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;
-
+      $timeout(function(){
+        $rootScope.showLoadingToast = false;
+      },100);
       /**
        * 新手标判断
        */
