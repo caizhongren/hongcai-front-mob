@@ -7,7 +7,7 @@
     <div ng-repeat="item in transferablesList track by $index" class="border-grey-top">
       <div class="assignment-item margin-b-1">
         <div class=" padding-l-1p5 padding-r-1p5 padding-t-0p5 padding-b-1 overflow-hid bg-white">
-          <div class="border-grey2-bottom overflow-hid padding-b-0p5 content-title">
+          <div class="border-greye-bottom overflow-hid padding-b-0p5 content-title">
             <span class="u-pull-left border-left1" ng-show="widthFlag===0 && item.projectName.length <= 11">{{item.projectName}} </span>
             <span class="u-pull-left border-left1" ng-show="widthFlag===0 && item.projectName.length > 11">{{item.projectName | limitTo:8}}... </span>
             <span class="u-pull-left border-left1"  ng-show="widthFlag===1 || widthFlag===2">{{item.projectName}}</span>

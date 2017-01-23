@@ -7,8 +7,10 @@
  */
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('AssignmentDetailCtrl', function($state, DateUtils, $stateParams, Restangular, $scope, $rootScope, Utils) {
+  .controller('AssignmentDetailCtrl', function($state, $timeout, DateUtils, $stateParams, Restangular, $scope, $rootScope, Utils) {
     var number = $stateParams.number; 
+    $rootScope.showFooter = false;
+    $rootScope.showLoadingToast = true;
 
     /**
      * 债权转让信息详情
@@ -16,6 +18,9 @@ angular.module('p2pSiteMobApp')
     $scope.msg = '';
     Restangular.one('assignments').one(number).get({}).then(function(response) {
       if(response && response.ret !== -1) {
+        $timeout(function(){
+          $rootScope.showLoadingToast = false;
+        },100)
         $scope.assignment = response; 
         $scope.assignmentNum = $scope.assignment.number; 
         $scope.currentStock = response.currentStock;
@@ -136,7 +141,4 @@ angular.module('p2pSiteMobApp')
     var deviceIsWindowsPhone = navigator.userAgent.indexOf("Windows Phone") >= 0;
     $scope.deviceIsAndroid = navigator.userAgent.indexOf('Android') > 0;
     $scope.deviceIsIOS = /iP(ad|hone|od)/.test(navigator.userAgent) ;
-    console.log($scope.deviceIsAndroid);
-    console.log($scope.deviceIsIOS);
-    console.log(deviceIsWindowsPhone);
   });
