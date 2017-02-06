@@ -210,6 +210,10 @@ angular.module('p2pSiteMobApp')
       if($scope.busy){
         return;
       }
+
+      if (!user.textarea) {
+        return;
+      }
       
       if(user.mobile && user.mobile.toString().length !== 11){
         $rootScope.showMsg("手机号码格式不正确");
