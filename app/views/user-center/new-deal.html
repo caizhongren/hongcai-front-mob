@@ -17,7 +17,7 @@
       </ul>
     </div>
     <ul class="padding-l-1p5 padding-r-1p5 overflow-hid" ng-if="deals.length > 0">
-      <li class="column overflow-hid padding-t-1 border-greye-bottom margin-b-0" ng-repeat="item in deals track by $index">
+      <li class="column overflow-hid margin-l-0 padding-t-1 border-greye-bottom margin-b-0" ng-repeat="item in deals track by $index">
         <div class="overflow-hid ft-1p4 padding-b-0p5">
           <span class="txt-left fl dealMap ft-666" ng-if="item.type !== 18">{{dealMap[item.type] }}</span>
           <span class="txt-left fl dealMap ft-666" ng-if="item.type == 18 && item.description.length < 16">{{item.description}}</span>
