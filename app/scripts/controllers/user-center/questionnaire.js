@@ -42,29 +42,35 @@ angular.module('p2pSiteMobApp')
   			'surveyType':1,
     		'answerJson':$scope.answerJson
   		}).then(function(response){
-  			if (response.ret == -1) {
-  				$scope.errMsg = response.msg;
-  				$timeout(function() {
-  					$scope.errMsg = '';
-  				},2000)
-  			}else {
+  			if (response.ret !== -1) {
   				$scope.showMsk = true;
-  				if(response >= 22 && response <= 40){
-  					$scope.riskTolerance = '一般'
-  				}else if(response >= 41 && response <= 55){
-  					$scope.riskTolerance = '较强'
-  				}else if(response >= 56 && response <= 70){
-  					$scope.riskTolerance = '很强'
-  				}else {
-  					$scope.riskTolerance = '超赞'
-  				}
-  				if(response < 35){
-  					$scope.riskPreference = '保守型'
-  				}else if(response >= 35 && response <= 59){
-  					$scope.riskPreference = '稳健型'
-  				}else if(response > 59){
-  					$scope.riskPreference = '进取型'
-  				}
+          //风险承受能力
+          if(response.score1 >= 22 && response.score1 <= 40){
+            $scope.riskTolerance = '一般'
+          }else if(response.score1 >= 41 && response.score1 <= 55){
+            $scope.riskTolerance = '较强'
+          }else if(response.score1 >= 56 && response.score1 <= 70){
+            $scope.riskTolerance = '很强'
+          }else  {
+            $scope.riskTolerance = '超赞'
+          }
+
+          //风险偏好
+          if(response.score2 < 35){
+            $scope.riskPreference = '保守型'
+          }else if(response.score2 >= 35 && response.score2 <= 59){
+            $scope.riskPreference = '稳健型'
+          }else if(response.score2 > 59){
+            $scope.riskPreference = '进取型'
+          }else {
+            $scope.riskPreference = '进取型'
+          }
+
+  			}else {
+  				$scope.errMsg = response.msg;
+          $timeout(function() {
+            $scope.errMsg = '';
+          },2000)
   				
   			}
   		})
