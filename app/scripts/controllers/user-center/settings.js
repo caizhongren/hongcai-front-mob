@@ -87,15 +87,18 @@ angular.module('p2pSiteMobApp')
     */
     $scope.recentlyQuestionnaire = function() {
       Restangular.one('/users/' + '0' + '/recentlyQuestionnaire' ).get().then(function(response){
-       $scope.isQuestionnaire = response;
+       $scope.isQuestionnaire = response.score2;
        if(response !== -1){
-        if(response < 35){
+        if(response.score2 < 35){
           $scope.riskPreference = '保守型';
-        }else if(response >= 35 && response <= 59){
+        }else if(response.score2 >= 35 && response.score2 <= 59){
           $scope.riskPreference = '稳健型';
-        }else if(response > 59){
+        }else if(response.score2 > 59){
           $scope.riskPreference = '进取型';
+        }else {
+          $scope.riskPreference = '保守型';
         }
+        
         $scope.msgRisk = '您的投资风格为' + $scope.riskPreference;
        }
       })
