@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('SettingsCtrl',['$scope', '$rootScope', '$state', 'HongcaiUser', 'restmod', 'DEFAULT_DOMAIN', 'md5', 'Utils', 'Restangular', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, Utils, Restangular) {
+  .controller('SettingsCtrl',['$scope', '$rootScope', '$state', 'HongcaiUser', 'restmod', 'DEFAULT_DOMAIN', 'md5', 'Utils', 'Restangular', 'WEB_DEFAULT_DOMAIN', '$timeout', '$location', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location) {
 
     $scope.userHeadImgUrl = '/images/user-center/head.png';
 
@@ -21,6 +21,9 @@ angular.module('p2pSiteMobApp')
         $scope.userHeadImgUrl = $rootScope.hasLoggedUser.headImgUrl
       }
     });
+    if ($location.path().split('/')[2] === 'setting') {
+      $rootScope.showFooter = false;
+    }
 
     /**
      * 邀请码
@@ -84,15 +87,18 @@ angular.module('p2pSiteMobApp')
     */
     $scope.recentlyQuestionnaire = function() {
       Restangular.one('/users/' + '0' + '/recentlyQuestionnaire' ).get().then(function(response){
-       $scope.isQuestionnaire = response;
+       $scope.isQuestionnaire = response.score2;
        if(response !== -1){
-        if(response < 35){
+        if(response.score2 < 35){
           $scope.riskPreference = '保守型';
-        }else if(response >= 35 && response <= 59){
+        }else if(response.score2 >= 35 && response.score2 <= 59){
           $scope.riskPreference = '稳健型';
-        }else if(response > 59){
+        }else if(response.score2 > 59){
           $scope.riskPreference = '进取型';
+        }else {
+          $scope.riskPreference = '保守型';
         }
+        
         $scope.msgRisk = '您的投资风格为' + $scope.riskPreference;
        }
       })
@@ -109,6 +115,8 @@ angular.module('p2pSiteMobApp')
       })
     };
     $scope.autoTendersDetail();
+
+
     /**
      * 开通自动投标权限
      */
@@ -195,4 +203,75 @@ angular.module('p2pSiteMobApp')
       }
       return emailADArray.join('') + emailEnd
     }
+
+    //提交反馈意见
+    $scope.busy = false;
+    $scope.releaseComm = function(user){
+      if($scope.busy){
+        return;
+      }
+      if (!user) {
+        return;
+      }
+      if (!user.textarea) {
+        return;
+      }
+      
+      if(user.mobile && user.mobile.toString().length !== 11){
+        $rootScope.showMsg("手机号码格式不正确");
+        return;
+      }
+      var saveFeedback = restmod.model(WEB_DEFAULT_DOMAIN + "/feedback/saveFeedback?feedbackInfo="+ user.textarea +"&contackWay=" + user.mobile);
+      saveFeedback.$create({}).$then(function(response) {
+        if(response && response.ret !== -1){
+          $scope.busy = true;
+          $timeout(function() {
+            $scope.busy = false;
+          }, 1000);
+          $scope.closeRule();
+          $rootScope.successMsg = '反馈成功！';
+          $rootScope.showSuccessToast = true;
+          $timeout(function() {
+            $rootScope.showSuccessToast = false;
+            $rootScope.successMsg = '';
+          }, 2000);
+        }else {
+          $scope.showMask = true;
+        }
+      })
+    }
+    //监测手机号位数 11位
+    $scope.$watch('user.mobile', function(newVal, oldVal){
+      if (newVal && newVal.toString().length >11) {
+        $rootScope.showMsg("手机号码格式不正确");
+      }
+    })
+    var scrollTop = 0;
+    $scope.toComment = function(){
+      // 在弹出层显示之前，记录当前的滚动位置
+      scrollTop = getScrollTop();
+
+      // 使body脱离文档流
+      $('.setting').addClass('position-fix'); 
+
+      // 把脱离文档流的body拉上去！否则页面会回到顶部！
+      document.body.style.top = -scrollTop + 'px';
+    }
+    // 关闭弹窗
+    $scope.closeRule = function(){
+      $scope.showMask = false; 
+      $scope.user = null;
+      // body又回到了文档流中
+      $('.setting').removeClass('position-fix');
+
+      // 滚回到老地方！
+      to(scrollTop);
+    }
+    function to(scrollTop){
+      document.body.scrollTop = document.documentElement.scrollTop = scrollTop;
+    }
+    function getScrollTop(){
+      return document.body.scrollTop || document.documentElement.scrollTop;
+    }
+
   }]);

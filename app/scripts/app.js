@@ -600,7 +600,8 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/user-center/deal.html',
+            // templateUrl: 'views/user-center/deal.html',
+            templateUrl: 'views/user-center/new-deal.html',
             controller: 'DealCtrl',
             controllerUrl: 'scripts/controllers/user-center/deal'
           }

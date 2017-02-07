@@ -7,8 +7,9 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('CreditSecurityCtrl', function($scope, $state, $stateParams, Restangular, restmod, WEB_DEFAULT_DOMAIN) {
+  .controller('CreditSecurityCtrl', function($scope, $rootScope, $state, $timeout, $stateParams, Restangular, restmod, WEB_DEFAULT_DOMAIN) {
     $scope.number = $stateParams.number;
+    $rootScope.showLoadingToast = true;
     /**
      * 
      */
@@ -16,6 +17,9 @@ angular.module('p2pSiteMobApp')
       if(response && response.ret !== -1) {
         $scope.credits = response;
         console.log($scope.credits);
+        $timeout(function(){
+          $rootScope.showLoadingToast = false;
+        },200)
       }
       
     });
