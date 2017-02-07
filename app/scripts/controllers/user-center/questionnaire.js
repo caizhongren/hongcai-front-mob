@@ -9,7 +9,7 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('QuestionnaireCtrl', function($location, $state, $timeout, Restangular, $scope, $rootScope) {
-  	
+  	$rootScope.showLoadingToast = true;
     if ($location.path().split('/')[2] === 'questionnaire') {
 	    $rootScope.showFooter = false;
 	  }
@@ -17,7 +17,15 @@ angular.module('p2pSiteMobApp')
   	Restangular.one('/users/' + '0' + '/getQuestionnaire' ).get({
   		'surveyType': 1
   	}).then(function(response){
-  		$scope.questionnaires = response;
+      if(response && response.ret != -1){
+        $timeout(function() {
+          $rootScope.showLoadingToast = false;
+        }, 200);
+        $scope.questionnaires = response;
+      }else{
+        $rootScope.showLoadingToast = true;
+      }
+  		
   	})
   	$scope.answerJson = {};
   	$scope.select = function(question_id,answer_id){

@@ -210,7 +210,9 @@ angular.module('p2pSiteMobApp')
       if($scope.busy){
         return;
       }
-
+      if (!user) {
+        return;
+      }
       if (!user.textarea) {
         return;
       }
