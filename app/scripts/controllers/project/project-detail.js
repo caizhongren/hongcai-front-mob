@@ -29,7 +29,7 @@ angular.module('p2pSiteMobApp')
      * 项目信息
      */
     Restangular.one('projects').one($stateParams.number).get().then(function(response) {
-      $rootScope.showLoadingToast = true;
+      // $rootScope.showLoadingToast = true;
       $rootScope.headerTitle = response.name;
       Utils.setTitle($rootScope.headerTitle);
 
