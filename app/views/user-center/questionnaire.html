@@ -19,7 +19,7 @@
       <div class="errMsg position-ab" ng-show="errMsg">
         {{errMsg}}
       </div>  
-      <button type="button" ng-disabled="!questionnaireForm.$invalid" class="button button-primary submit-btn {{!questionnaireForm.$invalid ? 'button-disabled1' : ''}} "  ng-click="submitForm()">提交</button>
+      <button type="button" class="button button-primary submit-btn {{!questionnaireForm.$invalid ? 'button-disabled1' : ''}} "  ng-click="submitForm()">提交</button>
     </div>
     
   </form>
@@ -28,7 +28,7 @@
   <div class="rec-act-rule rec-act-rule1 bg-white margin-l-3 margin-r-3 border-ra-0p5">
     <div class=" rec-act-rule-btm margin-l-1 margin-r-1 ft-1p5">
         <div class="rule padding-r-1 padding-l-1 padding-b-1p5 padding-t-2">
-          <p class="margin-t-0 margin-b-0 text-justify">尊敬的用户，您的风险承受能力{{riskTolerance}}，投资偏好为{{riskPreference}}，建议您选择宏金保项目。</p>
+          <p class="margin-t-0 margin-b-0 text-justify">尊敬的用户，您的风险承受能力<span class="ft-bold">{{riskTolerance || '一般'}}</span>，投资偏好为<span class="ft-bold">{{riskPreference || '保守型'}}</span>，建议您选择宏金保项目。</p>
           <button class="question-btn padding-0" ng-click="closeMsk()">我知道了</button>
         </div>
     </div>
