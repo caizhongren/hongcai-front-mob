@@ -39,12 +39,7 @@ angular.module('p2pSiteMobApp')
       project.availableAmount = project.total - (project.soldStock + project.occupancyStock) * project.increaseAmount;
 
       ProjectUtils.projectTimedown(project, project.createTime);
-      var minBalanceAccount = $rootScope.account.balance - $rootScope.account.balance % 100;
-      var minInvestAccount = project.availableAmount;
-      $scope.project.investAmount = $rootScope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;
-      $timeout(function(){
-        $rootScope.showLoadingToast = false;
-      },100);
+      
       /**
        * 新手标判断
        */
@@ -92,6 +87,22 @@ angular.module('p2pSiteMobApp')
           }
         });
       }
+
+      // 登陆后计算金额
+      $rootScope.checkSession.promise.then(function() {
+        if(!$rootScope.isLogged){
+          return;
+        }
+
+        var minBalanceAccount = $rootScope.account.balance - $rootScope.account.balance % 100;
+        var minInvestAccount = project.availableAmount;
+        $scope.project.investAmount = $rootScope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;       
+      });
+
+      $timeout(function(){
+          $rootScope.showLoadingToast = false;
+      },100);
+
     });
 
     $rootScope.tofinishedOrder();

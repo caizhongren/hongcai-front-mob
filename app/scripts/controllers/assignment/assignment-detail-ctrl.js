@@ -40,45 +40,56 @@ angular.module('p2pSiteMobApp')
               }
             }
             $scope.lastRepayDay = $scope.latestProjectBill.lastRepaymentTime;
+          }
+
+          // 登陆后计算金额
+          $rootScope.checkSession.promise.then(function() {
+            if(!$rootScope.isLogged){
+              return;
+            }
+
             var minBalanceAccount = $rootScope.account.balance - $rootScope.account.balance % 100;
             var minInvestAccount = $scope.currentStock * 100;
             $scope.assignmentInvestAmount = $rootScope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;
-            //监测投资金额
-            $scope.$watch('assignmentInvestAmount', function(newVal, oldVal){
-              if(!$rootScope.isLogged || $scope.currentStock <=0){
-                return;
-              }
 
-              if(newVal !== oldVal){
-                $scope.msg = undefined;
-              }
+          });
 
-              if(newVal){
-                if(newVal >  $rootScope.account.balance || (newVal <= $rootScope.account.balancenewVal && $rootScope.account.balancenewVal < $scope.realPayAmount)){
-                  $scope.msg = '账户余额不足，请先充值';
-                }else if(newVal % 100 !==0 ){
-                  $scope.msg = '投资金额必须为100的整数倍';
-                }else if(newVal > $scope.currentStock *100){
-                  $scope.msg = '投资金额必须小于' + $scope.currentStock *100;
-                }else if(newVal < 100 ){
-                  $scope.msg = '投资金额必须大于100';
-                }
-              }
-              $rootScope.showMsg($scope.msg);
-              //上次还款到认购当日的天数
-              var lastPayDays = DateUtils.intervalDays(new Date().getTime(), $scope.lastRepayDay) * (new Date().getTime() > $scope.lastRepayDay ? 1 : -1); 
-              var reward = ($scope.annual - $scope.originalAnnual) * newVal * $scope.remainDay / 36500;
-              //  代收未收利息
-              $scope.exProfit = newVal * $scope.originalAnnual * lastPayDays / 36500;
-              //实际支付金额
-              $scope.realPayAmount = newVal + $scope.exProfit - reward;
-              //待收利息
-              $scope.profit = newVal * $scope.remainDay * $scope.annual / 36500;
-
-            });
-          }
         });
       }
+    });
+
+    //监测投资金额
+    $scope.$watch('assignmentInvestAmount', function(newVal, oldVal){
+      if(!$rootScope.isLogged || $scope.currentStock <=0){
+        return;
+      }
+
+      if(newVal !== oldVal){
+        $scope.msg = undefined;
+      }
+
+      if(newVal){
+        if(newVal >  $rootScope.account.balance || (newVal <= $rootScope.account.balancenewVal && $rootScope.account.balancenewVal < $scope.realPayAmount)){
+          $scope.msg = '账户余额不足，请先充值';
+        }else if(newVal % 100 !==0 ){
+          $scope.msg = '投资金额必须为100的整数倍';
+        }else if(newVal > $scope.currentStock *100){
+          $scope.msg = '投资金额必须小于' + $scope.currentStock *100;
+        }else if(newVal < 100 ){
+          $scope.msg = '投资金额必须大于100';
+        }
+      }
+      $rootScope.showMsg($scope.msg);
+      //上次还款到认购当日的天数
+      var lastPayDays = DateUtils.intervalDays(new Date().getTime(), $scope.lastRepayDay) * (new Date().getTime() > $scope.lastRepayDay ? 1 : -1); 
+      var reward = ($scope.annual - $scope.originalAnnual) * newVal * $scope.remainDay / 36500;
+      //  代收未收利息
+      $scope.exProfit = newVal * $scope.originalAnnual * lastPayDays / 36500;
+      //实际支付金额
+      $scope.realPayAmount = newVal + $scope.exProfit - reward;
+      //待收利息
+      $scope.profit = newVal * $scope.remainDay * $scope.annual / 36500;
+
     });
 
     $rootScope.tofinishedOrder();
