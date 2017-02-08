@@ -50,6 +50,7 @@ angular.module('p2pSiteMobApp')
 			status : queryStatus
 		}).then(function(response){
 			$scope.loading = false;
+			$scope.cashCouponsData = response.data;
 			for (var i = 0; i < response.data.length; i++) {
 				$scope.cashCoupons.push(response.data[i]);
 			}
