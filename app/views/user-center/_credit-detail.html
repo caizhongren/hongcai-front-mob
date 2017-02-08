@@ -5,7 +5,7 @@
       <span class="u-pull-left {{item.creditRight.type === 6 ? 'border-left-none' : 'border-left'}}" ng-show="widthFlag===0 && item.creditRight.projectName.length > 11"><span class="zhuan" ng-show="item.creditRight.type === 6">转</span>{{item.creditRight.projectName | limitTo:8}}... </span>
       <span class="u-pull-left {{item.creditRight.type === 6 ? 'border-left-none' : 'border-left'}}" ng-show="widthFlag===1 || widthFlag===2"><span class="zhuan" ng-show="item.creditRight.type === 6">转</span>{{item.creditRight.projectName}}</span>
       <img class="fl" src="/images/user-center/rate-icon.png" alt="" width="9%" ng-show="item.increaseRateCoupon && item.increaseRateCoupon.type === 1">
-      <span class="u-pull-right ft-2 fa fa-angle-right margin-t-0p4 ft-greyddd"></span>
+      <span class="u-pull-right ft-2 fa fa-angle-right margin-0p2 ft-greyddd"></span>
       <span class="u-pull-right ft-orange1" ng-show="item.creditRight.isRepeatInvest === 1"><i class="fa fa-history"></i>&nbsp;已自动续投&nbsp;</span>
       <span class="u-pull-right ft-666" ng-show="item.creditRight.isRepeatInvest === 2"><i class="fa fa-history"></i>&nbsp;未自动续投&nbsp;</span>
       <!-- <span class="endtime u-pull-right ft-grey2 ft-1p3" ng-show="creditStatus === '1' && item.creditRight.type !== 3">到期日:{{item.project.repaymentDate | date : 'yyyy-MM-dd'}}</span> -->
