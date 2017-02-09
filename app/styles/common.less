@@ -1423,28 +1423,36 @@ input[type="email"], input[type="number"], input[type="search"], input[type="tex
 }
 /* header */
 #header {
- position: fixed;
- top: 0;
- left: 0;
- right: 0;
- z-index: 9999;
-.back {
-  position: absolute;
-  left: 1rem;
+  position: fixed;
   top: 0;
-  display: inline-block;
-  height: 49px;
-  width: 50px;
-  line-height: 49px;
-}
- .position-icon {
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  max-width: 640px;
+  margin: 0 auto;
+  .back {
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    display: inline-block;
+    height: 49px;
+    // width: 50px;
+    line-height: 49px;
+  }
+  .position-icon {
     position: relative;
-    top: 5px;
+    top: 3.4px;
+  }
+  .margin-l-2px {
+    margin-left: 2px;
+  }
+  .top-0p1 {
+    top: 0.05rem;
   }
 }
 .nav-block {
   color: transparent;
-  height: 47px;
+  height: 52px;
 }
 //复制邀请链接弹窗
 .window-copy {

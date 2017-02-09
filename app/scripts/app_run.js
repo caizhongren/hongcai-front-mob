@@ -268,8 +268,12 @@ angular.module('p2pSiteMobApp')
       }
       
       $rootScope.headerTitle = title;
-      if (toState.name !== 'root.project') {
+      if (toState.name !== 'root.project' || toState.name !== 'root.assignments-detail') {
         Utils.setTitle($rootScope.headerTitle);
+      }
+
+      if (toState.name == 'root.main') {
+        $state.reload();
       }
 
       var path = $location.path().split('/')[1];
