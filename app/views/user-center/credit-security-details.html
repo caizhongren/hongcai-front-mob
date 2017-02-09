@@ -29,7 +29,7 @@
         </div>
       </li>
       <!-- 计息日期 -->
-      <li class="margin-b--0p5">
+      <li class="margin-b--0p5" ng-hide="creditRight.type == 3">
         <div class="timeline display-inb">
           <p  class="margin-b-0" ng-class="{'grey-bg':project.loanTime > 0,'orange-bg':project.loanTime <= 0}"></p>
           <div class="margin-t--0p5">
