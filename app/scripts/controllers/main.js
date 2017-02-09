@@ -7,7 +7,7 @@
  * Controller of the p2pSiteMobApp
 + */
 angular.module('p2pSiteMobApp')
-  .controller('MainCtrl', function($scope, $rootScope, $state, Restangular, ProjectUtils) {
+  .controller('MainCtrl', function($scope, $rootScope, $state, Restangular, ProjectUtils, $timeout, $location) {
     $rootScope.showLoadingToast = true;
 
     /**
@@ -71,22 +71,24 @@ angular.module('p2pSiteMobApp')
 
     /**
      * 轮播图
+     * 注意：需要等待页面元素加载完成后在执行轮播；页面dot 手动增减个数
      */
-    window.onload=function(){
-      $('.slide').swipeSlide({
-        autoSwipe : true,
-        continuousScroll:true,
-        speed : 3000,
-        transitionType : 'cubic-bezier(0.22, 0.69, 0.72, 0.88)',
-        firstCallback : function(i,sum,me){
-            me.find('.dot').children().first().addClass('cur');
-        },
-        callback : function(i,sum,me){
-            me.find('.dot').children().eq(i).addClass('cur').siblings().removeClass('cur');
-        }
-      });
-
-    };
-    
+     $timeout(function() {
+    // $scope.$on('$viewContentLoaded', function(){
+        $('.slide').swipeSlide({
+          autoSwipe : true,
+          axisX : true,
+          continuousScroll:true,
+          speed : 3000,
+          transitionType : 'cubic-bezier(0.22, 0.69, 0.72, 0.88)',
+          firstCallback : function(i,sum,me){
+              me.find('.dot').children().first().addClass('cur');
+          },
+          callback : function(i,sum,me){
+              me.find('.dot').children().eq(i).addClass('cur').siblings().removeClass('cur');
+          }
+        });
+  
+    },100);
 
   });
