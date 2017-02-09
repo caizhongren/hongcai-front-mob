@@ -363,7 +363,8 @@ angular.module('p2pSiteMobApp')
         'login',
         'register',
         'user-center',
-        'yeepay-callback'
+        'yeepay-callback',
+        'modify-pwd'
       ];
 
       $rootScope.whichFooter = 1;
