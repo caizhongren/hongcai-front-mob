@@ -18,6 +18,8 @@ angular.module('p2pSiteMobApp')
     $scope.msg = '';
     Restangular.one('assignments').one(number).get({}).then(function(response) {
       if(response && response.ret !== -1) {
+        $rootScope.headerTitle = response.name.length > 10 ? response.name.substr(0,10) + '...' : response.name;
+        Utils.setTitle($rootScope.headerTitle);
         $timeout(function(){
           $rootScope.showLoadingToast = false;
         },100)
