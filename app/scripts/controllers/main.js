@@ -79,7 +79,7 @@ angular.module('p2pSiteMobApp')
           autoSwipe : true,
           axisX : true,
           continuousScroll:true,
-          speed : 3000,
+          speed : 2000,
           transitionType : 'cubic-bezier(0.22, 0.69, 0.72, 0.88)',
           firstCallback : function(i,sum,me){
               me.find('.dot').children().first().addClass('cur');
