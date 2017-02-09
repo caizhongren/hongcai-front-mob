@@ -29,7 +29,7 @@
         </div>
       </li>
       <!-- 计息日期 -->
-      <li class="margin-b--0p5">
+      <li class="margin-b--0p5" ng-hide="creditRight.type == 3">
         <div class="timeline display-inb">
           <p  class="margin-b-0" ng-class="{'grey-bg':project.loanTime > 0,'orange-bg':project.loanTime <= 0}"></p>
           <div class="margin-t--0p5">
@@ -38,7 +38,7 @@
           </div>
         </div>
         <div class="step display-inb position-ab margin-l--0p5">
-          <span class="hyphen display-inb" ng-class="{'grey-bg':project.loanTime > 0 || creditRight.type == 3,'orange-bg':project.loanTime <= 0}"></span>
+          <span class="hyphen display-inb" ng-class="{'grey-bg':project.loanTime > 0,'orange-bg':project.loanTime <= 0}"></span>
           <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="project.loanTime > 0 || creditRight.type == 3">计息日期：{{project.loanTime | date:'yyyy-MM-dd'}}</p>
           <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="project.loanTime <= 0" ng-hide="creditRight.type === 6 || creditRight.type === 3 ">项目募集中</p>
         </div>
