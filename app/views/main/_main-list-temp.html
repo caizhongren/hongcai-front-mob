@@ -38,7 +38,7 @@
   <section  ng-if="tabParam === 1" ng-class="{'padding-b-5': pageCount0 <= page}">
     <div class="main-list-temp clear" ng-repeat="item in assignments" ui-sref="root.assignments-detail({number: item.number})">
       <div class="title ft-666">
-        <span class="title-text" ng-show="widthFlag===0 && item.name.length <= 12"><span class="zhuan">转</span>{{item.name}}</span>
+        <span class="title-text" ng-show="widthFlag===0 && item.name.length <= 12"><span><span class="zhuan">转</span></span>{{item.name}}</span>
         <span class="title-text" ng-show="widthFlag===0 && item.name.length > 12"><span class="zhuan">转</span>{{item.name | limitTo:13}}...</span>
         <span class="title-text" ng-show="widthFlag===1 || widthFlag===2"><span class="zhuan">转</span>{{item.name}}</span>
         <span ng-show="item.status === 1" class="title-status-orange status">转让中</span>
