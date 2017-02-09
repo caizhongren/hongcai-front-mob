@@ -1,9 +1,9 @@
 <div class="credit-item margin-b-1p3 border-grey-top border-grey-bottom" ng-click="goDtail(item.creditRight.number);">
   <div class="padding-l-1p5 padding-r-1p5 bg-white ">
     <div class="border-grey2-bottom padding-t-1 padding-b-1 overflow-hid ft-666">
-      <span class="u-pull-left {{item.creditRight.type === 6 ? 'border-left-none' : 'border-left'}}" ng-show="widthFlag===0 && item.creditRight.projectName.length <= 11"><span class="zhuan" ng-show="item.creditRight.type === 6">转</span>{{item.creditRight.projectName}} </span>
-      <span class="u-pull-left {{item.creditRight.type === 6 ? 'border-left-none' : 'border-left'}}" ng-show="widthFlag===0 && item.creditRight.projectName.length > 11"><span class="zhuan" ng-show="item.creditRight.type === 6">转</span>{{item.creditRight.projectName | limitTo:8}}... </span>
-      <span class="u-pull-left {{item.creditRight.type === 6 ? 'border-left-none' : 'border-left'}}" ng-show="widthFlag===1 || widthFlag===2"><span class="zhuan" ng-show="item.creditRight.type === 6">转</span>{{item.creditRight.projectName}}</span>
+      <span class="u-pull-left {{item.creditRight.type === 6 ? 'border-left-none' : 'border-left'}}" ng-show="widthFlag===0 && item.creditRight.projectName.length <= 11"><span class="zhuan" ng-show="item.creditRight.type === 6">转</span><span class="display-inb margin-t--0p2">{{item.creditRight.projectName}}</span> </span>
+      <span class="u-pull-left {{item.creditRight.type === 6 ? 'border-left-none' : 'border-left'}}" ng-show="widthFlag===0 && item.creditRight.projectName.length > 11"><span class="zhuan" ng-show="item.creditRight.type === 6">转</span><span class="display-inb margin-t--0p2">{{item.creditRight.projectName | limitTo:8}}...</span> </span>
+      <span class="u-pull-left {{item.creditRight.type === 6 ? 'border-left-none' : 'border-left'}}" ng-show="widthFlag===1 || widthFlag===2"><span class="zhuan" ng-show="item.creditRight.type === 6">转</span><span class="display-inb margin-t--0p2">{{item.creditRight.projectName}}</span></span>
       <img class="fl" src="/images/user-center/rate-icon.png" alt="" width="9%" ng-show="item.increaseRateCoupon && item.increaseRateCoupon.type === 1">
       <span class="u-pull-right ft-2 fa fa-angle-right margin-0p2 ft-greyddd"></span>
       <span class="u-pull-right ft-orange1" ng-show="item.creditRight.isRepeatInvest === 1"><i class="fa fa-history"></i>&nbsp;已自动续投&nbsp;</span>
