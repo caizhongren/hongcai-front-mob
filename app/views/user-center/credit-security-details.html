@@ -1,6 +1,6 @@
 
 <!-- 债权详情 -->
-<div class="credit-detail bg-offWhite" auto-height>
+<div class="credit-detail" ng-class="{'bg-offWhite':creditRight.type !== 3,'':creditRight.type == 3}" auto-height>
   <div class="detail-header ft-white">
     <img src="/images/user-center/security-bg.png" width="100%" class="display-bl">
     <div class="annualEarnings position-ab text-center">
@@ -88,7 +88,7 @@
       </li> 
     </ul>
   </div>
-  <div class="project-details text-center">
+  <div class="project-details text-center" ng-hide="creditRight.type == 3">
     <span class="display-inb"></span>
     <p class="ft-1p6 display-inb padding-l-0p5 padding-r-0p5" ng-click="goDetail();">查看项目详情<b class="ft-1p8 ft-normal">></b></p>
     <span class="display-inb"></span>
