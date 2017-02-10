@@ -29,8 +29,9 @@ angular.module('p2pSiteMobApp')
      * 项目信息
      */
     Restangular.one('projects').one($stateParams.number).get().then(function(response) {
-      // $rootScope.showLoadingToast = true;
-      $rootScope.headerTitle = response.name;
+
+      $rootScope.showLoadingToast = true;
+      $rootScope.headerTitle = response.name.length > 10 ? response.name.substr(0,10) + '...' : response.name;
       Utils.setTitle($rootScope.headerTitle);
 
       var project = response;

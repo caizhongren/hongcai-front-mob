@@ -10,6 +10,7 @@
 angular.module('p2pSiteMobApp')
   .controller('ProjectInfoCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects,$interval, Restangular, restmod, DEFAULT_DOMAIN, WEB_DEFAULT_DOMAIN, config, projectStatusMap,DateUtils, Utils) {
     // 宏金盈详情页面
+    $rootScope.showFooter = false;
     var number = $stateParams.number;
     if (!$stateParams.number) {
       $state.go('root.main');

@@ -268,7 +268,7 @@ angular.module('p2pSiteMobApp')
       }
       
       $rootScope.headerTitle = title;
-      if (toState.name !== 'root.project') {
+      if (toState.name !== 'root.project' || toState.name !== 'root.assignments-detail') {
         Utils.setTitle($rootScope.headerTitle);
       }
 
@@ -363,7 +363,8 @@ angular.module('p2pSiteMobApp')
         'login',
         'register',
         'user-center',
-        'yeepay-callback'
+        'yeepay-callback',
+        'modify-pwd'
       ];
 
       $rootScope.whichFooter = 1;

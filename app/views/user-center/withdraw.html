@@ -8,7 +8,7 @@
     <!-- 未绑定银行卡 simpleWithdraw.cardStatus !== 'VERIFIED'-->
     <div ng-include src="'views/user-center/_bankcardless-hint.html'" ng-show="simpleWithdraw.cardStatus && simpleWithdraw.cardStatus !== 'VERIFIED'"></div>
     <!-- 已经绑定银行卡 simpleWithdraw.cardStatus == 'VERIFIED'-->
-    <form class="margin-b-1p5 ft-1p5" name="withdrawForm" ng-submit="toWithdraw(simpleWithdraw)" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
+    <form class="margin-b-1p5 ft-1p5" name="withdrawForm" ng-submit="toWithdraw(simpleWithdraw)" ng-show="simpleWithdraw.cardStatus && simpleWithdraw.cardStatus == 'VERIFIED'">
       <div class="bank-span">
         <span>{{simpleBankcard.openBank || '交通银行'}}：&nbsp;</span><span>{{simpleBankcard.cardNo || '6222************1213'}}</span>
       </div>
@@ -28,8 +28,8 @@
         </button>
       </label>
     </form>
-    <hr class="margin-0" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
-    <div class="ft-grey4 margin-t-0p5 padding-2" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
+    <hr class="margin-0" ng-show="simpleWithdraw.cardStatus && simpleWithdraw.cardStatus == 'VERIFIED'">
+    <div class="ft-grey4 margin-t-0p5 padding-2" ng-show="simpleWithdraw.cardStatus && simpleWithdraw.cardStatus == 'VERIFIED'">
       <h7>温馨提示：</h7>
       <div class="margin-b-1 margin-t-1">
         <span class="u-pull-left"><small>1.</small></span>
