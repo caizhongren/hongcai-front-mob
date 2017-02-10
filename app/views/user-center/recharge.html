@@ -1,13 +1,13 @@
-<div class="recharge bg-offWhite margin-b-7 width-pull">
+<div class="recharge margin-b-7 width-pull">
   <!-- <div class=" margin-0 padding-1 padding-t-0">
     <span class="pull-right" ui-sref="root.userCenter.setting">基本资料></span></div>
     <hr class="hr-grey">
     <h6 class="text-center padding-t-0p5 padding-b-0p5 margin-0"><strong>充值</strong></h6> 
   <div> -->
     <!-- 未绑定银行卡 simpleWithdraw.cardStatus !== 'VERIFIED'-->
-    <div ng-include src="'views/user-center/_bankcardless-hint.html'" ng-show="simpleWithdraw.cardStatus && simpleWithdraw.cardStatus !== 'VERIFIED'"></div>
+    <div class="padding-1 padding-t-3" ng-show="simpleWithdraw.cardStatus && simpleWithdraw.cardStatus !== 'VERIFIED'"><div ng-include src="'views/user-center/_bankcardless-hint.html'"></div></div>
     <!-- 绑定银行卡 -->
-    <form class="margin-t-1 margin-b-0" name="rechargeForm" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
+    <form class="margin-t-1 margin-b-0" name="rechargeForm" ng-show="simpleWithdraw.cardStatus && simpleWithdraw.cardStatus == 'VERIFIED'">
       <div class="balance ft-black4 ft-1p6 bg-white">
         账户余额 : <span class="account ft-Arial">{{ simpleWithdraw.account.balance | number:2}} </span>元
       </div>
@@ -49,7 +49,7 @@
     <!-- <div class="bg-white">
       <hr class="margin-0" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
     </div> -->
-    <div class="ft-grey4 padding-2 bg-white" ng-show="simpleWithdraw.cardStatus == 'VERIFIED'">
+    <div class="ft-grey4 padding-2 bg-white" ng-show="simpleWithdraw.cardStatus && simpleWithdraw.cardStatus == 'VERIFIED'">
       <h7>温馨提示：</h7>
       <div>
         <span class="u-pull-left"><small>1.</small></span>

@@ -35,5 +35,14 @@ angular.module('p2pSiteMobApp')
       $scope.annualEarnings = $scope.creditRight.type == 1 ? $scope.project.annualEarnings : $scope.creditRight.baseRate + $scope.creditRight.riseRate;
     });
 
+    //查看项目详情
+    $scope.goDetail = function() {
+      if($scope.creditRight.type == 3) {
+        return;
+      }
+      $state.go('root.project-detail', {
+        number: $scope.project.number
+      });
+    }
 
   });

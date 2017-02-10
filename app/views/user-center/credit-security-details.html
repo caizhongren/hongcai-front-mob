@@ -1,6 +1,6 @@
 
 <!-- 债权详情 -->
-<div class="credit-detail bg-offWhite" auto-height>
+<div class="credit-detail" ng-class="{'bg-offWhite':creditRight.type !== 3,'':creditRight.type == 3}" auto-height>
   <div class="detail-header ft-white">
     <img src="/images/user-center/security-bg.png" width="100%" class="display-bl">
     <div class="annualEarnings position-ab text-center">
@@ -29,7 +29,7 @@
         </div>
       </li>
       <!-- 计息日期 -->
-      <li class="margin-b--0p5">
+      <li class="margin-b--0p5" ng-hide="creditRight.type == 3">
         <div class="timeline display-inb">
           <p  class="margin-b-0" ng-class="{'grey-bg':project.loanTime > 0,'orange-bg':project.loanTime <= 0}"></p>
           <div class="margin-t--0p5">
@@ -39,8 +39,8 @@
         </div>
         <div class="step display-inb position-ab margin-l--0p5">
           <span class="hyphen display-inb" ng-class="{'grey-bg':project.loanTime > 0,'orange-bg':project.loanTime <= 0}"></span>
-          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="project.loanTime > 0">计息日期：{{project.loanTime | date:'yyyy-MM-dd'}}</p>
-          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="project.loanTime <= 0" ng-hide="creditRight.type === 6">项目募集中</p>
+          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="project.loanTime > 0 || creditRight.type == 3">计息日期：{{project.loanTime | date:'yyyy-MM-dd'}}</p>
+          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="project.loanTime <= 0" ng-hide="creditRight.type === 6 || creditRight.type === 3 ">项目募集中</p>
         </div>
       </li>
       <!-- 每次回款 -->
@@ -88,9 +88,9 @@
       </li> 
     </ul>
   </div>
-  <div class="project-details text-center">
+  <div class="project-details text-center" ng-hide="creditRight.type == 3">
     <span class="display-inb"></span>
-    <p class="ft-1p6 display-inb padding-l-0p5 padding-r-0p5" ui-sref="root.project-detail({number:project.number})">查看项目详情<b class="ft-1p8 ft-normal">></b></p>
+    <p class="ft-1p6 display-inb padding-l-0p5 padding-r-0p5" ng-click="goDetail();">查看项目详情<b class="ft-1p8 ft-normal">></b></p>
     <span class="display-inb"></span>
   </div>
 </div>

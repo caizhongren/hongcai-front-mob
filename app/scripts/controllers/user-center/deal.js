@@ -39,6 +39,7 @@ angular.module('p2pSiteMobApp')
       });
       dealsReq.$then(function(response){
         if(response.$status === 'ok'){
+          $scope.dealDate = response;
           $scope.totalPage = response.totalPage;
           for (var i = 0; i < response.data.length; i++) {
             $scope.deals.push(response.data[i]);

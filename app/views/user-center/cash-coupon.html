@@ -32,7 +32,7 @@
     <li class="text-center margin-0" ng-class="{'active':status === 2}" ng-click="selectStat(2)">已提现</li>
   </ul>
   <!-- 可提 -->
-	<div class="outer-panel margin-b-1" ng-if="status === 1 && cashCoupons.length >0" ng-repeat="item in cashCoupons| orderBy : '-value' track by $index">
+	<div class="outer-panel margin-b-1" ng-if="cashCouponsData && status === 1 && cashCoupons.length >0" ng-repeat="item in cashCoupons| orderBy : '-value' track by $index">
 		<div>
   		<img src="/images/user-center/cash-coupon01.png">
   		<div class="inner-panel-left">
@@ -48,7 +48,7 @@
 		</div>
 	</div>
 	<!-- 已提 -->
-	<div class="outer-panel margin-b-1" ng-if="status === 2 && cashCoupons.length >0" ng-repeat="item in cashCoupons track by $index">
+	<div class="outer-panel margin-b-1" ng-if="cashCouponsData && status === 2 && cashCoupons.length >0" ng-repeat="item in cashCoupons track by $index">
 		<div>
   		<img src="/images/user-center/cash-coupon01.png">
   		<div class="inner-panel-left">
@@ -63,7 +63,7 @@
 	</div>
 	<!-- 未使用现金券  -->
   <!-- 暂无可提现奖金 & 还没有提取过-->
-	<div class="no-cash margin-t-3 text-center" ng-show="(status === 1 || status === 2 ) && (!loading && (cashCoupons.length <= 0))">
+	<div class="no-cash margin-t-3 text-center" ng-show="cashCouponsData && (status === 1 || status === 2 ) && (!loading && (cashCoupons.length <= 0))">
 		<img src="/images/user-center/cash-coupon03.png" alt="">
 		<p ng-show="status === 1">暂无可提奖金噢~</p>
 		<p ng-show="status === 1" ng-click="toGet();">如何获取 &gt;&gt;</p>
