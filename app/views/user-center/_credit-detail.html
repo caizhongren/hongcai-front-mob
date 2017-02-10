@@ -5,17 +5,17 @@
       <span class="u-pull-left" ng-show="widthFlag===0 && item.creditRight.projectName.length <= 11">
         <span class="{{item.creditRight.type === 6 ? 'border-left-none' : 'border-left'}}"></span>
         <span class="zhuan" ng-show="item.creditRight.type === 6">转</span>
-        <span class="display-inb fl">{{item.creditRight.projectName}}</span> 
+        <span class="display-inb fl margin-t--0p2">{{item.creditRight.projectName}}</span> 
       </span>
       <span class="u-pull-left" ng-show="widthFlag===0 && item.creditRight.projectName.length > 11">
         <span class="{{item.creditRight.type === 6 ? 'border-left-none' : 'border-left'}}"></span>
         <span class="zhuan" ng-show="item.creditRight.type === 6">转</span>
-        <span class="display-inb fl">{{item.creditRight.projectName | limitTo:8}}...</span> 
+        <span class="display-inb fl margin-t--0p2">{{item.creditRight.projectName | limitTo:8}}...</span> 
       </span>
       <span class="u-pull-left" ng-show="widthFlag===1 || widthFlag===2">
         <span class="{{item.creditRight.type === 6 ? 'border-left-none' : 'border-left'}}"></span>
         <span class="zhuan" ng-show="item.creditRight.type === 6">转</span>
-        <span class="display-inb fl">{{item.creditRight.projectName}}</span>
+        <span class="display-inb fl margin-t--0p2">{{item.creditRight.projectName}}</span>
       </span>
       <img class="fl" src="/images/user-center/rate-icon.png" alt="" width="9%" ng-show="item.increaseRateCoupon && item.increaseRateCoupon.type === 1">
       <span class="u-pull-right ft-2 fa fa-angle-right margin-0p2 ft-greyddd"></span>
