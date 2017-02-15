@@ -44,7 +44,6 @@
         if (!mobile || !captcha || !picCaptcha || busy) {
           return;
         }
-        busy = true;
         //判断手机号码
         if (!$rootScope.mobilePattern.test(mobile)) {
           $rootScope.showMsg('手机号码格式不正确');
@@ -62,6 +61,7 @@
             $scope.sendMsg = false;
           }
         })
+        busy = true;
 
 
         //判断手机号是否被占用,短信验证码是否正确

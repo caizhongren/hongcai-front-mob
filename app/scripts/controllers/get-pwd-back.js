@@ -47,8 +47,6 @@ angular.module('p2pSiteMobApp')
       if (!mobile || !captcha || !picCaptcha || $scope.busy) {
         return;
       }
-
-      $scope.busy = true;
       //判断手机号码
       if (!$rootScope.mobilePattern.test(mobile)) {
         $rootScope.showMsg('手机号码格式不正确');
@@ -59,6 +57,7 @@ angular.module('p2pSiteMobApp')
         $rootScope.showMsg('图形验证码有误');
         return;
       }
+      $scope.busy = true;
 
 
       HongcaiUser.$find('/checkMobileCaptcha', {
@@ -127,7 +126,6 @@ angular.module('p2pSiteMobApp')
       if($scope.busy) {
         return;
       }
-      $scope.busy = true;
       if (chg.newPassword1 !== chg.newPassword2) {
         $rootScope.showMsg('两次密码输入不一致');
         return;
@@ -137,6 +135,7 @@ angular.module('p2pSiteMobApp')
       if (msg) {
         return;
       }
+      $scope.busy = true;
 
       restmod.model(DEFAULT_DOMAIN + '/users/resetMobilePassword')
         .$create({
