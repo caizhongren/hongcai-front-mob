@@ -8,7 +8,7 @@
     </div>
     <p><div ui-sref="root.getPwd1" class="ft-orange0 pull-right margin-t-0p5">忘记密码？</div></p>
     <p class="login margin-0 text-center margin-t-2">
-      <input type="submit" class="button button-primary column ft-normal margin-t-1p5 margin-b-1p5 {{loginForm.$invalid ? 'button-disabled1' : ''}}" ng-click="toLogin(user)" ng-disabled="loginForm.$invalid || busy">立即登录
+      <button type="submit" class="button button-primary column ft-normal margin-t-1p5 margin-b-1p5 {{loginForm.$invalid ? 'button-disabled1' : ''}}" ng-click="toLogin(user)" ng-disabled="loginForm.$invalid || busy">立即登录</button>
     </p>
     <p class="change_link margin-0 text-center">
       <span class="pull-left ft-9f" ng-show="!showBack"><input type="checkbox" checked>一周内自动登录</span>
