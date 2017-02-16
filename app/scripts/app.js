@@ -595,6 +595,20 @@ p2pSiteMobApp
           }
         }
       })
+      // 站内消息 公告详情
+      .state('root.userCenter.web-site-notice', {
+        url: '/messages/:id',
+        data: {
+          title: '公告详情'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/web-site-notice.html',
+            // controller: 'MessageDetailCtrl',
+            // controllerUrl: 'scripts/controllers/user-center/message-detail'
+          }
+        }
+      })
       // 交易记录
       .state('root.userCenter.deals', {
         url: '/deals',
