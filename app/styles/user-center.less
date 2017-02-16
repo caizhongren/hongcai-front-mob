@@ -12,7 +12,7 @@
     background-image: url(/images/user-center/user-account-bg.png);
     background-size: 100% 100%;
   }
-  .credit {
+  .credit, .messages {
     background-color: #f5f5f5;
     li.active {
       border-bottom: 0.2rem solid #fd8f3f;
@@ -57,6 +57,23 @@
         line-height: 24px;
         @media (max-width:320px) {
           font-size: 1.2rem;
+        }
+      }
+    }
+  }
+  .messages {
+    .web-site-notice {
+      .notice-foot {
+        width: 100%;
+        span:first-child {
+          display: inline-block;
+          width: 60%;
+          text-align: left;
+        }
+        span:last-child {
+          display: inline-block;
+          width: 40%;
+          text-align: right;
         }
       }
     }

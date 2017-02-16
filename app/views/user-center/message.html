@@ -1,10 +1,19 @@
-<div class="credit">
-  <ul class="account-tab1 nav-ul bg-white overflow-hid margin-b-1p3 border-grey2-bottom ft-666 ft-Arial">
+<div class="messages">
+  <ul class="account-tab1 nav-ul bg-white overflow-hid border-grey2-bottom ft-666 ft-Arial margin-b-0">
     <li class="column text-center margin-0 padding-t-1 padding-b-1" ng-class="{active: activeTab===0}" ng-click="activeTab = 0">公告</li>
     <li class="column text-center margin-0 padding-t-1 padding-b-1" ng-class="{active: activeTab===1}" ng-click="activeTab = 1">提醒</li>
   </ul>
   <div ng-if="activeTab == 0">
-    公告
+    <div class="web-site-notice"> 
+    	 <ul>
+    	 	<li class="margin-t-1p2 padding-l-1p5 padding-r-1p5 bg-white">
+    	 		<p class="padding-t-1p5 margin-b-1 ft-1p6"> 宏财网2017年春节放假安排通知 </p>
+    	 		<p class="margin-b-0 ft-666">尊敬的宏财网用户：</p>
+    	 		<p class="margin-b-1p5 ft-666" style="text-indent: 2em">值此新春佳节，感谢您过去的一年对我们的支持，宏财网全体员工在这里给您拜年啦！...</p>
+    	 		<div class="notice-foot ft-grey999 ft-1p3"><span>2017/01/04 12:30:34</span><span>查看详情</span></div>
+    	 	</li>
+    	 </ul>
+    </div>
   </div>
   <div ng-if="activeTab == 1">
     提醒
