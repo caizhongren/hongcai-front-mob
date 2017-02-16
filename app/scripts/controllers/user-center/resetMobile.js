@@ -82,7 +82,12 @@
               busy = false;
             }, 2000);
             $state.go('root.userCenter.setting');
-            $rootScope.showMsg("修改成功！");
+            $rootScope.successMsg = "修改成功！";
+            $rootScope.showSuccessToast = true;
+            $timeout(function() {
+              $rootScope.showSuccessToast = false;
+              $rootScope.successMsg = '';
+            }, 2000);
           }
         })
       }
