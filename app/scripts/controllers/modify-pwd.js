@@ -35,8 +35,15 @@ angular.module('p2pSiteMobApp')
     /**
      * 确认修改密码
      */
+    $scope.busy = false;
     $scope.changePassword = function(chg) {
+      if ($scope.busy) {
+        return;
+      }
 
+      if (!chg || !chg.newPassword1 || !chg.newPassword2 || !chg.oldPassword) {
+        return;
+      }
       //判断新密码与确认密码是否一致
       if(chg.newPassword1 !== chg.newPassword2){
         $rootScope.showMsg('两次密码输入不一致');
@@ -48,7 +55,7 @@ angular.module('p2pSiteMobApp')
       if(msg){
         return;
       }
-
+      $scope.busy = true;
       //判断旧密码是否正确
       restmod.model(DEFAULT_DOMAIN + '/users/' + '0' + '/changePassword')
       .$create({
@@ -57,8 +64,14 @@ angular.module('p2pSiteMobApp')
       }).$then(function(response) {
         if (response.ret === -1) {
           $rootScope.showMsg('旧密码不正确');
+          $timeout(function() {
+            $scope.busy = false;
+          }, 1000);
         } else {
           $state.go('root.login');
+          $timeout(function() {
+            $scope.busy = false;
+          }, 1000);
         }
       });
 

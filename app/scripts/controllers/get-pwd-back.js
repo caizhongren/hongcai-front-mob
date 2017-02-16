@@ -42,11 +42,11 @@ angular.module('p2pSiteMobApp')
     /**
      * 获取验证码进行下一步
      */
+     $scope.busy = false;
     $scope.newPwd = function(mobile, captcha, picCaptcha) {
-      if (!mobile || !captcha || !picCaptcha) {
+      if (!mobile || !captcha || !picCaptcha || $scope.busy) {
         return;
       }
-
       //判断手机号码
       if (!$rootScope.mobilePattern.test(mobile)) {
         $rootScope.showMsg('手机号码格式不正确');
@@ -57,6 +57,7 @@ angular.module('p2pSiteMobApp')
         $rootScope.showMsg('图形验证码有误');
         return;
       }
+      $scope.busy = true;
 
 
       HongcaiUser.$find('/checkMobileCaptcha', {
@@ -66,9 +67,15 @@ angular.module('p2pSiteMobApp')
         guestId: ipCookie('guestId')
       }).$then(function(response) {
         if (response.ret === -1) {
+          $timeout(function() {
+            $scope.busy = false;
+          }, 2000);
           $scope.getCaptchaErr = response.msg;
           $rootScope.showMsg(response.msg);
         } else {
+          $timeout(function() {
+            $scope.busy = false;
+          }, 2000);
           $state.go('root.getPwd2', {
             mobile: mobile,
             captcha: captcha
@@ -116,6 +123,9 @@ angular.module('p2pSiteMobApp')
       chg.newPassword2 = chg.newPassword2.replace(/\s/g, "");
 
       $scope.msg = '';
+      if($scope.busy) {
+        return;
+      }
       if (chg.newPassword1 !== chg.newPassword2) {
         $rootScope.showMsg('两次密码输入不一致');
         return;
@@ -125,6 +135,7 @@ angular.module('p2pSiteMobApp')
       if (msg) {
         return;
       }
+      $scope.busy = true;
 
       restmod.model(DEFAULT_DOMAIN + '/users/resetMobilePassword')
         .$create({
@@ -134,8 +145,14 @@ angular.module('p2pSiteMobApp')
           device: Utils.deviceCode()
         }).$then(function(response) {
           if (response.ret === -1) {
+            $timeout(function() {
+              $scope.busy = false;
+            }, 2000);
             $scope.changePasswordMsg = response.msg;
           } else {
+            $timeout(function() {
+              $scope.busy = false;
+            }, 2000);
             $state.go('root.login');
           }
         });
