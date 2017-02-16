@@ -604,8 +604,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/user-center/web-site-notice.html',
-            // controller: 'MessageDetailCtrl',
-            // controllerUrl: 'scripts/controllers/user-center/message-detail'
+            controller: 'MessageDetailCtrl',
+            controllerUrl: 'scripts/controllers/user-center/web-site-notice'
           }
         }
       })

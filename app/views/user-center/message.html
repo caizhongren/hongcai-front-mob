@@ -6,37 +6,14 @@
   <div ng-if="activeTab == 0">
     <div class="web-site-notice"> 
     	 <ul class="margin-b-0 padding-b-1p2">
-    	 	<li class="margin-t-1p2 margin-b-0 padding-l-1p5 padding-r-1p5 bg-white padding-b-1p5">
-    	 		<p class="padding-t-1p5 margin-b-1 ft-1p6 ft-666"> 宏财网2017年春节放假安排通知 </p>
-    	 		<div class="notice-foot ft-grey999 ft-1p3"><span>2017/01/04 12:30:34</span><span>查看详情</span></div>
+    	 	<li class="margin-t-1p2 margin-b-0 padding-l-1p5 padding-r-1p5 bg-white padding-b-1p5" ui-sref="root.userCenter.web-site-notice({id:notice.id})" ng-repeat="notice in notices">
+    	 		<p class="padding-t-1p5 margin-b-1 ft-1p6 ft-666"> {{notice.title}}</p>
+    	 		<div class="notice-foot ft-grey999 ft-1p3" ><span>{{notice.createTime | date: 'yyyy/MM/dd HH:mm:ss'}}</span><span>查看详情</span></div>
     	 	</li>
-    	 	<li class="margin-t-1p2 margin-b-0 padding-l-1p5 padding-r-1p5 bg-white padding-b-1p5">
-    	 		<p class="padding-t-1p5 margin-b-1 ft-1p6 ft-666"> 某个体户经营资金周转50万融资标第二期利息兑付公告 </p>
-    	 		<div class="notice-foot ft-grey999 ft-1p3"><span>2017/01/04 12:30:34</span><span>查看详情</span></div>
-    	 	</li>
-    	 	<li class="margin-t-1p2 margin-b-0 padding-l-1p5 padding-r-1p5 bg-white padding-b-1p5">
-    	 		<p class="padding-t-1p5 margin-b-1 ft-1p6 ft-666"> 某个体户经营资金周转50万融资标第二期利息兑付公告 </p>
-    	 		<div class="notice-foot ft-grey999 ft-1p3"><span>2017/01/04 12:30:34</span><span>查看详情</span></div>
-    	 	</li>
-    	 	<li class="margin-t-1p2 margin-b-0 padding-l-1p5 padding-r-1p5 bg-white padding-b-1p5">
-    	 		<p class="padding-t-1p5 margin-b-1 ft-1p6 ft-666"> 某个体户经营资金周转50万融资标第二期利息兑付公告 </p>
-    	 		<div class="notice-foot ft-grey999 ft-1p3"><span>2017/01/04 12:30:34</span><span>查看详情</span></div>
-    	 	</li>
-    	 	<li class="margin-t-1p2 margin-b-0 padding-l-1p5 padding-r-1p5 bg-white padding-b-1p5">
-    	 		<p class="padding-t-1p5 margin-b-1 ft-1p6 ft-666"> 某个体户经营资金周转50万融资标第二期利息兑付公告 </p>
-    	 		<div class="notice-foot ft-grey999 ft-1p3"><span>2017/01/04 12:30:34</span><span>查看详情</span></div>
-    	 	</li>
-    	 	<li class="margin-t-1p2 margin-b-0 padding-l-1p5 padding-r-1p5 bg-white padding-b-1p5">
-    	 		<p class="padding-t-1p5 margin-b-1 ft-1p6 ft-666"> 某个体户经营资金周转50万融资标第二期利息兑付公告 </p>
-    	 		<div class="notice-foot ft-grey999 ft-1p3"><span>2017/01/04 12:30:34</span><span>查看详情</span></div>
-    	 	</li>
-    	 	<!-- <li class="margin-t-1p2 margin-b-0 padding-l-1p5 padding-r-1p5 bg-white padding-b-1p5">
-    	 		<p class="padding-t-1p5 margin-b-1 ft-1p6 ft-666"> 宏财网2017年春节放假安排通知 </p>
-    	 		<p class="margin-b-0 ft-666">尊敬的宏财网用户：</p>
-    	 		<p class="margin-b-1p7 ft-666" style="text-indent: 2em">值此新春佳节，感谢您过去的一年对我们的支持，宏财网全体员工在这里给您拜年啦！...</p>
-    	 		<div class="notice-foot ft-grey999 ft-1p3"><span>2017/01/04 12:30:34</span><span>查看详情</span></div>
-    	 	</li> -->
     	 </ul>
+       <div class="text-center bg-white" ng-show="page < noticeTotalPage || noticeTotal > 15">
+        <p class="padding-b-7 padding-t-3"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a class="ft-black" ng-click="viewMore(getNotice);">查看更多</a></p>s
+      </div>
     </div>
   </div>
   <div ng-if="activeTab == 1" class="padding-b-4">
