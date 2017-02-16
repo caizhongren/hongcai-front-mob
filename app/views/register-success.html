@@ -7,7 +7,7 @@
             <strong class="ft-grey"  ng-if="payCompany ==='yeepay'">建议您完成个人身份认证，开通易宝账户，让您的资金更安全，投资更靠谱！</strong>
         </p>
     </div>
-    <form name="registerYeepayForm" class="margin-0 padding-b-2 padding-t-1 ft-grey" autocomplete="on" ng-submit="signUpYeepay(user);">
+    <form name="registerYeepayForm" class="margin-0 padding-b-2 padding-t-1 ft-grey" autocomplete="on">
         <p class="margin-0 border-grey border-ra-0p5 margin-b-1p5">
             <label for="realnamesignup"><small>真实姓名</small></label>
             <input id="realnamesignup" name="realnamesignup" ng-model="user.realName" required="required" type="text" placeholder="请输入身份证上的姓名"/>
@@ -18,8 +18,8 @@
         </p>
         <p ng-if="registerYeepayForm.IDcardsignup.$dirty && registerYeepayForm.$invalid && !registerYeepayForm.IDcardsignup.$focused && registerYeepayForm.$error.pattern" class="text-center ft-red"><small>输入的身份证号码格式不正确</small></p>
         <p class="signin margin-0 text-center padding-t-1">
-            <input type="submit" class="button button-primary column {{registerYeepayForm.$invalid ? 'button-disabled' : ''}}" ng-disabled="registerYeepayForm.$invalid" ng-if="payCompany ==='cgt'" value="开通资金存管账户"/>
-            <input type="submit" class="button button-primary column {{registerYeepayForm.$invalid ? 'button-disabled' : ''}}" ng-disabled="registerYeepayForm.$invalid" ng-if="payCompany ==='yeepay'" value="开通易宝账户"/>
+            <input type="submit" class="button button-primary column {{registerYeepayForm.$invalid ? 'button-disabled' : ''}}" ng-disabled="registerYeepayForm.$invalid" ng-if="payCompany ==='cgt'" value="开通资金存管账户" ng-click="signUpYeepay(user);"/>
+            <input type="submit" class="button button-primary column {{registerYeepayForm.$invalid ? 'button-disabled' : ''}}" ng-disabled="registerYeepayForm.$invalid" ng-if="payCompany ==='yeepay'" value="开通易宝账户" ng-click="signUpYeepay(user);"/>
         </p>
         <p class="change_link margin-0 text-center clear">
             <small>

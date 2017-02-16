@@ -31,8 +31,8 @@ angular.module('p2pSiteMobApp')
     // 注册易宝POST
     $scope.signUpYeepay = function(user) {
 
-      if (!user.realName || !user.idCardNo) {
-        $scope.errMsg = '请输入姓名或身份证号';
+      if (!user || !user.realName || !user.idCardNo) {
+        return;
       }
       $state.go('root.yeepay-transfer', {
         type: 'register',
