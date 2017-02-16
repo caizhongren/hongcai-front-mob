@@ -1,4 +1,14 @@
 .user-center {
+  //红点
+  .red-point {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: red;
+    border-radius: 50%;
+    position: absolute;
+    top: 1rem;
+  }
   .account-tab1 {
     li {
       width: 50%;
@@ -77,6 +87,31 @@
         }
       }
     }
+    
+    // 提醒
+    .messages-remind {
+      .remind-content {
+        background: url('/images/user-center/message-box.png') no-repeat 0 0;
+        background-size: 100%;
+        padding: 3rem 1.5rem 1.8rem;
+        margin-top: .5rem;
+        text-align: justify;
+        @media (min-width:320px) {
+          padding: 3rem 1.5rem 1.8rem;
+        }
+        @media (min-width:360px) {
+          padding: 3.2rem 1.5rem 2rem;
+        }
+        @media (min-width:375px) {
+          padding: 3.4rem 1.5rem 2.2rem;
+        }
+        @media (min-width:414px) {
+          padding: 4rem 1.5rem 2.8rem;
+        }
+      }
+    }
+    
+
   }
   .deal {
     table {
