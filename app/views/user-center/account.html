@@ -10,7 +10,7 @@
           </div>
         </div>
         <div class="fr margin-r-1 margin-t-1p3 text-right">
-          <div class="message-icon"><!--<i class="fa fa-envelope-o" aria-hidden="true">--><img src="/images/user-center/envelope.png" width="35%" class="margin-t-0p2 display-inb"></i></div>
+          <div class="message-icon" ui-sref="root.userCenter.messages"><!--<i class="fa fa-envelope-o" aria-hidden="true">--><img src="/images/user-center/envelope.png" width="35%" class="margin-t-0p2 display-inb"><p></p><!-- </i> --></div>
         </div>
     </div>
       <div class="text-center ft-white">
@@ -94,7 +94,7 @@
         </li>
         <li class="fl border-grey-r border-grey-l" ui-sref="root.userCenter.cash-coupon">
           <img class="display-bl margin-auto" src="/images/user-center/user-prize.png" width="18%" alt="">
-          <p class="ft-1p5 ft-666 margin-b-0 ">奖金<sup class="green-sup" ng-if="cashCouponStatis.unUsedCoupon > 0">{{cashCouponStatis.unUsedCoupon || 0}}</sup></p>
+          <p class="ft-1p5 ft-666 margin-b-0 ">奖金<sup class="green-sup" ng-if="cashCouponStatis.unUsedCoupon <= 0">{{cashCouponStatis.unUsedCoupon || 0}}</sup></p>
           
         </li>
         <li class="fl" ui-sref="root.userCenter.experience-money">

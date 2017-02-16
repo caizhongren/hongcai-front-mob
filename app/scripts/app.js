@@ -584,6 +584,9 @@ p2pSiteMobApp
       // 站内消息
       .state('root.userCenter.messages', {
         url: '/messages',
+        data: {
+          title: '消息'
+        },
         views: {
           '': {
             templateUrl: 'views/user-center/message.html',

@@ -19,5 +19,6 @@ angular.module('p2pSiteMobApp')
       
     });
 
+    $scope.activeTab = 0;
   
   }]);

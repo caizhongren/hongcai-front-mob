@@ -1,1 +1,12 @@
-<h3>This is message view</h3>
+<div class="credit">
+  <ul class="account-tab1 nav-ul bg-white overflow-hid margin-b-1p3 border-grey2-bottom ft-666 ft-Arial">
+    <li class="column text-center margin-0 padding-t-1 padding-b-1" ng-class="{active: activeTab===0}" ng-click="activeTab = 0">公告</li>
+    <li class="column text-center margin-0 padding-t-1 padding-b-1" ng-class="{active: activeTab===1}" ng-click="activeTab = 1">提醒</li>
+  </ul>
+  <div ng-if="activeTab == 0">
+    公告
+  </div>
+  <div ng-if="activeTab == 1">
+    提醒
+  </div>
+</div>
