@@ -8,15 +8,14 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('MessageCtrl', ['$scope', '$rootScope', 'HongcaiUser','Restangular', function ($scope, $rootScope, HongcaiUser, Restangular) {
-
+  .controller('MessageCtrl', ['$scope', '$rootScope', 'HongcaiUser', 'Restangular', function ($scope, $rootScope, HongcaiUser, Restangular) {
+  	$scope.userMsgsList = [];
   	$scope.page = 1;
   	$scope.notices = [];
     $rootScope.checkSession.promise.then(function(){
       if(!$rootScope.isLogged){
         $state.go('root.login');
       }
-
       
     });
     //查询网站公告
@@ -40,5 +39,42 @@ angular.module('p2pSiteMobApp')
     	$scope.page = $scope.page + 1;
     	func($scope.page);
     };
+
+    $scope.readMsgs = function() {
+    	// 查询是否有未读的提醒
+	    Restangular.one('/userMsgs/' + '0' + '/unReadMsgs' ).get().then(function(response){
+	  		if (response && response.ret !== -1) {
+	  			$scope.unReadMsgs = response.count;
+	  		}
+	  	})
+    }
+    $scope.readMsgs();
+	
+	// 提醒记录
+    $scope.getUserMsgs = function(page) {
+	  	Restangular.one('/userMsgs/' + '0' + '/userMsgs' ).get({
+	  		page : page,
+	  		pageSize : 15
+	  	}).then(function(response){
+	  		if (response && response.ret !== -1) {
+	  			
+	  			$scope.msgTotalPage = response.totalPage;
+	  			$scope.msgTotal = response.total;
+	  			for (var i = 0; i < response.data.length; i++) {
+		          $scope.userMsgsList.push(response.data[i]);
+		        };
+	  		}
+	  	})
+    }
+  		
+
+  	$scope.toggleTab = function(activeTab){
+  		$scope.activeTab = activeTab;
+  		if (activeTab == 1) {
+  			$scope.getUserMsgs();
+  			Restangular.one('/userMsgs/' + '0' + '/readAllUserMsgs' ).put({}).then(function(response){})
+  			$scope.readMsgs();
+  		}
+  	}
 
   }]);
