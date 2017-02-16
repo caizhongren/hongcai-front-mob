@@ -10,7 +10,7 @@
  * 修改手机号码（针对已绑定手机号）
  */
  angular.module('p2pSiteMobApp')
-   .controller('resetMobileCtrl', function(checkPwdUtils, $rootScope, $scope, $state, $http, CheckMobUtil, CheckPicUtil, md5, register, wechat, mobileCaptcha, HongcaiUser, Restangular, Utils){
+   .controller('resetMobileCtrl', function(checkPwdUtils, $rootScope, $scope, $timeout, $state, $http, CheckMobUtil, CheckPicUtil, md5, register, wechat, mobileCaptcha, HongcaiUser, Restangular, Utils){
       $scope.user = {
         mobileCaptchaBusiness:2
       };
@@ -39,11 +39,11 @@
     /**
      * 确认修改手机号
      */
+     var busy = false;
       $scope.resetMobile = function(mobile, captcha, picCaptcha) {
-        if (!mobile || !captcha || !picCaptcha) {
+        if (!mobile || !captcha || !picCaptcha || busy) {
           return;
         }
-
         //判断手机号码
         if (!$rootScope.mobilePattern.test(mobile)) {
           $rootScope.showMsg('手机号码格式不正确');
@@ -61,6 +61,7 @@
             $scope.sendMsg = false;
           }
         })
+        busy = true;
 
 
         //判断手机号是否被占用,短信验证码是否正确
@@ -71,9 +72,15 @@
           device: Utils.deviceCode()
         }).then(function(response) {
           if(response.ret === -1){
+            $timeout(function() {
+              busy = false;
+            }, 2000);
             $rootScope.showMsg(response.msg);
             return;
           }else{
+            $timeout(function() {
+              busy = false;
+            }, 2000);
             $state.go('root.userCenter.setting');
             $rootScope.showMsg("修改成功！");
           }

@@ -50,10 +50,10 @@ angular.module('p2pSiteMobApp')
 
     var openId = $rootScope.openId;
     var signUpBe = register;
+    $scope.busy = false;
     $scope.signUp = function(user) {
       user.password = user.password.replace(/\s/g, ""); //去除所有空格
-
-      if (!$scope.checkMobile(user.mobile) || !$scope.checkPassword(user.password) || !$scope.checkPicCaptchLength(user.picCaptcha)) {
+      if (!$scope.checkMobile(user.mobile) || !$scope.checkPassword(user.password) || !$scope.checkPicCaptchLength(user.picCaptcha) || $scope.busy) {
         return;
       }
 
@@ -61,7 +61,7 @@ angular.module('p2pSiteMobApp')
       if(ipCookie('act') && !isNaN(ipCookie('act'))){
         act = ipCookie('act');
       }
-
+       $scope.busy = true;
       signUpBe.$create({
         // name: user.name,
         picCaptcha: user.picCaptcha,
@@ -77,6 +77,9 @@ angular.module('p2pSiteMobApp')
       }).$then(function(response) {
         if (response.ret === -1) {
           $rootScope.showMsg(response.msg);
+          $timeout(function() {
+            $scope.busy = false;
+          }, 2000);
         } else {
           $rootScope.user = {
             id: response.id

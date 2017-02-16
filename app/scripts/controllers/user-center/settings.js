@@ -221,10 +221,10 @@ angular.module('p2pSiteMobApp')
         $rootScope.showMsg("手机号码格式不正确");
         return;
       }
+      $scope.busy = true;
       var saveFeedback = restmod.model(WEB_DEFAULT_DOMAIN + "/feedback/saveFeedback?feedbackInfo="+ user.textarea +"&contackWay=" + user.mobile);
       saveFeedback.$create({}).$then(function(response) {
         if(response && response.ret !== -1){
-          $scope.busy = true;
           $timeout(function() {
             $scope.busy = false;
           }, 1000);
@@ -237,6 +237,9 @@ angular.module('p2pSiteMobApp')
           }, 2000);
         }else {
           $scope.showMask = true;
+          $timeout(function() {
+            $scope.busy = false;
+          }, 1000);
         }
       })
     }

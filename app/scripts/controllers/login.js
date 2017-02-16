@@ -22,10 +22,14 @@ angular.module('p2pSiteMobApp')
       $scope.user = [];
       $scope.user.account = ipCookie('userName');
     }
-
+    $scope.busy = false;
     $scope.toLogin = function(user) {
-
+      
       user.password = user.password.replace(/\s/g, "");
+      
+      if($scope.busy){
+        return;
+      }
 
       if(!user.password || !user.account){
         $rootScope.showMsg('账号或密码不能为空');
@@ -37,6 +41,7 @@ angular.module('p2pSiteMobApp')
           expires: 60
         });
       }
+      $scope.busy = true;
       HongcaiLogin.userLogin.$create({
         account: user.account,
         password: md5.createHash(user.password),
@@ -45,7 +50,13 @@ angular.module('p2pSiteMobApp')
       }).$then(function(response) {
         if (response.ret === -1) {
           $rootScope.showMsg(response.msg);
+          $timeout(function() {
+            $scope.busy = false;
+          }, 1000);
         } else {
+          $timeout(function() {
+            $scope.busy = false;
+          }, 1000);
 
           if (redirectUrl) {
             $location.path(decodeURIComponent(redirectUrl));
