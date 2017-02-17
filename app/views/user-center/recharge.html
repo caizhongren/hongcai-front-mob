@@ -12,7 +12,7 @@
         账户余额 : <span class="account ft-Arial">{{ simpleWithdraw.account.balance | number:2}} </span>元
       </div>
       <div class="payment bg-white">
-        <!-- <div class="col-xs-3 pay-typeUCF" ng-class="{'pay-active':payment ==3}" ng-click="selectPay(3)">先锋支付</div> -->
+        <div class="col-xs-3 pay-typeUCF" ng-class="{'pay-active':payment ==3}" ng-click="selectPay(3)">先锋支付</div>
         <div class="col-xs-3 pay-typeFU" ng-class="{'pay-active':payment ==1}" ng-click="selectPay(1)">富有支付</div>
         <span class="bankLimit ft-1p2 fr line-h2" ng-click="showbankLimit();">支持银行</span>
       </div>
@@ -34,15 +34,18 @@
         <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeForm.amount.$dirty && rechargeForm.amount.$error.pattern">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入数字(最多精确到小数点后两位)</span>
         </div>
-        <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeForm.amount.$error.min && !rechargeForm.amount.$error.pattern && !rechargeForm.amount.$error.max">
+        <!-- <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeForm.amount.$error.min && !rechargeForm.amount.$error.pattern && !rechargeForm.amount.$error.max"> -->
+        <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeAmount < 3">
           <span class="ft-white"><i class="fa fa-info">&nbsp;</i>充值金额不能小于3元</span>
         </div>
-        <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeForm.amount.$error.max && !rechargeForm.amount.$error.pattern">
+        <!-- <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeForm.amount.$error.max && !rechargeForm.amount.$error.pattern"> -->
+        <div class="hint text-center bg-red1 box-shadow" ng-if="rechargeAmount > bankRemain">
           <span class="ft-white"><i class="fa fa-info">&nbsp;</i>该卡本次最多充值{{bankRemain || 0}}元</span>
         </div>
         <label class="padding-l-2 padding-r-2 bg-white margin-b-0">
-          <input name="amount" type="number" class="input-amount u-full-width padding-t-1 padding-b-1 padding-l-1 padding-r-1 margin-t-0p5" ng-model="rechargeAmount" max="{{bankRemain}}" min="3"  ng-pattern="/^[0-9]*(\.[0-9]{1,2})?$/" ng-focus required placeholder="该卡本次最多充值{{bankRemain ||0}}元">
-          <button type="submit" class="u-full-width ft-1p6 button button-primary margin-t-0p5 {{rechargeForm.$invalid || busy ? 'button-disabled' : ''}}" ng-disabled="rechargeForm.$invalid || busy" ng-click="recharge(rechargeAmount);">立即充值</button>
+          <!-- ng-pattern="/^[0-9]*(\.[0-9]{1,2})?$/" -->
+          <input name="amount" type="number" class="input-amount u-full-width padding-t-1 padding-b-1 padding-l-1 padding-r-1 margin-t-0p5" ng-model="rechargeAmount" ng-focus required placeholder="该卡本次最多充值{{bankRemain ||0}}元">
+          <button type="submit" class="u-full-width ft-1p6 button button-primary margin-t-0p5 {{rechargeForm.$invalid || busy || rechargeAmount < 3 || rechargeAmount > bankRemain ? 'button-disabled' : ''}}" ng-disabled="rechargeForm.$invalid || busy" ng-click="recharge(rechargeAmount);">立即充值</button>
         </label>
       </div>
     </form>
@@ -69,6 +72,7 @@
       </div>
     </div>
   </div>
+  <!-- 支持银行弹窗 -->
   <div class="project-mask padding-2" ng-show="showLimit">
     <div class="limit-bg bg-white margin-auto margin-t-5 padding-1 padding-t-0">
       <div class="title">
