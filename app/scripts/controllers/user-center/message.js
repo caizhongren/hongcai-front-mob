@@ -8,10 +8,11 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('MessageCtrl', ['$scope', '$rootScope', 'HongcaiUser', 'Restangular', function ($scope, $rootScope, HongcaiUser, Restangular) {
+  .controller('MessageCtrl', ['$scope', '$rootScope', 'HongcaiUser', 'Restangular', '$timeout', function ($scope, $rootScope, HongcaiUser, Restangular, $timeout) {
   	$scope.userMsgsList = [];
   	$scope.page = 1;
   	$scope.notices = [];
+  	$rootScope.showLoadingToast = true;
     $rootScope.checkSession.promise.then(function(){
       if(!$rootScope.isLogged){
         $state.go('root.login');
@@ -20,6 +21,7 @@ angular.module('p2pSiteMobApp')
     });
     //查询网站公告
     $scope.getNotice = function(page){
+    	$rootScope.showLoadingToast = true;
     	Restangular.one('userMsgs/0/notices').get({
     		page: page,
     		pageSize: 15
@@ -32,6 +34,9 @@ angular.module('p2pSiteMobApp')
 				for (var i = 0; i < response.data.length; i++) {
 			      $scope.notices.push(response.data[i]);
 			    };
+			    $timeout(function() {
+		          $rootScope.showLoadingToast = false;
+		        }, 200);
     		}
 
     	})
@@ -83,12 +88,11 @@ angular.module('p2pSiteMobApp')
 	  		}
 	  	})
     }
-  		
+  	$scope.getUserMsgs(1); //获取提醒列表
 
   	$scope.toggleTab = function(activeTab){
   		$scope.activeTab = activeTab;
-  		if (activeTab == 1) {
-  			$scope.getUserMsgs(); //获取提醒列表
+  		if (activeTab == 1 && $scope.unReadMsgs > 0) {
   			// 标记所有提醒已读
   			Restangular.one('/userMsgs/' + '0' + '/readAllUserMsgs' ).put({}).then(function(response){
   				if (response && response.ret !== -1) {
