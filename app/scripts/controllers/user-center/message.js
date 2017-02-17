@@ -74,6 +74,7 @@ angular.module('p2pSiteMobApp')
 	
 	// 提醒记录
     $scope.getUserMsgs = function(page) {
+    	$rootScope.showLoadingToast = true;
 	  	Restangular.one('/userMsgs/' + '0' + '/userMsgs' ).get({
 	  		page : page,
 	  		pageSize : 15
@@ -85,6 +86,9 @@ angular.module('p2pSiteMobApp')
 	  			for (var i = 0; i < response.data.length; i++) {
 		          $scope.userMsgsList.push(response.data[i]);
 		        };
+		        $timeout(function() {
+		          $rootScope.showLoadingToast = false;
+		        }, 200);
 	  		}
 	  	})
     }
