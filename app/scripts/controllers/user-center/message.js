@@ -24,12 +24,16 @@ angular.module('p2pSiteMobApp')
     		page: page,
     		pageSize: 15
     	}).then(function(response){
-    		$scope.noticeTotalPage = response.totalPage;
-    		$scope.noticePageSize = response.pageSize;
-    		$scope.noticeTotal = response.total;
-    		for (var i = 0; i < response.data.length; i++) {
-          $scope.notices.push(response.data[i]);
-        };
+    		if(response && response.ret !== -1) {
+    			$scope.readNotices();
+					$scope.noticeTotalPage = response.totalPage;
+					$scope.noticePageSize = response.pageSize;
+					$scope.noticeTotal = response.total;
+					for (var i = 0; i < response.data.length; i++) {
+			      $scope.notices.push(response.data[i]);
+			    };
+    		}
+
     	})
     }
     $scope.getNotice(1);
@@ -40,6 +44,17 @@ angular.module('p2pSiteMobApp')
     	func($scope.page);
     };
 
+    //查询是否有未读公告
+    $scope.readNotices = function() {
+	    Restangular.one('/userMsgs/' + '0' + '/unReadNotices' ).get().then(function(response){
+	  		if (response && response.ret !== -1) {
+	  			if(response.count > 0) {
+	  				// 标记所有公告已读
+	  				Restangular.one('/userMsgs/' + '0' + '/readAllNotices' ).put({}).then(function(response){})
+	  			}
+	  		}
+	  	})
+    }
     $scope.readMsgs = function() {
     	// 查询是否有未读的提醒
 	    Restangular.one('/userMsgs/' + '0' + '/unReadMsgs' ).get().then(function(response){
