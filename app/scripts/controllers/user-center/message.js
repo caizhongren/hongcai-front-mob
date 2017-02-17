@@ -40,8 +40,8 @@ angular.module('p2pSiteMobApp')
     	func($scope.page);
     };
 
+    // 查询是否有未读的提醒
     $scope.readMsgs = function() {
-    	// 查询是否有未读的提醒
 	    Restangular.one('/userMsgs/' + '0' + '/unReadMsgs' ).get().then(function(response){
 	  		if (response && response.ret !== -1) {
 	  			$scope.unReadMsgs = response.count;
@@ -72,8 +72,11 @@ angular.module('p2pSiteMobApp')
   		$scope.activeTab = activeTab;
   		if (activeTab == 1) {
   			$scope.getUserMsgs();
-  			Restangular.one('/userMsgs/' + '0' + '/readAllUserMsgs' ).put({}).then(function(response){})
-  			$scope.readMsgs();
+  			Restangular.one('/userMsgs/' + '0' + '/readAllUserMsgs' ).put({}).then(function(response){
+  				if (response && response.ret !== -1) {
+  					$scope.readMsgs();
+  				}
+  			})
   		}
   	}
 
