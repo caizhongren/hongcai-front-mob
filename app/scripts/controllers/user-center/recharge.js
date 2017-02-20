@@ -119,6 +119,9 @@ angular.module('p2pSiteMobApp')
       if (amount < 3) {
         return;
       }
+      if (amount > $scope.bankRemain) {
+        return;
+      }
       if($scope.busy){
         return;
       }
@@ -170,7 +173,7 @@ angular.module('p2pSiteMobApp')
       $scope.getUserBankCard($scope.expectPayCompany);
       
     }
-    $scope.selectPay(1);
+    $scope.selectPay(3);
 
 
   });
