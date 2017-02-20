@@ -34,9 +34,11 @@ angular.module('p2pSiteMobApp')
 				for (var i = 0; i < response.data.length; i++) {
 			      $scope.notices.push(response.data[i]);
 			    };
-			    $timeout(function() {
-		          $rootScope.showLoadingToast = false;
-		        }, 200);
+			    if ($scope.notices.length > 0) {
+			    	$timeout(function() {
+			          $rootScope.showLoadingToast = false;
+			        }, 200);
+			    }
     		}
 
     	})
@@ -86,9 +88,11 @@ angular.module('p2pSiteMobApp')
 	  			for (var i = 0; i < response.data.length; i++) {
 		          $scope.userMsgsList.push(response.data[i]);
 		        };
-		        $timeout(function() {
-		          $rootScope.showLoadingToast = false;
-		        }, 200);
+		        if ($scope.userMsgsList.length > 0) {
+		        	$timeout(function() {
+			          $rootScope.showLoadingToast = false;
+			        }, 200);
+		        }
 	  		}
 	  	})
     }
