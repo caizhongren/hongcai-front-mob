@@ -584,11 +584,28 @@ p2pSiteMobApp
       // 站内消息
       .state('root.userCenter.messages', {
         url: '/messages',
+        data: {
+          title: '消息'
+        },
         views: {
           '': {
             templateUrl: 'views/user-center/message.html',
             controller: 'MessageCtrl',
             controllerUrl: 'scripts/controllers/user-center/message'
+          }
+        }
+      })
+      // 站内消息 公告详情
+      .state('root.userCenter.web-site-notice', {
+        url: '/messages/:id',
+        data: {
+          title: '公告详情'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/web-site-notice.html',
+            controller: 'MessageDetailCtrl',
+            controllerUrl: 'scripts/controllers/user-center/web-site-notice'
           }
         }
       })

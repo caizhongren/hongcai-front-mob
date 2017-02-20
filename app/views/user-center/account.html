@@ -10,7 +10,7 @@
           </div>
         </div>
         <div class="fr margin-r-1 margin-t-1p3 text-right">
-          <div class="message-icon"><!--<i class="fa fa-envelope-o" aria-hidden="true">--><img src="/images/user-center/envelope.png" width="35%" class="margin-t-0p2 display-inb"></i></div>
+          <div class="message-icon" ui-sref="root.userCenter.messages"><!--<i class="fa fa-envelope-o" aria-hidden="true">--><img src="/images/user-center/envelope.png" width="35%" class="margin-t-0p2 display-inb"><p class="red-point" ng-if="(unReadMsgs + unReadNotices) > 0"></p><!-- </i> --></div>
         </div>
     </div>
       <div class="text-center ft-white">
@@ -52,7 +52,8 @@
    <!-- 热抢中的项目 -->
      <div class="main-list-temp clear" ui-sref="root.project({number: recommends.data[0].number})">
         <div class="title ft-666">
-          <span class="title-text display-inb margin-r-0p3">{{recommends.data[0].name || '无' | limitTo:16}}...</span>
+          <span class="title-text display-inb margin-r-0p3" ng-if="recommends.data[0].name.length > 16">{{recommends.data[0].name || '无' | limitTo:16}}...</span>
+          <span class="title-text display-inb margin-r-0p3" ng-if="recommends.data[0].name.length <= 16">{{recommends.data[0].name || '无'}}</span>
           <span class="display-inb ft-white text-center HOT">HOT</span>
           <span class="u-pull-right ft-2p5 margin-t-0p3 ft-greyddd"><i class="fa fa-angle-right margin-t-0p4"></i></span>
         </div>
