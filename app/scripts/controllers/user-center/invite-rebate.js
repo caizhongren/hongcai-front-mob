@@ -10,9 +10,8 @@
 angular.module('p2pSiteMobApp')
   .controller('InviteRebateCtrl',function ($scope, $state, $rootScope, $location, HongcaiUser) {
     $scope.page = 1;
-    $scope.pageSize = 4;
+    $scope.pageSize = 6;
     $scope.datas = [];
-    $scope.totalPage = 1;
 
 
     /**
@@ -32,20 +31,22 @@ angular.module('p2pSiteMobApp')
     //邀请码
     $scope.voucher = HongcaiUser.$find('0' + '/voucher').$then();
 
-    $scope.inviteList = function(){
-
-      if ($scope.totalPage < $scope.page){
+    /**
+     * 邀请用户列表统计
+     */
+    $scope.inviteList = function(page){
+      if ($scope.page > Math.ceil($scope.total/6)){
         return;
       }
-
       var couponsReq = HongcaiUser.$find('0' + '/inviteList' , {
-        page: $scope.page,
-        pageSize: $scope.pageSize,
-        status: status
+        page: page,
+        pageSize: $scope.pageSize
       });
       couponsReq.$then(function(response){
         if(response.$status === 'ok'){
           $scope.totalPage = response.totalPage;
+          $scope.total = response.total;
+          $scope.loadMoreData =  Math.ceil($scope.total/6);
           for (var i = 0; i < response.data.length; i++) {
             $scope.datas.push(response.data[i]);
           };
@@ -55,12 +56,12 @@ angular.module('p2pSiteMobApp')
       });
      //$scope.DealBusy = false;
     };
-    $scope.inviteList();
+    $scope.inviteList($scope.page);
 
-    $scope.loadMuch = function(tabIndex, subtabIndex){
+    //查看更多邀请用户
+    $scope.loadMuch = function(){
       $scope.page = $scope.page + 1;
-      $scope.pageSize = $scope.pageSize;
-      $scope.initData(tabIndex, subtabIndex);
+      $scope.inviteList($scope.page);
     };
 
     /**
