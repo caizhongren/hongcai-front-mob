@@ -467,6 +467,9 @@
           border: 1px solid #ddd;
           padding-top: .3rem;
           padding-bottom: .3rem;
+          @media(min-width: 320px) {
+            padding-right: 0rem !important;
+          }
           @media(min-width: 411px) {
             padding-left: 1rem;
           }
@@ -478,10 +481,15 @@
             p:nth-child(1) {
               width: 41%;
             }
+            @media(min-width:320px){
+              p:nth-child(1) {
+                width: 33%;
+              }
+            }
             @media(min-width:360px){
               width: 78.5%;
               p:nth-child(1) {
-                width: 53 %;
+                width: 43%;
               }
             }
             @media(min-width: 411px){
