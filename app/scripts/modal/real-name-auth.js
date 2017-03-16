@@ -26,7 +26,7 @@ angular.module('p2pSiteMobApp')
 
 
       $scope.cancel();
-      toCunGuanUtils.to('register', null, register, user.idNo, null, null);
+      toCunGuanUtils.to('register', null, user.realName, user.idNo, null, null);
     }
 
   });
