@@ -32,8 +32,8 @@ angular.module('p2pSiteMobApp')
           }
         } else {
           alert(encrpyMsg.msg);
+          $rootScope.showLoadingToast = false;
         }
-        $rootScope.showLoadingToast = false;
       }
 
     return {
