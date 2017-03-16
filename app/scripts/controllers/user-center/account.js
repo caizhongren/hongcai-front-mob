@@ -9,7 +9,7 @@
  */
 angular.module('p2pSiteMobApp')
 
-.controller('AccountCtrl', function ($scope, $state, DEFAULT_DOMAIN, Restangular) {
+.controller('AccountCtrl', function ($scope, $state, DEFAULT_DOMAIN, Restangular, toCunGuanUtils) {
 
     /**
      * 默认头像
@@ -34,10 +34,7 @@ angular.module('p2pSiteMobApp')
      * 开通自动投标权限
      */
     $scope.toAuthAutoTransfer = function() {
-      $state.go('root.yeepay-transfer', {
-        type: 'autoTransfer',
-        number: "null"
-      });
+      toCunGuanUtils.to('autoTransfer', null, null, null, null, null);
     }
 
     /*

@@ -7,7 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('UnfinishedOrderCtrl', function($scope, $state, $rootScope, $uibModalInstance, order, Restangular) {
+  .controller('UnfinishedOrderCtrl', function($scope, $state, $rootScope, $uibModalInstance, order, Restangular, toCunGuanUtils) {
     $scope.order = order;
     $scope.projectDays = Math.ceil((order.repaymentDate-order.createTime)/1000/3600/24);
     $scope.cancel = function () {
@@ -24,10 +24,7 @@ angular.module('p2pSiteMobApp')
       $scope.cancel();
     }
     $scope.goonPay = function(){
-      $state.go('root.yeepay-transfer', {
-             type: 'transfer',
-             number: $scope.order.number
-           });
+      toCunGuanUtils.to('transfer', $scope.order.number, null, null, null, null);
       $scope.cancel();
     }
   });

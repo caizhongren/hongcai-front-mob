@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('FundsProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects, Restangular, restmod, DEFAULT_DOMAIN, config) {
+  .controller('FundsProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects, Restangular, restmod, DEFAULT_DOMAIN, config, toCunGuanUtils) {
     // 宏金盈详情页面
     var number = $stateParams.number;
     if (!number) {
@@ -159,11 +159,8 @@ angular.module('p2pSiteMobApp')
      * 开通自动投标权限
      */
     $scope.toAuthAutoTransfer = function() {
-        $state.go('root.yeepay-transfer', {
-          type: 'autoTransfer',
-          number: "null"
-        });
-      }
+      toCunGuanUtils.to('autoTransfer', null, null, null, null, null);
+    }
       /*
        * 带参数跳至登录页
        */
@@ -182,12 +179,8 @@ angular.module('p2pSiteMobApp')
       if (!user.realName || !user.idNo) {
         $scope.errMsg = '请输入姓名或身份证号';
       }
-      $state.go('root.yeepay-transfer', {
-        type: 'register',
-        number: "null",
-        realName: user.realName,
-        idNo: user.idNo
-      });
+
+      toCunGuanUtils.to('register', null, user.realName, user.idNo, null, null);
     }
 
     function newForm() {

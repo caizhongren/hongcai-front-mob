@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RealNameAuthCtrl', function($scope, $state, $uibModalInstance) {
+  .controller('RealNameAuthCtrl', function($scope, $state, $uibModalInstance, toCunGuanUtils) {
 
 
     $scope.cancel = function () {
@@ -26,12 +26,7 @@ angular.module('p2pSiteMobApp')
 
 
       $scope.cancel();
-      $state.go('root.yeepay-transfer', {
-        type: 'register',
-        number: "null",
-        realName: user.realName,
-        idNo: user.idNo
-      });
+      toCunGuanUtils.to('register', null, user.realName, user.idNo, null, null);
     }
 
   });

@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('WithdrawCtrl', function($scope, $rootScope, $state, HongcaiUser, fundsProjects) {
+  .controller('WithdrawCtrl', function($scope, $rootScope, $state, HongcaiUser, fundsProjects, toCunGuanUtils) {
     $rootScope.selectedSide = 'account';
 
 
@@ -70,10 +70,7 @@ angular.module('p2pSiteMobApp')
       if ($scope.simpleWithdraw.amountDraw > $scope.availableCashRealNo) {
         return;
       }
-      $state.go('root.yeepay-transfer', {
-        type: 'withdraw',
-        number: amount
-      });
+      toCunGuanUtils.to('withdraw', amount, null, null, null, null);
     }
 
     /**
@@ -83,10 +80,7 @@ angular.module('p2pSiteMobApp')
       if ($scope.simpleWithdraw.cardStatus == 'VERIFIED' || $scope.simpleWithdraw.cardStatus == 'VERIFYING') {
         return;
       }
-
-      $state.go('root.yeepay-transfer', {
-        type: 'BIND_BANK_CARD'
-      });
+      toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
     }
 
 

@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RechargeCtrl', function($timeout, $scope, $rootScope, $stateParams, HongcaiUser, $state, restmod, DEFAULT_DOMAIN, WEB_DEFAULT_DOMAIN, Restangular) {
+  .controller('RechargeCtrl', function($timeout, $scope, $rootScope, $stateParams, HongcaiUser, $state, restmod, DEFAULT_DOMAIN, WEB_DEFAULT_DOMAIN, toCunGuanUtils) {
     $rootScope.selectedSide = 'account';
     $scope.rechargeAmount = $stateParams.amount;
     $scope.showLimit = false;
@@ -59,17 +59,18 @@ angular.module('p2pSiteMobApp')
       {'src': '/images/user-center/BKCH.png', 'cardName': '中国银行', 'limit': '5w/50w/不限'},
       {'src': '/images/user-center/PCBC.png', 'cardName': '建设银行', 'limit': '20w/50w/不限'},
       {'src': '/images/user-center/ABOC.png', 'cardName': '农业银行', 'limit': '20w/50w/不限'},
-      {'src': '/images/user-center/COMM.png', 'cardName': '交通银行', 'limit': '2w/2w/不限'},
-      {'src': '/images/user-center/CMBC.png', 'cardName': '招商银行', 'limit': '10w/100w/不限'},
-      {'src': '/images/user-center/CIBK.png', 'cardName': '中信银行', 'limit': '100w/100w/不限'},
-      {'src': '/images/user-center/SZDB.png', 'cardName': '平安银行', 'limit': '50w/100w/不限'},
-      {'src': '/images/user-center/MSBC.png', 'cardName': '民生银行', 'limit': '50w/200w/不限'},
-      {'src': '/images/user-center/EVER.png', 'cardName': '光大银行', 'limit': '20w/50w/不限'},
+      {'src': '/images/user-center/COMM.png', 'cardName': '交通银行', 'limit': '9999/9999/不限'},
+      {'src': '/images/user-center/CMBC.png', 'cardName': '招商银行', 'limit': '5000/10w/不限'},
+      {'src': '/images/user-center/CIBK.png', 'cardName': '中信银行', 'limit': '1w/1w/2w'},
+      {'src': '/images/user-center/SZDB.png', 'cardName': '平安银行', 'limit': '50w/500w/不限'},
+      {'src': '/images/user-center/MSBC.png', 'cardName': '民生银行', 'limit': '2000w/10000w/不限'},
+      {'src': '/images/user-center/EVER.png', 'cardName': '光大银行', 'limit': '50w/不限/不限'},
       {'src': '/images/user-center/BOB.png', 'cardName': '北京银行', 'limit': '5000/5000/不限'},
-      {'src': '/images/user-center/GDBK.png', 'cardName': '广发银行', 'limit': '100w/100w/不限'},
-      {'src': '/images/user-center/PSBC.png', 'cardName': '邮政银行', 'limit': '5000/5000/不限'},
+      {'src': '/images/user-center/HXBK.png', 'cardName': '华夏银行', 'limit': '50w/150w/不限'},
+      {'src': '/images/user-center/GDBK.png', 'cardName': '广发银行', 'limit': '不限/不限/不限'},
+      {'src': '/images/user-center/PSBC.png', 'cardName': '邮政银行', 'limit': '10w/100w/不限'},
       {'src': '/images/user-center/FJIB.png', 'cardName': '兴业银行', 'limit': '5w/5w/不限'},
-      {'src': '/images/user-center/SPDB.png', 'cardName': '浦发银行', 'limit': '10w/10w/不限'}
+      {'src': '/images/user-center/SPDB.png', 'cardName': '浦发银行', 'limit': '5w/30w/不限'}
     ]
 
     //更换银行卡
@@ -89,9 +90,7 @@ angular.module('p2pSiteMobApp')
         if (!response || response.ret == -1) {
           return;
         }
-        $state.go('root.yeepay-transfer', {
-          type: 'BIND_BANK_CARD'
-        });
+        toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
       });
     }
     // $rootScope.$on('$locationChangeSuccess',function(){//返回前页时，刷新前页
@@ -129,12 +128,8 @@ angular.module('p2pSiteMobApp')
       $timeout(function() {
         $scope.busy = false;
       }, 1000);
-      $state.go('root.yeepay-transfer', {
-        type: 'recharge',
-        number: amount,
-        rechargeWay: $scope.rechargeWay,
-        expectPayCompany: $scope.expectPayCompany
-      });
+
+      toCunGuanUtils.to('recharge', amount, null, null, $scope.rechargeWay, $scope.expectPayCompany);
     }
     HongcaiUser.$find('0' + '/availableCash').$then(function(response) {
       if (response.ret !== -1) {
@@ -152,10 +147,7 @@ angular.module('p2pSiteMobApp')
       if ($scope.simpleWithdraw.cardStatus == 'VERIFIED' || $scope.simpleWithdraw.cardStatus == 'VERIFYING') {
         return;
       }
-
-      $state.go('root.yeepay-transfer', {
-        type: 'BIND_BANK_CARD'
-      });
+      toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
     };
 
     //记录选择支付方式 'FUIOU':富友，'ALLINPAY'：通联，'UMPAY':通联优势， 'UCFPAY': 先锋支付

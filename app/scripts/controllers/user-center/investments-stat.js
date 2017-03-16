@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('InvestmentsStatCtrl', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, config) {
+  .controller('InvestmentsStatCtrl', function ($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, config, toCunGuanUtils) {
 
     $rootScope.checkSession.promise.then(function(){
       if(!$rootScope.isLogged){
@@ -29,10 +29,7 @@ angular.module('p2pSiteMobApp')
      * 继续支付未支付的订单
      */
     $scope.toInvest = function(notPayOrder) {
-      $state.go('root.yeepay-transfer', {
-        type: 'transfer',
-        number: notPayOrder.number
-      });
+      toCunGuanUtils.to('transfer', notPayOrder.number, null, null, null, null);
     }
 
 

@@ -4,7 +4,7 @@ angular.module('p2pSiteMobApp')
     return {
 
       /**
-       * 计算每月应付金额
+       * 是否在微信中
        */
       isWeixin: function(){
           var ua = navigator.userAgent.toLowerCase();
@@ -79,6 +79,36 @@ angular.module('p2pSiteMobApp')
         }
 
         return deviceCode;
+      },
+
+      /**
+       * 页面body上创建一个form
+       */
+      createForm: function() {
+        var f = document.createElement('form');
+        document.body.appendChild(f);
+        f.method = 'post';
+        // f.target = '_blank';
+        return f;
+      },
+
+      /**
+       * 增加表单提交元素
+       */
+      createElements: function (eForm, eName, eValue) {
+        var e = document.createElement('input');
+        eForm.appendChild(e);
+        e.type = 'text';
+        e.name = eName;
+        if (!document.all) {
+          e.style.display = 'none';
+        } else {
+          e.style.display = 'block';
+          e.style.width = '0px';
+          e.style.height = '0px';
+        }
+        e.value = eValue;
+        return e;
       }
 
     };
