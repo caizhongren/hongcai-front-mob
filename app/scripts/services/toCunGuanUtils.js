@@ -1,6 +1,6 @@
 'use strict';
 angular.module('p2pSiteMobApp')
-  .factory('toCunGuanUtils', function($state, $rootScope, $stateParams, restmod, DEFAULT_DOMAIN, config, Utils, WEB_DEFAULT_DOMAIN) {
+  .factory('toCunGuanUtils', function($state, $rootScope, $timeout, $stateParams, restmod, DEFAULT_DOMAIN, config, Utils, WEB_DEFAULT_DOMAIN) {
     
     function redirectToYeepay(business, encrpyMsg) {
         if (encrpyMsg.ret !== -1) {
@@ -29,6 +29,9 @@ angular.module('p2pSiteMobApp')
             Utils.createElements(_f, 'sign', sign);
             _f.action = config.YEEPAY_ADDRESS;
             _f.submit();
+            $timeout(function() {
+              $rootScope.showLoadingToast = false;
+            }, 2000);
           }
         } else {
           alert(encrpyMsg.msg);
