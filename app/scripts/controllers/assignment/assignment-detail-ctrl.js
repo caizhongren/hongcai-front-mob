@@ -7,7 +7,7 @@
  */
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('AssignmentDetailCtrl', function($state, $timeout, DateUtils, $stateParams, Restangular, $scope, $rootScope, Utils) {
+  .controller('AssignmentDetailCtrl', function($state, $timeout, DateUtils, $stateParams, Restangular, $scope, $rootScope, Utils, toCunGuanUtils) {
     var number = $stateParams.number; 
     $rootScope.showFooter = false;
     $rootScope.showLoadingToast = true;
@@ -116,10 +116,7 @@ angular.module('p2pSiteMobApp')
         $scope.clicked = true;
         // 重复下单后，response.number为undefined
         if (order && order.ret !== -1) {
-          $state.go('root.yeepay-transfer', {
-            type: 'transfer',
-            number: order.number
-         });
+          toCunGuanUtils.to('transfer', order.number, null, null, null, null);
         } else {
           $scope.msg = order.msg;
           $rootScope.showMsg($scope.msg);

@@ -638,18 +638,6 @@ p2pSiteMobApp
           }
         }
       })
-
-      // 易宝新页面打开中转页
-      .state('root.yeepay-transfer', {
-        url: '/yeepay-transfer/:type/:number?realName&idNo&rechargeWay&expectPayCompany',
-        views: {
-          '': {
-            templateUrl: 'views/yeepay-transfer.html',
-            controller: 'YeepayTransferCtrl',
-            controllerUrl: 'scripts/controllers/yeepay-transfer'
-          }
-        }
-      })
       // 预约记录
       .state('root.demo', {
         url: '/demo',

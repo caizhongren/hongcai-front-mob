@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('SettingsCtrl',['$scope', '$rootScope', '$state', 'HongcaiUser', 'restmod', 'DEFAULT_DOMAIN', 'md5', 'Utils', 'Restangular', 'WEB_DEFAULT_DOMAIN', '$timeout', '$location', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location) {
+  .controller('SettingsCtrl', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location, toCunGuanUtils) {
 
     $scope.userHeadImgUrl = '/images/user-center/head.png';
 
@@ -50,9 +50,7 @@ angular.module('p2pSiteMobApp')
         $rootScope.toRealNameAuth();
         return;
       }
-      $state.go('root.yeepay-transfer', {
-        type: 'BIND_BANK_CARD'
-      });
+      toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
     }
 
     $scope.changePassword = function(oldP, newP1, newP2) {
@@ -128,10 +126,7 @@ angular.module('p2pSiteMobApp')
       if($rootScope.securityStatus.autoTransfer === 1) {
         $state.go('root.userCenter.autotender');
       } else {
-        $state.go('root.yeepay-transfer', {
-          type: 'autoTransfer',
-          number: "null"
-        });
+        toCunGuanUtils.to('autoTransfer', null, null, null, null, null);
       }
     
     };
@@ -278,4 +273,4 @@ angular.module('p2pSiteMobApp')
     }
 
 
-  }]);
+  });

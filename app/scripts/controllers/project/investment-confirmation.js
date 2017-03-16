@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('InvestmentConfirmationCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects, Restangular, restmod, DEFAULT_DOMAIN, config) {
+  .controller('InvestmentConfirmationCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects, Restangular, restmod, DEFAULT_DOMAIN, config, toCunGuanUtils) {
 
     var number = $stateParams.number;
     if (!number) {
@@ -168,10 +168,7 @@ angular.module('p2pSiteMobApp')
               return;
             }
 
-            $state.go('root.yeepay-transfer', {
-              type: 'transfer',
-              number: response.number
-            });
+            toCunGuanUtils.to('transfer', response.number, null, null, null, null);
           })
       }
     };
@@ -208,10 +205,7 @@ angular.module('p2pSiteMobApp')
      * 开通自动投标权限
      */
     $scope.toAuthAutoTransfer = function() {
-      $state.go('root.yeepay-transfer', {
-        type: 'autoTransfer',
-        number: "null"
-      });
+      toCunGuanUtils.to('autoTransfer', null, null, null, null, null);
     }
 
 

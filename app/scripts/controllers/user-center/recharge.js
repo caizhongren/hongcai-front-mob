@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RechargeCtrl', function($timeout, $scope, $rootScope, $stateParams, HongcaiUser, $state, restmod, DEFAULT_DOMAIN, WEB_DEFAULT_DOMAIN, Restangular) {
+  .controller('RechargeCtrl', function($timeout, $scope, $rootScope, $stateParams, HongcaiUser, $state, restmod, DEFAULT_DOMAIN, WEB_DEFAULT_DOMAIN, toCunGuanUtils) {
     $rootScope.selectedSide = 'account';
     $scope.rechargeAmount = $stateParams.amount;
     $scope.showLimit = false;
@@ -90,9 +90,7 @@ angular.module('p2pSiteMobApp')
         if (!response || response.ret == -1) {
           return;
         }
-        $state.go('root.yeepay-transfer', {
-          type: 'BIND_BANK_CARD'
-        });
+        toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
       });
     }
     // $rootScope.$on('$locationChangeSuccess',function(){//返回前页时，刷新前页
@@ -130,12 +128,8 @@ angular.module('p2pSiteMobApp')
       $timeout(function() {
         $scope.busy = false;
       }, 1000);
-      $state.go('root.yeepay-transfer', {
-        type: 'recharge',
-        number: amount,
-        rechargeWay: $scope.rechargeWay,
-        expectPayCompany: $scope.expectPayCompany
-      });
+
+      toCunGuanUtils.to('recharge', amount, null, null, $scope.rechargeWay, $scope.expectPayCompany);
     }
     HongcaiUser.$find('0' + '/availableCash').$then(function(response) {
       if (response.ret !== -1) {
@@ -153,10 +147,7 @@ angular.module('p2pSiteMobApp')
       if ($scope.simpleWithdraw.cardStatus == 'VERIFIED' || $scope.simpleWithdraw.cardStatus == 'VERIFYING') {
         return;
       }
-
-      $state.go('root.yeepay-transfer', {
-        type: 'BIND_BANK_CARD'
-      });
+      toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
     };
 
     //记录选择支付方式 'FUIOU':富友，'ALLINPAY'：通联，'UMPAY':通联优势， 'UCFPAY': 先锋支付

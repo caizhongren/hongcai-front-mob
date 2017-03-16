@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RegisterYeepayCtrl', ['$rootScope','$scope', '$state', '$stateParams', 'md5', 'registerYeepay', 'HongcaiUser', 'config', function ($rootScope, $scope, $state, $stateParams, md5, registerYeepay, HongcaiUser, config) {
+  .controller('RegisterYeepayCtrl', function ($rootScope, $scope, $state, $stateParams, md5, registerYeepay, HongcaiUser, config, toCunGuanUtils) {
     var userId = $stateParams.userId;
     if (!userId) {
       $state.go('root.main');
@@ -34,13 +34,8 @@ angular.module('p2pSiteMobApp')
       if (!user || !user.realName || !user.idCardNo) {
         return;
       }
-      $state.go('root.yeepay-transfer', {
-        type: 'register',
-        number: "null",
-        realName: user.realName,
-        idNo: user.idCardNo
-      });
+      toCunGuanUtils.to('register', null, user.realName, user.idCardNo, null, null);
     };
     
 
-  }]);
+  });

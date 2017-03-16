@@ -7,7 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('ActivateCtrl', function($scope, $rootScope, $state) {
+  .controller('ActivateCtrl', function($scope, $rootScope, $state, toCunGuanUtils) {
     $scope.showActivateTip = true;
     $scope.cancel = function() {
       $scope.showActivateTip = false;
@@ -25,7 +25,7 @@ angular.module('p2pSiteMobApp')
       	}
 
       	if($rootScope.securityStatus.realNameAuthStatus === 1 && !$rootScope.securityStatus.userAuth.active){
-      		$state.go("root.yeepay-transfer",{type: 'active'});
+          toCunGuanUtils.to('active', null, null, null, null, null);
       	} else if($rootScope.securityStatus.realNameAuthStatus == 0){
       		$rootScope.toRealNameAuth();
       	}
