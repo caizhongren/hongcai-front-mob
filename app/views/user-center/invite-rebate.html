@@ -55,9 +55,9 @@
     <div class="use-list-head" ng-repeat="item in datas track by $index">
       <div class="list-cell">{{item.userAuth.realName || item.user.mobile || item.user.name}}</div>
       <div class="list-cell">
-        <div ng-switch="item.userAuth.yeepayAccountStatus">
+        <div ng-switch="item.userAuth.authStatus">
         <span ng-switch-default>未认证</span>
-        <span class="ft-orange" ng-switch-when="1">已认证</span>
+        <span class="ft-orange" ng-switch-when="2">已认证</span>
         </div>
       </div>
       <div class="list-cell">
