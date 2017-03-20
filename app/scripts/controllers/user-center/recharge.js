@@ -12,15 +12,31 @@ angular.module('p2pSiteMobApp')
     $rootScope.selectedSide = 'account';
     $scope.rechargeAmount = $stateParams.amount;
     $scope.showLimit = false;
+    var scrollTop = 0;
     $scope.getIt = function(){
       $scope.showLimit = false;
       $rootScope.showFooter = true;
-      document.body.style.overflow = 'auto';
+      $('.recharge').removeClass('position-fix'); 
+      // 滚回到老地方！
+      to(scrollTop);
     }
+    
     $scope.showbankLimit = function() {
-      document.body.style.overflow = 'hidden';
+      // 在弹出层显示之前，记录当前的滚动位置
+      scrollTop = getScrollTop();
+
+      // 使body脱离文档流
+      $('.recharge').addClass('position-fix'); 
+      // 把脱离文档流的body拉上去！否则页面会回到顶部！
+      document.body.style.top = -scrollTop + 'px';
       $scope.showLimit = true;
       $rootScope.showFooter = false;
+    }
+    function to(scrollTop){
+      document.body.scrollTop = document.documentElement.scrollTop = scrollTop;
+    }
+    function getScrollTop(){
+      return document.body.scrollTop || document.documentElement.scrollTop;
     }
    
     $scope.bankCardList_FU = [
@@ -64,10 +80,13 @@ angular.module('p2pSiteMobApp')
     $scope.Iknow = function(){
       $scope.showChange = false;
       $rootScope.showFooter = true;
-      document.body.style.overflow = 'auto';
+      $('.recharge').removeClass('position-fix'); 
+      to(scrollTop);
     }
     $scope.changeCard = function() {
-      document.body.style.overflow = 'hidden';
+      scrollTop = getScrollTop();
+      $('.recharge').addClass('position-fix'); 
+      document.body.style.top = -scrollTop + 'px';
       $scope.showChange = true;
       $rootScope.showFooter = false;
     }
