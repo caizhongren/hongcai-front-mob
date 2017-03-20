@@ -68,7 +68,7 @@
       </div>
       <div>
         <span class="u-pull-left"><small>4.</small></span>
-        <p class="padding-l-1 margin-0"><small>如果充值金额没有及时到账，请联系客服，400-900-7626。</small></p>
+        <p class="padding-l-1 margin-0"><small>如果充值金额没有及时到账，请联系客服，400-990-7626。</small></p>
       </div>
     </div>
   </div>
@@ -98,10 +98,20 @@
   <!-- 更换银行卡弹窗 -->
   <div class="project-mask bankcard-setting" ng-show="showChange">
     <div class="project-mask-inner margin-t-20 text-center bg-white ft-black4 ft-1p6 padding-t-3 padding-b-3"  ng-show="showChange">
-      <p class="margin-b-0 padding-l-0p5">您的提现银行卡也将随之更换，是否继续？</p>
-      <div class="padding-l-2 padding-r-2 clearfix margin-t-2">
-        <button class="fl text-center bg-white ft-orange" ng-click="Iknow()">稍后再说</button>
-        <button class="fr text-center bg-orange ft-white" ng-click="unBindBankcard()">继续更换</button>
+      <!-- 账户总资产≤2元，可以自行解绑 -->
+      <div ng-if="account.tTotalAssets <= 2">
+        <p class="margin-b-0 padding-l-0p5">您的提现银行卡也将随之更换，是否继续？</p>
+        <div class="padding-l-2 padding-r-2 clearfix margin-t-2">
+          <button class="fl text-center bg-white ft-orange" ng-click="Iknow()">稍后再说</button>
+          <button class="fr text-center bg-orange ft-white" ng-click="unBindBankcard()">继续更换</button>
+        </div>
+      </div>
+      <!-- 账户资产＞2元，需要联系客服解绑 -->
+      <div ng-if="account.tTotalAssets > 2">
+        <p class="margin-b-0 padding-l-2 padding-r-2 text-justify">尊敬的用户，检测到您的账户总资产大于2元，为了您的资金安全，请联系客服进行人工解绑。客服热线：400-990-7626</p>
+        <div class="padding-l-2 padding-r-2 clearfix margin-t-2">
+          <button class="text-center bg-orange ft-white" ng-click="Iknow()">我知道了</button>
+        </div>
       </div>
     </div>
   </div>
