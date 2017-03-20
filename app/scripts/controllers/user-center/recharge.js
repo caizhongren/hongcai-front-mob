@@ -122,15 +122,10 @@ angular.module('p2pSiteMobApp')
 
     $scope.busy = false;
     $scope.recharge = function(amount) {
-      if (amount < 3) {
+      if (!amount || amount < 3 || amount > $scope.bankRemain || $scope.busy) {
         return;
       }
-      if (amount > $scope.bankRemain) {
-        return;
-      }
-      if($scope.busy){
-        return;
-      }
+    
       $scope.busy = true;
       $timeout(function() {
         $scope.busy = false;
