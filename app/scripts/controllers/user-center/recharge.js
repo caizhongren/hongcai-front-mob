@@ -15,28 +15,14 @@ angular.module('p2pSiteMobApp')
     $scope.getIt = function(){
       $scope.showLimit = false;
       $rootScope.showFooter = true;
-      $('.recharge').removeClass('position-fix'); 
-      // 滚回到老地方！
-      to(scrollTop);
+      document.body.style.overflow = 'auto';
     }
-    var scrollTop = 0;
     $scope.showbankLimit = function() {
-      // 在弹出层显示之前，记录当前的滚动位置
-      scrollTop = getScrollTop();
-
-      // 使body脱离文档流
-      $('.recharge').addClass('position-fix'); 
-      // 把脱离文档流的body拉上去！否则页面会回到顶部！
-      document.body.style.top = -scrollTop + 'px';
+      document.body.style.overflow = 'hidden';
       $scope.showLimit = true;
       $rootScope.showFooter = false;
     }
-    function to(scrollTop){
-      document.body.scrollTop = document.documentElement.scrollTop = scrollTop;
-    }
-    function getScrollTop(){
-      return document.body.scrollTop || document.documentElement.scrollTop;
-    }
+   
     $scope.bankCardList_FU = [
       {'src': '/images/user-center/ICBK.png', 'cardName': '工商银行', 'limit': '5w/5w/20w'},
       {'src': '/images/user-center/BKCH.png', 'cardName': '中国银行', 'limit': '5w/10w/20w'},
@@ -78,8 +64,10 @@ angular.module('p2pSiteMobApp')
     $scope.Iknow = function(){
       $scope.showChange = false;
       $rootScope.showFooter = true;
+      document.body.style.overflow = 'auto';
     }
     $scope.changeCard = function() {
+      document.body.style.overflow = 'hidden';
       $scope.showChange = true;
       $rootScope.showFooter = false;
     }
