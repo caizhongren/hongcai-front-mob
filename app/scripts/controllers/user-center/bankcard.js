@@ -52,9 +52,9 @@ angular.module('p2pSiteMobApp')
       $scope.showMask = true;
     }
     $scope.cancle = function() {
-        $scope.showBankCard = false;
-        $scope.showMask = false;
-      }
+      $scope.showBankCard = false;
+      $scope.showMask = false;
+    }
       /*根据屏幕高度设置内容高度*/
     angular.element('document').ready(function() {
       //初始化宽度、高度

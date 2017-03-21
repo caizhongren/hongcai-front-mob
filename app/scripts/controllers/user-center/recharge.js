@@ -12,6 +12,7 @@ angular.module('p2pSiteMobApp')
     $rootScope.selectedSide = 'account';
     $scope.rechargeAmount = $stateParams.amount;
     $scope.showLimit = false;
+    var scrollTop = 0;
     $scope.getIt = function(){
       $scope.showLimit = false;
       $rootScope.showFooter = true;
@@ -19,7 +20,7 @@ angular.module('p2pSiteMobApp')
       // 滚回到老地方！
       to(scrollTop);
     }
-    var scrollTop = 0;
+    
     $scope.showbankLimit = function() {
       // 在弹出层显示之前，记录当前的滚动位置
       scrollTop = getScrollTop();
@@ -37,6 +38,7 @@ angular.module('p2pSiteMobApp')
     function getScrollTop(){
       return document.body.scrollTop || document.documentElement.scrollTop;
     }
+   
     $scope.bankCardList_FU = [
       {'src': '/images/user-center/ICBK.png', 'cardName': '工商银行', 'limit': '5w/5w/20w'},
       {'src': '/images/user-center/BKCH.png', 'cardName': '中国银行', 'limit': '5w/10w/20w'},
@@ -78,8 +80,13 @@ angular.module('p2pSiteMobApp')
     $scope.Iknow = function(){
       $scope.showChange = false;
       $rootScope.showFooter = true;
+      $('.recharge').removeClass('position-fix'); 
+      to(scrollTop);
     }
     $scope.changeCard = function() {
+      scrollTop = getScrollTop();
+      $('.recharge').addClass('position-fix'); 
+      document.body.style.top = -scrollTop + 'px';
       $scope.showChange = true;
       $rootScope.showFooter = false;
     }
@@ -115,15 +122,10 @@ angular.module('p2pSiteMobApp')
 
     $scope.busy = false;
     $scope.recharge = function(amount) {
-      if (amount < 3) {
+      if (!amount || amount < 3 || amount > $scope.bankRemain || $scope.busy) {
         return;
       }
-      if (amount > $scope.bankRemain) {
-        return;
-      }
-      if($scope.busy){
-        return;
-      }
+    
       $scope.busy = true;
       $timeout(function() {
         $scope.busy = false;
