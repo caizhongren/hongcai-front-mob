@@ -1,5 +1,5 @@
 <!-- 宏金保详情页 -->
-<div class="funds-project bg-white margin-b-7">
+<div class="funds-project bg-white margin-b-7" ng-init="showMessage = false;">
   <div class="row current-detail-bg ft-white padding-t-2 padding-b-2">
     <p class="text-center margin-b-1 title-block-pre">
       <strong class="ft-1p6 ft-white ft-bold title-block">{{project.name}}</strong>
@@ -20,7 +20,11 @@
         </tr>
         <tr>
           <td>投资期限</td>
-          <td><span class="ft-orange">{{project.projectDays}}</span>天</td>
+          <td class="position-re">
+            <span class="ft-orange">{{project.projectDays}}</span>天 &nbsp;
+            <span class="project_desp display-inbl position-ab" ng-click="showMessage = !showMessage;"></span>
+            <span class="pro_des_date_tip ft-grey7 ft-1p4" ng-if="showMessage">以实际期限为准</span>
+          </td>
         </tr>
         <tr>
           <td>募集日期</td>
