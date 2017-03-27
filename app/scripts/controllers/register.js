@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RegisterCtrl', function(CheckPicUtil, checkPwdUtils, $http, DEFAULT_DOMAIN, Restangular, $timeout, $rootScope, $scope, $state, $stateParams, CheckMobUtil, md5, register, wechat, mobileCaptcha, ipCookie, Utils) {
+  .controller('RegisterCtrl', function(CheckPicUtil, checkPwdUtils, $http, $timeout, $rootScope, $scope, $state, $stateParams, CheckMobUtil, md5, register, ipCookie, Utils, WEB_DEFAULT_DOMAIN) {
     // 注册链接上是否有邀请码
     $scope.btn = 'haha';
     $scope.user = {
@@ -126,7 +126,7 @@ angular.module('p2pSiteMobApp')
       if (valLgth4 >= 11) {
         $http({
           method: 'POST',
-          url: '/hongcai/api/v1/activity/checkInviteCode?inviteCode=' + newVal
+          url: WEB_DEFAULT_DOMAIN + '/activity/checkInviteCode?inviteCode=' + newVal
         }).success(function(response) {
           if (response.data.isValid === 1) {
             $rootScope.msg = '';
@@ -154,7 +154,7 @@ angular.module('p2pSiteMobApp')
     }
 
     //图形验证码
-    $scope.getPicCaptcha = '/hongcai/api/v1/siteUser/getPicCaptcha?';
+    $scope.getPicCaptcha = WEB_DEFAULT_DOMAIN + '/siteUser/getPicCaptcha?';
     $scope.refreshCode = function() {
       angular.element('#checkCaptcha').attr('src', angular.element('#checkCaptcha').attr('src').substr(0, angular.element('#checkCaptcha').attr('src').indexOf('?')) + '?code=' + Math.random());
     };

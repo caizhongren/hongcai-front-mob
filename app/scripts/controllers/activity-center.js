@@ -7,11 +7,11 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('ActivityCenter', function($scope, $rootScope, $http) {
+  .controller('ActivityCenter', function($scope, $rootScope, $http, WEB_DEFAULT_DOMAIN) {
     $scope.NowTime=new Date().getTime();
     $http({
       method: 'POST',
-      url: '/hongcai/api/v1/activity/getActivityBannerList'
+      url: WEB_DEFAULT_DOMAIN + '/activity/getActivityBannerList'
     }).success(function(response) {
       $scope.activityBannerList = response.data.activityBannerList;
       for(var i=0; i< $scope.activityBannerList.length; i++){
