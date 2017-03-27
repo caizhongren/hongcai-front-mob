@@ -13,12 +13,6 @@ angular.module('p2pSiteMobApp')
   	$scope.page = 1;
   	$scope.notices = [];
   	$rootScope.showLoadingToast = true;
-    $rootScope.checkSession.promise.then(function(){
-      if(!$rootScope.isLogged){
-        $state.go('root.login');
-      }
-      
-    });
     //查询网站公告
     $scope.getNotice = function(page){
     	$rootScope.showLoadingToast = true;

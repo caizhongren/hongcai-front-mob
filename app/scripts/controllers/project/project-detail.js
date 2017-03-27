@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('ProjectDetailCtrl', function(ipCookie, $scope, $timeout, $state, $rootScope, $stateParams, $location,$interval, Restangular, projectStatusMap, ProjectUtils, Utils, toCunGuanUtils) {
+  .controller('ProjectDetailCtrl', function(ipCookie, $scope, $timeout, $state, $rootScope, $stateParams, $location,$interval, Restangular, projectStatusMap, ProjectUtils, Utils, toCunGuanUtils, SessionService) {
     $rootScope.showFooter = false;
     $rootScope.showLoadingToast = true;
     // 项目详情页面
@@ -62,7 +62,7 @@ angular.module('p2pSiteMobApp')
       /**
        * 可用券
        */
-      if($rootScope.isLogged){
+      if(SessionService.isLogin()){
         $scope.increaseRateCoupons = [];
         $scope.selectIncreaseRateCoupon = [];
         Restangular.one('projects').one('investIncreaseRateCoupon').get({
@@ -87,18 +87,13 @@ angular.module('p2pSiteMobApp')
             $scope.selectIncreaseRateCoupon = [];
           }
         });
-      }
-
-      // 登陆后计算金额
-      $rootScope.checkSession.promise.then(function() {
-        if(!$rootScope.isLogged){
-          return;
-        }
-
-        var minBalanceAccount = $rootScope.account.balance - $rootScope.account.balance % 100;
+      
+        $scope.account = Restangular.one('users').one('0/account').get().$object;
+        var minBalanceAccount = $scope.account.balance - $scope.account.balance % 100;
         var minInvestAccount = project.availableAmount;
-        $scope.project.investAmount = $rootScope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;       
-      });
+        $scope.project.investAmount = $scope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;  
+        $scope.userAuth = Restangular.one('users').one('0/userAuth').get().$object;
+    }
 
       $timeout(function(){
           $rootScope.showLoadingToast = false;
@@ -152,7 +147,7 @@ angular.module('p2pSiteMobApp')
       if(newVal){
         if(newVal > $scope.availableAmount){
           $scope.msg = '投资金额必须小于' + $scope.availableAmount;
-        }else if(newVal > $rootScope.account.balance){
+        }else if(newVal > $scope.account.balance){
           $scope.msg = '账户余额不足，请先充值';
         } else if(newVal < $scope.project.minInvest ){
           $scope.msg = '投资金额必须大于' + $scope.project.minInvest;

@@ -10,39 +10,21 @@
 angular.module('p2pSiteMobApp')
   .controller('ExperienceProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, $location, projects, Restangular, restmod, DEFAULT_DOMAIN, HongcaiUser) {
 
-    $rootScope.checkSession.promise.then(function() {
-      if (!$rootScope.isLogged) {
-        $location.path('/login');
-        return;
-      }
 
-      HongcaiUser.$find('0' + '/account').$then(function(response) {
-          // 获取用户金额信息
-          $scope.userAccount = response;
-          // 获取信息失败。
-      });
-
-      Restangular.one('projects').one('experienceProject').get().then(function(response) {
-        if(response.ret === -1){
-            alert(response.msg);
-            $state.go('root.userCenter.account-overview');
-          }
-
-          $scope.experienceProject = response;
-      });
+    HongcaiUser.$find('0' + '/account').$then(function(response) {
+        // 获取用户金额信息
+        $scope.userAccount = response;
+        // 获取信息失败。
     });
 
-    $scope.checkLargeUserCanAmount = function(project) {
-      if ($rootScope.isLogged) {
-        if ($rootScope.account.balance < project.investAmount) {
-          return true;
-        } else {
-          return false;
+    Restangular.one('projects').one('experienceProject').get().then(function(response) {
+      if(response.ret === -1){
+          alert(response.msg);
+          $state.go('root.userCenter.account-overview');
         }
-      } else {
-        return false;
-      }
-    };
+
+        $scope.experienceProject = response;
+    });
 
     $scope.useExperience = false;
     $scope.quickInvest = function(){

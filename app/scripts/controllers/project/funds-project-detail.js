@@ -20,7 +20,6 @@ angular.module('p2pSiteMobApp')
       $scope.showFundsAgreement = !$scope.showFundsAgreement;
     };
 
-    $rootScope.checkSession.promise.then(function() {
       // simple project
       fundsProjects.$find(number).$then(function(response) {
         if (response.$status === 'ok') {
@@ -51,13 +50,10 @@ angular.module('p2pSiteMobApp')
             $scope.userCanCreditInvestNum = 0;
             $scope.fundsFlag = 0;
           }
-          if (!$rootScope.hasLoggedUser || !$rootScope.hasLoggedUser.id) {
-            return;
-          }
           /**
            * 加息券统计信息
            */
-          Restangular.one('users', $rootScope.hasLoggedUser.id).one('unUsedIncreaseRateCoupons').get().then(function(response) {
+          Restangular.one('users', '0').one('unUsedIncreaseRateCoupons').get().then(function(response) {
             $scope.increaseRateCoupons = response;
             $scope.selectCoupon = null;
             if ($scope.increaseRateCoupons.length > 0 && $scope.simpleFundsProject.product.type !== 1) {
@@ -80,7 +76,6 @@ angular.module('p2pSiteMobApp')
           // 请求数据失败，请重新加载该页面
         }
       });
-    });
 
 
 
@@ -236,8 +231,7 @@ angular.module('p2pSiteMobApp')
         // how to bulid investment path restmod.model
         // restmod.model(DEFAULT_DOMAIN + '/projects')
         if (payAmount > 0) {
-          restmod.model(DEFAULT_DOMAIN + '/fundsProjects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
-            // fundsProjects.$find(number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
+          restmod.model(DEFAULT_DOMAIN + '/fundsProjects/' + number + '/users/' + 0 + '/investment').$create({
             amount: simpleFundsProject.investAmount,
             projectId: simpleFundsProject.id,
             isRepeat: $scope.isRepeat,
@@ -247,7 +241,7 @@ angular.module('p2pSiteMobApp')
             // 重复下单后，response.number为undefined
             if (response.$status === 'ok') {
               if (response.number !== null && response.number !== undefined) {
-                restmod.model(DEFAULT_DOMAIN + '/orders/' + response.number + '/users/' + $rootScope.hasLoggedUser.id + '/payment').$create().$then(function(response) {
+                restmod.model(DEFAULT_DOMAIN + '/orders/' + response.number + '/users/' + 0 + '/payment').$create().$then(function(response) {
                   if (response.$status === 'ok') {
                     var req = response.req;
                     var sign = response.sign;
@@ -267,8 +261,7 @@ angular.module('p2pSiteMobApp')
             }
           })
         } else {
-          restmod.model(DEFAULT_DOMAIN + '/fundsProjects/' + number + '/users/' + $rootScope.hasLoggedUser.id + '/investmentByExperience').$create({
-            // fundsProjects.$find(number + '/users/' + $rootScope.hasLoggedUser.id + '/investment').$create({
+          restmod.model(DEFAULT_DOMAIN + '/fundsProjects/' + number + '/users/' + 0 + '/investmentByExperience').$create({
             amount: simpleFundsProject.investAmount,
             projectId: simpleFundsProject.id,
             isRepeat: $scope.isRepeat,

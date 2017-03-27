@@ -13,6 +13,8 @@ angular.module('p2pSiteMobApp')
     $scope.pageSize = 4;
     $scope.datas = [];
     $scope.totalPage = 1;
+    
+    $scope.userAuth = Restangular.one('users').one('0/userAuth').get().$object;
     $scope.dealList = function(){
       if ($scope.totalPage < $scope.page){
         return;
@@ -51,13 +53,13 @@ angular.module('p2pSiteMobApp')
       if($scope.account.experienceAmount <= 100){
         return;
       }
-      if($rootScope.securityStatus.realNameAuthStatus !== 1){
+      if($scope.userAuth.authStatus !== 2){
         $rootScope.toRealNameAuth();
       }
-      if($rootScope.securityStatus.realNameAuthStatus == 1 && $rootScope.securityStatus.userAuth.active === false){
+      if($scope.userAuth.authStatus == 2 && $scope.userAuth.active === false){
         $rootScope.activate();
       }
-      if($rootScope.securityStatus.realNameAuthStatus == 1 && $rootScope.securityStatus.userAuth.active === true){
+      if($scope.userAuth.authStatus == 2 && $scope.userAuth.active === true){
         $location.url('/experience-project');
       }
     }

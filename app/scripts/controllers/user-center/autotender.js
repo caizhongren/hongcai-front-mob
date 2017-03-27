@@ -210,7 +210,6 @@ $scope.onAutoTenders = function(autoTender) {
     return ;
   }
   Restangular.one('/autoTenders').post('',{
-    userId: $rootScope.account.userId,
     minInvestAmount: autoTender.minInvestAmount,
     minRemainDay: 0,
     maxRemainDay: autoTender.maxRemainDay,

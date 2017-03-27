@@ -12,31 +12,25 @@ angular.module('p2pSiteMobApp')
     $rootScope.selectedSide = 'account';
 
 
-    $rootScope.checkSession.promise.then(function() {
-      if (!$rootScope.isLogged) {
-        $state.go('root.login');
+    HongcaiUser.$find('0' + '/availableCash').$then(function(response) {
+      if (response.ret !== -1) {
+        // 获取用户充值信息
+        $scope.simpleWithdraw = response;
+        $scope.availableCash = $scope.simpleWithdraw.account.balance;
+        $scope.availableCashRealNo = $scope.availableCash >= 2 ? $scope.availableCash - 2 : 0;
+
+      } else {
+        // 获取信息失败。
       }
+    });
 
-      HongcaiUser.$find('0' + '/availableCash').$then(function(response) {
-        if (response.ret !== -1) {
-          // 获取用户充值信息
-          $scope.simpleWithdraw = response;
-          $scope.availableCash = $scope.simpleWithdraw.account.balance;
-          $scope.availableCashRealNo = $scope.availableCash >= 2 ? $scope.availableCash - 2 : 0;
-
-        } else {
-          // 获取信息失败。
-        }
-      });
-
-      HongcaiUser.$find('0' + '/bankcard').$then(function(response) {
-        if (response.$status === 'ok') {
-          // 获取用户的银行卡信息
-          $scope.simpleBankcard = response;
-        } else {
-          // 获取信息失败。
-        }
-      });
+    HongcaiUser.$find('0' + '/bankcard').$then(function(response) {
+      if (response.$status === 'ok') {
+        // 获取用户的银行卡信息
+        $scope.simpleBankcard = response;
+      } else {
+        // 获取信息失败。
+      }
     });
 
 

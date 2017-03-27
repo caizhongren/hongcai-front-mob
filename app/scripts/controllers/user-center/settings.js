@@ -8,19 +8,11 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('SettingsCtrl', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location, toCunGuanUtils) {
+  .controller('SettingsCtrl', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location, toCunGuanUtils, SessionService) {
 
-    $scope.userHeadImgUrl = '/images/user-center/head.png';
-
-    $rootScope.checkSession.promise.then(function() {
-      if (!$rootScope.isLogged) {
-        $state.go('root.login');
-      }
-
-      if ($rootScope.hasLoggedUser.headImgUrl) {
-        $scope.userHeadImgUrl = $rootScope.hasLoggedUser.headImgUrl
-      }
-    });
+    $scope.userHeadImgUrl = SessionService.getUser() &&  SessionService.getUser().headImgUrl 
+      ? SessionService.getUser.headImgUrl: '/images/user-center/head.png';
+    
     if ($location.path().split('/')[2] === 'setting') {
       $rootScope.showFooter = false;
     }
@@ -30,6 +22,10 @@ angular.module('p2pSiteMobApp')
      */
     $scope.voucher = HongcaiUser.$find('0' + '/voucher').$then();
 
+    /**
+     * 认证信息
+     */
+    $scope.userAuth = Restangular.one('users').one('0/userAuth').get().$object;
 
     /**
      * 银行卡信息
@@ -46,7 +42,7 @@ angular.module('p2pSiteMobApp')
      * 绑定银行卡
      */
     $scope.bindBankcard = function() {
-      if($rootScope.securityStatus.realNameAuthStatus !== 1) {
+      if($scope.userAuth.authStatus !== 2) {
         $rootScope.toRealNameAuth();
         return;
       }
@@ -114,16 +110,18 @@ angular.module('p2pSiteMobApp')
     };
     $scope.autoTendersDetail();
 
+    
 
     /**
      * 开通自动投标权限
      */
     $scope.toAutoTender = function() {
-      if($rootScope.securityStatus.realNameAuthStatus !== 1) {
+      
+      if($scope.userAuth.authStatus !== 2) {
         $rootScope.toRealNameAuth();
         return;
       }
-      if($rootScope.securityStatus.autoTransfer === 1) {
+      if($scope.userAuth.autoTransfer) {
         $state.go('root.userCenter.autotender');
       } else {
         toCunGuanUtils.to('autoTransfer', null, null, null, null, null);
@@ -132,22 +130,12 @@ angular.module('p2pSiteMobApp')
     };
 
 
-      // 退出登录功能
+    /**
+     * 退出登录功能
+     */ 
     $scope.toLogout = function() {
-      if ($rootScope.hasLoggedUser) {
-        // TODO  登出的model在这里不太好吧。
-        var logoutModel = restmod.model(DEFAULT_DOMAIN + '/users/' + '0' + '/logout');
-        logoutModel.$create({
-          device: Utils.deviceCode(),
-          isWeixin: Utils.isWeixin()
-        }).$then(function(response) {
-          if (response.ret === 1) {
-            $rootScope.hasLoggedUser = null;
-            $rootScope.isLogged = false;
-            $state.go('root.login');
-          }
-        });
-      }
+      SessionService.destory();
+      $state.go('root.login');
     };
 
     $scope.handleMobileNum = function(phoneNum) {

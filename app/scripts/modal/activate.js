@@ -7,12 +7,13 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('ActivateCtrl', function($scope, $rootScope, $state, toCunGuanUtils) {
+  .controller('ActivateCtrl', function($scope, $rootScope, $state, toCunGuanUtils, Restangular) {
     $scope.showActivateTip = true;
     $scope.cancel = function() {
       $scope.showActivateTip = false;
     };
 
+    $scope.userAuth = Restangular.one('users').one('0/userAuth').get().$object;
     /**
      * 立即迁移
      */
@@ -24,9 +25,9 @@ angular.module('p2pSiteMobApp')
         	return;
       	}
 
-      	if($rootScope.securityStatus.realNameAuthStatus === 1 && !$rootScope.securityStatus.userAuth.active){
+      	if($scope.userAuth.authStatus === 2 && !$scope.userAuth.active){
           toCunGuanUtils.to('active', null, null, null, null, null);
-      	} else if($rootScope.securityStatus.realNameAuthStatus == 0){
+      	} else if($scope.userAuth.authStatus == 0){
       		$rootScope.toRealNameAuth();
       	}
 

@@ -317,19 +317,6 @@ p2pSiteMobApp
           }
         }
       })
-      // 投资确认页
-      .state('root.invplan-verify', {
-        url: '/invplan-verify/:number',
-        views: {
-          '': {
-            templateUrl: 'views/project/_investment-confirmation.html',
-            controller: 'InvestmentConfirmationCtrl',
-            controllerUrl: 'scripts/controllers/project/investment-confirmation'
-          }
-        }
-      })
-
-
       // 个人中心
       .state('root.userCenter', {
         abstract: true,
@@ -490,20 +477,6 @@ p2pSiteMobApp
           }
         }
       })
-      // 我的订单
-      .state('root.userCenter.orders', {
-        url: '/orders',
-        data: {
-          title: '我的订单'
-        },
-        views: {
-          '': {
-            templateUrl: 'views/user-center/order.html',
-            controller: 'OrderCtrl',
-            controllerUrl: 'scripts/controllers/user-center/order'
-          }
-        }
-      })
       // 充值
       .state('root.userCenter.recharge', {
         url: '/recharge?amount',
@@ -543,17 +516,6 @@ p2pSiteMobApp
             templateUrl: 'views/user-center/bankcard.html',
             controller: 'BankcardCtrl',
             controllerUrl: 'scripts/controllers/user-center/bankcard'
-          }
-        }
-      })
-      // 回款计划
-      .state('root.userCenter.payment-collection', {
-        url: '/payment-collection',
-        views: {
-          '': {
-            templateUrl: 'views/user-center/payment-collection.html',
-            controller: 'PaymentCollectionCtrl',
-            controllerUrl: 'scripts/controllers/user-center/payment-collection'
           }
         }
       })

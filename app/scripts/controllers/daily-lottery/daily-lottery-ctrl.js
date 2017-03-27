@@ -6,9 +6,8 @@ angular.module('p2pSiteMobApp')
     $scope.channelCode = $stateParams.f;
 
     $scope.test = config.test;
-    $rootScope.checkSession.promise.then(function() {
-      $scope.getUserCheckinRecords();
-    });
+
+    $scope.getUserCheckinRecords();
 
     $scope.getUserCheckinRecords = function(){
       Restangular.one('dailyPrizes').get().then(function(response){
@@ -18,7 +17,7 @@ angular.module('p2pSiteMobApp')
 
     if ($scope.channelCode){
       Restangular.one('users').post('channel', {
-        openId: $rootScope.openid,
+        openId: '',
         act: $scope.act,
         channelCode: $scope.channelCode
       });
@@ -54,7 +53,6 @@ angular.module('p2pSiteMobApp')
         $scope.userLotteryRecord = response;
         if($scope.userLotteryRecord == null){
           Restangular.one('dailyPrizes').post('checkinAndDrawLottery', {
-            userId: $rootScope.userInfo.id
           }).then(function(response){
             if(response.ret === -1){
               
@@ -98,7 +96,7 @@ angular.module('p2pSiteMobApp')
 
     $scope.showShareWords = function(){
       Restangular.one('users').post('shareActivity', {
-        openId: $rootScope.openid, 
+        openId: '', 
         act: 12,
         channelCode: 'officeweb'
       }).then(function(response){
@@ -246,7 +244,7 @@ angular.module('p2pSiteMobApp')
           $scope.$apply();
 
           Restangular.one('users').post('shareActivity', {
-            openId: $rootScope.openid,
+            openId: '',
             act: $scope.act,
             channelCode: $scope.channelCode
           }).then(function(response){

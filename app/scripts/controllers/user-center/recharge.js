@@ -113,12 +113,6 @@ angular.module('p2pSiteMobApp')
       });
     }
     
-    $rootScope.checkSession.promise.then(function(){
-      if(!$rootScope.isLogged){
-        $state.go('root.login');
-        return;
-      }
-    });
 
     $scope.busy = false;
     $scope.recharge = function(amount) {

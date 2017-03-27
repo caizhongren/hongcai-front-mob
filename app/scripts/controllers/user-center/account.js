@@ -25,6 +25,7 @@ angular.module('p2pSiteMobApp')
 
     $scope.unGotCash = Restangular.one('cashCoupons').one('stat').get().$object;
 
+    $scope.userAuth = Restangular.one('users').one('0/userAuth').get().$object;
     /**
      * 推荐项目
      */

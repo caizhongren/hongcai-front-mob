@@ -39,12 +39,10 @@ angular.module('p2pSiteMobApp')
     });
 
 
-    $rootScope.checkSession.promise.then(function() {
-      /**
-       * 是否激活存管通
-       */
-       $rootScope.toActivate();
-    });
+    /**
+     * 是否激活存管通
+     */
+      $rootScope.toActivate();
 
 
 

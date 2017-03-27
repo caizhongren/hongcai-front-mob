@@ -13,7 +13,7 @@ angular.module('p2pSiteMobApp')
 
 	$scope.userAccount = Restangular.one('users').one('0/account').get().$object;
 
-	$scope.voucher = Restangular.one('users').one('0/userInviteNum').get().$object;
+	$scope.userAuth = Restangular.one('users').one('0/userAuth').get().$object;
 
 	$scope.couponStatis = Restangular.one('users').one('0/increaseRateCoupon').get().$object;
 	/*如何获取*/

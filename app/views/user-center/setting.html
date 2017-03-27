@@ -24,8 +24,8 @@
     <div>
       <p>手机号码：</p>
       <p>{{handleMobileNum(hasLoggedUser.mobile) || '无'}}
-        <span ng-show="securityStatus.realNameAuthStatus == 1" ui-sref="root.userCenter.resetMobile"><a>修改 ></a></span>
-        <span ng-show="securityStatus.realNameAuthStatus !== 1" ng-click="toRealNameAuth()"><a>修改 ></a></span>
+        <span ng-show="userAuth.authStatus == 2" ui-sref="root.userCenter.resetMobile"><a>修改 ></a></span>
+        <span ng-show="userAuth.authStatus !== 2" ng-click="toRealNameAuth()"><a>修改 ></a></span>
         <span ng-show="hasLoggedUser.mobile == null"><i class="fa fa-check-circle-o"></i>&nbsp;未绑定</span>
       </p>
     </div>
@@ -38,8 +38,8 @@
     <div>
       <p>第三方存管账户：</p>
       <p>保证您的资金安全
-        <span ng-show="securityStatus.trusteeshipAccountStatus === 1"><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已开通</span>
-        <span ng-click="toRealNameAuth()" ng-show="securityStatus.trusteeshipAccountStatus !== 1"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通<small class="ft-orange">(立即开通)</small></span>
+        <span ng-show="userAuth.authStatus === 2"><i class="fa fa-check-circle-o ft-green"></i>&nbsp;已开通</span>
+        <span ng-click="toRealNameAuth()" ng-show="userAuth.authStatus !== 2"><i class="fa fa-check-circle-o ft-grey4"></i>&nbsp;未开通<small class="ft-orange">(立即开通)</small></span>
       </p>
     </div>
   </div>

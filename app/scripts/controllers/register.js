@@ -47,8 +47,6 @@ angular.module('p2pSiteMobApp')
       }
       return true;
     }
-
-    var openId = $rootScope.openId;
     var signUpBe = register;
     $scope.busy = false;
     $scope.signUp = function(user) {

@@ -7,7 +7,7 @@
  */
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('AssignmentDetailCtrl', function($state, $timeout, DateUtils, $stateParams, Restangular, $scope, $rootScope, Utils, toCunGuanUtils) {
+  .controller('AssignmentDetailCtrl', function($state, $timeout, DateUtils, $stateParams, Restangular, $scope, $rootScope, Utils, toCunGuanUtils, SessionService) {
     var number = $stateParams.number; 
     $rootScope.showFooter = false;
     $rootScope.showLoadingToast = true;
@@ -45,16 +45,13 @@ angular.module('p2pSiteMobApp')
           }
 
           // 登陆后计算金额
-          $rootScope.checkSession.promise.then(function() {
-            if(!$rootScope.isLogged){
-              return;
-            }
-
-            var minBalanceAccount = $rootScope.account.balance - $rootScope.account.balance % 100;
+          if(SessionService.isLogin()){
+            $scope.account = Restangular.one('users').one('0/account').get().$object;
+            var minBalanceAccount = $scope.account.balance - $scope.account.balance % 100;
             var minInvestAccount = $scope.currentStock * 100;
-            $scope.assignmentInvestAmount = $rootScope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;
-
-          });
+            $scope.assignmentInvestAmount = $scope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;
+            $scope.userAuth = Restangular.one('users').one('0/userAuth').get().$object;
+          };
 
         });
       }
@@ -71,7 +68,7 @@ angular.module('p2pSiteMobApp')
       }
 
       if(newVal){
-        if(newVal >  $rootScope.account.balance || (newVal <= $rootScope.account.balancenewVal && $rootScope.account.balancenewVal < $scope.realPayAmount)){
+        if(newVal >  $scope.account.balance || (newVal <= $scope.account.balancenewVal && $scope.account.balancenewVal < $scope.realPayAmount)){
           $scope.msg = '账户余额不足，请先充值';
         }else if(newVal % 100 !==0 ){
           $scope.msg = '投资金额必须为100的整数倍';
