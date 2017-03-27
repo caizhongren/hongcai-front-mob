@@ -13,7 +13,13 @@ angular.module('p2pSiteMobApp')
       $scope.showActivateTip = false;
     };
 
-    $scope.userAuth = Restangular.one('users').one('0/userAuth').get().$object;
+    $scope.userAuth = SessionService.getUserAuth();
+    if(!$scope.userAuth){
+       Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
+        $scope.userAuth = userAuth;
+        SessionService.setUserAuthIfAuthed($scope.userAuth);
+      });
+    }
     /**
      * 立即迁移
      */

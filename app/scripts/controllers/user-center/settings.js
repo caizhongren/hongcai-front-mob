@@ -25,7 +25,13 @@ angular.module('p2pSiteMobApp')
     /**
      * 认证信息
      */
-    $scope.userAuth = Restangular.one('users').one('0/userAuth').get().$object;
+    $scope.userAuth = SessionService.getUserAuth();
+    if(!$scope.userAuth){
+       Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
+        $scope.userAuth = userAuth;
+        SessionService.setUserAuthIfAuthed($scope.userAuth);
+      });
+    }
 
     /**
      * 银行卡信息

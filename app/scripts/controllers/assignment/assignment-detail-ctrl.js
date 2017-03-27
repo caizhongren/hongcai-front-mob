@@ -50,7 +50,13 @@ angular.module('p2pSiteMobApp')
             var minBalanceAccount = $scope.account.balance - $scope.account.balance % 100;
             var minInvestAccount = $scope.currentStock * 100;
             $scope.assignmentInvestAmount = $scope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;
-            $scope.userAuth = Restangular.one('users').one('0/userAuth').get().$object;
+            $scope.userAuth = SessionService.getUserAuth();
+            if(!$scope.userAuth){
+              Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
+                $scope.userAuth = userAuth;
+                SessionService.setUserAuthIfAuthed($scope.userAuth);
+              });
+            }
           };
 
         });

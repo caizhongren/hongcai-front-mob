@@ -46,6 +46,19 @@ angular.module('p2pSiteMobApp')
        */
       isLogin: function(){
         return sessionStorage.getItem('isLogin') === 'true';
+      },
+
+      /**
+       * 如果用户已实名认证，则缓存
+       */
+      setUserAuthIfAuthed: function(userAuth){
+        if(userAuth && userAuth.authStatus == 2){
+          sessionStorage.setItem('userAuth', angular.toJson(userAuth));
+        }
+      },
+
+      getUserAuth(){
+        return sessionStorage.getItem('userAuth') ?  angular.fromJson(sessionStorage.getItem('userAuth')) : undefined;
       }
     };
   });
