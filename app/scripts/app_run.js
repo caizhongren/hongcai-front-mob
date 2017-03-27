@@ -98,6 +98,25 @@ angular.module('p2pSiteMobApp')
     }
 
     /**
+     * 激活存管通
+     */
+    $rootScope.payCompany = config.pay_company;
+    $rootScope.toActivate = function() {
+      if ($rootScope.payCompany === 'yeepay'|| !$rootScope.isLogged) {
+        return;
+      }
+      Restangular.one('users').one('0/userAuth').get({}).then(function(userAuth){
+        if(userAuth.authStatus !== 2 || !userAuth.active){
+          $uibModal.open({
+            animation: true,
+            templateUrl: 'views/user-center/activate.html',
+            controller: 'ActivateCtrl'
+          });
+        }
+      });
+    } 
+
+    /**
      * 错误提示
      */
     $rootScope.showErrorMsg = false;
@@ -170,7 +189,6 @@ angular.module('p2pSiteMobApp')
                 redirectUrl: encodeURIComponent($location.url())
               });
             }
-
             return;
           }
 
@@ -220,25 +238,8 @@ angular.module('p2pSiteMobApp')
         }
 
 
-      /**
-       * 激活存管通
-       */
-      $rootScope.payCompany = config.pay_company;
-      $rootScope.toActivate = function() {
-        if ($rootScope.payCompany === 'yeepay'|| !$rootScope.isLogged) {
-          return;
-        }
-        Restangular.one('users').one('0/userAuth').get({}).then(function(userAuth){
-          if(userAuth.authStatus !== 2 || !userAuth.active){
-            $uibModal.open({
-              animation: true,
-              templateUrl: 'views/user-center/activate.html',
-              controller: 'ActivateCtrl'
-            });
-          }
-        });
-    }
 
+    });
 
     $rootScope.$on('$stateChangeSuccess', function(event, toState) {
       var title = '宏财理财';
@@ -366,5 +367,5 @@ angular.module('p2pSiteMobApp')
     $rootScope.showSuccessToast = false;
     $rootScope.successMsg = '';
 
-    });
-  })
+
+  });
