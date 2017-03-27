@@ -57,7 +57,7 @@ angular.module('p2pSiteMobApp')
         }
       },
 
-      getUserAuth(){
+      getUserAuth: function(){
         return sessionStorage.getItem('userAuth') ?  angular.fromJson(sessionStorage.getItem('userAuth')) : undefined;
       }
     };
