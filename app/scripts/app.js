@@ -637,6 +637,8 @@ p2pSiteMobApp
         }
       })
 
+   
+
     // 活动主url
     .state('root.activity', {
       abstract: true,
@@ -649,7 +651,34 @@ p2pSiteMobApp
         }
       }
     })
-
+    // 邀请活动
+    .state('root.activity.invite-activity', {
+      url: '/invite-activity',
+      views: {
+        '': {
+          templateUrl: 'views/activity/new-year-invite.html',
+          controller: 'newInviteCtrl',
+          controllerUrl: 'scripts/controllers/activity/new-invite-ctrl'
+        }
+      },
+      data: {
+        title: '邀请好友，双重奖励'
+      }
+    })
+    //新手活动落地页
+      .state('root.activity.novice-landing', {
+        url: '/novice-activity?act&f',
+        views: {
+          '': {
+            templateUrl: 'views/activity/new-year-novice-landing.html',
+            controller: 'NewYearNoviceCtrl',
+            controllerUrl: 'scripts/controllers/activity/new-year-novice-ctrl'
+          }
+        },
+        data: {
+          title: '宏运当头，财源滚滚'
+        }
+      })
     //体验金新手标
     .state('root.experience-project-detail', {
         url: '/experience-project',
