@@ -308,17 +308,7 @@ p2pSiteMobApp
           }
         }
       })
-      // 立即投资页
-      // .state('root.investment-status', {
-      //   url: '/investment-status/:number',
-      //   views: {
-      //     '': {
-      //       templateUrl: 'views/project/investment-status.html',
-      //       controller: 'InvestCtrl',
-      //       controllerUrl: 'scripts/controllers/project/invest'
-      //     }
-      //   }
-      // })
+
       .state('root.registration-agreement', {
         url: '/registration-agreement',
         views: {
@@ -425,20 +415,6 @@ p2pSiteMobApp
             templateUrl: 'views/user-center/investments-stat.html',
             controller: 'InvestmentsStatCtrl',
             controllerUrl: 'scripts/controllers/user-center/investments-stat'
-          }
-        }
-      })
-      // 基本资料
-      .state('root.userCenter.info', {
-        url: '/info',
-        data: {
-          title: '基本资料'
-        },
-        views: {
-          '': {
-            templateUrl: 'views/user-center/info.html',
-            controller: 'InfoCtrl',
-            controllerUrl: 'scripts/controllers/user-center/info'
           }
         }
       })
@@ -617,8 +593,7 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            // templateUrl: 'views/user-center/deal.html',
-            templateUrl: 'views/user-center/new-deal.html',
+            templateUrl: 'views/user-center/deal.html',
             controller: 'DealCtrl',
             controllerUrl: 'scripts/controllers/user-center/deal'
           }
@@ -648,20 +623,6 @@ p2pSiteMobApp
           }
         }
       })
-      // 常见问题
-      // .state('root.issue', {
-      //   url: '/issue',
-      //   data: {
-      //     title: '常见问题'
-      //   },
-      //   views: {
-      //     '': {
-      //       templateUrl: 'views/issue.html',
-      //       controller: 'IssueCtrl',
-      //       controllerUrl: 'scripts/controllers/issue'
-      //     }
-      //   }
-      // })
       // 安全保障
       .state('root.safe', {
         url: '/safe',
@@ -684,7 +645,7 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/about-new.html',
+            templateUrl: 'views/about.html',
             controller: 'AboutCtrl',
             controllerUrl: 'scripts/controllers/about'
           }
@@ -704,25 +665,6 @@ p2pSiteMobApp
         }
       })
 
-      //体验金落地页
-      .state('root.experience-landing', {
-        url: '/experience-landing?act&f',
-        views: {
-          '': {
-            templateUrl: 'views/activity/experience-landing.html',
-          }
-        }
-      })
-
-    //媒体公告
-    .state('root.media-reports', {
-        url: '/media-reports',
-        views: {
-          '': {
-            templateUrl: 'views/activity/activity-real.html',
-          }
-        }
-      })
       //网站公告
       .state('root.web-site-notice', {
         url: '/web-site-notice',
