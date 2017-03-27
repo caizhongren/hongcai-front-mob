@@ -10,13 +10,13 @@
  * 修改手机号码（针对已绑定手机号）
  */
  angular.module('p2pSiteMobApp')
-   .controller('resetMobileCtrl', function(checkPwdUtils, $rootScope, $scope, $timeout, $state, $http, CheckMobUtil, CheckPicUtil, md5, register, wechat, mobileCaptcha, HongcaiUser, Restangular, Utils){
+   .controller('resetMobileCtrl', function($rootScope, $scope, $timeout, $state, CheckMobUtil, CheckPicUtil, Restangular, Utils, WEB_DEFAULT_DOMAIN){
       $scope.user = {
         mobileCaptchaBusiness:2
       };
 
       //图形验证码
-      $scope.getPicCaptcha = '/hongcai/api/v1/siteUser/getPicCaptcha?';
+      $scope.getPicCaptcha = WEB_DEFAULT_DOMAIN + '/siteUser/getPicCaptcha?';
       $scope.refreshCode = function() {
         angular.element('#checkCaptcha').attr('src', angular.element('#checkCaptcha').attr('src').substr(0, angular.element('#checkCaptcha').attr('src').indexOf('?')) + '?code=' + Math.random());
       };

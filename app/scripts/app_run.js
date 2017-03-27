@@ -14,7 +14,7 @@ angular.module('p2pSiteMobApp')
     // }, false);
     // }
 
-    Restangular.setBaseUrl('/hongcai/rest');
+    Restangular.setBaseUrl(DEFAULT_DOMAIN);
     Restangular.setDefaultHeaders({
       'Content-Type': 'application/json'
     })
