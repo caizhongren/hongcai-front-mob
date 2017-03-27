@@ -691,40 +691,7 @@ p2pSiteMobApp
         }
       })
 
-      //推荐页
-      .state('root.recommend', {
-        url: '/recommend',
-        views: {
-          '': {
-            templateUrl: 'views/activity/recommend.html',
-            controller: 'DailyLotteryCtrl',
-            controllerUrl: 'scripts/controllers/daily-lottery/daily-lottery-ctrl'
-          }
-        }
-      })
-      //点赞活动详情页
-      .state('root.share-detail', {
-        url: '/share-detail/:id?act&f', //f 表示渠道,act 表示活动
-        views: {
-          '': {
-            templateUrl: 'views/share/share-detail.html',
-            controller: 'ShareDetailCtrl',
-            controllerUrl: 'scripts/controllers/share/share-detail-ctrl'
-          }
-        }
-      })
-      //点赞活动首页
-      .state('root.share-home', {
-        url: '/share-home?act&f', //f 表示渠道,act 表示活动
-        views: {
-          '': {
-            templateUrl: 'views/share/share-home.html',
-            controller: 'ShareHomeCtrl',
-            controllerUrl: 'scripts/controllers/share/share-home-ctrl'
-          }
-        }
-      })
-
+   
     //体验金活动页
     .state('root.experience-activity', {
         url: '/experience-activity/:number?act&f',
@@ -736,75 +703,13 @@ p2pSiteMobApp
           }
         }
       })
-      //加息券活动页
-      .state('root.rate-activity', {
-        url: '/rate-activity?act&f',
-        views: {
-          '': {
-            templateUrl: 'views/activity/rate-activity.html',
-            controller: 'RateActivityCtrl',
-            controllerUrl: 'scripts/controllers/share/rate-activity-ctrl'
-          }
-        }
-      })
+
       //体验金落地页
       .state('root.experience-landing', {
         url: '/experience-landing?act&f',
         views: {
           '': {
             templateUrl: 'views/activity/experience-landing.html',
-          }
-        }
-      })
-      //新手引导页
-      .state('root.novice-guide', {
-        url: '/novice-guide',
-        views: {
-          '': {
-            templateUrl: 'views/novice-guide.html',
-          }
-        }
-      })
-
-    //串码活动页
-    .state('root.exchange-code', {
-        url: '/exchange-code',
-        views: {
-          '': {
-            templateUrl: 'views/activity/exchange-code.html',
-          }
-        }
-      })
-      //分享朋友圈活动案例页（固定案例页）
-      .state('root.share-scene-example', {
-        url: '/share-scene-example?act&f',
-        views: {
-          '': {
-            templateUrl: 'views/activity/share-scene-example.html',
-            controller: 'ShareSceneExampleCtrl',
-            controllerUrl: 'scripts/controllers/share/share-scene-example-ctrl'
-          }
-        }
-      })
-      //分享朋友圈活动场景选择页
-      .state('root.activity-scene', {
-        url: '/activity-scene?act&f',
-        views: {
-          '': {
-            templateUrl: 'views/activity/activity-scene.html',
-            controller: 'SceneActivityCtrl',
-            controllerUrl: 'scripts/controllers/activity/scene-activity-ctrl'
-          }
-        }
-      })
-      //分享朋友圈活动生成页
-      .state('root.share-scene', {
-        url: '/share-scene/:sceneId?act&f',
-        views: {
-          '': {
-            templateUrl: 'views/activity/activity-real.html',
-            controller: 'RealSceneActivityCtrl',
-            controllerUrl: 'scripts/controllers/share/realscene-activity-ctrl'
           }
         }
       })
@@ -827,95 +732,6 @@ p2pSiteMobApp
           }
         }
       })
-      //宏财动态
-      .state('root.hongcai-trends', {
-        url: '/hongcai-trends',
-        views: {
-          '': {
-            templateUrl: 'views/activity/activity-real.html',
-          }
-        }
-      })
-
-    //定义root.share-spring
-    .state('root.share-spring', {
-        abstract: true,
-        url: '/share-spring',
-        views: {
-          '': {
-            templateUrl: 'views/root-share.html',
-            controller: 'ShareSpringCtrl',
-            controllerUrl: 'scripts/controllers/share-spring/share-spring-ctrl'
-          }
-        }
-      })
-      //新年点赞活动首页
-      .state('root.share-spring.home', {
-        url: '/home',
-        views: {
-          '': {
-            templateUrl: 'views/share-spring/share-spring-home.html',
-            controller: 'ShareSpringHomeCtrl',
-            controllerUrl: 'scripts/controllers/share-spring/share-spring-home-ctrl'
-          }
-        }
-      })
-      //新年点赞活动任务页
-      .state('root.share-spring.detail', {
-        url: '/detail/:id',
-        views: {
-          '': {
-            templateUrl: 'views/share-spring/share-spring-detail.html',
-            controller: 'ShareSpringDetailCtrl',
-            controllerUrl: 'scripts/controllers/share-spring/share-spring-detail-ctrl'
-          }
-        }
-      })
-      //新年点赞活动自己任务页
-      .state('root.share-spring.mydetail', {
-        url: '/mydetail/:number',
-        views: {
-          '': {
-            templateUrl: 'views/share-spring/share-spring-mydetail.html',
-          }
-        }
-      })
-      //新年点赞活动他人任务页
-      .state('root.share-spring.otherdetail', {
-        url: '/otherdetail',
-        views: {
-          '': {
-            templateUrl: 'views/share-spring/share-spring-otherdetail.html',
-          }
-        }
-      })
-      //新年点赞活动结束页
-      .state('root.share-spring.ending', {
-        url: '/ending',
-        views: {
-          '': {
-            templateUrl: 'views/share-spring/share-spring-ending.html',
-          }
-        }
-      })
-      //新年点赞活动第二关自己任务页
-      .state('root.share-spring.mySecondDetail', {
-        url: '/mySecondDetail',
-        views: {
-          '': {
-            templateUrl: 'views/share-spring/_mysecond-detail.html',
-          }
-        }
-      })
-      //新年点赞活动第三关自己任务页
-      .state('root.share-spring.myThirdDetail', {
-        url: '/myThirdDetail',
-        views: {
-          '': {
-            templateUrl: 'views/share-spring/_mythird-detail.html',
-          }
-        }
-      })
 
     // 活动主url
     .state('root.activity', {
@@ -930,88 +746,6 @@ p2pSiteMobApp
       }
     })
 
-    //投资返现落地页
-    .state('root.activity.activity-landing', {
-      url: '/send-money?act&f',
-      views: {
-        '': {
-          templateUrl: 'views/activity/send-money.html',
-          controller: 'SendMoneyCtrl',
-          controllerUrl: 'scripts/controllers/activity/send-money-ctrl'
-        }
-      },
-      data: {
-        title: '投资送688元！奖金可立即提现！'
-      }
-    })
-
-    //投资送加息券落地页
-    .state('root.activity.send-coupon', {
-        url: '/send-coupon?act&f',
-        views: {
-          '': {
-            templateUrl: 'views/activity/coupon-landing.html',
-            controller: 'SendCouponCtrl',
-            controllerUrl: 'scripts/controllers/activity/send-coupon-ctrl'
-          }
-        },
-        data: {
-          title: '2%加息券，投资即送！'
-        }
-      })
-      // 新手活动落地页
-      // .state('root.activity.novice-landing', {
-      //   url: '/novice-activity?act&f&inviteCode',
-      //   views: {
-      //     '': {
-      //       templateUrl: 'views/activity/novice-landing.html',
-      //       controller: 'NoviceCtrl',
-      //       controllerUrl: 'scripts/controllers/activity/novice-landing-ctrl'
-      //     }
-      //   },
-      //   data: {
-      //     title: '注册立拿688元现金+3%加息券'
-      //   }
-      // })
-      //新手活动落地页
-      .state('root.activity.novice-landing', {
-        url: '/novice-activity?act&f',
-        views: {
-          '': {
-            templateUrl: 'views/activity/new-year-novice-landing.html',
-            controller: 'NewYearNoviceCtrl',
-            controllerUrl: 'scripts/controllers/activity/new-year-novice-ctrl'
-          }
-        },
-        data: {
-          title: '宏运当投，财源滚滚'
-        }
-      })
-      // //邀请活动落地落地页
-      // .state('root.activity.invite', {
-      //   url: '/invite',
-      //   views: {
-      //     '': {
-      //       templateUrl: 'views/activity/invite-landing.html',
-      //       controller: 'InviteCtrl',
-      //       controllerUrl: 'scripts/controllers/activity/invite-ctrl'
-      //     }
-      //   }
-      // })
-      //邀请活动
-      .state('root.activity.newInvite-landing', {
-        url: '/invite-activity?act&f&inviteCode',
-        views: {
-          '': {
-            templateUrl: 'views/activity/new-year-invite.html',
-            controller: 'newInviteCtrl',
-            controllerUrl: 'scripts/controllers/activity/new-invite-ctrl'
-          }
-        },
-        data: {
-          title: '邀请好友，双重奖励'
-        }
-      })
     //体验金新手标
     .state('root.experience-project-detail', {
         url: '/experience-project',
