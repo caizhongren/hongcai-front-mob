@@ -11,16 +11,16 @@ angular.module('p2pSiteMobApp')
   .controller('CreditCtrl', function($timeout, $scope, $rootScope, $state, $location, $stateParams, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN, ScreenWidthUtil, Restangular) {
 
 
-      $rootScope.headerTitle = '我的投资';
-      if($stateParams.tab === '0'){
-        $rootScope.headerTitle = '我的投资—宏财精选';
-      } else if ($stateParams.tab === '1') {
-        $rootScope.headerTitle = '我的投资—宏财尊贵';
-      } else if ($stateParams.tab === '2') {
-        $rootScope.headerTitle = '我的投资—债权转让';
-      } else if ($stateParams.tab === '3') {
-        $rootScope.headerTitle = '我的投资—其他';
-      }
+    $rootScope.headerTitle = '我的投资';
+    if($stateParams.tab === '0'){
+      $rootScope.headerTitle = '我的投资—宏财精选';
+    } else if ($stateParams.tab === '1') {
+      $rootScope.headerTitle = '我的投资—宏财尊贵';
+    } else if ($stateParams.tab === '2') {
+      $rootScope.headerTitle = '我的投资—债权转让';
+    } else if ($stateParams.tab === '3') {
+      $rootScope.headerTitle = '我的投资—其他';
+    }
     $scope.tab = 0;
     $scope.widthFlag = ScreenWidthUtil.screenWidth();
     $rootScope.showLoadingToast = true;
