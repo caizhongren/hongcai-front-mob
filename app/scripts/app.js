@@ -405,7 +405,21 @@ p2pSiteMobApp
           }
         }
       })
-      // 我的债权
+       // 我的投资总览
+      .state('root.userCenter.credits-overview', {
+        url: '/credits-overview',
+        data: {
+          title: '我的投资'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/credits-overview.html',
+            controller: 'CreditsOverviewCtrl',
+            controllerUrl: 'scripts/controllers/user-center/credits-overview'
+          }
+        }
+      })
+      // 我的投资列表
       .state('root.userCenter.credits', {
         url: '/credit',
         data: {
