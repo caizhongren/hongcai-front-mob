@@ -19,7 +19,9 @@ angular.module('p2pSiteMobApp')
   	$scope.widthFlag = ScreenWidthUtil.screenWidth();
     $scope.tabs = [{
         title: '宏金保',
-      }, {
+      },{
+        title: '宏财尊贵',
+      },{
         title: '债权转让',
       }];
     $scope.tabParam = $stateParams.tab == undefined ? '0' : $stateParams.tab;

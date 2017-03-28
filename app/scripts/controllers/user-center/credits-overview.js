@@ -9,7 +9,7 @@
  */
 angular.module('p2pSiteMobApp')
 
-.controller('CreditsOverviewCtrl', function ($scope, $state, DEFAULT_DOMAIN, Restangular, toCunGuanUtils, SessionService) {
+.controller('CreditsOverviewCtrl', function ($scope, $state, DEFAULT_DOMAIN, Restangular) {
 
     $scope.data = [{
         percentage:0.1,

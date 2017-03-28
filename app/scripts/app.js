@@ -421,9 +421,9 @@ p2pSiteMobApp
       })
       // 我的投资列表
       .state('root.userCenter.credits', {
-        url: '/credit',
+        url: '/credit?tab',
         data: {
-          title: '我的投资'
+          title: ''
         },
         views: {
           '': {
