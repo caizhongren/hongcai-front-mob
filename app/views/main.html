@@ -1,4 +1,4 @@
-<div class="main overflow-hid margin-b-5 bg-white">
+<div class="main overflow-hid margin-b-4p5 bg-white">
   <!-- 轮播banner图 -->
   <div id="slideBanner" class="slide-banner position-re overflow-hid" >
     <!-- <div class="bd position-re"> -->
@@ -48,26 +48,41 @@
     </div>
     <!-- <div class="hd position-ab"><ul></ul></div> -->
   </div>
+
+  <!-- 公告 -->
+  <div class="huadong">
+    <div class="hdimg"></div>
+    <div class="notice_active fl">
+      <ul class="margin-b-0">
+        <li class="notice_active_ch">滑动轮播1a去哦我我iwoi我i滑</li>
+        <li class="notice_active_ch">滑动轮播2滑动轮播3</li>
+        <li class="notice_active_ch">滑动轮播3滑动轮播3</li>
+      </ul>   
+    </div>
+    <div class="gg_more fr" ng-click="go_moreMsg();"></div>
+  </div>  
+
   <!-- li列表 -->
-  <div class="about-list">
+  <div class="about-list clearfix">
     <ul class="cleafix overflow-hid margin-b-0">
-      <li class="fl text-center" ui-sref="root.about({tab:0})">
-        <img class="margin-t-" src="/images/main-list/about.png" width="27%" alt="">
-        <p class="ft-1p4 margin-b-0">走进宏财</p>
-      </li>
       <li class="fl text-center" ui-sref="root.activityCenter">
-        <img class="margin-t-" src="/images/main-list/bonus.png" width="23.6%" alt="">
+        <img class="" src="/images/new-main/active-center.png" width="26%" alt="">
         <p class="ft-1p4 margin-b-0">活动中心</p>
       </li>
-      <li class="fl border-none text-center" ui-sref="root.safe">
-        <img class="margin-t-" src="/images/main-list/safe.png" width="25%" alt="">
-        <p class="ft-1p4 margin-b-0">安全保障</p>
+      <li class="fl text-center" ui-sref="root.safe">
+        <img class="" src="/images/new-main/safe.png" width="23%" alt="">
+        <p class="ft-1p4 margin-b-0">安全保证</p>
+      </li>
+      <li class="fl text-center" ui-sref="root.about({tab:0})">
+        <img class="" src="/images/new-main/about.png" width="24%" alt="">
+        <p class="ft-1p4 margin-b-0">走进宏财</p>
       </li>
     </ul>
   </div>
   <!--新手标  -->
-  <div ng-include src='"views/main/_main-project-template.html"'></div>
-
+  <!-- <div ng-include src='"views/main/_main-project-template.html"'></div> -->
+  <!-- 宏财精选、宏财尊贵、债权转让 -->
+  <div ng-include src='"views/main/_new-main-project-template.html"'></div>
 
 </div>
 <script>
@@ -77,19 +92,33 @@
    */
   setTimeout(function() {
     $('.slide').swipeSlide({
-    autoSwipe : true,
-    axisX : true,
-    continuousScroll:true,
-    speed : 2000,
-    transitionType : 'cubic-bezier(0.22, 0.69, 0.72, 0.88)',
-    firstCallback : function(i,sum,me){
-        me.find('.dot').children().first().addClass('cur');
-    },
-    callback : function(i,sum,me){
-        me.find('.dot').children().eq(i).addClass('cur').siblings().removeClass('cur');
+      autoSwipe : true,
+      axisX : true,
+      continuousScroll:true,
+      speed : 2000,
+      transitionType : 'cubic-bezier(0.22, 0.69, 0.72, 0.88)',
+      firstCallback : function(i,sum,me){
+          me.find('.dot').children().first().addClass('cur');
+      },
+      callback : function(i,sum,me){
+          me.find('.dot').children().eq(i).addClass('cur').siblings().removeClass('cur');
+      }
+    });
+  }, 100);
+
+  function timer(opj){
+    $(opj).find('ul').animate({
+      marginTop : "-2.2rem"  
+      },500,function(){  
+      $(this).css({marginTop : "0.0rem"}).find("li:first").appendTo(this);  
+    })  
+  }
+  $(function(){ 
+    var num = $('.notice_active').find('li').length;
+    if(num > 1){
+     var time=setInterval('timer(".notice_active")',1500);
     }
   });
-  }, 100);
   
 </script>
 

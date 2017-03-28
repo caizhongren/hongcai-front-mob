@@ -7,8 +7,18 @@
  * Controller of the p2pSiteMobApp
 + */
 angular.module('p2pSiteMobApp')
-  .controller('MainCtrl', function($scope, $rootScope, $state, Restangular, ProjectUtils) {
+  .controller('MainCtrl', function($scope, $rootScope, $state, Restangular, ProjectUtils, ScreenWidthUtil) {
     $rootScope.showLoadingToast = true;
+    $scope.widthFlag = "";
+    //限制项目名长度
+    $scope.widthFlag = ScreenWidthUtil.screenWidth();
+    $scope.go_moreMsg =function (){
+      if ($rootScope.isLogged) {
+        $state.go('root.userCenter.messages');
+      }else {
+        $state.go('root.login');
+      }
+    }
 
     /**
      * 获取新手标项目

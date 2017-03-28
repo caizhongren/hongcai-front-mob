@@ -102,22 +102,20 @@
 
 .main {
   .gap {
-    border-bottom: 1px solid #ddd;
-    border-top: 1px solid #ddd;
-    height: 1.2rem;
+    height: 1.3rem;
+    background-color: #efeef4;
   }
   // 首页的关于我们li列表
   .about-list{
     ul{
       margin-bottom: 1.2rem;
       li{
-        height: 8.5rem;
-        border-right: 1px solid #eee;
+        height: 5.5rem;
         width: 33.3333%;
         margin-bottom: 0;
         box-sizing: border-box;
         img {
-          margin-top: 1.8rem
+          margin-top: .5rem
         }
         p {
           color: #716b66;
@@ -134,55 +132,55 @@
   }
   // 进度条
   .pro-info3 {
-          width: 100%;
-          padding: 0 2rem 0 3rem;
-          overflow: auto;
-          .join-in{
-            display:inline-block;
-            width:10%;
-            float:left;
-            margin-top: .1rem;
-            margin-left:0.5rem;
-            color:#b7b6b6;
-            font-size:1.2rem
-          }
-          @media(min-width:320px){
-            padding: 0 2rem 0 4rem;
-          }
-          @media(min-width:375px){
-            padding: 0 5rem 0 6.5rem;
-          }
-          @media(min-width:411px){
-            padding: 0 5.5rem 0 7rem;
-          }
-          .process {
-            position: relative;
-            margin: 1rem 0 2rem;
-            width: 85%;
-            height: 1px;
-            background-color: #b7b6b6;
-            border-radius: 3px;
-            -webkit-border-radius: 3px;
-            display:inline-block;
-            float:left;
-          }
-          .process .progress-bar {
-            width: 12%;
-            border-radius: 3px;
-            -webkit-border-radius: 3px;
-            //background-color: #fd8f3f;
-          }
-          .process .processing {
-            position: absolute;
-            top: -16px;
-            left: 3px;
-            color: #000;
-            font-size: 0.5rem;
-          }
-          .type-img {
-            height: 1px;
-          }
-        }
+    width: 100%;
+    padding: 0 2rem 0 3rem;
+    overflow: auto;
+    .join-in{
+      display:inline-block;
+      width:10%;
+      float:left;
+      margin-top: .1rem;
+      margin-left:0.5rem;
+      color:#b7b6b6;
+      font-size:1.2rem
+    }
+    @media(min-width:320px){
+      padding: 0 2rem 0 4rem;
+    }
+    @media(min-width:375px){
+      padding: 0 5rem 0 6.5rem;
+    }
+    @media(min-width:411px){
+      padding: 0 5.5rem 0 7rem;
+    }
+    .process {
+      position: relative;
+      margin: 1rem 0 2rem;
+      width: 85%;
+      height: 1px;
+      background-color: #b7b6b6;
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      display:inline-block;
+      float:left;
+    }
+    .process .progress-bar {
+      width: 12%;
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      //background-color: #fd8f3f;
+    }
+    .process .processing {
+      position: absolute;
+      top: -16px;
+      left: 3px;
+      color: #000;
+      font-size: 0.5rem;
+    }
+    .type-img {
+      height: 1px;
+    }
+  }
   hr {
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -394,9 +392,9 @@
         ul{
           margin-bottom: 1.2rem;
           li{
-            height: 8.5rem;
+            height: 5.5rem;
             img {
-              margin-top: 1.9rem
+              margin-top: .5rem
             }
           }
         }
@@ -443,12 +441,12 @@
         ul{
           margin-bottom: 1.2rem;
           li{
-            height: 9.5rem;
+            height: 5.5rem;
             img {
-              margin-top: 2.1rem
+              margin-top: .5rem
             }
             p {
-              margin-top: .5rem;
+              margin-top: -.2rem;
             }
           }
         }
@@ -476,12 +474,12 @@
         ul{
           margin-bottom: 1.2rem;
           li{
-            height: 9.7rem;
+            height: 5.5rem;
             img {
-              margin-top: 2.2rem;
+              margin-top: .5rem;
             }
             p {
-              margin-top: 0.3rem;
+              margin-top: -0.3rem;
             }
           }
         }
@@ -509,12 +507,12 @@
         ul{
           margin-bottom: 1.3rem;
           li{
-            height: 10.5rem;
+            height: 5.7rem;
             img {
-              margin-top: 2.4rem
+              margin-top: .5rem
             }
             p {
-              margin-top: 0.5rem;
+              margin-top: -0.4rem;
             }
           }
         }
@@ -994,10 +992,6 @@ div, p {
     box-sizing: border-box;
 }
 
-
-
-
-
 #main-list-title {
   border-bottom: 1px solid #ddd;
   margin-bottom: 1.4rem;
@@ -1025,3 +1019,241 @@ div, p {
     color: #9F9DA9;
   }
 }
+
+// 首页公告
+.huadong {
+  height:3rem;
+  padding: 0.5rem 1.5rem 0.5rem; 
+  border-bottom: 1px solid #eee; 
+  position:relative;
+  .hdimg {
+    float:left;
+    width: 2rem;
+    height: 2rem;
+    display: inline-block;
+    background: url('/images/new-main/spirit-icon.png') no-repeat 0px 6px;
+    background-size: 569%;
+  }
+  .notice_active {
+    width: 80%;
+    height: 2rem;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    li.notice_active_ch {
+      width:80%;
+      float: left;
+      color:#666;
+      font-size:1.2rem;
+      line-height: 2.2rem;
+      overflow: hidden;
+      margin-bottom: 0rem;
+      margin-left: .4rem;
+      overflow: hidden;
+    }
+  }
+  .gg_more {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    background: url('/images/new-main/spirit-icon.png') no-repeat -22px 6px;
+    background-size: 569%;
+  }
+}
+
+.new-main-list {
+  background-color:#fff;
+  .risk-reminder {
+    background-color: #efeef4;
+    text-align: center;
+    padding: 1.5rem;
+    color: #999;
+    font-size: 1.3rem;
+  }
+  .main-list-temp {
+    width: 100%;
+    position: relative;
+    .orange-rate {
+      color: #ff7923;
+    }
+    .projectType1, .projectType2, .projectType3 {
+      position: absolute;
+      top: -1rem;
+      left: 1.5rem;
+      color: #fff;
+      font-size: 1.2rem;
+      width: 5rem;
+      height: 2rem;
+      
+      text-align: center;
+      line-height: 2.4rem;
+    }
+    .projectType1 {
+      background: url('/images/new-main/spirit-icon.png') no-repeat -40px -40px;
+      background-size: 270%;
+    }
+    .projectType2 {
+      background: url('/images/new-main/spirit-icon.png') no-repeat -103px -40px;
+      background-size: 270%;
+    }
+    .projectType3 {
+      background: url('/images/new-main/spirit-icon.png') no-repeat -40px -67px;
+      background-size: 270%;
+    }
+    .new-title {
+      padding: 1.5rem;
+      overflow: hidden;
+      .more-list {
+        float: right;
+        color: #f0c46c;
+      }
+      .title-text {
+        float: left;
+      }
+      .hot-project {
+        float: left;
+        display: inline-block;
+        width: 2rem;
+        height: 2rem;
+        background: url('/images/new-main/spirit-icon.png') no-repeat 3px -29px;
+        background-size: 500%;
+      }
+      .sold-out {
+        width: 24%;
+        float: right;
+        position: absolute;
+        top: -1.5rem;
+        right: 1.5rem;
+      }
+    }
+    .pro-info {
+      width: 100%;
+      overflow: hidden;
+      ul {
+        padding: 0 1.5rem;
+      }
+      ul:first-child {
+        margin-bottom: 0rem;
+      }
+      ul:nth-child(2) {
+        margin-top: -1.5rem;
+        height: 2.5rem;
+      }
+      ul:nth-child(3) {
+        height: 2.5rem;
+      }
+      ul li {
+        width: 32.3%;
+        list-style: none;
+        line-height: 2.2rem;
+        display: inline-block;
+        text-align: center;
+        font-size: 1.2rem;
+      }
+      ul li:nth-child(1) {
+        margin-top: 0.3rem;
+        margin-bottom: 0.3rem;
+        width: 36%;
+        p:nth-child(1) {
+          margin-bottom: 0.5rem;
+          line-height: 4rem;
+          font-size:2.5rem;
+          padding-left:2.5rem;
+        }
+        p:nth-child(2) {
+          margin-bottom: 0;
+          font-size: 1.4rem;
+          color: #9f9d9e;
+          text-align: left;
+          padding-left: 2.5rem;
+          margin-top: -1rem;
+          @media ( max-width : 375px ) {
+            font-size: 1.4rem;
+          }
+        }
+      }
+      ul li:nth-child(2) {
+        box-sizing: border-box;
+        width: 30%;
+        p{
+          text-align:left;
+          font-size: 2rem;
+          color:#9f9e9d;
+          margin-bottom: -0.1rem;
+          @media ( max-width : 375px ) {
+            font-size:1.4rem;
+          }
+          span{
+            font-size:1.6rem;
+            line-height:3.5rem;
+            @media ( max-width : 375px ) {
+              font-size:1.8rem;
+            }
+            @media ( max-width : 360px ) {
+              font-size:1.8rem;
+            }
+            @media ( max-width : 320px ) {
+              font-size:1.8rem;
+            }
+          }
+        }
+        p:nth-child(1) {
+          padding-top:0rem;
+        }
+      }
+      ul li:nth-child(3) {
+        width: 30%;
+        span{
+          display: inline-block;
+        }
+      }
+      .medium-short, .steady-income, .mortgage-guarantee, .day-interest, .asset-quality {
+        width: 1.5rem;
+        height: 1.5rem;
+        display: inline-block;
+        vertical-align: text-bottom;
+      }
+      .medium-short {
+        background: url('/images/new-main/spirit-icon.png') no-repeat -1px -14px;
+        background-size: 800%;
+      }
+      .steady-income {
+        background: url('/images/new-main/spirit-icon.png') no-repeat -20px -14px;
+        background-size: 800%;
+      }
+      .mortgage-guarantee {
+        background: url('/images/new-main/spirit-icon.png') no-repeat -44px -14px;
+        background-size: 800%;
+      }
+      .day-interest {
+        background: url('/images/new-main/spirit-icon.png') no-repeat -61px -14px;
+        background-size: 800%;
+      }
+      .asset-quality {
+        background: url('/images/new-main/spirit-icon.png') no-repeat -81px -14px;
+        background-size: 800%;
+      }
+    }
+    //倒计时
+    .count-down{
+      color: #fd8f3f;
+      display: inline-block;
+      font-size: 1.4rem;
+      position:relative;
+      bottom:0.7rem;
+      left: 19rem;
+      margin-top: 0.5rem;
+      @media (max-width: 375px) {
+        left:17rem;
+      }
+      @media (max-width: 360px) {
+        left:16.5rem;
+      }
+      @media (max-width: 320px) {
+        left:14.5rem;
+      }
+    }
+  }
+}
+
+
