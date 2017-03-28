@@ -1982,3 +1982,118 @@
   }
 }
 
+// 我的投资总览页
+
+.credits-overview {
+  canvas {
+    display: inline-block;
+    width: 100%;
+  }
+  .overview {
+    float: left;
+    width: 100%;
+    list-style: none;
+    padding: 40px 0 10px 0;
+    margin: 0;
+    background-color: #fff;
+    li {
+      width: 50%;
+      float: left;
+      .amount {
+        top: 16.5%;
+        text-align: center;
+        width: 48%;
+        color: #ff5400;
+        @media(min-width:360px) {
+          top: 16%
+        }
+        @media(min-width:360px) {
+          top: 16%
+        }
+      }
+    }
+    li.overview-items {
+      padding-top: 2%;
+      @media(min-width: 350px) {
+        padding-top: 3%;
+      }
+      p {
+        margin-bottom: 5%;
+        color: #666;
+        font-size: 1.25rem;
+        span.yuan {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          margin-right: 2%;
+        }
+        span.amount1 {
+          margin-left: 12%;
+        }
+        span.amount2 {
+          margin-left: 29%;
+        }
+        @media(min-width: 360px) {
+          font-size: 1.3rem;
+          span.amount2 {
+            margin-left: 27%;
+          }
+        }
+        @media(min-width:375px) {
+          span.amount1 {
+            margin-left: 13%;
+          }
+        }
+        @media(min-width: 411px) {
+          margin-bottom: 6.5%;
+          span.amount1 {
+            margin-left: 19%;
+          }
+          span.amount2 {
+            margin-left: 32%;
+          }
+        }
+        span {
+          display: inline-block;
+        }
+        .yuan1 {
+          background-color: #2b8bf1;
+          background-color: #0460cd;
+          background-color: #ffaa25;
+          background-color: #ffc425;
+        }
+        .yuan2 {
+          background-color: #0460cd;
+        }
+        .yuan3 {
+          background-color: #ffaa25;
+        }
+        .yuan4 {
+          background-color: #ffc425;
+        }
+      }
+    }
+  }
+  .tab-wrap {
+    float: left;
+    width: 100%;
+    background-color: #f5f5f5;
+    ul {
+      padding: 0 2rem;
+      background-color: #fff;
+      li {
+        color: #666;
+        height: 56px;
+        line-height: 56px;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+        i {
+          line-height: 56px;
+        }
+      }
+    }
+
+  }
+}
