@@ -40,34 +40,6 @@ angular.module('p2pSiteMobApp')
       }
     }
 
-    /**
-     * 获取新手标项目
-     */
-    Restangular.one('projects').one('newbieBiaoProject').get().then(function(response) {
-      if(!response || response.ret === -1){
-          return;
-      }
-      $scope.newbieBiaoProject = response;
-      $rootScope.showLoadingToast = false;
-      // 可投资金额
-      $scope.newbieBiaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
-      var serverTime = response.createTime || (new Date().getTime());
-      ProjectUtils.projectTimedown($scope.newbieBiaoProject, serverTime);
-    });
-
-
-     /**
-     * 推荐项目
-     */
-    Restangular.one('projects').one('recommends').get({
-      pageSize : 1
-    }).then(function(response) {
-      $rootScope.showLoadingToast = false;
-      $scope.recommends = response.data[0];
-      var serverTime = response.data[0].createTime || (new Date().getTime());
-      ProjectUtils.projectTimedown($scope.recommends, serverTime);
-    });
-
     //查询网站公告
     $scope.getNotice = function(){
       $rootScope.showLoadingToast = true;
@@ -98,6 +70,7 @@ angular.module('p2pSiteMobApp')
         pageSize: pageSize,
         type: type
       }).then(function(response) {
+        $rootScope.showLoadingToast = false;
         if (type == 5) {
           $scope.choiceProject.name = response.projectList[0].name;
           $scope.choiceProject.amount = response.projectList[0].amount;
@@ -128,6 +101,7 @@ angular.module('p2pSiteMobApp')
         page: page,
         pageSize: pageSize
       }).then(function(response){
+        
         if(response && response.ret !== -1) {
           $scope.assignmentProject.name = response.assignments[0].name;
           $scope.assignmentProject.currentStock = response.assignments[0].currentStock;
