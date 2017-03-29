@@ -18,7 +18,7 @@ angular.module('p2pSiteMobApp')
     	$rootScope.showLoadingToast = true;
     	Restangular.one('userMsgs/0/notices').get({
     		page: page,
-    		pageSize: 15
+    		pageSize: 10
     	}).then(function(response){
     		if(response && response.ret !== -1) {
     			$scope.readNotices();

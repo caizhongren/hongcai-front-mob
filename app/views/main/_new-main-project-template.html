@@ -1,92 +1,40 @@
 <!-- 新首页项目列表 -->
 <div class="new-main-list">
-  <!-- 宏财精选 -->
-  <div class="gap"></div>
-  <div class="main-list-temp clear border-none" ng-click="toDetail(item)">
-    <div class="projectType1"></div>
-    <div class="new-title ft-666">
-      <span class="title-text ft-1p5" ng-show="widthFlag===0 && item.name.length <= 12">HCJX170314期</span>
-      <span class="title-text ft-1p5" ng-show="widthFlag===0 && item.name.length > 12">HCJX170314期...</span>
-      <span class="title-text ft-1p5">HCJX170314期</span>
-      <span class="hot-project"></span>  
-      <span class="more-list ft-1p2" ui-sref="root._main-list-temp({tab: 0})">更多</span>  
-    </div>
-    <div class="pro-info">
-      <ul>
-        <li class=""><span class="ft-2p2 margin-r-0p3 ft-Arial orange-rate">9.35 </span></li>
-        <li class=""><span class="ft-1p8 margin-r-0p3 ft-Arial ft-black4">1000</span></li>
-        <li class=""><span class="ft-1p8 margin-r-0p3 ft-Arial ft-black4">45</span></li>
-      </ul>
-      <ul class="padding-t-0 margin-b-0 ft-666 border-greye-bottom">
-        <li>预期年化收益率(%)</li>
-        <li>可投金额(元)</li>
-        <li>投资期限(天)</li>
-      </ul>
-      <ul class="padding-t-0 margin-b-0 ft-grey999">
-        <li><span class="medium-short"></span><span class="scale-0p8 display-inb">中短期</span></li>
-        <li><span class="steady-income"></span><span class="scale-0p8 display-inb">收益稳健</span></li>
-        <li><span class="mortgage-guarantee"></span><span class="scale-0p8 display-inb">抵押强担保</span></li>
-      </ul>
-    </div>
-  </div>
-  
-  <!-- 宏财尊贵 -->
-  <div class="gap"></div>
-  <div class="main-list-temp clear border-none" ng-click="toDetail(item)">
-    <div class="projectType2"></div>
-    <div class="new-title ft-666">
-      <span class="title-text ft-1p5" ng-show="widthFlag===0 && item.name.length <= 12">HCJX170314期</span>
-      <span class="title-text ft-1p5" ng-show="widthFlag===0 && item.name.length > 12">HCJX170314期...</span>
-      <span class="title-text ft-1p5">HCJX170314期</span>
-      <span class="hot-project"></span>  
-      <span class="more-list ft-1p2" ui-sref="root._main-list-temp({tab: 1})">更多</span>
-      <img class="sold-out" src="/images/new-main/sold-out.png" alt="">  
-    </div>
-    <div class="pro-info">
-      <ul>
-        <li class=""><span class="ft-2p2 margin-r-0p3 ft-Arial ft-grey999">9.35 </span></li>
-        <li class=""><span class="ft-1p8 margin-r-0p3 ft-Arial ft-black4">1000</span></li>
-        <li class=""><span class="ft-1p8 margin-r-0p3 ft-Arial ft-black4">45</span></li>
-      </ul>
-      <ul class="padding-t-0 margin-b-0 ft-666 border-greye-bottom">
-        <li>预期年化收益率(%)</li>
-        <li>可投金额(元)</li>
-        <li>投资期限(天)</li>
-      </ul>
-      <ul class="padding-t-0 margin-b-0 ft-grey999">
-        <li><span class="medium-short"></span><span class="scale-0p8 display-inb">中短期</span></li>
-        <li><span class="steady-income"></span><span class="scale-0p8 display-inb">收益稳健</span></li>
-        <li><span class="mortgage-guarantee"></span><span class="scale-0p8 display-inb">抵押强担保</span></li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- 债权转让 -->
-  <div class="gap"></div>
-  <div class="main-list-temp clear border-none" ng-click="toDetail(item)">
-    <div class="projectType3"></div>
-    <div class="new-title ft-666">
-      <span class="title-text ft-1p5" ng-show="widthFlag===0 && item.name.length <= 12">HCJX170314期</span>
-      <span class="title-text ft-1p5" ng-show="widthFlag===0 && item.name.length > 12">HCJX170314期...</span>
-      <span class="title-text ft-1p5">HCJX170314期</span>
-      <span class="more-list ft-1p2" ui-sref="root._main-list-temp({tab: 2})">更多</span>  
-    </div>
-    <div class="pro-info">
-      <ul>
-        <li class=""><span class="ft-2p2 margin-r-0p3 ft-Arial orange-rate">9.35 </span></li>
-        <li class=""><span class="ft-1p8 margin-r-0p3 ft-Arial ft-black4">1000</span></li>
-        <li class=""><span class="ft-1p8 margin-r-0p3 ft-Arial ft-black4">45</span></li>
-      </ul>
-      <ul class="padding-t-0 margin-b-0 ft-666 border-greye-bottom">
-        <li>预期年化收益率(%)</li>
-        <li>可投金额(元)</li>
-        <li>剩余期限(天)</li>
-      </ul>
-      <ul class="padding-t-0 margin-b-0 ft-grey999">
-        <li><span class="day-interest"></span><span class="scale-0p8 display-inb">当日计息</span></li>
-        <li><span class="steady-income"></span><span class="scale-0p8 display-inb">收益稳健</span></li>
-        <li><span class="asset-quality"></span><span class="scale-0p8 display-inb">资产优质</span></li>
-      </ul>
+  <div ng-repeat="project in projectDatas | orderBy : 'tab'">
+    <!-- 宏财精选 -->
+    <div class="gap"></div>
+    <div class="main-list-temp clear border-none" ng-click="toDetail(project)">
+      <div class="projectType{{project.tab}}"></div>
+      <div class="new-title ft-666">
+        <span class="title-text ft-1p5" ng-show="widthFlag===0 && project.name.length <= 12">{{project.name}}</span>
+        <span class="title-text ft-1p5" ng-show="widthFlag===0 && project.name.length > 12">{{project.name | limitTo:13}}...</span>
+        <span class="title-text ft-1p5" ng-show="widthFlag===1 || widthFlag===2">{{project.name}}</span>
+        <span class="hot-project" ng-if="project.tab != 2 && project.amount >0"></span>  
+        <span class="more-list ft-1p2" ui-sref="root._main-list-temp({tab: project.tab})">更多</span>  
+        <img class="sold-out" src="/images/new-main/sold-out.png" alt="" ng-if="project.tab ==2 && project.currentStock * 100 <= 0">  
+        <img class="sold-out" src="/images/new-main/sold-out.png" alt="" ng-if="project.tab !=2 && project.amount <=0">  
+      </div>
+      <div class="pro-info">
+        <ul>
+          <li class=""><span class="ft-2p2 margin-r-0p3 ft-Arial" ng-class="(project.tab == 2 && project.currentStock * 100 > 0) || project.tab != 2 &&project.amount >0 ? 'orange-rate' :'ft-grey999'">{{project.annualEarnings || 0.00 | number: 2}}</span></li>
+          <li class=""><span class="ft-1p8 margin-r-0p3 ft-Arial ft-black4">{{project.tab == 2 ? project.currentStock * 100 : project.amount || 0 | currency:"":0}}</span></li>
+          <li class=""><span class="ft-1p8 margin-r-0p3 ft-Arial ft-black4">{{project.tab != 2 ? project.projectDays : project.remainDay
+ || 0}}</span></li>
+        </ul>
+        <ul class="padding-t-0 margin-b-0 ft-666 border-greye-bottom">
+          <li>预期年化收益率(%)</li>
+          <li>可投金额(元)</li>
+          <li ng-if="project.tab != 2">投资期限(天)</li>
+          <li ng-if="project.tab == 2">剩余期限(天)</li>
+        </ul>
+        <ul class="padding-t-0 margin-b-0 ft-grey999">
+          <li ng-if="project.tab != 2"><span class="medium-short"></span><span class="scale-0p8 display-inb">中短期</span></li>
+          <li ng-if="project.tab == 2"><span class="day-interest"></span><span class="scale-0p8 display-inb">当日计息</span></li>
+          <li><span class="steady-income"></span><span class="scale-0p8 display-inb">收益稳健</span></li>
+          <li ng-if="project.tab != 2"><span class="mortgage-guarantee"></span><span class="scale-0p8 display-inb">抵押强担保</span></li>
+          <li ng-if="project.tab == 2"><span class="asset-quality"></span><span class="scale-0p8 display-inb">资产优质</span></li>
+        </ul>
+      </div>
     </div>
   </div>
 

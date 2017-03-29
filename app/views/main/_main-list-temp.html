@@ -21,7 +21,7 @@
        <div class="pro-info">
         <ul>
           <li class=" ft-ccc"><span class="ft-2p8 margin-r-0p3 ft-Arial" ng-class="{'ft-orange2':item.status === 7 || item.status === 6 ,'ft-grey7':item.status !== 6 || item.status !== 7 }">{{item.annualEarnings || 0.00 | number: 2}}</span>%</li>
-          <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3 ft-Arial" ng-class="{'ft-black4':item.status === 7 || item.status === 6 ,'ft-grey7':item.status !== 6 || item.status !== 7 }">{{item.currentStock * item.increaseAmount || 0 | currency:"":0}}</span>元</li>
+          <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3 ft-Arial" ng-class="{'ft-black4':item.status === 7 || item.status === 6 ,'ft-grey7':item.status !== 6 || item.status !== 7 }">{{item.amount || 0 | currency:"":0}}</span>元</li>
           <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3 ft-Arial" ng-class="{'ft-black4':item.status === 7 || item.status === 6 ,'ft-grey7':item.status !== 6 || item.status !== 7 }">{{item.projectDays || 0}}</span>天</li>
         </ul>
         <ul class="padding-t-0 margin-b-0 ft-grey7">
@@ -52,7 +52,7 @@
        <div class="pro-info">
         <ul>
           <li class=" ft-ccc"><span class="ft-2p8 margin-r-0p3 ft-Arial" ng-class="{'ft-orange2':item.status === 7 || item.status === 6 ,'ft-grey7':item.status !== 6 || item.status !== 7 }">{{item.annualEarnings || 0.00 | number: 2}}</span>%</li>
-          <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3 ft-Arial" ng-class="{'ft-black4':item.status === 7 || item.status === 6 ,'ft-grey7':item.status !== 6 || item.status !== 7 }">{{item.currentStock * item.increaseAmount || 0 | currency:"":0}}</span>元</li>
+          <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3 ft-Arial" ng-class="{'ft-black4':item.status === 7 || item.status === 6 ,'ft-grey7':item.status !== 6 || item.status !== 7 }">{{item.amount || 0 | currency:"":0}}</span>元</li>
           <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3 ft-Arial" ng-class="{'ft-black4':item.status === 7 || item.status === 6 ,'ft-grey7':item.status !== 6 || item.status !== 7 }">{{item.projectDays || 0}}</span>天</li>
         </ul>
         <ul class="padding-t-0 margin-b-0 ft-grey7">
