@@ -105,20 +105,6 @@
       }
     });
   }, 100);
-
-  function timer(opj){
-    $(opj).find('ul').animate({
-      marginTop : "-1.4rem"  
-      },500,function(){  
-      $(this).css({marginTop : "0.0rem"}).find("li:first").appendTo(this);  
-    })  
-  }
-  $(function(){ 
-    var num = $('.notice_active').find('li').length;
-    if(num > 1){
-     var time=setInterval('timer(".notice_active")',4000);
-    }
-  });
   
 </script>
 

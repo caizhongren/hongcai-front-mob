@@ -77,4 +77,21 @@ angular.module('p2pSiteMobApp')
       $state.go('root.userCenter.experience-money');
     }
 
+    // 公告轮播
+    $scope.timer = function(opj) {
+      $(opj).find('ul').animate({
+        marginTop : "-1.4rem"  
+        },500,function(){  
+        $(this).css({marginTop : "0.0rem"}).find("li:first").appendTo(this);  
+      })  
+    }
+  
+    function _timer(opj) { 
+      return function() { 
+        $scope.timer(opj); 
+      } 
+    } 
+
+    $rootScope.timer = setInterval(_timer(".notice_active"),4000);
+
   });
