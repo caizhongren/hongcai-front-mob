@@ -5,7 +5,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-.controller('CashCouponCtrl', function ($scope, $rootScope, $state, Restangular, ipCookie) {
+.controller('CashCouponCtrl', function ($scope, $rootScope, $state, Restangular, ipCookie, SessionService) {
 	/**
 	 * 默认头像
 	 */

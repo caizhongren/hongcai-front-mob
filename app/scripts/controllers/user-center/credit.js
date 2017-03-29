@@ -10,16 +10,20 @@
 angular.module('p2pSiteMobApp')
   .controller('CreditCtrl', function($timeout, $scope, $rootScope, $state, $location, $stateParams, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN, ScreenWidthUtil, Restangular) {
 
-
+    //初始化
     $rootScope.headerTitle = '我的投资';
     if($stateParams.tab === '0'){
       $rootScope.headerTitle = '我的投资—宏财精选';
+      $scope.type = 7;
     } else if ($stateParams.tab === '1') {
       $rootScope.headerTitle = '我的投资—宏财尊贵';
+      $scope.type = 8;
     } else if ($stateParams.tab === '2') {
       $rootScope.headerTitle = '我的投资—债权转让';
+      $scope.type = 6;
     } else if ($stateParams.tab === '3') {
       $rootScope.headerTitle = '我的投资—其他';
+      $scope.type = 3;
     }
     $scope.tab = 0;
     $scope.widthFlag = ScreenWidthUtil.screenWidth();
@@ -72,7 +76,9 @@ angular.module('p2pSiteMobApp')
     var siteCredits = restmod.model(WEB_DEFAULT_DOMAIN + '/siteCredit');
 
     //统计持有、已回款项目数量
-    siteCredits.$find('/getCreditRightStatistics', {}).$then(function(response) {
+    siteCredits.$find('/getCreditRightStatistics', {
+      type:$scope.type
+    }).$then(function(response) {
       $scope.creditRightStatis = response.data.creditRightStatis;
       $scope.heldingCount = $scope.creditRightStatis.heldingCount;
       $scope.endProfitCount = $scope.creditRightStatis.endProfitCount;
@@ -83,7 +89,8 @@ angular.module('p2pSiteMobApp')
       siteCredits.$find('/getHeldInCreditRightList', {
         status: status,
         page: $scope.page,
-        pageSize: $scope.pageSize
+        pageSize: $scope.pageSize,
+        type: $scope.type
       }).$then(function(response) {
         $scope.totalPage = Math.ceil(response.data.count / $scope.pageSize);
         $scope.creditsData = response.data.heldIdCreditList;
@@ -98,7 +105,7 @@ angular.module('p2pSiteMobApp')
         $scope.loading = false;
         $timeout(function() {
           $rootScope.showLoadingToast = false;
-        }, 200);
+        }, 100);
         
       })
 

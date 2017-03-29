@@ -7,7 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('ActivateCtrl', function($scope, $rootScope, $state, toCunGuanUtils, Restangular) {
+  .controller('ActivateCtrl', function($scope, $rootScope, $state, toCunGuanUtils, Restangular, SessionService) {
     $scope.showActivateTip = true;
     $scope.cancel = function() {
       $scope.showActivateTip = false;

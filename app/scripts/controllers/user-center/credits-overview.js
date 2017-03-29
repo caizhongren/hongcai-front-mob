@@ -9,26 +9,47 @@
  */
 angular.module('p2pSiteMobApp')
 
-.controller('CreditsOverviewCtrl', function ($scope, $state, DEFAULT_DOMAIN, Restangular) {
+.controller('CreditsOverviewCtrl', function ($scope, $state, DEFAULT_DOMAIN, Restangular, SessionService) {
 
-    $scope.data = [{
-        percentage:0.1,
-        color:'#2b8bf1',
-        title:'宏财精选'
-      },{
-        percentage:0.2,
-        color:'#0460cd',
-        title:'宏财尊贵'
-      },{
-        percentage:0.4,
-        color:'#ffaa25',
-        title:'债权转让'
-      },{
-        percentage:0.3,
-        color:'#ffc425',
-        title:'其他'
-      }];
-   
+    $scope.dataList = [];
+    $scope.totalInvestAmount = 0;
+    $scope.user = SessionService.getUser();
+    $scope.colors = ['#2b8bf1','#0460cd','#ffaa25'];
+    $scope.investStat = {
+      selection: 0,
+      hornor:0,
+      assignment:0,
+      holdingAmount: 0
+    }
+
+    $scope.showOther =false;
+
+    /**
+    * 所有投资查询
+    **/
+    Restangular.one('/users/0/investments/typeStat').get({}).then(function(response){
+      if(!response || response.ret == -1){
+        return;
+      }
+
+      $scope.investStat.total = 0;
+      for(var i = 0;i<response.length;i++) {
+        var stat = response[i];
+        $scope.dataList.push(response[i]);
+        $scope.investStat.total = $scope.holdingAmount+ response[i].holdingAmount;
+        if(stat.creditRightType == 7){
+           $scope.investStat.selection = stat.holdingAmount;
+        } else if(stat.creditRightType == 8) {
+          $scope.investStat.hornor = stat.holdingAmount;
+        } else if (stat.creditRightType == 6) {
+          $socpe.investStat.assignment = stat.holdingAmount;
+        } else if(stat.creditRightType == 3){
+          $scope.showOther = true;
+        }
+
+
+      }
+   });
 
    
     

@@ -64,6 +64,44 @@
       background: linear-gradient(to bottom, #e4532b, #f28340);
     }
     .credit-item{
+      .red-rate {
+         position: relative;
+         width: 53px;
+         height: 21px;
+         border: 1px solid #E8A79A;
+         border-radius: 5px;
+         background-color: red;
+         line-height: 21px;
+         color: #fff;
+         p {
+          line-height: 22px;
+          margin: 0;
+         }
+      }
+      .red-rate:before{
+        content:"";
+        display:block;
+        border-width:6px;
+        position:absolute;
+        top:-12px;
+        right:129px;
+        border-style:solid dashed dashed;
+        border-color:transparent transparent #E8A79A;
+        font-size:0;
+        line-height:0;
+        }
+      .red-rate:after{
+        content:"";
+        display:block;
+        border-width:5px;
+        position:absolute;
+        top:-10px;
+        right:130px;
+        border-style:solid dashed dashed;
+        border-color:transparent transparent #FDE4DF;
+        font-size:0;
+        line-height:0;
+      }
       .zhuan {
         display: inline-block;
         float: left;
@@ -2024,7 +2062,7 @@
         padding-top: 3%;
       }
       p {
-        margin-bottom: 5%;
+        margin-bottom: 11%;
         color: #666;
         font-size: 1.25rem;
         span.yuan {
@@ -2052,7 +2090,7 @@
         }
         @media(min-width: 411px) {
           font-size: 1.35rem;
-          margin-bottom: 6.5%;
+          margin-bottom: 13%;
           span.amount1 {
             margin-left: 19%;
           }

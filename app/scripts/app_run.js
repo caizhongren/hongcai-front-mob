@@ -248,7 +248,7 @@ angular.module('p2pSiteMobApp')
       }else if($location.url() === '/guaranteepro-list?tab=2'){
         title = '债权转让';       
       } else if ($location.url() === '/guaranteepro-list?tab=0' || $location.url() === '/guaranteepro-list') {
-        title = '宏金保'; 
+        title = '宏财精选'; 
       } else if ($location.url() === '/guaranteepro-list?tab=1') {
         title = '宏财尊贵'; 
       }

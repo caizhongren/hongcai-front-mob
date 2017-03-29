@@ -16,7 +16,20 @@ angular.module('p2pSiteMobApp')
      */
     $scope.userHeadImgUrl = '/images/user-center/avatar.png';
 
-    $scope.userAccount = Restangular.one('users').one('0/account').get().$object;
+    var userAccount = {
+      tTotalAssets: 0,
+      balance: 0,
+      receivedProfit: 0
+    };
+    $scope.userAccount = sessionStorage.getItem('userAccount') ? angular.fromJson(sessionStorage.getItem('userAccount')) : userAccount;
+    Restangular.one('users').one('0/account').get().then(function(response){
+      if(!response || response.ret == -1) { return;}
+      $scope.userAccount = response;
+      sessionStorage.setItem('userAccount', angular.toJson($scope.userAccount));
+    });
+
+
+
 
     // $scope.voucher = Restangular.one('users').one('0/userInviteNum').get().$object;
 
