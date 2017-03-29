@@ -18,7 +18,7 @@ angular.module('p2pSiteMobApp')
     	$rootScope.showLoadingToast = true;
     	Restangular.one('userMsgs/0/notices').get({
     		page: page,
-    		pageSize: 15
+    		pageSize: 10
     	}).then(function(response){
     		if(response && response.ret !== -1) {
     			$scope.readNotices();
@@ -95,6 +95,7 @@ angular.module('p2pSiteMobApp')
   	$scope.toggleTab = function(activeTab){
   		$scope.activeTab = activeTab;
   		if (activeTab == 1 && $scope.unReadMsgs > 0) {
+  			$scope.unReadMsgs = 0;
   			// 标记所有提醒已读
   			Restangular.one('/userMsgs/' + '0' + '/readAllUserMsgs' ).put({}).then(function(response){
   				if (response && response.ret !== -1) {

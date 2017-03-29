@@ -241,7 +241,9 @@ angular.module('p2pSiteMobApp')
 
     });
 
+
     $rootScope.$on('$stateChangeSuccess', function(event, toState) {
+      clearInterval($rootScope.timer);  //清空首页公告的定时器
       var title = '宏财理财';
       if (toState.data && toState.data.title) {
         title = toState.data.title;

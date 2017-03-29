@@ -54,9 +54,11 @@
     <div class="hdimg"></div>
     <div class="notice_active fl">
       <ul class="margin-b-0">
-        <li class="notice_active_ch">滑动轮播1a去哦我我iwoi我i滑</li>
-        <li class="notice_active_ch">滑动轮播2滑动轮播3</li>
-        <li class="notice_active_ch">滑动轮播3滑动轮播3</li>
+        <li class="notice_active_ch" ng-repeat="item in notices">
+          <span ng-if="(widthFlag===1 || widthFlag===0) && item.title.length < 20">{{item.title}}</span>
+          <span ng-if="(widthFlag===1 || widthFlag===0) && item.title.length >= 20">{{item.title | limitTo:19}}...</span>
+          <span ng-if="widthFlag===2">{{item.title}}</span>
+        </li>
       </ul>   
     </div>
     <div class="gg_more fr" ng-click="go_moreMsg();"></div>
@@ -105,20 +107,6 @@
       }
     });
   }, 100);
-
-  function timer(opj){
-    $(opj).find('ul').animate({
-      marginTop : "-1.4rem"  
-      },500,function(){  
-      $(this).css({marginTop : "0.0rem"}).find("li:first").appendTo(this);  
-    })  
-  }
-  $(function(){ 
-    var num = $('.notice_active').find('li').length;
-    if(num > 1){
-     var time=setInterval('timer(".notice_active")',4000);
-    }
-  });
   
 </script>
 
