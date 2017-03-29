@@ -9,9 +9,27 @@
 angular.module('p2pSiteMobApp')
   .controller('MainCtrl', function($scope, $rootScope, $state, Restangular, ProjectUtils, ScreenWidthUtil, $timeout) {
     $scope.widthFlag = "";
-    $scope.projectDatas = [];
+    $scope.choiceProject = [];
+    $scope.choiceProject.name = '宏财精选项目';
+    $scope.choiceProject.tab = 0;
+    $scope.choiceProject.amount = 0;
+    $scope.choiceProject.projectDays = 0;
+    $scope.choiceProject.annualEarnings = 0.00;
+    $scope.honorableProject = [];
+    $scope.honorableProject.name = '宏财尊贵项目';
+    $scope.honorableProject.tab = 1;
+    $scope.honorableProject.amount = 0;
+    $scope.honorableProject.projectDays = 0;
+    $scope.honorableProject.annualEarnings = 0.00;
+    $scope.assignmentProject = [];
+    $scope.assignmentProject.name = '债权转让项目';
+    $scope.assignmentProject.tab = 2;
+    $scope.assignmentProject.currentStock = 0;
+    $scope.assignmentProject.remainDay = 0;
+    $scope.assignmentProject.annualEarnings = 0.00;
+
     $rootScope.showLoadingToast = true;
-    $rootScope.showLoadingToast = $scope.projectDatas.length >=3 ? false : true;
+
     //限制项目名长度
     $scope.widthFlag = ScreenWidthUtil.screenWidth();
     $scope.go_moreMsg =function (){
@@ -81,15 +99,17 @@ angular.module('p2pSiteMobApp')
         type: type
       }).then(function(response) {
         if (type == 5) {
-          response.projectList[0].projectType = '宏财精选';
-          response.projectList[0].tab = '0';
-          $scope.projectDatas.push(response.projectList[0]);
-          
+          $scope.choiceProject.name = response.projectList[0].name;
+          $scope.choiceProject.amount = response.projectList[0].amount;
+          $scope.choiceProject.projectDays = response.projectList[0].projectDays;
+          $scope.choiceProject.annualEarnings = response.projectList[0].annualEarnings;
+          $scope.choiceProject.number = response.projectList[0].number;
         }else if (type == 6) {
-          response.projectList[0].projectType = '宏财尊贵';
-          response.projectList[0].tab = '1';
-          
-          $scope.projectDatas.push(response.projectList[0]);
+          $scope.honorableProject.name = response.projectList[0].name;
+          $scope.honorableProject.amount = response.projectList[0].amount;
+          $scope.honorableProject.projectDays = response.projectList[0].projectDays;
+          $scope.honorableProject.annualEarnings = response.projectList[0].annualEarnings;
+          $scope.honorableProject.number = response.projectList[0].number;
         }
 
         $timeout(function() {
@@ -109,9 +129,11 @@ angular.module('p2pSiteMobApp')
         pageSize: pageSize
       }).then(function(response){
         if(response && response.ret !== -1) {
-          response.assignments[0].projectType = '债权转让';
-          response.assignments[0].tab = '2';
-          $scope.projectDatas.push(response.assignments[0]);
+          $scope.assignmentProject.name = response.assignments[0].name;
+          $scope.assignmentProject.currentStock = response.assignments[0].currentStock;
+          $scope.assignmentProject.remainDay = response.assignments[0].remainDay;
+          $scope.assignmentProject.annualEarnings = response.assignments[0].annualEarnings;
+          $scope.assignmentProject.number = response.assignments[0].number;
           $timeout(function() {
             $scope.busy = false;
           }, 10);
@@ -128,10 +150,9 @@ angular.module('p2pSiteMobApp')
      */
     $scope.toDetail = function(project){
       if($rootScope.timeout){
-        project.tab ==2 ? $state.go('root.assignments-detail', {number: project.number}) : $state.go('root.project', {number: project.number});
+        project.tab == 2 ? $state.go('root.assignments-detail', {number: project.number}) : $state.go('root.project', {number: project.number});
       }
     }
-
 
     /**
      * 是否激活存管通
