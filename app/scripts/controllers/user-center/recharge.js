@@ -57,11 +57,11 @@ angular.module('p2pSiteMobApp')
       {'src': '/images/user-center/SPDB.png', 'cardName': '浦发银行', 'limit': '5w/5w/20w'},
     ]
     $scope.bankCardList_UCF = [
-      {'src': '/images/user-center/ICBK.png', 'cardName': '工商银行', 'limit': '5w/5w/不限'},
-      {'src': '/images/user-center/BKCH.png', 'cardName': '中国银行', 'limit': '5w/50w/不限'},
+      {'src': '/images/user-center/ICBK.png', 'cardName': '工商银行', 'limit': '99999/20w/不限'},
+      {'src': '/images/user-center/BKCH.png', 'cardName': '中国银行', 'limit': '5w/30w/不限'},
       {'src': '/images/user-center/PCBC.png', 'cardName': '建设银行', 'limit': '20w/50w/不限'},
       {'src': '/images/user-center/ABOC.png', 'cardName': '农业银行', 'limit': '20w/50w/不限'},
-      {'src': '/images/user-center/COMM.png', 'cardName': '交通银行', 'limit': '9999/9999/不限'},
+      {'src': '/images/user-center/COMM.png', 'cardName': '交通银行', 'limit': '20w/20w/不限'},
       {'src': '/images/user-center/CMBC.png', 'cardName': '招商银行', 'limit': '5000/10w/不限'},
       {'src': '/images/user-center/CIBK.png', 'cardName': '中信银行', 'limit': '1w/1w/2w'},
       {'src': '/images/user-center/SZDB.png', 'cardName': '平安银行', 'limit': '50w/500w/不限'},
