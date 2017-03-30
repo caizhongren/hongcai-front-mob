@@ -59,13 +59,13 @@ angular.module('p2pSiteMobApp')
             $scope.busy = false;
           }, 1000);
 
+          SessionService.loginSuccess(response.$response.data);
           if (redirectUrl) {
             $location.path(decodeURIComponent(redirectUrl));
             // console.log($location.path(decodeURIComponent(redirectUrl)));
             return;
           }
-
-          SessionService.loginSuccess(response.$response.data);
+          
           $state.go('root.main');
         }
       });

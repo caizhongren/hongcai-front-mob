@@ -7,7 +7,7 @@
  */
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('AssignmentDetailCtrl', function($state, $timeout, DateUtils, $stateParams, Restangular, $scope, $rootScope, Utils, toCunGuanUtils, SessionService) {
+  .controller('AssignmentDetailCtrl', function($state, $timeout, DateUtils, $stateParams, Restangular, $scope, $rootScope, Utils, toCunGuanUtils, SessionService, UserService) {
     var number = $stateParams.number; 
     $rootScope.showFooter = false;
     $rootScope.showLoadingToast = true;
@@ -50,13 +50,7 @@ angular.module('p2pSiteMobApp')
             var minBalanceAccount = $scope.account.balance - $scope.account.balance % 100;
             var minInvestAccount = $scope.currentStock * 100;
             $scope.assignmentInvestAmount = $scope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;
-            $scope.userAuth = SessionService.getUserAuth();
-            if(!$scope.userAuth){
-              Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
-                $scope.userAuth = userAuth;
-                SessionService.setUserAuthIfAuthed($scope.userAuth);
-              });
-            }
+            UserService.loadUserAuth($scope);
           };
 
         });

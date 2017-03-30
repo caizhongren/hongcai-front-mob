@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('ProjectDetailCtrl', function(ipCookie, $scope, $timeout, $state, $rootScope, $stateParams, $location,$interval, Restangular, projectStatusMap, ProjectUtils, Utils, toCunGuanUtils, SessionService) {
+  .controller('ProjectDetailCtrl', function(ipCookie, $scope, $timeout, $state, $rootScope, $stateParams, $location,$interval, Restangular, projectStatusMap, ProjectUtils, Utils, toCunGuanUtils, SessionService, UserService) {
     $rootScope.showFooter = false;
     $rootScope.showLoadingToast = true;
     // 项目详情页面
@@ -91,13 +91,7 @@ angular.module('p2pSiteMobApp')
         var minBalanceAccount = $scope.account.balance - $scope.account.balance % 100;
         var minInvestAccount = project.availableAmount;
         $scope.project.investAmount = $scope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;  
-        $scope.userAuth = SessionService.getUserAuth();
-        if(!$scope.userAuth){
-          Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
-            $scope.userAuth = userAuth;
-            SessionService.setUserAuthIfAuthed($scope.userAuth);
-          });
-        }
+        UserService.loadUserAuth($scope);
         $rootScope.tofinishedOrder();  
       }
 

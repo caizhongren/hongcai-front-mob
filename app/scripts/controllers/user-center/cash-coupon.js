@@ -5,7 +5,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-.controller('CashCouponCtrl', function ($scope, $rootScope, $state, Restangular, ipCookie, SessionService) {
+.controller('CashCouponCtrl', function ($scope, $rootScope, $state, Restangular, ipCookie, UserService) {
 	/**
 	 * 默认头像
 	 */
@@ -13,13 +13,7 @@ angular.module('p2pSiteMobApp')
 
 	$scope.userAccount = Restangular.one('users').one('0/account').get().$object;
 
-	$scope.userAuth = SessionService.getUserAuth();
-	if(!$scope.userAuth){
-			Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
-			$scope.userAuth = userAuth;
-			SessionService.setUserAuthIfAuthed($scope.userAuth);
-		});
-	}
+	UserService.loadUserAuth($scope);
 
 	$scope.couponStatis = Restangular.one('users').one('0/increaseRateCoupon').get().$object;
 	/*如何获取*/

@@ -7,14 +7,14 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-.controller('ExperienceMoneyCtrl', function ($scope, $rootScope,$state,$location, Restangular,restmod,HongcaiUser) {
+.controller('ExperienceMoneyCtrl', function ($scope, $rootScope,$state,$location, Restangular,restmod,HongcaiUser, UserService) {
  /*体验金查询*/
     $scope.page = 1;
     $scope.pageSize = 4;
     $scope.datas = [];
     $scope.totalPage = 1;
     
-    $scope.userAuth = Restangular.one('users').one('0/userAuth').get().$object;
+    UserService.loadUserAuth($scope);
     $scope.dealList = function(){
       if ($scope.totalPage < $scope.page){
         return;

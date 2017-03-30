@@ -9,7 +9,7 @@
  */
 angular.module('p2pSiteMobApp')
 
-.controller('AccountCtrl', function ($scope, $state, DEFAULT_DOMAIN, Restangular, toCunGuanUtils, SessionService) {
+.controller('AccountCtrl', function ($scope, $state, DEFAULT_DOMAIN, Restangular, toCunGuanUtils, SessionService, UserService) {
 
     /**
      * 默认头像
@@ -38,13 +38,7 @@ angular.module('p2pSiteMobApp')
 
     $scope.unGotCash = Restangular.one('cashCoupons').one('stat').get().$object;
 
-    $scope.userAuth = SessionService.getUserAuth();
-    if(!$scope.userAuth){
-       Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
-        $scope.userAuth = userAuth;
-        SessionService.setUserAuthIfAuthed($scope.userAuth);
-      });
-    }
+    UserService.loadUserAuth($scope);
    
     /**
      * 推荐项目

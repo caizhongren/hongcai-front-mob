@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('SettingsCtrl', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location, toCunGuanUtils, SessionService) {
+  .controller('SettingsCtrl', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location, toCunGuanUtils, SessionService, UserService) {
 
     $scope.userHeadImgUrl = SessionService.getUser() &&  SessionService.getUser().headImgUrl 
       ? SessionService.getUser.headImgUrl: '/images/user-center/head.png';
@@ -25,13 +25,7 @@ angular.module('p2pSiteMobApp')
     /**
      * 认证信息
      */
-    $scope.userAuth = SessionService.getUserAuth();
-    if(!$scope.userAuth){
-       Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
-        $scope.userAuth = userAuth;
-        SessionService.setUserAuthIfAuthed($scope.userAuth);
-      });
-    }
+    UserService.loadUserAuth($scope);
 
     /**
      * 银行卡信息
