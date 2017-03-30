@@ -4,17 +4,17 @@
       <div class="overflow-hid">
         <ul class="colums">
           <li class="text-center fl width-0p3 position-re ft-1p4">
-            <p class="margin-b-0 ft-1p6 ft-Arial ft-f3">{{account.receivedProfit || 0  | number:2 }}</p>
+            <p class="margin-b-0 ft-1p6 ft-Arial ft-f3">{{creditStat.totalInvestAmount || 0  | number:2 }}</p>
             <p class="margin-b-0 ft-1p4  ft-f3">累计投资(元)</p>
             <i class="fl border-white-right position-ab right-0 line"></i>
           </li>
           <li class="text-center fl width-0p3 position-re ft-1p4">
-            <p class="margin-b-0 ft-1p6 ft-Arial ft-f3">{{ userAccount.balance || 0  | number:2 }}</p>
+            <p class="margin-b-0 ft-1p6 ft-Arial ft-f3">{{ creditStat.totalProfit || 0  | number:2 }}</p>
             <p class="margin-b-0  ft-f3">累计收益(元)</p>
             <i class="fl border-white-right position-ab right-0 line"></i>
           </li>
           <li class="text-center fl width-0p3 ft-1p4" ui-sref="root.userCenter.cash-coupon">
-            <p class="margin-b-0 ft-1p6 Arial ft-f3">{{ unGotCash.unGotAmount || 0  }}</p>
+            <p class="margin-b-0 ft-1p6 Arial ft-f3">{{ creditStat.profit - creditStat.totalProfit || 0   | number:2 }}</p>
             <p class="margin-b-0  ft-f3">待收收益(元)</p>
           </li>
         </ul>
@@ -23,7 +23,7 @@
     <!-- <span class="ft-1p5">待收收益：</span><span class="ft-white ft-2p5  ft-Arial">{{account.waitingProfit || 0 | number: 2}}</span>&nbsp;元 -->
   </div>
   <ul class="account-tab1 nav-ul bg-white overflow-hid margin-b-1p3 border-grey2-bottom ft-666 ft-Arial">
-    <li class="column text-center margin-0 padding-t-1 padding-b-1" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs track by $index" ng-click="toggle.switchTab($index)" my-click-once>{{tab.title}}({{$index ===0 ? heldingCount : endProfitCount}})</li>
+    <li class="column text-center margin-0 padding-t-1 padding-b-1" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs track by $index" ng-click="toggle.switchTab($index)" my-click-once>{{tab.title}}({{$index == 0 ? holdingCount : endProfitCount}})</li>
   </ul>
   <div class="tab-content u-full-width overflow-hid text-center" ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs track by $index" ng-show=" creditsData && credits.length > 0">
     <div ng-repeat="item in credits track by $index" ng-include src='"views/user-center/_credit-detail.html"'>

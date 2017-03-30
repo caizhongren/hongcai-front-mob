@@ -25,13 +25,11 @@ angular.module('p2pSiteMobApp')
 		    ctx.textAlign = 'left';
 		    ctx.fillStyle = "#666";
 	        ctx.fillText('在投金额', 110, 100 );
-	        // ctx.fillText(1+'元', 110, 130 );
 	        ctx.fillStyle = "#ff5400";	
-		    	// console.log(typeof(scope.investStat.selection));
 				for(var i = 0; i < colors.length;i++) {
 			    	start = end;
 			    	//项目在投都为0，环形三分
-			    	if(scope.investStat.selection == 0 && scope.investStat.hornor == 0 && scope.investStat.assignment == 0){
+			    	if(scope.investStat.holdingAmount == 0){
 			    		var percent = 1/3;
 			    		end = percent * Math.PI*2 + start;
 			    	}else{
@@ -47,10 +45,6 @@ angular.module('p2pSiteMobApp')
 			    	}
 			    	
 			    	ctx.beginPath();
-			    	//绘制图例
-			        // ctx.fillStyle=data[i].color;
-			        // ctx.fillRect(15,15+18*i,15,15);
-
 					// 给曲线设定颜色
 					ctx.strokeStyle = colors[i];
 
