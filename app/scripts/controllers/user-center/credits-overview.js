@@ -37,7 +37,7 @@ angular.module('p2pSiteMobApp')
         } else if(stat.creditRightType == 8) {
           $scope.investStat.hornor = stat.holdingAmount;
         } else if (stat.creditRightType == 6) {
-          $socpe.investStat.assignment = stat.holdingAmount;
+          $scope.investStat.assignment = stat.holdingAmount;
         } else if(stat.creditRightType == 3){
           $scope.showOther = true;
         }
