@@ -36,28 +36,27 @@ angular.module('p2pSiteMobApp')
 
       var project = response;
       $scope.project = project;
-      project.percent = (project.soldStock + project.occupancyStock) * project.increaseAmount / project.total * 100;
-      project.availableAmount = project.total - (project.soldStock + project.occupancyStock) * project.increaseAmount;
+      project.percent = (project.total - project.amount) / project.total * 100;
 
       ProjectUtils.projectTimedown(project, project.createTime);
       
-      /**
-       * 新手标判断
-       */
-      if($scope.project.category.code === '0112'){
-          Restangular.one('projects').one('investNewbieBiaoProjectVerify').get({
-            number: $stateParams.number
-          }).then(function(response) {
-            if(response.ret === -1){
-              return;
-            }
-            if(!response.isOk){
-              $scope.msg = '仅限首次投资后一周内参与';
-              $rootScope.showMsg($scope.msg);
-            }
-        });
+      // /**
+      //  * 新手标判断
+      //  */
+      // if($scope.project.category.code === '0112'){
+      //     Restangular.one('projects').one('investNewbieBiaoProjectVerify').get({
+      //       number: $stateParams.number
+      //     }).then(function(response) {
+      //       if(response.ret === -1){
+      //         return;
+      //       }
+      //       if(!response.isOk){
+      //         $scope.msg = '仅限首次投资后一周内参与';
+      //         $rootScope.showMsg($scope.msg);
+      //       }
+      //   });
 
-      }
+      // }
 
       /**
        * 可用券
@@ -99,7 +98,8 @@ angular.module('p2pSiteMobApp')
             SessionService.setUserAuthIfAuthed($scope.userAuth);
           });
         }
-    }
+        $rootScope.tofinishedOrder();  
+      }
 
       $timeout(function(){
           $rootScope.showLoadingToast = false;
@@ -107,7 +107,7 @@ angular.module('p2pSiteMobApp')
 
     });
 
-    $rootScope.tofinishedOrder();
+    
 
     /**
      * 下单并支付
