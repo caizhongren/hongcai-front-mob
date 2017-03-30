@@ -65,9 +65,8 @@ angular.module('p2pSiteMobApp')
             return;
           }
 
-          $state.go('root.main');
           SessionService.loginSuccess(response.$response.data);
-
+          $state.go('root.main');
         }
       });
     };
