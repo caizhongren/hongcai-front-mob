@@ -1,4 +1,4 @@
-<!-- 宏金保首页 在下面的div class="main-list-temp"上面添加ng-repeat即可  start list   ui-sref="root.project-detail"-->
+<!-- 项目列表页 在下面的div class="main-list-temp"上面添加ng-repeat即可  start list   ui-sref="root.project-detail"-->
 
 <div class="main-list">
   <div id ="main-list-title" class="bg-white">
@@ -25,7 +25,7 @@
           <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3 ft-Arial" ng-class="{'ft-black4':item.status === 7 || item.status === 6 ,'ft-grey7':item.status !== 6 || item.status !== 7 }">{{item.projectDays || 0}}</span>天</li>
         </ul>
         <ul class="padding-t-0 margin-b-0 ft-grey7">
-          <li>预期年化收益率</li>
+          <li>期望年均回报率</li>
           <li class="border-none">可投金额</li>
           <li>期限</li>
         </ul>
@@ -35,7 +35,7 @@
       <p class="padding-b-7 padding-t-3"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a class="ft-black" ng-click="loadMore(getProjectList);">查看更多</a></p>
     </div>
   </section>
-  <section ng-if="tabParam === 1" ng-class="{'padding-b-5': pageCount <= page}">
+  <section ng-if="tabParam === 1" ng-class="{'padding-b-7': pageCount <= page}">
     <div class="main-list-temp clear" ng-repeat="item in projectDatas" ng-click="toDetail(item)">
       <div class="title ft-666">
         <span class="title-text" ng-show="widthFlag===0 && item.name.length <= 12">{{item.name}}</span>
@@ -56,7 +56,7 @@
           <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3 ft-Arial" ng-class="{'ft-black4':item.status === 7 || item.status === 6 ,'ft-grey7':item.status !== 6 || item.status !== 7 }">{{item.projectDays || 0}}</span>天</li>
         </ul>
         <ul class="padding-t-0 margin-b-0 ft-grey7">
-          <li>预期年化收益率</li>
+          <li>期望年均回报率</li>
           <li class="border-none">可投金额</li>
           <li>期限</li>
         </ul>
@@ -86,7 +86,7 @@
           <li class=" ft-ccc"><span class="ft-1p8 margin-r-0p3 ft-Arial"  ng-class= "{'ft-black4':item.status === 1,'ft-grey6':item.status !== 1}">{{item.remainDay || 0}}</span>天</li>
         </ul>
         <ul class="padding-t-0 margin-b-0 ft-grey7">
-          <li>预期年化收益率</li>
+          <li>期望年均回报率</li>
           <li class="border-none">可投金额</li>
           <li>剩余期限</li>
         </ul>

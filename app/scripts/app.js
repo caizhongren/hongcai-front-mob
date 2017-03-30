@@ -195,7 +195,7 @@ p2pSiteMobApp
         }
       })
 
-    // 宏金保详情页
+    // 项目详情页
     .state('root.project-detail', {
         url: '/project-info/:number',
         views: {
@@ -206,7 +206,7 @@ p2pSiteMobApp
           }
         }
       })
-      // 新宏金保项目详情页
+      // 新项目项目详情页
       .state('root.project', {
         url: '/project/:number',
         views: {
@@ -231,7 +231,7 @@ p2pSiteMobApp
           title: '项目投资人'
         },
       })
-      // 宏金保列表页
+      // 项目列表页
       .state('root._main-list-temp', {
         url: '/guaranteepro-list?tab',
         views: {
@@ -297,7 +297,7 @@ p2pSiteMobApp
           }
         }
       })
-      // 宏金保详情页更多详情
+      // 项目详情页更多详情
       .state('root.project-detail-more', {
         url: '/project-detail-more/:number',
         views: {

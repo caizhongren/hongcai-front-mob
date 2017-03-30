@@ -73,7 +73,6 @@ angular.module('p2pSiteMobApp')
           },200);
           $scope.pageCount0 = response.pageCount;
            for (var i = 0; i < response.assignments.length; i++) {
-            // ProjectUtils.projectTimedown(response.projectList[i], serverTime);
             $scope.assignments.push(response.assignments[i]);
           };
           $timeout(function() {
@@ -92,7 +91,6 @@ angular.module('p2pSiteMobApp')
     }
 
     
-    $scope.getProjectList($scope.page, $scope.pageSize, 5);
     $scope.tabParam = $stateParams.tab == undefined ? '0' : $stateParams.tab;
     if($scope.tabParam == '0') {
       $scope.getProjectList($scope.page, $scope.pageSize, 5);
