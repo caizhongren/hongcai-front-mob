@@ -72,7 +72,7 @@ angular.module('p2pSiteMobApp')
        }
        $scope.creditStat = response[0];
        $scope.holdingCount = response.length == 0? 0:$scope.creditStat.holdingCount;
-       $scope.endProfitCount = response.length == 0? 0:$scope.creditStat.endProfitCount;
+       $scope.endProfitCount = $scope.creditStat.length == 0? 0:$scope.creditStat.endProfitCount;
        console.log($scope.creditStat.length);
     });
      /**
