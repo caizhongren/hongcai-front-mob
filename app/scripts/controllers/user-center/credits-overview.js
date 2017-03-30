@@ -28,10 +28,10 @@ angular.module('p2pSiteMobApp')
       if(!response || response.ret == -1){
         return;
       }
-      $scope.investStat.holdingAmount = 0;
+      // $scope.investStat.holdingAmount = 0;
       for(var i = 0;i<response.length;i++) {
         var stat = response[i];
-        $scope.investStat.holdingAmount = $scope.investStat.holdingAmount+ stat.holdingAmount;
+        
         if(stat.creditRightType == 7){
            $scope.investStat.selection = stat.holdingAmount;
         } else if(stat.creditRightType == 8) {
@@ -43,6 +43,7 @@ angular.module('p2pSiteMobApp')
         }
 
       }
+      $scope.investStat.holdingAmount = $scope.investStat.selection+ $scope.investStat.hornor + $scope.investStat.assignment;
 
    });
     
