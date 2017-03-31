@@ -14,6 +14,26 @@ angular.module('p2pSiteMobApp')
     }).then(function(response){
       if(!response || response.ret == -1) { return;}
       $scope.banners = response;
+
+          /**
+       * 轮播图
+       * 注意：需要等待页面元素加载完成后在执行轮播；页面dot 手动增减个数
+       */
+      setTimeout(function() {
+        $('.slide').swipeSlide({
+          autoSwipe : true,
+          axisX : true,
+          continuousScroll:true,
+          speed : 2000,
+          transitionType : 'cubic-bezier(0.22, 0.69, 0.72, 0.88)',
+          firstCallback : function(i,sum,me){
+              me.find('.dot').children().first().addClass('cur');
+          },
+          callback : function(i,sum,me){
+              me.find('.dot').children().eq(i).addClass('cur').siblings().removeClass('cur');
+          }
+        });
+      }, 100);
     });
 
     $scope.widthFlag = "";
