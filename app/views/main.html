@@ -5,7 +5,7 @@
     <div class="slide position-re">
       <ul ng-if="banners.length > 0">
           <li class="position-re text-center" ng-repeat="banner in banners">
-            <a class="pic display-bl" ui-sref="{{banner.linkUrl}}"><img ng-src="{{banner.imageUrl}}" /></a>
+            <a class="pic display-bl" ng-click="clickBanner(banner.linkUrl)")"><img ng-src="{{banner.imageUrl}}" /></a>
           </li>
       </ul>
       <ul ng-if="!banners || banners.length <= 0">
