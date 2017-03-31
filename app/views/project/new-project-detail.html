@@ -66,14 +66,14 @@
     </ul>
     <!-- input输入框 -->
     <div class="invest">
-    	<div ng-click="modInvestAmout(-project.increaseAmount,$event)" class="plus grey-status"><hr></div>
+    	<!-- <div ng-click="modInvestAmout(-project.increaseAmount,$event)" class="plus grey-status"><hr></div> -->
     	<input id="invest-input" class="invest-input" type="number" placeholder="请输入投资金额" ng-model="project.investAmount" ng-disabled="project.status !==7 || userAuth.authStatus !== 2">
-    	<div ng-click="modInvestAmout(project.increaseAmount,$event)" class="add orange-status"><hr><hr></div>
+    	<!-- <div ng-click="modInvestAmout(project.increaseAmount,$event)" class="add orange-status"><hr><hr></div> -->
     </div>
 	</div>
   <!-- 状态按钮 -->
 	<div class="invest-btn">
-    <button id="invest-btn1" class="button button-primary" type="button" ng-show="!msg && isLogged && project.status === 7 && userAuth.authStatus === 2 && project.investAmount" ng-click="toInvest(project)" ng-disabled="showSelectIncreaseRateCoupon && clicked">立即投资</button>
+    <button id="invest-btn1" class="button button-primary" type="button" ng-show="!msg && isLogged && project.status === 7 && userAuth.authStatus === 2 && project.investAmount>=100" ng-click="toInvest(project)" ng-disabled="showSelectIncreaseRateCoupon && clicked">立即投资</button>
     <button class="button btn-disabled" ng-show="(project.status ===7 && userAuth.authStatus === 2 && msg) || (project.status ===7 && !project.investAmount && userAuth.authStatus === 2)">立即投资</button>
     <button class="button btn-disabled" ng-show="project.status ===6 ">预发布</button>
     <button class="button btn-disabled" ng-show="project.status ===9 ">还款中</button>

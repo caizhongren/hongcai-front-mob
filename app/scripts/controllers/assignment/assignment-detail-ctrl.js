@@ -58,7 +58,6 @@ angular.module('p2pSiteMobApp')
       if($scope.account && $scope.assignmentInvestAmount){
         var minBalanceAccount = $scope.account.balance - $scope.account.balance % 100;
         var minInvestAccount = $scope.currentStock * 100;
-        $scope.assignmentInvestAmount = $scope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;
       }
     });
 

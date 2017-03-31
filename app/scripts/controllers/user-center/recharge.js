@@ -99,7 +99,7 @@ angular.module('p2pSiteMobApp')
 
     $scope.busy = false;
     $scope.recharge = function(amount) {
-      if ($scope.bankStatus == 1) {  //银行卡维护
+      if ($scope.bankStatus && $scope.bankStatus == 1) {  //银行卡维护
         $scope.maintainCard();
         return;
       }
