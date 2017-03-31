@@ -21,4 +21,13 @@ angular.module('p2pSiteMobApp')
       }
     }).error(function() {
     });
+
+
+    $scope.clickImage = function(toStateOrUrl){
+      if(toStateOrUrl.indexOf('root.') !== -1){
+        $state.go(toStateOrUrl);
+      } else {
+        window.location.href = toStateOrUrl;
+      }
+    }
   })
