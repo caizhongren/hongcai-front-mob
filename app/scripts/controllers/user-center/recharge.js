@@ -84,6 +84,26 @@ angular.module('p2pSiteMobApp')
       });
     }
 
+    $scope.bankCard_src = {
+      'ICBK': '/images/user-center/ICBK.png',
+      'BKCH': '/images/user-center/BKCH.png',
+      'PCBC': '/images/user-center/PCBC.png',
+      'ABOC': '/images/user-center/ABOC.png',
+      'COMM': '/images/user-center/COMM.png',
+      'CMBC': '/images/user-center/CMBC.png',
+      'CIBK': '/images/user-center/CIBK.png',
+      'SZDB': '/images/user-center/SZDB.png',
+      'MSBC': '/images/user-center/MSBC.png',
+      'EVER': '/images/user-center/EVER.png',
+      'HXBK': '/images/user-center/HXBK.png',
+      'GDBK': '/images/user-center/GDBK.png',
+      'PSBC': '/images/user-center/PSBC.png',
+      'FJIB': '/images/user-center/FJIB.png',
+      'SPDB': '/images/user-center/SPDB.png',
+      'BOB': '/images/user-center/BOB.png'
+    }
+
+
     // 支付先锋、富友银行卡限额不限、（万）w单位判断
     $scope.changeCardList= function(expectPayCompanyList) {
       
