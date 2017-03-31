@@ -57,7 +57,7 @@ angular.module('p2pSiteMobApp')
 	$scope.selectStat($scope.status);
   $scope.toProjectList = function($index){
     if($rootScope.timeout){
-      $state.go('root._main-list-temp');
+      $state.go('root.project-list');
     }
     ipCookie('cashNum', $scope.cashCoupons[$index].number);
     ipCookie('cashType', $scope.cashCoupons[$index].type);

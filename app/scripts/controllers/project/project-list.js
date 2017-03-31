@@ -23,7 +23,7 @@ angular.module('p2pSiteMobApp')
         title: '宏财尊贵',
       },{
         title: '债权转让',
-      }];
+    }];
 
     /**
      * 当前页项目列表

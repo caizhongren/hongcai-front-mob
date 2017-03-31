@@ -232,11 +232,11 @@ p2pSiteMobApp
         },
       })
       // 项目列表页
-      .state('root._main-list-temp', {
+      .state('root.project-list', {
         url: '/guaranteepro-list?tab',
         views: {
           '': {
-            templateUrl: 'views/main/_main-list-temp.html',
+            templateUrl: 'views/main/project-list.html',
             controller: 'ProjectListCtrl',
             controllerUrl: 'scripts/controllers/project/project-list'
           }
@@ -281,20 +281,6 @@ p2pSiteMobApp
           }
         },data: {
           title: '常见问题'
-        }
-      })
-      //债权转让列表页
-      .state('root._main-list-temp0', {
-        url: '/assignments',
-        data: {
-          title: '债权转让'
-        },
-        views: {
-          '': {
-            templateUrl: 'views/assignment/assignment-list.html',
-            controller: 'ProjectListCtrl',
-            controllerUrl: 'scripts/controllers/project/project-list'
-          }
         }
       })
       // 项目详情页更多详情
