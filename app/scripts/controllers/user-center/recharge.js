@@ -67,6 +67,7 @@ angular.module('p2pSiteMobApp')
 
     $scope.bankCardList = {};
     $scope.singleLimit = [];
+    $scope.src = [];
     // 查询支付公司下所有银行限额信息
     $scope.getBankRechargeLimit = function(expectPayCompany){
       var siteBankRechargeLimit = restmod.model(WEB_DEFAULT_DOMAIN + "/bank/getBankRechargeLimit?&payCompany=" + expectPayCompany);
@@ -90,12 +91,12 @@ angular.module('p2pSiteMobApp')
       $scope.dayLimit = [];
       $scope.monthLimit = [];
       for(var i=0; i< expectPayCompanyList.length; i++){
+        $scope.src.push('/images/user-center/'+expectPayCompanyList[i].bankCode + '.png');
         $scope.singleLimit.push(expectPayCompanyList[i].singleLimit <0 ? '不限' : expectPayCompanyList[i].singleLimit%10000 ==0 ? expectPayCompanyList[i].singleLimit/10000 +'w' : expectPayCompanyList[i].singleLimit);
         $scope.dayLimit.push(expectPayCompanyList[i].dayLimit <0 ? '不限' : expectPayCompanyList[i].dayLimit%10000 ==0 ? expectPayCompanyList[i].dayLimit/10000 +'w' : expectPayCompanyList[i].dayLimit);
         $scope.monthLimit.push(expectPayCompanyList[i].monthLimit <0 ? '不限' : expectPayCompanyList[i].monthLimit%10000 ==0 ? expectPayCompanyList[i].monthLimit/10000 +'w' : expectPayCompanyList[i].monthLimit);
       }
     }
-    
 
     $scope.busy = false;
     $scope.recharge = function(amount) {
