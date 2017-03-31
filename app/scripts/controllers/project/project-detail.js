@@ -25,6 +25,12 @@ angular.module('p2pSiteMobApp')
         $scope.initLimit = 3;
     }
 
+    if(SessionService.isLogin()){
+      UserService.loadAccount($scope);
+      UserService.loadUserAuth($scope);
+      $rootScope.tofinishedOrder();  
+    }
+
     /**
      * 项目信息
      */
@@ -58,7 +64,7 @@ angular.module('p2pSiteMobApp')
 
       // }
 
-      /**
+                /**
        * 可用券
        */
       if(SessionService.isLogin()){
@@ -85,12 +91,10 @@ angular.module('p2pSiteMobApp')
           }else {
             $scope.selectIncreaseRateCoupon = [];
           }
-        });
-      
-        UserService.loadAccount($scope);
-        UserService.loadUserAuth($scope);
-        $rootScope.tofinishedOrder();  
+        }); 
       }
+
+
 
       $timeout(function(){
           $rootScope.showLoadingToast = false;
@@ -98,12 +102,12 @@ angular.module('p2pSiteMobApp')
 
     });
 
-    $scope.$watch('account', function(){
-      if($scope.account && $scope.project){
-        var minBalanceAccount = $scope.account.balance - $scope.account.balance % 100;
-        var minInvestAccount = $scope.project.amount;
-      }
-    });
+    // $scope.$watch('account', function(){
+    //   if($scope.account && $scope.project){
+    //     var minBalanceAccount = $scope.account.balance - $scope.account.balance % 100;
+    //     var minInvestAccount = $scope.project.amount;
+    //   }
+    // });
 
     
 
