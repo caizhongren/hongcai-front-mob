@@ -15,6 +15,9 @@ angular.module('p2pSiteMobApp')
        * 设置微信等webview中的title
        */
       setTitle: function(title){
+        if(!this.isWeixin() || !this.browser().isIos()){
+          return;
+        }
         // 微信等webview中无法修改title的问题
         //需要jQuery
         var $body = $('body');
