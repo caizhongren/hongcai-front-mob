@@ -1,7 +1,7 @@
 <div class="setting bg-offWhite">
   <div class="text-center ft-black2 margin-t-0p5 ft-1p8 padding-b-1">
     <p class="margin-b-0 text-center padding-t-2">
-      <div class="border-pull"><img ng-src="{{userHeadImgUrl}}" class="border-half"></div>
+      <div class="border-pull"><img ng-src="{{hasLoggedUser.headImgUrl || userHeadImgUrl}}" class="border-half"></div>
     </p>
     {{hasLoggedUser.name || handleMobileNum(hasLoggedUser.mobile)}}
   </div>

@@ -16,20 +16,8 @@ angular.module('p2pSiteMobApp')
      */
     $scope.userHeadImgUrl = '/images/user-center/avatar.png';
 
-    var userAccount = {
-      tTotalAssets: 0,
-      balance: 0,
-      receivedProfit: 0
-    };
-    $scope.userAccount = sessionStorage.getItem('userAccount') ? angular.fromJson(sessionStorage.getItem('userAccount')) : userAccount;
-    Restangular.one('users').one('0/account').get().then(function(response){
-      if(!response || response.ret == -1) { return;}
-      $scope.userAccount = response;
-      sessionStorage.setItem('userAccount', angular.toJson($scope.userAccount));
-    });
-
-
-
+    UserService.loadUserAuth($scope);
+    UserService.loadAccount($scope);
 
     // $scope.voucher = Restangular.one('users').one('0/userInviteNum').get().$object;
 
@@ -38,12 +26,12 @@ angular.module('p2pSiteMobApp')
 
     $scope.unGotCash = Restangular.one('cashCoupons').one('stat').get().$object;
 
-    UserService.loadUserAuth($scope);
+
    
     /**
      * 推荐项目
      */
-    $scope.recommends = Restangular.one('projects').one('recommends').get({pageSize : 1}).$object;
+    // $scope.recommends = Restangular.one('projects').one('recommends').get({pageSize : 1}).$object;
 
     /**
      * 开通自动投标权限

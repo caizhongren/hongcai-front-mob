@@ -15,6 +15,7 @@ angular.module('p2pSiteMobApp')
     $scope.totalPage = 1;
     
     UserService.loadUserAuth($scope);
+    UserService.loadAccount($scope);
     $scope.dealList = function(){
       if ($scope.totalPage < $scope.page){
         return;
@@ -35,12 +36,6 @@ angular.module('p2pSiteMobApp')
       });
     };
     $scope.dealList();
-  /*
-    体验金金额
-  */
-    Restangular.one('users').one('0/account').get().then(function(response){
-      $scope.account = response;
-    });
 
   /*查看更多*/
     $scope.loadMuch = function(){

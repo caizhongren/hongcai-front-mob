@@ -66,7 +66,7 @@ angular.module('p2pSiteMobApp')
         $scope.selectIncreaseRateCoupon = [];
         Restangular.one('projects').one('investIncreaseRateCoupon').get({
           projectId : $scope.project.id,
-          amount : project.availableAmount
+          amount : project.amount
         }).then(function(response) {
           if (response  && response.ret !== -1) {
             $scope.increaseRateCoupons = response;
@@ -87,10 +87,7 @@ angular.module('p2pSiteMobApp')
           }
         });
       
-        $scope.account = Restangular.one('users').one('0/account').get().$object;
-        var minBalanceAccount = $scope.account.balance - $scope.account.balance % 100;
-        var minInvestAccount = project.availableAmount;
-        $scope.project.investAmount = $scope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;  
+        UserService.loadAccount($scope);
         UserService.loadUserAuth($scope);
         $rootScope.tofinishedOrder();  
       }
@@ -99,6 +96,14 @@ angular.module('p2pSiteMobApp')
           $rootScope.showLoadingToast = false;
       },100);
 
+    });
+
+    $scope.$watch('account', function(){
+      if($scope.account && $scope.project){
+        var minBalanceAccount = $scope.account.balance - $scope.account.balance % 100;
+        var minInvestAccount = $scope.project.amount;
+        $scope.project.investAmount = $scope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;  
+      }
     });
 
     
@@ -145,8 +150,8 @@ angular.module('p2pSiteMobApp')
       }
 
       if(newVal){
-        if(newVal > $scope.availableAmount){
-          $scope.msg = '投资金额必须小于' + $scope.availableAmount;
+        if(newVal > $scope.project.amount){
+          $scope.msg = '投资金额必须小于' + $scope.project.amount;
         }else if(newVal > $scope.account.balance){
           $scope.msg = '账户余额不足，请先充值';
         } else if(newVal < $scope.project.minInvest ){

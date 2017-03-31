@@ -46,14 +46,19 @@ angular.module('p2pSiteMobApp')
 
           // 登陆后计算金额
           if(SessionService.isLogin()){
-            $scope.account = Restangular.one('users').one('0/account').get().$object;
-            var minBalanceAccount = $scope.account.balance - $scope.account.balance % 100;
-            var minInvestAccount = $scope.currentStock * 100;
-            $scope.assignmentInvestAmount = $scope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;
+            UserService.loadAccount($scope);
             UserService.loadUserAuth($scope);
           };
 
         });
+      }
+    });
+
+    $scope.$watch('account', function(){
+      if($scope.account && $scope.assignmentInvestAmount){
+        var minBalanceAccount = $scope.account.balance - $scope.account.balance % 100;
+        var minInvestAccount = $scope.currentStock * 100;
+        $scope.assignmentInvestAmount = $scope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;
       }
     });
 

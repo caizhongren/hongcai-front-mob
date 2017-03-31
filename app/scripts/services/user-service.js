@@ -16,7 +16,16 @@ angular.module('p2pSiteMobApp')
 	            SessionService.setUserAuthIfAuthed($scope.userAuth);
 	          });
 	        }
-    	}	
+    	},
+
+      loadAccount: function($scope){
+        $scope.account = sessionStorage.getItem('userAccount') ? angular.fromJson(sessionStorage.getItem('userAccount')) : undefined;
+        Restangular.one('users').one('0/account').get().then(function(response){
+          if(!response || response.ret == -1) { return;}
+          $scope.account = response;
+          sessionStorage.setItem('userAccount', angular.toJson($scope.account));
+        });
+      }	
 
     }
 
