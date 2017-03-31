@@ -61,7 +61,7 @@ angular.module('p2pSiteMobApp')
 
           SessionService.loginSuccess(response.$response.data);
           if (redirectUrl) {
-            $location.path(decodeURIComponent(redirectUrl));
+            $location.url(decodeURIComponent(redirectUrl));
             // console.log($location.path(decodeURIComponent(redirectUrl)));
             return;
           }

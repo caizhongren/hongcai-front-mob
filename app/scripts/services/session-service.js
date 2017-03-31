@@ -67,7 +67,7 @@ angular.module('p2pSiteMobApp')
 
       checkSession: function(){
       	var lastCheckTime = sessionStorage.getItem('lastCheckTime') ? -1: sessionStorage.getItem('lastCheckTime');
-      	if(Number(lastCheckTime) - new Date().getTime() > 30 * 60 * 1000){
+      	if(Number(lastCheckTime) - new Date().getTime() > 20 * 60 * 1000){
       		sessionStorage.setItem('isLogin', 'false');
       		sessionStorage.removeItem('user');
       		sessionStorage.removeItem('userAuth');

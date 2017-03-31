@@ -106,7 +106,7 @@ angular.module('p2pSiteMobApp')
         return;
       }
       Restangular.one('users').one('0/userAuth').get({}).then(function(userAuth){
-        if(userAuth.authStatus !== 2 || !userAuth.active){
+        if(userAuth.ret !== -1 && (userAuth.authStatus !== 2 || !userAuth.active)){
           $uibModal.open({
             animation: true,
             templateUrl: 'views/user-center/activate.html',
@@ -171,7 +171,7 @@ angular.module('p2pSiteMobApp')
 
 
         if (!$rootScope.isLogged && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
-          $location.path('/login');
+          $location.url('/login?redirectUrl=' + encodeURIComponent($location.url()));
           return;
         }
         
@@ -185,9 +185,10 @@ angular.module('p2pSiteMobApp')
 
           if (!Utils.isWeixin()) {
             if (routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
-              $state.go('root.login', {
-                redirectUrl: encodeURIComponent($location.url())
-              });
+              // $state.go('root.login', {
+              //   redirectUrl: encodeURIComponent($location.url())
+              // }, {notify: false});
+              $location.url('/login?redirectUrl' + encodeURIComponent($location.url()));
             }
             return;
           }
