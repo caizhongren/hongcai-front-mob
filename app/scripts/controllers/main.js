@@ -8,6 +8,14 @@
 + */
 angular.module('p2pSiteMobApp')
   .controller('MainCtrl', function($scope, $rootScope, $state, Restangular, ProjectUtils, ScreenWidthUtil, $timeout) {
+
+    Restangular.one('banners').one('/').get({
+      type : 2
+    }).then(function(response){
+      if(!response || response.ret == -1) { return;}
+      $scope.banners = response;
+    });
+
     $scope.widthFlag = "";
 
     $scope.choiceProject = {
