@@ -12,6 +12,11 @@ angular.module('p2pSiteMobApp')
     $rootScope.showFooter = false;
     $rootScope.showLoadingToast = true;
 
+    if(SessionService.isLogin()){
+      UserService.loadAccount($scope);
+      UserService.loadUserAuth($scope);
+    };    
+
     /**
      * 债权转让信息详情
      */
@@ -45,21 +50,18 @@ angular.module('p2pSiteMobApp')
           }
 
           // 登陆后计算金额
-          if(SessionService.isLogin()){
-            UserService.loadAccount($scope);
-            UserService.loadUserAuth($scope);
-          };
+
 
         });
       }
     });
 
-    $scope.$watch('account', function(){
-      if($scope.account && $scope.assignmentInvestAmount){
-        var minBalanceAccount = $scope.account.balance - $scope.account.balance % 100;
-        var minInvestAccount = $scope.currentStock * 100;
-      }
-    });
+    // $scope.$watch('account', function(){
+    //   if($scope.account && $scope.assignmentInvestAmount){
+    //     var minBalanceAccount = $scope.account.balance - $scope.account.balance % 100;
+    //     var minInvestAccount = $scope.currentStock * 100;
+    //   }
+    // });
 
     //监测投资金额
     $scope.$watch('assignmentInvestAmount', function(newVal, oldVal){

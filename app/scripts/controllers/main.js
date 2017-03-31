@@ -24,7 +24,7 @@ angular.module('p2pSiteMobApp')
           autoSwipe : true,
           axisX : true,
           continuousScroll:true,
-          speed : 2000,
+          speed : 1500,
           transitionType : 'cubic-bezier(0.22, 0.69, 0.72, 0.88)',
           firstCallback : function(i,sum,me){
               me.find('.dot').children().first().addClass('cur');
@@ -176,6 +176,15 @@ angular.module('p2pSiteMobApp')
         return;
       }
       $state.go('root.userCenter.experience-money');
+    }
+
+
+    $scope.clickBanner = function(toStateOrUrl){
+      if(toStateOrUrl.indexOf('root.') !== -1){
+        $state.go(toStateOrUrl);
+      } else {
+        window.location.href = toStateOrUrl;
+      }
     }
 
     // 公告轮播
