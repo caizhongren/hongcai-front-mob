@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RegisterYeepayCtrl', function ($rootScope, $scope, $state, $stateParams, md5, registerYeepay, HongcaiUser, config, toCunGuanUtils, SessionService) {
+  .controller('RegisterYeepayCtrl', function ($rootScope, $scope, $state, $stateParams, md5, HongcaiUser, config, toCunGuanUtils, SessionService) {
 
     if(!SessionService.isLogin()){
       $state.go('root.main');
