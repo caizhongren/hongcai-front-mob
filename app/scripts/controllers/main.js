@@ -15,7 +15,7 @@ angular.module('p2pSiteMobApp')
       if(!response || response.ret == -1) { return;}
       $scope.banners = response;
 
-          /**
+      /**
        * 轮播图
        * 注意：需要等待页面元素加载完成后在执行轮播；页面dot 手动增减个数
        */
