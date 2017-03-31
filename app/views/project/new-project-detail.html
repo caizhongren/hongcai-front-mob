@@ -3,11 +3,11 @@
 	<div class="header">
 		<ul>
 			<li>
-				<p>{{project.annualEarnings}}<span>%</span></p>
+				<p>{{project.annualEarnings || 0}}<span>%</span></p>
 				<p>期望年均回报率</p>
 			</li>
 			<li>
-				<p>{{project.projectDays}}<span>天(项目期限)</span></p>
+				<p>{{project.projectDays || 0}}<span>天(项目期限)</span></p>
 				<p>{{project.total || 0 | currency:"":0}}<span>元</span></p>
 				<div class="pro-info3">
 					<div class="process">
@@ -60,7 +60,7 @@
     	<li>
     		<p>预计收益(元)</p>
         <p>{{ profit | number: 2 }}
-          <span ng-show="selectIncreaseRateCoupon">+{{selectIncreaseRateCoupon.type ===1 ? increaseRateProfit : cashProfit || 0 | number : 2}}</span>
+          <span ng-show="selectIncreaseRateCoupon">+ {{selectIncreaseRateCoupon.type ===1 ? increaseRateProfit : cashProfit || 0 | number : 2}}</span>
         </p>
     	</li>
     </ul>

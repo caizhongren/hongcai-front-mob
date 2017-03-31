@@ -64,12 +64,13 @@ angular.module('p2pSiteMobApp')
 
       // }
 
-                /**
+      /**
        * 可用券
        */
+      $scope.increaseRateCoupons = null;
+      $scope.selectIncreaseRateCoupon = null;
       if(SessionService.isLogin()){
-        $scope.increaseRateCoupons = [];
-        $scope.selectIncreaseRateCoupon = [];
+        
         Restangular.one('projects').one('investIncreaseRateCoupon').get({
           projectId : $scope.project.id,
           amount : project.amount
