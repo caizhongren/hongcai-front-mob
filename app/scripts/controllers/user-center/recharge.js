@@ -65,21 +65,20 @@ angular.module('p2pSiteMobApp')
       });
     }
 
-    $scope.bankCardList = {};
-    $scope.singleLimit = [];
-    $scope.src = [];
+    $scope.bankCardList = [];
     // 查询支付公司下所有银行限额信息
     $scope.getBankRechargeLimit = function(expectPayCompany){
       var siteBankRechargeLimit = restmod.model(WEB_DEFAULT_DOMAIN + "/bank/getBankRechargeLimit?&payCompany=" + expectPayCompany);
       siteBankRechargeLimit.$create({}).$then(function(response) {
         if (response.ret !== -1) {
-          // if (expectPayCompany == 'UCFPAY') {
             $scope.bankCardList = response.data.bankLimit;
-            $scope.changeCardList($scope.bankCardList);
-          // }else if (expectPayCompany == 'FUIOU') {
-            // $scope.bankCardList_FU = response.data.bankLimit;
-            // $scope.bankCardList($scope.bankCardList_FU);
-          // }
+            for(var i=0; i< $scope.bankCardList.length; i++){
+              $scope.bankCardList[i].src = $scope.bankCard_src[$scope.bankCardList[i].bankCode];
+              $scope.bankCardList[i].singleLimit = $scope.bankCardList[i].singleLimit <0 ? '不限' : $scope.bankCardList[i].singleLimit%10000 ==0 ? $scope.bankCardList[i].singleLimit/10000 +'w' : $scope.bankCardList[i].singleLimit;
+              $scope.bankCardList[i].dayLimit = $scope.bankCardList[i].dayLimit <0 ? '不限' : $scope.bankCardList[i].dayLimit%10000 ==0 ? $scope.bankCardList[i].dayLimit/10000 +'w' : $scope.bankCardList[i].dayLimit;
+              $scope.bankCardList[i].monthLimit = $scope.bankCardList[i].monthLimit <0 ? '不限' : $scope.bankCardList[i].monthLimit%10000 ==0 ? $scope.bankCardList[i].monthLimit/10000 +'w' : $scope.bankCardList[i].monthLimit;
+            }
+
         }
       });
     }
@@ -101,21 +100,6 @@ angular.module('p2pSiteMobApp')
       'FJIB': '/images/user-center/FJIB.png',
       'SPDB': '/images/user-center/SPDB.png',
       'BOB': '/images/user-center/BOB.png'
-    }
-
-
-    // 支付先锋、富友银行卡限额不限、（万）w单位判断
-    $scope.changeCardList= function(expectPayCompanyList) {
-      
-      $scope.singleLimit = [];
-      $scope.dayLimit = [];
-      $scope.monthLimit = [];
-      for(var i=0; i< expectPayCompanyList.length; i++){
-        $scope.src.push('/images/user-center/'+expectPayCompanyList[i].bankCode + '.png');
-        $scope.singleLimit.push(expectPayCompanyList[i].singleLimit <0 ? '不限' : expectPayCompanyList[i].singleLimit%10000 ==0 ? expectPayCompanyList[i].singleLimit/10000 +'w' : expectPayCompanyList[i].singleLimit);
-        $scope.dayLimit.push(expectPayCompanyList[i].dayLimit <0 ? '不限' : expectPayCompanyList[i].dayLimit%10000 ==0 ? expectPayCompanyList[i].dayLimit/10000 +'w' : expectPayCompanyList[i].dayLimit);
-        $scope.monthLimit.push(expectPayCompanyList[i].monthLimit <0 ? '不限' : expectPayCompanyList[i].monthLimit%10000 ==0 ? expectPayCompanyList[i].monthLimit/10000 +'w' : expectPayCompanyList[i].monthLimit);
-      }
     }
 
     $scope.busy = false;
