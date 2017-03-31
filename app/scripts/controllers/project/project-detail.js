@@ -39,7 +39,7 @@ angular.module('p2pSiteMobApp')
       project.percent = (project.total - project.amount) / project.total * 100;
 
       ProjectUtils.projectTimedown(project, project.createTime);
-      
+
       // /**
       //  * 新手标判断
       //  */

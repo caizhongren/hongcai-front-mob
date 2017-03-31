@@ -13,83 +13,36 @@ angular.module('p2pSiteMobApp')
     $scope.rechargeAmount = $stateParams.amount;
     $scope.showLimit = false;
     var scrollTop = 0;
-    $scope.getIt = function(){
-      $scope.showLimit = false;
+    // 支持银行弹窗
+    $scope.showbankLimit = function() {
+      $scope.showLimit = !$scope.showLimit;
+      $scope.showLimit ? unlockScreen() : lockScreen();
+    }
+
+    function lockScreen() {
       $rootScope.showFooter = true;
       $('.recharge').removeClass('position-fix'); 
       // 滚回到老地方！
-      to(scrollTop);
+      document.body.scrollTop = document.documentElement.scrollTop = scrollTop;
     }
-    
-    $scope.showbankLimit = function() {
+    function unlockScreen() {
       // 在弹出层显示之前，记录当前的滚动位置
-      scrollTop = getScrollTop();
-
+      scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
       // 使body脱离文档流
       $('.recharge').addClass('position-fix'); 
       // 把脱离文档流的body拉上去！否则页面会回到顶部！
       document.body.style.top = -scrollTop + 'px';
-      $scope.showLimit = true;
       $rootScope.showFooter = false;
-    }
-    function to(scrollTop){
-      document.body.scrollTop = document.documentElement.scrollTop = scrollTop;
-    }
-    function getScrollTop(){
-      return document.body.scrollTop || document.documentElement.scrollTop;
     }
    
-    $scope.bankCardList_FU = [
-      {'src': '/images/user-center/ICBK.png', 'cardName': '工商银行', 'limit': '5w/5w/20w'},
-      {'src': '/images/user-center/BKCH.png', 'cardName': '中国银行', 'limit': '5w/10w/20w'},
-      {'src': '/images/user-center/PCBC.png', 'cardName': '建设银行', 'limit': '5w/10w/20w'},
-      {'src': '/images/user-center/ABOC.png', 'cardName': '农业银行', 'limit': '5w/10w/20w'},
-      {'src': '/images/user-center/COMM.png', 'cardName': '交通银行', 'limit': '5w/10w/20w'},
-      {'src': '/images/user-center/CMBC.png', 'cardName': '招商银行', 'limit': '5w/5w/20w'},
-      {'src': '/images/user-center/CIBK.png', 'cardName': '中信银行', 'limit': '1w/1w/2w'},
-      {'src': '/images/user-center/SZDB.png', 'cardName': '平安银行', 'limit': '5w/20w/20w'},
-      {'src': '/images/user-center/MSBC.png', 'cardName': '民生银行', 'limit': '5w/20w/20w'},
-      {'src': '/images/user-center/EVER.png', 'cardName': '光大银行', 'limit': '5w/20w/20w'},
-      {'src': '/images/user-center/HXBK.png', 'cardName': '华夏银行', 'limit': '5w/20w/20w'},
-      {'src': '/images/user-center/GDBK.png', 'cardName': '广发银行', 'limit': '5w/20w/20w'},
-      {'src': '/images/user-center/PSBC.png', 'cardName': '邮政银行', 'limit': '5w/20w/20w'},
-      {'src': '/images/user-center/FJIB.png', 'cardName': '兴业银行', 'limit': '5w/5w/20w'},
-      {'src': '/images/user-center/SPDB.png', 'cardName': '浦发银行', 'limit': '5w/5w/20w'},
-    ]
-    $scope.bankCardList_UCF = [
-      {'src': '/images/user-center/ICBK.png', 'cardName': '工商银行', 'limit': '99999/20w/不限'},
-      {'src': '/images/user-center/BKCH.png', 'cardName': '中国银行', 'limit': '5w/30w/不限'},
-      {'src': '/images/user-center/PCBC.png', 'cardName': '建设银行', 'limit': '20w/50w/不限'},
-      {'src': '/images/user-center/ABOC.png', 'cardName': '农业银行', 'limit': '20w/50w/不限'},
-      {'src': '/images/user-center/COMM.png', 'cardName': '交通银行', 'limit': '20w/20w/不限'},
-      {'src': '/images/user-center/CMBC.png', 'cardName': '招商银行', 'limit': '5000/10w/不限'},
-      {'src': '/images/user-center/CIBK.png', 'cardName': '中信银行', 'limit': '1w/1w/2w'},
-      {'src': '/images/user-center/SZDB.png', 'cardName': '平安银行', 'limit': '50w/500w/不限'},
-      {'src': '/images/user-center/MSBC.png', 'cardName': '民生银行', 'limit': '2000w/10000w/不限'},
-      {'src': '/images/user-center/EVER.png', 'cardName': '光大银行', 'limit': '50w/不限/不限'},
-      {'src': '/images/user-center/BOB.png', 'cardName': '北京银行', 'limit': '5000/5000/不限'},
-      {'src': '/images/user-center/HXBK.png', 'cardName': '华夏银行', 'limit': '50w/150w/不限'},
-      {'src': '/images/user-center/GDBK.png', 'cardName': '广发银行', 'limit': '不限/不限/不限'},
-      {'src': '/images/user-center/PSBC.png', 'cardName': '邮政银行', 'limit': '10w/100w/不限'},
-      {'src': '/images/user-center/FJIB.png', 'cardName': '兴业银行', 'limit': '5w/5w/不限'},
-      {'src': '/images/user-center/SPDB.png', 'cardName': '浦发银行', 'limit': '5w/30w/不限'}
-    ]
 
-    //更换银行卡
-    $scope.showChange = false;
-    $scope.Iknow = function(){
-      $scope.showChange = false;
-      $rootScope.showFooter = true;
-      $('.recharge').removeClass('position-fix'); 
-      to(scrollTop);
+    //银行卡维护
+    $scope.maintainCard = function() {
+      $rootScope.showChange = !$rootScope.showChange;
+      $rootScope.showChange ? unlockScreen() : lockScreen();
     }
-    $scope.changeCard = function() {
-      scrollTop = getScrollTop();
-      $('.recharge').addClass('position-fix'); 
-      document.body.style.top = -scrollTop + 'px';
-      $scope.showChange = true;
-      $rootScope.showFooter = false;
-    }
+
+    // 解绑银行卡
     var unBindBankcardModel = restmod.model(WEB_DEFAULT_DOMAIN + '/yeepay');
     $scope.unBindBankcard = function() {
       unBindBankcardModel.$find('/unbindBankCard').$then(function(response) {
@@ -100,22 +53,57 @@ angular.module('p2pSiteMobApp')
         toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
       });
     }
-    // $rootScope.$on('$locationChangeSuccess',function(){//返回前页时，刷新前页
-    //   parent.location.reload(); 
-    // });
+
     // 获取用户的银行卡剩余额度
     $scope.getUserBankCard = function(expectPayCompany){
       var siteBankLimit = restmod.model(WEB_DEFAULT_DOMAIN + "/bank/getUserRechargeRemainLimit?&payCompany=" + expectPayCompany);
       siteBankLimit.$create({}).$then(function(response) {
         if (response.ret !== -1) {
           $scope.bankRemain = response.data.bankRemain;
+          $scope.bankStatus = response.data.bankStatus; //0 正常 1维护
         }
       });
+    }
+
+    $scope.bankCardList = {};
+    $scope.singleLimit = [];
+    // 查询支付公司下所有银行限额信息
+    $scope.getBankRechargeLimit = function(expectPayCompany){
+      var siteBankRechargeLimit = restmod.model(WEB_DEFAULT_DOMAIN + "/bank/getBankRechargeLimit?&payCompany=" + expectPayCompany);
+      siteBankRechargeLimit.$create({}).$then(function(response) {
+        if (response.ret !== -1) {
+          // if (expectPayCompany == 'UCFPAY') {
+            $scope.bankCardList = response.data.bankLimit;
+            $scope.changeCardList($scope.bankCardList);
+          // }else if (expectPayCompany == 'FUIOU') {
+            // $scope.bankCardList_FU = response.data.bankLimit;
+            // $scope.bankCardList($scope.bankCardList_FU);
+          // }
+        }
+      });
+    }
+
+    // 支付先锋、富友银行卡限额不限、（万）w单位判断
+    $scope.changeCardList= function(expectPayCompanyList) {
+      
+      $scope.singleLimit = [];
+      $scope.dayLimit = [];
+      $scope.monthLimit = [];
+      for(var i=0; i< expectPayCompanyList.length; i++){
+        $scope.singleLimit.push(expectPayCompanyList[i].singleLimit <0 ? '不限' : expectPayCompanyList[i].singleLimit%10000 ==0 ? expectPayCompanyList[i].singleLimit/10000 +'w' : expectPayCompanyList[i].singleLimit);
+        $scope.dayLimit.push(expectPayCompanyList[i].dayLimit <0 ? '不限' : expectPayCompanyList[i].dayLimit%10000 ==0 ? expectPayCompanyList[i].dayLimit/10000 +'w' : expectPayCompanyList[i].dayLimit);
+        $scope.monthLimit.push(expectPayCompanyList[i].monthLimit <0 ? '不限' : expectPayCompanyList[i].monthLimit%10000 ==0 ? expectPayCompanyList[i].monthLimit/10000 +'w' : expectPayCompanyList[i].monthLimit);
+      }
     }
     
 
     $scope.busy = false;
     $scope.recharge = function(amount) {
+      if ($scope.bankStatus == 1) {  //银行卡维护
+        $scope.maintainCard();
+        return;
+      }
+      
       if (!amount || amount < 3 || amount > $scope.bankRemain || $scope.busy) {
         return;
       }
@@ -149,6 +137,7 @@ angular.module('p2pSiteMobApp')
     //记录选择支付方式 'FUIOU':富友，'ALLINPAY'：通联，'UMPAY':通联优势， 'UCFPAY': 先锋支付
     //payment 1: 富友，2: 通联优势，3: 先锋支付
     $scope.selectPay = function(payment) {
+      $scope.bankCardList = {};
       $scope.payment = payment;
       // $scope.bankRemainHolder = $scope.payment == 1? '该卡可充值' + $scope.bankRemain + '元' : '';
       if(payment ===1){
@@ -159,6 +148,7 @@ angular.module('p2pSiteMobApp')
         $scope.expectPayCompany = 'UCFPAY';
       }
       $scope.getUserBankCard($scope.expectPayCompany);
+      $scope.getBankRechargeLimit($scope.expectPayCompany);
       
     }
     $scope.selectPay(3);
