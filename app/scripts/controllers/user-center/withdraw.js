@@ -8,35 +8,33 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('WithdrawCtrl', function($scope, $rootScope, $state, HongcaiUser, fundsProjects, toCunGuanUtils) {
+  .controller('WithdrawCtrl', function($scope, $rootScope, $state, HongcaiUser, fundsProjects, toCunGuanUtils, Utils) {
     $rootScope.selectedSide = 'account';
-
-
-    $rootScope.checkSession.promise.then(function() {
-      if (!$rootScope.isLogged) {
-        $state.go('root.login');
+    $scope.footer = function(){
+      if (Utils.deviceCode() == 5 || Utils.deviceCode() == 6) {
+        $rootScope.showFooter = !$rootScope.showFooter;
       }
+    }
 
-      HongcaiUser.$find('0' + '/availableCash').$then(function(response) {
-        if (response.ret !== -1) {
-          // 获取用户充值信息
-          $scope.simpleWithdraw = response;
-          $scope.availableCash = $scope.simpleWithdraw.account.balance;
-          $scope.availableCashRealNo = $scope.availableCash >= 2 ? $scope.availableCash - 2 : 0;
+    HongcaiUser.$find('0' + '/availableCash').$then(function(response) {
+      if (response.ret !== -1) {
+        // 获取用户充值信息
+        $scope.simpleWithdraw = response;
+        $scope.availableCash = $scope.simpleWithdraw.account.balance;
+        $scope.availableCashRealNo = $scope.availableCash >= 2 ? $scope.availableCash - 2 : 0;
 
-        } else {
-          // 获取信息失败。
-        }
-      });
+      } else {
+        // 获取信息失败。
+      }
+    });
 
-      HongcaiUser.$find('0' + '/bankcard').$then(function(response) {
-        if (response.$status === 'ok') {
-          // 获取用户的银行卡信息
-          $scope.simpleBankcard = response;
-        } else {
-          // 获取信息失败。
-        }
-      });
+    HongcaiUser.$find('0' + '/bankcard').$then(function(response) {
+      if (response.$status === 'ok') {
+        // 获取用户的银行卡信息
+        $scope.simpleBankcard = response;
+      } else {
+        // 获取信息失败。
+      }
     });
 
 

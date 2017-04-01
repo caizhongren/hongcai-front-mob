@@ -7,10 +7,15 @@
  */
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('AssignmentDetailCtrl', function($state, $timeout, DateUtils, $stateParams, Restangular, $scope, $rootScope, Utils, toCunGuanUtils) {
+  .controller('AssignmentDetailCtrl', function($state, $timeout, DateUtils, $stateParams, Restangular, $scope, $rootScope, Utils, toCunGuanUtils, SessionService, UserService) {
     var number = $stateParams.number; 
     $rootScope.showFooter = false;
     $rootScope.showLoadingToast = true;
+
+    if(SessionService.isLogin()){
+      UserService.loadAccount($scope);
+      UserService.loadUserAuth($scope);
+    };    
 
     /**
      * 债权转让信息详情
@@ -45,20 +50,18 @@ angular.module('p2pSiteMobApp')
           }
 
           // 登陆后计算金额
-          $rootScope.checkSession.promise.then(function() {
-            if(!$rootScope.isLogged){
-              return;
-            }
 
-            var minBalanceAccount = $rootScope.account.balance - $rootScope.account.balance % 100;
-            var minInvestAccount = $scope.currentStock * 100;
-            $scope.assignmentInvestAmount = $rootScope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;
-
-          });
 
         });
       }
     });
+
+    // $scope.$watch('account', function(){
+    //   if($scope.account && $scope.assignmentInvestAmount){
+    //     var minBalanceAccount = $scope.account.balance - $scope.account.balance % 100;
+    //     var minInvestAccount = $scope.currentStock * 100;
+    //   }
+    // });
 
     //监测投资金额
     $scope.$watch('assignmentInvestAmount', function(newVal, oldVal){
@@ -71,7 +74,7 @@ angular.module('p2pSiteMobApp')
       }
 
       if(newVal){
-        if(newVal >  $rootScope.account.balance || (newVal <= $rootScope.account.balancenewVal && $rootScope.account.balancenewVal < $scope.realPayAmount)){
+        if(newVal >  $scope.account.balance || (newVal <= $scope.account.balancenewVal && $scope.account.balancenewVal < $scope.realPayAmount)){
           $scope.msg = '账户余额不足，请先充值';
         }else if(newVal % 100 !==0 ){
           $scope.msg = '投资金额必须为100的整数倍';

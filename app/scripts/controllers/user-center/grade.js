@@ -113,7 +113,7 @@ angular.module('p2pSiteMobApp')
      */
     $scope.toProjectList = function($index){
       if($rootScope.timeout){
-        $state.go('root._main-list-temp');
+        $state.go('root.project-list');
       }
       ipCookie('rateNum',$scope.datas[$index].number);
       ipCookie('rateType',$scope.datas[$index].type);

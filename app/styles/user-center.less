@@ -1,3 +1,13 @@
+.share-page-breakWishLayer {
+    position: fixed;
+    top: 0;
+    z-index: 999999;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 640px;
+    margin: 0 auto;
+}
 .user-center {
   //红点
   .red-point {
@@ -45,9 +55,53 @@
       width: 29%;
     }
     .credit-head {
+      padding: 3rem 0;
+      i.line{
+        height: 3.3rem;
+        border-color: #ffeceb;
+        top: 0.2rem;
+      }
       background: linear-gradient(to bottom, #e4532b, #f28340);
     }
     .credit-item{
+      .red-rate {
+         position: relative;
+         width: 53px;
+         height: 21px;
+         border: 1px solid #E8A79A;
+         border-radius: 5px;
+         background-color: red;
+         line-height: 21px;
+         color: #fff;
+         p {
+          line-height: 22px;
+          margin: 0;
+         }
+      }
+      .red-rate:before{
+        content:"";
+        display:block;
+        border-width:6px;
+        position:absolute;
+        top:-12px;
+        right:129px;
+        border-style:solid dashed dashed;
+        border-color:transparent transparent #E8A79A;
+        font-size:0;
+        line-height:0;
+        }
+      .red-rate:after{
+        content:"";
+        display:block;
+        border-width:5px;
+        position:absolute;
+        top:-10px;
+        right:130px;
+        border-style:solid dashed dashed;
+        border-color:transparent transparent #FDE4DF;
+        font-size:0;
+        line-height:0;
+      }
       .zhuan {
         display: inline-block;
         float: left;
@@ -464,7 +518,7 @@
         }
         li {
           height: 42px;
-          border: 1px solid #ddd;
+          // border: 1px solid #ddd;
           padding-top: .3rem;
           padding-bottom: .3rem;
           @media(min-width: 320px) {
@@ -1972,3 +2026,114 @@
   }
 }
 
+// 我的投资总览页
+
+.credits-overview {
+  canvas {
+    display: inline-block;
+    width: 100%;
+  }
+  .overview {
+    float: left;
+    width: 100%;
+    list-style: none;
+    padding: 40px 0 10px 0;
+    margin: 0;
+    background-color: #fff;
+    li {
+      width: 50%;
+      float: left;
+      .amount {
+        top: 47%;
+        text-align: center;
+        width: 96.5%;
+        color: #ff5400;
+        font-size: 1.4rem;
+        @media(min-width:411px) {
+          top: 48.5%;
+        }
+      }
+    }
+    li.overview-items {
+      padding-top: 2%;
+      @media(min-width: 350px) {
+        padding-top: 3%;
+      }
+      p {
+        margin-bottom: 11%;
+        color: #666;
+        font-size: 1.25rem;
+        span.yuan {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          margin-right: 2%;
+        }
+        span.amount1 {
+          margin-left: 12%;
+        }
+        span.amount2 {
+          margin-left: 29%;
+        }
+        @media(min-width: 360px) {
+          font-size: 1.3rem;
+          span.amount2 {
+            margin-left: 27%;
+          }
+        }
+        @media(min-width:375px) {
+          span.amount1 {
+            margin-left: 13%;
+          }
+        }
+        @media(min-width: 411px) {
+          font-size: 1.35rem;
+          margin-bottom: 13%;
+          span.amount1 {
+            margin-left: 19%;
+          }
+          span.amount2 {
+            margin-left: 32%;
+          }
+        }
+        span {
+          display: inline-block;
+        }
+        .yuan1 {
+          background-color: #2b8bf1;
+        }
+        .yuan2 {
+          background-color: #0460cd;
+        }
+        .yuan3 {
+          background-color: #ffaa25;
+        }
+        .yuan4 {
+          background-color: #ffc425;
+        }
+      }
+    }
+  }
+  .tab-wrap {
+    float: left;
+    width: 100%;
+    background-color: #f5f5f5;
+    ul {
+      padding: 0 2rem;
+      background-color: #fff;
+      li {
+        color: #666;
+        height: 54px;
+        line-height: 54px;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+        i {
+          line-height: 54px;
+        }
+      }
+    }
+
+  }
+}

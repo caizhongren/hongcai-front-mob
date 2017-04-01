@@ -11,7 +11,16 @@ angular.module('p2pSiteMobApp')
 
 .controller('AutoTenderCtrl',['$rootScope', '$scope', '$state', '$timeout', 'Restangular', 'DateUtils','ipCookie', function ($rootScope, $scope, $state, $timeout, Restangular, DateUtils, ipCookie) {
 
-
+  // 获取用户资产信息
+  var userAccount = {
+    tTotalAssets: 0
+  };
+  $scope.userAccount = sessionStorage.getItem('userAccount') ? angular.fromJson(sessionStorage.getItem('userAccount')) : userAccount;
+  Restangular.one('users').one('0/account').get().then(function(response){
+    if(!response || response.ret == -1) { return;}
+    $scope.userAccount = response;
+    sessionStorage.setItem('userAccount', angular.toJson($scope.userAccount));
+  });
   
   var currentDate = new Date(new Date().toLocaleDateString()).getTime();
   $scope.showStatus = false;
@@ -35,7 +44,8 @@ angular.module('p2pSiteMobApp')
     '360': '360天',
   };
   $scope.typeList = {
-    '1':'宏金保',
+    '5':'宏财精选',
+    '6':'宏财尊贵',
     '2':'债权转让',
     '0':'全部'
   };
@@ -210,7 +220,6 @@ $scope.onAutoTenders = function(autoTender) {
     return ;
   }
   Restangular.one('/autoTenders').post('',{
-    userId: $rootScope.account.userId,
     minInvestAmount: autoTender.minInvestAmount,
     minRemainDay: 0,
     maxRemainDay: autoTender.maxRemainDay,

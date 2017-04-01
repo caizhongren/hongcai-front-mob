@@ -3,71 +3,69 @@
   <div id="slideBanner" class="slide-banner position-re overflow-hid" >
     <!-- <div class="bd position-re"> -->
     <div class="slide position-re">
-      <ul>
-        <!-- 邀请活动 -->
-        <!-- <li class="position-re text-center">
-          <a class="pic display-bl" ui-sref="root.activity.newInvite-landing"><img src="/images/new/ad-invite.jpg" /></a>
-        </li>
-        <li class="position-re text-center">
-          <a class="pic display-bl" ui-sref="root.activity.novice-landing"><img src="/images/new/ad-newact.jpg" class="display-bl"/></a>
-        </li>
-        <li class="position-re text-center">
-          <a class="pic display-bl" ui-sref="root.activity.newInvite-landing"><img src="/images/new/ad-invite1.jpg" /></a>
-        </li>  -->
-        <!-- 双11 -->
-        <!-- <li class="position-re text-center">
-          <a class="pic display-bl" href="http://mp.weixin.qq.com/s?__biz=MzA5Nzg0MzA5OQ==&mid=2651741792&idx=1&sn=d1b2840b0695e5c6ed2096cad99799cf&chksm=8b605c94bc17d582d34c1cc3d741fb8dac8733437b218994af346c64e3841cf191d5a42e620f&scene=0#wechat_redirect"><img src="/images/new/ad11-min.jpg" /></a>
-        </li> -->
+      <ul ng-if="banners.length > 0">
+          <li class="position-re text-center" ng-repeat="banner in banners">
+            <a class="pic display-bl" ng-click="clickBanner(banner.linkUrl)")"><img ng-src="{{banner.imageUrl}}" /></a>
+          </li>
+      </ul>
+      <ul ng-if="!banners || banners.length <= 0">
+    
         <li class="position-re text-center">
           <a class="pic display-bl" ui-sref="root.activate-landing"><img src="/images/new/ad-cgt.jpg" /></a>
         </li>
-        <!-- <li class="position-re text-center">
-          <a class="pic display-bl" ui-sref="root.activity.novice-landing" href="/novice-activity"><img src="/images/new/ad08-min.jpg" /></a>
-        </li> -->
-        <!-- 体验金 -->
-        <!-- <li class="position-re text-center">
-          <a class="pic display-bl" ng-click="toExperience();"><img src="/images/new/ad-experience.jpg" /></a>
-        </li> -->
-        <!-- 送加息券活动 -->
-        <!-- <li class="position-re text-center">
-          <a class="pic display-bl" ui-sref="root.activity.send-coupon" href="/send-coupon"><img src="/images/new/ad07-min.jpg" /></a>
-        </li> -->
+        
         <li class="position-re text-center">
           <a class="pic display-bl" ng-click="goAutoTender();"><img src="/images/new/ad-autotender.jpg" /></a>
         </li>
-        <li class="position-re text-center">
-          <a class="pic display-bl" ui-sref="root.about" href="/about"><img src="images/new/ad05-min.png"/></a>
-        </li>
       </ul>
       <!-- 注意：需要手动增减个数 -->
-      <div class="dot">
+      <div class="dot" ng-if="banners.length > 0">
+        <span ng-class="$index === 0 ? 'cur' : ''" ng-repeat="banner in banners">{{$index + 1}}</span>
+      </div>
+      <div class="dot" ng-if="!banners || banners.length <= 0">
         <span class="cur">1</span>
         <span>2</span>
-        <span>3</span>
       </div>
     </div>
     <!-- <div class="hd position-ab"><ul></ul></div> -->
   </div>
+
+  <!-- 公告 -->
+  <div class="huadong">
+    <div class="hdimg"></div>
+    <div class="notice_active fl">
+      <ul class="margin-b-0">
+        <li class="notice_active_ch" ng-repeat="item in notices" ng-click="go_detailMsg(item.id);">
+          <span ng-if="(widthFlag===1 || widthFlag===0) && item.title.length < 20">{{item.title}}</span>
+          <span ng-if="(widthFlag===1 || widthFlag===0) && item.title.length >= 20">{{item.title | limitTo:19}}...</span>
+          <span ng-if="widthFlag===2">{{item.title}}</span>
+        </li>
+      </ul>   
+    </div>
+    <div class="gg_more fr" ng-click="go_moreMsg();"></div>
+  </div>  
+
   <!-- li列表 -->
-  <div class="about-list">
+  <div class="about-list clearfix">
     <ul class="cleafix overflow-hid margin-b-0">
-      <li class="fl text-center" ui-sref="root.about({tab:0})">
-        <img class="margin-t-" src="/images/main-list/about.png" width="27%" alt="">
-        <p class="ft-1p4 margin-b-0">走进宏财</p>
-      </li>
       <li class="fl text-center" ui-sref="root.activityCenter">
-        <img class="margin-t-" src="/images/main-list/bonus.png" width="23.6%" alt="">
-        <p class="ft-1p4 margin-b-0">活动中心</p>
+        <img class="" src="/images/new-main/active-center.png" width="20%" alt="">
+        <p class="ft-1p3 margin-b-0">活动中心</p>
       </li>
-      <li class="fl border-none text-center" ui-sref="root.safe">
-        <img class="margin-t-" src="/images/main-list/safe.png" width="25%" alt="">
-        <p class="ft-1p4 margin-b-0">安全保障</p>
+      <li class="fl text-center" ui-sref="root.safe">
+        <img class="" src="/images/new-main/safe.png" width="17%" alt="">
+        <p class="ft-1p3 margin-b-0">安全保证</p>
+      </li>
+      <li class="fl text-center" ui-sref="root.about({tab:0})">
+        <img class="" src="/images/new-main/about.png" width="18%" alt="">
+        <p class="ft-1p3 margin-b-0">走进宏财</p>
       </li>
     </ul>
   </div>
   <!--新手标  -->
-  <div ng-include src='"views/main/_main-project-template.html"'></div>
-
+  <!-- <div ng-include src='"views/main/_main-project-template.html"'></div> -->
+  <!-- 宏财精选、宏财尊贵、债权转让 -->
+  <div ng-include src='"views/main/_new-main-project-template.html"'></div>
 
 </div>
 <script>
@@ -77,18 +75,18 @@
    */
   setTimeout(function() {
     $('.slide').swipeSlide({
-    autoSwipe : true,
-    axisX : true,
-    continuousScroll:true,
-    speed : 2000,
-    transitionType : 'cubic-bezier(0.22, 0.69, 0.72, 0.88)',
-    firstCallback : function(i,sum,me){
-        me.find('.dot').children().first().addClass('cur');
-    },
-    callback : function(i,sum,me){
-        me.find('.dot').children().eq(i).addClass('cur').siblings().removeClass('cur');
-    }
-  });
+      autoSwipe : true,
+      axisX : true,
+      continuousScroll:true,
+      speed : 1500,
+      transitionType : 'cubic-bezier(0.22, 0.69, 0.72, 0.88)',
+      firstCallback : function(i,sum,me){
+          me.find('.dot').children().first().addClass('cur');
+      },
+      callback : function(i,sum,me){
+          me.find('.dot').children().eq(i).addClass('cur').siblings().removeClass('cur');
+      }
+    });
   }, 100);
   
 </script>

@@ -4,13 +4,13 @@
     <div class="header1 margin-t-1p5">
       <div class="pull-left">
         <img class="fl border-pull" ng-src="{{hasLoggedUser.headImgUrl || userHeadImgUrl}}" alt="" class="border-pull avatar">
-        <div class="fl margin-l-0p5" ng-show="securityStatus.realNameAuthStatus !== 1">
+        <div class="fl margin-l-0p5" ng-show="userAuth.authStatus !== 2">
           <p class="display-inb">
             未认证用户
             <span class="authent" ng-click="toRealNameAuth()">去认证 <i class="fa fa-angle-right margin-l-0p5" aria-hidden="true"></i></span></p>
           <p class="">注册用户</p>
         </div>
-        <div class="fl margin-t-1p2" ng-show="securityStatus.realNameAuthStatus === 1">
+        <div class="fl margin-t-1p2" ng-show="userAuth.authStatus === 2">
           <span class="ft-1p8 margin-l-1">{{ hasLoggedUser.nickName || (hasLoggedUser.mobile || hasLoggedUser.name) }}</span>
         </div>
       </div>
@@ -67,7 +67,6 @@
 		<img src="/images/user-center/cash-coupon03.png" alt="">
 		<p ng-show="status === 1">暂无可提奖金噢~</p>
      <!-- ng-click="toGet();" -->
-		<p ng-show="status === 1">如何获取 &gt;&gt;</p>
 		<p ng-show="status === 2">您还没有提取过奖金~</p>
 	</div>
   <!-- <div class="no-cash margin-t-2 text-center" ng-show="status === 2 && !loading && (cashCoupons.length <=0)">

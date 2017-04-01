@@ -7,12 +7,15 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-.controller('ExperienceMoneyCtrl', function ($scope, $rootScope,$state,$location, Restangular,restmod,HongcaiUser) {
+.controller('ExperienceMoneyCtrl', function ($scope, $rootScope,$state,$location, Restangular,restmod,HongcaiUser, UserService) {
  /*体验金查询*/
     $scope.page = 1;
     $scope.pageSize = 4;
     $scope.datas = [];
     $scope.totalPage = 1;
+    
+    UserService.loadUserAuth($scope);
+    UserService.loadAccount($scope);
     $scope.dealList = function(){
       if ($scope.totalPage < $scope.page){
         return;
@@ -33,12 +36,6 @@ angular.module('p2pSiteMobApp')
       });
     };
     $scope.dealList();
-  /*
-    体验金金额
-  */
-    Restangular.one('users').one('0/account').get().then(function(response){
-      $scope.account = response;
-    });
 
   /*查看更多*/
     $scope.loadMuch = function(){
@@ -51,13 +48,13 @@ angular.module('p2pSiteMobApp')
       if($scope.account.experienceAmount <= 100){
         return;
       }
-      if($rootScope.securityStatus.realNameAuthStatus !== 1){
+      if($scope.userAuth.authStatus !== 2){
         $rootScope.toRealNameAuth();
       }
-      if($rootScope.securityStatus.realNameAuthStatus == 1 && $rootScope.securityStatus.userAuth.active === false){
+      if($scope.userAuth.authStatus == 2 && $scope.userAuth.active === false){
         $rootScope.activate();
       }
-      if($rootScope.securityStatus.realNameAuthStatus == 1 && $rootScope.securityStatus.userAuth.active === true){
+      if($scope.userAuth.authStatus == 2 && $scope.userAuth.active === true){
         $location.url('/experience-project');
       }
     }

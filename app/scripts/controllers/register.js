@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RegisterCtrl', function(CheckPicUtil, checkPwdUtils, $http, DEFAULT_DOMAIN, Restangular, $timeout, $rootScope, $scope, $state, $stateParams, CheckMobUtil, md5, register, wechat, mobileCaptcha, ipCookie, Utils) {
+  .controller('RegisterCtrl', function(CheckPicUtil, checkPwdUtils, $http, $timeout, $rootScope, $scope, $state, $stateParams, CheckMobUtil, md5, register, ipCookie, Utils, WEB_DEFAULT_DOMAIN, SessionService) {
     // 注册链接上是否有邀请码
     $scope.btn = 'haha';
     $scope.user = {
@@ -48,8 +48,6 @@ angular.module('p2pSiteMobApp')
       return true;
     }
 
-    var openId = $rootScope.openId;
-    var signUpBe = register;
     $scope.busy = false;
     $scope.signUp = function(user) {
       user.password = user.password.replace(/\s/g, ""); //去除所有空格
@@ -62,7 +60,7 @@ angular.module('p2pSiteMobApp')
         act = ipCookie('act');
       }
        $scope.busy = true;
-      signUpBe.$create({
+      register.$create({
         // name: user.name,
         picCaptcha: user.picCaptcha,
         password: md5.createHash(user.password),
@@ -81,11 +79,9 @@ angular.module('p2pSiteMobApp')
             $scope.busy = false;
           }, 2000);
         } else {
-          $rootScope.user = {
-            id: response.id
-          };
+          SessionService.loginSuccess(response);
           $state.go('root.register-success', {
-            userId: $rootScope.user.id
+            userId: 0
           });
         }
       })
@@ -126,7 +122,7 @@ angular.module('p2pSiteMobApp')
       if (valLgth4 >= 11) {
         $http({
           method: 'POST',
-          url: '/hongcai/api/v1/activity/checkInviteCode?inviteCode=' + newVal
+          url: WEB_DEFAULT_DOMAIN + '/activity/checkInviteCode?inviteCode=' + newVal
         }).success(function(response) {
           if (response.data.isValid === 1) {
             $rootScope.msg = '';
@@ -154,7 +150,7 @@ angular.module('p2pSiteMobApp')
     }
 
     //图形验证码
-    $scope.getPicCaptcha = '/hongcai/api/v1/siteUser/getPicCaptcha?';
+    $scope.getPicCaptcha = WEB_DEFAULT_DOMAIN + '/siteUser/getPicCaptcha?';
     $scope.refreshCode = function() {
       angular.element('#checkCaptcha').attr('src', angular.element('#checkCaptcha').attr('src').substr(0, angular.element('#checkCaptcha').attr('src').indexOf('?')) + '?code=' + Math.random());
     };

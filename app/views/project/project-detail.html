@@ -1,4 +1,4 @@
-<!-- 宏金保详情页 -->
+<!-- 项目详情页 -->
 <div class="funds-project bg-white margin-b-7" ng-init="showMessage = false;">
   <div class="row current-detail-bg ft-white padding-t-2 padding-b-2">
     <p class="text-center margin-b-1 title-block-pre">
@@ -9,7 +9,7 @@
       <strong class="ft-4">{{project.annualEarnings}}%</strong>
       <!-- <strong class="ft-3">- {{simpleFundsProject.product.maxRate |currency:"":1 || 0}}</strong>% -->
     </p>
-    <p class="margin-0 text-center ft-1p8">预期年化收益率</p>
+    <p class="margin-0 text-center ft-1p8">期望年均回报率</p>
   </div>
   <div class="tab-arrow">
     <table class="u-full-width margin-b-0" border-collapse="collapse">
@@ -21,7 +21,7 @@
         <tr>
           <td>投资期限</td>
           <td class="position-re">
-            <span class="ft-orange">{{project.projectDays}}</span>天 &nbsp;
+            <span class="ft-orange">{{project.projectDays}}</span><span>天 </span>
             <span class="project_desp display-inbl position-ab" ng-click="showMessage = !showMessage;"></span>
             <span class="pro_des_date_tip ft-grey7 ft-1p4" ng-if="showMessage">以实际期限为准</span>
           </td>
@@ -45,7 +45,7 @@
   </div>
  <!--  <div class="padding-1">
     <a ng-click="goMoreDetail(project)" class="fr ft-orange padding-l-2" my-click-once>更多详情&nbsp;></a>
-    <a href="javascript:;" ng-click="toggle();" class="ft-grey4 fr" style="text-decoration:underline;" my-click-once>宏金保协议范本</a>
+    <a href="javascript:;" ng-click="toggle();" class="ft-grey4 fr" style="text-decoration:underline;" my-click-once>协议范本</a>
   </div> -->
   <!-- 更多详情模块 -->
   <div ng-include src="'views/project/project-detail-more.html'"></div>

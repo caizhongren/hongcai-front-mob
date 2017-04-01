@@ -5,15 +5,13 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-.controller('CashCouponCtrl', function ($scope, $rootScope, $state, Restangular, ipCookie) {
+.controller('CashCouponCtrl', function ($scope, $rootScope, $state, Restangular, ipCookie, UserService) {
 	/**
 	 * 默认头像
 	 */
 	$scope.userHeadImgUrl = '/images/user-center/avatar.png';
 
-	$scope.userAccount = Restangular.one('users').one('0/account').get().$object;
-
-	$scope.voucher = Restangular.one('users').one('0/userInviteNum').get().$object;
+	UserService.loadUserAuth($scope);
 
 	$scope.couponStatis = Restangular.one('users').one('0/increaseRateCoupon').get().$object;
 	/*如何获取*/
@@ -59,7 +57,7 @@ angular.module('p2pSiteMobApp')
 	$scope.selectStat($scope.status);
   $scope.toProjectList = function($index){
     if($rootScope.timeout){
-      $state.go('root._main-list-temp');
+      $state.go('root.project-list');
     }
     ipCookie('cashNum', $scope.cashCoupons[$index].number);
     ipCookie('cashType', $scope.cashCoupons[$index].type);

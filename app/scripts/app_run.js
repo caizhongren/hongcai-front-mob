@@ -7,14 +7,14 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .run(function($templateCache, $rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, $uibModal, ipCookie, restmod, config, Restangular, URLService, Utils) {
+  .run(function($templateCache, $rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, $uibModal, ipCookie, restmod, config, Restangular, URLService, Utils, SessionService) {
     // if ('addEventListener' in document) {
     // document.addEventListener('DOMContentLoaded', function() {
     FastClick.attach(document.body);
     // }, false);
     // }
 
-    Restangular.setBaseUrl('/hongcai/rest');
+    Restangular.setBaseUrl(DEFAULT_DOMAIN);
     Restangular.setDefaultHeaders({
       'Content-Type': 'application/json'
     })
@@ -98,6 +98,25 @@ angular.module('p2pSiteMobApp')
     }
 
     /**
+     * 激活存管通
+     */
+    $rootScope.payCompany = config.pay_company;
+    $rootScope.toActivate = function() {
+      if ($rootScope.payCompany === 'yeepay'|| !$rootScope.isLogged) {
+        return;
+      }
+      Restangular.one('users').one('0/userAuth').get({}).then(function(userAuth){
+        if(userAuth.ret !== -1 && (userAuth.authStatus !== 2 || !userAuth.active)){
+          $uibModal.open({
+            animation: true,
+            templateUrl: 'views/user-center/activate.html',
+            controller: 'ActivateCtrl'
+          });
+        }
+      });
+    } 
+
+    /**
      * 错误提示
      */
     $rootScope.showErrorMsg = false;
@@ -115,7 +134,7 @@ angular.module('p2pSiteMobApp')
       }
     }
     $rootScope.$on('$stateChangeStart', function(event, toState) {
-      var title = '宏财理财';
+      var title = '宏财网';
       if (toState.data && toState.data.title) {
         title = toState.data.title; 
       }
@@ -135,59 +154,50 @@ angular.module('p2pSiteMobApp')
 
       // $rootScope.showTitle = titleMap[path];
       $rootScope.showMe = false;
-      $rootScope.checkSession = $q.defer();
-      var $checkSessionServer = $http.get(DEFAULT_DOMAIN + '/users/checkSession');
-      $checkSessionServer.success(function(response) {
+      if(SessionService.isLogin()){
+        var user = SessionService.getUser();
+        // 已经授权过，1、登录 2未注册
+        $rootScope.isLogged = true;
+        $rootScope.bindWechat = false;
+        $rootScope.hasLoggedUser = user;
 
-        if (response.user) { // 已经授权过，1、登录 2未注册
-          $rootScope.isLogged = true;
-          $rootScope.bindWechat = false;
-          $rootScope.hasLoggedUser = response.user;
-          $rootScope.securityStatus = response.securityStatus;
-          $rootScope.account = response.account;
-          $rootScope.openid = response.user.openid;
-          $rootScope.nickName = response.user.nickName;
-          $rootScope.headImgUrl = response.user.headImgUrl;
-          $rootScope.userInfo = response.user;
-          $rootScope.voucher = response.voucher;
+        if (!user.mobile && !user.email) {
+          $rootScope.isLogged = false;
+        }
 
-          $rootScope.checkSession.resolve(response);
-          if (!response.user.mobile && !response.user.email) {
-            $rootScope.isLogged = false;
-          }
-
-          if ($rootScope.userInfo && $rootScope.userInfo.id > 0 && $rootScope.openid) {
-            $rootScope.bindWechat = true;
-          }
+        if ($rootScope.hasLoggedUser && $rootScope.hasLoggedUser.id > 0 && $rootScope.hasLoggedUser.openid) {
+          $rootScope.bindWechat = true;
+        }
 
 
-          if (!$rootScope.isLogged && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
-            $location.path('/login');
-            return;
-          }
-        } else if (response.ret === -1) { //用户未登录，。
+        if (!$rootScope.isLogged && toState.name.indexOf('root.userCenter') !== -1) {
+          $location.url('/login?redirectUrl=' + encodeURIComponent($location.url()));
+          return;
+        }
+        
+      } else { //用户未登录，。
+          $rootScope.isLogged = false;
           if(!ipCookie('guestId')){
-            ipCookie('guestId', $rootScope.uuid(32,16), {
+            ipCookie('guestId', Utils.uuid(32,16), {
               expires: 1,
               path: '/'
             });
           }
 
           if (!Utils.isWeixin()) {
-            $rootScope.checkSession.resolve(response);
-            if (routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
-              $state.go('root.login', {
-                redirectUrl: encodeURIComponent($location.url())
-              });
+            if (toState.name.indexOf('root.userCenter') !== -1) {
+              // $state.go('root.login', {
+              //   redirectUrl: encodeURIComponent($location.url())
+              // }, {notify: false});
+              $location.url('/login?redirectUrl' + encodeURIComponent($location.url()));
             }
-
             return;
           }
 
           var wechat_code = $location.search().code;
           var redirect_uri = location.href;
           if (wechat_code) { // 用户未登录但已经有code，去登录
-            restmod.model(DEFAULT_DOMAIN + '/desireUsers/').$find(wechat_code + '/openid').$then(function(response) {
+            restmod.model(DEFAULT_DOMAIN + '/users/').$find(wechat_code + '/openid').$then(function(response) {
               if (response.ret == -1) {
                 var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechatAppid +
                   "&redirect_uri=" + encodeURIComponent(URLService.removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
@@ -195,20 +205,17 @@ angular.module('p2pSiteMobApp')
                 return;
               }
 
+              SessionService.loginSuccess(response.$response.data);
+
               $rootScope.isLogged = true;
               $rootScope.bindWechat = false;
               $rootScope.hasLoggedUser = response;
-              $rootScope.userInfo = response;
-              $rootScope.openid = response.openid;
-              $rootScope.nickName = response.nickName;
-              $rootScope.headImgUrl = response.headImgUrl;
 
-              $rootScope.checkSession.resolve(response);
               if (!response.mobile && !response.email) {
                 $rootScope.isLogged = false;
               }
 
-              if ($rootScope.userInfo && $rootScope.userInfo.id > 0 && $rootScope.openid) {
+              if ($rootScope.hasLoggedUser && $rootScope.hasLoggedUser.id > 0 && $rootScope.hasLoggedUser.openid) {
                 $rootScope.bindWechat = true;
               }
 
@@ -220,10 +227,7 @@ angular.module('p2pSiteMobApp')
                 var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechatAppid +
                   "&redirect_uri=" + encodeURIComponent(URLService.removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
                 window.location.href = wechatRedirectUrl;
-              } else {
-                $rootScope.checkSession.resolve(response);
-              }
-
+              } 
 
             });
           } else { // 未登录且还未授权
@@ -234,37 +238,23 @@ angular.module('p2pSiteMobApp')
 
           }
         }
-        
-      });
 
 
-      $rootScope.checkSession.promise.then(function() {
-        /**
-         * 激活存管通
-         */
-        $rootScope.payCompany = config.pay_company;
-        $rootScope.toActivate = function() {
-          if ($rootScope.payCompany === 'yeepay'|| !$rootScope.isLogged || $rootScope.securityStatus.realNameAuthStatus !== 1 || $rootScope.securityStatus.userAuth.active === true) {
-            return;
-          }
-          $uibModal.open({
-            animation: true,
-            templateUrl: 'views/user-center/activate.html',
-            controller: 'ActivateCtrl'
-          });
-        }
-      });
+
     });
 
 
     $rootScope.$on('$stateChangeSuccess', function(event, toState) {
-      var title = '宏财理财';
+      clearInterval($rootScope.timer);  //清空首页公告的定时器
+      var title = '宏财网';
       if (toState.data && toState.data.title) {
         title = toState.data.title;
-      }else if($location.url() === '/guaranteepro-list?tab=1'){
+      }else if($location.url() === '/guaranteepro-list?tab=2'){
         title = '债权转让';       
       } else if ($location.url() === '/guaranteepro-list?tab=0' || $location.url() === '/guaranteepro-list') {
-        title = '宏金保'; 
+        title = '宏财精选'; 
+      } else if ($location.url() === '/guaranteepro-list?tab=1') {
+        title = '宏财尊贵'; 
       }
       
       $rootScope.headerTitle = title;
@@ -339,7 +329,8 @@ angular.module('p2pSiteMobApp')
         'activity',
         'privacy-policy',
         'assignments',
-        'assignment_qr'
+        'assignment_qr',
+        'credits-overview'
       ];
       if (notShowFooterRoute.indexOf(path) === -1) {
         $rootScope.showFooter = true;
@@ -383,32 +374,5 @@ angular.module('p2pSiteMobApp')
     $rootScope.showSuccessToast = false;
     $rootScope.successMsg = '';
 
-    $rootScope.uuid = function(len, radix){
-      var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
-      var uuid = [], i;
-      radix = radix || chars.length;
 
-      if (len) {
-        // Compact form
-        for (i = 0; i < len; i++) uuid[i] = chars[0 | Math.random()*radix];
-      } else {
-        // rfc4122, version 4 form
-        var r;
-
-        // rfc4122 requires these characters
-        uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
-        uuid[14] = '4';
-
-        // Fill in random data.  At i==19 set the high bits of clock sequence as
-        // per rfc4122, sec. 4.1.5
-        for (i = 0; i < 36; i++) {
-          if (!uuid[i]) {
-            r = 0 | Math.random()*16;
-            uuid[i] = chars[(i == 19) ? (r & 0x3) | 0x8 : r];
-          }
-        }
-      }
-
-      return uuid.join('');
-    }
-  })
+  });

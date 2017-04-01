@@ -3,9 +3,25 @@ body {
   height: 100%;
   margin: 0 auto;
   font-family: "微软雅黑" !important;
+  -webkit-tap-highlight-color:rgba(255,255,255,0);
   .ng-cloak {
     display: none;
   }
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+body::-webkit-scrollbar-track {
+    background-color: transparent;
+} /* 滚动条的滑轨背景颜色 */
+body::-webkit-scrollbar-thumb {
+    background-color: transparent; 
+} /* 滑块颜色 */
+body::-webkit-scrollbar-button {
+    background-color: transparent;
+} /* 滑轨两头的监听按钮颜色 */
+body::-webkit-scrollbar-corner {
+    background-color: transparent;
 }
 .normal-mid {
   max-width: 640px;
@@ -295,6 +311,9 @@ input[type="number"].transfer-btn:focus {
 }
 .ft-2 {
   font-size: 2rem;
+}
+.ft-2p2 {
+  font-size: 2.2rem;
 }
 .ft-2p3 {
   font-size: 2.3rem;
@@ -1436,6 +1455,7 @@ input[type="email"], input[type="number"], input[type="search"], input[type="tex
   z-index: 9999;
   max-width: 640px;
   margin: 0 auto;
+  padding: 0.7rem 1rem 0.7rem 1rem;
   .back {
     position: absolute;
     left: 1rem;
@@ -1458,7 +1478,7 @@ input[type="email"], input[type="number"], input[type="search"], input[type="tex
 }
 .nav-block {
   color: transparent;
-  height: 50px;
+  height: 44px;
 }
 //复制邀请链接弹窗
 .window-copy {
@@ -1585,7 +1605,6 @@ input[type="email"], input[type="number"], input[type="search"], input[type="tex
 }
 #loadingToast, #loadingTip{
   .weui_mask_transparent {
-    background: #fff;
     z-index: 9999;
   }
   .weui_toast {
