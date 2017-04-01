@@ -1118,8 +1118,24 @@ div, p {
       background-size: 270%;
     }
     .new-title {
-      padding: 2.2rem 1.5rem 2.1rem;
+      padding: 0rem 1.5rem 0rem;
       overflow: hidden;
+      .toDetail {
+        padding-top: 2.2rem;
+        width: 86%;
+        @media ( max-width : 414px ) {
+          width: 86%;
+        }
+        @media ( max-width : 375px ) {
+          width: 84%;
+        }
+        @media ( max-width : 360px ) {
+          width: 84%;
+        }
+        @media ( max-width : 320px ) {
+          width: 82%;
+        }
+      }
       .more-list {
         float: right;
         color: #f0c46c;
@@ -1129,7 +1145,7 @@ div, p {
         width: 4rem;
         height: 2rem;
         text-align: right;
-        top: .3rem;
+        top: 2.5rem;
       }
       .title-text {
         float: left;
@@ -1154,6 +1170,7 @@ div, p {
     .pro-info {
       width: 100%;
       overflow: hidden;
+      padding-top: 2.1rem; 
       ul {
         padding: 0 1.5rem;
       }
@@ -1258,10 +1275,10 @@ div, p {
         width: 1.5rem;
         height: 1.5rem;
         display: inline-block;
-        vertical-align: text-bottom;
+        vertical-align: middle;
       }
       .medium-short {
-        background: url('/images/new-main/spirit-icon.png') no-repeat -.1rem -1.36rem;
+        background: url('/images/new-main/spirit-icon.png') no-repeat -.1rem -1.38rem;
         background-size: 800%;
       }
       .steady-income {
