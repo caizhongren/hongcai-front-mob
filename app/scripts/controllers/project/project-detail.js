@@ -164,9 +164,9 @@ angular.module('p2pSiteMobApp')
           $scope.msg = '投资金额必须为' + $scope.project.increaseAmount + '的整数倍';
         }
       }
-
+      
+      $scope.profit = $scope.calcProfit($scope.project.annualEarnings) || 0;
       if($scope.selectIncreaseRateCoupon && $scope.project){
-        $scope.profit = $scope.calcProfit($scope.project.annualEarnings) || 0;
         if($scope.selectIncreaseRateCoupon.type ===1){
           $scope.increaseRateProfit = $scope.selectIncreaseRateCoupon != null ? $scope.calcProfit($scope.selectIncreaseRateCoupon.value) : 0;
         } else{
