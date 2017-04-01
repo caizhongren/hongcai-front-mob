@@ -31,6 +31,7 @@ angular.module('p2pSiteMobApp')
        */
       loginSuccess: function(user){
         sessionStorage.setItem('isLogin', 'true');
+        sessionStorage.setItem('lastCheckTime', new Date().getTime() + '');
         return sessionStorage.setItem('user', angular.toJson(user));
       },
 
@@ -38,6 +39,7 @@ angular.module('p2pSiteMobApp')
        * 获取session中用户信息
        */
       getUser: function(){
+      	this.checkSession();
         return sessionStorage.getItem('user') ?  angular.fromJson(sessionStorage.getItem('user')) : undefined;
       },
 
@@ -45,6 +47,7 @@ angular.module('p2pSiteMobApp')
        * 是否登录
        */
       isLogin: function(){
+      	this.checkSession();
         return sessionStorage.getItem('isLogin') === 'true';
       },
 
@@ -58,7 +61,20 @@ angular.module('p2pSiteMobApp')
       },
 
       getUserAuth: function(){
+      	this.checkSession();
         return sessionStorage.getItem('userAuth') ?  angular.fromJson(sessionStorage.getItem('userAuth')) : undefined;
+      },
+
+      checkSession: function(){
+      	var lastCheckTime = sessionStorage.getItem('lastCheckTime') ? -1: sessionStorage.getItem('lastCheckTime');
+      	if(Number(lastCheckTime) - new Date().getTime() > 20 * 60 * 1000){
+      		sessionStorage.setItem('isLogin', 'false');
+      		sessionStorage.removeItem('user');
+      		sessionStorage.removeItem('userAuth');
+      	} else {
+      		sessionStorage.setItem('lastCheckTime', new Date().getTime() + '');
+      	}
       }
+
     };
   });

@@ -195,7 +195,7 @@ p2pSiteMobApp
         }
       })
 
-    // 宏金保详情页
+    // 项目详情页
     .state('root.project-detail', {
         url: '/project-info/:number',
         views: {
@@ -206,7 +206,7 @@ p2pSiteMobApp
           }
         }
       })
-      // 新宏金保项目详情页
+      // 新项目项目详情页
       .state('root.project', {
         url: '/project/:number',
         views: {
@@ -231,12 +231,12 @@ p2pSiteMobApp
           title: '项目投资人'
         },
       })
-      // 宏金保列表页
-      .state('root._main-list-temp', {
+      // 项目列表页
+      .state('root.project-list', {
         url: '/guaranteepro-list?tab',
         views: {
           '': {
-            templateUrl: 'views/main/_main-list-temp.html',
+            templateUrl: 'views/main/project-list.html',
             controller: 'ProjectListCtrl',
             controllerUrl: 'scripts/controllers/project/project-list'
           }
@@ -283,21 +283,7 @@ p2pSiteMobApp
           title: '常见问题'
         }
       })
-      //债权转让列表页
-      .state('root._main-list-temp0', {
-        url: '/assignments',
-        data: {
-          title: '债权转让'
-        },
-        views: {
-          '': {
-            templateUrl: 'views/assignment/assignment-list.html',
-            controller: 'ProjectListCtrl',
-            controllerUrl: 'scripts/controllers/project/project-list'
-          }
-        }
-      })
-      // 宏金保详情页更多详情
+      // 项目详情页更多详情
       .state('root.project-detail-more', {
         url: '/project-detail-more/:number',
         views: {
@@ -405,11 +391,25 @@ p2pSiteMobApp
           }
         }
       })
-      // 我的债权
-      .state('root.userCenter.credits', {
-        url: '/credit',
+       // 我的投资总览
+      .state('root.userCenter.credits-overview', {
+        url: '/credits-overview',
         data: {
           title: '我的投资'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/credits-overview.html',
+            controller: 'CreditsOverviewCtrl',
+            controllerUrl: 'scripts/controllers/user-center/credits-overview'
+          }
+        }
+      })
+      // 我的投资列表
+      .state('root.userCenter.credits', {
+        url: '/credit?tab',
+        data: {
+          title: ''
         },
         views: {
           '': {

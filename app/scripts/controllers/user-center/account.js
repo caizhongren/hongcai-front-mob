@@ -9,14 +9,15 @@
  */
 angular.module('p2pSiteMobApp')
 
-.controller('AccountCtrl', function ($scope, $state, DEFAULT_DOMAIN, Restangular, toCunGuanUtils, SessionService) {
+.controller('AccountCtrl', function ($scope, $state, DEFAULT_DOMAIN, Restangular, toCunGuanUtils, SessionService, UserService) {
 
     /**
      * 默认头像
      */
     $scope.userHeadImgUrl = '/images/user-center/avatar.png';
 
-    $scope.userAccount = Restangular.one('users').one('0/account').get().$object;
+    UserService.loadUserAuth($scope);
+    UserService.loadAccount($scope);
 
     // $scope.voucher = Restangular.one('users').one('0/userInviteNum').get().$object;
 
@@ -25,18 +26,12 @@ angular.module('p2pSiteMobApp')
 
     $scope.unGotCash = Restangular.one('cashCoupons').one('stat').get().$object;
 
-    $scope.userAuth = SessionService.getUserAuth();
-    if(!$scope.userAuth){
-       Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
-        $scope.userAuth = userAuth;
-        SessionService.setUserAuthIfAuthed($scope.userAuth);
-      });
-    }
+
    
     /**
      * 推荐项目
      */
-    $scope.recommends = Restangular.one('projects').one('recommends').get({pageSize : 1}).$object;
+    // $scope.recommends = Restangular.one('projects').one('recommends').get({pageSize : 1}).$object;
 
     /**
      * 开通自动投标权限

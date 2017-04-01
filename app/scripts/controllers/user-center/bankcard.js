@@ -8,8 +8,17 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('BankcardCtrl', ['$scope', '$rootScope', '$state', 'HongcaiUser', 'restmod', 'WEB_DEFAULT_DOMAIN', function($scope, $rootScope, $state, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN) {
-
+  .controller('BankcardCtrl', ['$scope', '$rootScope', '$state', 'HongcaiUser', 'restmod', 'WEB_DEFAULT_DOMAIN', 'Restangular', function($scope, $rootScope, $state, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN, Restangular) {
+    // 获取用户总资产
+    var userAccount = {
+      tTotalAssets: 0
+    };
+    $scope.userAccount = sessionStorage.getItem('userAccount') ? angular.fromJson(sessionStorage.getItem('userAccount')) : userAccount;
+    Restangular.one('users').one('0/account').get().then(function(response){
+      if(!response || response.ret == -1) { return;}
+      $scope.userAccount = response;
+      sessionStorage.setItem('userAccount', angular.toJson($scope.userAccount));
+    });
 
     HongcaiUser.$find('0' + '/bankcard').$then(function(response) {
       if (response.$status === "ok" && response.ret !== -1) {

@@ -24,7 +24,7 @@ angular.module('p2pSiteMobApp')
       if(!$rootScope.isLogged) {
         $state.go('root.register');
       }else {
-        $state.go('root._main-list-temp');
+        $state.go('root.project-list');
       }
     }
 

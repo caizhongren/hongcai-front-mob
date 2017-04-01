@@ -5,7 +5,7 @@
       <span class="pull-right display-inb" ng-if="item.endTime-NowTime > 0"><i class="clock"></i>剩余{{item.dueDayTime}}天{{item.dueHourTime}}小时</span>
       <span class="pull-right display-inb" ng-if="item.endTime-NowTime <= 0"><i class="clock"></i>已结束</span>
     </div>
-    <a href="{{item.linkUrl}}">
+    <a ng-click="clickImage(item.linkUrl)">
       <img ng-src="{{item.imageUrl}}" alt="" width="100%" class="display-bl">
     </a>
   </div>

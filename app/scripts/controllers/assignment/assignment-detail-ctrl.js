@@ -7,10 +7,15 @@
  */
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('AssignmentDetailCtrl', function($state, $timeout, DateUtils, $stateParams, Restangular, $scope, $rootScope, Utils, toCunGuanUtils, SessionService) {
+  .controller('AssignmentDetailCtrl', function($state, $timeout, DateUtils, $stateParams, Restangular, $scope, $rootScope, Utils, toCunGuanUtils, SessionService, UserService) {
     var number = $stateParams.number; 
     $rootScope.showFooter = false;
     $rootScope.showLoadingToast = true;
+
+    if(SessionService.isLogin()){
+      UserService.loadAccount($scope);
+      UserService.loadUserAuth($scope);
+    };    
 
     /**
      * 债权转让信息详情
@@ -45,23 +50,18 @@ angular.module('p2pSiteMobApp')
           }
 
           // 登陆后计算金额
-          if(SessionService.isLogin()){
-            $scope.account = Restangular.one('users').one('0/account').get().$object;
-            var minBalanceAccount = $scope.account.balance - $scope.account.balance % 100;
-            var minInvestAccount = $scope.currentStock * 100;
-            $scope.assignmentInvestAmount = $scope.account.balance <= 100 ? '' : minBalanceAccount <= minInvestAccount ? minBalanceAccount : minInvestAccount;
-            $scope.userAuth = SessionService.getUserAuth();
-            if(!$scope.userAuth){
-              Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
-                $scope.userAuth = userAuth;
-                SessionService.setUserAuthIfAuthed($scope.userAuth);
-              });
-            }
-          };
+
 
         });
       }
     });
+
+    // $scope.$watch('account', function(){
+    //   if($scope.account && $scope.assignmentInvestAmount){
+    //     var minBalanceAccount = $scope.account.balance - $scope.account.balance % 100;
+    //     var minInvestAccount = $scope.currentStock * 100;
+    //   }
+    // });
 
     //监测投资金额
     $scope.$watch('assignmentInvestAmount', function(newVal, oldVal){

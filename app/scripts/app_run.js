@@ -106,7 +106,7 @@ angular.module('p2pSiteMobApp')
         return;
       }
       Restangular.one('users').one('0/userAuth').get({}).then(function(userAuth){
-        if(userAuth.authStatus !== 2 || !userAuth.active){
+        if(userAuth.ret !== -1 && (userAuth.authStatus !== 2 || !userAuth.active)){
           $uibModal.open({
             animation: true,
             templateUrl: 'views/user-center/activate.html',
@@ -134,7 +134,7 @@ angular.module('p2pSiteMobApp')
       }
     }
     $rootScope.$on('$stateChangeStart', function(event, toState) {
-      var title = '宏财理财';
+      var title = '宏财网';
       if (toState.data && toState.data.title) {
         title = toState.data.title; 
       }
@@ -171,7 +171,7 @@ angular.module('p2pSiteMobApp')
 
 
         if (!$rootScope.isLogged && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
-          $location.path('/login');
+          $location.url('/login?redirectUrl=' + encodeURIComponent($location.url()));
           return;
         }
         
@@ -185,9 +185,10 @@ angular.module('p2pSiteMobApp')
 
           if (!Utils.isWeixin()) {
             if (routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
-              $state.go('root.login', {
-                redirectUrl: encodeURIComponent($location.url())
-              });
+              // $state.go('root.login', {
+              //   redirectUrl: encodeURIComponent($location.url())
+              // }, {notify: false});
+              $location.url('/login?redirectUrl' + encodeURIComponent($location.url()));
             }
             return;
           }
@@ -195,7 +196,7 @@ angular.module('p2pSiteMobApp')
           var wechat_code = $location.search().code;
           var redirect_uri = location.href;
           if (wechat_code) { // 用户未登录但已经有code，去登录
-            restmod.model(DEFAULT_DOMAIN + '/desireUsers/').$find(wechat_code + '/openid').$then(function(response) {
+            restmod.model(DEFAULT_DOMAIN + '/users/').$find(wechat_code + '/openid').$then(function(response) {
               if (response.ret == -1) {
                 var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechatAppid +
                   "&redirect_uri=" + encodeURIComponent(URLService.removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
@@ -241,14 +242,18 @@ angular.module('p2pSiteMobApp')
 
     });
 
+
     $rootScope.$on('$stateChangeSuccess', function(event, toState) {
-      var title = '宏财理财';
+      clearInterval($rootScope.timer);  //清空首页公告的定时器
+      var title = '宏财网';
       if (toState.data && toState.data.title) {
         title = toState.data.title;
-      }else if($location.url() === '/guaranteepro-list?tab=1'){
+      }else if($location.url() === '/guaranteepro-list?tab=2'){
         title = '债权转让';       
       } else if ($location.url() === '/guaranteepro-list?tab=0' || $location.url() === '/guaranteepro-list') {
-        title = '宏金保'; 
+        title = '宏财精选'; 
+      } else if ($location.url() === '/guaranteepro-list?tab=1') {
+        title = '宏财尊贵'; 
       }
       
       $rootScope.headerTitle = title;
@@ -323,7 +328,8 @@ angular.module('p2pSiteMobApp')
         'activity',
         'privacy-policy',
         'assignments',
-        'assignment_qr'
+        'assignment_qr',
+        'credits-overview'
       ];
       if (notShowFooterRoute.indexOf(path) === -1) {
         $rootScope.showFooter = true;

@@ -1,0 +1,98 @@
+<!-- 新首页项目列表 -->
+<div class="new-main-list">
+  <!-- 宏财精选 -->
+  <div class="gap"></div>
+  <div class="main-list-temp clear border-none">
+    <div class="projectType0"></div>
+    <div class="new-title ft-666">
+      <span class="title-text ft-1p5" ng-show="widthFlag===0 && choiceProject.name.length <= 12" ng-click="toDetail(choiceProject)">{{choiceProject.name}}</span>
+      <span class="title-text ft-1p5" ng-show="widthFlag===0 && choiceProject.name.length > 12" ng-click="toDetail(choiceProject)">{{choiceProject.name | limitTo:13}}...</span>
+      <span class="title-text ft-1p5" ng-show="widthFlag===1 || widthFlag===2" ng-click="toDetail(choiceProject)">{{choiceProject.name}}</span>
+      <span class="hot-choiceProject" ng-if="choiceProject.amount >0"></span>  
+      <span class="more-list ft-1p2" ui-sref="root.project-list({tab: 0})">更多</span>    
+      <img class="sold-out" src="/images/new-main/sold-out.png" alt="" ng-show="choiceProject.amount <=0">  
+    </div>
+    <div class="pro-info" ng-click="toDetail(choiceProject)">
+      <ul>
+        <li class=""><span class="ft-2p2 margin-r-0p3 ft-Arial" ng-class="choiceProject.amount >0 ? 'orange-rate' :'ft-grey999'">{{choiceProject.annualEarnings | number: 2}}</span></li>
+        <li class=""><span class="ft-1p8 margin-r-0p3 ft-Arial ft-black4">{{choiceProject.amount | currency:"":0}}</span></li>
+        <li class=""><span class="ft-1p8 margin-r-0p3 ft-Arial ft-black4">{{choiceProject.projectDays}}</span></li>
+      </ul>
+      <ul class="padding-t-0 margin-b-0 ft-666 border-greye-bottom">
+        <li>期望年均回报率(%)</li>
+        <li>可投金额(元)</li>
+        <li>投资期限(天)</li>
+      </ul>
+      <ul class="padding-t-0 margin-b-0 ft-grey999">
+        <li><span class="medium-short"></span><span class="scale-0p8 display-inb">中短期</span></li>
+        <li><span class="steady-income"></span><span class="scale-0p8 display-inb">收益稳健</span></li>
+        <li><span class="mortgage-guarantee"></span><span class="scale-0p8 display-inb">抵押强担保</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 宏财尊贵 -->
+  <div class="gap"></div>
+  <div class="main-list-temp clear border-none">
+    <div class="projectType1"></div>
+    <div class="new-title ft-666">
+      <span class="title-text ft-1p5" ng-show="widthFlag===0 && honorableProject.name.length <= 12" ng-click="toDetail(honorableProject)">{{honorableProject.name}}</span>
+      <span class="title-text ft-1p5" ng-show="widthFlag===0 && honorableProject.name.length > 12" ng-click="toDetail(honorableProject)">{{honorableProject.name | limitTo:13}}...</span>
+      <span class="title-text ft-1p5" ng-show="widthFlag===1 || widthFlag===2" ng-click="toDetail(honorableProject)">{{honorableProject.name}}</span>
+      <span class="hot-honorableProject" ng-if="honorableProject.amount >0"></span>  
+      <span class="more-list ft-1p2" ui-sref="root.project-list({tab: 1})">更多</span>    
+      <img class="sold-out" src="/images/new-main/sold-out.png" alt="" ng-if="honorableProject.amount <=0">  
+    </div>
+    <div class="pro-info" ng-click="toDetail(honorableProject)">
+      <ul>
+        <li class=""><span class="ft-2p2 margin-r-0p3 ft-Arial" ng-class="honorableProject.amount >0 ? 'orange-rate' :'ft-grey999'">{{honorableProject.annualEarnings | number: 2}}</span></li>
+        <li class=""><span class="ft-1p8 margin-r-0p3 ft-Arial ft-black4">{{honorableProject.amount | currency:"":0}}</span></li>
+        <li class=""><span class="ft-1p8 margin-r-0p3 ft-Arial ft-black4">{{honorableProject.projectDays}}</span></li>
+      </ul>
+      <ul class="padding-t-0 margin-b-0 ft-666 border-greye-bottom">
+        <li>期望年均回报率(%)</li>
+        <li>可投金额(元)</li>
+        <li>投资期限(天)</li>
+      </ul>
+      <ul class="padding-t-0 margin-b-0 ft-grey999">
+        <li><span class="medium-short"></span><span class="scale-0p8 display-inb">中短期</span></li>
+        <li><span class="steady-income"></span><span class="scale-0p8 display-inb">收益稳健</span></li>
+        <li><span class="mortgage-guarantee"></span><span class="scale-0p8 display-inb">抵押强担保</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 债权转让 -->
+  <div class="gap"></div>
+  <div class="main-list-temp clear border-none">
+    <div class="projectType2"></div>
+    <div class="new-title ft-666">
+      <span class="title-text ft-1p5" ng-show="widthFlag===0 && assignmentProject.name.length <= 12" ng-click="toDetail(assignmentProject)">{{assignmentProject.name}}</span>
+      <span class="title-text ft-1p5" ng-show="widthFlag===0 && assignmentProject.name.length > 12" ng-click="toDetail(assignmentProject)">{{assignmentProject.name | limitTo:13}}...</span>
+      <span class="title-text ft-1p5" ng-show="widthFlag===1 || widthFlag===2" ng-click="toDetail(assignmentProject)">{{assignmentProject.name}}</span>
+      <span class="more-list ft-1p2" ui-sref="root.project-list({tab: 2})">更多</span>  
+      <img class="sold-out" src="/images/new-main/sold-out.png" alt="" ng-if="choiceProject.currentStock * 100 <= 0">
+    </div>
+    <div class="pro-info" ng-click="toDetail(assignmentProject)">
+      <ul>
+        <li class=""><span class="ft-2p2 margin-r-0p3 ft-Arial orange-rate">{{assignmentProject.annualEarnings | number: 2}}</span></li>
+        <li class=""><span class="ft-1p8 margin-r-0p3 ft-Arial ft-black4">{{assignmentProject.currentStock *100 | currency:"":0}}</span></li>
+        <li class=""><span class="ft-1p8 margin-r-0p3 ft-Arial ft-black4">{{assignmentProject.remainDay}}</span></li>
+      </ul>
+      <ul class="padding-t-0 margin-b-0 ft-666 border-greye-bottom">
+        <li>期望年均回报率(%)</li>
+        <li>可投金额(元)</li>
+        <li>剩余期限(天)</li>
+      </ul>
+      <ul class="padding-t-0 margin-b-0 ft-grey999">
+        <li><span class="day-interest"></span><span class="scale-0p8 display-inb">当日计息</span></li>
+        <li><span class="steady-income"></span><span class="scale-0p8 display-inb">收益稳健</span></li>
+        <li><span class="asset-quality"></span><span class="scale-0p8 display-inb">资产优质</span></li>
+      </ul>
+    </div>
+  </div> 
+
+
+  <!-- 风险提醒 -->
+  <div class="risk-reminder"><span class="scale-0p8 display-inb">期望回报可能存在市场波动 , 请谨慎投资 !</span></div>
+</div>

@@ -1,13 +1,13 @@
-<!-- 新宏金保项目详情页 -->
+<!-- 新宏财精选和宏财尊贵项目详情页 -->
 <div class="new-project-detail">
 	<div class="header">
 		<ul>
 			<li>
-				<p>{{project.annualEarnings}}<span>%</span></p>
-				<p>预期年化利率</p>
+				<p>{{project.annualEarnings || 0}}<span>%</span></p>
+				<p>期望年均回报率</p>
 			</li>
 			<li>
-				<p>{{project.projectDays}}<span>天(项目期限)</span></p>
+				<p>{{project.projectDays || 0}}<span>天(项目期限)</span></p>
 				<p>{{project.total || 0 | currency:"":0}}<span>元</span></p>
 				<div class="pro-info3">
 					<div class="process">
@@ -55,25 +55,25 @@
     <ul>
     	<li>
     		<p>剩余可投(元)</p>
-    		<p>{{project.availableAmount || 0 | currency:"":0}}</p>
+    		<p>{{project.amount || 0 | currency:"":0}}</p>
     	</li>
     	<li>
     		<p>预计收益(元)</p>
         <p>{{ profit | number: 2 }}
-          <span ng-show="selectIncreaseRateCoupon">+{{selectIncreaseRateCoupon.type ===1 ? increaseRateProfit : cashProfit || 0 | number : 2}}</span>
+          <span ng-show="selectIncreaseRateCoupon">+ {{selectIncreaseRateCoupon.type ===1 ? increaseRateProfit : cashProfit || 0 | number : 2}}</span>
         </p>
     	</li>
     </ul>
     <!-- input输入框 -->
     <div class="invest">
-    	<div ng-click="modInvestAmout(-project.increaseAmount,$event)" class="plus grey-status"><hr></div>
+    	<!-- <div ng-click="modInvestAmout(-project.increaseAmount,$event)" class="plus grey-status"><hr></div> -->
     	<input id="invest-input" class="invest-input" type="number" placeholder="请输入投资金额" ng-model="project.investAmount" ng-disabled="project.status !==7 || userAuth.authStatus !== 2">
-    	<div ng-click="modInvestAmout(project.increaseAmount,$event)" class="add orange-status"><hr><hr></div>
+    	<!-- <div ng-click="modInvestAmout(project.increaseAmount,$event)" class="add orange-status"><hr><hr></div> -->
     </div>
 	</div>
   <!-- 状态按钮 -->
 	<div class="invest-btn">
-    <button id="invest-btn1" class="button button-primary" type="button" ng-show="!msg && isLogged && project.status === 7 && userAuth.authStatus === 2 && project.investAmount" ng-click="toInvest(project)" ng-disabled="showSelectIncreaseRateCoupon && clicked">立即投资</button>
+    <button id="invest-btn1" class="button button-primary" type="button" ng-show="!msg && isLogged && project.status === 7 && userAuth.authStatus === 2 && project.investAmount>=100" ng-click="toInvest(project)" ng-disabled="showSelectIncreaseRateCoupon && clicked">立即投资</button>
     <button class="button btn-disabled" ng-show="(project.status ===7 && userAuth.authStatus === 2 && msg) || (project.status ===7 && !project.investAmount && userAuth.authStatus === 2)">立即投资</button>
     <button class="button btn-disabled" ng-show="project.status ===6 ">预发布</button>
     <button class="button btn-disabled" ng-show="project.status ===9 ">还款中</button>
@@ -85,7 +85,7 @@
   </div>
 </div>
 <!-- 加息券弹出 -->
-<div class="rate-increase " ng-show="(increaseRateCoupons.length > 0 && showSelectIncreaseRateCoupon)">
+<div class="rate-increase" ng-show="(increaseRateCoupons.length > 0 && showSelectIncreaseRateCoupon)">
   <div class="bg-white position-ab rate-increase-list width-pull">
     <ul class="padding-1 margin-b-0 padding-b-0 normal-mid">
       <!-- 可用奖励 ：加息券 + 现金券-->
