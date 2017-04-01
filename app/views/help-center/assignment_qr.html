@@ -196,11 +196,16 @@
       $this = $(this),
       $next = $this.next();
 
-      $next.slideToggle();
-      $this.parent().toggleClass('open');
+      if ($next.css('display') == 'block') {
+        $next.hide();
+        $this.parent().removeClass('open');
+      }else {
+        $next.show();
+        $this.parent().addClass('open');
+      }
 
       if (!e.data.multiple) {
-        $el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+        $el.find('.submenu').not($next).hide().parent().removeClass('open');
       };
     }   
 

@@ -17,6 +17,7 @@ angular.module('p2pSiteMobApp')
       $state.go('root.main');
     } 
     $scope.profit = 0;
+    $scope.msg = '';
     $scope.increaseRateProfit = 0;
     $scope.projectStatusMap = projectStatusMap;
     $scope.unSelectCouponMsg = '';
@@ -164,7 +165,7 @@ angular.module('p2pSiteMobApp')
           $scope.msg = '投资金额必须为' + $scope.project.increaseAmount + '的整数倍';
         }
       }
-      
+
       $scope.profit = $scope.calcProfit($scope.project.annualEarnings) || 0;
       if($scope.selectIncreaseRateCoupon && $scope.project){
         if($scope.selectIncreaseRateCoupon.type ===1){
