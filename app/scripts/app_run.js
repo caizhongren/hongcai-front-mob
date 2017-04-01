@@ -170,12 +170,13 @@ angular.module('p2pSiteMobApp')
         }
 
 
-        if (!$rootScope.isLogged && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
+        if (!$rootScope.isLogged && toState.name.indexOf('root.userCenter') !== -1) {
           $location.url('/login?redirectUrl=' + encodeURIComponent($location.url()));
           return;
         }
         
       } else { //用户未登录，。
+          $rootScope.isLogged = false;
           if(!ipCookie('guestId')){
             ipCookie('guestId', Utils.uuid(32,16), {
               expires: 1,
@@ -184,7 +185,7 @@ angular.module('p2pSiteMobApp')
           }
 
           if (!Utils.isWeixin()) {
-            if (routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
+            if (toState.name.indexOf('root.userCenter') !== -1) {
               // $state.go('root.login', {
               //   redirectUrl: encodeURIComponent($location.url())
               // }, {notify: false});

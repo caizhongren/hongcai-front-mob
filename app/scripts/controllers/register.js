@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RegisterCtrl', function(CheckPicUtil, checkPwdUtils, $http, $timeout, $rootScope, $scope, $state, $stateParams, CheckMobUtil, md5, register, ipCookie, Utils, WEB_DEFAULT_DOMAIN) {
+  .controller('RegisterCtrl', function(CheckPicUtil, checkPwdUtils, $http, $timeout, $rootScope, $scope, $state, $stateParams, CheckMobUtil, md5, register, ipCookie, Utils, WEB_DEFAULT_DOMAIN, SessionService) {
     // 注册链接上是否有邀请码
     $scope.btn = 'haha';
     $scope.user = {
@@ -47,7 +47,7 @@ angular.module('p2pSiteMobApp')
       }
       return true;
     }
-    var signUpBe = register;
+
     $scope.busy = false;
     $scope.signUp = function(user) {
       user.password = user.password.replace(/\s/g, ""); //去除所有空格
@@ -60,7 +60,7 @@ angular.module('p2pSiteMobApp')
         act = ipCookie('act');
       }
        $scope.busy = true;
-      signUpBe.$create({
+      register.$create({
         // name: user.name,
         picCaptcha: user.picCaptcha,
         password: md5.createHash(user.password),
@@ -79,11 +79,9 @@ angular.module('p2pSiteMobApp')
             $scope.busy = false;
           }, 2000);
         } else {
-          $rootScope.user = {
-            id: response.id
-          };
+          SessionService.loginSuccess(response);
           $state.go('root.register-success', {
-            userId: $rootScope.user.id
+            userId: 0
           });
         }
       })
