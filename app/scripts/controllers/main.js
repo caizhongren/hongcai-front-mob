@@ -74,6 +74,14 @@ angular.module('p2pSiteMobApp')
       }
     }
 
+    $scope.go_detailMsg =function (noticeId){
+      if (!$rootScope.isLogged) {
+        $state.go('root.login');
+      }else {
+        $state.go('root.userCenter.web-site-notice',{id: noticeId})
+      }
+    }
+
     //查询网站公告
     $scope.getNotice = function(){
       Restangular.one('userMsgs/0/notices').get({

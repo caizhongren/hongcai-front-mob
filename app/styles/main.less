@@ -115,7 +115,7 @@
 
 .main {
   .gap {
-    height: 1.3rem;
+    height: 1.6rem;
     background-color: #efeef4;
   }
   // 首页的关于我们li列表
@@ -1046,10 +1046,10 @@ div, p {
   .hdimg {
     float:left;
     width: 2rem;
-    height: 1.5rem;
+    height: 1.9rem;
     display: inline-block;
-    background: url('/images/new-main/spirit-icon.png') no-repeat 0px .4rem;
-    background-size: 569%;
+    background: url('/images/new-main/spirit-icon.png') no-repeat 0px .3rem;
+    background-size: 652%;
     font-size: 1.3rem;
   }
   .notice_active {
@@ -1129,6 +1129,7 @@ div, p {
         width: 4rem;
         height: 2rem;
         text-align: right;
+        top: .3rem;
       }
       .title-text {
         float: left;
@@ -1178,7 +1179,11 @@ div, p {
       ul li:nth-child(1) {
         margin-top: 0.3rem;
         margin-bottom: 0.3rem;
-        width: 36%;
+        width: 35%;
+        text-align: left;
+        @media ( max-width : 320px ) {
+          width: 36%;
+        }
         p:nth-child(1) {
           margin-bottom: 0.5rem;
           line-height: 4rem;
@@ -1227,7 +1232,20 @@ div, p {
         }
       }
       ul li:nth-child(3) {
-        width: 30%;
+        width: 31%;
+        text-align: right;
+        @media ( max-width : 414px ) {
+          width: 33%;
+        }
+        @media ( max-width : 375px ) {
+          width: 32%;
+        }
+        @media ( max-width : 360px ) {
+          width: 32%;
+        }
+        @media ( max-width : 320px ) {
+          width: 31%;
+        }
         span{
           display: inline-block;
         }

@@ -35,7 +35,7 @@
     <div class="hdimg"></div>
     <div class="notice_active fl">
       <ul class="margin-b-0">
-        <li class="notice_active_ch" ng-repeat="item in notices">
+        <li class="notice_active_ch" ng-repeat="item in notices" ng-click="go_detailMsg(item.id);">
           <span ng-if="(widthFlag===1 || widthFlag===0) && item.title.length < 20">{{item.title}}</span>
           <span ng-if="(widthFlag===1 || widthFlag===0) && item.title.length >= 20">{{item.title | limitTo:19}}...</span>
           <span ng-if="widthFlag===2">{{item.title}}</span>
