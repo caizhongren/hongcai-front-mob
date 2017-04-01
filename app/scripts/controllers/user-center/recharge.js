@@ -8,11 +8,16 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RechargeCtrl', function($timeout, $scope, $rootScope, $stateParams, HongcaiUser, $state, restmod, DEFAULT_DOMAIN, WEB_DEFAULT_DOMAIN, toCunGuanUtils) {
+  .controller('RechargeCtrl', function($timeout, $scope, $rootScope, $stateParams, HongcaiUser, $state, restmod, DEFAULT_DOMAIN, WEB_DEFAULT_DOMAIN, toCunGuanUtils, Utils) {
     $rootScope.selectedSide = 'account';
     $scope.rechargeAmount = $stateParams.amount;
     $scope.showLimit = false;
     var scrollTop = 0;
+    $scope.footer = function(){
+      if (Utils.deviceCode() == 5 || Utils.deviceCode() == 6) {
+        $rootScope.showFooter = !$rootScope.showFooter;
+      }
+    }
     // 支持银行弹窗
     $scope.showbankLimit = function() {
       $scope.showLimit = !$scope.showLimit;

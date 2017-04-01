@@ -44,7 +44,7 @@
         </div>
         <div class="padding-l-2 padding-r-2">
           <!-- ng-pattern="/^[0-9]*(\.[0-9]{1,2})?$/" -->
-          <input name="amount" type="number" class="input-amount u-full-width padding-1 margin-t-0p5" ng-model="rechargeAmount" ng-focus required placeholder="该卡本次最多充值{{bankRemain ||0}}元">
+          <input name="amount" type="number" class="input-amount u-full-width padding-1 margin-t-0p5" ng-model="rechargeAmount" ng-focus="footer();" ng-blur="footer()" required placeholder="该卡本次最多充值{{bankRemain ||0}}元">
         </div>
         <div class="padding-l-2 padding-r-2">
           <button type="submit" class="u-full-width ft-1p6 button button-primary margin-t-0p5 {{rechargeForm.$invalid || busy || rechargeAmount < 3 || rechargeAmount > bankRemain ? 'button-disabled' : ''}}" ng-disabled="rechargeForm.$invalid || busy" ng-click="recharge(rechargeAmount);">立即充值</button>

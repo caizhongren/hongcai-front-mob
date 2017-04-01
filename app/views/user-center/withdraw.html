@@ -19,12 +19,14 @@
       <div class="hint text-center bg-red1 box-shadow margin-t-9" ng-show="simpleWithdraw.amountDraw > availableCashRealNo || simpleWithdraw.amountDraw<1">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入一个介于 1 -- {{availableCashRealNo | number:2}}之间的值</span>
       </div>
-      <label class="padding-l-2 padding-r-2">
-        <input type="text" name="amount" class="u-full-width padding-t-1 padding-b-1 padding-l-1 padding-r-1 margin-t-1" min="1" max="{{availableCashRealNo }}" ng-model="simpleWithdraw.amountDraw" ng-pattern="/^[0-9]*(\.[0-9]{1,2})?$/" placeholder="请输入提现金额" ng-disabled="availableCashRealNo  < 1" required>
+      <div class="padding-l-2 padding-r-2">
+        <input type="text" name="amount" class="u-full-width padding-t-1 padding-b-1 padding-l-1 padding-r-1 margin-t-1" min="1" max="{{availableCashRealNo }}" ng-model="simpleWithdraw.amountDraw" ng-pattern="/^[0-9]*(\.[0-9]{1,2})?$/" placeholder="请输入提现金额" ng-disabled="availableCashRealNo  < 1" required ng-focus="footer();" ng-blur="footer()" >
+      </div>
+      <div class="padding-l-2 padding-r-2">
         <button type="submit" class="u-full-width button button-primary margin-t-0p5 {{withdrawForm.$invalid || simpleWithdraw.amountDraw>availableCashRealNo || simpleWithdraw.amountDraw < 1 ? 'button-disabled' : ' '}}" ng-disabled="withdrawForm.$invalid || simpleWithdraw.amountDraw>availableCashRealNo || simpleWithdraw.amountDraw<1" ng-click="toWithdraw(simpleWithdraw)" >
           申请提现
         </button>
-      </label>
+      </div>
     </form>
     <hr class="margin-0" ng-show="simpleWithdraw.cardStatus && simpleWithdraw.cardStatus == 'VERIFIED'">
     <div class="ft-grey4 margin-t-0p5 padding-2" ng-show="simpleWithdraw.cardStatus && simpleWithdraw.cardStatus == 'VERIFIED'">

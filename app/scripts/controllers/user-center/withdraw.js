@@ -8,9 +8,13 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('WithdrawCtrl', function($scope, $rootScope, $state, HongcaiUser, fundsProjects, toCunGuanUtils) {
+  .controller('WithdrawCtrl', function($scope, $rootScope, $state, HongcaiUser, fundsProjects, toCunGuanUtils, Utils) {
     $rootScope.selectedSide = 'account';
-
+    $scope.footer = function(){
+      if (Utils.deviceCode() == 5 || Utils.deviceCode() == 6) {
+        $rootScope.showFooter = !$rootScope.showFooter;
+      }
+    }
 
     HongcaiUser.$find('0' + '/availableCash').$then(function(response) {
       if (response.ret !== -1) {
