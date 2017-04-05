@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('GradeCtrl',function ($scope, $state, $rootScope, $location, $stateParams, HongcaiUser, ipCookie) {
+  .controller('RateCouponCtrl',function ($scope, $state, $rootScope, $location, $stateParams, HongcaiUser, ipCookie) {
     $scope.page = 1;
     $scope.pageSize = 4;
     $scope.datas = [];

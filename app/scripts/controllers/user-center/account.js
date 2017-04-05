@@ -64,7 +64,7 @@ angular.module('p2pSiteMobApp')
 
     //查看更多 index:0体验金，1加息券，2邀请
     $scope.goIncreaseRateCoupon = function(index){
-      $state.go('root.userCenter.grade',{
+      $state.go('root.userCenter.rate-coupon',{
         tab : index
       });
     }

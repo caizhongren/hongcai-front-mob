@@ -1920,3 +1920,79 @@ input::-webkit-inner-spin-button {
 
 }
 
+//我的奖励
+.invite-reward {
+    .invite-list {
+        padding: 0 1rem;
+        margin-bottom: 4rem;
+        .table-wrap {
+            position: relative;
+            border: 8px solid #cc4160;
+            border-image: linear-gradient(#cc4160 , #c95941) 30 30;
+            background-clip: padding-box;
+            border-radius: .4rem;
+            table {
+                width: 100%;
+                margin: 1rem 0;
+                td {
+                    padding: 12px 6px;
+                    text-align: center;
+                    width: 33%;
+                    color: #fff;
+                }
+                td.bd-right {
+                    border-right: 1px solid #bf1619;
+                }
+                td.bd-bottom {
+                    border-bottom: 1px solid #bf1619; 
+                }
+                td.bd-bottom-none {
+                    border-bottom: none !important;
+                }
+            }
+        }
+
+        .table-wrap::after{
+            position: absolute;
+            top: -4px; bottom: -4px;
+            left: -4px; right: -4px;
+            background: linear-gradient(#cc4160, #c95941);
+            content: '';
+            z-index: -1;
+            border-radius: 10px;
+        }
+        
+    }
+    .part2 {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 3%;
+        div {
+            display: inline-block;
+            width: 48.5%;
+            text-align: center;
+            font-size: 1.8rem;
+            border-radius: .4rem;
+            margin-bottom: 2.5rem;
+            p {
+                line-height: 1.6rem;
+            }
+            p:first-child {
+                margin-top: 1rem;
+                font-size: 1.8rem;
+            }
+            p:last-child {
+                margin-bottom: .6rem;
+                font-size: 1.2rem;
+            }
+        }
+        div:first-child {
+            background-color: #9d3bc4;
+        }
+        div:last-child {
+            background-color: #feae01;
+            
+        }
+    }  
+}
+

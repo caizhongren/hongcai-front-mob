@@ -322,7 +322,7 @@ angular.module('p2pSiteMobApp')
         'activity-scene',
         'share-scene',
         'share-spring',
-        'grade',
+        'rate-coupon',
         'project',
         'project-info',
         'project-detail',

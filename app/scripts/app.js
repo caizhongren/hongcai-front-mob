@@ -665,6 +665,7 @@ p2pSiteMobApp
         title: '邀请好友，双重奖励'
       }
     })
+
     //新手活动落地页
       .state('root.activity.novice-landing', {
         url: '/novice-activity?act&f',
@@ -679,6 +680,22 @@ p2pSiteMobApp
           title: '宏运当头，财源滚滚'
         }
       })
+
+    // 邀请活动-我的奖励
+      .state('root.activity.reward', {
+        url: '/reward',
+        views: {
+          '': {
+            templateUrl: 'views/activity/reward.html',
+            controller: 'RewardCtrl',
+            controllerUrl: 'scripts/controllers/activity/reward-ctrl'
+          }
+        },
+        data: {
+          title: '我的奖励'
+        }
+      })
+
     //体验金新手标
     .state('root.experience-project-detail', {
         url: '/experience-project',
@@ -693,14 +710,15 @@ p2pSiteMobApp
           }
         }
       })
-      //我的奖励
-      .state('root.userCenter.grade', {
+
+      //我的加息券
+      .state('root.userCenter.rate-coupon', {
         url: '/rate-coupon?tab&subTab',
         views: {
           '': {
-            templateUrl: 'views/user-center/grade.html',
-            controller: 'GradeCtrl',
-            controllerUrl: 'scripts/controllers/user-center/grade'
+            templateUrl: 'views/user-center/rate-coupon.html',
+            controller: 'RateCouponCtrl',
+            controllerUrl: 'scripts/controllers/user-center/rate-coupon'
           }
         }
       })
