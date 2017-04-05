@@ -676,7 +676,7 @@ p2pSiteMobApp
         }
       },
       data: {
-        title: '邀请好友，双重奖励'
+        title: '邀请好友'
       }
     })
     //新手活动落地页
