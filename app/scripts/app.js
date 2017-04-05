@@ -665,6 +665,20 @@ p2pSiteMobApp
         title: '邀请好友，双重奖励'
       }
     })
+    // 邀请活动-2017.4.13
+    .state('root.activity.inviteActivity', {
+      url: '/invite',
+      views: {
+        '': {
+          templateUrl: 'views/activity/invite.html',
+          // controller: 'InviteCtrl',
+          // controllerUrl: 'scripts/controllers/activity/invite-ctrl'
+        }
+      },
+      data: {
+        title: '邀请好友，双重奖励'
+      }
+    })
     //新手活动落地页
       .state('root.activity.novice-landing', {
         url: '/novice-activity?act&f',
