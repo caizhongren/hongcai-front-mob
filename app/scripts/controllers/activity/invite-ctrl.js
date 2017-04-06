@@ -21,6 +21,11 @@ angular.module('p2pSiteMobApp')
     // 是否邀请过好友
   	Restangular.one('users').one('0/isInvitedFriends').get({}).then(function(response){
   		$scope.isInvitedFriends = response;
+      if(response && response.ret !== -1) {
+      }else if(response.code = -1041){        
+        $scope.isActivityEnd = true; // 活动已结束
+        alert(response.msg);
+      }
   	})
 
   	// 活动规则弹窗
@@ -28,4 +33,16 @@ angular.module('p2pSiteMobApp')
       $scope.showRules = !$scope.showRules;
       $scope.showRules ? $('.invite').addClass('position-fix')  : $('.invite').removeClass('position-fix'); 
     }
+
+    // 查看奖励-跳转到奖励页
+    $scope.toInviteList = function(){
+      if(!$rootScope.isLogged){
+        return;
+      }else{
+        $state.go('root.activity.reward', {
+          userId: $stateParams.userId
+       });
+      }
+    }
+
   })
