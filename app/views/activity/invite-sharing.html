@@ -92,6 +92,7 @@
 		</div>
 	</div>
 </div>
+
 <!-- 注册之后活动结束 -->
 <div class="project-mask" auto-h ng-show="false">
 	<img src="/images/invite/offline01.png" width="100%" class="display-bl">
@@ -105,7 +106,18 @@
 	<img src="/images/invite/offline09.png" width="100%" class="display-bl">
 	<img src="/images/invite/offline10.png" width="100%" class="display-bl">
 	<img src="/images/invite/offline11.png" width="100%" class="display-bl">
-	<div class="offline-bg">
+	<div class="offline-bg"></div>
+</div>
+
+<!-- 受邀成功弹窗 -->
+<div class="project-mask bg-grey6" id="successMask" ng-show="isSuccess" ng-init="isSuccess = true">
+	<div class="successMask text-center">
+		<img src="/images/invite/register-01.png" alt="" width="70%">
+		<img src="/images/invite/register-02.png" alt="" width="70%">
+		<img src="/images/invite/register-03.png" alt="" width="43%">
+		<img src="/images/invite/register-04.png" alt="" width="80%">
+		<!-- 立即查收按钮：点击按钮跳转至app下载页，iOS跳转至App Store，安卓跳至应用宝； -->
+		<img src="/images/invite/register-05.png" alt="" width="94%">
 	</div>
 </div>
 
