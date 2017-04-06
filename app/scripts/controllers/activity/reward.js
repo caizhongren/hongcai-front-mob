@@ -7,8 +7,11 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('RewardCtrl', function($rootScope, $scope) {
+  .controller('RewardCtrl', function($rootScope, $scope, $window) {
 
-
+    // console.log(document.body.scrollHeight);
+    // var height = $window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    // height = document.body.scrollHeight > height ? element.scrollHeight : height;
+    // angular.element('.invite-reward').css('height', height+'px');
    
   })
