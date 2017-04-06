@@ -1921,6 +1921,16 @@ input::-webkit-inner-spin-button {
 }
 
 //我的奖励
+.statement {
+    width: 100%;
+    background-color: #f8902d;
+    margin-top: -2rem;
+    padding-bottom: 1rem;
+       p {
+            transform: scale(0.9);
+            margin-bottom: 0;
+       }
+    }
 .invite-reward {
     background: url('/images/invite/award-bg.jpg') repeat-y center 0;
     background-size: cover;
@@ -1941,13 +1951,20 @@ input::-webkit-inner-spin-button {
         }
         
     }
+    .con-invite-btn {
+        img {
+            position: fixed;
+            bottom: 3rem;
+            margin: 0 auto;
+            left: 3%;
+            z-index: 10;
+        }
+    }
+    
     .invite-list {
         padding: 0 1rem;
         margin-bottom: 4rem;
-        p.statement {
-            transform: scale(0.9);
-            margin-top: 2rem;
-        }
+
         .table-wrap {
             position: relative;
             border: 8px solid #cc4160;
@@ -2043,14 +2060,20 @@ input::-webkit-inner-spin-button {
     }  
 }
 .invite {
-    background-color: #fe5576;
+    background-color: #fa8f2f;
+    padding-bottom: 1rem;
     .invite-btn {
-        width: 94.5%;
-        height: 64%;
-        position: absolute;
-        top: 0;
-        left: 3%;
-        margin-bottom: 0;
+        img {
+            position: fixed;
+            z-index: 999999;
+            bottom: 3rem;
+        }
+        img:nth-child(1) {
+            left: 3.3%;
+        }
+        img:nth-child(2) {
+            right: 3.3%;
+        }
     }
     .invite-list, .invite-btn1 {
         width: 42.5%;
@@ -2065,5 +2088,134 @@ input::-webkit-inner-spin-button {
     .invite-btn1 {
         right: 6%;
     }
+    .invite-rule {
+        background: url('/images/invite/invite-rule.png') no-repeat center center;
+        background-size: contain;
+        width: 5rem;
+        height: 5rem;
+        position: fixed;
+        bottom: 9.6rem;
+        right: 2rem;
+        @media (min-width:320px) {
+            bottom: 8.5rem;
+            right: 1.5rem;
+        }
+        @media (min-width:360px) {
+            bottom: 9.6rem;
+            right: 2.2rem;
+        }
+        @media (min-width:375px) {
+            bottom: 10.2rem;
+            right: 2.5rem;
+        }
+        @media (min-width:414px) {
+            bottom: 11.6rem;
+            right: 3rem;
+        }
+    }
+}
+.invite-box {
+    padding: 0 2rem;
+    background-color: rgba(0,0,0,.5);
+    .rec-showmoney {
+       background: url('/images/invite/invite-rule-bg.png') no-repeat center center;
+       background-size: contain;
+       height: 60rem;
+       overflow: auto;
+       @media (min-width:320px) {
+            height: 45rem;
+            .box {
+                top: 7.5rem;
+                height: 32.5rem;
+            }
+        }
+        @media (min-width:360px) {
+            height: 52rem;
+            .box {
+                top: 9.2rem;
+                height: 36rem;
+            }
+        }
+        @media (min-width:375px) {
+            height: 54rem;
+            .box {
+                top: 9.5rem;
+                height: 37.5rem;
+            }
+        }
+        @media (min-width:414px) {
+            height: 60rem;
+            .box {
+                top: 10.5rem;
+                height: 42.5rem;
+            }
+        }
+        .box {
+            position: relative;
+            // height: 35.5rem;
+            // top: 13rem;
+            overflow: auto;
+        }
+       .rec-act-rule {
+            padding: .3rem;
+            background-color: #fdf6d9;
+            margin: 0 1.7rem;
+            margin-bottom: .7rem;
+            p {
+                margin-bottom: 0;
+            }
+            .rule-title {
+                font-size: 1.2rem;
+                color:#f83b15;
+                padding: .8rem 0 0rem .8rem;
+            }
+            .rule-content {
+                font-size: 1.2rem;
+                color:#7c4618;
+                transform: scale(0.86,0.86);
+                -webkit-transform: scale(0.86,0.86);
+                line-height: 1.3rem;
+                width: 104%;
+                .list-page {
+                    display: inline-block;
+                    padding-left: 1.7rem;
+                }
+                .fa-circle {
+                    -webkit-transform: scale(0.55, 0.55);
+                    margin-left: -.5rem;
+                    color: #f83b15;
+                }
+            }
+            .rule1, .rule2 {
+                background-image: linear-gradient(to bottom, #e6c590 0%, #c79653 100%);
+                border-radius: .4rem;
+                padding-bottom: .5rem;
+            }
+            .rule2 {
+                .rule-content {
+                    margin-top: -.7rem;
+                }
+            }
+       } 
+       .tips {
+            transform: scale(0.86,0.86);
+            -webkit-transform: scale(0.86,0.86);
+            p  {
+                margin-bottom: 0;
+                text-align: center;
+                font-size: 1.2rem;
+                color: #e4a150;
+            }
+       }
+       .close-rule {
+            width: 10%;
+            height: 5.6%;
+            position: absolute;
+            background-color: rgba(0,0,0,.5);
+            bottom: 5.8%;
+            left: 45%;
+       }
+    }
+    
 }
 

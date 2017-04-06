@@ -671,8 +671,8 @@ p2pSiteMobApp
       views: {
         '': {
           templateUrl: 'views/activity/invite.html',
-          // controller: 'InviteCtrl',
-          // controllerUrl: 'scripts/controllers/activity/invite-ctrl'
+          controller: 'InviteCtrl',
+          controllerUrl: 'scripts/controllers/activity/invite-ctrl'
         }
       },
       data: {
