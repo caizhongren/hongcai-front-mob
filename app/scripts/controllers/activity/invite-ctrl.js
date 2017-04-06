@@ -7,16 +7,19 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('InviteCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, Restangular, restmod, DEFAULT_DOMAIN, config, HongcaiUser) {
+  .controller('InviteCtrl', function($rootScope, $scope, $state, $stateParams, $location, $timeout, Restangular, restmod, DEFAULT_DOMAIN, config, HongcaiUser) {
   	
   	//立即邀请
     $scope.toInvite = function(){
       if(!$rootScope.isLogged) {
-        $state.go('root.login');
-      }else {
-      	
+        $state.go('root.login', {redirectUrl: encodeURIComponent($location.url('/invite-activity'))});
+        return;
       }
-    
+      if($scope.isActivityEnd){
+        alert(response.msg);
+        return;
+      }
+      $scope.isShare = true;
     }
     // 是否邀请过好友
   	Restangular.one('users').one('0/isInvitedFriends').get({}).then(function(response){
@@ -24,8 +27,8 @@ angular.module('p2pSiteMobApp')
       if(response && response.ret !== -1) {
       }else if(response.code = -1041){        
         $scope.isActivityEnd = true; // 活动已结束
-        alert(response.msg);
       }
+      alert(isActivityEnd);
   	})
 
   	// 活动规则弹窗
