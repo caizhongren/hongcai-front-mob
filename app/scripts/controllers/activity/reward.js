@@ -15,3 +15,4 @@ angular.module('p2pSiteMobApp')
     // angular.element('.invite-reward').css('height', height+'px');
    
   })
+  

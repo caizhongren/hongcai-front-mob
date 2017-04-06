@@ -64,7 +64,24 @@
 			</div>
 		</div>
 	</div>
-	<div class="con-invet-btn">
-		<img src="/images/newact/continue.png" class="display-bl margin-auto" width="94%">
+	<div class="con-invet-btn" ng-click="isShare = true">
+		<img src="/images/invite/award-btn-on.png" class="display-bl margin-auto" width="94%">
 	</div>
+	<div class="project-mask" id="shareMask" ng-show="isShare" ng-init="isShare = false">
+		<div class="share-wrap bg-offWhite">
+			<p class="ft-1p4 ft-grey666 share-head">分享到：</p>
+			<div class="share-ways">
+				<img src="/images/invite/share-wechat.png" width="16%" height="16%">
+				<img src="/images/invite/share-qq.png" width="16%" height="16%">
+				<img src="/images/invite/share-link.png" width="16%" height="16%">
+			</div>
+			<div class="share-words">
+				<p class="ft-999 margin-b-0">微信好友</p>
+				<p class="ft-999 margin-b-0">QQ好友</p>
+				<p class="ft-999 margin-b-0">复制链接</p>
+			</div>
+			<p class="text-center cancle" ng-click="isShare = false">取消</p>
+		</div>
+	</div>
+	<p class="ft-1p2 ft-white text-center margin-t-2 statement">该活动与设备生产商Apple Inc.公司无关</p>
 </div>
