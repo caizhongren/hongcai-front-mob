@@ -13,8 +13,8 @@ angular.module('p2pSiteMobApp')
       scope: false,
       link: function(scope, elem, attrs) {
 
-        function capchaCountdown() {
-          if (!scope.user.mobile || !scope.mobilePattern.test(scope.user.mobile) || !scope.user.picCaptcha) {
+        function capchaCountdown() {//!scope.mobilePattern.test(scope.user.mobile) ||
+          if (!scope.user.mobile ||  !scope.user.picCaptcha) {
             return;
           }
           if (scope.piccha === false) {

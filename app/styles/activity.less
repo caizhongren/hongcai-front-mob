@@ -2059,6 +2059,7 @@ input::-webkit-inner-spin-button {
         }
     }  
 }
+// 邀请活动主页
 .invite {
     background-color: #fa8f2f;
     padding-bottom: 1rem;
@@ -2114,6 +2115,7 @@ input::-webkit-inner-spin-button {
         }
     }
 }
+// 邀请活动规则弹窗
 .invite-box {
     padding: 0 2rem;
     background-color: rgba(0,0,0,.5);
@@ -2217,5 +2219,94 @@ input::-webkit-inner-spin-button {
        }
     }
     
+}
+// 活动分享落地页
+.invite-sharing {
+    .sharing-content {
+        background-image: linear-gradient(to bottom, #fc6f51 0%, #f98b32 100%);
+        .to-register {
+            width: 100%;
+            padding: 0 10%;
+            input {
+                border: none;
+                border-radius: 0;
+                height: 3.4rem;
+                padding-left: 2.4rem;
+                background-color: #febaa7;
+                color: #fff;
+                margin-bottom: 1rem;
+                font-size: 1.3rem;
+            }
+            input::-webkit-input-placeholder { color: #fff !important; line-height:normal!important;}
+            #mobilesignup {
+                width: 100%;
+            }
+            .picCaptcha, .mobileCaptcha {
+                width: 65%;
+            }
+            .captchacode, #mobilecode {
+                width: 30%;
+                height: 3.4rem;
+            }
+            #mobilecode {
+                border: .2rem solid #ffef03;
+                color: #ffef03;
+                font-size: 1.5rem;
+                line-height: 3.4rem;
+                text-align: center;
+                float: right;
+            }
+        }
+        .invited-btn {
+            img {
+              width: 94%;
+              margin: 2rem 3%;  
+            }
+            
+        }
+        .received-lists {
+            ul {
+                margin-bottom: 0;
+                padding: 0rem 1.5rem 3.5rem;  
+            }
+            li {
+                margin-bottom: 0;
+                color: #fff;
+                font-size: 1.2rem;
+                overflow: hidden;
+                border-top: .1rem solid #fe5e68;
+                padding-top: .6rem;
+                p {
+                    margin-bottom: 0;
+                }
+                p:nth-child(2) {
+                    clear: both;
+                    position: relative;
+                    top: -.5rem;
+                }
+                span:nth-child(1) {
+                    float: left;
+                }
+                span:nth-child(2) {
+                    float: right;
+                }
+            }
+        }
+        .friend-tip {
+            padding: 1rem 1.5rem 4rem;
+            .tip-box {
+                background-color: #f07645;
+                border-radius: 1.6rem;
+                padding: 1rem;
+                .tip {
+                    background-color: #fcac71;
+                    border-radius: .5rem;
+                    padding: 1.4rem 1.1rem;
+                    color: #c40147;
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
 }
 
