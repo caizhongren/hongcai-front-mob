@@ -12,7 +12,7 @@ angular.module('p2pSiteMobApp')
   	//立即邀请
     $scope.toInvite = function(){
       if(!$rootScope.isLogged) {
-        $state.go('root.login', {redirectUrl: encodeURIComponent($location.url('/invite-activity'))});
+        $state.go('root.login', {redirectUrl: encodeURIComponent($location.url())});
         return;
       }
       if($scope.isActivityEnd){
