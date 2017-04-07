@@ -756,11 +756,28 @@ p2pSiteMobApp
       //我的邀请
       .state('root.userCenter.invite-rebate', {
         url: '/invite-rebate',
+        data: {
+          title: '我的邀请'
+        },
         views: {
           '': {
             templateUrl: 'views/user-center/invite-rebate.html',
             controller: 'InviteRebateCtrl',
             controllerUrl: 'scripts/controller/user-center/invite-rebate'
+          }
+        }
+      })
+      // 我的邀请好友列表
+      .state('root.userCenter.invite-rebate-list', {
+        url: '/invite-rebate-list',
+        data: {
+          title: '受邀好友列表'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/invite-rebate-list.html',
+            controller: 'InviteRebateListCtrl',
+            controllerUrl: 'scripts/controller/user-center/invite-rebate-list'
           }
         }
       })
@@ -775,6 +792,21 @@ p2pSiteMobApp
             templateUrl: 'views/user-center/experience-money.html',
             controller: 'ExperienceMoneyCtrl',
             controllerUrl: 'scripts/controllers/user-center/experience-money'
+          }
+        }
+      })
+
+      //个人中心特权本金
+      .state('root.userCenter.privileged-capital', {
+        url: '/privileged-capital',
+        data: {
+          title: '特权本金'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/privileged-capital.html',
+            controller: 'PrivilegedCapitalCtrl',
+            controllerUrl: 'scripts/controllers/user-center/privileged-capital'
           }
         }
       })
