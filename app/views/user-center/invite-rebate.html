@@ -60,7 +60,7 @@
 </section> -->
 <div class="ivt-rebate bg-white position-re" auto-height>
   <div class="ivt-wrap" ng-click="toInvestList();">
-    <p class="margin-b-0 text-center ft-white ft-Arial count">88</p>
+    <p class="margin-b-0 text-center ft-white ft-Arial count">{{inviteStat.totalNum || 0}}</p>
     <div class="position-re circle-bg-wrap">
       <div class="circle-bg">
         <p class="margin-b-0 text-center ft-white ft-1p3">邀请好友(人)</p>
@@ -68,11 +68,11 @@
     </div>
     <ul class="margin-b-0">
       <li class="margin-b-0">
-        <p class="ft-Arial ft-2p2 ft-white margin-t-0p5">88</p>
+        <p class="ft-Arial ft-2p2 ft-white margin-t-0p5">{{inviteStat.realNameAuthNum || 0}}</p>
         <p class="ft-white ft-1p3 margin-b-0p5">注册认证(人)</p>
       </li>
       <li class="margin-b-0">
-        <p class="ft-Arial ft-2p2 ft-white margin-t-0p5">88</p>
+        <p class="ft-Arial ft-2p2 ft-white margin-t-0p5">{{inviteStat.investNum || 0}}</p>
         <p class="ft-white ft-1p4 margin-b-0p5">首投成功(人)</p>
       </li>
     </ul>
