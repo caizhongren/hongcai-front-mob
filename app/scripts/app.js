@@ -299,7 +299,7 @@ p2pSiteMobApp
         url: '/registration-agreement',
         views: {
           '': {
-            templateUrl: 'views/registration-agreement.html'
+            templateUrl: 'views/_registration-agreement.html'
           }
         }
       })
@@ -614,18 +614,6 @@ p2pSiteMobApp
         }
       })
 
-   
-    //体验金活动页
-    .state('root.experience-activity', {
-        url: '/experience-activity/:number?act&f',
-        views: {
-          '': {
-            templateUrl: 'views/activity/experience-activity.html',
-            controller: 'ExperienceActivityCtrl',
-            controllerUrl: 'scripts/controllers/activity/experience-activity-ctrl'
-          }
-        }
-      })
 
       //网站公告
       .state('root.web-site-notice', {
@@ -776,8 +764,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/user-center/invite-rebate-list.html',
-            controller: 'InviteRebateListCtrl',
-            controllerUrl: 'scripts/controller/user-center/invite-rebate-list'
+            controller: 'InviteRebateCtrl',
+            controllerUrl: 'scripts/controller/user-center/invite-rebate'
           }
         }
       })

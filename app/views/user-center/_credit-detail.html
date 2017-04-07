@@ -16,7 +16,8 @@
         <span class="zhuan" ng-show="item.creditRight.type === 6">转</span>
         <span class="display-inb fl margin-t--0p2">{{item.creditRight.projectName}}</span>
       </span>
-      <img class="fl" src="/images/user-center/rate-icon.png" alt="" width="9%" ng-show="item.increaseRateCoupon && item.increaseRateCoupon.type === 1">
+      <!-- <img class="fl" src="/images/user-center/rate-icon.png" alt="" width="9%" ng-show="true"> --> 
+      <div class="fl arrow-left"></div><div class="fl rate-icon">0.3%+10%</div>
       <!-- <div class="fl red-rate">加息</div> -->
       <span class="u-pull-right ft-2 fa fa-angle-right margin-0p2 ft-greyddd"></span>
       <span class="u-pull-right ft-orange1" ng-show="item.creditRight.isRepeatInvest === 1"><i class="fa fa-history"></i>&nbsp;已自动续投&nbsp;</span>

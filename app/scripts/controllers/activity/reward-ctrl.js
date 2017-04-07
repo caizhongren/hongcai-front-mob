@@ -7,12 +7,9 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('RewardCtrl', function(ipCookie, $scope, $state, $rootScope, $stateParams, $location, Restangular, SessionService, UserService) {
+  .controller('RewardCtrl', function(ipCookie, $scope, $state, $rootScope, $stateParams, $location, Restangular, SessionService, UserService, Utils) {
 
-    // console.log(document.body.scrollHeight);
-    // var height = $window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    // height = document.body.scrollHeight > height ? element.scrollHeight : height;
-    // angular.element('.invite-reward').css('height', height+'px');
+    $scope.deviceCode = Utils.deviceCode();
 
     if(SessionService.isLogin()){
         
@@ -42,6 +39,8 @@ angular.module('p2pSiteMobApp')
 
       	return interDays > 0 ? interDays : 0;
       }
-   
+
+      
+
   })
   

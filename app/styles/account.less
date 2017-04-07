@@ -685,50 +685,133 @@
   }
 }
 
-//新邀请中心
-
-.tiyanjin-tab {
-  .account-panel0 {
-    height: 103px;
-    padding-top: 1.2rem;
-    padding-bottom: 1rem;
-    .copy-btn{
-      height: 41px;
-      line-height: 41px;
-      font-size: 1.2rem;
+//我的邀请
+.ivt-rebate {
+  span.color-change {
+    color: #e96233;
+  }
+  .ivt-wrap {
+    background-image: linear-gradient(#e6542b,#fa8734);
+    padding-top: 5.5rem;
+    p.count {
+      font-size: 5rem;
+      position: absolute;
+      z-index: 100;
       width: 100%;
-      background-color: #6dc0fa;
-      @media (min-width:360px) {
-        width: 90%;
+      top: 2.2rem;
+    }
+    ul {
+      background-color: #f68738;
+      li {
+        width: 49%;
+        display: inline-block;
+        p {
+          margin-bottom: 0;
+          text-align: center;
+          line-height: 2rem;
+        }
+        i {
+          width: 1px;
+          height: 4rem;
+          float: right;
+          background: #fac39c;
+          margin-top: -4.5rem;
+        }
       }
-      @media (min-width:411px) {
-        font-size: 1.3rem;
-        width: 83%;
+      li:first-child {
+        border-right: 1px silid #fbc49d;
+      }
+    }
+    .circle-bg-wrap {
+      height: 5rem;
+      overflow: hidden;
+      .circle-bg {
+        border-radius: 93%;
+        height: 15rem;
+        position: absolute;
+        width: 107%;
+        background-image: linear-gradient(#f9912e, #ef793c); 
+        left: -3.5%;
+        p {
+          margin-top: 2.8rem;
+        }
+      }
+    }
+    
+  }
+  .ivt-tip-wrap {
+    .ivt-tip {
+      padding-bottom: 1.2rem;
+      p:first-child {
+        text-align: center;
+        color: #666;
+        padding: 1.8rem 0 1.6rem;
+        margin-bottom: 0;
+        font-size: 1.4rem;
+        @media(min-width: 375px) {
+          font-size: 1.5rem;
+        }
+      }
+      p:last-child {
+        width: 50%;
+        height: 5rem;
+        text-align: center;
+        line-height: 5rem;
+        margin: 0 auto;
+        background: #fff004;
+        color: #a55715;
+        border-radius: .5rem;
+        font-size: 2rem;
       }
     }
   }
-  .account-panel1 {
-    width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    color: #7a7a7a;
-    float: left;
-    border-bottom: 1px solid #e6e5e4;
-  }
-  .invi-process {
-    li {
-      width: 33.3333%;
-      text-align: center;
-      font-size: 1.2rem;
-      display: inline-block;
+  .ivt-rebate-share {
+    .share-wrap {
+      width: 100%;
+      bottom: 0;
+      padding: 1.1rem 0 0 0;
+      .share-head {
+        padding-left: 1.5rem;
+        padding-bottom: 1.1rem;
+        border-bottom: 1px solid #eee;
+        font-size: 1.6rem;
+      }
+      .share-ways,.share-words {
+        padding-top: 1.8rem;
+        display: flex;
+        justify-content: space-around;
+        img {
+          border: 1px solid #ddd;
+          border-radius: .4rem;
+        }
+      }
+      .share-words {
+        padding: 0.5rem 0;
+        p {
+          width: 16%;
+          text-align: center;
+          font-size: 1.2rem;
+          @media(min-width: 370px) {
+            font-size: 1.3rem;
+          }
+        }
+      }
+      .cancle {
+        color: #a1a1a1;
+        height: 3.5rem;
+        line-height: 3.5rem;
+        background-color: #fff;
+        margin-top: 1rem;
+      }
     }
   }
 }
+  
 //受邀请好友列表
 .invite-rebate-list {
   ul {
     li {
-      padding: 1.1rem 0; 
+      padding: 1rem 0; 
       margin: 0;
       width: 100%;  
       p {
@@ -737,6 +820,7 @@
         margin: 0;
         text-align: center;
         color: #666;
+        
       }
     }
   }
@@ -744,6 +828,9 @@
     ul {
       li {
         width: 100%;
+        p {
+          font-size: 1.4rem;
+        }
         p:first-child {
           width: 55.5%;
         } 

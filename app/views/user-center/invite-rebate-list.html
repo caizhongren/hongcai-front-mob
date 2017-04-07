@@ -8,41 +8,14 @@
 	</div>
 	<div class="rebate-list">
 		<ul>
-			<li>
-				<p class="ft-Arail">153****5650</p>
-				<p class="ft-1p4">未投资</p>
-			</li>
-			<li>
-				<p class="ft-Arail">153****5650</p>
-				<p class="ft-1p4">已投资</p>
-			</li>
-			<li>
-				<p class="ft-Arail">153****5650</p>
-				<p class="ft-1p4">未投资</p>
-			</li>
-			<li>
-				<p class="ft-Arail">153****5650</p>
-				<p class="ft-1p4">已投资</p>
-			</li>
-			<li>
-				<p class="ft-Arail">153****5650</p>
-				<p class="ft-1p4">未投资</p>
-			</li>
-			<li>
-				<p class="ft-Arail">153****5650</p>
-				<p class="ft-1p4">已投资</p>
-			</li>
-			<li>
-				<p class="ft-Arail">153****5650</p>
-				<p class="ft-1p4">未投资</p>
-			</li>
-			<li>
-				<p class="ft-Arail">153****5650</p>
-				<p class="ft-1p4">已投资</p>
+			<li ng-repeat="item in datas track by $index">
+				<p class="ft-Arail">{{item.user.mobile}}</p>
+				<p ng-show="item.account.investAmount <= 0">未投资</p>
+				<p ng-show="item.account.investAmount > 0">已投资</p>
 			</li>
 		</ul>
-		<div class="text-center">
-            <p><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a class="ft-666" ng-click="loadMore();">查看更多</a></p>
+		<div class="text-center" ng-show="page < loadMoreData">
+            <p><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a class="ft-666" ng-click="loadMuch();">查看更多</a></p>
        </div>
 	</div>
 </div>
