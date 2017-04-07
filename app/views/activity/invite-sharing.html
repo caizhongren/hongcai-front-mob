@@ -34,7 +34,7 @@
 	  <!-- 已领取礼包好友 -->
 	  <div class="received-lists">
 	  	<!-- 图片 -->
-	  	<div class="taked-icon text-center margin-t-3"><img src="/images/invite/invite-sharing-taked.png" alt="" width="28%"></div>
+	  	<div ng-if="inviteList.length>0" class="taked-icon text-center margin-t-3"><img src="/images/invite/invite-sharing-taked.png" alt="" width="28%"></div>
 	  	<!-- 领取好友列表 只显示最新的10条-->
 	  	<ul class="lists">
 	  		<li class="border-none" ng-repeat="item in inviteList">
