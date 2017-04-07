@@ -39,7 +39,7 @@
   			<p class="margin-b-0 top-margin ft-4"><small class="ft-1p6">￥</small>{{item.value}}</p>
   		</div>
   		<div class="inner-panel-center1">
-  			<p class="margin-b-0">投资产品：{{ item.investProductType == 5 ? '宏财精选' : '宏财尊贵'}}</p>
+  			<p class="margin-b-0">投资产品：{{ item.investProductType == 5 ? '宏财精选' : item.investProductType == 6 ? '宏财尊贵' : '宏财精选、宏财尊贵'}}</p>
   			<p class="margin-b-0">使用条件：投资&ge;{{item.minInvestAmount}}元</p>
   			<p class="margin-b-0">有效期：{{item.createTime | date :'yyyy.MM.dd'}}-{{item.endTime | date :'yyyy.MM.dd'}}</p>
   			<p class="withdraw margin-b-0 pull-right" ng-click="toProjectList($index)">马上使用</p>
