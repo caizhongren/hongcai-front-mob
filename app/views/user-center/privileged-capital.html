@@ -2,12 +2,14 @@
 	<div class="capital-header ft-white ">
 	    <ul class="clearfix">
 	    	<li>
-	    		<p class="ft-1p3 margin-b-1">当前累计特权本金(元)<i class="fa fa-question-circle-o margin-l-0p5 ft-1p5" aria-hidden="true" ng-click="showRules = true"></i></p>
+	    		<p class="ft-1p3 margin-b-1">当前累计特权本金(元)
+               <i class="fa fa-question-circle margin-l-0p5 ft-1p5" aria-hidden="true" ng-click="showRules = true"></i>
+            </p>
 	    		<p class="ft-Arial ft-2p2 margin-b-0 letter-spacing">{{privilegedCapital.amount | number : 0 || 0}}</p>
 	    		<p class="fr bg-white line"></p>
 	    	</li>
 	    	<li>
-	    		<p class="ft-1p3 margin-b-1">累计收益(元)</i></p>
+	    		<p class="ft-1p3 margin-b-1">累计收益(元)</p>
 	    		<p class="ft-Arial ft-2p2 margin-b-0">{{privilegedCapital.profit | number:2 || 0}}</p>
 	    	</li>
 	    </ul>
