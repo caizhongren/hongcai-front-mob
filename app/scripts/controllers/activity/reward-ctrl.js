@@ -7,38 +7,40 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('RewardCtrl', function(ipCookie, $scope, $state, $rootScope, $stateParams, $location, Restangular, SessionService, UserService) {
+  .controller('RewardCtrl', function(ipCookie, $scope, $state, $rootScope, $stateParams, $location, Restangular, SessionService, UserService, Utils) {
 
-    // console.log(document.body.scrollHeight);
-    // var height = $window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    // height = document.body.scrollHeight > height ? element.scrollHeight : height;
-    // angular.element('.invite-reward').css('height', height+'px');
+    $scope.deviceCode = Utils.deviceCode();
 
     if(SessionService.isLogin()){
         
-        Restangular.one('projects').one('investIncreaseRateCoupon').get({
-          projectId : $scope.project.id,
-          amount : project.amount
-        }).then(function(response) {
-          if (response  && response.ret !== -1) {
-            $scope.increaseRateCoupons = response;
-            if(response.length === 0) {
-              $scope.selectIncreaseRateCoupon = null;
-              $scope.unSelectCouponMsg = '暂无可用奖励';
-            }
-            for (var i = 0; i < $scope.increaseRateCoupons.length; i++) {
-              if ($scope.rateType === '' && $scope.cashType === '') {
-                $scope.selectIncreaseRateCoupon = $scope.increaseRateCoupons[0];
-              }
-              if ($scope.rateNum == $scope.increaseRateCoupons[i].number || $scope.cashNum == $scope.increaseRateCoupons[i].number) {
-                $scope.selectIncreaseRateCoupon = $scope.increaseRateCoupons[i];
-              }
-            }
-          }else {
-            $scope.selectIncreaseRateCoupon = [];
-          }
-        }); 
+        $scope.inviteCount = Restangular.one('activitys').one('invitePrivilegedUsers').get().$Object;
+        Restangular.one('activitys').one('invitePrivilegedRewardStat').get()
+        .then(function(response){
+        	if (response  && response.ret !== -1) {
+        		$scope.privilegedCapital = response;
+        	}
+        });
+
+        Restangular.one('activitys').one('invitePrivilegedRewards').get({
+        	page: 1,
+        	pageSize: 10
+        }).then(function(response){
+        	if (response  && response.ret !== -1) {
+        		$scope.details = response;
+        	}
+        });
       }
-   
+
+      $scope.intervalDays = function(firstInvestTime){
+      	var currentDate = new Date().getTime();
+      	var oneDay = 24 * 60 * 60 * 1000;
+      	var intervalTimes = currentDate - firstInvestTime;
+      	var interDays = 60 - parseInt(intervalTimes/oneDay);
+
+      	return interDays > 0 ? interDays : 0;
+      }
+
+      
+
   })
   

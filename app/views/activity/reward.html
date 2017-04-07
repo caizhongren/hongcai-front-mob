@@ -1,15 +1,15 @@
 <div class="invite-reward" bg-auto>
 	<div class="head">
-		<p class="ft-1p6 text-center">您已成功邀请<span class="ft-3 display-inbl margin-l-1 margin-r-1">88</span>位好友了！</p>
+		<p class="ft-1p6 text-center">您已成功邀请<span class="ft-3 display-inbl margin-l-1 margin-r-1">{{inviteCount || 0}}</span>位好友了！</p>
 	</div>
 	<p class="ft-1p8 text-center margin-t-1p5 margin-b-1 ft-white">好友共为您带来</p>
 	<div class="part2">
 		<div>
-			<p class="text-center margin-b-0">8888888888</p>
+			<p class="text-center margin-b-0">{{privilegedCapital.amount | number:0 || 0}}</p>
 			<p class="text-center">累计特权本金(元)</p>
 		</div>
 		<div>
-			<p class="text-center margin-b-0">88888888</p>
+			<p class="text-center margin-b-0">{{privilegedCapital.profit | number:2 || 0}}</p>
 			<p class="text-center">累计特权本金(元)</p>
 		</div>
 	</div>
@@ -24,40 +24,19 @@
 							<td class="bd-bottom">剩余获得天数(天)</td>
 						</tr>
 					</thead>
-					<tbody class="ft-1p2">
-						<tr>
-							<td class="bd-right bd-bottom">153****5650</td>
-							<td class="bd-right bd-bottom">暂无</td>
-							<td class="bd-bottom">未投资</td>
+					<tbody class="ft-1p2" ng-repeat="detail in details" ng-if="details.length > 0">
+						<tr ng-if="detail.firstInvestTime > 0">
+							<td class="bd-right bd-bottom {{intervalDays(detail.firstInvestTime) <= 0 ? 'color_grey' : ''}}">{{detail.mobile}}</td>
+							<td class="bd-right bd-bottom {{intervalDays(detail.firstInvestTime) <= 0 ? 'color_grey' : ''}}">{{detail.amount | number:0 || 0}}</td>
+							<td class="bd-bottom {{intervalDays(detail.firstInvestTime) <= 0 ? 'color_grey' : ''}}">{{intervalDays(detail.firstInvestTime)}}</td>
 						</tr>
-						<tr>
-							<td class="bd-right bd-bottom">153****5650</td>
-							<td class="bd-right bd-bottom">0</td>
-							<td class="bd-bottom">59</td>
+						<tr ng-if="detail.firstInvestTime <= 0">
+							<td class="bd-right bd-bottom {{ intervalDays(detail.registTime) <= 0 ? 'color_grey' : ''}}">{{detail.mobile}}<img src="/images/invite/award-off.png" ng-show="intervalDays(detail.registTime) <= 0"></td>
+							<td class="bd-right bd-bottom color_grey" ng-if="intervalDays(detail.registTime) <= 0">——</td>
+							<td class="bd-right bd-bottom" ng-if="intervalDays(detail.registTime) > 0">暂无</td>
+							<td class="bd-bottom color_grey" g-if="intervalDays(detail.registTime) <= 0">——</td>
+							<td class="bd-bottom" g-if="intervalDays(detail.registTime) > 0">未投资</td>
 						</tr>
-						<tr>
-							<td class="bd-right bd-bottom">153****5650</td>
-							<td class="bd-right bd-bottom">8888</td>
-							<td class="bd-bottom">45</td>
-						</tr>
-						<!-- （4）注册首投投资精选、尊贵，奖励时间到期；（5）注册未投资，自注册起30天期限已过；文字颜色 class color_grey -->
-						<tr>
-							<td class="bd-right bd-bottom {{1>0?'color_grey':''}}">153****5650</td>
-							<td class="bd-right bd-bottom {{1>0?'color_grey':''}} {{1>0?'color_grey':''}}">88888</td>
-							<td class="bd-bottom {{1>0?'color_grey':''}}">0</td>
-						</tr>
-						<!-- 关系解除图片显示 -->
-						<tr>
-							<td class="bd-right bd-bottom {{1>0?'color_grey':''}}">153****5650<img src="/images/invite/award-off.png" ng-show="true"></td>
-							<td class="bd-right bd-bottom {{1>0?'color_grey':''}}">——</td>
-							<td class="bd-bottom {{1>0?'color_grey':''}}">——</td>
-						</tr>
-						<!-- <tr class="load-more">
-							<td class="text-center ft-1p2 ft-white"></td>
-							<td class="text-center ft-1p2 ft-white">点击查看更多</td>
-							<td class="text-center ft-1p2 ft-white"></td>
-						</tr> -->
-
 					</tbody>
 				</table>
 
@@ -84,6 +63,6 @@
 		</div>
 	</div>
 </div>
-<div class="statement">
+<div class="statement" ng-if="deviceCode === 5 || deviceCode === 6">
 	<p class="ft-1p2 ft-white text-center">该活动与设备生产商Apple Inc.公司无关</p>
 </div>
