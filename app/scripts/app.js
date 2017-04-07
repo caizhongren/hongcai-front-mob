@@ -756,11 +756,28 @@ p2pSiteMobApp
       //我的邀请
       .state('root.userCenter.invite-rebate', {
         url: '/invite-rebate',
+        data: {
+          title: '我的邀请'
+        },
         views: {
           '': {
             templateUrl: 'views/user-center/invite-rebate.html',
             controller: 'InviteRebateCtrl',
             controllerUrl: 'scripts/controller/user-center/invite-rebate'
+          }
+        }
+      })
+      // 我的邀请好友列表
+      .state('root.userCenter.invite-rebate-list', {
+        url: '/invite-rebate-list',
+        data: {
+          title: '受邀好友列表'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/invite-rebate-list.html',
+            controller: 'InviteRebateListCtrl',
+            controllerUrl: 'scripts/controller/user-center/invite-rebate-list'
           }
         }
       })
