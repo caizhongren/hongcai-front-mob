@@ -28,7 +28,6 @@ angular.module('p2pSiteMobApp')
       }else if(response.code = -1041){        
         $scope.isActivityEnd = true; // 活动已结束
       }
-      alert(isActivityEnd);
   	})
 
   	// 活动规则弹窗
