@@ -68,7 +68,7 @@
      <!-- ng-click="toGet();" -->
 		<p ng-show="status === 2">您还没有使用过现金券~</p>
 	</div>
-  <div class="use-rule margin-t-1 margin-b-1 text-center" ng-click="showRule()">使用规则 <i class="fa fa-info-circle" aria-hidden="true"></i></div>
+  <div ng-if="cashCouponsData" class="use-rule margin-t-1 margin-b-1 text-center" ng-click="showRule()">使用规则 <i class="fa fa-info-circle" aria-hidden="true"></i></div>
 </section>
 <div class="cash">
 	<!-- 公用的弹框蒙层 -->
