@@ -778,6 +778,21 @@ p2pSiteMobApp
           }
         }
       })
+
+      //个人中心特权本金
+      .state('root.userCenter.privileged-capital', {
+        url: '/privileged-capital',
+        data: {
+          title: '特权本金'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/privileged-capital.html',
+            controller: 'PrivilegedCapitalCtrl',
+            controllerUrl: 'scripts/controllers/user-center/privileged-capital'
+          }
+        }
+      })
       //个人中心我的奖金
       .state('root.userCenter.cash-coupon', {
         url: '/cash-coupon',
