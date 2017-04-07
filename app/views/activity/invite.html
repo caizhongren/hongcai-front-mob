@@ -54,7 +54,7 @@
 		<img src="/images/invite/invite06.png" class="display-bl" width="100%">
 	</div>
 	<!-- 未邀请到好友:登录——从页面底部弹出分享框\未登录——跳转至登录页面，登录成功后停留在活动页 -->
-	<div class="invite-btn"  ng-show="!isLogged">
+	<div class="invite-btn"  ng-show="!isLogged || (isLogged && !isInvitedFriends)">
 		<!-- 马上邀请按钮 -->
 		<img src="/images/invite/toInvite-btn.png" width="94.4%" ng-click="toInvite();">
 		<!-- <img src="/images/invite/invite07.png" class="display-bl" width="100%"> -->

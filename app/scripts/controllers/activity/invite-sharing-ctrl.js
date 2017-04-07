@@ -13,4 +13,10 @@ angular.module('p2pSiteMobApp')
     $scope.refreshCode = function() {
       angular.element('#checkCaptcha').attr('src', angular.element('#checkCaptcha').attr('src').substr(0, angular.element('#checkCaptcha').attr('src').indexOf('?')) + '?code=' + Math.random());
     };
+    $scope.isSuccess = true;
+    $scope.isSuccess ? $('.invite-sharing').addClass('position-fix')  : $('.invite-sharing').removeClass('position-fix'); 
+    $scope.successMask = function() {
+    	$scope.isSuccess = !$scope.isSuccess;
+    	$scope.isSuccess ? $('.invite-sharing').addClass('position-fix')  : $('.invite-sharing').removeClass('position-fix'); 
+    }
   })
