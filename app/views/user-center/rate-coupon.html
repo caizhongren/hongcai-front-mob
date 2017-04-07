@@ -21,7 +21,7 @@
 					    			<p class="margin-b-0 top-margin"><strong class="ft-3">{{item.value | number:1}}</strong>%</p>
 					    		</div>
 					    		<div class="inner-panel-center1">
-					    			<p class="margin-b-0">投资产品：{{ item.investProductType}}</p>
+					    			<p class="margin-b-0">投资产品：{{ item.investProductType == 5 ? '宏财精选' : item.investProductType == 6 ? '宏财尊贵' : '宏财精选、宏财尊贵'}}</p>
 					    			<p class="margin-b-0">加息天数：{{ 'xx'}}天</p>
 					    			<p class="margin-b-0 ">有效期：{{item.createTime | date :'yyyy.MM.dd'}}-{{item.endTime | date :'yyyy.MM.dd'}}</p>
 					    			<p class="withdraw margin-b-0 pull-right" ng-click="toProjectList($index)" ng-if="item.type !== 5">马上使用</p>
@@ -39,7 +39,7 @@
 				    	    <p class="margin-b-0 top-margin"><strong class="ft-3">{{item.value | number:1}}</strong>%</p>
 				    	  </div>
 				    	  <div class="inner-panel-center1">
-				    	    <p class="margin-b-0">投资产品：{{ item.investProductType}}</p>
+				    	    <p class="margin-b-0">投资产品：{{ item.investProductType == 5 ? '宏财精选' : item.investProductType == 6 ? '宏财尊贵' : '宏财精选、宏财尊贵'}}</p>
 					    		<p class="margin-b-0">加息天数：{{ 'xx'}}天</p>
 				    	    <p class="margin-b-0">有效期：{{item.createTime | date :'yyyy.MM.dd'}}-{{item.endTime | date :'yyyy.MM.dd'}}</p>
 				    	    <p class="overdue margin-b-0 pull-right">已过期</p>
