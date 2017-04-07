@@ -764,8 +764,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/user-center/invite-rebate-list.html',
-            controller: 'InviteRebateListCtrl',
-            controllerUrl: 'scripts/controller/user-center/invite-rebate-list'
+            controller: 'InviteRebateCtrl',
+            controllerUrl: 'scripts/controller/user-center/invite-rebate'
           }
         }
       })
