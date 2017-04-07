@@ -695,6 +695,21 @@ p2pSiteMobApp
         }
       })
 
+    // 邀请活动分享注册活动落地页-2017.4.13
+    .state('root.activity.invite-sharing', {
+      url: '/invite-sharing',
+      views: {
+        '': {
+          templateUrl: 'views/activity/invite-sharing.html',
+          controller: 'InviteSharingCtrl',
+          controllerUrl: 'scripts/controllers/activity/invite-sharing-ctrl'
+        }
+      },
+      data: {
+        title: '邀请好友'
+      }
+    })
+    
     //新手活动落地页
       .state('root.activity.novice-landing', {
         url: '/novice-activity?act&f',
