@@ -1,87 +1,78 @@
-<div class="grade" auto-height>
+<div class="grade cash-body" auto-height>
   <!-- 要展示的内容如下 -->
   <div class="tab-content columns twelve bg-offWhite overflow-hid padding-b-0 text-center " ng-class="{active: toggle.activeTab===$index}" ng-repeat="tab in tabs track by $index">
     <section ng-if="tab.title==='加息券'" class="padding-b-4" auto-height>
-	    <div class="padding-t-0p5 bg-white padding-b-0p5 overflow-aut">
-		    <ul class="grade-tab2 columns ten offset-by-one margin-b-0">
-		      <li class="column text-center margin-0" ng-class="{insub: toggle.activesubTab===$index}" ng-repeat="tabitem in subtabs track by $index" ng-click="toggle.switchsubTab($index)">{{tabitem.titles}}</li>
+	    <div class="bg-white overflow-aut">
+		    <ul class="cash-select columns ten offset-by-one margin-b-0">
+		      <li class="column text-center margin-0" ng-class="{active: toggle.activesubTab===$index}" ng-repeat="tabitem in subtabs track by $index" ng-click="toggle.switchsubTab($index)">{{tabitem.titles}}</li>
 		    </ul>
 	    </div>
 	    <div ng-class="{'ng-hide': toggle.activesubTab!==$index}" ng-repeat="item in subtabs track by $index">
-		    <div ng-if="item.titles ==='未使用'" class="jiaxiquan-tab">
+		    <div ng-if="item.titles ==='未使用'" class="margin-b-3">
 		    	<div ng-show="datas.length > 0">
 		    		<div  ng-repeat="item in datas track by $index">
 				    	<div class="margin-t-1 outer-panel" ng-if="item.status === 1">
 				    		<div>
-					    		<img src="/images/new/rate.png">
+					    		<img src="/images/user-center/cash-coupon01.png" ng-if="item.type !== 5">
+					    		<!-- 特权加息10% 特殊显示-->
+					    		<img src="/images/user-center/cash-coupon10.png" ng-if="item.type == 5">
 					    		<div class="inner-panel-left">
 					    			<!-- <p class="top-margin">活动奖励</p> -->
-					    			<p class="margin-b-0 top-margin"><strong class="ft-4">{{item.value | number:1}}</strong>%</p>
+					    			<p class="margin-b-0 top-margin"><strong class="ft-3">{{item.value | number:1}}</strong>%</p>
 					    		</div>
-					    		<div class="inner-panel-center">
-					    			<p class="margin-b-0 padding-l-1">•{{item.description}}</p>
-					    			<p class="padding-l-1 middle-margin" ng-if="item.projectDays <= 0">•适用于宏金保项目</p>
-					    			<p class="padding-l-1 middle-margin" ng-if="item.projectDays > 0">•适用宏金保&ge;30天项目</p>
-					    			<p class="margin-b-0 padding-l-1">•有效期至{{item.endTime | date:"yyyy-MM-dd"}}</p>
-					    		</div>
-					    		<div class="inner-panel-right" ng-click="toProjectList($index)">
-					    			<span>立</span>
-					    			<span>即</span>
-					    			<span>使</span>
-					    			<span>用</span>
+					    		<div class="inner-panel-center1">
+					    			<p class="margin-b-0">投资产品：{{ item.investProductType}}</p>
+					    			<p class="margin-b-0">加息天数：{{ 'xx'}}天</p>
+					    			<p class="margin-b-0 ">有效期：{{item.createTime | date :'yyyy.MM.dd'}}-{{item.endTime | date :'yyyy.MM.dd'}}</p>
+					    			<p class="withdraw margin-b-0 pull-right" ng-click="toProjectList($index)" ng-if="item.type !== 5">马上使用</p>
 					    		</div>
 				    		</div>
 				    	</div>
 
 				    	<!-- 未使用但是已过期的 img改为/images/new/rate1.png，两个class名改为inner-panel-center1，inner-panel-right1-->
-				    	<div class="margin-t-1 outer-panel"  ng-if="item.status === 3">
-				    	  <img src="/images/new/rate1.png">
+				    	<div class="margin-t-1 outer-panel"  ng-if="item.status === 3 ">
+				    	  <img src="/images/user-center/cash-coupon01.png" ng-if="item.type !== 5">
+				    	  <!-- 特权加息10% 特殊显示-->
+					    	<img src="/images/user-center/cash-coupon10.png" ng-if="item.type == 5">
 				    	  <div class="inner-panel-left">
 				    	    <!-- <p class="top-margin">活动奖励</p> -->
-				    	    <p class="margin-b-0 top-margin"><strong class="ft-4">{{item.value | number:1}}</strong>%</p>
+				    	    <p class="margin-b-0 top-margin"><strong class="ft-3">{{item.value | number:1}}</strong>%</p>
 				    	  </div>
 				    	  <div class="inner-panel-center1">
-				    	    <p class="margin-b-0 padding-l-1">•{{item.description}}</p>
-				    	    <p class="padding-l-1 middle-margin" ng-if="item.projectDays <= 0">•适用于宏金保项目</p>
-				    	    <p class="padding-l-1 middle-margin" ng-if="item.projectDays > 0">•适用宏金保&ge;30天项目</p>
-				    	    <p class="margin-b-0 padding-l-1">•有效期至{{item.endTime | date:"yyyy-MM-dd"}}</p>
-				    	  </div>
-				    	  <div class="inner-panel-right1">
-				    	    <span>已</span>
-				    	    <span>过</span>
-				    	    <span>期</span>
+				    	    <p class="margin-b-0">投资产品：{{ item.investProductType}}</p>
+					    		<p class="margin-b-0">加息天数：{{ 'xx'}}天</p>
+				    	    <p class="margin-b-0">有效期：{{item.createTime | date :'yyyy.MM.dd'}}-{{item.endTime | date :'yyyy.MM.dd'}}</p>
+				    	    <p class="overdue margin-b-0 pull-right">已过期</p>
 				    	  </div>
 				    	</div>
 
 			    	</div>
 			    	<div class="margin-t-2" ng-show="unUseTotalPage > page" ng-click="loadMuch(toggle.activeTab, toggle.activesubTab)"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<span class="cursor-hand ft-black2 text-line">查看更多</span></div>
 			    </div>
-			    <div class="margin-t-2" ng-show="!loading && datas.length <= 0">
+			    <div class="margin-t-2 padding-l-2 padding-r-2" ng-show="!loading && datas.length <= 0">
 			    	<p>无记录！</p>
 			    	<div class="one-half column button button-primary u-pull-left border-none" ui-sref="root.main">
 			        <span>浏览项目</span>
 			      </div>
 			    </div>
 		    </div>
-		    <div  ng-if="item.titles ==='已使用'" class="jiaxiquan-tab">
+		    <div  ng-if="item.titles ==='已使用'" class="">
 		    	<div ng-show="datas.length > 0">
 			    	<div class="margin-t-1 outer-panel" ng-repeat="item in datas track by $index">
-			    		<img src="/images/new/rate.png">
+			    		<img src="/images/user-center/cash-coupon01.png">
 			    		<div class="inner-panel-left">
 			    			<!-- <p class="top-margin">活动奖励</p> -->
-			    			<p class="margin-b-0 top-margin"><strong class="ft-4">{{item.value | number:1}}</strong>%</p>
+			    			<p class="margin-b-0 top-margin"><strong class="ft-3">{{item.value | number:1}}</strong>%</p>
 			    		</div>
-			    		<div class="inner-model-center">
-			    			<p class="model-margin ft-orange">收益：{{item.profit | number:2}}元</p>
+			    		<div class="inner-panel-center1">
+			    			<p class="margin-b-0 ft-orange">收益：{{item.profit | number:2}}元</p>
 			    			<p class="margin-b-0">使用日期({{item.usedTime | date:"yyyy-MM-dd"}})</p>
-			    		</div>
-			    		<div class="inner-model-right">
-			    			<img src="/images/new/used.png" alt="">
+			    			<img class="received" src="/images/new/used.png" alt="">
 			    		</div>
 			    	</div>
 			    	<div class="margin-t-2" ng-show="useTotalPage > page" ng-click="loadMuch(toggle.activeTab, toggle.activesubTab)"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<span class="cursor-hand ft-black2 text-line">查看更多</span></div>
 			    </div>
-			    <div class="margin-t-2" ng-show="!loading && datas.length <= 0">
+			    <div class="margin-t-2 padding-l-2 padding-r-2" ng-show="!loading && datas.length <= 0">
 			    	<p>无记录！</p>
 			    	<div class="one-half column button button-primary u-pull-left border-none" ui-sref="root.main">
 			        <span>浏览项目</span>

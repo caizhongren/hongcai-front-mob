@@ -67,6 +67,15 @@ angular.module('p2pSiteMobApp')
           $scope.totalPage = response.totalPage;
           for (var i = 0; i < response.data.length; i++) {
             $scope.datas.push(response.data[i]);
+            if (response.data[i].investProductType == '5') {
+              $scope.datas.investProductType = '宏财精选';
+            }else if (response.data[i].investProductType == '6') {
+              $scope.datas.investProductType = '宏财尊贵';
+            }else if (response.data[i].investProductType == '5,6') {
+              $scope.datas.investProductType = '宏财精选、宏财尊贵';
+            }else {
+              $scope.datas[i].investProductType = '宏财精选';
+            }
           };
         } else{
             $scope.msg = '获取信息失败';

@@ -8,7 +8,12 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('LoginCtrl', function($timeout, $scope, $state, $rootScope, $stateParams, $location, md5, ipCookie, HongcaiLogin, SessionService) {
+  .controller('LoginCtrl', function($timeout, $scope, $state, $rootScope, $stateParams, $location, md5, ipCookie, HongcaiLogin, SessionService, WEB_DEFAULT_DOMAIN) {
+    // 默认登陆密码登录
+    $scope.isPassward = true;
+    $scope.changeLogin = function() {
+      $scope.isPassward = !$scope.isPassward;
+    }
 
     // 获取用户的openId
     var openId = $stateParams.openId;
@@ -22,7 +27,7 @@ angular.module('p2pSiteMobApp')
     $scope.busy = false;
 
     /**
-     * 登录
+     * 密码登录
      */
     $scope.toLogin = function(user) {
       
@@ -69,5 +74,17 @@ angular.module('p2pSiteMobApp')
           $state.go('root.main');
         }
       });
+    };
+
+
+    /**
+     * 验证码登录
+     */
+
+
+    //图形验证码
+    $scope.getPicCaptcha = WEB_DEFAULT_DOMAIN + '/siteUser/getPicCaptcha?';
+    $scope.refreshCode = function() {
+      angular.element('#checkCaptcha').attr('src', angular.element('#checkCaptcha').attr('src').substr(0, angular.element('#checkCaptcha').attr('src').indexOf('?')) + '?code=' + Math.random());
     };
   });
