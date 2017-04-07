@@ -320,6 +320,9 @@ angular.module('p2pSiteMobApp')
         'exchange-code',
         'share-scene-example',
         'activity-scene',
+        'invite',
+        'reward',
+        'invite-sharing',
         'share-scene',
         'share-spring',
         'rate-coupon',
@@ -334,6 +337,8 @@ angular.module('p2pSiteMobApp')
       ];
       if (notShowFooterRoute.indexOf(path) === -1) {
         $rootScope.showFooter = true;
+      } else {
+        $rootScope.showFooter = false;
       }
 
       var mainPath = [

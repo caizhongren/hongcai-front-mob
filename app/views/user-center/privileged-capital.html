@@ -3,7 +3,7 @@
 	    <ul class="clearfix">
 	    	<li>
 	    		<p class="ft-1p3 margin-b-1">当前累计特权本金(元)
-               <i class="fa fa-question-circle margin-l-0p5 ft-1p5" aria-hidden="true" ng-click="showRules = true"></i>
+               <i class="fa fa-question-circle ft-1p5" aria-hidden="true" ng-click="showRules = true"></i>
             </p>
 	    		<p class="ft-Arial ft-2p2 margin-b-0 letter-spacing">{{privilegedCapital.amount | number : 0 || 0}}</p>
 	    		<p class="fr bg-white line"></p>
@@ -31,8 +31,8 @@
          </div>
    </div>
    <div class="capital-list padding-l-2 padding-r-2 bg-offwhite" ng-if="!showLoadingToast && details.length <= 0">
-         <img src="/images/user-center/cash-coupon03.png" alt="">
-         <p class="ft-666">暂无特权本金噢~</p>
+         <img src="/images/user-center/cash-coupon03.png" alt="" class="margin-auto display-bl">
+         <p class="ft-666 text-center margin-t-1">暂无特权本金噢~</p>
    </div>
 </div>
 <div class="cash">
