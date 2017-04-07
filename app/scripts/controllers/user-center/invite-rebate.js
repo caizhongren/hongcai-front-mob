@@ -65,8 +65,13 @@ angular.module('p2pSiteMobApp')
     };
 
     /**
-     * 跳转到邀请落地页
+     * 跳转到邀请人列表
+     * 
      */
+     $scope.toInvestList = function() {
+        //如果邀请好友为 0 ，点击系统自带的弹窗提示 文案：“你还没有邀请到好友哦～”
+        $state.go('root.userCenter.invite-rebate-list');
+     }
 
   });
 
