@@ -37,45 +37,9 @@
 	  	<div class="taked-icon text-center margin-t-3"><img src="/images/invite/invite-sharing-taked.png" alt="" width="28%"></div>
 	  	<!-- 领取好友列表 只显示最新的10条-->
 	  	<ul class="lists">
-	  		<li class="border-none">
-	  			<p><span>153****1432</span> <span>2016.9.8 12:00</span></p>
-	  			<p>自从领了礼包，腰不酸了腿也不疼了~</p>
-	  		</li>
-	  		<li>
-	  			<p><span>153****1432</span> <span>2016.9.8 12:00</span></p>
-	  			<p>从此跟着土豪迈向人生巅峰！</p>
-	  		</li>
-	  		<li>
-	  			<p><span>153****1432</span> <span>2016.9.8 12:00</span></p>
-	  			<p>从此跟着土豪迈向人生巅峰！</p>
-	  		</li>
-	  		<li>
-	  			<p><span>153****1432</span> <span>2016.9.8 12:00</span></p>
-	  			<p>从此跟着土豪迈向人生巅峰！</p>
-	  		</li>
-	  		<li>
-	  			<p><span>153****1432</span> <span>2016.9.8 12:00</span></p>
-	  			<p>从此跟着土豪迈向人生巅峰！</p>
-	  		</li>
-	  		<li>
-	  			<p><span>153****1432</span> <span>2016.9.8 12:00</span></p>
-	  			<p>从此跟着土豪迈向人生巅峰！</p>
-	  		</li>
-	  		<li>
-	  			<p><span>153****1432</span> <span>2016.9.8 12:00</span></p>
-	  			<p>从此跟着土豪迈向人生巅峰！</p>
-	  		</li>
-	  		<li>
-	  			<p><span>153****1432</span> <span>2016.9.8 12:00</span></p>
-	  			<p>从此跟着土豪迈向人生巅峰！</p>
-	  		</li>
-	  		<li>
-	  			<p><span>153****1432</span> <span>2016.9.8 12:00</span></p>
-	  			<p>从此跟着土豪迈向人生巅峰！</p>
-	  		</li>
-	  		<li>
-	  			<p><span>153****1432</span> <span>2016.9.8 12:00</span></p>
-	  			<p>从此跟着土豪迈向人生巅峰！</p>
+	  		<li class="border-none" ng-repeat="item in inviteList">
+				<p><span>{{item.mobile}}</span> <span>{{item.createTime || 0 | date: 'yyyy.MM.dd HH:mm'}}</span></p>
+				<p>{{item.encourage}}</p>
 	  		</li>
 	  	</ul>
 	  </div>

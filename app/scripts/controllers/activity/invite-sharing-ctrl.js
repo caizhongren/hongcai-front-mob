@@ -125,4 +125,23 @@ angular.module('p2pSiteMobApp')
         return res;
     }
 
+    // 邀请好友列表
+    Restangular.one('activitys').one('invitePrivilegedFriends').get({}).then(function(response){
+      if(response && response.ret !== -1) {
+        $scope.inviteList = response;
+        for(var i=0;i<$scope.inviteList.length;i++){
+           $scope.inviteList[i].encourage = encourageMixed();
+        }
+      }else if(response.code = -1041){        
+        $scope.isActivityEnd = true; // 活动已结束
+        return;
+      }
+    })
+
+    // 激励语随机显示
+    var arr = ['从此跟着土豪迈向人生巅峰！','哇~好大的礼包呀，发财啦哈哈哈~~','上宏财，财运来！欧了！','谢谢老板，大礼包收到啦！','自从领了礼包，腰不酸了腿也不疼了~','礼包收到，确实是真爱！','发礼包这事儿，我就服你。。。','天哪~真的有10%加息券耶！'];
+    function encourageMixed() {
+      return arr[Math.floor(Math.random()*arr.length)];
+    }
+
   })
