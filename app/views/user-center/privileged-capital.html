@@ -2,58 +2,37 @@
 	<div class="capital-header ft-white ">
 	    <ul class="clearfix">
 	    	<li>
-	    		<p class="ft-1p3 margin-b-1">当前累计特权本金(元)<i class="fa fa-question-circle-o margin-l-0p5 ft-1p5" aria-hidden="true" ng-click="showRules = true"></i></p>
-	    		<p class="ft-Arial ft-2p2 margin-b-0 letter-spacing">88888</p>
+	    		<p class="ft-1p3 margin-b-1">当前累计特权本金(元)
+               <i class="fa fa-question-circle margin-l-0p5 ft-1p5" aria-hidden="true" ng-click="showRules = true"></i>
+            </p>
+	    		<p class="ft-Arial ft-2p2 margin-b-0 letter-spacing">{{privilegedCapital.amount | number : 0 || 0}}</p>
 	    		<p class="fr bg-white line"></p>
 	    	</li>
 	    	<li>
-	    		<p class="ft-1p3 margin-b-1">累计收益(元)</i></p>
-	    		<p class="ft-Arial ft-2p2 margin-b-0">12.9</p>
+	    		<p class="ft-1p3 margin-b-1">累计收益(元)</p>
+	    		<p class="ft-Arial ft-2p2 margin-b-0">{{privilegedCapital.profit | number:2 || 0}}</p>
 	    	</li>
 	    </ul>
    </div>
-   <div class="capital-list padding-l-2 padding-r-2 bg-offwhite">
+   <div class="capital-list padding-l-2 padding-r-2 bg-offwhite" ng-if="!showLoadingToast && details.length > 0">
    		<ul>
-   			<li>
-   				<div class="ft-white display-inbl left ft-1p8">500000<span class="ft-1p7">元</span></div>
+   			<li ng-repeat=" detail in details">
+   				<div class="ft-white display-inbl left ft-1p8">{{detail.amount | number : 0}}<span class="ft-1p7">元</span></div>
    				<div class="display-inbl right">
    					<!-- <img src="/images/user-center/cash-coupon01.png" width="100%"> -->
-   					<p class="ft-Arial ft-999 ft-1p6">2015-07-05</p>
-   					<p class="ft-999">新手任务奖励</p>
-   					<p class="ft-999 ft-1p3">有效期至<span>2017-04-02</span></p>
-   				</div>
-   			</li>
-   			<li>
-   				<div class="ft-white display-inbl left ft-1p8">5000<span class="ft-1p7">元</span></div>
-   				<div class="display-inbl right">
-   					<!-- <img src="/images/user-center/cash-coupon01.png" width="100%"> -->
-   					<p class="ft-Arial ft-999 ft-1p6">2015-07-05</p>
-   					<p class="ft-999">邀请好友奖励</p>
-   					<p class="ft-999 ft-1p3">有效期至<span>2017-04-02</span></p>
-   				</div>
-   			</li>
-   			<li>
-   				<div class="ft-white display-inbl left ft-1p8">5000<span class="ft-1p7">元</span></div>
-   				<div class="display-inbl right">
-   					<!-- <img src="/images/user-center/cash-coupon01.png" width="100%"> -->
-   					<p class="ft-Arial ft-999 ft-1p6">2015-07-05</p>
-   					<p class="ft-999">邀请好友奖励</p>
-   					<p class="ft-999 ft-1p3">有效期至<span>2017-04-02</span></p>
-   				</div>
-   			</li>
-   			<li>
-   				<div class="ft-white display-inbl left ft-1p8">5000<span class="ft-1p7">元</span></div>
-   				<div class="display-inbl right">
-   					<!-- <img src="/images/user-center/cash-coupon01.png" width="100%"> -->
-   					<p class="ft-Arial ft-999 ft-1p6">2015-07-05</p>
-   					<p class="ft-999">邀请好友奖励</p>
-   					<p class="ft-999 ft-1p3">有效期至<span>2017-04-02</span></p>
+   					<p class="ft-Arial ft-999 ft-1p6">{{detail.createTime | date: 'yyyy-MM-dd'}}</p>
+   					<p class="ft-999">{{detail.description}}</p>
+   					<p class="ft-999 ft-1p3">有效期至<span>{{detail.dueTime | date: 'yyyy-MM-dd'}}</span></p>
    				</div>
    			</li>
    		</ul>
-         <div class="text-center">
+         <div class="text-center" ng-show="totalPage > page">
             <p><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a class="ft-666" ng-click="loadMore();">查看更多</a></p>
-       </div>
+         </div>
+   </div>
+   <div class="capital-list padding-l-2 padding-r-2 bg-offwhite" ng-if="!showLoadingToast && details.length <= 0">
+         <img src="/images/user-center/cash-coupon03.png" alt="">
+         <p class="ft-666">暂无特权本金噢~</p>
    </div>
 </div>
 <div class="cash">
