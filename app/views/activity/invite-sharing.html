@@ -27,7 +27,7 @@
 	    </div>
 	    <!-- 接受邀请按钮 -->
 	    <div class="invited-btn">
-	    	<img src="/images/invite/invite-sharing-btn.png" alt="">
+	    	<img src="/images/invite/invite-sharing-btn.png" alt="" ng-click="signUp(user);">
 	    </div>
 	  </form>
 
@@ -94,7 +94,7 @@
 </div>
 
 <!-- 注册之后活动结束 -->
-<div class="project-mask" auto-h ng-show="false">
+<div class="project-mask" auto-h ng-show="isActivityEnd">
 	<img src="/images/invite/offline01.png" width="100%" class="display-bl">
 	<img src="/images/invite/offline02.png" width="100%" class="display-bl">
 	<img src="/images/invite/offline03.png" width="100%" class="display-bl">
