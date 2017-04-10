@@ -7,14 +7,14 @@
  * # ensureUnique
  */
 angular.module('p2pSiteMobApp')
-  .directive('ensureUnique', function (isEnsureUnique) {
+  .directive('ensureUnique', function (Restangular) {
     return {
       require: 'ngModel',
       link: function(scope, elem, attrs, ngModelCtrl) {
         scope.$watch(attrs.ngModel, function() {
           var uniqueValue = elem.val();
           if(uniqueValue !== '') {
-            isEnsureUnique.$create({account: uniqueValue}).$then(function(response) {
+            Restangular.one('users/').post('isUnique', {account: uniqueValue}).$then(function(response) {
               if (response.ret === -1) {
                 ngModelCtrl.$setValidity('unique', false);
               } else if (response.ret === 1) {

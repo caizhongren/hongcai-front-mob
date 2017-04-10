@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('BankcardCtrl', ['$scope', '$rootScope', '$state', 'HongcaiUser', 'restmod', 'WEB_DEFAULT_DOMAIN', 'Restangular', function($scope, $rootScope, $state, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN, Restangular) {
+  .controller('BankcardCtrl', function($scope, $rootScope, $state, restmod, WEB_DEFAULT_DOMAIN, Restangular) {
     // 获取用户总资产
     var userAccount = {
       tTotalAssets: 0
@@ -20,7 +20,7 @@ angular.module('p2pSiteMobApp')
       sessionStorage.setItem('userAccount', angular.toJson($scope.userAccount));
     });
 
-    HongcaiUser.$find('0' + '/bankcard').$then(function(response) {
+    $scope.voucher = Restangular.one('users/0').one('bankcard').get().then(function(response) {
       if (response.$status === "ok" && response.ret !== -1) {
         // 获取用户的银行卡信息
         $scope.simpleBankcard = response;
@@ -69,4 +69,4 @@ angular.module('p2pSiteMobApp')
         angular.element(".bankcard-body").css("min-height", angular.element(window).height() + "px");
       });
     });
-  }]);
+  });

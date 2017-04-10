@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('DealCtrl', ['$rootScope', '$scope','$state', 'HongcaiUser', function($rootScope, $scope, $state,HongcaiUser) {
+  .controller('DealCtrl', function($rootScope, $scope, $state, Restangular) {
     $rootScope.selectedSide = 'account';
     $scope.page = 1;
     $scope.pageSize = 10;
@@ -25,13 +25,12 @@ angular.module('p2pSiteMobApp')
       if ($scope.totalPage < $scope.page){
         return;
       }
-      var dealsReq = HongcaiUser.$find('0' + '/deals', {
+      Restangular.one('users/0').one('deals').get({
         page: $scope.page,
         pageSize: $scope.pageSize,
         types: types
-      });
-      dealsReq.$then(function(response){
-        if(response.$status === 'ok'){
+      }).then(function(response){
+        if(response.ret !== -1){
           $scope.dealDate = response;
           $scope.totalPage = response.totalPage;
           for (var i = 0; i < response.data.length; i++) {
@@ -134,4 +133,4 @@ angular.module('p2pSiteMobApp')
       $scope.dealList(dealType.no);
     }
     
-  }]);
+  });

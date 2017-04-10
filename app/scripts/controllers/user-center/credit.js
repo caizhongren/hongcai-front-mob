@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('CreditCtrl', function($timeout, $scope, $rootScope, $state, $location, $stateParams, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN, ScreenWidthUtil, Restangular) {
+  .controller('CreditCtrl', function($timeout, $scope, $rootScope, $state, $location, $stateParams, restmod, WEB_DEFAULT_DOMAIN, ScreenWidthUtil, Restangular) {
 
     //初始化
     $rootScope.headerTitle = '我的投资';

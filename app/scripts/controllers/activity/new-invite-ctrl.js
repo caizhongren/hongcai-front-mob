@@ -7,7 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('newInviteCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, Restangular, restmod, DEFAULT_DOMAIN, config, HongcaiUser) {
+  .controller('newInviteCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, Restangular, DEFAULT_DOMAIN, config) {
 
 
     //立即邀请
@@ -47,7 +47,8 @@ angular.module('p2pSiteMobApp')
     /**
      * 邀请码
      */
-    $scope.voucher = HongcaiUser.$find('0' + '/voucher').$then();
+    $scope.voucher = Restangular.one('users/0').one('voucher').get().$object;
+
     /**
      * 设置用户分享的标题以及描述以及图片等。
      */

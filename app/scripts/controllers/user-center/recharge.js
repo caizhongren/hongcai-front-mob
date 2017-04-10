@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RechargeCtrl', function($timeout, $scope, $rootScope, $stateParams, HongcaiUser, $state, restmod, DEFAULT_DOMAIN, WEB_DEFAULT_DOMAIN, toCunGuanUtils, Utils) {
+  .controller('RechargeCtrl', function($timeout, $scope, $rootScope, $stateParams, $state, restmod, Restangular, WEB_DEFAULT_DOMAIN, toCunGuanUtils, Utils) {
     $rootScope.selectedSide = 'account';
     $scope.rechargeAmount = $stateParams.amount;
     $scope.showLimit = false;
@@ -125,7 +125,7 @@ angular.module('p2pSiteMobApp')
 
       toCunGuanUtils.to('recharge', amount, null, null, $scope.rechargeWay, $scope.expectPayCompany);
     }
-    HongcaiUser.$find('0' + '/availableCash').$then(function(response) {
+    Restangular.one('users/0').one('availableCash').get().then(function(response) {
       if (response.ret !== -1) {
         // 获取用户充值信息
         $scope.simpleWithdraw = response;

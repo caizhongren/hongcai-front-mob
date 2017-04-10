@@ -1,6 +1,6 @@
 'use strict';
 angular.module('p2pSiteMobApp')
-  .factory('toCunGuanUtils', function($state, $rootScope, $timeout, $stateParams, restmod, DEFAULT_DOMAIN, config, Utils, WEB_DEFAULT_DOMAIN) {
+  .factory('toCunGuanUtils', function($state, $rootScope, $timeout, $stateParams, DEFAULT_DOMAIN, config, Utils, Restangular) {
     
     function redirectToYeepay(business, encrpyMsg) {
         if (encrpyMsg.ret !== -1) {
@@ -43,26 +43,21 @@ angular.module('p2pSiteMobApp')
 
       to: function(type, number, realName, idNo, rechargeWay, expectPayCompany){
         $rootScope.showLoadingToast = true;
-        var HongcaiUser = DEFAULT_DOMAIN + '/users/' + '0';
         // 跳转较慢并且认证用户失败的判断。
         if (type === 'recharge') {
           //充值
-          var rechargeModel = restmod.model(HongcaiUser + '/recharge');
-          rechargeModel.$create({
+          Restangular.one('/users/0/').post('recharge', {
             'amount': number,
             'rechargeWay': rechargeWay,
             'expectPayCompany': expectPayCompany,
             'from': 2,
             'device': Utils.deviceCode()
-          }).$then(function(response) {
-
+          }).then(function(response){
             redirectToYeepay('toRecharge', response);
-          });
+          })
 
         } else if (type === 'withdraw') { //提现
-
-          var withdrawModel = restmod.model(HongcaiUser + '/withdraw');
-          withdrawModel.$create({
+          Restangular.one('/users/0/').post('withdraw', {
             'amount': number,
             'from': 2,
             'device': Utils.deviceCode()
@@ -71,9 +66,7 @@ angular.module('p2pSiteMobApp')
           });
 
         } else if (type === 'BIND_BANK_CARD') { //绑卡
-
-          var bindBankcardModel = restmod.model(HongcaiUser + '/bindBankcard');
-          bindBankcardModel.$create({
+          Restangular.one('/users/0/').post('bindBankcard', {
             'from': 2,
             'device': Utils.deviceCode()
           }).$then(function(response) {
@@ -81,8 +74,7 @@ angular.module('p2pSiteMobApp')
           });
 
         } else if (type === 'register') { // 开通易宝
-          var yeepayRegisterModel = restmod.model(HongcaiUser + '/yeepayRegister');
-          yeepayRegisterModel.$create({
+          Restangular.one('/users/0/').post('yeepayRegister', {
             'realName': realName,
             'idCardNo': idNo,
             'from': 2,
@@ -92,7 +84,7 @@ angular.module('p2pSiteMobApp')
           });
         } else if (type === 'transfer') { //投资
 
-          restmod.model(DEFAULT_DOMAIN + '/orders/' + number + '/users/' + '0' + '/payment').$create({
+          Restangular.one('/orders/' + number + '/users/' + '0' + '/').post('payment', {
             'from': 2,
             'device': Utils.deviceCode()
           }).$then(function(response) {
@@ -100,9 +92,7 @@ angular.module('p2pSiteMobApp')
           });
 
         } else if (type === 'autoTransfer') { // 自动投标
-
-          var autoTransfer = restmod.model(HongcaiUser + '/authorizeAutoTransfer');
-          autoTransfer.$create({
+          Restangular.one('/users/0/').post('authorizeAutoTransfer', {
             'from': 2,
             'device': Utils.deviceCode()
           }).$then(function(response) {
@@ -110,23 +100,16 @@ angular.module('p2pSiteMobApp')
           });
 
         } else if (type === 'RESET_MOBILE') { //修改手机号码（已绑定）
-          var resetMobile = restmod.model(HongcaiUser + '/resetMobile');
-          resetMobile.$create({
+          Restangular.one('/users/0/').post('resetMobile', {
             'from': 2,
             'mobile': $stateParams.number
           }).$then(function(response){
             redirectToYeepay('toResetMobile',response);
           });
         } else if (type === 'autoRepayment') { //自动还款授权
-          var autoRepayment = restmod.model(WEB_DEFAULT_DOMAIN + "/yeepay/authorizeAutoRepayment");
-          autoRepayment.$create({
-            'from': 2
-          }).$then(function(response){
-            redirectToYeepay('toAuthorizeAutoRepayment',response);
-          });
+
         } else if (type === 'active') { //存管通激活
-          var active = restmod.model(DEFAULT_DOMAIN + "/userAuths/cgtActive");
-          active.$create({
+          Restangular.one('/userAuths/').post('cgtActive', {
             'from': 2
           }).$then(function(response){
             redirectToYeepay('toActive',response);

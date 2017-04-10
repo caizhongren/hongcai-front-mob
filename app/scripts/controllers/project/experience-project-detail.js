@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('ExperienceProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, $location, projects, Restangular, restmod, DEFAULT_DOMAIN, HongcaiUser, UserService) {
+  .controller('ExperienceProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, $location, projects, Restangular, UserService) {
 
 
     UserService.loadAccount($scope);
@@ -30,7 +30,7 @@ angular.module('p2pSiteMobApp')
     $scope.showMsg = false;
     $scope.toInvest = function() {
       $scope.useExperience = false;
-      restmod.model(DEFAULT_DOMAIN + '/projects/' + $scope.experienceProject.number + '/users/' + '0' + '/investmentByExperience').$create({
+      Restangular.one('/projects/' + $scope.experienceProject.number + '/users/' + 0 + '/').post('investmentByExperience', {
         amount: $scope.userAccount.experienceAmount,
         projectId: $scope.experienceProject.id,
         isRepeat: 2,
