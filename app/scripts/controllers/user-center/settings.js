@@ -9,9 +9,6 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('SettingsCtrl', function($scope, $rootScope, $state, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location, toCunGuanUtils, SessionService, UserService) {
-
-    $scope.userHeadImgUrl = SessionService.getUser() &&  SessionService.getUser().headImgUrl 
-      ? SessionService.getUser.headImgUrl: '/images/user-center/head.png';
     
     if ($location.path().split('/')[2] === 'setting') {
       $rootScope.showFooter = false;
