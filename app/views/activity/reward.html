@@ -10,7 +10,7 @@
 		</div>
 		<div>
 			<p class="text-center margin-b-0">{{privilegedCapital.profit | number:2 || 0}}</p>
-			<p class="text-center">累计特权本金(元)</p>
+			<p class="text-center">累计收益(元)</p>
 		</div>
 	</div>
 	<div class="invite-list">
@@ -34,8 +34,8 @@
 							<td class="bd-right bd-bottom {{ intervalDays(detail.registTime) <= 0 ? 'color_grey' : ''}}">{{detail.mobile}}<img src="/images/invite/award-off.png" ng-show="intervalDays(detail.registTime) <= 0"></td>
 							<td class="bd-right bd-bottom color_grey" ng-if="intervalDays(detail.registTime) <= 0">——</td>
 							<td class="bd-right bd-bottom" ng-if="intervalDays(detail.registTime) > 0">暂无</td>
-							<td class="bd-bottom color_grey" g-if="intervalDays(detail.registTime) <= 0">——</td>
-							<td class="bd-bottom" g-if="intervalDays(detail.registTime) > 0">未投资</td>
+							<td class="bd-bottom color_grey" ng-if="intervalDays(detail.registTime) <= 0">——</td>
+							<td class="bd-bottom" ng-if="intervalDays(detail.registTime) > 0">未投资</td>
 						</tr>
 					</tbody>
 				</table>
