@@ -35,7 +35,7 @@
       </span>
     </div>
     <p class="login margin-0 text-center margin-t-2">
-      <button type="submit" class="button button-primary column ft-normal margin-t-1p5 margin-b-1p5 {{mobileCaptchaForm.$invalid ? 'button-disabled1' : ''}}" ng-click="toLogin(user)" ng-disabled="mobileCaptchaForm.$invalid || busy">立即登录</button>
+      <button type="submit" class="button button-primary column ft-normal margin-t-1p5 margin-b-1p5 {{mobileCaptchaForm.$invalid ? 'button-disabled1' : ''}}" ng-click="toMobileLogin(user)" ng-disabled="mobileCaptchaForm.$invalid || busy">立即登录</button>
     </p>
     <div ng-click="changeLogin();" class="ft-red1 pull-right ft-blue8 margin-b-0p5">登录密码登录></div>
     <div ui-sref="root.register2" class="ft-red1 pull-right ft-blue8 clear">立即注册></div>
