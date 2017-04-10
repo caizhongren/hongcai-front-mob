@@ -46,6 +46,7 @@ angular.module('p2pSiteMobApp')
         if(response.$status === 'ok'){
           $scope.totalPage = response.totalPage;
           $scope.total = response.total;
+          $scope.inviteeList = response.data;
           $scope.loadMoreData =  Math.ceil($scope.total/6);
           for (var i = 0; i < response.data.length; i++) {
             $scope.datas.push(response.data[i]);
@@ -70,6 +71,10 @@ angular.module('p2pSiteMobApp')
      */
      $scope.toInvestList = function() {
         //如果邀请好友为 0 ，点击系统自带的弹窗提示 文案：“你还没有邀请到好友哦～”
+        if($scope.inviteeList.length === 0){
+          alert('你还没有邀请到好友哦～');
+          return;
+        }
         $state.go('root.userCenter.invite-rebate-list');
      }
 

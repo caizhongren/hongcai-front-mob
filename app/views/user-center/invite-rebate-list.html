@@ -10,8 +10,8 @@
 		<ul>
 			<li ng-repeat="item in datas">
 				<p class="ft-Arail">{{item.user.mobile}}</p>
-				<p ng-show="item.investAmount <= 0">未投资</p>
-				<p ng-show="item.investAmount > 0">已投资</p>
+				<p ng-if="item.investAmount <= 0">未投资</p>
+				<p ng-if="item.investAmount > 0">已投资</p>
 			</li>
 		</ul>
 		<div class="text-center" ng-show="page < loadMoreData">
