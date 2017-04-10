@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('SettingsCtrl', function($scope, $rootScope, $state, DEFAULT_DOMAIN, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location, toCunGuanUtils, SessionService, UserService) {
+  .controller('SettingsCtrl', function($scope, $rootScope, $state, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location, toCunGuanUtils, SessionService, UserService) {
 
     $scope.userHeadImgUrl = SessionService.getUser() &&  SessionService.getUser().headImgUrl 
       ? SessionService.getUser.headImgUrl: '/images/user-center/head.png';

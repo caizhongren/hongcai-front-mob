@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('GetPwdCtrl', function(checkPwdUtils, $rootScope, $scope, $state, $stateParams, $timeout, Utils, CheckMobUtil, CheckPicUtil, md5 ,Restangular, ipCookie, DEFAULT_DOMAIN, WEB_DEFAULT_DOMAIN) {
+  .controller('GetPwdCtrl', function(checkPwdUtils, $rootScope, $scope, $state, $stateParams, $timeout, Utils, CheckMobUtil, CheckPicUtil, md5 ,Restangular, ipCookie, WEB_DEFAULT_DOMAIN) {
     //图形验证码
     $scope.btnText = '按钮';
     $scope.getPicCaptcha = WEB_DEFAULT_DOMAIN + '/siteUser/getPicCaptcha?';

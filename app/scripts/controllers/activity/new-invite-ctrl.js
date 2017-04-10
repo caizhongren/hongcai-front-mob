@@ -7,7 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('newInviteCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, Restangular, DEFAULT_DOMAIN, config) {
+  .controller('newInviteCtrl', function($rootScope, $scope, $state, $stateParams, $timeout, Restangular, config) {
 
 
     //立即邀请

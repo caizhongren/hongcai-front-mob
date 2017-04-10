@@ -1,6 +1,6 @@
 'use strict';
 angular.module('p2pSiteMobApp')
-  .factory('toCunGuanUtils', function($state, $rootScope, $timeout, $stateParams, DEFAULT_DOMAIN, config, Utils, Restangular) {
+  .factory('toCunGuanUtils', function($state, $rootScope, $timeout, $stateParams, config, Utils, Restangular) {
     
     function redirectToYeepay(business, encrpyMsg) {
         if (encrpyMsg.ret !== -1) {

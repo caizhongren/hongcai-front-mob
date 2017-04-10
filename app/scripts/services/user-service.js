@@ -4,7 +4,7 @@
  * 用户服务类
  */
 angular.module('p2pSiteMobApp')
-  .service('UserService', function (Restangular, DEFAULT_DOMAIN, SessionService) {
+  .service('UserService', function (Restangular, SessionService) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     return {
 

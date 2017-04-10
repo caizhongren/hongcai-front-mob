@@ -7,7 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('modifyPwd', function(checkPwdUtils, $timeout, $scope, DEFAULT_DOMAIN,md5, $state,$rootScope, Restangular) {
+  .controller('modifyPwd', function(checkPwdUtils, $timeout, $scope, md5, $state,$rootScope, Restangular) {
 
     /**
      * 监测新密码

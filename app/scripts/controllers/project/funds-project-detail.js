@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('FundsProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects, Restangular, DEFAULT_DOMAIN, config, toCunGuanUtils) {
+  .controller('FundsProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects, Restangular, config, toCunGuanUtils) {
     // 宏金盈详情页面
     var number = $stateParams.number;
     if (!number) {
