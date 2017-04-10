@@ -7,7 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .directive('capchaCountdown', function($http, DEFAULT_DOMAIN, mobileCaptcha, ipCookie, Utils, $location) { //定义指令时的名称用驼峰命名，使用时用中划线方式
+  .directive('capchaCountdown', function($http, Restangular, ipCookie, Utils, $location) { //定义指令时的名称用驼峰命名，使用时用中划线方式
     return {
       restrict: 'EA',
       scope: false,
@@ -20,7 +20,7 @@ angular.module('p2pSiteMobApp')
           if (scope.piccha === false) {
             var msg = '图形验证码有误';
           }
-          mobileCaptcha.$create({
+          Restangular.one('/users/').post('mobileCaptcha', {  
             mobile: scope.user.mobile,
             picCaptcha: scope.user.picCaptcha,
             type: scope.user.mobileCaptchaType,

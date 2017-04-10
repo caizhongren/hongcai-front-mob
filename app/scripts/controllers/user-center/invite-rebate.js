@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('InviteRebateCtrl',function ($scope, $state, $rootScope, $location, HongcaiUser) {
+  .controller('InviteRebateCtrl',function ($scope, $state, $rootScope, $location, Restangular) {
     $scope.page = 1;
     $scope.pageSize = 6;
     $scope.datas = [];
@@ -19,7 +19,7 @@ angular.module('p2pSiteMobApp')
      */
 
     $scope.getInviteStat = function(){
-      HongcaiUser.$find('0' + '/inviteStat', {}).$then(function(response){
+      Restangular.one('users/0').one('inviteStat').get().then(function(response){
         if(response.$status === 'ok' && response.ret !== -1){
           $scope.inviteStat = response;
         } else{
@@ -29,7 +29,8 @@ angular.module('p2pSiteMobApp')
     }
     $scope.getInviteStat();
     //邀请码
-    $scope.voucher = HongcaiUser.$find('0' + '/voucher').$then();
+    $scope.voucher = Restangular.one('users/0').one('voucher').get().$object;
+
 
     /**
      * 邀请用户列表统计
@@ -38,12 +39,11 @@ angular.module('p2pSiteMobApp')
       if ($scope.page > Math.ceil($scope.total/6)){
         return;
       }
-      var couponsReq = HongcaiUser.$find('0' + '/inviteList' , {
+      Restangular.one('users/0').one('inviteList').get({
         page: page,
         pageSize: $scope.pageSize
-      });
-      couponsReq.$then(function(response){
-        if(response.$status === 'ok'){
+      }).then(function(response){
+        if(response.ret !== -1){
           $scope.totalPage = response.totalPage;
           $scope.total = response.total;
           $scope.inviteeList = response.data;

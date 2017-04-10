@@ -146,7 +146,7 @@ angular.module('p2pSiteMobApp')
 
 
     $scope.$watch('project.investAmount', function(newVal, oldVal){
-      if(!$rootScope.isLogged){
+      if(!$rootScope.isLogged || oldVal ==undefined){
         return;
       }
 

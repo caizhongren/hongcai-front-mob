@@ -9,7 +9,7 @@
  */
 angular.module('p2pSiteMobApp')
 
-.controller('AccountCtrl', function ($scope, $state, DEFAULT_DOMAIN, Restangular, toCunGuanUtils, SessionService, UserService) {
+.controller('AccountCtrl', function ($scope, $state, Restangular, toCunGuanUtils, SessionService, UserService) {
 
     /**
      * 默认头像

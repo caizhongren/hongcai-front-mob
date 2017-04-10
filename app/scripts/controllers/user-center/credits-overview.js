@@ -9,7 +9,7 @@
  */
 angular.module('p2pSiteMobApp')
 
-.controller('CreditsOverviewCtrl', function ($scope, $state, DEFAULT_DOMAIN, Restangular) {
+.controller('CreditsOverviewCtrl', function ($scope, $state, Restangular) {
 
     $scope.totalInvestAmount = 0;
     $scope.investStat = {

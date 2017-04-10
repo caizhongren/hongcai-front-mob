@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('SettingsCtrl', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location, toCunGuanUtils, SessionService, UserService) {
+  .controller('SettingsCtrl', function($scope, $rootScope, $state, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location, toCunGuanUtils, SessionService, UserService) {
 
     $scope.userHeadImgUrl = SessionService.getUser() &&  SessionService.getUser().headImgUrl 
       ? SessionService.getUser.headImgUrl: '/images/user-center/head.png';
@@ -20,7 +20,7 @@ angular.module('p2pSiteMobApp')
     /**
      * 邀请码
      */
-    $scope.voucher = HongcaiUser.$find('0' + '/voucher').$then();
+    $scope.voucher = Restangular.one('users/0').one('voucher').get().$object;
 
     /**
      * 认证信息
@@ -30,7 +30,8 @@ angular.module('p2pSiteMobApp')
     /**
      * 银行卡信息
      */
-    HongcaiUser.$find('0' + '/bankcard').$then(function(response) {
+
+    Restangular.one('users/0').one('bankcard').get().then(function(response) {
         $scope.simpleBankcard = response;
         if($scope.simpleBankcard.cardNo){
           $scope.simpleBankcard.cardNo = $scope.simpleBankcard.cardNo.substr($scope.simpleBankcard.cardNo.length - 4);
@@ -58,9 +59,7 @@ angular.module('p2pSiteMobApp')
         $scope.changePasswordMsg = "两次密码输入不一致";
         return;
       }
-
-      restmod.model(DEFAULT_DOMAIN + '/users/' + '0' + '/changePassword')
-        .$create({
+      Restangular.one('users/0').post('changePassword', {
           oldPassword: md5.createHash(oldP),
           newPassword: md5.createHash(newP2),
           device: Utils.deviceCode()

@@ -7,7 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('NewOrdersCtrl', function($scope, WEB_DEFAULT_DOMAIN, restmod, Restangular, $stateParams) {
+  .controller('NewOrdersCtrl', function($scope, Restangular, $stateParams) {
 
     /**
      * 项目信息
@@ -18,12 +18,11 @@ angular.module('p2pSiteMobApp')
        /**
        * 项目订单列表
        */
-      var siteProject = restmod.model(WEB_DEFAULT_DOMAIN + '/siteProject');
       $scope.projectOrders = function(projectId, projectType) {
-        siteProject.$find('/projectOrders', {
+        Restangular.one('/projects/' + $stateParams.number).get({
           projectId: $scope.projectId,
           projectType: $scope.projectType
-        }).$then(function(response) {
+        }).then(function(response) {
           if (response.ret !== -1) {
             $scope.orderList = response.data.orderList;
 

@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('GetPwdCtrl', function(checkPwdUtils, $rootScope, $scope, $state, $stateParams, $timeout, Utils, CheckMobUtil, CheckPicUtil, md5, HongcaiUser, restmod, ipCookie, DEFAULT_DOMAIN, WEB_DEFAULT_DOMAIN) {
+  .controller('GetPwdCtrl', function(checkPwdUtils, $rootScope, $scope, $state, $stateParams, $timeout, Utils, CheckMobUtil, CheckPicUtil, md5 ,Restangular, ipCookie, WEB_DEFAULT_DOMAIN) {
     //图形验证码
     $scope.btnText = '按钮';
     $scope.getPicCaptcha = WEB_DEFAULT_DOMAIN + '/siteUser/getPicCaptcha?';
@@ -59,8 +59,7 @@ angular.module('p2pSiteMobApp')
       }
       $scope.busy = true;
 
-
-      HongcaiUser.$find('/checkMobileCaptcha', {
+      $scope.voucher = Restangular.one('users/0').one('checkMobileCaptcha').get({
         mobile: mobile,
         captcha: captcha,
         business:1,
@@ -137,8 +136,7 @@ angular.module('p2pSiteMobApp')
       }
       $scope.busy = true;
 
-      restmod.model(DEFAULT_DOMAIN + '/users/resetMobilePassword')
-        .$create({
+      Restangular.one('users/').post('resetMobilePassword', {
           mobile: $scope.mobileNum,
           captcha: $scope.captchaNum,
           password: md5.createHash(chg.newPassword2),
