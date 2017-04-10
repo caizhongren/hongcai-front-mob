@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RateCouponCtrl',function ($scope, $state, $rootScope, $location, $stateParams, HongcaiUser, ipCookie) {
+  .controller('RateCouponCtrl',function ($scope, $state, $rootScope, $location, $stateParams, ipCookie, Restangular) {
     $scope.page = 1;
     $scope.pageSize = 4;
     $scope.datas = [];
@@ -52,12 +52,7 @@ angular.module('p2pSiteMobApp')
         status = "2";
       }
 
-      var couponsReq = HongcaiUser.$find('0' + '/userIncreaseRateCoupons', {
-        page: $scope.page,
-        pageSize: $scope.pageSize,
-        status: status
-      });
-      couponsReq.$then(function(response){
+      Restangular.one('users/0').one('userIncreaseRateCoupons').get().then(function(response){
         if(response && response.ret !== -1){
           if(subtabIndex === 0){
             $scope.unUseTotalPage = response.totalPage;

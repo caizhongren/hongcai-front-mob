@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RegisterCtrl', function(CheckPicUtil, checkPwdUtils, $http, $timeout, $rootScope, $scope, $state, $stateParams, CheckMobUtil, md5, register, ipCookie, Utils, WEB_DEFAULT_DOMAIN, SessionService) {
+  .controller('RegisterCtrl', function(CheckPicUtil, checkPwdUtils, $http, $timeout, $rootScope, $scope, $state, $stateParams, CheckMobUtil, md5, ipCookie, Utils, WEB_DEFAULT_DOMAIN, SessionService) {
     // 注册链接上是否有邀请码
     $scope.btn = 'haha';
     $scope.user = {
@@ -60,7 +60,7 @@ angular.module('p2pSiteMobApp')
         act = ipCookie('act');
       }
        $scope.busy = true;
-      register.$create({
+      Restangular.one('users/').post('register', {  
         // name: user.name,
         picCaptcha: user.picCaptcha,
         password: md5.createHash(user.password),

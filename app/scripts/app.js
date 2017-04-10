@@ -639,6 +639,17 @@ p2pSiteMobApp
         }
       }
     })
+    // 渠道活动落地页
+    .state('root.activity.channel', {
+      url: '/channel',
+      views: {
+        '': {
+          templateUrl: 'views/activity/channel.html',
+          // controller: 'InviteSharingCtrl',
+          // controllerUrl: 'scripts/controllers/activity/invite-sharing-ctrl'
+        }
+      }
+    })
     // 邀请活动
     .state('root.activity.invite-activity', {
       url: '/invite-activity',
@@ -713,23 +724,6 @@ p2pSiteMobApp
         }
       })
 
- 
-
-    //体验金新手标
-    .state('root.experience-project-detail', {
-        url: '/experience-project',
-        data: {
-          title: '体验金专享标'
-        },
-        views: {
-          '': {
-            templateUrl: 'views/project/experience-project-detail.html',
-            controller: 'ExperienceProjectDetailCtrl',
-            controllerUrl: 'scripts/controllers/project/experience-project-detail'
-          }
-        }
-      })
-
       //我的加息券
       .state('root.userCenter.rate-coupon', {
         url: '/rate-coupon?tab&subTab',
@@ -769,20 +763,6 @@ p2pSiteMobApp
           }
         }
       })
-      //个人中心体验金详情页
-      .state('root.userCenter.experience-money', {
-        url: '/experience-money',
-        data: {
-          title: '我的体验金'
-        },
-        views: {
-          '': {
-            templateUrl: 'views/user-center/experience-money.html',
-            controller: 'ExperienceMoneyCtrl',
-            controllerUrl: 'scripts/controllers/user-center/experience-money'
-          }
-        }
-      })
 
       //个人中心特权本金
       .state('root.userCenter.privileged-capital', {
@@ -802,7 +782,7 @@ p2pSiteMobApp
       .state('root.userCenter.cash-coupon', {
         url: '/cash-coupon',
         data: {
-          title: '我的奖金'
+          title: '现金券'
         },
         views: {
           '': {

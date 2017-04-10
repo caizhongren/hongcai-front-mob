@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('MessageCtrl', ['$scope', '$rootScope', 'HongcaiUser', 'Restangular', '$timeout', function ($scope, $rootScope, HongcaiUser, Restangular, $timeout) {
+  .controller('MessageCtrl', function ($scope, $rootScope, Restangular, $timeout) {
   	$scope.userMsgsList = [];
   	$scope.page = 1;
   	$scope.notices = [];
@@ -105,4 +105,4 @@ angular.module('p2pSiteMobApp')
   		}
   	}
 
-  }]);
+  });
