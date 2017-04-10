@@ -639,6 +639,17 @@ p2pSiteMobApp
         }
       }
     })
+    // 渠道活动落地页
+    .state('root.activity.channel', {
+      url: '/channel',
+      views: {
+        '': {
+          templateUrl: 'views/activity/channel.html',
+          controller: 'InviteSharingCtrl',
+          controllerUrl: 'scripts/controllers/activity/invite-sharing-ctrl'
+        }
+      }
+    })
     // 邀请活动
     .state('root.activity.invite-activity', {
       url: '/invite-activity',
