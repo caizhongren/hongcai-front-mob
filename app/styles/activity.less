@@ -1921,16 +1921,6 @@ input::-webkit-inner-spin-button {
 }
 
 //我的奖励
-.statement {
-    width: 100%;
-    background-color: #f8902d;
-    margin-top: -2rem;
-    padding-bottom: 1rem;
-       p {
-            transform: scale(0.9);
-            margin-bottom: 0;
-       }
-    }
 .invite-reward {
     background: url('/images/invite/award-bg.jpg') repeat-y center 0;
     background-size: cover;
@@ -1952,12 +1942,16 @@ input::-webkit-inner-spin-button {
         
     }
     .con-invite-btn {
-        img {
-            position: fixed;
-            bottom: 3rem;
-            margin: 0 auto;
-            left: 3%;
-            z-index: 10;
+        position: fixed;
+        margin: 0 auto;
+        //padding-top: 1rem;
+        width: 100%;
+        left: 0;
+        z-index: 10;
+        bottom: 0;
+        background-color: #f8902d;
+        p {
+            transform: scale(0.9);
         }
     }
     
@@ -1971,6 +1965,7 @@ input::-webkit-inner-spin-button {
             border-image: linear-gradient(#ca445d , #c95941) 30 30;
             background-clip: padding-box;
             border-radius: .4rem;
+            background-image: linear-gradient(#ea4555,#e85d36);
             table {
                 width: 100%;
                 margin: 1rem 0;
@@ -1986,11 +1981,12 @@ input::-webkit-inner-spin-button {
                     }
                 }
                 td {
-                    padding: 12px 0;
+                    padding: 10px 0;
                     text-align: center;
                     width: 33%;
                     color: #fff;
                     position: relative;
+                    transform: scale(0.9);
                     img {
                         position: absolute;
                         width: 67%;
@@ -2040,7 +2036,7 @@ input::-webkit-inner-spin-button {
             }
             p:first-child {
                 margin-top: 1rem;
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             p:last-child {
                 margin-bottom: .6rem;
