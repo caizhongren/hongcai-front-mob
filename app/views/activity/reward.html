@@ -2,7 +2,7 @@
 	<div class="head">
 		<p class="ft-1p6 text-center">您已成功邀请<span class="ft-3 display-inbl margin-l-1 margin-r-1">{{inviteCount || 0}}</span>位好友了！</p>
 	</div>
-	<p class="ft-1p8 text-center margin-t-1p5 margin-b-1 ft-white">好友共为您带来</p>
+	<p class="ft-1p8 text-center margin-t--0p5 margin-b-1 ft-white">好友共为您带来</p>
 	<div class="part2">
 		<div>
 			<p class="text-center margin-b-0">{{privilegedCapital.amount | number:0 || 0}}</p>
@@ -43,8 +43,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="con-invite-btn" ng-click="isShare = true">
-		<img src="/images/invite/award-btn-on.png" class="display-bl margin-auto" width="94%">
+	<div class="con-invite-btn">
+		<img src="/images/invite/award-btn-on.png" class="display-bl margin-auto margin-t-1 {{deviceCode === 5 || deviceCode === 6 ? '' : 'margin-b-1p5'}}"  ng-click="isShare = true" width="94%">
+		<p class="ft-1p2 ft-white text-center margin-b-1" ng-show="deviceCode === 5 || deviceCode === 6">该活动与设备生产商Apple Inc.公司无关 </p>
 	</div>
 	<div class="project-mask" id="shareMask" ng-show="isShare" ng-init="isShare = false">
 		<div class="share-wrap bg-offWhite">
@@ -62,7 +63,4 @@
 			<p class="text-center cancle" ng-click="isShare = false">取消</p>
 		</div>
 	</div>
-</div>
-<div class="statement" ng-if="deviceCode === 5 || deviceCode === 6">
-	<p class="ft-1p2 ft-white text-center">该活动与设备生产商Apple Inc.公司无关</p>
 </div>
