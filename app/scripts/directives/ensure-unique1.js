@@ -14,7 +14,7 @@ angular.module('p2pSiteMobApp')
         scope.$watch(attrs.ngModel, function() {
           var uniqueValue = elem.val();
           if(uniqueValue !== '') {
-            Restangular.one('users/').post('isUnique', {account: uniqueValue}).$then(function(response) {
+            Restangular.one('users/').post('isUnique', {account: uniqueValue}).then(function(response) {
               if (response.ret === -1) {
                 ngModelCtrl.$setValidity('unique', false);
               } else if (response.ret === 1) {
