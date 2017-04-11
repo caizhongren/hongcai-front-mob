@@ -10,7 +10,6 @@ angular.module('p2pSiteMobApp')
      */
       configJsApi : function(){
         var url = location.href.split('#')[0];
-        console.log(url);
         Restangular.one("wechat").one("jsApiConfig").get({
           requestUrl : url
         }).then(function(apiConfig){
@@ -35,7 +34,6 @@ angular.module('p2pSiteMobApp')
      * 设置用户分享的标题以及描述以及图片等。
      */
     onMenuShareAppMessage : function(title, subTitle, shareLink, imgUrl){
-      alert(title);
       wx.onMenuShareAppMessage({
         title: title,
         desc: subTitle,

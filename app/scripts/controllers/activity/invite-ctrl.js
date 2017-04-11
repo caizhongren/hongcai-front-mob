@@ -61,7 +61,6 @@ angular.module('p2pSiteMobApp')
 
       wx.ready(function(){
         $scope.shareItem = InviteShareUtils.share($scope.voucher.inviteCode);
-        alert('ready' + $scope.shareItem);
         WechatShareUtils.onMenuShareAppMessage($scope.shareItem.title, $scope.shareItem.subTitle, $scope.shareItem.linkUrl, $scope.shareItem.imageUrl);
       });
     }

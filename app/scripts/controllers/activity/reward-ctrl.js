@@ -7,7 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('RewardCtrl', function(ipCookie, $scope, $state, $rootScope, $stateParams, $location, Restangular, SessionService, UserService, Utils) {
+  .controller('RewardCtrl', function(ipCookie, $scope, $state, $rootScope, $stateParams, $location, Restangular, SessionService, UserService, Utils, InviteShareUtils, WechatShareUtils) {
 
     $scope.deviceCode = Utils.deviceCode();
 
@@ -44,7 +44,22 @@ angular.module('p2pSiteMobApp')
       	return interDays > 0 ? interDays : 0;
       }
 
-      
+      if(SessionService.isLogin() && Utils.isWeixin()){
+        //邀请码
+        $scope.voucher = Restangular.one('users/0').one('voucher').get().$object;
+        WechatShareUtils.configJsApi();
+        
+        wx.error(function(res){
+          $timeout(function() {
+            window.location.href=config.domain + '/activity/invite?' + Math.round(Math.random()* 1000);
+          }, 100);
+        });
+
+        wx.ready(function(){
+          $scope.shareItem = InviteShareUtils.share($scope.voucher.inviteCode);
+          WechatShareUtils.onMenuShareAppMessage($scope.shareItem.title, $scope.shareItem.subTitle, $scope.shareItem.linkUrl, $scope.shareItem.imageUrl);
+        });
+      }
 
   })
   
