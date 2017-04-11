@@ -379,5 +379,14 @@ angular.module('p2pSiteMobApp')
     $rootScope.showSuccessToast = false;
     $rootScope.successMsg = '';
 
+    $rootScope.showSuccessMsg = function(msg, duration){
+      $rootScope.successMsg = msg;
+      $rootScope.showSuccessToast = true;
+      $timeout(function() {
+        $rootScope.showSuccessToast = false;
+        $rootScope.successMsg = undefined;
+      }, duration);
+    }
+
 
   });

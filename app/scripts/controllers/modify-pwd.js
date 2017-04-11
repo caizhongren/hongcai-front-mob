@@ -60,17 +60,15 @@ angular.module('p2pSiteMobApp')
       Restangular.one('users/0/').post('changePassword', {
         oldPassword: md5.createHash(chg.oldPassword),
         newPassword: md5.createHash(chg.newPassword1),
-      }).$then(function(response) {
+      }).then(function(response) {
         if (response.ret === -1) {
-          $rootScope.showMsg('旧密码不正确');
+          $rootScope.showMsg(response.msg);
           $timeout(function() {
             $scope.busy = false;
           }, 1000);
         } else {
+          $rootScope.showSuccessMsg('修改成功', 1000);
           $state.go('root.login');
-          $timeout(function() {
-            $scope.busy = false;
-          }, 1000);
         }
       });
 
