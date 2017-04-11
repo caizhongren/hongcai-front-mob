@@ -197,7 +197,7 @@ angular.module('p2pSiteMobApp')
           var wechat_code = $location.search().code;
           var redirect_uri = location.href;
           if (wechat_code) { // 用户未登录但已经有code，去登录
-            Restangular.one('users/openid').get().then(function(response) {
+            Restangular.one('users/' + wechat_code + '/openid').get().then(function(response) {
               if (response.ret == -1) {
                 var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechatAppid +
                   "&redirect_uri=" + encodeURIComponent(URLService.removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
