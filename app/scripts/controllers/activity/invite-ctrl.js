@@ -120,7 +120,8 @@ angular.module('p2pSiteMobApp')
     }
 
     if(Utils.isWeixin()){
-      alert('是微信');
+      //邀请码
+      $scope.voucher = Restangular.one('users/0').one('voucher').get().$object;
       $scope.configJsApi();
       
       wx.error(function(res){
@@ -130,7 +131,7 @@ angular.module('p2pSiteMobApp')
       });
 
       wx.ready(function(){
-        $scope.shareItem = InviteShareUtils.share();
+        $scope.shareItem = InviteShareUtils.share($scope.voucher.inviteCode);
         alert('ready' + $scope.shareItem);
         $scope.onMenuShareAppMessage($scope.shareItem.title, $scope.shareItem.subTitle, $scope.shareItem.linkUrl, $scope.shareItem.imageUrl);
       });
