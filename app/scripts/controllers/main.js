@@ -180,12 +180,21 @@ angular.module('p2pSiteMobApp')
      */
     $scope.toExperience =function() {
       if(!$rootScope.isLogged) {
-        $state.go('root.register');
+        $state.go('root.login');
         return;
       }
       $state.go('root.userCenter.experience-money');
     }
-
+    /**
+    * 跳转游戏兑换页
+    */
+    $scope.goExchange = function() {
+      if(!$rootScope.isLogged) {
+        $state.go('root.register');
+        return;
+      }
+      $state.go('root.activity.exchange-cdkey');
+    }
 
     $scope.clickBanner = function(toStateOrUrl){
       if(toStateOrUrl.indexOf('root.') !== -1){
