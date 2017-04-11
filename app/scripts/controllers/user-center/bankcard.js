@@ -16,7 +16,7 @@ angular.module('p2pSiteMobApp')
     $scope.bankcard = Restangular.one('users/0').one('bankcard').get().$object;
 
     $scope.unBindBankcard = function() {
-      restmod.model(WEB_DEFAULT_DOMAIN + '/yeepay').$find('/unbindBankCard').$then(function(response) {
+      restmod.model(WEB_DEFAULT_DOMAIN + '/yeepay').$find('/unbindBankCard').then(function(response) {
         $scope.showMask = false;
         $scope.showBankCard = false;
         if (!response || response.ret == -1) {

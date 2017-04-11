@@ -60,7 +60,7 @@ angular.module('p2pSiteMobApp')
           oldPassword: md5.createHash(oldP),
           newPassword: md5.createHash(newP2),
           device: Utils.deviceCode()
-        }).$then(function(response) {
+        }).then(function(response) {
           if (response.ret === -1) {
             $scope.changePasswordMsg = response.msg;
           } else {

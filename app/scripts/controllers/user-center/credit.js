@@ -100,7 +100,7 @@ angular.module('p2pSiteMobApp')
         page: $scope.page,
         pageSize: $scope.pageSize,
         type: $scope.type
-      }).$then(function(response) {
+      }).then(function(response) {
         $scope.totalPage = Math.ceil(response.data.count / $scope.pageSize);
         $scope.creditsData = response.data.heldIdCreditList;
         if ($scope.privilegeRate.orderNum) {

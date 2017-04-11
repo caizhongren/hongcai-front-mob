@@ -265,7 +265,7 @@ angular.module('p2pSiteMobApp')
             isRepeat: $scope.isRepeat,
             payAmount: payAmount,
             couponNumber: couponNumber
-          }).$then(function(response) {
+          }).then(function(response) {
             // 重复下单后，response.number为undefined
             if (response.$status === 'ok') {
               if (response.number !== null && response.number !== undefined) {
