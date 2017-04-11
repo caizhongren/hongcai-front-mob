@@ -21,7 +21,8 @@
   <div class="ivt-tip-wrap padding-t-1p5 padding-b-1p5 bg-offWhite">
     <div class="bg-white ivt-tip">
       <p>成功邀请一位好友最高可获得<span class="color-change">1315元</span>现金奖励</p>
-      <p ng-click="showDownload = true">立即参与</p>
+      <p ng-click="showDownload = true" ng-if="deviceCode === 3 || deviceCode === 6 || deviceCode === 2 || deviceCode === 5">立即参与</p>
+      <p ui-sref="root.activity.invite-activity" ng-if="!(deviceCode === 3 || deviceCode === 6 || deviceCode === 2 || deviceCode === 5)">立即参与</p>
     </div>
   </div>
   <div class="ivt-rebate-share">
@@ -33,14 +34,14 @@
         <img src="/images/invite/share-link.png" width="16%" height="16%">
       </div>
       <div class="share-words">
-        <p class="ft-666 margin-b-0">微信好友</p>
-        <p class="ft-666 margin-b-0">QQ好友</p>
-        <p class="ft-666 margin-b-0">复制链接</p>
+        <p class="ft-666 margin-b-0" ng-click="showDownload = true">微信好友</p>
+        <p class="ft-666 margin-b-0" ng-click="showDownload = true">QQ好友</p>
+        <p class="ft-666 margin-b-0" ng-click="showDownload = true">复制链接</p>
       </div>
     </div>
   </div>
 </div>
-<div class="project-mask bankcard-setting" ng-show="showDownload" ng-init="showDownload = false">
+<div class="project-mask bankcard-setting" ng-show="showDownload === true && (deviceCode === 3 || deviceCode === 6 || deviceCode === 2 || deviceCode === 5)" ng-init="showDownload = false">
   <div class="project-mask-inner margin-t-20 text-center bg-white ft-black4 ft-1p6 padding-t-3 padding-b-2">
     <div>
       <p class="margin-b-0 ">下载宏财网app</p>
