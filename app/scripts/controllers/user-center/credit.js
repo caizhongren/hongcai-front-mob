@@ -103,7 +103,7 @@ angular.module('p2pSiteMobApp')
       }).$then(function(response) {
         $scope.totalPage = Math.ceil(response.data.count / $scope.pageSize);
         $scope.creditsData = response.data.heldIdCreditList;
-        if ($scope.privilegeRate.orderNum) {
+        if ($scope.creditsData && $scope.privilegeRate.orderNum) {
           for (var i = 0; i <= $scope.creditsData.length - 1; i++) {
             if ($scope.creditsData[i].increaseRateCoupon && $scope.creditsData[i].increaseRateCoupon.type === 1) {
               var oriRate = $scope.creditsData[i].creditRight.riseRate + $scope.creditsData[i].creditRight.baseRate;
