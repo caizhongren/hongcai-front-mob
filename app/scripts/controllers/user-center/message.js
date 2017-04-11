@@ -18,7 +18,7 @@ angular.module('p2pSiteMobApp')
     	$rootScope.showLoadingToast = true;
     	Restangular.one('userMsgs/0/notices').get({
     		page: page,
-    		pageSize: 10
+    		pageSize: 5
     	}).then(function(response){
     		if(response && response.ret !== -1) {
     			$scope.readNotices();
@@ -73,7 +73,7 @@ angular.module('p2pSiteMobApp')
     	$rootScope.showLoadingToast = true;
 	  	Restangular.one('/userMsgs/' + '0' + '/userMsgs' ).get({
 	  		page : page,
-	  		pageSize : 15
+	  		pageSize : 3
 	  	}).then(function(response){
 	  		if (response && response.ret !== -1) {
 	  			

@@ -105,7 +105,12 @@ angular.module('p2pSiteMobApp')
       if ($rootScope.payCompany === 'yeepay'|| !$rootScope.isLogged) {
         return;
       }
-      Restangular.one('users').one('0/userAuth').get({}).then(function(userAuth){
+      var userAuth = SessionService.getUserAuth();
+      if(userAuth){
+        return;
+      }
+
+      Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
         if(userAuth.ret !== -1 && (userAuth.authStatus !== 2 || !userAuth.active)){
           $uibModal.open({
             animation: true,
