@@ -7,7 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('InviteSharingCtrl', function($scope, $timeout, $rootScope, $stateParams, md5, register, ipCookie, Utils, Restangular, CheckMobUtil, CheckPicUtil, SessionService, WEB_DEFAULT_DOMAIN) {
+  .controller('InviteSharingCtrl', function($scope, $timeout, $rootScope, $stateParams, md5, ipCookie, Utils, Restangular, CheckMobUtil, CheckPicUtil, SessionService, WEB_DEFAULT_DOMAIN) {
   	// 图形验证码
     $scope.getPicCaptcha = WEB_DEFAULT_DOMAIN + '/siteUser/getPicCaptcha?';
     $scope.refreshCode = function() {
@@ -20,10 +20,6 @@ angular.module('p2pSiteMobApp')
     $scope.successMask = function() {
     	$scope.isSuccess = !$scope.isSuccess;
     	$scope.isSuccess ? $('.invite-sharing').addClass('position-fix')  : $('.invite-sharing').removeClass('position-fix'); 
-    }
-
-    if ($stateParams.inviteCode) {
-      $scope.user.inviteCode = $stateParams.inviteCode;
     }
 
     $scope.checkPicCaptchLength = function(picCaptcha){
@@ -53,13 +49,13 @@ angular.module('p2pSiteMobApp')
         act = ipCookie('act');
       }
        $scope.busy = true;
-      register.$create({
+      Restangular.one('users/').post('register', {  
         // name: user.name,
         picCaptcha: user.picCaptcha,
         password: md5.createHash(generateMixed(6)),
         mobile: user.mobile,
         captcha: user.captcha,
-        inviteCode: user.inviteCode,
+        inviteCode: $stateParams.inviteCode,
         channelCode: ipCookie('utm_from'),
         act: act,
         channelParams: ipCookie('channelParams'),
@@ -126,7 +122,9 @@ angular.module('p2pSiteMobApp')
     }
 
     // 邀请好友列表
-    Restangular.one('activitys').one('invitePrivilegedFriends').get({}).then(function(response){
+    Restangular.one('activitys').one('invitePrivilegedFriends').get({
+      inviteCode : $stateParams.inviteCode
+    }).then(function(response){
       if(response && response.ret !== -1) {
         $scope.inviteList = response;
         for(var i=0;i<$scope.inviteList.length;i++){
