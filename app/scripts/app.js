@@ -701,7 +701,7 @@ p2pSiteMobApp
 
     // 邀请活动分享注册活动落地页-2017.4.13
     .state('root.activity.invite-sharing', {
-      url: '/invite-sharing/:inviteCode',      
+      url: '/invite-sharing/:inviteCode?act&f',      
       views: {
         '': {
           templateUrl: 'views/activity/invite-sharing.html',
