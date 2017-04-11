@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('InviteRebateCtrl',function ($scope, $state, $rootScope, $location, Restangular) {
+  .controller('InviteRebateCtrl',function ($scope, $state, $rootScope, $location, Restangular, $window) {
     $scope.page = 1;
     $scope.pageSize = 6;
     $scope.datas = [];
@@ -76,6 +76,9 @@ angular.module('p2pSiteMobApp')
           return;
         }
         $state.go('root.userCenter.invite-rebate-list');
+     }
+     $scope.downloadApp = function() {
+        $window.location.href = ' http://a.app.qq.com/o/simple.jsp?pkgname=com.hoolai.hongcai';
      }
 
   });

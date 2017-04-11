@@ -19,7 +19,7 @@ angular.module('p2pSiteMobApp')
         Restangular.one('users/0/').post('logout', {
           device: Utils.deviceCode(),
           isWeixin: Utils.isWeixin()
-        }).$then(function(response) {
+        }).then(function(response) {
         });
         sessionStorage.setItem('isLogin', 'false');
         return sessionStorage.removeItem('user');
