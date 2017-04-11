@@ -1944,67 +1944,81 @@ input::-webkit-inner-spin-button {
     .con-invite-btn {
         position: fixed;
         margin: 0 auto;
-        //padding-top: 1rem;
         width: 100%;
         left: 0;
         z-index: 10;
         bottom: 0;
-        background-color: #f8902d;
         p {
             transform: scale(0.9);
         }
     }
     
     .invite-list {
-        padding: 0 1rem;
+        padding: 0 0.3rem;
         margin-bottom: 4rem;
-
-        .table-wrap {
-            position: relative;
-            border: 8px solid #cc4160;
-            border-image: linear-gradient(#ca445d , #c95941) 30 30;
-            background-clip: padding-box;
-            border-radius: .4rem;
-            background-image: linear-gradient(#ea4555,#e85d36);
-            table {
-                width: 100%;
-                margin: 1rem 0;
-                tbody {
-                    tr:last-child {
-                        td {
-                            border-bottom: none !important;
+        .table-wrap-wrap {
+            border-radius: .5rem; 
+            overflow: hidden;
+            .table-wrap {
+                position: relative;
+                border: 8px solid #cc4160;
+                border-image: linear-gradient(#ca445d , #c95941) 30 30;
+                background-clip: padding-box;
+                border-radius: .4rem;
+                background-image: linear-gradient(#ea4555,#e85d36);
+                overflow-y: scroll;
+                overflow-x: hidden;
+                height: 18rem; 
+                @media(min-width: 360px) {
+                    height: 21rem;
+                }
+                @media(min-width: 375px) {
+                    height: 22rem;
+                }
+                @media(min-width: 411px) {
+                    height: 26rem;
+                }
+                table {
+                    width: 100%;
+                    margin: 1rem 0;
+                    tbody {
+                        tr:last-child {
+                            td {
+                                border-bottom: none !important;
+                            }
+                            
                         }
-                        
+                        td.color_grey {
+                            color: #cdcbce;
+                        }
                     }
-                    td.color_grey {
-                        color: #cdcbce;
+                    td {
+                        padding: 10px 0;
+                        text-align: center;
+                        width: 33%;
+                        color: #fff;
+                        position: relative;
+                        transform: scale(0.9);
+                        img {
+                            position: absolute;
+                            width: 67%;
+                            top: 0;
+                            left: 34%;
+                        }
                     }
-                }
-                td {
-                    padding: 10px 0;
-                    text-align: center;
-                    width: 33%;
-                    color: #fff;
-                    position: relative;
-                    transform: scale(0.9);
-                    img {
-                        position: absolute;
-                        width: 67%;
-                        top: 0;
-                        left: 34%;
+                    tr.load-more {
+                       
                     }
-                }
-                tr.load-more {
-                   
-                }
-                td.bd-right {
-                    border-right: 1px solid #bf1619;
-                }
-                td.bd-bottom {
-                    border-bottom: 1px solid #bf1619; 
+                    td.bd-right {
+                        border-right: 1px solid #bf1619;
+                    }
+                    td.bd-bottom {
+                        border-bottom: 1px solid #bf1619; 
+                    }
                 }
             }
         }
+        
 
         .table-wrap::after{
             position: absolute;
@@ -2397,6 +2411,12 @@ input::-webkit-inner-spin-button {
         padding-top: 1rem;
         position: fixed;
         bottom: 0;
+    }
+    @media(min-width: 375px) {
+        padding-bottom: 9rem;
+    }
+    @media(min-width: 410px) {
+        padding-bottom: 7.5rem;
     }
 }
 .exchage-cdkey {
