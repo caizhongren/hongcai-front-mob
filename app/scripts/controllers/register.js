@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RegisterCtrl', function(CheckPicUtil, checkPwdUtils, $http, $timeout, $rootScope, $scope, $state, $stateParams, CheckMobUtil, md5, ipCookie, Utils, WEB_DEFAULT_DOMAIN, SessionService) {
+  .controller('RegisterCtrl', function(CheckPicUtil, checkPwdUtils, $http, $timeout, $rootScope, $scope, $state, $stateParams, CheckMobUtil, md5, ipCookie, Utils, WEB_DEFAULT_DOMAIN, SessionService, Restangular) {
     // 注册链接上是否有邀请码
     $scope.btn = 'haha';
     $scope.user = {
@@ -72,7 +72,7 @@ angular.module('p2pSiteMobApp')
         channelParams: ipCookie('channelParams'),
         device: Utils.deviceCode(),
         guestId: ipCookie('guestId')
-      }).$then(function(response) {
+      }).then(function(response) {
         if (response.ret === -1) {
           $rootScope.showMsg(response.msg);
           $timeout(function() {

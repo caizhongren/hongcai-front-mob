@@ -21,7 +21,7 @@ angular.module('p2pSiteMobApp')
 
     $scope.getInviteStat = function(){
       Restangular.one('users/0').one('inviteStat').get().then(function(response){
-        if(response.$status === 'ok' && response.ret !== -1){
+        if(response && response.ret !== -1){
           $scope.inviteStat = response;
         } else{
             $scope.msg = '获取信息失败';
@@ -44,7 +44,7 @@ angular.module('p2pSiteMobApp')
         page: page,
         pageSize: $scope.pageSize
       }).then(function(response){
-        if(response.ret !== -1){
+        if(response && response.ret !== -1){
           $scope.totalPage = response.totalPage;
           $scope.total = response.total;
           $scope.inviteeList = response.data;
