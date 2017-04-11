@@ -205,7 +205,7 @@ angular.module('p2pSiteMobApp')
                 return;
               }
 
-              SessionService.loginSuccess(response.$response.data);
+              SessionService.loginSuccess(response);
 
               $rootScope.isLogged = true;
               $rootScope.bindWechat = false;
