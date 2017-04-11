@@ -17,21 +17,26 @@ angular.module('p2pSiteMobApp')
     /**
      * 邀请码
      */
-    $scope.voucher = Restangular.one('users/0').one('voucher').get().$object;
+    UserService.loadVoucher($scope); 
 
     /**
      * 认证信息
      */
     UserService.loadUserAuth($scope);
 
+    /*
+    *自动投标详情
+    */
+    $scope.autoTenders = Restangular.one('/users/' + '0' + '/autoTender' ).get().$object;
+
     /**
      * 银行卡信息
      */
 
     Restangular.one('users/0').one('bankcard').get().then(function(response) {
-        $scope.simpleBankcard = response;
-        if($scope.simpleBankcard.cardNo){
-          $scope.simpleBankcard.cardNo = $scope.simpleBankcard.cardNo.substr($scope.simpleBankcard.cardNo.length - 4);
+        $scope.bankcard = response;
+        if(response.cardNo){
+          response.cardNo = response.cardNo.substr(response.cardNo.length - 4);
         }
     });
 
@@ -96,17 +101,7 @@ angular.module('p2pSiteMobApp')
     $scope.recentlyQuestionnaire();
 
 
-    /*
-    *自动投标详情
-    */
-    $scope.autoTendersDetail = function() {
-      Restangular.one('/users/' + '0' + '/autoTender' ).get().then(function(response){
-       $scope.autoTenders = response;
-      })
-    };
-    $scope.autoTendersDetail();
-
-    
+     
 
     /**
      * 开通自动投标权限

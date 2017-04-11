@@ -10,7 +10,7 @@
  * 修改手机号码（针对已绑定手机号）
  */
  angular.module('p2pSiteMobApp')
-   .controller('resetMobileCtrl', function($rootScope, $scope, $timeout, $state, CheckMobUtil, CheckPicUtil, Restangular, Utils, WEB_DEFAULT_DOMAIN){
+   .controller('resetMobileCtrl', function($rootScope, $scope, $timeout, $state, CheckMobUtil, CheckPicUtil, Restangular, Utils, WEB_DEFAULT_DOMAIN, SessionService){
       $scope.user = {
         mobileCaptchaBusiness:2
       };
@@ -39,58 +39,51 @@
     /**
      * 确认修改手机号
      */
-     var busy = false;
-      $scope.resetMobile = function(mobile, captcha, picCaptcha) {
-        if (!mobile || !captcha || !picCaptcha || busy) {
-          return;
-        }
-        //判断手机号码
-        if (!$rootScope.mobilePattern.test(mobile)) {
-          $rootScope.showMsg('手机号码格式不正确');
-          return;
-        }
-
-        if (picCaptcha.toString().length !== 4) {
-          $rootScope.showMsg('图形验证码有误');
-          return;
-        }
-        //控制短信验证码输入又删除按钮状态
-        $scope.$watch('user.captcha', function(newVal, oldVal) {
-          $scope.sendMsg = true;
-          if (!newVal || newVal == undefined) {
-            $scope.sendMsg = false;
-          }
-        })
-        busy = true;
-
-
-        //判断手机号是否被占用,短信验证码是否正确
-        Restangular.one('/users/').one('0/').post('resetMobile', {
-          mobile: mobile,
-          captcha: captcha,
-          type: 1,
-          device: Utils.deviceCode()
-        }).then(function(response) {
-          if(response.ret === -1){
-            $timeout(function() {
-              busy = false;
-            }, 2000);
-            $rootScope.showMsg(response.msg);
-            return;
-          }else{
-            $timeout(function() {
-              busy = false;
-            }, 2000);
-            $state.go('root.userCenter.setting');
-            $rootScope.successMsg = "修改成功！";
-            $rootScope.showSuccessToast = true;
-            $timeout(function() {
-              $rootScope.showSuccessToast = false;
-              $rootScope.successMsg = '';
-            }, 2000);
-          }
-        })
+    var busy = false;
+    $scope.resetMobile = function(mobile, captcha, picCaptcha) {
+      if (!mobile || !captcha || !picCaptcha || busy) {
+        return;
       }
+      //判断手机号码
+      if (!$rootScope.mobilePattern.test(mobile)) {
+        $rootScope.showMsg('手机号码格式不正确');
+        return;
+      }
+
+      if (picCaptcha.toString().length !== 4) {
+        $rootScope.showMsg('图形验证码有误');
+        return;
+      }
+      //控制短信验证码输入又删除按钮状态
+      $scope.$watch('user.captcha', function(newVal, oldVal) {
+        $scope.sendMsg = true;
+        if (!newVal || newVal == undefined) {
+          $scope.sendMsg = false;
+        }
+      })
+      busy = true;
+
+
+      //判断手机号是否被占用,短信验证码是否正确
+      Restangular.one('/users/0').post('resetMobile', {
+        mobile: mobile,
+        captcha: captcha,
+        type: 1,
+        device: Utils.deviceCode()
+      }).then(function(response) {
+        if(response.ret === -1){
+          $timeout(function() {
+            busy = false;
+          }, 2000);
+          $rootScope.showMsg(response.msg);
+          return;
+        }else{
+          $rootScope.showSuccessMsg('修改成功！', 1000);
+          SessionService.loginSuccess(response);
+          $state.go('root.userCenter.setting');  
+        }
+      })
+    }
 
    })
 
