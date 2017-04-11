@@ -47,14 +47,14 @@ angular.module('p2pSiteMobApp')
         if(SessionService.isLogin()){
             //邀请码
           Restangular.one('users/0').one('voucher').get().then(function(response){
-            if (response.ret !== -1) {
-              if(response.inviteCode){
+            console.log(response);
+            if (response) {
                 shareLink = shareLink + '/'  + response.inviteCode;
-              }
+                shareLink = shareLink + '?act=22&f=officeweb';
+            }else{
+              shareLink = shareLink + '?act=22&f=officeweb';
             }
           });
-
-          shareLink = shareLink + '?act=22&f=officeweb';
         }
         
         return shareLink;
