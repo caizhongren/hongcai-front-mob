@@ -13,7 +13,11 @@ angular.module('p2pSiteMobApp')
 
     if(SessionService.isLogin()){
         
-        $scope.inviteCount = Restangular.one('activitys').one('invitePrivilegedUsers').get().$Object;
+        Restangular.one('activitys').one('invitePrivilegedUsers').get() .then(function(response){
+          if (response  && response.ret !== -1) {
+            $scope.inviteCount = response;
+          }
+        });
         Restangular.one('activitys').one('invitePrivilegedRewardStat').get()
         .then(function(response){
         	if (response  && response.ret !== -1) {
@@ -26,7 +30,7 @@ angular.module('p2pSiteMobApp')
         	pageSize: 10
         }).then(function(response){
         	if (response  && response.ret !== -1) {
-        		$scope.details = response;
+        		$scope.details = response.data;
         	}
         });
       }
