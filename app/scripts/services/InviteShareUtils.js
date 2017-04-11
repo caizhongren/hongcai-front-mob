@@ -54,10 +54,10 @@ angular.module('p2pSiteMobApp')
             }else{
               shareLink = shareLink + '?act=22&f=officeweb';
             }
+
+            return shareLink;
           });
         }
-        
-        return shareLink;
       },
 
       //图片链接
