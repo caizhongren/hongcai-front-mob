@@ -9,6 +9,21 @@
 angular.module('p2pSiteMobApp')
   .controller('ExchangeCdkeyCtrl', function($rootScope, $scope, $state, $stateParams, $location, $timeout, Restangular, config) {
   	
-  
+    $scope.showCdkey = false;
+   
+    $scope.exchangeCdkey = function(cdkey) {
+      Restangular.one('activitys/').one('exchangePrimaryCdkey').put({
+        exchangeCode : cdkey.exchangeCode
+      }).then(function(response){
+        if(response && response.ret !== -1) {
+          $scope.showCdkey = true;
+          $scope.cdkey = response.cdkey;
+          return;
+        }else{        
+          $rootScope.showMsg(response.msg);
+          return;
+        }
+      })
+    }
 
   })

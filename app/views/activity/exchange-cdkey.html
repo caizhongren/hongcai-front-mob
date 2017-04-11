@@ -7,9 +7,9 @@
 	<img src="/images/exchange/tanmu05.png" width="100%" class="display-bl">
 	<img src="/images/exchange/tanmu06.png" width="100%" class="display-bl">
 	<form class="exchage-btn">
-		<input type="text" name="exchange" placeholder="请输入兑换码">
+		<input type="text" name="exchange" ng-model="cdkey.exchangeCode" placeholder="请输入兑换码">
 	</form>
-	<img src="/images/exchange/tanmu07.png" width="100%" class="display-bl" ng-click="showCdkey = true" ng-nit="cdkey = false">
+	<img src="/images/exchange/tanmu07.png" width="100%" class="display-bl" ng-click="exchangeCdkey(cdkey);" ng-nit="cdkey = false">
 	<img src="/images/exchange/tanmu08.png" width="100%" class="display-bl">
 	<img src="/images/exchange/tanmu09.png" width="100%" class="display-bl">
 </div>
@@ -20,7 +20,7 @@
 	<img src="/images/exchange/sucess04.png" width="100%" class="display-bl">
 	<img src="/images/exchange/sucess05.png" width="100%" class="display-bl">
 	<p class="cdkey margin-t-1 text-center">
-		兑换码为：1234567891234567
+		兑换码为：{{cdkey}}
 	</p>
 	<img src="/images/exchange/sucess06.png" width="100%" class="display-bl">
 	<img src="/images/exchange/sucess07.png" width="100%" class="display-bl">

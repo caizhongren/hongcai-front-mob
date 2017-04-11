@@ -49,9 +49,7 @@ angular.module('p2pSiteMobApp')
         act = ipCookie('act');
       }
        $scope.busy = true;
-      Restangular.one('users/').post('register', {  
-        // name: user.name,
-        picCaptcha: user.picCaptcha,
+      Restangular.one('users/').post('register', { 
         password: md5.createHash(generateMixed(6)),
         mobile: user.mobile,
         captcha: user.captcha,
@@ -103,12 +101,6 @@ angular.module('p2pSiteMobApp')
         return;
       }
     };
-
-    // 是否含有邀请码
-    $scope.investCode = false;
-    if($stateParams.inviteCode){
-      $scope.investCode = true;
-    }
     
     // 随机生成
     var chars = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
