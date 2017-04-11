@@ -45,12 +45,12 @@ angular.module('p2pSiteMobApp')
         var shareLink = config.domain + '/activity/invite-sharing';
         
         if(inviteCode) {
-            console(inviteCode);
+            console.log(inviteCode);
             shareLink = shareLink + '/'  + inviteCode;
         }
 
         shareLink = shareLink + '?act=22&f=officeweb';
-        
+
         return shareLink;
       },
 
