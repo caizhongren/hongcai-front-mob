@@ -14,14 +14,8 @@ angular.module('p2pSiteMobApp')
       $uibModalInstance.dismiss();
     };
     $scope.cancelUnpay = function(){
-      Restangular.one('orders').one("/"+order.number).remove().then(function(response) {
-        if(response.ret === -1){
-            return;
-        }
-        // $state.reload();
-        $scope.cancel();
-      });
       $scope.cancel();
+      Restangular.one('orders').one("/"+order.number).remove().$object;
     }
     $scope.goonPay = function(){
       toCunGuanUtils.to('transfer', $scope.order.number, null, null, null, null);

@@ -124,7 +124,6 @@ angular.module('p2pSiteMobApp')
       }
 
       $rootScope.showMsg($scope.msg);
-      $rootScope.tofinishedOrder();
       var couponNumber = $scope.selectIncreaseRateCoupon != null ? $scope.selectIncreaseRateCoupon.number : '';
       $rootScope.showLoadingToast = true;
       Restangular.one('projects').one(number+'/users/' + '0').post('investment', {
@@ -138,6 +137,7 @@ angular.module('p2pSiteMobApp')
         if (order && order.ret !== -1) {
           toCunGuanUtils.to('transfer', order.number, null, null, null, null);
         } else {
+          $rootScope.tofinishedOrder();
           $scope.msg = order.msg;
           $rootScope.showMsg($scope.msg);
         }
