@@ -1,12 +1,12 @@
 'use strict';
 angular.module('p2pSiteMobApp')
-  .factory('InviteShareUtils', function($rootScope, Restangular, SessionService, config) {
+  .factory('InviteShareUtils', function($rootScope, SessionService, config) {
     return {
 
-      share : function(){
+      share : function(inviteCode){
         var title = this.shareTitle();
         var subTitle = this.shareSubtitle();
-        var linkUrl = this.shareLink();
+        var linkUrl = this.shareLink(inviteCode);
         var imageUrl = this.shareImageUrl();
 
         var shareItem = {
@@ -41,22 +41,16 @@ angular.module('p2pSiteMobApp')
       },
 
       //分享链接
-      shareLink : function(){
-        var shareLink = config.domain + '/activity/invite-sharing' ;
+      shareLink : function(inviteCode){
+        var shareLink = config.domain + '/activity/invite-sharing';
         
-        if(SessionService.isLogin()){
-            //邀请码
-          Restangular.one('users/0').one('voucher').get().then(function(response){
-            console.log(response);
-            if (response) {
-                shareLink = shareLink + '/'  + response.inviteCode;
-                shareLink = shareLink + '?act=22&f=officeweb';
-            }else{
-              shareLink = shareLink + '?act=22&f=officeweb';
-            }
-          });
+        if(inviteCode) {
+            console.log(inviteCode);
+            shareLink = shareLink + '/'  + inviteCode;
         }
-        
+
+        shareLink = shareLink + '?act=22&f=officeweb';
+
         return shareLink;
       },
 

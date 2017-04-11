@@ -59,12 +59,12 @@ angular.module('p2pSiteMobApp')
       }
       $scope.busy = true;
 
-      $scope.voucher = Restangular.one('users/0').one('checkMobileCaptcha').get({
+      Restangular.one('users/').one('checkMobileCaptcha').get({
         mobile: mobile,
         captcha: captcha,
         business:1,
         guestId: ipCookie('guestId')
-      }).$then(function(response) {
+      }).then(function(response) {
         if (response.ret === -1) {
           $timeout(function() {
             $scope.busy = false;
@@ -141,17 +141,15 @@ angular.module('p2pSiteMobApp')
           captcha: $scope.captchaNum,
           password: md5.createHash(chg.newPassword2),
           device: Utils.deviceCode()
-        }).$then(function(response) {
-          if (response.ret === -1) {
-            $timeout(function() {
+        }).then(function(response) {
+          $timeout(function() {
               $scope.busy = false;
-            }, 2000);
+          }, 2000);
+          if (response.ret === -1) {   
             $scope.changePasswordMsg = response.msg;
           } else {
-            $timeout(function() {
-              $scope.busy = false;
-            }, 2000);
             $state.go('root.login');
+            $rootScope.showSuccessMsg('找回密码成功', 1000);
           }
         });
     }
