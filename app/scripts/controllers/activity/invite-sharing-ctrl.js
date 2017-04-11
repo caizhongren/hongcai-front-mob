@@ -7,7 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('InviteSharingCtrl', function($scope, $timeout, $rootScope, $stateParams, md5, ipCookie, Utils, Restangular, CheckMobUtil, CheckPicUtil, SessionService, WEB_DEFAULT_DOMAIN) {
+  .controller('InviteSharingCtrl', function($scope, $timeout, $rootScope, $stateParams, md5, ipCookie, Utils, Restangular, CheckMobUtil, CheckPicUtil, SessionService, WEB_DEFAULT_DOMAIN, InviteShareUtils, WechatShareUtils) {
   	// 图形验证码
     $scope.getPicCaptcha = WEB_DEFAULT_DOMAIN + '/siteUser/getPicCaptcha?';
     $scope.refreshCode = function() {
@@ -132,6 +132,24 @@ angular.module('p2pSiteMobApp')
     var arr = ['从此跟着土豪迈向人生巅峰！','哇~好大的礼包呀，发财啦哈哈哈~~','上宏财，财运来！欧了！','谢谢老板，大礼包收到啦！','自从领了礼包，腰不酸了腿也不疼了~','礼包收到，确实是真爱！','发礼包这事儿，我就服你。。。','天哪~真的有10%加息券耶！'];
     function encourageMixed() {
       return arr[Math.floor(Math.random()*arr.length)];
+    }
+
+    if(SessionService.isLogin() && Utils.isWeixin()){
+      //邀请码
+      $scope.voucher = Restangular.one('users/0').one('voucher').get().$object;
+      WechatShareUtils.configJsApi();
+      
+      wx.error(function(res){
+        $timeout(function() {
+          window.location.href=config.domain + '/activity/invite?' + Math.round(Math.random()* 1000);
+        }, 100);
+      });
+
+      wx.ready(function(){
+        $scope.shareItem = InviteShareUtils.share($scope.voucher.inviteCode);
+        $scope.linkUrl = location.href.split('#')[0];
+        WechatShareUtils.onMenuShareAppMessage($scope.shareItem.title, $scope.shareItem.subTitle, $scope.linkUrl, $scope.shareItem.imageUrl);
+      });
     }
 
   })
