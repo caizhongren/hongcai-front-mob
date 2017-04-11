@@ -17,7 +17,7 @@ angular.module('p2pSiteMobApp')
     var siteTextModel = restmod.model(WEB_DEFAULT_DOMAIN + '/siteText');
     siteTextModel.$find('getTextDetail', {
       textId: $stateParams.id
-    }).then(function(response){
+    }).$then(function(response){
       if(response && response.ret !== -1) {
         $scope.noticeDetail = response.data.text;
       }
