@@ -262,12 +262,25 @@ p2pSiteMobApp
           title: '债权转让记录'
         }
       })
-      //常见问题
+      //债权转让－常见问题 暂时隐藏
       .state('root.assignment_qr', {
         url: '/assignment_qr',
         views: {
           '': {
             templateUrl: 'views/help-center/assignment_qr.html',
+            controller: 'HelpCenterCtrl',
+            controllerUrl: 'scripts/controller/help-center/help-center-ctrl'
+          }
+        },data: {
+          title: '常见问题'
+        }
+      })
+      //全部－常见问题
+      .state('root.questions', {
+        url: '/questions',
+        views: {
+          '': {
+            templateUrl: 'views/help-center/questions.html',
             controller: 'HelpCenterCtrl',
             controllerUrl: 'scripts/controller/help-center/help-center-ctrl'
           }
