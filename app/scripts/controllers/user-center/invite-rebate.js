@@ -12,6 +12,7 @@ angular.module('p2pSiteMobApp')
     $scope.page = 1;
     $scope.pageSize = 6;
     $scope.datas = [];
+    $scope.showDownload = false;
     $scope.deviceCode = Utils.deviceCode();
 
     /**
@@ -77,9 +78,9 @@ angular.module('p2pSiteMobApp')
         }
         $state.go('root.userCenter.invite-rebate-list');
      }
+
      $scope.downloadApp = function() {
         $window.location.href = ' http://a.app.qq.com/o/simple.jsp?pkgname=com.hoolai.hongcai';
      }
-
   });
 
