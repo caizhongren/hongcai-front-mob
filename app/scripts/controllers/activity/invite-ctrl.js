@@ -7,20 +7,8 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('InviteCtrl', function($rootScope, $scope, $state, $stateParams, $location, $timeout, Restangular, config) {
+  .controller('InviteCtrl', function($rootScope, $scope, $state, $stateParams, $location, $timeout, Restangular, config, SessionService, InviteShareUtils, WechatShareUtils, Utils) {
   	
-  	//立即邀请
-    $scope.toInvite = function(){
-      if(!$rootScope.isLogged) {
-        $state.go('root.login', {redirectUrl: encodeURIComponent($location.url())});
-        return;
-      }
-      if($scope.isActivityEnd){
-        alert(response.msg);
-        return;
-      }
-      $scope.isShare = true;
-    }
     // 是否邀请过好友
   	Restangular.one('users').one('0/isInvitedFriends').get({}).then(function(response){
   		$scope.isInvitedFriends = response;
@@ -47,4 +35,32 @@ angular.module('p2pSiteMobApp')
       }
     }
 
+    //立即邀请
+    $scope.toInvite = function(){
+      if(!$rootScope.isLogged) {
+        $state.go('root.login', {redirectUrl: encodeURIComponent($location.url())});
+        return;
+      }
+      if($scope.isActivityEnd){
+        alert(response.msg);
+        return;
+      }
+      $scope.isShare = true;
+    }
+
+    if(SessionService.isLogin() && Utils.isWeixin()){
+      $scope.shareItem = InviteShareUtils.share();
+      WechatShareUtils.configJsApi();
+      WechatShareUtils.onMenuShareAppMessage($scope.shareItem.title, $scope.shareItem.subTitle, $scope.shareItem.linkUrl, $scope.shareItem.imageUrl);
+      
+      wx.error(function(res){
+        $timeout(function() {
+          window.location.href=config.domain + '/activity/invite-activity?' + Math.round(Math.random()* 1000);
+        }, 100);
+      });
+
+      wx.ready(function(){
+        $scope.onMenuShareAppMessage();
+      });
+    }
   })
