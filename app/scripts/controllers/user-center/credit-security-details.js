@@ -10,13 +10,25 @@ angular.module('p2pSiteMobApp')
   .controller('CreditSecurityCtrl', function($scope, $rootScope, $state, $timeout, $stateParams, Restangular, WEB_DEFAULT_DOMAIN) {
     $scope.number = $stateParams.number;
     $rootScope.showLoadingToast = true;
+    // 特权加息
+    $scope.privilegeRate = {
+      orderNum: "",
+      value:0
+    }
+    //获取用户正在计息的加息券，通过这个去显示10%
+    Restangular.one('/users/0/userIncreasingRateCoupons').get({}).then(function(response) {
+      if (response && response.ret !== -1) {
+        $scope.privilegeRate.orderNum = response[0].orderNum;
+        $scope.privilegeRate.value = response[0].value;
+      }
+    })
+
     /**
      * 
      */
     Restangular.one('creditRights').one($scope.number + '/creditRightBills').get({}).then(function(response) {
       if(response && response.ret !== -1) {
         $scope.credits = response;
-        console.log($scope.credits);
         $timeout(function(){
           $rootScope.showLoadingToast = false;
         },200)
@@ -33,6 +45,10 @@ angular.module('p2pSiteMobApp')
       $scope.projectBill = response.projectBill;
       // 年化收益率
       $scope.annualEarnings = $scope.creditRight.type == 1 ? $scope.project.annualEarnings : $scope.creditRight.baseRate + $scope.creditRight.riseRate;
+      // 判断是非有特权加息
+      if ($scope.privilegeRate.orderNum && $scope.privilegeRate.orderNum == $scope.creditRight.orderNum) {
+        $scope.isPrivilegeRate = true;
+      }
     });
 
     //查看项目详情
