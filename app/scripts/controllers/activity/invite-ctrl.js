@@ -49,9 +49,7 @@ angular.module('p2pSiteMobApp')
     }
 
     if(SessionService.isLogin() && Utils.isWeixin()){
-      $scope.shareItem = InviteShareUtils.share();
       WechatShareUtils.configJsApi();
-      WechatShareUtils.onMenuShareAppMessage($scope.shareItem.title, $scope.shareItem.subTitle, $scope.shareItem.linkUrl, $scope.shareItem.imageUrl);
       
       wx.error(function(res){
         $timeout(function() {
@@ -60,7 +58,9 @@ angular.module('p2pSiteMobApp')
       });
 
       wx.ready(function(){
-        $scope.onMenuShareAppMessage();
+        $scope.shareItem = InviteShareUtils.share();
+        alert('ready' + $scope.shareItem);
+        WechatShareUtils.onMenuShareAppMessage($scope.shareItem.title, $scope.shareItem.subTitle, $scope.shareItem.linkUrl, $scope.shareItem.imageUrl);
       });
     }
   })

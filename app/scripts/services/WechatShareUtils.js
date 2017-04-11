@@ -35,7 +35,7 @@ angular.module('p2pSiteMobApp')
      * 设置用户分享的标题以及描述以及图片等。
      */
     onMenuShareAppMessage : function(title, subTitle, shareLink, imgUrl){
-
+      alert(title);
       wx.onMenuShareAppMessage({
         title: title,
         desc: subTitle,
