@@ -24,7 +24,7 @@
 							<td class="bd-bottom">剩余获得天数(天)</td>
 						</tr>
 					</thead>
-					<!-- <tbody class="ft-1p2" ng-repeat="detail in details" ng-if="details.length > 0">
+					<tbody class="ft-1p2" ng-repeat="detail in details" ng-if="details.length > 0">
 						<tr ng-if="detail.firstInvestTime > 0">
 							<td class="bd-right bd-bottom {{intervalDays(detail.firstInvestTime) <= 0 ? 'color_grey' : ''}}">{{detail.mobile}}</td>
 							<td class="bd-right bd-bottom {{intervalDays(detail.firstInvestTime) <= 0 ? 'color_grey' : ''}}">{{detail.amount | number:0 || 0}}</td>
@@ -36,68 +36,6 @@
 							<td class="bd-right bd-bottom" ng-if="intervalDays(detail.registTime) > 0">暂无</td>
 							<td class="bd-bottom color_grey" ng-if="intervalDays(detail.registTime) <= 0">——</td>
 							<td class="bd-bottom" ng-if="intervalDays(detail.registTime) > 0">未投资</td>
-						</tr>
-					</tbody> -->
-					<tbody class="ft-1p2">
-						<tr>
-							<td class="bd-right bd-bottom">{{detail.mobile}}</td>
-							<td class="bd-right bd-bottom">{{detail.amount | number:0 || 0}}</td>
-							<td class="bd-bottom">{{intervalDays(detail.firstInvestTime)}}</td>
-						</tr>
-						<tr>
-							<td class="bd-right bd-bottom">15313895650<img src="/images/invite/award-off.png" ng-show="intervalDays(detail.registTime) <= 0"></td>
-							<td class="bd-right bd-bottom color_grey">——</td>
-							<td class=" bd-bottom" >暂无</td>
-						</tr>
-						<tr>
-							<td class="bd-right bd-bottom">{{detail.mobile}}</td>
-							<td class="bd-right bd-bottom">{{detail.amount | number:0 || 0}}</td>
-							<td class="bd-bottom">{{intervalDays(detail.firstInvestTime)}}</td>
-						</tr>
-						<tr>
-							<td class="bd-right bd-bottom">15313895650<img src="/images/invite/award-off.png" ng-show="intervalDays(detail.registTime) <= 0"></td>
-							<td class="bd-right bd-bottom color_grey">——</td>
-							<td class=" bd-bottom" >暂无</td>
-						</tr>
-						<tr>
-							<td class="bd-right bd-bottom">{{detail.mobile}}</td>
-							<td class="bd-right bd-bottom">{{detail.amount | number:0 || 0}}</td>
-							<td class="bd-bottom">{{intervalDays(detail.firstInvestTime)}}</td>
-						</tr>
-						<tr>
-							<td class="bd-right bd-bottom">15313895650<img src="/images/invite/award-off.png" ng-show="intervalDays(detail.registTime) <= 0"></td>
-							<td class="bd-right bd-bottom color_grey">——</td>
-							<td class=" bd-bottom" >暂无</td>
-						</tr>
-						<tr>
-							<td class="bd-right bd-bottom">{{detail.mobile}}</td>
-							<td class="bd-right bd-bottom">{{detail.amount | number:0 || 0}}</td>
-							<td class="bd-bottom">{{intervalDays(detail.firstInvestTime)}}</td>
-						</tr>
-						<tr>
-							<td class="bd-right bd-bottom">15313895650<img src="/images/invite/award-off.png" ng-show="intervalDays(detail.registTime) <= 0"></td>
-							<td class="bd-right bd-bottom color_grey">——</td>
-							<td class=" bd-bottom" >暂无</td>
-						</tr>
-						<tr>
-							<td class="bd-right bd-bottom">{{detail.mobile}}</td>
-							<td class="bd-right bd-bottom">{{detail.amount | number:0 || 0}}</td>
-							<td class="bd-bottom">{{intervalDays(detail.firstInvestTime)}}</td>
-						</tr>
-						<tr>
-							<td class="bd-right bd-bottom">15313895650<img src="/images/invite/award-off.png" ng-show="intervalDays(detail.registTime) <= 0"></td>
-							<td class="bd-right bd-bottom color_grey">——</td>
-							<td class=" bd-bottom" >暂无</td>
-						</tr>
-						<tr>
-							<td class="bd-right bd-bottom">{{detail.mobile}}</td>
-							<td class="bd-right bd-bottom">{{detail.amount | number:0 || 0}}</td>
-							<td class="bd-bottom">{{intervalDays(detail.firstInvestTime)}}</td>
-						</tr>
-						<tr>
-							<td class="bd-right bd-bottom">15313895650<img src="/images/invite/award-off.png" ng-show="intervalDays(detail.registTime) <= 0"></td>
-							<td class="bd-right bd-bottom color_grey">——</td>
-							<td class=" bd-bottom" >暂无</td>
 						</tr>
 					</tbody>
 				</table>
