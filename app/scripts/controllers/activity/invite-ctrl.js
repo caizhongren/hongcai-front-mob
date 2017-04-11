@@ -7,20 +7,8 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('InviteCtrl', function($rootScope, $scope, $state, $stateParams, $location, $timeout, Restangular, config) {
+  .controller('InviteCtrl', function($rootScope, $scope, $state, $stateParams, $location, $timeout, Restangular, config, SessionService, InviteShareUtils, Utils) {
   	
-  	//立即邀请
-    $scope.toInvite = function(){
-      if(!$rootScope.isLogged) {
-        $state.go('root.login', {redirectUrl: encodeURIComponent($location.url())});
-        return;
-      }
-      if($scope.isActivityEnd){
-        alert(response.msg);
-        return;
-      }
-      $scope.isShare = true;
-    }
     // 是否邀请过好友
   	Restangular.one('users').one('0/isInvitedFriends').get({}).then(function(response){
   		$scope.isInvitedFriends = response;
@@ -47,4 +35,104 @@ angular.module('p2pSiteMobApp')
       }
     }
 
+    //立即邀请
+    $scope.toInvite = function(){
+      if(!$rootScope.isLogged) {
+        $state.go('root.login', {redirectUrl: encodeURIComponent($location.url())});
+        return;
+      }
+      if($scope.isActivityEnd){
+        alert(response.msg);
+        return;
+      }
+      $scope.isShare = true;
+    }
+    $scope.configJsApi = function(){
+      var url = location.href.split('#')[0];
+      console.log(url);
+      Restangular.one("wechat").one("jsApiConfig").get({
+        requestUrl : url
+      }).then(function(apiConfig){
+        console.log('apiConfig: ' + config.wechatAppid);
+        wx.config({
+            debug: false,
+            appId: apiConfig.appId, // 必填，公众号的唯一标识
+            timestamp: apiConfig.timestamp, // 必填，生成签名的时间戳
+            nonceStr: apiConfig.nonceStr, // 必填，生成签名的随机串
+            signature: apiConfig.signature,// 必填，签名，见附录1
+            jsApiList:
+                [
+                'onMenuShareAppMessage',
+                'hideMenuItems',
+                'onMenuShareTimeline'
+                ]
+        });
+      });
+    };
+
+    /**
+     * 设置用户分享的标题以及描述以及图片等。
+     */
+    $scope.onMenuShareAppMessage = function(title, subTitle, shareLink, imgUrl){
+      alert(title);
+      wx.onMenuShareAppMessage({
+        title: title,
+        desc: subTitle,
+        link: shareLink,
+        imgUrl: imgUrl,
+        trigger: function (res) {
+        },
+        success: function (res) {
+          // 分享成功后隐藏分享引导窗口
+          $scope.$apply();
+          Restangular.one('users').post('shareActivity', {
+            openId: $rootScope.openid,
+            act: $rootScope.act,
+            channelCode: $rootScope.channelCode
+          });
+        },
+        cancel: function (res) {
+        },
+        fail: function (res) {
+        }
+      });
+
+      wx.onMenuShareTimeline({
+        title: title,
+        link: shareLink,
+        imgUrl: imgUrl,
+        trigger: function (res) {
+        },
+        success: function (res) {
+          // 分享成功后隐藏分享引导窗口
+          $scope.$apply();
+          Restangular.one('users').post('shareActivity', {
+            openId: $rootScope.openid,
+            act: $rootScope.act,
+            channelCode: $rootScope.channelCode
+          });
+        },
+        cancel: function (res) {
+        },
+        fail: function (res) {
+        }
+      });
+    }
+
+    if(Utils.isWeixin()){
+      alert('是微信');
+      $scope.configJsApi();
+      
+      wx.error(function(res){
+        $timeout(function() {
+          window.location.href=config.domain + '/activity/invite-activity?' + Math.round(Math.random()* 1000);
+        }, 100);
+      });
+
+      wx.ready(function(){
+        $scope.shareItem = InviteShareUtils.share();
+        alert('ready' + $scope.shareItem);
+        $scope.onMenuShareAppMessage($scope.shareItem.title, $scope.shareItem.subTitle, $scope.shareItem.linkUrl, $scope.shareItem.imageUrl);
+      });
+    }
   })

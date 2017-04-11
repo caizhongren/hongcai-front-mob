@@ -59,7 +59,7 @@ angular.module('p2pSiteMobApp')
         channelParams: ipCookie('channelParams'),
         device: Utils.deviceCode(),
         guestId: ipCookie('guestId')
-      }).$then(function(response) {
+      }).then(function(response) {
         if (response.ret === -1) {
           $rootScope.showMsg(response.msg);
           $timeout(function() {

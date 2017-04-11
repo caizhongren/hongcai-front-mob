@@ -122,7 +122,7 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/login-new.html',
+            templateUrl: 'views/login.html',
             controller: 'LoginCtrl',
             controllerUrl: 'scripts/controllers/login'
 
@@ -136,7 +136,7 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/register-new.html',
+            templateUrl: 'views/register.html',
             controller: 'RegisterCtrl',
             controllerUrl: 'scripts/controllers/register'
           }
@@ -149,7 +149,7 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/register-new.html',
+            templateUrl: 'views/register.html',
             controller: 'RegisterCtrl',
             controllerUrl: 'scripts/controllers/register'
           }
@@ -172,14 +172,6 @@ p2pSiteMobApp
             templateUrl: 'views/yeepay-callback.html',
             controller: 'YeepayCallbackCtrl',
             controllerUrl: 'scripts/controllers/yeepay-callback'
-          }
-        }
-      })
-      .state('root.registerByWechat', {
-        url: '/register/:openId',
-        views: {
-          '': {
-            templateUrl: 'views/register.html'
           }
         }
       })
@@ -654,7 +646,7 @@ p2pSiteMobApp
 
     // 渠道活动落地页
     .state('root.activity.channel', {
-      url: '/channel',
+      url: '/channel?act&f',
       views: {
         '': {
           templateUrl: 'views/activity/channel.html',
@@ -709,7 +701,7 @@ p2pSiteMobApp
 
     // 邀请活动分享注册活动落地页-2017.4.13
     .state('root.activity.invite-sharing', {
-      url: '/invite-sharing/:inviteCode',      
+      url: '/invite-sharing/:inviteCode?act&f',      
       views: {
         '': {
           templateUrl: 'views/activity/invite-sharing.html',

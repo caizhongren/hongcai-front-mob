@@ -27,7 +27,7 @@ angular.module('p2pSiteMobApp')
             business: scope.user.mobileCaptchaBusiness,
             device: Utils.deviceCode(),
             guestId: ipCookie('guestId')
-          }).$then(function(response) {
+          }).then(function(response) {
             if (response.ret === -1) {
               scope.showMsg(response.msg);
             } else {

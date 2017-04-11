@@ -61,7 +61,7 @@ angular.module('p2pSiteMobApp')
             'amount': number,
             'from': 2,
             'device': Utils.deviceCode()
-          }).$then(function(response) {
+          }).then(function(response) {
             redirectToYeepay('toWithdraw', response);
           });
 
@@ -69,7 +69,7 @@ angular.module('p2pSiteMobApp')
           Restangular.one('/users/0/').post('bindBankcard', {
             'from': 2,
             'device': Utils.deviceCode()
-          }).$then(function(response) {
+          }).then(function(response) {
             redirectToYeepay('toBindBankCard', response);
           });
 
@@ -79,7 +79,7 @@ angular.module('p2pSiteMobApp')
             'idCardNo': idNo,
             'from': 2,
             'device': Utils.deviceCode()
-          }).$then(function(response) {
+          }).then(function(response) {
             redirectToYeepay('toRegister', response);
           });
         } else if (type === 'transfer') { //投资
@@ -87,7 +87,7 @@ angular.module('p2pSiteMobApp')
           Restangular.one('/orders/' + number + '/users/' + '0' + '/').post('payment', {
             'from': 2,
             'device': Utils.deviceCode()
-          }).$then(function(response) {
+          }).then(function(response) {
             redirectToYeepay('toTransfer', response);
           });
 
@@ -95,7 +95,7 @@ angular.module('p2pSiteMobApp')
           Restangular.one('/users/0/').post('authorizeAutoTransfer', {
             'from': 2,
             'device': Utils.deviceCode()
-          }).$then(function(response) {
+          }).then(function(response) {
             redirectToYeepay('toAuthorizeAutoTransfer', response);
           });
 
@@ -103,7 +103,7 @@ angular.module('p2pSiteMobApp')
           Restangular.one('/users/0/').post('resetMobile', {
             'from': 2,
             'mobile': $stateParams.number
-          }).$then(function(response){
+          }).then(function(response){
             redirectToYeepay('toResetMobile',response);
           });
         } else if (type === 'autoRepayment') { //自动还款授权
@@ -111,7 +111,7 @@ angular.module('p2pSiteMobApp')
         } else if (type === 'active') { //存管通激活
           Restangular.one('/userAuths/').post('cgtActive', {
             'from': 2
-          }).$then(function(response){
+          }).then(function(response){
             redirectToYeepay('toActive',response);
           });
         }
