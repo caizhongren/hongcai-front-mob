@@ -639,6 +639,19 @@ p2pSiteMobApp
         }
       }
     })
+
+    //探幕 游戏兑换
+    .state('root.activity.exchange-cdkey', {
+      url: '/exchange-cdkey',
+      views: {
+        '': {
+          templateUrl: 'views/activity/exchange-cdkey.html',
+          controller: 'ExchangeCdkeyCtrl',
+          controllerUrl: 'scripts/controllers/activity/exchange-cdkey'
+        }
+      }
+    })
+
     // 渠道活动落地页
     .state('root.activity.channel', {
       url: '/channel',

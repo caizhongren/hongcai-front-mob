@@ -9,11 +9,12 @@
           </li>
       </ul>
       <ul ng-if="!banners || banners.length <= 0">
-    
+        <li class="position-re text-center">
+          <a class="pic display-bl" ng-click="goExchange();"><img src="/images/new/ad-tanmu.jpg" /></a>
+        </li>
         <li class="position-re text-center">
           <a class="pic display-bl" ui-sref="root.activate-landing"><img src="/images/new/ad-cgt.jpg" /></a>
         </li>
-        
         <li class="position-re text-center">
           <a class="pic display-bl" ng-click="goAutoTender();"><img src="/images/new/ad-autotender.jpg" /></a>
         </li>
@@ -25,6 +26,7 @@
       <div class="dot" ng-if="!banners || banners.length <= 0">
         <span class="cur">1</span>
         <span>2</span>
+        <span>3</span>
       </div>
     </div>
     <!-- <div class="hd position-ab"><ul></ul></div> -->
