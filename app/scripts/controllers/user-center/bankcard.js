@@ -8,47 +8,32 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('BankcardCtrl', function($scope, $rootScope, $state, restmod, WEB_DEFAULT_DOMAIN, Restangular) {
-    // 获取用户总资产
-    var userAccount = {
-      tTotalAssets: 0
-    };
-    $scope.userAccount = sessionStorage.getItem('userAccount') ? angular.fromJson(sessionStorage.getItem('userAccount')) : userAccount;
-    Restangular.one('users').one('0/account').get().then(function(response){
-      if(!response || response.ret == -1) { return;}
-      $scope.userAccount = response;
-      sessionStorage.setItem('userAccount', angular.toJson($scope.userAccount));
-    });
+  .controller('BankcardCtrl', function($scope, $rootScope, $state, restmod, WEB_DEFAULT_DOMAIN, Restangular, UserService) {
 
-    $scope.voucher = Restangular.one('users/0').one('bankcard').get().then(function(response) {
-      if (response.$status === "ok" && response.ret !== -1) {
-        // 获取用户的银行卡信息
-        $scope.simpleBankcard = response;
-      } else {
-        // 获取信息失败。
-      }
 
-      var unBindBankcardModel = restmod.model(WEB_DEFAULT_DOMAIN + '/yeepay');
-      $scope.unBindBankcard = function() {
-        unBindBankcardModel.$find('/unbindBankCard').$then(function(response) {
-          $scope.showMask = false;
-          $scope.showBankCard = false;
-          if (!response || response.ret == -1) {
-            return;
-          }
-          if ($rootScope.payCompany === 'cgt') {
-            $state.go('root.yeepay-callback', {
-              business: 'UNBIND_BANK_CARD'
-            });
-          }
-          if ($rootScope.payCompany === 'yeepay') {
-            $state.go('root.yeepay-callback', {
-              business: 'UNBIND_BANK_CARD_ING'
-            });
-          }
-        });
-      }
-    });
+    UserService.loadAccount($scope);
+
+    $scope.bankcard = Restangular.one('users/0').one('bankcard').get().$object;
+
+    $scope.unBindBankcard = function() {
+      restmod.model(WEB_DEFAULT_DOMAIN + '/yeepay').$find('/unbindBankCard').$then(function(response) {
+        $scope.showMask = false;
+        $scope.showBankCard = false;
+        if (!response || response.ret == -1) {
+          return;
+        }
+        if ($rootScope.payCompany === 'cgt') {
+          $state.go('root.yeepay-callback', {
+            business: 'UNBIND_BANK_CARD'
+          });
+        }
+        if ($rootScope.payCompany === 'yeepay') {
+          $state.go('root.yeepay-callback', {
+            business: 'UNBIND_BANK_CARD_ING'
+          });
+        }
+      });
+    }
     
     $scope.showMask = false;
     $scope.showBankCard = false;

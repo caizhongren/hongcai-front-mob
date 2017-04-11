@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('SettingsCtrl', function($scope, $rootScope, $state, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location, toCunGuanUtils, SessionService, UserService) {
+  .controller('SettingsCtrl', function($scope, $rootScope, $state, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location, toCunGuanUtils, SessionService, UserService, restmod) {
     
     if ($location.path().split('/')[2] === 'setting') {
       $rootScope.showFooter = false;

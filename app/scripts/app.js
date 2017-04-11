@@ -122,7 +122,7 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/login-new.html',
+            templateUrl: 'views/login.html',
             controller: 'LoginCtrl',
             controllerUrl: 'scripts/controllers/login'
 
@@ -136,7 +136,7 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/register-new.html',
+            templateUrl: 'views/register.html',
             controller: 'RegisterCtrl',
             controllerUrl: 'scripts/controllers/register'
           }
@@ -149,7 +149,7 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/register-new.html',
+            templateUrl: 'views/register.html',
             controller: 'RegisterCtrl',
             controllerUrl: 'scripts/controllers/register'
           }
@@ -172,14 +172,6 @@ p2pSiteMobApp
             templateUrl: 'views/yeepay-callback.html',
             controller: 'YeepayCallbackCtrl',
             controllerUrl: 'scripts/controllers/yeepay-callback'
-          }
-        }
-      })
-      .state('root.registerByWechat', {
-        url: '/register/:openId',
-        views: {
-          '': {
-            templateUrl: 'views/register.html'
           }
         }
       })

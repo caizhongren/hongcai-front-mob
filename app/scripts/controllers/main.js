@@ -62,7 +62,7 @@ angular.module('p2pSiteMobApp')
       annualEarnings: 0.00
     };
 
-    $rootScope.showLoadingToast = true;
+
 
     //限制项目名长度
     $scope.widthFlag = ScreenWidthUtil.screenWidth();
@@ -100,8 +100,6 @@ angular.module('p2pSiteMobApp')
      * 宏财精选、宏财尊贵
      */
     $scope.getProjectList = function(page, pageSize, type) {
-      $rootScope.showLoadingToast = true;
-
       if ($scope.pageCount < $scope.page) {
         return;
       }
@@ -110,7 +108,6 @@ angular.module('p2pSiteMobApp')
         pageSize: pageSize,
         type: type
       }).then(function(response) {
-        $rootScope.showLoadingToast = false;
         if (type == 5) {
           $scope.choiceProject = response.projectList[0];
           localStorage.setItem('choice', angular.toJson($scope.choiceProject));
@@ -124,7 +121,6 @@ angular.module('p2pSiteMobApp')
     *债权转让列表
     */
     $scope.getAssignmentList = function(page, pageSize) {
-      $rootScope.showLoadingToast = true;
       $scope.busy = true;
       Restangular.one("assignments").get({
         page: page,
@@ -150,6 +146,7 @@ angular.module('p2pSiteMobApp')
     $scope.getProjectList(1, 1, 5);
     $scope.getProjectList(1, 1, 6);
     $scope.getAssignmentList(1, 1);
+
     
     /**
      * 跳转到详情页
