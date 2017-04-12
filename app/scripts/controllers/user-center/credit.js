@@ -17,7 +17,7 @@ angular.module('p2pSiteMobApp')
     };
     //获取用户正在计息的加息券，通过这个去显示10%
     Restangular.one('/users/0/userIncreasingRateCoupons').get({}).then(function(response) {
-      if (response && response.ret !== -1) {
+      if (response && response.ret == 1) {
         $scope.privilegeRate.orderNum = response[0].orderNum;
         $scope.privilegeRate.value = response[0].value;
         $scope.privilegeRate.duration = response[0].duration;
