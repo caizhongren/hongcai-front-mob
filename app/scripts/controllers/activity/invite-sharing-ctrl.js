@@ -8,7 +8,12 @@
 'use strict';
 angular.module('p2pSiteMobApp')
   .controller('InviteSharingCtrl', function($scope, $timeout, $rootScope, $stateParams, md5, ipCookie, Utils, Restangular, CheckMobUtil, CheckPicUtil, SessionService, WEB_DEFAULT_DOMAIN, InviteShareUtils, WechatShareUtils) {
-  	// 图形验证码
+  	
+    $scope.user = {
+      mobileCaptchaType:1,
+      mobileCaptchaBusiness:0
+    };
+    // 图形验证码
     $scope.getPicCaptcha = WEB_DEFAULT_DOMAIN + '/siteUser/getPicCaptcha?';
     $scope.refreshCode = function() {
       angular.element('#checkCaptcha').attr('src', angular.element('#checkCaptcha').attr('src').substr(0, angular.element('#checkCaptcha').attr('src').indexOf('?')) + '?code=' + Math.random());
