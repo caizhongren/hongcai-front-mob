@@ -1,6 +1,6 @@
 'use strict';
 angular.module('p2pSiteMobApp')
-  .factory('Utils', function($rootScope, config) {
+  .factory('Utils', function($rootScope, config, URLService) {
     return {
 
       /**
