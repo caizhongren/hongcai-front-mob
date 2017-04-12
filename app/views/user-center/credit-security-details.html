@@ -28,6 +28,20 @@
           <p class="margin-t-2p5 display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="creditRight.type === 6">债券认购：本金{{creditRight.amount | number:2 || 0}}元<br><span class="ft-blue7 ft-1p2 margin-t--0p5">{{creditRight.createTime | date:'yyyy-MM-dd'}}</span></p>
         </div>
       </li>
+      <!-- 特权加息 -->
+      <li class="margin-b--0p5" ng-show="privilegeRate.value > 0 && privilegeRate.type === 5">
+        <div class="timeline display-inb">
+          <p class="margin-b-0" ng-class="{'grey-bg':privilegeRate.profit > 0,'orange-bg':privilegeRate.profit <= 0}"></p>
+          <div class="margin-t--0p5">
+            <img src="/images/user-center/circle-ed.png" width="19%" class="display-inb" ng-if="privilegeRate.profit > 0">
+            <img src="/images/user-center/circle-ex.png" width="19%" class="display-inb" ng-if="privilegeRate.profit <= 0">
+          </div>
+        </div>
+        <div class="step display-inb position-ab margin-l--0p5">
+          <span class="display-inb" ng-class="{'grey-bg':privilegeRate.profit > 0,'orange-bg':privilegeRate.profit <= 0}"></span>
+          <p class="margin-t-2p5 display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="creditRight.type !== 6">特权加息：+{{(creditRight.amount * privilegeRate.value) * privilegeRate.duration/36500 | number:2 || 0}}元<br><span class="ft-blue7 ft-1p2 margin-t--0p5">{{creditRight.createTime | date:'yyyy-MM-dd'}}</span></p>
+        </div>
+      </li>
       <!-- 计息日期 -->
       <li class="margin-b--0p5" ng-hide="creditRight.type == 3">
         <div class="timeline display-inb">
@@ -56,7 +70,6 @@
           <span class="display-inb" ng-class="{'grey-bg':item.status === 1,'orange-bg':item.status === 0}"></span>
           <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="item.creditAssignmentId <= 0">回款：利息{{ item.profit | number: 2 }}元
             <b class="ft-red0 display-inb ft-normal" ng-show="increaseRateCoupon.value && increaseRateCoupon.type === 1">+{{(creditRight.baseRate + increaseRateCoupon.value) * item.profit/creditRight.baseRate - item.profit | number:2 || 0}}元</b>
-            <b class="ft-red0 display-inb ft-normal" ng-show="$index === 0 && privilegeRate.value > 0 && privilegeRate.type === 5">+{{(creditRight.amount * privilegeRate.value) * privilegeRate.duration/36500 | number:2 || 0}}元</b>
             <br><span class="ft-1p2 margin-t--0p5" ng-class="{'ft-blue7':item.status === 1,'orange-ft':item.status === 0}">{{ item.createTime | date:'yyyy-MM-dd'}}</span></p>
           <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="item.principal > 0 && item.creditAssignmentId > 0">债权转让：利息{{ item.profit | number: 2 }}元<br><span class="ft-1p2 margin-t--0p5" ng-class="{'ft-blue7':item.status==1,'orange-ft':item.status==0}">{{ item.createTime | date:'yyyy-MM-dd'}}</span></p>
         </div>
