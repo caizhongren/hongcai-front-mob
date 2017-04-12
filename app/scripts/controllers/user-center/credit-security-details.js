@@ -18,16 +18,6 @@ angular.module('p2pSiteMobApp')
       duration:1,
       profit:0
     }
-    //获取用户正在计息的加息券，通过这个去显示10%
-    Restangular.one('/users/0/userIncreasingRateCoupons').get({}).then(function(response) {
-      if (response && response.ret === 1) {
-        $scope.privilegeRate.orderNum = response[0].orderNum;
-        $scope.privilegeRate.value = response[0].value;
-        $scope.privilegeRate.type = response[0].type;
-        $scope.privilegeRate.duration = response[0].duration;
-        $scope.privilegeRate.profit = response[0].profit;
-      }
-    })
 
     /**
      * 
@@ -41,6 +31,7 @@ angular.module('p2pSiteMobApp')
       }
       
     });
+
     /**
      * 债权详情、项目信息、加息券信息
      */
@@ -51,10 +42,17 @@ angular.module('p2pSiteMobApp')
       $scope.projectBill = response.projectBill;
       // 年化收益率
       $scope.annualEarnings = $scope.creditRight.type == 1 ? $scope.project.annualEarnings : $scope.creditRight.baseRate + $scope.creditRight.riseRate;
-      // 判断是非有特权加息
-      if ($scope.privilegeRate.orderNum && $scope.privilegeRate.orderNum == $scope.creditRight.orderNum) {
-        $scope.isPrivilegeRate = true;
-      }
+     
+      //获取用户正在计息的加息券，通过这个去显示10%
+      Restangular.one('/users/0/userIncreasingRateCoupons').get({}).then(function(response) {
+        if (response && response.ret !== -1) {
+          $scope.privilegeRate = response[0];
+          // 判断是非有特权加息
+          if ($scope.privilegeRate.orderNum && $scope.privilegeRate.orderNum === $scope.creditRight.orderNum) {
+            $scope.isPrivilegeRate = true;
+          }
+        }
+      });
     });
 
     //查看项目详情
