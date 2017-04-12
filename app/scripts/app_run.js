@@ -168,7 +168,7 @@ angular.module('p2pSiteMobApp')
             SessionService.loginSuccess(response);
             $rootScope.isLogged = response.mobile || response.email;
           } else if(Utils.isWeixin){
-            Utils.redirectToWechatAuth($location.url());
+            Utils.redirectToWechatAuth(location.href);
           } 
         }); 
         return;
@@ -201,17 +201,16 @@ angular.module('p2pSiteMobApp')
             }
             return;
           } else if(!$location.search().code){
-            Utils.redirectToWechatAuth(redirect_uri);
+            Utils.redirectToWechatAuth(location.href);
             return;
           }
 
           var wechat_code = $location.search().code;
-          var redirect_uri = location.href;
 
           // 用户未登录但已经有code，去登录
           Restangular.one('users/' + wechat_code + '/openid').get().then(function(response) {
             if (response.ret == -1) { //微信授权登录失败
-              Utils.redirectToWechatAuth(redirect_uri);
+              Utils.redirectToWechatAuth(location.href);
               return;
             }
 
@@ -223,7 +222,7 @@ angular.module('p2pSiteMobApp')
                 redirectUrl: encodeURIComponent($location.url())
               });
             } else if (response.ret == -1) { // 未拿到openid再次请求授权
-              Utils.redirectToWechatAuth(redirect_uri);
+              Utils.redirectToWechatAuth(location.href);
             } 
 
           });
