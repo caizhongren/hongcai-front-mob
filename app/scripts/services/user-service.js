@@ -28,19 +28,19 @@ angular.module('p2pSiteMobApp')
       },
 
       loadVoucher: function($scope){
-        if(SessionService.isLogin()){
-          $scope.voucher = localStorage.getItem('voucher' + SessionService.getUser().id) ? angular.fromJson(localStorage.getItem('voucher' + SessionService.getUser().id)) : undefined;
-          if(!$scope.voucher){
-            Restangular.one('users/0').one('voucher').get().then(function(response){
-              if(!response || response.ret == -1) { return;}
-              $scope.voucher = response;
-              localStorage.setItem('voucher' + SessionService.getUser().id, angular.toJson($scope.voucher));
-            });
-          }
+        if(!SessionService.isLogin()){
+          return;
         }
-        
-      },	
 
+        $scope.voucher = localStorage.getItem('voucher' + SessionService.getUser().id) ? angular.fromJson(localStorage.getItem('voucher' + SessionService.getUser().id)) : undefined;
+        if($scope.voucher){return;}
+
+        Restangular.one('users/0').one('voucher').get().then(function(response){
+          if(!response || response.ret == -1) { return;}
+          $scope.voucher = response;
+          localStorage.setItem('voucher' + SessionService.getUser().id, angular.toJson($scope.voucher));
+        });
+      },	
     }
 
 
