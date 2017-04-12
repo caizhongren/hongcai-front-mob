@@ -73,7 +73,7 @@ angular.module('p2pSiteMobApp')
         } else {
           // 检测活动是否已结束
           Restangular.one('users').one('0/isInvitedFriends').get({}).then(function(response){
-            $scope.isInvitedFriends = response;
+            $scope.isInvitedFriends = response.flag;
             if(response && response.ret !== -1) {
               SessionService.loginSuccess(response);
               $scope.isSuccess = true;
