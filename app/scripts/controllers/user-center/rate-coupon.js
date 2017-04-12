@@ -52,7 +52,11 @@ angular.module('p2pSiteMobApp')
         status = "2";
       }
 
-      Restangular.one('users/0').one('userIncreaseRateCoupons').get().then(function(response){
+      Restangular.one('users/0').one('userIncreaseRateCoupons').get({
+        page: $scope.page,
+        pageSize : $scope.pageSize,
+        status : status
+      }).then(function(response){
         if(response && response.ret !== -1){
           if(subtabIndex === 0){
             $scope.unUseTotalPage = response.totalPage;
