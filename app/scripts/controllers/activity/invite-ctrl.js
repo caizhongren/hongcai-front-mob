@@ -11,9 +11,9 @@ angular.module('p2pSiteMobApp')
   	
     // 是否邀请过好友
   	Restangular.one('users').one('0/isInvitedFriends').get({}).then(function(response){
-  		$scope.isInvitedFriends = response;
       if(response && response.ret !== -1) {
-      }else if(response.code = -1041){        
+        $scope.isInvitedFriends = response.flag;
+      }else if(response.code && response.code === -1041){        
         $scope.isActivityEnd = true; // 活动已结束
       }
   	})

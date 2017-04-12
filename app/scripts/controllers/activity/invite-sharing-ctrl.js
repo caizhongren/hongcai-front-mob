@@ -77,11 +77,11 @@ angular.module('p2pSiteMobApp')
             $rootScope.showLoadingToast = false;
             // 检测活动是否已结束
             Restangular.one('users').one('0/isInvitedFriends').get({}).then(function(response){
-              $scope.isInvitedFriends = response.flag;
               if(response && response.ret !== -1) {
+                $scope.isInvitedFriends = response.flag;
                 SessionService.loginSuccess(response);
                 $scope.isSuccess = true;
-              }else if(response.code = -1041){        
+              }else if(response.code && response.code === -1041){        
                 $scope.isActivityEnd = true; // 活动已结束
                 return;
               }
