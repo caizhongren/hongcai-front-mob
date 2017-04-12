@@ -8,12 +8,13 @@
 'use strict';
 angular.module('p2pSiteMobApp')
   .controller('InviteCtrl', function($rootScope, $scope, $state, $stateParams, $location, $timeout, Restangular, config, SessionService, InviteShareUtils, WechatShareUtils, Utils) {
-  	
+  	$scope.showDownload = false;
+    $scope.deviceCode = Utils.deviceCode();
     // 是否邀请过好友
   	Restangular.one('users').one('0/isInvitedFriends').get({}).then(function(response){
-  		$scope.isInvitedFriends = response;
       if(response && response.ret !== -1) {
-      }else if(response.code = -1041){        
+        $scope.isInvitedFriends = response.flag;
+      }else if(response.code && response.code === -1041){        
         $scope.isActivityEnd = true; // 活动已结束
       }
   	})
@@ -46,6 +47,7 @@ angular.module('p2pSiteMobApp')
         return;
       }
       $scope.isShare = true;
+      $scope.showDownload = true;
     }
 
     if(SessionService.isLogin() && Utils.isWeixin()){

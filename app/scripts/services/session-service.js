@@ -3,7 +3,7 @@
  * session相关服务
  */
 angular.module('p2pSiteMobApp')
-  .factory('SessionService', function($http, $location, Utils, Restangular) {
+  .factory('SessionService', function($http, $location, $q, Utils, Restangular) {
     return {
       set: function(key, value) {
         return sessionStorage.setItem(key, value);
@@ -25,14 +25,7 @@ angular.module('p2pSiteMobApp')
         return sessionStorage.removeItem('user');
       },
 
-      /**
-       * 登录成功，将user相关信息放入session storage中
-       */
-      loginSuccess: function(user){
-        sessionStorage.setItem('isLogin', 'true');
-        sessionStorage.setItem('lastCheckTime', new Date().getTime() + '');
-        return sessionStorage.setItem('user', angular.toJson(user));
-      },
+
 
       /**
        * 获取session中用户信息
@@ -48,6 +41,24 @@ angular.module('p2pSiteMobApp')
       isLogin: function(){
       	this.checkSession();
         return sessionStorage.getItem('isLogin') === 'true';
+      },
+
+      // 未和服务器校验过是否登录
+      hasCheckLogin: function(){
+        return sessionStorage.getItem('hasCheck') != null && sessionStorage.getItem('isLogin') != undefined;
+      },
+
+      /**
+       * 登录成功，将user相关信息放入session storage中
+       */
+      loginSuccess: function(user){
+        sessionStorage.setItem('isLogin', 'true');
+        sessionStorage.setItem('lastCheckTime', new Date().getTime() + '');
+        return sessionStorage.setItem('user', angular.toJson(user));
+      },
+
+      checkLogin: function(){
+        sessionStorage.setItem('hasCheck', '1');
       },
 
       /**
@@ -73,6 +84,11 @@ angular.module('p2pSiteMobApp')
       	} else {
       		sessionStorage.setItem('lastCheckTime', new Date().getTime() + '');
       	}
+
+        if(!sessionStorage.getItem('isLogin')){
+          sessionStorage.setItem('isLogin', 'false');
+        }
+
       }
 
     };

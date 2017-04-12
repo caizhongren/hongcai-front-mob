@@ -18,6 +18,7 @@ angular.module('p2pSiteMobApp')
 
     UserService.loadUserAuth($scope);
     UserService.loadAccount($scope);
+    $scope.user = SessionService.getUser();
 
     // $scope.voucher = Restangular.one('users').one('0/userInviteNum').get().$object;
 

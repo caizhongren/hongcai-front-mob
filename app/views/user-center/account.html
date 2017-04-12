@@ -5,8 +5,8 @@
       <div class="margin-t-1p3 text-left margin-l-1 fl setting-icon" ui-sref="root.userCenter.setting"><!--<i class="fa fa-cog" aria-hidden="true"></i>--><img src="/images/user-center/setting.png" class="display-inb margin-t-0p6" width="40%"></div>
         <div class="display-inb text-center">
           <div class="display-inb clearfix">
-            <div class="border-pull margin-r-1 fl"><img ng-src="{{hasLoggedUser.headImgUrl || userHeadImgUrl}}" alt="" class="border-pull avatar"></div>
-            <div class="fl user-name"><span class="ft-1p8">{{ hasLoggedUser.nickName || (hasLoggedUser.mobile || hasLoggedUser.name) }}</span></div>
+            <div class="border-pull margin-r-1 fl"><img ng-src="{{user.headImgUrl || userHeadImgUrl}}" alt="" class="border-pull avatar"></div>
+            <div class="fl user-name"><span class="ft-1p8">{{ user.nickName || (user.mobile || user.name) }}</span></div>
           </div>
         </div>
         <div class="fr margin-r-1 margin-t-1p3 text-right">

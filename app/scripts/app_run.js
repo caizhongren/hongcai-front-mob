@@ -156,25 +156,31 @@ angular.module('p2pSiteMobApp')
       }, 350);
 
 
+      if(!SessionService.hasCheckLogin()){
+        var deferred = $q.defer();
+        Restangular.one('users/checkSession').get().then(function(response) {
+          deferred.resolve(response);
+        });
+        
+        deferred.promise.then(function(response){
+          SessionService.checkLogin();
+          if(response && response.ret !== -1){
+            SessionService.loginSuccess(response);
+            $rootScope.isLogged = response.mobile || response.email;
+          } else if(Utils.isWeixin){
+            Utils.redirectToWechatAuth(location.href);
+          } 
+        }); 
+        return;
+      }
+
+
 
       // $rootScope.showTitle = titleMap[path];
       $rootScope.showMe = false;
       if(SessionService.isLogin()){
         var user = SessionService.getUser();
-        // 已经授权过，1、登录 2未注册
-        $rootScope.isLogged = true;
-        $rootScope.bindWechat = false;
-        $rootScope.hasLoggedUser = user;
-
-        if (!user.mobile && !user.email) {
-          $rootScope.isLogged = false;
-        }
-
-        if ($rootScope.hasLoggedUser && $rootScope.hasLoggedUser.id > 0 && $rootScope.hasLoggedUser.openid) {
-          $rootScope.bindWechat = true;
-        }
-
-
+        $rootScope.isLogged = user.mobile || user.email;
         if (!$rootScope.isLogged && toState.name.indexOf('root.userCenter') !== -1) {
           $location.url('/login?redirectUrl=' + encodeURIComponent($location.url()));
           return;
@@ -191,61 +197,37 @@ angular.module('p2pSiteMobApp')
 
           if (!Utils.isWeixin()) {
             if (toState.name.indexOf('root.userCenter') !== -1) {
-              // $state.go('root.login', {
-              //   redirectUrl: encodeURIComponent($location.url())
-              // }, {notify: false});
               $location.url('/login?redirectUrl' + encodeURIComponent($location.url()));
             }
+            return;
+          } else if(!$location.search().code){
+            Utils.redirectToWechatAuth(location.href);
             return;
           }
 
           var wechat_code = $location.search().code;
-          var redirect_uri = location.href;
-          if (wechat_code) { // 用户未登录但已经有code，去登录
-            Restangular.one('users/' + wechat_code + '/openid').get().then(function(response) {
-              if (response.ret == -1) {
-                var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechatAppid +
-                  "&redirect_uri=" + encodeURIComponent(URLService.removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
-                window.location.href = wechatRedirectUrl;
-                return;
-              }
 
-              SessionService.loginSuccess(response);
+          // 用户未登录但已经有code，去登录
+          Restangular.one('users/' + wechat_code + '/openid').get().then(function(response) {
+            if (response.ret == -1) { //微信授权登录失败
+              Utils.redirectToWechatAuth(location.href);
+              return;
+            }
 
-              $rootScope.isLogged = true;
-              $rootScope.bindWechat = false;
-              $rootScope.hasLoggedUser = response;
+            SessionService.loginSuccess(response);
+            $rootScope.isLogged = user.mobile || user.email;
 
-              if (!response.mobile && !response.email) {
-                $rootScope.isLogged = false;
-              }
+            if (!$rootScope.isLogged && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
+              $state.go('root.login', {
+                redirectUrl: encodeURIComponent($location.url())
+              });
+            } else if (response.ret == -1) { // 未拿到openid再次请求授权
+              Utils.redirectToWechatAuth(location.href);
+            } 
 
-              if ($rootScope.hasLoggedUser && $rootScope.hasLoggedUser.id > 0 && $rootScope.hasLoggedUser.openid) {
-                $rootScope.bindWechat = true;
-              }
+          });
 
-              if (!$rootScope.isLogged && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
-                $state.go('root.login', {
-                  redirectUrl: encodeURIComponent($location.url())
-                });
-              } else if (response.ret == -1) { // 未拿到openid再次请求授权
-                var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechatAppid +
-                  "&redirect_uri=" + encodeURIComponent(URLService.removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
-                window.location.href = wechatRedirectUrl;
-              } 
-
-            });
-          } else { // 未登录且还未授权
-
-            var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechatAppid +
-              "&redirect_uri=" + encodeURIComponent(URLService.removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
-            window.location.href = wechatRedirectUrl;
-
-          }
         }
-
-
-
     });
 
 
