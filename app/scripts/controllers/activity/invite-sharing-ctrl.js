@@ -53,7 +53,8 @@ angular.module('p2pSiteMobApp')
       if(ipCookie('act') && !isNaN(ipCookie('act'))){
         act = ipCookie('act');
       }
-       $scope.busy = true;
+      $scope.busy = true;
+      $rootScope.showLoadingToast = true;
       Restangular.one('users/').post('register', { 
         password: md5.createHash(generateMixed(6)),
         mobile: user.mobile,
@@ -66,22 +67,27 @@ angular.module('p2pSiteMobApp')
         guestId: ipCookie('guestId')
       }).then(function(response) {
         if (response.ret === -1) {
+          $rootScope.showLoadingToast = false;
           $rootScope.showMsg(response.msg);
           $timeout(function() {
             $scope.busy = false;
           }, 2000);
         } else {
-          // 检测活动是否已结束
-          Restangular.one('users').one('0/isInvitedFriends').get({}).then(function(response){
-            $scope.isInvitedFriends = response.flag;
-            if(response && response.ret !== -1) {
-              SessionService.loginSuccess(response);
-              $scope.isSuccess = true;
-            }else if(response.code = -1041){        
-              $scope.isActivityEnd = true; // 活动已结束
-              return;
-            }
-          })
+          $timeout(function(){
+            $rootScope.showLoadingToast = false;
+            // 检测活动是否已结束
+            Restangular.one('users').one('0/isInvitedFriends').get({}).then(function(response){
+              $scope.isInvitedFriends = response.flag;
+              if(response && response.ret !== -1) {
+                SessionService.loginSuccess(response);
+                $scope.isSuccess = true;
+              }else if(response.code = -1041){        
+                $scope.isActivityEnd = true; // 活动已结束
+                return;
+              }
+            })
+          },100);
+
         }
       })
     }
