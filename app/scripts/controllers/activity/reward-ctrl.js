@@ -7,7 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('RewardCtrl', function(ipCookie, $scope, $state, $rootScope, $stateParams, $location, Restangular, SessionService, UserService, Utils, InviteShareUtils, WechatShareUtils) {
+  .controller('RewardCtrl', function(ipCookie, $scope, $state, $rootScope, $stateParams, $location, Restangular, SessionService, UserService, Utils, InviteShareUtils, WechatShareUtils, $window) {
 
     $scope.deviceCode = Utils.deviceCode();
 
@@ -43,6 +43,10 @@ angular.module('p2pSiteMobApp')
 
       	return interDays > 0 ? interDays : 0;
       }
+      //下载app
+      $scope.downloadApp = function() {
+        $window.location.href = ' http://a.app.qq.com/o/simple.jsp?pkgname=com.hoolai.hongcai';
+     }
 
       if(SessionService.isLogin() && Utils.isWeixin()){
         //邀请码
