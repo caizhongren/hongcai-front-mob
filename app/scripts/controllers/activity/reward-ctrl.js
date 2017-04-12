@@ -7,7 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('RewardCtrl', function(ipCookie, $scope, $state, $rootScope, $stateParams, $location, Restangular, SessionService, UserService, Utils, InviteShareUtils, WechatShareUtils) {
+  .controller('RewardCtrl', function(ipCookie, $timeout, $scope, $state, $rootScope, $stateParams, $location, Restangular, SessionService, UserService, Utils, InviteShareUtils, WechatShareUtils) {
 
     $scope.deviceCode = Utils.deviceCode();
 
