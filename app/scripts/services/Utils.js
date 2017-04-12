@@ -1,6 +1,6 @@
 'use strict';
 angular.module('p2pSiteMobApp')
-  .factory('Utils', function($rootScope) {
+  .factory('Utils', function($rootScope, config) {
     return {
 
       /**
@@ -112,6 +112,15 @@ angular.module('p2pSiteMobApp')
         }
         e.value = eValue;
         return e;
+      },
+
+      /**
+       * 跳转去微信授权
+       */
+      redirectToWechatAuth: function(redirect_uri){
+        var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechatAppid +
+                  "&redirect_uri=" + encodeURIComponent(URLService.removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
+        window.location.href = wechatRedirectUrl;
       },
 
       uuid : function(len, radix){

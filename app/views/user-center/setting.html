@@ -17,10 +17,10 @@
     </div>
     <div>
       <p>手机号码：</p>
-      <p>{{handleMobileNum(hasLoggedUser.mobile) || '无'}}
+      <p>{{handleMobileNum(user.mobile) || '无'}}
         <span ng-show="userAuth.authStatus == 2" ui-sref="root.userCenter.resetMobile"><a>修改 ></a></span>
         <span ng-show="userAuth.authStatus !== 2" ng-click="toRealNameAuth()"><a>修改 ></a></span>
-        <span ng-show="hasLoggedUser.mobile == null"><i class="fa fa-check-circle-o"></i>&nbsp;未绑定</span>
+        <span ng-show="user.mobile == null"><i class="fa fa-check-circle-o"></i>&nbsp;未绑定</span>
       </p>
     </div>
   </div>

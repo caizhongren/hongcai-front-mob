@@ -14,6 +14,8 @@ angular.module('p2pSiteMobApp')
       $rootScope.showFooter = false;
     }
 
+    $scope.user = SessionService.getUser();
+
     /**
      * 邀请码
      */

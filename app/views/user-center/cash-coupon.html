@@ -3,7 +3,7 @@
   <!-- <div class="cash-header padding-l-2 padding-r-2 ft-white">
     <div class="header1 margin-t-1p5">
       <div class="pull-left">
-        <img class="fl border-pull" ng-src="{{hasLoggedUser.headImgUrl || userHeadImgUrl}}" alt="" class="border-pull avatar">
+        <img class="fl border-pull" ng-src="{{user.headImgUrl || userHeadImgUrl}}" alt="" class="border-pull avatar">
         <div class="fl margin-l-0p5" ng-show="userAuth.authStatus !== 2">
           <p class="display-inb">
             未认证用户
@@ -11,7 +11,7 @@
           <p class="">注册用户</p>
         </div>
         <div class="fl margin-t-1p2" ng-show="userAuth.authStatus === 2">
-          <span class="ft-1p8 margin-l-1">{{ hasLoggedUser.nickName || (hasLoggedUser.mobile || hasLoggedUser.name) }}</span>
+          <span class="ft-1p8 margin-l-1">{{ user.nickName || (user.mobile || user.name) }}</span>
         </div>
       </div>
       <div class="rule-top pull-right margin-t-0p5" ng-click="showRule()">使用规则 <i class="fa fa-info-circle" aria-hidden="true"></i></div>
