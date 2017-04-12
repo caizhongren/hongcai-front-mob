@@ -15,14 +15,7 @@ angular.module('p2pSiteMobApp')
       value: 0,
       duration:0
     };
-    //获取用户正在计息的加息券，通过这个去显示10%
-    Restangular.one('/users/0/userIncreasingRateCoupons').get({}).then(function(response) {
-      if (response && response.ret !== -1) {
-        $scope.privilegeRate.orderNum = response[0].orderNum;
-        $scope.privilegeRate.value = response[0].value;
-        $scope.privilegeRate.duration = response[0].duration;
-      }
-    })
+    
 
     //初始化
     $rootScope.headerTitle = '我的投资';
@@ -60,10 +53,6 @@ angular.module('p2pSiteMobApp')
     $scope.toggle.switchTab = function(tabIndex) {
       $scope.loading = true;
 
-      // 与当前活动标签相同，不刷新数据
-      if ($scope.toggle.activeTab === tabIndex) {
-        return;
-      }
       $scope.toggle.activeTab = tabIndex;
       if (tabIndex === 0) {
         $scope.creditStatus = '1';
@@ -129,7 +118,16 @@ angular.module('p2pSiteMobApp')
     
     };
 
-    $scope.toggle.switchTab(0);
+    //获取用户正在计息的加息券，通过这个去显示10%
+    Restangular.one('/users/0/userIncreasingRateCoupons').get({}).then(function(response) {
+      if (response && response.ret !== -1 && response.length >0) {
+        $scope.privilegeRate.orderNum = response[0].orderNum;
+        $scope.privilegeRate.value = response[0].value;
+        $scope.privilegeRate.duration = response[0].duration;
+      }
+      $scope.toggle.switchTab(0);
+    })
+
     //跳转详情页
     $scope.goDtail = function(item) {
       if(item == 3) {
