@@ -13,13 +13,19 @@ angular.module('p2pSiteMobApp')
     // 特权加息
     $scope.privilegeRate = {
       orderNum: "",
-      value:0
+      value:0,
+      type: 5,
+      duration:1,
+      profit:0
     }
     //获取用户正在计息的加息券，通过这个去显示10%
     Restangular.one('/users/0/userIncreasingRateCoupons').get({}).then(function(response) {
       if (response && response.ret === 1) {
         $scope.privilegeRate.orderNum = response[0].orderNum;
         $scope.privilegeRate.value = response[0].value;
+        $scope.privilegeRate.type = response[0].type;
+        $scope.privilegeRate.duration = response[0].duration;
+        $scope.privilegeRate.profit = response[0].profit;
       }
     })
 
