@@ -17,7 +17,7 @@ angular.module('p2pSiteMobApp')
     };
     //获取用户正在计息的加息券，通过这个去显示10%
     Restangular.one('/users/0/userIncreasingRateCoupons').get({}).then(function(response) {
-      if (response && response.ret === 1) {
+      if (response && response.ret !== -1) {
         $scope.privilegeRate.orderNum = response[0].orderNum;
         $scope.privilegeRate.value = response[0].value;
         $scope.privilegeRate.duration = response[0].duration;
@@ -108,17 +108,16 @@ angular.module('p2pSiteMobApp')
             var oriRate = $scope.creditsData[i].creditRight.riseRate + $scope.creditsData[i].creditRight.baseRate;
             $scope.creditsData[i].rateCouponProfit = $scope.creditsData[i].creditRight.profit * ($scope.creditsData[i].increaseRateCoupon.value + oriRate) / oriRate - $scope.creditsData[i].creditRight.profit;
           }
+
+          if ($scope.privilegeRate.orderNum) {
+            if ($scope.privilegeRate.orderNum === $scope.creditsData[i].creditRight.orderNum ) {
+                $scope.creditsData[i].privilegeValue = $scope.privilegeRate.value;
+                $scope.creditsData[i].privilegePofit = $scope.privilegeRate.value * $scope.creditsData[i].creditRight.amount * $scope.privilegeRate.duration / 36500;
+              }
+          }
+
           $scope.credits.push($scope.creditsData[i]);
         };
-        if ($scope.privilegeRate.orderNum) {
-          for (var i = 0; i <= $scope.creditsData.length - 1; i++) {
-            if ($scope.privilegeRate.orderNum === $scope.creditsData[i].creditRight.orderNum ) {
-              $scope.creditsData[i].privilegeValue = $scope.privilegeRate.value;
-              $scope.creditsData[i].privilegePofit = $scope.privilegeRate.value * $scope.creditsData[i].creditRight.amount * $scope.privilegeRate.duration / 36500;
-            }
-            $scope.credits.push($scope.creditsData[i]);
-          }
-        }
         
         $scope.loading = false;
         $timeout(function() {
