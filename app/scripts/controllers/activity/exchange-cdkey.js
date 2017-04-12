@@ -7,8 +7,13 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('ExchangeCdkeyCtrl', function($rootScope, $scope, $state, $stateParams, $location, $timeout, Restangular, config) {
-  	
+  .controller('ExchangeCdkeyCtrl', function($rootScope, $scope, $state, $stateParams, $location, $timeout, Restangular, config, SessionService) {
+  	if(!SessionService.isLogin()){
+      $state.go('root.login', {
+        redirectUrl: encodeURIComponent($location.url())
+      });
+    } 
+
     $scope.showCdkey = false;
    
     $scope.exchangeCdkey = function(cdkey) {
