@@ -8,7 +8,7 @@
  * Service in the p2pSiteMobApp.
  */
 angular.module('p2pSiteMobApp')
-  .service('fundsProjects', function (restmod, DEFAULT_DOMAIN) {
+  .service('fundsProjects', function (Restangular) {
     // AngularJS will instantiate a singleton by calling "new" on this function
-    return restmod.model(DEFAULT_DOMAIN + '/fundsProjects');
+    return Restangular.one('/fundsProjects');
   });

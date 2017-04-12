@@ -45,10 +45,10 @@
     <div>
       <p>我的银行卡：</p>
       <p>用于充值和提现
-        <span ng-click="bindBankcard()" ng-show="simpleBankcard.status == 'VERIFY_NOT' || !simpleBankcard"> <a>去绑定 ></a></span>
-        <span ng-show="simpleBankcard.status == 'VERIFING'"> 绑定中(尾号{{simpleBankcard.cardNo}})</span>
-        <span ng-show="simpleBankcard.status == 'INIT'"> 解绑中(尾号{{simpleBankcard.cardNo}})</span>
-        <span ng-show="simpleBankcard.status == 'VERIFIED'" ui-sref="root.userCenter.bankcard"><a class="ft-blue">{{simpleBankcard.openBank}}(尾号{{simpleBankcard.cardNo}}) ></a></span>
+        <span ng-click="bindBankcard()" ng-show="bankcard.status == 'VERIFY_NOT' || !bankcard"> <a>去绑定 ></a></span>
+        <span ng-show="bankcard.status == 'VERIFING'"> 绑定中(尾号{{bankcard.cardNo}})</span>
+        <span ng-show="bankcard.status == 'INIT'"> 解绑中(尾号{{bankcard.cardNo}})</span>
+        <span ng-show="bankcard.status == 'VERIFIED'" ui-sref="root.userCenter.bankcard"><a class="ft-blue">{{bankcard.openBank}}(尾号{{bankcard.cardNo}}) ></a></span>
       </p>
     </div>
   </div>

@@ -115,12 +115,7 @@ angular.module('p2pSiteMobApp')
     /*
     *自动投标详情
     */
-
-    Restangular.one('/users/' + '0' + '/autoTender' ).get().then(function(response){
-       // response
-      $scope.autoTender = response;
-     
-    })
+    $scope.autoTender = Restangular.one('/users/' + '0' + '/autoTender' ).get().$object;
 
     
 
@@ -188,8 +183,6 @@ angular.module('p2pSiteMobApp')
     /*
     *关闭自动投标
     */
-    
-    
     $scope.offAutoTenders = function() {
       $scope.showAutoTenderTip = false;
       Restangular.one('/users/' + '0' + '/disabledAutoTender').put({
@@ -201,10 +194,9 @@ angular.module('p2pSiteMobApp')
           $timeout(function() {
             $rootScope.showSuccessToast = false;
             $rootScope.successMsg = '';
-            toSetting();
           }, 1000);
+          $scope.autoTender = Restangular.one('/users/' + '0' + '/autoTender' ).get().$object;
         }
-        $state.reload();
       })
 
     };

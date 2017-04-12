@@ -7,7 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .run(function($templateCache, $rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, $uibModal, ipCookie, restmod, config, Restangular, URLService, Utils, SessionService) {
+  .run(function($templateCache, $rootScope, DEFAULT_DOMAIN, $q, $timeout, $state, $location, $http, $uibModal, ipCookie, config, Restangular, URLService, Utils, SessionService) {
     // if ('addEventListener' in document) {
     // document.addEventListener('DOMContentLoaded', function() {
     FastClick.attach(document.body);
@@ -105,7 +105,12 @@ angular.module('p2pSiteMobApp')
       if ($rootScope.payCompany === 'yeepay'|| !$rootScope.isLogged) {
         return;
       }
-      Restangular.one('users').one('0/userAuth').get({}).then(function(userAuth){
+      var userAuth = SessionService.getUserAuth();
+      if(userAuth){
+        return;
+      }
+
+      Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
         if(userAuth.ret !== -1 && (userAuth.authStatus !== 2 || !userAuth.active)){
           $uibModal.open({
             animation: true,
@@ -197,7 +202,7 @@ angular.module('p2pSiteMobApp')
           var wechat_code = $location.search().code;
           var redirect_uri = location.href;
           if (wechat_code) { // 用户未登录但已经有code，去登录
-            restmod.model(DEFAULT_DOMAIN + '/users/').$find(wechat_code + '/openid').$then(function(response) {
+            Restangular.one('users/' + wechat_code + '/openid').get().then(function(response) {
               if (response.ret == -1) {
                 var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechatAppid +
                   "&redirect_uri=" + encodeURIComponent(URLService.removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
@@ -205,7 +210,7 @@ angular.module('p2pSiteMobApp')
                 return;
               }
 
-              SessionService.loginSuccess(response.$response.data);
+              SessionService.loginSuccess(response);
 
               $rootScope.isLogged = true;
               $rootScope.bindWechat = false;
@@ -320,9 +325,12 @@ angular.module('p2pSiteMobApp')
         'exchange-code',
         'share-scene-example',
         'activity-scene',
+        'invite',
+        'reward',
+        'invite-sharing',
         'share-scene',
         'share-spring',
-        'grade',
+        'rate-coupon',
         'project',
         'project-info',
         'project-detail',
@@ -334,6 +342,8 @@ angular.module('p2pSiteMobApp')
       ];
       if (notShowFooterRoute.indexOf(path) === -1) {
         $rootScope.showFooter = true;
+      } else {
+        $rootScope.showFooter = false;
       }
 
       var mainPath = [
@@ -373,6 +383,15 @@ angular.module('p2pSiteMobApp')
     $rootScope.showLoadingToast = false;
     $rootScope.showSuccessToast = false;
     $rootScope.successMsg = '';
+
+    $rootScope.showSuccessMsg = function(msg, duration){
+      $rootScope.successMsg = msg;
+      $rootScope.showSuccessToast = true;
+      $timeout(function() {
+        $rootScope.showSuccessToast = false;
+        $rootScope.successMsg = undefined;
+      }, duration);
+    }
 
 
   });

@@ -16,7 +16,14 @@
         <span class="zhuan" ng-show="item.creditRight.type === 6">转</span>
         <span class="display-inb fl margin-t--0p2">{{item.creditRight.projectName}}</span>
       </span>
-      <img class="fl" src="/images/user-center/rate-icon.png" alt="" width="9%" ng-show="item.increaseRateCoupon && item.increaseRateCoupon.type === 1">
+      <!-- <img class="fl" src="/images/user-center/rate-icon.png" alt="" width="9%" ng-show="true"> --> 
+      <div ng-show="(item.increaseRateCoupon && item.increaseRateCoupon.type === 1) || item.privilegeValue">
+        <div class="fl arrow-left"></div><div class="fl rate-icon">
+          <span ng-show="item.increaseRateCoupon && item.increaseRateCoupon.type === 1">{{item.increaseRateCoupon.value}}%</span>
+          <span ng-show="item.increaseRateCoupon && item.increaseRateCoupon.type === 1 && item.privilegeValue">＋</span>
+          <span ng-show="item.privilegeValue">{{item.privilegeValue}}%</span>
+        </div>
+      </div>
       <!-- <div class="fl red-rate">加息</div> -->
       <span class="u-pull-right ft-2 fa fa-angle-right margin-0p2 ft-greyddd"></span>
       <span class="u-pull-right ft-orange1" ng-show="item.creditRight.isRepeatInvest === 1"><i class="fa fa-history"></i>&nbsp;已自动续投&nbsp;</span>
@@ -31,7 +38,7 @@
       <span class="ft-greyaaa padding-l-0p5">本(元)</span>
     </div>
     <div class="credit-item-info u-pull-left text-center ft-1p4 border-greye-right">
-      <span class="ft-grey999 ft-Arial ft-1p6">{{item.creditRight.profit |currency:"":2 || 0}}</span><span class="ft-red0 ft-1p6" ng-show="item.increaseRateCoupon && item.increaseRateCoupon.type === 1">+{{item.rateCouponProfit | number:2}}</span>
+      <span class="ft-grey999 ft-Arial ft-1p6">{{item.creditRight.profit |currency:"":2 || 0}}</span><span class="ft-red0 ft-1p6" ng-show="(item.increaseRateCoupon && item.increaseRateCoupon.type === 1) || item.privilegeValue">+{{item.rateCouponProfit + item.privilegePofit | number:2}}</span>
       <br>
       <span class="ft-greyaaa">息(元)</span>
     </div>

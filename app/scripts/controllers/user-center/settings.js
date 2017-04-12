@@ -8,10 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('SettingsCtrl', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location, toCunGuanUtils, SessionService, UserService) {
-
-    $scope.userHeadImgUrl = SessionService.getUser() &&  SessionService.getUser().headImgUrl 
-      ? SessionService.getUser.headImgUrl: '/images/user-center/head.png';
+  .controller('SettingsCtrl', function($scope, $rootScope, $state, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location, toCunGuanUtils, SessionService, UserService, restmod) {
     
     if ($location.path().split('/')[2] === 'setting') {
       $rootScope.showFooter = false;
@@ -20,20 +17,26 @@ angular.module('p2pSiteMobApp')
     /**
      * 邀请码
      */
-    $scope.voucher = HongcaiUser.$find('0' + '/voucher').$then();
+    UserService.loadVoucher($scope); 
 
     /**
      * 认证信息
      */
     UserService.loadUserAuth($scope);
 
+    /*
+    *自动投标详情
+    */
+    $scope.autoTenders = Restangular.one('/users/' + '0' + '/autoTender' ).get().$object;
+
     /**
      * 银行卡信息
      */
-    HongcaiUser.$find('0' + '/bankcard').$then(function(response) {
-        $scope.simpleBankcard = response;
-        if($scope.simpleBankcard.cardNo){
-          $scope.simpleBankcard.cardNo = $scope.simpleBankcard.cardNo.substr($scope.simpleBankcard.cardNo.length - 4);
+
+    Restangular.one('users/0').one('bankcard').get().then(function(response) {
+        $scope.bankcard = response;
+        if(response.cardNo){
+          response.cardNo = response.cardNo.substr(response.cardNo.length - 4);
         }
     });
 
@@ -58,13 +61,11 @@ angular.module('p2pSiteMobApp')
         $scope.changePasswordMsg = "两次密码输入不一致";
         return;
       }
-
-      restmod.model(DEFAULT_DOMAIN + '/users/' + '0' + '/changePassword')
-        .$create({
+      Restangular.one('users/0').post('changePassword', {
           oldPassword: md5.createHash(oldP),
           newPassword: md5.createHash(newP2),
           device: Utils.deviceCode()
-        }).$then(function(response) {
+        }).then(function(response) {
           if (response.ret === -1) {
             $scope.changePasswordMsg = response.msg;
           } else {
@@ -100,17 +101,7 @@ angular.module('p2pSiteMobApp')
     $scope.recentlyQuestionnaire();
 
 
-    /*
-    *自动投标详情
-    */
-    $scope.autoTendersDetail = function() {
-      Restangular.one('/users/' + '0' + '/autoTender' ).get().then(function(response){
-       $scope.autoTenders = response;
-      })
-    };
-    $scope.autoTendersDetail();
-
-    
+     
 
     /**
      * 开通自动投标权限

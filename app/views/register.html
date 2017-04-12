@@ -1,86 +1,37 @@
-<!-- <p class="margin-b-0 margin-t-0 padding-t-0p5 padding-b-0p5 bg-yellow2 padding-l-1" ng-hide="closeInfo">宏财网与东兴证券合作，开启P2F模式！<span class="head-tip ft-grey" ng-click="closeInfo=true">×</span></p> -->
-<div class="bg-grey4 padding-l-1 padding-r-1 padding-t-1 text-center margin-b-7" style="min-height:655px;">
-  <!-- <img src="/images/login-2.png" width="65%"> -->
-  <p class="ft-2p5 ft-89 margin-b-1 margin-t-1">注册宏财账号</p>
-  <form autocomplete="off" class="register-form margin-0 padding-b-2 padding-t-1 ft-grey" name="registerForm" autocomplete="on"  id="registerForm"><!-- ng-submit="signUp(user);" -->
+<div class="padding-l-1 padding-r-1 padding-t-1 text-center margin-b-7">
+  <p class="ft-2p5 ft-65 margin-b-1 margin-t-1">注册宏财账号</p>
+  <form autocomplete="off" class="register-form margin-0 padding-b-2 padding-t-1 ft-grey" name="registerForm" autocomplete="on"  id="registerForm" novalidate>
     <div class="to-register">
-      <input id="mobilesignup" name="mobile" ensure-unique ng-model="user.mobile" ng-pattern="/^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/" type="tel" placeholder="手机号码" required/><br>
-      <input id="passwordsignup" name="password" ng-model="user.password" ng-minlength="6" ng-maxlength="16" ng-pattern="/^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,16}$/" required="required" type="password" placeholder="密码(6-22位字符,数字或字母)" class="input-pwd" />
+      <!-- 手机号码 -->
+      <input id="mobilesignup" name="mobile" ng-model="user.mobile" type="tel" placeholder="请输入手机号" required/>
+      <!-- 图形验证码 -->
+      <input id="picCaptcha" name="picCaptcha" ng-model="user.picCaptcha" required type="text" placeholder="请输入图形验证码" class="captchacode"/>
+      <span><img src="{{getPicCaptcha}}" id="checkCaptcha" class="pic-verify no-padding margin-t--13 margin-l-5" ng-click="refreshCode()" width="78" height="40"></span>
+      <!-- 短信验证码 -->
+      <input id="captchasignup" name="captchasignup" ng-model="user.captcha" required="required" type="number" placeholder="请输入短信验证码" class="captchacode"/>
+      <span>
+      <button id="mess" capcha-countdown>短信验证码</button></span>
+      <!-- 登录密码 -->
+      <input id="passwordsignup" name="password" ng-model="user.password" required type="password" placeholder="请输入登录密码" class="input-pwd" />
+      <span class="pwd-eyes"><i class="fa fa-eye-slash ft-9f text-right" select-eyes></i></span>
+      <!-- 邀请码 -->
+      <p class="margin-b-0 padding-t-1 ft-blue8 text-align clear" ng-click="investCode =!investCode;">邀请码<i class="fa fa-angle-double-down" aria-hidden="true"></i></p>
+      <input class="input-invitecode" name="invitationCode" type="text" placeholder="邀请人手机号码（选填）" style="border-radius:0;" ng-model="user.inviteCode" ng-if="investCode"/>
     </div>
-    <p class="ft-red2 margin-b-1 margin-t-1" ng-if="registerForm.mobile.$dirty && registerForm.mobile.$invalid && !registerForm.mobile.$focused">
-      <small ng-if="registerForm.mobile.$error.unique">手机号码已注册</small>
-      <small ng-if="registerForm.mobile.$error.pattern">手机号码格式不正确</small>
-    </p>
-    <p class="ft-red2 margin-b-1 margin-t-1" ng-if="registerForm.password.$dirty && registerForm.password.$invalid && !registerForm.password.$focused">
-      <small ng-if="registerForm.password.$error.minlength">不能小于6个字符</small>
-      <small ng-if="registerForm.password.$error.maxlength">不能大于22个字符</small>
-      <small ng-if="registerForm.password.$error.pattern">长度6-22，数字或字母的组合，可以包含特殊字符</small>
-    </p>
-    <div class="to-invite">
-      <input id="captchasignup" name="captchasignup" ng-model="user.captcha" required="required" type="text" placeholder="验证码" />
-      <span><button ng-click="sendMobileCaptcha(user);" ng-disabled="registerForm.mobile.$invalid || registerForm.password.$invalid" onclick="countDown(this,60,'out');">获取验证码</button></span><br>
-      <input class="invitationCode input-invitecode" name="invitationCode" type="text" placeholder="邀请码(选填)" style="border-radius:0;" ng-model="user.inviteCode"/>
-    </div>
-    <p class="ft-red2 margin-b-1 margin-t-1" ng-show="captchaShow">{{msg}}</p>
-    <p class="clear margin-0 margin-b-0p5 text-center">
-      <input type="checkbox" checked>我已阅读并同意<a href="javascript:;" ng-click="toggle();" class="ft-black2" style="text-decoration:underline;">《注册协议》</a>
-    </p>
+    <!-- 完成注册按钮 -->
     <p class="signin margin-0 text-center">
-      <button type="submit" class="button button-primary column {{registerForm.$invalid ? 'button-disabled' : ''}}" ng-disabled="registerForm.$invalid" ng-click="signUp(user);" my-click-once>立即注册</button>
+      <button type="submit" class="ft-normal margin-t-2 button  column {{registerForm.$invalid ? 'button-disabled1' : 'button-primary'}}" ng-click="signUp(user)">完成注册</button>
     </p>
-    <p class="change_link margin-0 text-center clear">
-      已有账号 ?
-        <a ui-sref="root.login" class="to_login ft-red2"> 立即登录 >></a>
-
+    <p class="margin-0 pull-left ft-small ft-9f">
+      <input id="isremind" type="checkbox" ng-click="checked()" checked />注册即表示您同意<a href="javascript:;" ng-click="toggle();" class="ft-blue8">注册服务协议</a>
+    </p>
+    <p class="change_link margin-0 pull-right ft-small">
+      <div capcha-countdown></div>
+      <div ui-sref="root.login" class="to_login ft-blue8 fr"> 登录>></div>
     </p>
   </form>
 </div>
 <div class="alert-agreement" ng-show="showRegistrationAgreement" ng-include src="'views/_registration-agreement.html'">
 </div>
 <div class="mask" ng-show="showRegistrationAgreement"></div>
-<script>
-function countDown(obj, second, inOrOut) {
-  var getMobile = document.getElementById("mobilesignup");
-  var mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
-
-  if (inOrOut === 'out' && window.buttonFlag == 0) {
-    return;
-  }
-
-  // 如果秒数还是大于0，则表示倒计时还没结束
-  if (mobilePattern.test(getMobile.value)) {
-    if (second >= 0) {
-      // 获取默认按钮上的文字
-
-      if (typeof buttonDefaultValue === 'undefined') {
-        buttonDefaultValue = obj.defaultValue;
-      }
-      // 按钮置为不可点击状态
-      obj.disabled = true;
-      window.buttonFlag = 0;
-      // 按钮里的内容呈现倒计时状态
-      //obj.value = buttonDefaultValue + '(' + second + ')';
-      obj.innerHTML = "重新发送" + "(" + second + ")";
-      obj.className = '';
-      // 时间减一
-      second--;
-      // 一秒后重复执行
-      setTimeout(function() {
-        countDown(obj, second, 'in');
-      }, 1000);
-      // 否则，按钮重置为初始状态
-    } else {
-      // 按钮置为可点击状态
-      obj.disabled = false;
-      window.buttonFlag = 1;
-      // 按钮里的内容恢复初始状态
-      obj.className = '';
-      obj.innerHTML = "发送验证码";
-    }
-  } else {
-    obj.disabled = true;
-    window.buttonFlag = 0;
-  }
-}
-</script>
 

@@ -578,7 +578,7 @@ input[type="number"].transfer-btn:focus {
   background-color: #c6c6c6;
 }
 .bg-grey6{
-  background-color:rgba(0,0,0,0.85);
+  background-color:rgba(0,0,0,0.9) !important;
 }
 .bg-greyf7{
   background-color:#f7f6f6;
@@ -1167,6 +1167,43 @@ Opera
   right: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999999;
+  .offline-bg {
+    height: 50%;
+    background-image: linear-gradient(#fa7c41, #fb823b);
+  }
+  .share-head {
+    padding-left: 8.5%;
+  }
+  .share-wrap {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding: 1.6rem 0 0 0;
+    .share-ways,.share-words {
+      padding-top: 1.8rem;
+      display: flex;
+      justify-content: space-around;
+    }
+    .share-words {
+      padding: 0.5rem 0;
+      p {
+        width: 16%;
+        text-align: center;
+        color: #999;
+        font-size: 1.2rem;
+        @media(min-width: 370px) {
+          font-size: 1.3rem;
+        }
+      }
+    }
+    .cancle {
+      color: #a1a1a1;
+      height: 3.5rem;
+      line-height: 3.5rem;
+      background-color: #fff;
+      margin-top: 1rem;
+    }
+  }
 }
 
 .project-mask-inner {
@@ -1235,6 +1272,9 @@ input[type="email"], input[type="number"], input[type="search"], input[type="tex
 }
 .width-0p3{
   width:33.333333%;
+}
+.width-0p5{
+  width:50%;
 }
 .invite-height{
   height:222px;

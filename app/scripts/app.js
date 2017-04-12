@@ -122,7 +122,7 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/login-new.html',
+            templateUrl: 'views/login.html',
             controller: 'LoginCtrl',
             controllerUrl: 'scripts/controllers/login'
 
@@ -136,7 +136,7 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/register-new.html',
+            templateUrl: 'views/register.html',
             controller: 'RegisterCtrl',
             controllerUrl: 'scripts/controllers/register'
           }
@@ -149,7 +149,7 @@ p2pSiteMobApp
         },
         views: {
           '': {
-            templateUrl: 'views/register-new.html',
+            templateUrl: 'views/register.html',
             controller: 'RegisterCtrl',
             controllerUrl: 'scripts/controllers/register'
           }
@@ -172,14 +172,6 @@ p2pSiteMobApp
             templateUrl: 'views/yeepay-callback.html',
             controller: 'YeepayCallbackCtrl',
             controllerUrl: 'scripts/controllers/yeepay-callback'
-          }
-        }
-      })
-      .state('root.registerByWechat', {
-        url: '/register/:openId',
-        views: {
-          '': {
-            templateUrl: 'views/register.html'
           }
         }
       })
@@ -270,12 +262,25 @@ p2pSiteMobApp
           title: '债权转让记录'
         }
       })
-      //常见问题
+      //债权转让－常见问题 暂时隐藏
       .state('root.assignment_qr', {
         url: '/assignment_qr',
         views: {
           '': {
             templateUrl: 'views/help-center/assignment_qr.html',
+            controller: 'HelpCenterCtrl',
+            controllerUrl: 'scripts/controller/help-center/help-center-ctrl'
+          }
+        },data: {
+          title: '常见问题'
+        }
+      })
+      //全部－常见问题
+      .state('root.questions', {
+        url: '/questions',
+        views: {
+          '': {
+            templateUrl: 'views/help-center/questions.html',
             controller: 'HelpCenterCtrl',
             controllerUrl: 'scripts/controller/help-center/help-center-ctrl'
           }
@@ -299,7 +304,7 @@ p2pSiteMobApp
         url: '/registration-agreement',
         views: {
           '': {
-            templateUrl: 'views/registration-agreement.html'
+            templateUrl: 'views/_registration-agreement.html'
           }
         }
       })
@@ -614,18 +619,6 @@ p2pSiteMobApp
         }
       })
 
-   
-    //体验金活动页
-    .state('root.experience-activity', {
-        url: '/experience-activity/:number?act&f',
-        views: {
-          '': {
-            templateUrl: 'views/activity/experience-activity.html',
-            controller: 'ExperienceActivityCtrl',
-            controllerUrl: 'scripts/controllers/activity/experience-activity-ctrl'
-          }
-        }
-      })
 
       //网站公告
       .state('root.web-site-notice', {
@@ -651,6 +644,30 @@ p2pSiteMobApp
         }
       }
     })
+
+    //探幕 游戏兑换
+    .state('root.activity.exchange-cdkey', {
+      url: '/exchange-cdkey',
+      views: {
+        '': {
+          templateUrl: 'views/activity/exchange-cdkey.html',
+          controller: 'ExchangeCdkeyCtrl',
+          controllerUrl: 'scripts/controllers/activity/exchange-cdkey'
+        }
+      }
+    })
+
+    // 渠道活动落地页
+    .state('root.activity.channel', {
+      url: '/channel?act&f',
+      views: {
+        '': {
+          templateUrl: 'views/activity/channel.html',
+          controller: 'InviteSharingCtrl',
+          controllerUrl: 'scripts/controllers/activity/invite-sharing-ctrl'
+        }
+      }
+    })
     // 邀请活动
     .state('root.activity.invite-activity', {
       url: '/invite-activity',
@@ -665,6 +682,51 @@ p2pSiteMobApp
         title: '邀请好友，双重奖励'
       }
     })
+    // 邀请活动-2017.4.13
+    .state('root.activity.inviteActivity', {
+      url: '/invite',
+      views: {
+        '': {
+          templateUrl: 'views/activity/invite.html',
+          controller: 'InviteCtrl',
+          controllerUrl: 'scripts/controllers/activity/invite-ctrl'
+        }
+      },
+      data: {
+        title: '邀请好友'
+      }
+    })
+    
+    // 邀请活动-我的奖励
+      .state('root.activity.reward', {
+        url: '/reward',
+        views: {
+          '': {
+            templateUrl: 'views/activity/reward.html',
+            controller: 'RewardCtrl',
+            controllerUrl: 'scripts/controllers/activity/reward-ctrl'
+          }
+        },
+        data: {
+          title: '我的奖励'
+        }
+      })
+
+    // 邀请活动分享注册活动落地页-2017.4.13
+    .state('root.activity.invite-sharing', {
+      url: '/invite-sharing/:inviteCode?act&f',      
+      views: {
+        '': {
+          templateUrl: 'views/activity/invite-sharing.html',
+          controller: 'InviteSharingCtrl',
+          controllerUrl: 'scripts/controllers/activity/invite-sharing-ctrl'
+        }
+      },
+      data: {
+        title: '邀请好友'
+      }
+    })
+    
     //新手活动落地页
       .state('root.activity.novice-landing', {
         url: '/novice-activity?act&f',
@@ -679,34 +741,24 @@ p2pSiteMobApp
           title: '宏运当头，财源滚滚'
         }
       })
-    //体验金新手标
-    .state('root.experience-project-detail', {
-        url: '/experience-project',
-        data: {
-          title: '体验金专享标'
-        },
-        views: {
-          '': {
-            templateUrl: 'views/project/experience-project-detail.html',
-            controller: 'ExperienceProjectDetailCtrl',
-            controllerUrl: 'scripts/controllers/project/experience-project-detail'
-          }
-        }
-      })
-      //我的奖励
-      .state('root.userCenter.grade', {
+
+      //我的加息券
+      .state('root.userCenter.rate-coupon', {
         url: '/rate-coupon?tab&subTab',
         views: {
           '': {
-            templateUrl: 'views/user-center/grade.html',
-            controller: 'GradeCtrl',
-            controllerUrl: 'scripts/controllers/user-center/grade'
+            templateUrl: 'views/user-center/rate-coupon.html',
+            controller: 'RateCouponCtrl',
+            controllerUrl: 'scripts/controllers/user-center/rate-coupon'
           }
         }
       })
       //我的邀请
       .state('root.userCenter.invite-rebate', {
         url: '/invite-rebate',
+        data: {
+          title: '我的邀请'
+        },
         views: {
           '': {
             templateUrl: 'views/user-center/invite-rebate.html',
@@ -715,17 +767,32 @@ p2pSiteMobApp
           }
         }
       })
-      //个人中心体验金详情页
-      .state('root.userCenter.experience-money', {
-        url: '/experience-money',
+      // 我的邀请好友列表
+      .state('root.userCenter.invite-rebate-list', {
+        url: '/invite-rebate-list',
         data: {
-          title: '我的体验金'
+          title: '受邀好友列表'
         },
         views: {
           '': {
-            templateUrl: 'views/user-center/experience-money.html',
-            controller: 'ExperienceMoneyCtrl',
-            controllerUrl: 'scripts/controllers/user-center/experience-money'
+            templateUrl: 'views/user-center/invite-rebate-list.html',
+            controller: 'InviteRebateCtrl',
+            controllerUrl: 'scripts/controller/user-center/invite-rebate'
+          }
+        }
+      })
+
+      //个人中心特权本金
+      .state('root.userCenter.privileged-capital', {
+        url: '/privileged-capital',
+        data: {
+          title: '特权本金'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/user-center/privileged-capital.html',
+            controller: 'PrivilegedCapitalCtrl',
+            controllerUrl: 'scripts/controllers/user-center/privileged-capital'
           }
         }
       })
@@ -733,7 +800,7 @@ p2pSiteMobApp
       .state('root.userCenter.cash-coupon', {
         url: '/cash-coupon',
         data: {
-          title: '我的奖金'
+          title: '现金券'
         },
         views: {
           '': {

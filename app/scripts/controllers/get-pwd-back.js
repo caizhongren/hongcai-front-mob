@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('GetPwdCtrl', function(checkPwdUtils, $rootScope, $scope, $state, $stateParams, $timeout, Utils, CheckMobUtil, CheckPicUtil, md5, HongcaiUser, restmod, ipCookie, DEFAULT_DOMAIN, WEB_DEFAULT_DOMAIN) {
+  .controller('GetPwdCtrl', function(checkPwdUtils, $rootScope, $scope, $state, $stateParams, $timeout, Utils, CheckMobUtil, CheckPicUtil, md5 ,Restangular, ipCookie, WEB_DEFAULT_DOMAIN) {
     //图形验证码
     $scope.btnText = '按钮';
     $scope.getPicCaptcha = WEB_DEFAULT_DOMAIN + '/siteUser/getPicCaptcha?';
@@ -59,13 +59,12 @@ angular.module('p2pSiteMobApp')
       }
       $scope.busy = true;
 
-
-      HongcaiUser.$find('/checkMobileCaptcha', {
+      Restangular.one('users/').one('checkMobileCaptcha').get({
         mobile: mobile,
         captcha: captcha,
         business:1,
         guestId: ipCookie('guestId')
-      }).$then(function(response) {
+      }).then(function(response) {
         if (response.ret === -1) {
           $timeout(function() {
             $scope.busy = false;
@@ -137,23 +136,20 @@ angular.module('p2pSiteMobApp')
       }
       $scope.busy = true;
 
-      restmod.model(DEFAULT_DOMAIN + '/users/resetMobilePassword')
-        .$create({
+      Restangular.one('users/').post('resetMobilePassword', {
           mobile: $scope.mobileNum,
           captcha: $scope.captchaNum,
           password: md5.createHash(chg.newPassword2),
           device: Utils.deviceCode()
-        }).$then(function(response) {
-          if (response.ret === -1) {
-            $timeout(function() {
+        }).then(function(response) {
+          $timeout(function() {
               $scope.busy = false;
-            }, 2000);
+          }, 2000);
+          if (response.ret === -1) {   
             $scope.changePasswordMsg = response.msg;
           } else {
-            $timeout(function() {
-              $scope.busy = false;
-            }, 2000);
             $state.go('root.login');
+            $rootScope.showSuccessMsg('找回密码成功', 1000);
           }
         });
     }

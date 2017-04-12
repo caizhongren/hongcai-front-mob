@@ -62,7 +62,7 @@ angular.module('p2pSiteMobApp')
       annualEarnings: 0.00
     };
 
-    $rootScope.showLoadingToast = true;
+
 
     //限制项目名长度
     $scope.widthFlag = ScreenWidthUtil.screenWidth();
@@ -90,7 +90,7 @@ angular.module('p2pSiteMobApp')
       }).then(function(response){
         if(response && response.ret !== -1) {
             $scope.notices = response.data;
-            sessionStorage.setItem('notices', angular.toJson($scope.notices));
+            localStorage.setItem('notices', angular.toJson($scope.notices));
         }
       })
     }
@@ -100,8 +100,6 @@ angular.module('p2pSiteMobApp')
      * 宏财精选、宏财尊贵
      */
     $scope.getProjectList = function(page, pageSize, type) {
-      $rootScope.showLoadingToast = true;
-
       if ($scope.pageCount < $scope.page) {
         return;
       }
@@ -110,13 +108,12 @@ angular.module('p2pSiteMobApp')
         pageSize: pageSize,
         type: type
       }).then(function(response) {
-        $rootScope.showLoadingToast = false;
         if (type == 5) {
           $scope.choiceProject = response.projectList[0];
-          sessionStorage.setItem('choice', angular.toJson($scope.choiceProject));
+          localStorage.setItem('choice', angular.toJson($scope.choiceProject));
         } else if (type == 6) {
           $scope.honorableProject = response.projectList[0];
-          sessionStorage.setItem('honor', angular.toJson($scope.honorableProject));
+          localStorage.setItem('honor', angular.toJson($scope.honorableProject));
         }
       });
     }
@@ -124,7 +121,6 @@ angular.module('p2pSiteMobApp')
     *债权转让列表
     */
     $scope.getAssignmentList = function(page, pageSize) {
-      $rootScope.showLoadingToast = true;
       $scope.busy = true;
       Restangular.one("assignments").get({
         page: page,
@@ -137,19 +133,20 @@ angular.module('p2pSiteMobApp')
           $scope.assignmentProject.remainDay = response.assignments[0].remainDay;
           $scope.assignmentProject.annualEarnings = response.assignments[0].annualEarnings;
           $scope.assignmentProject.number = response.assignments[0].number;
-          sessionStorage.setItem('assignment', angular.toJson($scope.assignmentProject));
+          localStorage.setItem('assignment', angular.toJson($scope.assignmentProject));
         }
       })
     }
 
-    $scope.choiceProject = sessionStorage.getItem('choice') ? angular.fromJson(sessionStorage.getItem('choice')) : $scope.choiceProject;
-    $scope.honorableProject = sessionStorage.getItem('honor') ? angular.fromJson(sessionStorage.getItem('honor')) : $scope.honorableProject;
-    $scope.assignmentProject = sessionStorage.getItem('assignment') ? angular.fromJson(sessionStorage.getItem('assignment')) : $scope.assignmentProject;
-    $scope.notices = sessionStorage.getItem('notices') ? angular.fromJson(sessionStorage.getItem('notices')) : undefined;
+    $scope.choiceProject = localStorage.getItem('choice') ? angular.fromJson(localStorage.getItem('choice')) : $scope.choiceProject;
+    $scope.honorableProject = localStorage.getItem('honor') ? angular.fromJson(localStorage.getItem('honor')) : $scope.honorableProject;
+    $scope.assignmentProject = localStorage.getItem('assignment') ? angular.fromJson(localStorage.getItem('assignment')) : $scope.assignmentProject;
+    $scope.notices = localStorage.getItem('notices') ? angular.fromJson(localStorage.getItem('notices')) : undefined;
     $scope.getNotice();
     $scope.getProjectList(1, 1, 5);
     $scope.getProjectList(1, 1, 6);
     $scope.getAssignmentList(1, 1);
+
     
     /**
      * 跳转到详情页
@@ -180,12 +177,11 @@ angular.module('p2pSiteMobApp')
      */
     $scope.toExperience =function() {
       if(!$rootScope.isLogged) {
-        $state.go('root.register');
+        $state.go('root.login');
         return;
       }
       $state.go('root.userCenter.experience-money');
     }
-
 
     $scope.clickBanner = function(toStateOrUrl){
       if(toStateOrUrl.indexOf('root.') !== -1){

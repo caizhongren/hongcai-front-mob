@@ -3,7 +3,7 @@
  * session相关服务
  */
 angular.module('p2pSiteMobApp')
-  .factory('SessionService', function($http, $location, DEFAULT_DOMAIN, restmod, Utils) {
+  .factory('SessionService', function($http, $location, Utils, Restangular) {
     return {
       set: function(key, value) {
         return sessionStorage.setItem(key, value);
@@ -16,11 +16,10 @@ angular.module('p2pSiteMobApp')
        * 退出登录，清除session
        */
       destory: function() {
-        var logoutModel = restmod.model(DEFAULT_DOMAIN + '/users/' + '0' + '/logout');
-        logoutModel.$create({
+        Restangular.one('users/0/').post('logout', {
           device: Utils.deviceCode(),
           isWeixin: Utils.isWeixin()
-        }).$then(function(response) {
+        }).then(function(response) {
         });
         sessionStorage.setItem('isLogin', 'false');
         return sessionStorage.removeItem('user');
