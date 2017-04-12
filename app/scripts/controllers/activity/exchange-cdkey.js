@@ -17,6 +17,11 @@ angular.module('p2pSiteMobApp')
     $scope.showCdkey = false;
    
     $scope.exchangeCdkey = function(cdkey) {
+      if(!cdkey || !cdkey.exchangeCode || cdkey.exchangeCode.length !== 6){
+        $rootScope.showMsg('兑换码有误！');
+        return;
+      }
+
       Restangular.one('activitys/').one('exchangePrimaryCdkey').put({
         exchangeCode : cdkey.exchangeCode
       }).then(function(response){
