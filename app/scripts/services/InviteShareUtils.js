@@ -56,8 +56,7 @@ angular.module('p2pSiteMobApp')
 
       //图片链接
       shareImageUrl : function(){
-        var imageUrl = 'https://mmbiz.qlogo.cn/mmbiz_jpg/8MZDOEkib8AlesZAUd6woODtlJbnNpuQHYibUasRbts0teKicv4JpcggcOVxvMvI32ASyw42VoPv04aZvYQdgicmKw/0?wx_fmt=jpeg';
-
+        var imageUrl = 'https://mmbiz.qlogo.cn/mmbiz_jpg/8MZDOEkib8Akr3KNzVxtZ95xUPndUzXu3CvoSK2iap7RdeDEU69hTG8tSSL0no6uV9T75FqVsJXj54hVicu40KMicw/0?wx_fmt=jpeg';
         return imageUrl;
       }
 
