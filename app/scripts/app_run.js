@@ -156,7 +156,7 @@ angular.module('p2pSiteMobApp')
       }, 350);
 
 
-      if(!SessionService.hasCheckLogin()){
+      if(!SessionService.hasCheckLogin() && !SessionService.isLogin()){
         var deferred = $q.defer();
         Restangular.one('users/checkSession').get().then(function(response) {
           deferred.resolve(response);
