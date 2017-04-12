@@ -9,9 +9,8 @@
 angular.module('p2pSiteMobApp')
   .controller('ExchangeCdkeyCtrl', function($rootScope, $scope, $state, $stateParams, $location, $timeout, Restangular, config, SessionService) {
   	if(!SessionService.isLogin()){
-      $state.go('root.login', {
-        redirectUrl: encodeURIComponent($location.url())
-      });
+      $location.url('/login?redirectUrl=' + encodeURIComponent($location.url()));
+      return;
     } 
 
     $scope.showCdkey = false;
