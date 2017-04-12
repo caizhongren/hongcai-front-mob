@@ -159,10 +159,6 @@ angular.module('p2pSiteMobApp')
       if(!SessionService.hasCheckLogin() && !SessionService.isLogin()){
         var deferred = $q.defer();
         Restangular.one('users/checkSession').get().then(function(response) {
-          deferred.resolve(response);
-        });
-        
-        deferred.promise.then(function(response){
           SessionService.checkLogin();
           if(response && response.ret !== -1){
             SessionService.loginSuccess(response);
@@ -215,7 +211,7 @@ angular.module('p2pSiteMobApp')
             }
 
             SessionService.loginSuccess(response);
-            $rootScope.isLogged = user.mobile || user.email;
+            $rootScope.isLogged = response.mobile || response.email;
 
             if (!$rootScope.isLogged && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
               $state.go('root.login', {
