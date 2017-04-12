@@ -7,9 +7,12 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('InviteCtrl', function($rootScope, $scope, $state, $stateParams, $location, $timeout, Restangular, config, SessionService, InviteShareUtils, WechatShareUtils, Utils) {
+  .controller('InviteCtrl', function($rootScope, $scope, $state, $stateParams, $location, $timeout, Restangular, config, SessionService, InviteShareUtils, WechatShareUtils, Utils, $window) {
   	$scope.showDownload = false;
     $scope.deviceCode = Utils.deviceCode();
+    $scope.downloadApp = function() {
+        $window.location.href = ' http://a.app.qq.com/o/simple.jsp?pkgname=com.hoolai.hongcai';
+     }
     // 是否邀请过好友
   	Restangular.one('users').one('0/isInvitedFriends').get({}).then(function(response){
       if(response && response.ret !== -1) {
