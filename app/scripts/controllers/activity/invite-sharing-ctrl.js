@@ -147,19 +147,21 @@ angular.module('p2pSiteMobApp')
 
     if(SessionService.isLogin() && Utils.isWeixin()){
       //邀请码
-      $scope.voucher = Restangular.one('users/0').one('voucher').get().$object;
-      WechatShareUtils.configJsApi();
+      Restangular.one('users/0').one('voucher').get().then(function(response){
+        $scope.voucher = response;
+        WechatShareUtils.configJsApi();
       
-      wx.error(function(res){
-        $timeout(function() {
-          window.location.href=config.domain + '/activity/invite?' + Math.round(Math.random()* 1000);
-        }, 100);
-      });
+        wx.error(function(res){
+          $timeout(function() {
+            window.location.href=config.domain + '/activity/invite?' + Math.round(Math.random()* 1000);
+          }, 100);
+        });
 
-      wx.ready(function(){
-        $scope.shareItem = InviteShareUtils.share($scope.voucher.inviteCode);
-        $scope.linkUrl = location.href.split('#')[0];
-        WechatShareUtils.onMenuShareAppMessage($scope.shareItem.title, $scope.shareItem.subTitle, $scope.linkUrl, $scope.shareItem.imageUrl);
+        wx.ready(function(){
+          $scope.shareItem = InviteShareUtils.share($scope.voucher.inviteCode);
+          $scope.linkUrl = location.href.split('#')[0];
+          WechatShareUtils.onMenuShareAppMessage($scope.shareItem.title, $scope.shareItem.subTitle, $scope.linkUrl, $scope.shareItem.imageUrl);
+        });
       });
     }
 

@@ -48,6 +48,7 @@ angular.module('p2pSiteMobApp')
      }
 
       if(SessionService.isLogin() && Utils.isWeixin()){
+
         //邀请码
         $scope.voucher = Restangular.one('users/0').one('voucher').get().$object;
         WechatShareUtils.configJsApi();
@@ -60,7 +61,8 @@ angular.module('p2pSiteMobApp')
 
         wx.ready(function(){
           $scope.shareItem = InviteShareUtils.share($scope.voucher.inviteCode);
-          WechatShareUtils.onMenuShareAppMessage($scope.shareItem.title, $scope.shareItem.subTitle, $scope.shareItem.linkUrl, $scope.shareItem.imageUrl);
+          $scope.linkUrl = location.href.split('#')[0];
+          WechatShareUtils.onMenuShareAppMessage($scope.shareItem.title, $scope.shareItem.subTitle, $scope.linkUrl, $scope.shareItem.imageUrl);
         });
       }
 
