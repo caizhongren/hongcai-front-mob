@@ -362,7 +362,7 @@ angular.module('p2pSiteMobApp')
     $rootScope.showSuccessToast = false;
     $rootScope.successMsg = '';
 
-    $rootScope.showLoadingToast= function(msg, duration){
+    $rootScope.showLoadingToastFunc= function(msg, duration){
       $rootScope.showLoadingToast = true;
       $timeout(function() {
         $rootScope.showLoadingToast = false;

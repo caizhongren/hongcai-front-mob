@@ -9,12 +9,14 @@
 angular.module('p2pSiteMobApp')
   .controller('ExchangeCdkeyCtrl', function($rootScope, $scope, $state, $stateParams, $location, $timeout, Restangular, config, SessionService) {
     $scope.showCdkey = false;
+
+    $rootScope.showLoadingToast = false;
     $scope.exchangeCdkey = function(cdkey) {
       if(!cdkey || !cdkey.exchangeCode || cdkey.exchangeCode.length !== 6){
         $rootScope.showMsg('兑换码有误！');
         return;
       }
-      
+
       $rootScope.showLoadingToast = true;
       Restangular.one('activitys/').one('exchangePrimaryCdkey').put({
         exchangeCode : cdkey.exchangeCode
