@@ -8,22 +8,18 @@
 'use strict';
 angular.module('p2pSiteMobApp')
   .controller('ExchangeCdkeyCtrl', function($rootScope, $scope, $state, $stateParams, $location, $timeout, Restangular, config, SessionService) {
-  	if(!SessionService.isLogin()){
-      $location.url('/login?redirectUrl=' + encodeURIComponent($location.url()));
-      return;
-    } 
-
     $scope.showCdkey = false;
-   
     $scope.exchangeCdkey = function(cdkey) {
       if(!cdkey || !cdkey.exchangeCode || cdkey.exchangeCode.length !== 6){
         $rootScope.showMsg('兑换码有误！');
         return;
       }
-
+      
+      $rootScope.showLoadingToast = true;
       Restangular.one('activitys/').one('exchangePrimaryCdkey').put({
         exchangeCode : cdkey.exchangeCode
       }).then(function(response){
+        $rootScope.showLoadingToast = false;
         if(response && response.ret !== -1) {
           $scope.showCdkey = true;
           $scope.cdkey = response.cdkey;

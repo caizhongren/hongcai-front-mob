@@ -20,7 +20,7 @@ angular.module('p2pSiteMobApp')
     })
 
     var routespermission = [
-      '/user-center'
+      'root.activity.exchange-cdkey'
     ];
 
     var titleMap = {
@@ -177,7 +177,7 @@ angular.module('p2pSiteMobApp')
       if(SessionService.isLogin()){
         var user = SessionService.getUser();
         $rootScope.isLogged = user.mobile || user.email;
-        if (!$rootScope.isLogged && toState.name.indexOf('root.userCenter') !== -1) {
+        if (!$rootScope.isLogged && (toState.name.indexOf('root.userCenter') !== -1 || routespermission.indexOf(toState.name) !== -1 ) ) {
           $location.url('/login?redirectUrl=' + encodeURIComponent($location.url()));
           return;
         }
@@ -213,7 +213,7 @@ angular.module('p2pSiteMobApp')
             SessionService.loginSuccess(response);
             $rootScope.isLogged = response.mobile || response.email;
 
-            if (!$rootScope.isLogged && routespermission.indexOf('/' + $location.path().split('/')[1]) !== -1) {
+            if (!$rootScope.isLogged && (toState.name.indexOf('root.userCenter') !== -1 || routespermission.indexOf(toState.name) !== -1 )) {
               $state.go('root.login', {
                 redirectUrl: encodeURIComponent($location.url())
               });
@@ -361,6 +361,13 @@ angular.module('p2pSiteMobApp')
     $rootScope.showLoadingToast = false;
     $rootScope.showSuccessToast = false;
     $rootScope.successMsg = '';
+
+    $rootScope.showLoadingToast= function(msg, duration){
+      $rootScope.showLoadingToast = true;
+      $timeout(function() {
+        $rootScope.showLoadingToast = false;
+      }, duration);
+    }
 
     $rootScope.showSuccessMsg = function(msg, duration){
       $rootScope.successMsg = msg;
