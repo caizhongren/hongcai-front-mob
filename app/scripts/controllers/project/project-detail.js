@@ -201,7 +201,7 @@ angular.module('p2pSiteMobApp')
       $scope.unSelectCouponMsg = '';
       $scope.selectIncreaseRateCoupon = coupon;
       $scope.showSelectIncreaseRateCoupon = false;
-      $scope.increaseRateProfit = $scope.calcProfit(coupon.value);
+      $scope.increaseRateProfit = $scope.calcProfit(coupon.value) || 0;
       $scope.cashProfit = $scope.project.investAmount >= $scope.selectIncreaseRateCoupon.minInvestAmount ? $scope.selectIncreaseRateCoupon.value : 0;
       $scope.resetInitLimit();
       //选择现金券时判断投资金额是否满足条件
