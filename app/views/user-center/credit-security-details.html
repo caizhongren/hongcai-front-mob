@@ -29,7 +29,7 @@
         </div>
       </li>
       <!-- 特权加息 -->
-      <li class="margin-b--0p5" ng-show="privilegeRate.value > 0 && privilegeRate.type === 5 && privilegeRate.profit <= 0">
+      <li class="margin-b--0p5" ng-show="privilegeRate.value > 0 && privilegeRate.type === 5 && privilegeRate.profit <= 0 && isPrivilegeRate">
         <div class="timeline display-inb">
           <p class="margin-b-0" ng-class="{'grey-bg':privilegeRate.profit > 0,'orange-bg':privilegeRate.profit <= 0}"></p>
           <div class="margin-t--0p5">
