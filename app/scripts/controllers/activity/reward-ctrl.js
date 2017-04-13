@@ -9,6 +9,8 @@
 angular.module('p2pSiteMobApp')
   .controller('RewardCtrl', function(ipCookie, $scope, $timeout, $state, $rootScope, $stateParams, $location, Restangular, SessionService, UserService, Utils, InviteShareUtils, WechatShareUtils, $window) {
     $scope.deviceCode = Utils.deviceCode();
+    $scope.details = [];
+    $scope.page = 1;
 
     if(SessionService.isLogin()){
         
@@ -23,16 +25,31 @@ angular.module('p2pSiteMobApp')
         		$scope.privilegedCapital = response;
         	}
         });
-
-        Restangular.one('activitys').one('invitePrivilegedRewards').get({
-        	page: 1,
-        	pageSize: 10
-        }).then(function(response){
-        	if (response  && response.ret !== -1) {
-        		$scope.details = response.data;
-        	}
-        });
+        $scope.getInvitePrivilegedRewards = function(page) {
+          Restangular.one('activitys').one('invitePrivilegedRewards').get({
+            page: page,
+            pageSize: 10
+          }).then(function(response){
+            if (response  && response.ret !== -1) {
+              var details = response.data;
+              $scope.tatalPage = response.totalPage;
+              for(var i = 0; i< details.length; i++) {
+                $scope.details.push(details[i]);
+              }
+            }
+          });
+        }
+        $scope.getInvitePrivilegedRewards($scope.page);
+        
       }
+      /**
+      *  奖励列表
+      **/
+        
+        $scope.loadMore = function() {
+          $scope.page = $scope.page + 1;
+          $scope.getInvitePrivilegedRewards($scope.page);
+        }
 
       $scope.intervalDays = function(firstInvestTime){
       	var currentDate = new Date().getTime();
