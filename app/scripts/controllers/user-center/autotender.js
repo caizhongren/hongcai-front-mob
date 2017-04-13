@@ -13,7 +13,7 @@ angular.module('p2pSiteMobApp')
 
   // 获取用户资产信息
   var userAccount = {
-    tTotalAssets: 0
+    balance: 0
   };
   $scope.userAccount = sessionStorage.getItem('userAccount') ? angular.fromJson(sessionStorage.getItem('userAccount')) : userAccount;
   Restangular.one('users').one('0/account').get().then(function(response){
