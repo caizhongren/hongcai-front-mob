@@ -9,6 +9,10 @@ angular.module('p2pSiteMobApp')
     return {
 
     	loadUserAuth: function($scope){
+        if(!SessionService.isLogin()){
+          return;
+        }
+
     		$scope.userAuth = SessionService.getUserAuth();
 	        if(!$scope.userAuth){
 	          Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
@@ -19,11 +23,17 @@ angular.module('p2pSiteMobApp')
     	},
 
       loadAccount: function($scope){
-        $scope.account = sessionStorage.getItem('account') ? angular.fromJson(sessionStorage.getItem('account')) : undefined;
+        if(!SessionService.isLogin()){
+          return;
+        }
+
+        var sessionAccount = sessionStorage.getItem('account' + SessionService.getUser().id);
+        $scope.account = sessionAccount ? angular.fromJson(sessionAccount) : undefined;
+        
         Restangular.one('users').one('0/account').get().then(function(response){
           if(!response || response.ret == -1) { return;}
           $scope.account = response;
-          sessionStorage.setItem('account', angular.toJson($scope.account));
+          sessionStorage.setItem('account' + SessionService.getUser().id, angular.toJson($scope.account));
         });
       },
 

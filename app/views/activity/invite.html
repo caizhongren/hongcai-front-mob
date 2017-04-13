@@ -58,7 +58,7 @@
 		<!-- 马上邀请按钮 -->
 		<img src="/images/invite/toInvite-btn.png" width="94.4%" ng-click="toInvite();">
 		<!-- ios下显示 -->
-		<div class="iosTip ft-1p2 text-center ft-white">该活动与设备生产商Apple Inc.公司无关</div>
+		<div class="iosTip ft-1p2 text-center ft-white" ng-show="deviceCode === 5 || deviceCode === 6">该活动与设备生产商Apple Inc.公司无关</div>
 	</div>
 	<!-- 邀请好友>0 && 活动进行中 ：从页面底部弹出分享框 -->
 	<div class="invite-btn" ng-show="isLogged && isInvitedFriends">
@@ -67,7 +67,7 @@
 		<!-- 继续邀请按钮 -->
 		<img src="/images/invite/toInvite-yellow-btn.png" width="40%" ng-click="toInvite();">
 		<!-- ios下显示 -->
-		<div class="iosTip ft-1p2 text-center ft-white">该活动与设备生产商Apple Inc.公司无关</div>
+		<div class="iosTip ft-1p2 text-center ft-white" ng-show="deviceCode === 5 || deviceCode === 6">该活动与设备生产商Apple Inc.公司无关</div>
 	</div>
 	<!-- 邀请好友>0 && 活动停止 -->
 	<div class="invite-btn" ng-show="isLogged && isActivityEnd">
@@ -76,7 +76,7 @@
 		<!-- 点击出现活动结束页面 -->
 		<img src="/images/invite/toInvite-grey-btn.png" width="40%" ng-click="toInvite();">
 		<!-- ios下显示 -->
-		<div class="iosTip ft-1p2 text-center ft-white">该活动与设备生产商Apple Inc.公司无关</div>
+		<div class="iosTip ft-1p2 text-center ft-white" ng-show="deviceCode === 5 || deviceCode === 6">该活动与设备生产商Apple Inc.公司无关</div>
 	</div>
 	<div class="project-mask" id="shareMask" ng-show="isShare && !(deviceCode === 3 || deviceCode === 6 || deviceCode === 2 || deviceCode === 5)" ng-init="isShare = false">
 		<div class="share-wrap bg-offWhite">
