@@ -117,6 +117,7 @@ angular.module('p2pSiteMobApp')
       if($scope.userAuth.autoTransfer) {
         $state.go('root.userCenter.autotender');
       } else {
+        SessionService.removeUserAuth();
         toCunGuanUtils.to('autoTransfer', null, null, null, null, null);
       }
     
