@@ -19,7 +19,7 @@
   </form>
 
   <!-- 验证码登录表单 -->
-  <form name="mobileCaptchaForm" id="mobileCaptchaForm" class="mobileCaptcha-form login-form ft-grey" autocomplete="on" ng-if="!isPassward">
+  <form name="mobileCaptchaForm" id="mobileCaptchaForm" class="mobileCaptcha-form login-form ft-grey" autocomplete="on" ng-if="!isPassward" novalidate>
     <div class="to-login">
       <!-- 手机号码 -->
       <input id="mobilesignup" name="mobile" ng-model="user.mobile" type="tel" placeholder="请输入手机号" required/>
