@@ -32,7 +32,7 @@ angular.module('p2pSiteMobApp')
           }).then(function(response){
             if (response  && response.ret !== -1) {
               var details = response.data;
-              $scope.tatalPage = response.totalPage;
+              $scope.totalPage = response.totalPage;
               for(var i = 0; i< details.length; i++) {
                 $scope.details.push(details[i]);
               }
