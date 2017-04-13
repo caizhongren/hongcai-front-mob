@@ -78,6 +78,10 @@ angular.module('p2pSiteMobApp')
         return sessionStorage.getItem('userAuth') ?  angular.fromJson(sessionStorage.getItem('userAuth')) : undefined;
       },
 
+      removeUserAuth: function(){
+        sessionStorage.removeItem('userAuth');
+      },
+
       checkSession: function(){
       	var lastCheckTime = sessionStorage.getItem('lastCheckTime') ? sessionStorage.getItem('lastCheckTime') : 0;
       	if(new Date().getTime() - Number(lastCheckTime) > 20 * 60 * 1000){
