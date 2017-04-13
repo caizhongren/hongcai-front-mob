@@ -22,7 +22,10 @@ angular.module('p2pSiteMobApp')
         }).then(function(response) {
         });
         sessionStorage.setItem('isLogin', 'false');
-        return sessionStorage.removeItem('user');
+        sessionStorage.removeItem('user');
+        sessionStorage.removeItem('userAuth');
+
+        return true;
       },
 
 
