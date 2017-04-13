@@ -127,8 +127,8 @@ angular.module('p2pSiteMobApp')
      * 退出登录功能
      */ 
     $scope.toLogout = function() {
-      SessionService.destory();
       $state.go('root.login');
+      SessionService.destory();
     };
 
     $scope.handleMobileNum = function(phoneNum) {
