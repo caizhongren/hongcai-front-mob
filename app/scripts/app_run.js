@@ -111,7 +111,7 @@ angular.module('p2pSiteMobApp')
       }
 
       Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
-        if(userAuth.ret !== -1 && (userAuth.authStatus !== 2 || !userAuth.active)){
+        if(userAuth.ret !== -1 && userAuth.authStatus === 2 && !userAuth.active){
           $uibModal.open({
             animation: true,
             templateUrl: 'views/user-center/activate.html',
