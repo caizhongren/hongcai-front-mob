@@ -28,7 +28,9 @@ angular.module('p2pSiteMobApp')
         return true;
       },
 
-
+      removeUserAuth: function(){
+        sessionStorage.removeItem('userAuth');
+      },
 
       /**
        * 获取session中用户信息
@@ -57,6 +59,7 @@ angular.module('p2pSiteMobApp')
       loginSuccess: function(user){
         sessionStorage.setItem('isLogin', 'true');
         sessionStorage.setItem('lastCheckTime', new Date().getTime() + '');
+        this.removeUserAuth();
         return sessionStorage.setItem('user', angular.toJson(user));
       },
 
@@ -76,10 +79,6 @@ angular.module('p2pSiteMobApp')
       getUserAuth: function(){
       	this.checkSession();
         return sessionStorage.getItem('userAuth') ?  angular.fromJson(sessionStorage.getItem('userAuth')) : undefined;
-      },
-
-      removeUserAuth: function(){
-        sessionStorage.removeItem('userAuth');
       },
 
       checkSession: function(){
