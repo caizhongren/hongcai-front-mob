@@ -21,10 +21,10 @@ angular.module('p2pSiteMobApp')
 
     $scope.isSuccess = false;
     $scope.isActivityEnd = false;
-    $scope.isSuccess ? $('.invite-sharing').addClass('position-fix')  : $('.invite-sharing').removeClass('position-fix'); 
+    $scope.isSuccess ? $('#activity').addClass('position-fix')  : $('#activity').removeClass('position-fix'); 
     $scope.successMask = function() {
     	$scope.isSuccess = !$scope.isSuccess;
-    	$scope.isSuccess ? $('.invite-sharing').addClass('position-fix')  : $('.invite-sharing').removeClass('position-fix'); 
+    	$scope.isSuccess ? $('#activity').addClass('position-fix')  : $('#activity').removeClass('position-fix'); 
     }
 
     $scope.checkPicCaptchLength = function(picCaptcha){
@@ -80,7 +80,7 @@ angular.module('p2pSiteMobApp')
               if(response && response.ret !== -1) {
                 $scope.isInvitedFriends = response.flag;
                 SessionService.loginSuccess(response);
-                $scope.isSuccess = true;
+                $scope.successMask();
               }else if(response.code && response.code === -1041){        
                 $scope.isActivityEnd = true; // 活动已结束
                 return;
