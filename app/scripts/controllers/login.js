@@ -39,7 +39,7 @@ angular.module('p2pSiteMobApp')
         }, 1000);
 
         SessionService.loginSuccess(response.$response.data);
-        if (redirectUrl && !redirectUrl.startsWith('/login')) {
+        if (redirectUrl && redirectUrl.indexOf('/login') !== 0) {
           $location.url(decodeURIComponent(redirectUrl));
           return;
         }
