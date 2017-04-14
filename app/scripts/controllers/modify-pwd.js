@@ -7,7 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('modifyPwd', function(checkPwdUtils, $timeout, $scope, md5, $state,$rootScope, Restangular) {
+  .controller('modifyPwd', function(checkPwdUtils, $timeout, $scope, md5, $state,$rootScope, Restangular, SessionService) {
 
     /**
      * 监测新密码
@@ -69,6 +69,7 @@ angular.module('p2pSiteMobApp')
         } else {
           $rootScope.showSuccessMsg('修改成功', 1000);
           $state.go('root.login');
+          SessionService.destory();
         }
       });
 

@@ -745,6 +745,9 @@ p2pSiteMobApp
       //我的加息券
       .state('root.userCenter.rate-coupon', {
         url: '/rate-coupon?tab&subTab',
+        data: {
+          title: '加息券'
+        },
         views: {
           '': {
             templateUrl: 'views/user-center/rate-coupon.html',

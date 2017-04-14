@@ -3,7 +3,7 @@
  * session相关服务
  */
 angular.module('p2pSiteMobApp')
-  .factory('SessionService', function($http, $location, $q, Utils, Restangular) {
+  .factory('SessionService', function($rootScope, $http, $location, $q, Utils, Restangular) {
     return {
       set: function(key, value) {
         return sessionStorage.setItem(key, value);
@@ -25,6 +25,7 @@ angular.module('p2pSiteMobApp')
         sessionStorage.removeItem('user');
         sessionStorage.removeItem('userAuth');
 
+        $rootScope.isLogged = false;
         return true;
       },
 

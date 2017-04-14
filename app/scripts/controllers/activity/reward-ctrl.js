@@ -50,15 +50,26 @@ angular.module('p2pSiteMobApp')
           $scope.page = $scope.page + 1;
           $scope.getInvitePrivilegedRewards($scope.page);
         }
-
+        
       $scope.intervalDays = function(firstInvestTime){
-      	var currentDate = new Date().getTime();
-      	var oneDay = 24 * 60 * 60 * 1000;
-      	var intervalTimes = currentDate - firstInvestTime;
-      	var interDays = 60 - parseInt(intervalTimes/oneDay);
+      	var currentDate = new Date();
+        currentDate.setHours(0);
+        currentDate.setMinutes(0);
+        currentDate.setSeconds(0);
+        currentDate.setMilliseconds(0);
 
-      	return interDays > 0 ? interDays : 0;
+        var firstInvestDate = new Date(firstInvestTime);
+        firstInvestDate.setHours(0);
+        firstInvestDate.setMinutes(0);
+        firstInvestDate.setSeconds(0);
+        firstInvestDate.setMilliseconds(0);
+
+        var oneDay = 24 * 60 * 60 * 1000;
+      	var intervalDays = 60 - parseInt((currentDate.getTime() - firstInvestDate.getTime())/oneDay);
+
+      	return intervalDays > 0 ? intervalDays : 0;
       }
+      
       //下载app
       $scope.downloadApp = function() {
         $window.location.href = ' http://a.app.qq.com/o/simple.jsp?pkgname=com.hoolai.hongcai';

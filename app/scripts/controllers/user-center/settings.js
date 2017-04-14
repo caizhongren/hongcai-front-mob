@@ -54,31 +54,6 @@ angular.module('p2pSiteMobApp')
       toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
     }
 
-    $scope.changePassword = function(oldP, newP1, newP2) {
-      if (!oldP || !newP2 || !newP1) {
-        return;
-      }
-
-      if (newP1 !== newP2) {
-        $scope.changePasswordMsg = "两次密码输入不一致";
-        return;
-      }
-      Restangular.one('users/0').post('changePassword', {
-          oldPassword: md5.createHash(oldP),
-          newPassword: md5.createHash(newP2),
-          device: Utils.deviceCode()
-        }).then(function(response) {
-          if (response.ret === -1) {
-            $scope.changePasswordMsg = response.msg;
-          } else {
-            $scope.checkPwdFlag = false;
-            $scope.oldPassword = null;
-            $scope.newPassword1 = null;
-            $scope.newPassword2 = null;
-          }
-        });
-    }
-
     /*
     *风险测评 结果
     */
