@@ -3,7 +3,7 @@
  * session相关服务
  */
 angular.module('p2pSiteMobApp')
-  .factory('SessionService', function($http, $location, $q, Utils, Restangular) {
+  .factory('SessionService', function($rootScope, $http, $location, $q, Utils, Restangular) {
     return {
       set: function(key, value) {
         return sessionStorage.setItem(key, value);
@@ -22,10 +22,16 @@ angular.module('p2pSiteMobApp')
         }).then(function(response) {
         });
         sessionStorage.setItem('isLogin', 'false');
-        return sessionStorage.removeItem('user');
+        sessionStorage.removeItem('user');
+        sessionStorage.removeItem('userAuth');
+
+        $rootScope.isLogged = false;
+        return true;
       },
 
-
+      removeUserAuth: function(){
+        sessionStorage.removeItem('userAuth');
+      },
 
       /**
        * 获取session中用户信息
@@ -54,6 +60,7 @@ angular.module('p2pSiteMobApp')
       loginSuccess: function(user){
         sessionStorage.setItem('isLogin', 'true');
         sessionStorage.setItem('lastCheckTime', new Date().getTime() + '');
+        this.removeUserAuth();
         return sessionStorage.setItem('user', angular.toJson(user));
       },
 

@@ -15,8 +15,11 @@ angular.module('p2pSiteMobApp')
 
     $scope.bankcard = Restangular.one('users/0').one('bankcard').get().$object;
 
+    $scope.busy = false;
     $scope.unBindBankcard = function() {
-      restmod.model(WEB_DEFAULT_DOMAIN + '/yeepay').$find('/unbindBankCard').then(function(response) {
+
+      $scope.busy = true;
+      restmod.model(WEB_DEFAULT_DOMAIN + '/yeepay').$find('/unbindBankCard').$then(function(response) {
         $scope.showMask = false;
         $scope.showBankCard = false;
         if (!response || response.ret == -1) {
@@ -32,6 +35,8 @@ angular.module('p2pSiteMobApp')
             business: 'UNBIND_BANK_CARD_ING'
           });
         }
+
+        $scope.busy = false;
       });
     }
     

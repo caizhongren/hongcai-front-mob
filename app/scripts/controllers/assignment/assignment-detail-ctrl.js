@@ -101,9 +101,8 @@ angular.module('p2pSiteMobApp')
     /**
      * 下单并支付
      */
-    $scope.clicked = true;
+    $scope.clicked = false;
     $scope.toInvest = function(assignmentNum, assignmentAmount) {
-      $scope.clicked = false;
       if($scope.msg || !assignmentNum || !assignmentAmount){
         return;
       }

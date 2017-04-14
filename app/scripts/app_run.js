@@ -67,7 +67,7 @@ angular.module('p2pSiteMobApp')
      */
     $rootScope.tofinishedOrder = function() {
       Restangular.one('orders').one('unpay').get().then(function(order) {
-        if (!order || order.ret === -1) {
+        if (!order.orderAmount || order.ret === -1) {
           return false;
         }
 
