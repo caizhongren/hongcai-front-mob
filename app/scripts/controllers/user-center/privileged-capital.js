@@ -14,6 +14,10 @@ angular.module('p2pSiteMobApp')
     $scope.pageSize = 10;
     $scope.details = [];
     $scope.totalPage = 1;
+    $scope.privilegedCapital = {
+      amount: 0,
+      profit: 0
+    }
     
     if(SessionService.isLogin()){
     	Restangular.one('privilegedCapitals').one('/').get()
