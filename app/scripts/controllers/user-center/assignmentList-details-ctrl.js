@@ -2,6 +2,8 @@
 angular.module('p2pSiteMobApp')
   .controller('assignmentListDetailsCtrl', function($state, $scope, $stateParams, $rootScope, $timeout, Restangular) {
     var number = $stateParams.number;  
+    $scope.msg = '';
+    $rootScope.msg = '';
     /**
      * 债权转让信息详情
      */
@@ -34,6 +36,7 @@ angular.module('p2pSiteMobApp')
      * 撤销债权转让
      */
     $scope.cancelCreditAssignment = function() {
+
       Restangular.one('users/0/assignments/'+number+'/revokeValidate').get({}).then(function(response){
         if (response && !response.msg) {
           $scope.data = response;
