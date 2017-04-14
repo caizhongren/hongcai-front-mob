@@ -9,18 +9,9 @@
  */
 angular.module('p2pSiteMobApp')
 
-.controller('AutoTenderCtrl',['$rootScope', '$scope', '$state', '$timeout', 'Restangular', 'DateUtils','ipCookie', function ($rootScope, $scope, $state, $timeout, Restangular, DateUtils, ipCookie) {
+.controller('AutoTenderCtrl', function ($rootScope, $scope, $state, $timeout, Restangular, DateUtils, ipCookie, UserService) {
 
-  // 获取用户资产信息
-  var userAccount = {
-    balance: 0
-  };
-  $scope.userAccount = sessionStorage.getItem('userAccount') ? angular.fromJson(sessionStorage.getItem('userAccount')) : userAccount;
-  Restangular.one('users').one('0/account').get().then(function(response){
-    if(!response || response.ret == -1) { return;}
-    $scope.userAccount = response;
-    sessionStorage.setItem('userAccount', angular.toJson($scope.userAccount));
-  });
+  UserService.loadAccount($scope);
   
   var currentDate = new Date(new Date().toLocaleDateString()).getTime();
   $scope.showStatus = false;
@@ -263,4 +254,4 @@ $scope.offAutoTenders = function() {
 
 
 
-}]);
+});
