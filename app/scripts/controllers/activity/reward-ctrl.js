@@ -12,6 +12,13 @@ angular.module('p2pSiteMobApp')
     $scope.details = [];
     $scope.page = 1;
 
+    $scope.activityStatus  = 'OFF';
+    Restangular.one('activitys/22').one('status').get() .then(function(response){
+      if (response && response == 1) {
+        $scope.activityStatus  = 'ON';
+      } 
+    }); 
+
     if(SessionService.isLogin()){
         
         Restangular.one('activitys').one('invitePrivilegedUsers').get() .then(function(response){

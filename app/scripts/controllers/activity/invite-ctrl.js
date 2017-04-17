@@ -46,7 +46,7 @@ angular.module('p2pSiteMobApp')
         return;
       }
       if($scope.isActivityEnd){
-        alert("活动已结束！欢迎关注宏财网更多活动！");
+        alert('活动已结束！请继续关注宏财网其他活动吧~');
         return;
       }
       $scope.isShare = true;

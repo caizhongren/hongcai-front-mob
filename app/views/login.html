@@ -26,7 +26,7 @@
       <!-- 图形验证码 -->
       <input id="picCaptcha" name="picCaptcha" ng-model="user.picCaptcha" required type="text" placeholder="请输入图形验证码" class="captchacode"/>
       <span>
-        <img src="{{getPicCaptcha}}" id="checkCaptcha" class="pic-verify no-padding margin-t--13 margin-l-5" ng-click="refreshCode()" width="78" height="40">
+        <img ng-src="{{getPicCaptcha}}" id="checkCaptcha" class="pic-verify no-padding margin-t--13 margin-l-5" ng-click="refreshCode()" width="78" height="40">
       </span>
       <!-- 短信验证码 -->
       <input id="captchasignup" name="captchasignup" ng-model="user.captcha" required="required" type="number" placeholder="请输入短信验证码" class="captchacode"/>
