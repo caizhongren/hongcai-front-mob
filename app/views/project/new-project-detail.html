@@ -66,9 +66,11 @@
     </ul>
     <!-- input输入框 -->
     <div class="invest">
-    	<!-- <div ng-click="modInvestAmout(-project.increaseAmount,$event)" class="plus grey-status"><hr></div> -->
-    	<input id="invest-input" class="invest-input" type="number" placeholder="请输入投资金额" ng-model="project.investAmount" ng-disabled="project.status !==7 || userAuth.authStatus !== 2">
-    	<!-- <div ng-click="modInvestAmout(project.increaseAmount,$event)" class="add orange-status"><hr><hr></div> -->
+    	<form>
+         <!-- <div ng-click="modInvestAmout(-project.increaseAmount,$event)" class="plus grey-status"><hr></div> -->
+         <input id="invest-input" class="invest-input" type="number" placeholder="请输入投资金额" ng-model="project.investAmount" ng-disabled="project.status !==7 || userAuth.authStatus !== 2">
+         <!-- <div ng-click="modInvestAmout(project.increaseAmount,$event)" class="add orange-status"><hr><hr></div> --> 
+      </form>
     </div>
 	</div>
   <!-- 状态按钮 -->
