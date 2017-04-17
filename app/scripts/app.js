@@ -656,6 +656,17 @@ p2pSiteMobApp
         }
       }
     })
+    //摩擦 游戏兑换
+    .state('root.activity.exchange-flowers', {
+      url: '/exchange-flowers?act&f',
+      views: {
+        '': {
+          templateUrl: 'views/activity/exchange-flowers.html',
+          controller: 'InviteSharingCtrl',
+          controllerUrl: 'scripts/controllers/activity/invite-sharing-ctrl'
+        }
+      }
+    })
 
     // 渠道活动落地页
     .state('root.activity.channel', {

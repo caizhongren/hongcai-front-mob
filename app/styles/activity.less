@@ -2380,8 +2380,14 @@ input::-webkit-inner-spin-button {
         font-size: 0;
     }
     .sharing-content {
-        position: relative;
         background-image: linear-gradient(to bottom, #ee3f68 0%, #e23974 100%);
+    }
+    
+}
+//渠道注册页、摩擦注册页 公用表单样式
+.channel, .exchange-flowers {
+    .sharing-content {
+        position: relative;
         .to-register {
             width: 100%;
             padding: 0 16%;
@@ -2396,18 +2402,18 @@ input::-webkit-inner-spin-button {
                 font-size: 1.3rem;
             }
             input::-webkit-input-placeholder { color: #999999 !important; line-height:normal!important;}
-            #mobilesignup {
+            #mobilesignup, .mobilesignup {
                 width: 100%;
             }
             .picCaptcha, .mobileCaptcha {
                 width: 65%;
             }
-            .captchacode, #mobilecode {
+            .captchacode, #mobilecode, .captchacode .mobilecode {
                 width: 30%;
                 height: 3.8rem;
                 border-radius: .5rem;
             }
-            #mobilecode {
+            #mobilecode, .mobilecode {
                 border: .1rem solid #ffd225;
                 color: #e63271;
                 background-color: #ffd225;
@@ -2426,6 +2432,68 @@ input::-webkit-inner-spin-button {
         }
     }
 }
+
+// 摩擦注册送鲜花
+.exchange-flowers {
+    background-color: #f1db25;
+   .sharing-content {
+        background-image: linear-gradient(to bottom, #f4db27 0%, #f2d924 100%);
+        .to-register {
+            #mobcode {
+                width: 30%;
+                height: 3.8rem;
+                border-radius: .5rem;
+                color: #fff;
+                background-color: #ff4141;
+                font-size: 1.5rem;
+                line-height: 3.8rem;
+                text-align: center;
+                float: right;
+            }
+        }
+        form {
+            button.invited-btn {
+                position: static;
+                background-color: #ff4141;
+                color: #fff;
+                line-height: 4rem;
+                text-align: center;
+                font-size: 1.8rem;
+                font-weight: 400;
+                border-color: #ff4141;
+                border-radius: .5rem;
+            }
+        }
+    } 
+    .project-mask {
+        #mocaMask {
+            margin-top: 6rem;
+            button {
+                height: 4.8rem;
+                line-height: 4.8rem;
+                color: #ff4141;
+                background-color: #fbcb5c;
+                text-align: center;
+                font-size: 2rem;
+                font-weight: 400;
+                width: 54%;
+                display: block;
+                left: 23%;
+                top: 56%;
+                position: absolute;
+                border: 1px solid #fbcb5c;
+                @media(max-width: 360px) {
+                    transform: scale(.9);
+                    top: 53%;
+                }
+                @media(max-width: 375px) {
+                    top: 54.5%;
+                }
+            }
+        }
+    }
+}
+
 //游戏兑换页
 .exchange-mask.project-mask {
     background-color: #301f0a;
