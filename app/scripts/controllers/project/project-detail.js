@@ -268,7 +268,7 @@ angular.module('p2pSiteMobApp')
      */
     angular.element('.invest-input').bind({
       focus: function(){
-        angular.element('.new-project-detail').css('margin-bottom','60px');
+        angular.element('.new-project-detail').css('margin-bottom','30px');
       },
       blur: function(){
         angular.element('.new-project-detail').css('margin-bottom','0');
