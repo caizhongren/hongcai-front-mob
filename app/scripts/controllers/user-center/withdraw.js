@@ -8,15 +8,14 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('WithdrawCtrl', function($scope, $rootScope, $state, HongcaiUser, fundsProjects, toCunGuanUtils, Utils) {
+  .controller('WithdrawCtrl', function($scope, $rootScope, $state, Restangular, fundsProjects, toCunGuanUtils, Utils) {
     $rootScope.selectedSide = 'account';
     $scope.footer = function(){
       if (Utils.deviceCode() == 5 || Utils.deviceCode() == 6) {
         $rootScope.showFooter = !$rootScope.showFooter;
       }
     }
-
-    HongcaiUser.$find('0' + '/availableCash').$then(function(response) {
+    Restangular.one('users/0').one('availableCash').get().then(function(response) {
       if (response.ret !== -1) {
         // 获取用户充值信息
         $scope.simpleWithdraw = response;
@@ -28,7 +27,7 @@ angular.module('p2pSiteMobApp')
       }
     });
 
-    HongcaiUser.$find('0' + '/bankcard').$then(function(response) {
+    Restangular.one('users/0').one('bankcard').get({}, function(response) {
       if (response.$status === 'ok') {
         // 获取用户的银行卡信息
         $scope.simpleBankcard = response;
@@ -41,9 +40,9 @@ angular.module('p2pSiteMobApp')
 
     // 跳转到零存宝详情页
     $scope.toInvestCurrentDeposit = function() {
-      fundsProjects.$find('recommendations', {
+      fundsProjects.one('recommendations', {
         productType: 1
-      }).$then(function(response) {
+      }).get().then(function(response) {
         if (response.ret !== -1) {
           $state.go('root.current-deposit-detail', {
             number: response.number

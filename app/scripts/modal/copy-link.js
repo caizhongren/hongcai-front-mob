@@ -7,7 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('CopyLinkCtrl', function($scope, $state, $location, $uibModalInstance, HongcaiUser) {
+  .controller('CopyLinkCtrl', function($scope, $state, $location, $uibModalInstance, Restangular) {
 
     $scope.cancel = function () {
       $uibModalInstance.dismiss('cancel');
@@ -23,6 +23,7 @@ angular.module('p2pSiteMobApp')
     /**
      * 邀请码
      */
-    $scope.voucher = HongcaiUser.$find('0' + '/voucher').$then();
+
+    $scope.voucher = Restangular.one('users/0').one('voucher').get({}).$object;
 
   });

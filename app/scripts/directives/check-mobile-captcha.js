@@ -1,5 +1,5 @@
 'use strict';
-angular.module('p2pSiteMobApp').directive('checkMobileCaptcha', ['$http', 'DEFAULT_DOMAIN', function($http, DEFAULT_DOMAIN) {
+angular.module('p2pSiteMobApp').directive('checkMobileCaptcha', function($http, DEFAULT_DOMAIN) {
   return {
     require: 'ngModel',
     link: function(scope, elem, attrs, ctrl) {
@@ -20,4 +20,4 @@ angular.module('p2pSiteMobApp').directive('checkMobileCaptcha', ['$http', 'DEFAU
       });
     }
   };
-}]);
+});

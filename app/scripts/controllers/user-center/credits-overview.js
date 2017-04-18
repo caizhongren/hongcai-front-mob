@@ -9,14 +9,13 @@
  */
 angular.module('p2pSiteMobApp')
 
-.controller('CreditsOverviewCtrl', function ($scope, $state, DEFAULT_DOMAIN, Restangular) {
+.controller('CreditsOverviewCtrl', function ($scope, $state, Restangular) {
 
-    $scope.totalInvestAmount = 0;
     $scope.investStat = {
       selection: 0,
       hornor:0,
       assignment:0,
-      holdingAmount: 0
+      totalInvestAmount: 0
     }
 
     $scope.showOther =false;
@@ -33,17 +32,17 @@ angular.module('p2pSiteMobApp')
         var stat = response[i];
         
         if(stat.creditRightType == 7){
-           $scope.investStat.selection = stat.holdingAmount;
+           $scope.investStat.selection = stat.totalInvestAmount;
         } else if(stat.creditRightType == 8) {
-          $scope.investStat.hornor = stat.holdingAmount;
+          $scope.investStat.hornor = stat.totalInvestAmount;
         } else if (stat.creditRightType == 6) {
-          $scope.investStat.assignment = stat.holdingAmount;
+          $scope.investStat.assignment = stat.totalInvestAmount;
         } else if(stat.creditRightType == 3){
           $scope.showOther = true;
         }
 
       }
-      $scope.investStat.holdingAmount = $scope.investStat.selection+ $scope.investStat.hornor + $scope.investStat.assignment;
+      $scope.investStat.totalInvestAmount = $scope.investStat.selection+ $scope.investStat.hornor + $scope.investStat.assignment;
 
    });
     

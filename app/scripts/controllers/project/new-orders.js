@@ -7,37 +7,45 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('NewOrdersCtrl', function($scope, WEB_DEFAULT_DOMAIN, restmod, Restangular, $stateParams) {
+  .controller('NewOrdersCtrl', function($scope, Restangular, $stateParams) {
 
-    /**
-     * 项目信息
+
+    $scope.page = 1;
+    $scope.pageSize = 10;
+    $scope.totalPage = 0;
+
+    $scope.orderList = [];
+
+     /**
+     * 项目订单列表
      */
-    Restangular.one('projects').one($stateParams.number).get().then(function(response) {
-      $scope.projectId = response.id;
-      $scope.projectType = response.type;
-       /**
-       * 项目订单列表
-       */
-      var siteProject = restmod.model(WEB_DEFAULT_DOMAIN + '/siteProject');
-      $scope.projectOrders = function(projectId, projectType) {
-        siteProject.$find('/projectOrders', {
-          projectId: $scope.projectId,
-          projectType: $scope.projectType
-        }).$then(function(response) {
-          if (response.ret !== -1) {
-            $scope.orderList = response.data.orderList;
-
+    $scope.projectOrders = function(projectId, projectType) {
+      Restangular.one('/projects/' + $stateParams.number + '/orders').get({
+        page: $scope.page, 
+        pageSize: $scope.pageSize
+      }).then(function(response) {
+        if (response.ret !== -1) {
+          $scope.totalPage = response.totalPage;
+          if(response.data.length >= 1){
+            for (var i = response.data.length - 1; i >= 0; i--) {
+              $scope.orderList.push(response.data[i]);
+            }
           }
-        });
-      }
-      $scope.projectOrders($scope.projectId,$scope.projectType);
-    })
+        }
+      });
+    }
+    $scope.projectOrders();
 
     /**
      * 加载更多
      */
-    $scope.initLimit = 6;
     $scope.loadMore = function() {
-      $scope.initLimit = $scope.initLimit + 3 < $scope.orderList.length ? $scope.initLimit + 3 : $scope.orderList.length;
+      if($scope.page >= $scope.totalPage){
+        return;
+      }
+
+      $scope.page += 1;
+      $scope.projectOrders();
+
     };
   })

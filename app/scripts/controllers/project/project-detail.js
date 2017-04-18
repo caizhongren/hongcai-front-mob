@@ -124,7 +124,6 @@ angular.module('p2pSiteMobApp')
       }
 
       $rootScope.showMsg($scope.msg);
-      $rootScope.tofinishedOrder();
       var couponNumber = $scope.selectIncreaseRateCoupon != null ? $scope.selectIncreaseRateCoupon.number : '';
       $rootScope.showLoadingToast = true;
       Restangular.one('projects').one(number+'/users/' + '0').post('investment', {
@@ -138,6 +137,7 @@ angular.module('p2pSiteMobApp')
         if (order && order.ret !== -1) {
           toCunGuanUtils.to('transfer', order.number, null, null, null, null);
         } else {
+          $rootScope.tofinishedOrder();
           $scope.msg = order.msg;
           $rootScope.showMsg($scope.msg);
         }
@@ -146,7 +146,7 @@ angular.module('p2pSiteMobApp')
 
 
     $scope.$watch('project.investAmount', function(newVal, oldVal){
-      if(!$rootScope.isLogged){
+      if(!$rootScope.isLogged || oldVal ==undefined){
         return;
       }
 
@@ -201,7 +201,7 @@ angular.module('p2pSiteMobApp')
       $scope.unSelectCouponMsg = '';
       $scope.selectIncreaseRateCoupon = coupon;
       $scope.showSelectIncreaseRateCoupon = false;
-      $scope.increaseRateProfit = $scope.calcProfit(coupon.value);
+      $scope.increaseRateProfit = $scope.calcProfit(coupon.value) || 0;
       $scope.cashProfit = $scope.project.investAmount >= $scope.selectIncreaseRateCoupon.minInvestAmount ? $scope.selectIncreaseRateCoupon.value : 0;
       $scope.resetInitLimit();
       //选择现金券时判断投资金额是否满足条件

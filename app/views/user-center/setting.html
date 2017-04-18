@@ -17,10 +17,10 @@
     </div>
     <div>
       <p>手机号码：</p>
-      <p>{{handleMobileNum(hasLoggedUser.mobile) || '无'}}
+      <p>{{handleMobileNum(user.mobile) || '无'}}
         <span ng-show="userAuth.authStatus == 2" ui-sref="root.userCenter.resetMobile"><a>修改 ></a></span>
         <span ng-show="userAuth.authStatus !== 2" ng-click="toRealNameAuth()"><a>修改 ></a></span>
-        <span ng-show="hasLoggedUser.mobile == null"><i class="fa fa-check-circle-o"></i>&nbsp;未绑定</span>
+        <span ng-show="user.mobile == null"><i class="fa fa-check-circle-o"></i>&nbsp;未绑定</span>
       </p>
     </div>
   </div>
@@ -45,10 +45,10 @@
     <div>
       <p>我的银行卡：</p>
       <p>用于充值和提现
-        <span ng-click="bindBankcard()" ng-show="simpleBankcard.status == 'VERIFY_NOT' || !simpleBankcard"> <a>去绑定 ></a></span>
-        <span ng-show="simpleBankcard.status == 'VERIFING'"> 绑定中(尾号{{simpleBankcard.cardNo}})</span>
-        <span ng-show="simpleBankcard.status == 'INIT'"> 解绑中(尾号{{simpleBankcard.cardNo}})</span>
-        <span ng-show="simpleBankcard.status == 'VERIFIED'" ui-sref="root.userCenter.bankcard"><a class="ft-blue">{{simpleBankcard.openBank}}(尾号{{simpleBankcard.cardNo}}) ></a></span>
+        <span ng-click="bindBankcard()" ng-show="bankcard.status == 'VERIFY_NOT' || !bankcard"> <a>去绑定 ></a></span>
+        <span ng-show="bankcard.status == 'VERIFING'"> 绑定中(尾号{{bankcard.cardNo}})</span>
+        <span ng-show="bankcard.status == 'INIT'"> 解绑中(尾号{{bankcard.cardNo}})</span>
+        <span ng-show="bankcard.status == 'VERIFIED'" ui-sref="root.userCenter.bankcard"><a class="ft-blue">{{bankcard.openBank}}(尾号{{bankcard.cardNo}}) ></a></span>
       </p>
     </div>
   </div>
@@ -133,7 +133,7 @@
           </div>
           <p class="tips ft-666 text-center margin-b-0">请您留下联系方式，我们将第一时间帮你解决</p>
           <div class="btns">
-            <input class="mobile" ng-model="user.mobile" type="number" placeholder="手机号 ( 选填 )">
+            <input class="mobile" ng-model="user.mob" type="number" placeholder="手机号 ( 选填 )">
             <button type="submit" ng-disabled="commentsForm.$invalid || busy" class="button-primary button {{commentsForm.$invalid ? 'button-disabled1' : ''}}" ng-click="releaseComm(user)">提交</button>
           </div>
         </div>

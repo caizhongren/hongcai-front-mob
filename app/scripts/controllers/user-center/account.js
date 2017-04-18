@@ -9,7 +9,7 @@
  */
 angular.module('p2pSiteMobApp')
 
-.controller('AccountCtrl', function ($scope, $state, DEFAULT_DOMAIN, Restangular, toCunGuanUtils, SessionService, UserService) {
+.controller('AccountCtrl', function ($scope, $state, Restangular, toCunGuanUtils, SessionService, UserService) {
 
     /**
      * 默认头像
@@ -18,6 +18,7 @@ angular.module('p2pSiteMobApp')
 
     UserService.loadUserAuth($scope);
     UserService.loadAccount($scope);
+    $scope.user = SessionService.getUser();
 
     // $scope.voucher = Restangular.one('users').one('0/userInviteNum').get().$object;
 
@@ -64,7 +65,7 @@ angular.module('p2pSiteMobApp')
 
     //查看更多 index:0体验金，1加息券，2邀请
     $scope.goIncreaseRateCoupon = function(index){
-      $state.go('root.userCenter.grade',{
+      $state.go('root.userCenter.rate-coupon',{
         tab : index
       });
     }

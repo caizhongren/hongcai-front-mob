@@ -1920,3 +1920,550 @@ input::-webkit-inner-spin-button {
 
 }
 
+//我的奖励
+.invite-reward {
+    background: url('/images/invite/award-bg.jpg') repeat-y center 0;
+    background-size: cover;
+    background-color: #f8902f;
+    .head {
+        padding-top: 3rem;
+        p {
+            font-style: italic;
+            -webkit-text-fill-color: #fff;/*文字的填充色*/
+            -webkit-text-stroke: .3px #c52609;
+            font-size: 1.4rem;
+            span {
+                -webkit-text-fill-color: #fcaf01;/*文字的填充色*/
+                -webkit-text-stroke: 1px #c52609;
+                font-size: 6rem;
+                font-style: italic;
+            }
+        }
+        
+    }
+    .con-invite-btn {
+        position: fixed;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 640px;
+        z-index: 10;
+        bottom: 0;
+        p {
+            transform: scale(0.9);
+        }
+    }
+    
+    .invite-list {
+        padding: 0 0.3rem;
+        margin-bottom: 4rem;
+        .table-wrap-wrap {
+            border-radius: .5rem; 
+            overflow: hidden;
+            .table-wrap {
+                position: relative;
+                border: 8px solid #cc4160;
+                border-image: linear-gradient(#ca445d , #c95941) 30 30;
+                background-clip: padding-box;
+                border-radius: .4rem;
+                background-image: linear-gradient(#ea4555,#e85d36);
+                overflow-y: scroll;
+                overflow-x: hidden;
+                height: 18rem; 
+                @media(min-width: 360px) {
+                    height: 21rem;
+                }
+                @media(min-width: 375px) {
+                    height: 22rem;
+                }
+                @media(min-width: 411px) {
+                    height: 26rem;
+                }
+                table {
+                    width: 100%;
+                    margin: 1rem 0;
+                    tbody:last-child {
+                        tr:last-child {
+                            td {
+                                border-bottom: none !important;
+                            }
+                            
+                        }
+                        
+                    }
+                    td.color_grey {
+                        color: #cdcbce;
+                    }
+                    td {
+                        padding: 10px 0;
+                        text-align: center;
+                        width: 33%;
+                        color: #fff;
+                        position: relative;
+                        transform: scale(0.9);
+                        img {
+                            position: absolute;
+                            width: 67%;
+                            top: 0;
+                            left: 34%;
+                        }
+                    }
+                    tr.load-more {
+                       
+                    }
+                    td.bd-right {
+                        border-right: 1px solid #bf1619;
+                    }
+                    td.bd-bottom {
+                        border-bottom: 1px solid #bf1619; 
+                    }
+                }
+            }
+        }
+        
+
+        .table-wrap::after{
+            position: absolute;
+            top: -4px; bottom: -4px;
+            left: -4px; right: -4px;
+            background: linear-gradient(#ea4555,#e85f35);
+            content: '';
+            z-index: -1;
+            border-radius: 10px;
+        }
+        
+    }
+    .part2 {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 3%;
+        div {
+            display: inline-block;
+            width: 48.5%;
+            text-align: center;
+            font-size: 1.8rem;
+            border-radius: .4rem;
+            margin-bottom: 2.5rem;
+            background-size: cover;
+            padding-bottom: .3rem;
+            p {
+                line-height: 1.6rem;
+                color: #fff;
+            }
+            p:first-child {
+                margin-top: 1rem;
+                font-size: 2rem;
+            }
+            p:last-child {
+                margin-bottom: .6rem;
+                font-size: 1.2rem;
+            }
+        }
+        div:first-child {
+            background-color: #9d3bc4;
+            background: url('/images/invite/award-bg2.png') no-repeat 0 0;
+            background-size: 100% 100%;
+        }
+        div:last-child {
+            background-color: #feae01;
+            background: url('/images/invite/award-bg1.png') no-repeat 0 0;
+            background-size: 100% 100%;
+        }
+    }  
+}
+// 邀请活动主页
+.invite {
+    img {
+      vertical-align: bottom;
+    }
+    font-size: 0;
+    background-image: linear-gradient(to bottom, #cb0804 0%, #f8902d 100%);
+    padding-bottom: 1rem;
+    .invite-btn {
+        position: fixed;
+        z-index: 999999;
+        bottom: 0rem;
+        background-color: #f8902d;
+        height: 7rem;
+        max-width: 640px;
+        @media(min-width: 411px) {
+            height: 8rem;
+        }
+        img:nth-child(1) {
+            left: 3.3%;
+            position: relative;
+            top: .5rem;
+        }
+        img:nth-child(2) {
+            right: -15.7%;
+            position: relative;
+            top: .5rem;
+        }
+    }
+    .invite-list, .invite-btn1 {
+        width: 42.5%;
+        height: 64%;
+        position: absolute;
+        top: 0;
+        margin-bottom: 0;
+    }
+    .invite-list {
+      left: 3.3%;  
+    }
+    .invite-btn1 {
+        right: 6%;
+    }
+    .invite-rule {
+        background: url('/images/invite/invite-rule.png') no-repeat center center;
+        background-size: contain;
+        width: 5rem;
+        height: 5rem;
+        position: fixed;
+        top: 16rem;
+        right: 0rem;
+        @media (min-width:320px) {
+            top: 15rem;
+        }
+        @media (min-width:360px) {
+            top: 16rem;
+        }
+        @media (min-width:375px) {
+            top: 17rem;
+        }
+        @media (min-width:414px) {
+            top: 17rem;
+        }
+    }
+    .iosTip {
+        transform: scale(.7);
+        position: relative;
+        bottom: -0.5rem;
+    }
+}
+// 邀请活动规则弹窗
+.invite-box {
+    padding: 0 2rem;
+    background-color: rgba(0,0,0,.5);
+    .rec-showmoney {
+       background: url('/images/invite/invite-rule-bg.png') no-repeat center center;
+       background-size: contain;
+       height: 60rem;
+       overflow: auto;
+       @media (min-width:320px) {
+            height: 45rem;
+            .box {
+                top: 7.5rem;
+                height: 32.5rem;
+            }
+        }
+        @media (min-width:360px) {
+            height: 52rem;
+            .box {
+                top: 9.2rem;
+                height: 36rem;
+            }
+        }
+        @media (min-width:375px) {
+            height: 54rem;
+            .box {
+                top: 9.5rem;
+                height: 37.5rem;
+            }
+        }
+        @media (min-width:414px) {
+            height: 60rem;
+            .box {
+                top: 10.5rem;
+                height: 42.5rem;
+            }
+        }
+        .box {
+            position: relative;
+            // height: 35.5rem;
+            // top: 13rem;
+            overflow: auto;
+        }
+       .rec-act-rule {
+            padding: .3rem;
+            background-color: #fdf6d9;
+            margin: 0 1.7rem;
+            margin-bottom: .7rem;
+            p {
+                margin-bottom: 0;
+            }
+            .rule-title {
+                font-size: 1.2rem;
+                color:#f83b15;
+                padding: .8rem 0 0rem .8rem;
+            }
+            .rule-content {
+                font-size: 1.2rem;
+                color:#7c4618;
+                transform: scale(0.86,0.86);
+                -webkit-transform: scale(0.86,0.86);
+                line-height: 1.3rem;
+                width: 104%;
+                .list-page {
+                    display: inline-block;
+                    padding-left: 1.7rem;
+                }
+                .fa-circle {
+                    -webkit-transform: scale(0.55, 0.55);
+                    margin-left: -.5rem;
+                    color: #f83b15;
+                }
+            }
+            .rule1, .rule2 {
+                background-image: linear-gradient(to bottom, #e6c590 0%, #c79653 100%);
+                border-radius: .4rem;
+                padding-bottom: .5rem;
+            }
+            .rule2 {
+                .rule-content {
+                    margin-top: -.7rem;
+                }
+            }
+       } 
+       .tips {
+            transform: scale(0.86,0.86);
+            -webkit-transform: scale(0.86,0.86);
+            p  {
+                margin-bottom: 0;
+                text-align: center;
+                font-size: 1.2rem;
+                color: #e4a150;
+            }
+       }
+       .close-rule {
+            width: 10%;
+            height: 5.6%;
+            position: absolute;
+            // background-color: rgba(0,0,0,.5);
+            bottom: 5.8%;
+            left: 45%;
+       }
+    }
+    
+}
+// 活动分享落地页
+.invite-sharing {
+    img {
+      vertical-align: bottom;
+    }
+    .box1 {
+        background-image: linear-gradient(to bottom, #d0633c 0%, #fc704f 100%);
+        font-size: 0;
+    }
+    .sharing-content {
+        background-image: linear-gradient(to bottom, #fc6f51 0%, #f98b32 100%);
+        .to-register {
+            width: 100%;
+            padding: 0 10%;
+            input {
+                border: none;
+                border-radius: 0;
+                height: 3.8rem;
+                padding-left: 2.4rem;
+                background-color: #febaa7;
+                color: #fff;
+                margin-bottom: 1rem;
+                font-size: 1.3rem;
+            }
+            input::-webkit-input-placeholder { color: #fff !important; line-height:normal!important;}
+            #mobilesignup {
+                width: 100%;
+            }
+            .picCaptcha, .mobileCaptcha {
+                width: 65%;
+            }
+            .captchacode, #mobilecode {
+                width: 30%;
+                height: 3.8rem;
+            }
+            #mobilecode {
+                border: .1rem solid #ffef03;
+                color: #ffef03;
+                font-size: 1.5rem;
+                line-height: 3.8rem;
+                text-align: center;
+                float: right;
+            }
+        }
+        .invited-btn {
+            img {
+              width: 94%;
+              margin: 2rem 3%;  
+            }
+            
+        }
+        .received-lists {
+            ul {
+                margin-bottom: 0;
+                padding: 0rem 1.5rem 3.5rem;  
+            }
+            li {
+                margin-bottom: 0;
+                color: #fff;
+                font-size: 1.2rem;
+                overflow: hidden;
+                border-top: .1rem solid #fe5e68;
+                padding-top: .6rem;
+                p {
+                    margin-bottom: 0;
+                }
+                p:nth-child(2) {
+                    clear: both;
+                    position: relative;
+                    top: -.5rem;
+                }
+                span:nth-child(1) {
+                    float: left;
+                }
+                span:nth-child(2) {
+                    float: right;
+                }
+            }
+        }
+        .friend-tip {
+            padding: 1rem 1.5rem 5rem;
+            .tip-box {
+                background-color: #f07645;
+                border-radius: 1.6rem;
+                padding: 1rem;
+                .tip {
+                    background-color: #fcac71;
+                    border-radius: .5rem;
+                    padding: 1.4rem 1.1rem;
+                    color: #c40147;
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+}
+// 受邀成功弹窗
+.successMask {
+    img:nth-child(1) {
+        margin: 6.4rem 0;
+        @media (max-width:360px) {
+            margin: 5.4rem 0;
+        }
+        @media (max-width:320px) {
+            margin: 5.4rem 0;
+        }
+    }
+    img:nth-child(3) {
+        margin-top: .5rem;
+    }
+    img:nth-child(4) {
+        margin: -.2rem 0 3rem;
+    }
+    img:nth-child(5) {
+        border-radius: .5rem;
+    }
+}
+.channel-mask {
+    img:nth-child(1) {
+        margin-bottom: 4rem !important;
+    }
+}
+
+.channel {
+    img {
+      vertical-align: bottom;
+    }
+    .box1 {
+        background-image: linear-gradient(to bottom, #fc4758 0%, #ef3f66 100%);
+        font-size: 0;
+    }
+    .box2 {
+        background-image: linear-gradient(to bottom, #e94e9c 0%, #6e2193 100%);
+        font-size: 0;
+    }
+    .sharing-content {
+        position: relative;
+        background-image: linear-gradient(to bottom, #ee3f68 0%, #e23974 100%);
+        .to-register {
+            width: 100%;
+            padding: 0 16%;
+            input {
+                border: none;
+                border-radius: .5rem;
+                height: 3.8rem;
+                padding-left: 1.6rem;
+                background-color: #fff;
+                color: #999999;
+                margin-bottom: 1rem;
+                font-size: 1.3rem;
+            }
+            input::-webkit-input-placeholder { color: #999999 !important; line-height:normal!important;}
+            #mobilesignup {
+                width: 100%;
+            }
+            .picCaptcha, .mobileCaptcha {
+                width: 65%;
+            }
+            .captchacode, #mobilecode {
+                width: 30%;
+                height: 3.8rem;
+                border-radius: .5rem;
+            }
+            #mobilecode {
+                border: .1rem solid #ffd225;
+                color: #e63271;
+                background-color: #ffd225;
+                font-size: 1.5rem;
+                line-height: 3.8rem;
+                text-align: center;
+                float: right;
+            }
+        }
+        .invited-btn {
+            width: 68.5%;
+            height: 4rem;
+            margin: 0 16%;
+            position: absolute;
+            top: 16rem;
+        }
+    }
+}
+//游戏兑换页
+.exchange-mask.project-mask {
+    background-color: #301f0a;
+    overflow: scroll;
+    .cdkey {
+        color: #fff;
+    }
+    .exc-btn-wrap {
+        background-color: #301f0a;
+        padding-top: 1rem;
+        position: fixed;
+        bottom: 0;
+        max-width: 640px;
+        margin: 0 auto;
+    }
+    @media(min-width: 375px) {
+        padding-bottom: 9rem;
+    }
+    @media(min-width: 410px) {
+        padding-bottom: 7.5rem;
+    }
+}
+.exchage-cdkey {
+    background-color: #301f0a;
+    form {
+        input {
+            height: 5rem;
+            width: 76%;
+            background-color: #000;
+            color: #fff;
+            border: 2px solid #6f4924;
+            border-radius: 5rem;
+            display: block;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        input::placeholder {
+            color: #fff;
+        }
+    }
+}

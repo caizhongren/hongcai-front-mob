@@ -9,11 +9,9 @@
           </li>
       </ul>
       <ul ng-if="!banners || banners.length <= 0">
-    
         <li class="position-re text-center">
           <a class="pic display-bl" ui-sref="root.activate-landing"><img src="/images/new/ad-cgt.jpg" /></a>
         </li>
-        
         <li class="position-re text-center">
           <a class="pic display-bl" ng-click="goAutoTender();"><img src="/images/new/ad-autotender.jpg" /></a>
         </li>
@@ -68,26 +66,4 @@
   <div ng-include src='"views/main/_new-main-project-template.html"'></div>
 
 </div>
-<script>
-  /**
-   * 轮播图
-   * 注意：需要等待页面元素加载完成后在执行轮播；页面dot 手动增减个数
-   */
-  setTimeout(function() {
-    $('.slide').swipeSlide({
-      autoSwipe : true,
-      axisX : true,
-      continuousScroll:true,
-      speed : 1500,
-      transitionType : 'cubic-bezier(0.22, 0.69, 0.72, 0.88)',
-      firstCallback : function(i,sum,me){
-          me.find('.dot').children().first().addClass('cur');
-      },
-      callback : function(i,sum,me){
-          me.find('.dot').children().eq(i).addClass('cur').siblings().removeClass('cur');
-      }
-    });
-  }, 100);
-  
-</script>
 

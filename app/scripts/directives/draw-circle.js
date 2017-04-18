@@ -27,22 +27,22 @@ angular.module('p2pSiteMobApp')
 		        ctx.fillText('在投金额', 110, 100 );
 		        ctx.fillStyle = "#ff5400";	
 
-		        scope.$watch('investStat.holdingAmount', function(newValue, oldValue) {
+		        scope.$watch('investStat.totalInvestAmount', function(newValue, oldValue) {
 			       for(var i = 0; i < colors.length;i++) {
 				    	start = end;
 				    	//项目在投都为0，环形三分
-				    	if(scope.investStat.holdingAmount == 0){
+				    	if(scope.investStat.totalInvestAmount == 0){
 				    		var percent = 1/3;
 				    		end = percent * Math.PI*2 + start;
 				    	}else{
 				    		if(i == 0) {
-				    			end = scope.investStat.selection/scope.investStat.holdingAmount* Math.PI*2 + start;
+				    			end = scope.investStat.selection/scope.investStat.totalInvestAmount* Math.PI*2 + start;
 				    		}
 				    		if(i == 1) {
-				    			end = (scope.investStat.hornor)/scope.investStat.holdingAmount* Math.PI*2 + start;
+				    			end = (scope.investStat.hornor)/scope.investStat.totalInvestAmount* Math.PI*2 + start;
 				    		}
 				    		if(i == 2) {
-				    			end = (scope.investStat.assignment)/scope.investStat.holdingAmount* Math.PI*2 + start;
+				    			end = (scope.investStat.assignment)/scope.investStat.totalInvestAmount* Math.PI*2 + start;
 				    		}
 				    	}
 				    	

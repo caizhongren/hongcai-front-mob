@@ -10,7 +10,7 @@
     </thead>
     <tbody>
       <!-- 有投资 -->
-      <tr ng-repeat="order in orderList track by order.id| limitTo : initLimit" ng-show="orderList.length >0 ">
+      <tr ng-repeat="order in orderList track by order.id" ng-show="orderList.length >0 ">
         <td class="ft-grey4">{{order.createTime | date: "yyyy-MM-dd"}}</td>
         <td class="ft-blue">{{order.userName}}</td>
         <td><span class="ft-orange0">{{order.orderAmount| number : 0}}</span>元</td>
@@ -26,7 +26,7 @@
 
     </tbody>
   </table>
-  <div class="text-center" ng-show="orderList.length > initLimit">
+  <div class="text-center" ng-show="totalPage > page">
     <p><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a class="ft-black" ng-click="loadMore();">查看更多投资信息</a></p>
   </div>
 </div>

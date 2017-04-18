@@ -1,9 +1,9 @@
-<!-- 我的奖金 -->
+<!-- 我的现金券 -->
 <section class="cash-body" auto-height>
-  <div class="cash-header padding-l-2 padding-r-2 ft-white">
+  <!-- <div class="cash-header padding-l-2 padding-r-2 ft-white">
     <div class="header1 margin-t-1p5">
       <div class="pull-left">
-        <img class="fl border-pull" ng-src="{{hasLoggedUser.headImgUrl || userHeadImgUrl}}" alt="" class="border-pull avatar">
+        <img class="fl border-pull" ng-src="{{user.headImgUrl || userHeadImgUrl}}" alt="" class="border-pull avatar">
         <div class="fl margin-l-0p5" ng-show="userAuth.authStatus !== 2">
           <p class="display-inb">
             未认证用户
@@ -11,27 +11,27 @@
           <p class="">注册用户</p>
         </div>
         <div class="fl margin-t-1p2" ng-show="userAuth.authStatus === 2">
-          <span class="ft-1p8 margin-l-1">{{ hasLoggedUser.nickName || (hasLoggedUser.mobile || hasLoggedUser.name) }}</span>
+          <span class="ft-1p8 margin-l-1">{{ user.nickName || (user.mobile || user.name) }}</span>
         </div>
       </div>
       <div class="rule-top pull-right margin-t-0p5" ng-click="showRule()">使用规则 <i class="fa fa-info-circle" aria-hidden="true"></i></div>
     </div>
     <ul class="header2">
       <li class="pull-left">
-        <p>可提奖金(元)</p>
+        <p>可提现金券(元)</p>
         <p>{{cash.unGotAmount || 0 | number:2}}</p>
       </li>
       <li class="pull-right text-right">
-        <p>已提奖金(元)</p>
+        <p>已提现金券(元)</p>
         <p>{{cash.gotAmount || 0 | number:2}}</p>
       </li>
     </ul>
-  </div>
+  </div> -->
   <ul class="cash-select margin-b-1p5">
-    <li class="text-center margin-0" ng-class="{'active':status === 1}" ng-click="selectStat(1)">可提现</li>
-    <li class="text-center margin-0" ng-class="{'active':status === 2}" ng-click="selectStat(2)">已提现</li>
+    <li class="text-center margin-0" ng-class="{'active':status === 1}" ng-click="selectStat(1)">未使用</li>
+    <li class="text-center margin-0" ng-class="{'active':status === 2}" ng-click="selectStat(2)">已使用</li>
   </ul>
-  <!-- 可提 -->
+  <!-- 未使用 -->
 	<div class="outer-panel margin-b-1" ng-if="cashCouponsData && status === 1 && cashCoupons.length >0" ng-repeat="item in cashCoupons| orderBy : '-value' track by $index">
 		<div>
   		<img src="/images/user-center/cash-coupon01.png">
@@ -39,15 +39,14 @@
   			<p class="margin-b-0 top-margin ft-4"><small class="ft-1p6">￥</small>{{item.value}}</p>
   		</div>
   		<div class="inner-panel-center1">
-  			<p class="margin-b-0" ng-if="item.projectDays >0">期限要求：&ge;{{item.projectDays}}天</p>
-  			<p class="margin-b-0" ng-if="item.projectDays <=0">期限要求：无</p>
-  			<p class="margin-b-0">投资要求：&ge;{{item.minInvestAmount}}元</p>
+  			<p class="margin-b-0">投资产品：{{ item.investProductType == 5 ? '宏财精选' : item.investProductType == 6 ? '宏财尊贵' : '宏财精选、宏财尊贵'}}</p>
+  			<p class="margin-b-0">使用条件：投资&ge;{{item.minInvestAmount}}元</p>
   			<p class="margin-b-0">有效期：{{item.createTime | date :'yyyy.MM.dd'}}-{{item.endTime | date :'yyyy.MM.dd'}}</p>
-  			<p class="withdraw margin-b-0 pull-right" ng-click="toProjectList($index)">马上提现</p>
+  			<p class="withdraw margin-b-0 pull-right" ng-click="toProjectList($index)">马上使用</p>
   		</div>
 		</div>
 	</div>
-	<!-- 已提 -->
+	<!-- 已使用 -->
 	<div class="outer-panel margin-b-1" ng-if="cashCouponsData && status === 2 && cashCoupons.length >0" ng-repeat="item in cashCoupons track by $index">
 		<div>
   		<img src="/images/user-center/cash-coupon01.png">
@@ -62,17 +61,14 @@
 		</div>
 	</div>
 	<!-- 未使用现金券  -->
-  <!-- 暂无可提现奖金 & 还没有提取过-->
+  <!-- 暂无可提现现金券 & 还没有使用过-->
 	<div class="no-cash margin-t-3 text-center" ng-show="cashCouponsData && (status === 1 || status === 2 ) && (!loading && (cashCoupons.length <= 0))">
 		<img src="/images/user-center/cash-coupon03.png" alt="">
-		<p ng-show="status === 1">暂无可提奖金噢~</p>
+		<p ng-show="status === 1">暂无可使用现金券噢~</p>
      <!-- ng-click="toGet();" -->
-		<p ng-show="status === 2">您还没有提取过奖金~</p>
+		<p ng-show="status === 2">您还没有使用过现金券~</p>
 	</div>
-  <!-- <div class="no-cash margin-t-2 text-center" ng-show="status === 2 && !loading && (cashCoupons.length <=0)">
-  	<img src="/images/user-center/cash-coupon03.png" alt="">
-  	<p>您还没有提取过奖金~</p>
-  	</div> -->
+  <div ng-if="cashCouponsData" class="use-rule margin-t-1 margin-b-1 text-center" ng-click="showRule()">使用规则 <i class="fa fa-info-circle" aria-hidden="true"></i></div>
 </section>
 <div class="cash">
 	<!-- 公用的弹框蒙层 -->
@@ -80,15 +76,15 @@
 	  <!-- 活动详情  弹出来需要去掉X号 -->
 	  <section class="rec-act-rule rec-act-rule1 bg-white margin-l-1 margin-r-1 border-ra-0p5" ng-show="showRules">
 	    <div class="rec-act-rule-title">
-	      <p class="margin-l-1 padding-l-1  margin-b-0">奖金的提现规则：</p>
+	      <p class="margin-l-1 padding-l-1  margin-b-0">现金券的使用规则：</p>
 	    </div>
 	    <div class=" rec-act-rule-btm margin-l-1 margin-r-1 ft-1p5 margin-t-0p5">
 	        <div class="rule padding-r-1 padding-l-1 padding-b-1p5">
-	          <p class="margin-t-0 margin-b-0">1、单笔投资首次达到对应额度时，提取对应奖金；</p>
-	          <p class="margin-t-0 margin-b-0">2、每个账号每天只奖励1次。连续投资只对第1次满足条件的投资进行奖励；</p>
-	          <p class="margin-t-0 margin-b-0">3、奖金需要在奖金有效期内提取，过期作废；</p>
-	          <p class="margin-t-0 margin-b-0">4、使用加息券投资不可提取奖金；</p>
-	          <p class="margin-t-0 margin-b-0">5、相应奖金在投资成功后即可到账，请在"我的账户"中查看。</p>
+	          <p class="margin-t-0 margin-b-0">1、单笔投资达到对应额度时，使用对应现金券；</p>
+	          <p class="margin-t-0 margin-b-0">2、每个账号每天只能使用一张现金券；</p>
+	          <p class="margin-t-0 margin-b-0">3、每张现金券都有使用期限，需要在有效期内使用，过期作废；</p>
+	          <p class="margin-t-0 margin-b-0">4、使用加息券投资时不可再使用现金券；</p>
+	          <p class="margin-t-0 margin-b-0">5、相应现金券在投资成功后即可到账，请在"我的账户"中查看。</p>
 	          <button class="rec-rule-btn button" ng-click="closeRule()">关闭页面</button>
 	        </div>
 	    </div>

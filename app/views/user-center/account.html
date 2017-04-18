@@ -5,8 +5,8 @@
       <div class="margin-t-1p3 text-left margin-l-1 fl setting-icon" ui-sref="root.userCenter.setting"><!--<i class="fa fa-cog" aria-hidden="true"></i>--><img src="/images/user-center/setting.png" class="display-inb margin-t-0p6" width="40%"></div>
         <div class="display-inb text-center">
           <div class="display-inb clearfix">
-            <div class="border-pull margin-r-1 fl"><img ng-src="{{hasLoggedUser.headImgUrl || userHeadImgUrl}}" alt="" class="border-pull avatar"></div>
-            <div class="fl user-name"><span class="ft-1p8">{{ hasLoggedUser.nickName || (hasLoggedUser.mobile || hasLoggedUser.name) }}</span></div>
+            <div class="border-pull margin-r-1 fl"><img ng-src="{{user.headImgUrl || userHeadImgUrl}}" alt="" class="border-pull avatar"></div>
+            <div class="fl user-name"><span class="ft-1p8">{{ user.nickName || (user.mobile || user.name) }}</span></div>
           </div>
         </div>
         <div class="fr margin-r-1 margin-t-1p3 text-right">
@@ -18,20 +18,19 @@
         <p class="text-center ft-2p5 margin-b-1 ft-1p6 ft-Arial">{{ account.tTotalAssets || 0 | number:2}}</strong></p>
         <div class="overflow-hid">
           <ul class="colums">
-            <li class="text-center fl width-0p3 position-re ft-1p4">
+            <li class="text-center fl width-0p5 position-re ft-1p4">
               <p class="margin-b-0 ft-1p4  ft-f3">累计收益(元)</p>
               <p class="margin-b-0 ft-1p6 ft-Arial ft-f3">{{account.receivedProfit || 0  | number:2 }}</p>
               <i class="fl border-white-right position-ab right-0 line"></i>
             </li>
-            <li class="text-center fl width-0p3 position-re ft-1p4">
+            <li class="text-center fl width-0p5 position-re ft-1p4">
               <p class="margin-b-0  ft-f3">可用余额(元)</p>
               <p class="margin-b-0 ft-1p6 ft-Arial ft-f3">{{ account.balance || 0  | number:2 }}</p>
-              <i class="fl border-white-right position-ab right-0 line"></i>
             </li>
-            <li class="text-center fl width-0p3 ft-1p4" ui-sref="root.userCenter.cash-coupon">
+            <!-- <li class="text-center fl width-0p3 ft-1p4" ui-sref="root.userCenter.cash-coupon">
               <p class="margin-b-0  ft-f3">未提奖金(元)</p>
               <p class="margin-b-0 ft-1p6 Arial ft-f3">{{ unGotCash.unGotAmount || 0  }}</p>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
@@ -95,12 +94,12 @@
         </li>
         <li class="fl border-grey-r border-grey-l" ui-sref="root.userCenter.cash-coupon">
           <img class="display-bl margin-auto" src="/images/user-center/user-prize.png" width="18%" alt="">
-          <p class="ft-1p5 ft-666 margin-b-0 ">奖金<sup class="green-sup" ng-if="cashCouponStatis.unUsedCoupon > 0">{{cashCouponStatis.unUsedCoupon || 0}}</sup></p>
+          <p class="ft-1p5 ft-666 margin-b-0 ">现金券<sup class="green-sup" ng-if="cashCouponStatis.unUsedCoupon > 0">{{cashCouponStatis.unUsedCoupon || 0}}</sup></p>
           
         </li>
-        <li class="fl" ui-sref="root.userCenter.experience-money">
+        <li class="fl" ui-sref="root.userCenter.privileged-capital">
           <img class="display-bl margin-auto padding-t-0p5" src="/images/user-center/user-experience.png" width="18%" alt="">
-          <p class="ft-1p5 ft-666 margin-b-0 ">体验金</p>
+          <p class="ft-1p5 ft-666 margin-b-0 ">特权本金</p>
           
         </li>
       </ul>
@@ -110,7 +109,7 @@
           <p class="ft-1p5 ft-666 margin-b-0 ">加息券<sup class="green-sup" ng-if="couponStatis.unUsedCoupon > 0">{{couponStatis.unUsedCoupon || 0}}</sup></p>
           
         </li>
-        <li class="fl border-grey-r border-grey-l" ui-sref="root.assignment_qr">
+        <li class="fl border-grey-r border-grey-l" ui-sref="root.questions">
           <img class="display-bl margin-auto" src="/images/user-center/help-center.png" width="18%" alt="">
           <p class="ft-1p5 ft-666 margin-b-0 ">帮助中心</p>
           <!-- <sup class="green-sup"></sup> -->

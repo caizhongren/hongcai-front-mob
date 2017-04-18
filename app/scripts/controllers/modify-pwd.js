@@ -7,7 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('modifyPwd', function(checkPwdUtils, $timeout, $scope, restmod, DEFAULT_DOMAIN,md5, $state,$rootScope) {
+  .controller('modifyPwd', function(checkPwdUtils, $timeout, $scope, md5, $state,$rootScope, Restangular, SessionService) {
 
     /**
      * 监测新密码
@@ -57,21 +57,19 @@ angular.module('p2pSiteMobApp')
       }
       $scope.busy = true;
       //判断旧密码是否正确
-      restmod.model(DEFAULT_DOMAIN + '/users/' + '0' + '/changePassword')
-      .$create({
+      Restangular.one('users/0/').post('changePassword', {
         oldPassword: md5.createHash(chg.oldPassword),
         newPassword: md5.createHash(chg.newPassword1),
-      }).$then(function(response) {
+      }).then(function(response) {
         if (response.ret === -1) {
-          $rootScope.showMsg('旧密码不正确');
+          $rootScope.showMsg(response.msg);
           $timeout(function() {
             $scope.busy = false;
           }, 1000);
         } else {
+          $rootScope.showSuccessMsg('修改成功', 1000);
           $state.go('root.login');
-          $timeout(function() {
-            $scope.busy = false;
-          }, 1000);
+          SessionService.destory();
         }
       });
 

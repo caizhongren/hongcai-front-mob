@@ -8,32 +8,37 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('SettingsCtrl', function($scope, $rootScope, $state, HongcaiUser, restmod, DEFAULT_DOMAIN, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location, toCunGuanUtils, SessionService, UserService) {
-
-    $scope.userHeadImgUrl = SessionService.getUser() &&  SessionService.getUser().headImgUrl 
-      ? SessionService.getUser.headImgUrl: '/images/user-center/head.png';
+  .controller('SettingsCtrl', function($scope, $rootScope, $state, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location, toCunGuanUtils, SessionService, UserService, restmod) {
     
     if ($location.path().split('/')[2] === 'setting') {
       $rootScope.showFooter = false;
     }
 
+    $scope.user = SessionService.getUser();
+
     /**
      * 邀请码
      */
-    $scope.voucher = HongcaiUser.$find('0' + '/voucher').$then();
+    UserService.loadVoucher($scope); 
 
     /**
      * 认证信息
      */
     UserService.loadUserAuth($scope);
 
+    /*
+    *自动投标详情
+    */
+    $scope.autoTenders = Restangular.one('/users/' + '0' + '/autoTender' ).get().$object;
+
     /**
      * 银行卡信息
      */
-    HongcaiUser.$find('0' + '/bankcard').$then(function(response) {
-        $scope.simpleBankcard = response;
-        if($scope.simpleBankcard.cardNo){
-          $scope.simpleBankcard.cardNo = $scope.simpleBankcard.cardNo.substr($scope.simpleBankcard.cardNo.length - 4);
+
+    Restangular.one('users/0').one('bankcard').get().then(function(response) {
+        $scope.bankcard = response;
+        if(response.cardNo){
+          response.cardNo = response.cardNo.substr(response.cardNo.length - 4);
         }
     });
 
@@ -47,33 +52,6 @@ angular.module('p2pSiteMobApp')
         return;
       }
       toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
-    }
-
-    $scope.changePassword = function(oldP, newP1, newP2) {
-      if (!oldP || !newP2 || !newP1) {
-        return;
-      }
-
-      if (newP1 !== newP2) {
-        $scope.changePasswordMsg = "两次密码输入不一致";
-        return;
-      }
-
-      restmod.model(DEFAULT_DOMAIN + '/users/' + '0' + '/changePassword')
-        .$create({
-          oldPassword: md5.createHash(oldP),
-          newPassword: md5.createHash(newP2),
-          device: Utils.deviceCode()
-        }).$then(function(response) {
-          if (response.ret === -1) {
-            $scope.changePasswordMsg = response.msg;
-          } else {
-            $scope.checkPwdFlag = false;
-            $scope.oldPassword = null;
-            $scope.newPassword1 = null;
-            $scope.newPassword2 = null;
-          }
-        });
     }
 
     /*
@@ -100,17 +78,7 @@ angular.module('p2pSiteMobApp')
     $scope.recentlyQuestionnaire();
 
 
-    /*
-    *自动投标详情
-    */
-    $scope.autoTendersDetail = function() {
-      Restangular.one('/users/' + '0' + '/autoTender' ).get().then(function(response){
-       $scope.autoTenders = response;
-      })
-    };
-    $scope.autoTendersDetail();
-
-    
+     
 
     /**
      * 开通自动投标权限
@@ -124,6 +92,7 @@ angular.module('p2pSiteMobApp')
       if($scope.userAuth.autoTransfer) {
         $state.go('root.userCenter.autotender');
       } else {
+        SessionService.removeUserAuth();
         toCunGuanUtils.to('autoTransfer', null, null, null, null, null);
       }
     
@@ -134,8 +103,8 @@ angular.module('p2pSiteMobApp')
      * 退出登录功能
      */ 
     $scope.toLogout = function() {
-      SessionService.destory();
       $state.go('root.login');
+      SessionService.destory();
     };
 
     $scope.handleMobileNum = function(phoneNum) {
@@ -200,12 +169,12 @@ angular.module('p2pSiteMobApp')
         return;
       }
       
-      if(user.mobile && user.mobile.toString().length !== 11){
+      if(user.mob && user.mob.toString().length !== 11){
         $rootScope.showMsg("手机号码格式不正确");
         return;
       }
       $scope.busy = true;
-      var saveFeedback = restmod.model(WEB_DEFAULT_DOMAIN + "/feedback/saveFeedback?feedbackInfo="+ user.textarea +"&contackWay=" + user.mobile);
+      var saveFeedback = restmod.model(WEB_DEFAULT_DOMAIN + "/feedback/saveFeedback?feedbackInfo="+ user.textarea +"&contackWay=" + user.mob);
       saveFeedback.$create({}).$then(function(response) {
         if(response && response.ret !== -1){
           $timeout(function() {
@@ -227,7 +196,7 @@ angular.module('p2pSiteMobApp')
       })
     }
     //监测手机号位数 11位
-    $scope.$watch('user.mobile', function(newVal, oldVal){
+    $scope.$watch('user.mob', function(newVal, oldVal){
       if (newVal && newVal.toString().length >11) {
         $rootScope.showMsg("手机号码格式不正确");
       }

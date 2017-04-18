@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('FundsProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects, Restangular, restmod, DEFAULT_DOMAIN, config, toCunGuanUtils) {
+  .controller('FundsProjectDetailCtrl', function($scope, $state, $rootScope, $stateParams, $location, fundsProjects, Restangular, config, toCunGuanUtils) {
     // 宏金盈详情页面
     var number = $stateParams.number;
     if (!number) {
@@ -21,7 +21,7 @@ angular.module('p2pSiteMobApp')
     };
 
       // simple project
-      fundsProjects.$find(number).$then(function(response) {
+      fundsProjects.one(number).get().then(function(response) {
         if (response.$status === 'ok') {
           // 项目详情
           $scope.simpleFundsProject = response;
@@ -228,20 +228,18 @@ angular.module('p2pSiteMobApp')
         // });
         $state.go('root.userCenter.recharge');
       } else if ($scope.fundsFlag === 2 || $scope.fundsFlag === 3) {
-        // how to bulid investment path restmod.model
-        // restmod.model(DEFAULT_DOMAIN + '/projects')
         if (payAmount > 0) {
-          restmod.model(DEFAULT_DOMAIN + '/fundsProjects/' + number + '/users/' + 0 + '/investment').$create({
+          Restangular.one('/fundsProjects/' + number + '/users/' + 0 + '/').post('investment', 
             amount: simpleFundsProject.investAmount,
             projectId: simpleFundsProject.id,
             isRepeat: $scope.isRepeat,
             payAmount: payAmount,
             couponNumber: couponNumber
-          }).$then(function(response) {
+          }).then(function(response) {
             // 重复下单后，response.number为undefined
             if (response.$status === 'ok') {
               if (response.number !== null && response.number !== undefined) {
-                restmod.model(DEFAULT_DOMAIN + '/orders/' + response.number + '/users/' + 0 + '/payment').$create().$then(function(response) {
+                Restangular.one('/fundsProjects/' + number + '/users/' + 0 + '/').post('payment', {}).then(function(response) {
                   if (response.$status === 'ok') {
                     var req = response.req;
                     var sign = response.sign;
@@ -261,13 +259,13 @@ angular.module('p2pSiteMobApp')
             }
           })
         } else {
-          restmod.model(DEFAULT_DOMAIN + '/fundsProjects/' + number + '/users/' + 0 + '/investmentByExperience').$create({
+          Restangular.one('/fundsProjects/' + number + '/users/' + 0 + '/').post('investmentByExperience', {
             amount: simpleFundsProject.investAmount,
             projectId: simpleFundsProject.id,
             isRepeat: $scope.isRepeat,
             payAmount: payAmount,
             couponNumber: couponNumber
-          }).$then(function(response) {
+          }).then(function(response) {
             // 重复下单后，response.number为undefined
             if (response.$status === 'ok') {
               if (response.number !== null && response.number !== undefined) {

@@ -8,7 +8,14 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('CreditCtrl', function($timeout, $scope, $rootScope, $state, $location, $stateParams, HongcaiUser, restmod, WEB_DEFAULT_DOMAIN, ScreenWidthUtil, Restangular) {
+  .controller('CreditCtrl', function($timeout, $scope, $rootScope, $state, $location, $stateParams, restmod, WEB_DEFAULT_DOMAIN, ScreenWidthUtil, Restangular) {
+    // 特权加息
+    $scope.privilegeRate = {
+      orderNum: "",
+      value: 0,
+      duration:0
+    };
+    
 
     //初始化
     $rootScope.headerTitle = '我的投资';
@@ -46,10 +53,6 @@ angular.module('p2pSiteMobApp')
     $scope.toggle.switchTab = function(tabIndex) {
       $scope.loading = true;
 
-      // 与当前活动标签相同，不刷新数据
-      if ($scope.toggle.activeTab === tabIndex) {
-        return;
-      }
       $scope.toggle.activeTab = tabIndex;
       if (tabIndex === 0) {
         $scope.creditStatus = '1';
@@ -74,6 +77,7 @@ angular.module('p2pSiteMobApp')
        $scope.holdingCount = response.length == 0? 0:$scope.creditStat.holdingCount;
        $scope.endProfitCount = response.length == 0? 0:$scope.creditStat.endProfitCount;
     });
+
      /**
      * 投资列表
      */
@@ -89,12 +93,21 @@ angular.module('p2pSiteMobApp')
         $scope.totalPage = Math.ceil(response.data.count / $scope.pageSize);
         $scope.creditsData = response.data.heldIdCreditList;
         for (var i = 0; i <= $scope.creditsData.length - 1; i++) {
-          if ($scope.creditsData[i].increaseRateCoupon) {
+          if ($scope.creditsData[i].increaseRateCoupon && $scope.creditsData[i].increaseRateCoupon.type === 1) {
             var oriRate = $scope.creditsData[i].creditRight.riseRate + $scope.creditsData[i].creditRight.baseRate;
             $scope.creditsData[i].rateCouponProfit = $scope.creditsData[i].creditRight.profit * ($scope.creditsData[i].increaseRateCoupon.value + oriRate) / oriRate - $scope.creditsData[i].creditRight.profit;
           }
+
+          if ($scope.privilegeRate.orderNum) {
+            if ($scope.privilegeRate.orderNum === $scope.creditsData[i].creditRight.orderNum ) {
+                $scope.creditsData[i].privilegeValue = $scope.privilegeRate.value;
+                $scope.creditsData[i].privilegePofit = $scope.privilegeRate.value * $scope.creditsData[i].creditRight.amount * $scope.privilegeRate.duration / 36500;
+              }
+          }
+
           $scope.credits.push($scope.creditsData[i]);
         };
+        
         $scope.loading = false;
         $timeout(function() {
           $rootScope.showLoadingToast = false;
@@ -105,7 +118,16 @@ angular.module('p2pSiteMobApp')
     
     };
 
-    $scope.toggle.switchTab(0);
+    //获取用户正在计息的加息券，通过这个去显示10%
+    Restangular.one('/users/0/userIncreasingRateCoupons').get({}).then(function(response) {
+      if (response && response.ret !== -1 && response.length > 0) {
+        $scope.privilegeRate.orderNum = response[0].orderNum;
+        $scope.privilegeRate.value = response[0].value;
+        $scope.privilegeRate.duration = response[0].duration;
+      }
+      $scope.toggle.switchTab(0);
+    })
+
     //跳转详情页
     $scope.goDtail = function(item) {
       if(item == 3) {
