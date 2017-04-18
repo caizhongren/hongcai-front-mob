@@ -214,9 +214,9 @@ p2pSiteMobApp
         url: '/project/:number/orders',
         views: {
           '': {
-            templateUrl: 'views/project/new-orders.html',
-            controller: 'NewOrdersCtrl',
-            controllerUrl: 'scripts/controllers/project/new-orders'
+            templateUrl: 'views/project/project-orders.html',
+            controller: 'ProjectOrdersCtrl',
+            controllerUrl: 'scripts/controllers/project/project-orders'
           }
         },
         data: {
