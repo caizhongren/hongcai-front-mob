@@ -27,13 +27,11 @@ angular.module('p2pSiteMobApp')
       }
     });
 
-    Restangular.one('users/0').one('bankcard').get({}, function(response) {
-      if (response.$status === 'ok') {
+    Restangular.one('users/0').one('bankcard').get().then(function(response) {
+      if (response.ret !== -1) {
         // 获取用户的银行卡信息
-        $scope.simpleBankcard = response;
-      } else {
-        // 获取信息失败。
-      }
+        $scope.bankcard = response;
+      } 
     });
 
 

@@ -7,7 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('NewOrdersCtrl', function($scope, Restangular, $stateParams) {
+  .controller('ProjectOrdersCtrl', function($scope, Restangular, $stateParams) {
 
 
     $scope.page = 1;

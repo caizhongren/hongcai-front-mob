@@ -7,7 +7,7 @@
 
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('ActivityCenter', function($scope, $rootScope, $http, WEB_DEFAULT_DOMAIN) {
+  .controller('ActivityCenter', function($scope, $state, $rootScope, $http, WEB_DEFAULT_DOMAIN) {
     $scope.NowTime=new Date().getTime();
     $http({
       method: 'POST',
