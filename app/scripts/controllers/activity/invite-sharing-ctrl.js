@@ -22,9 +22,11 @@ angular.module('p2pSiteMobApp')
     $scope.isSuccess = false;
     $scope.isActivityEnd = false;
     $scope.isSuccess ? $('#activity').addClass('position-fix')  : $('#activity').removeClass('position-fix'); 
+    $scope.isSuccess ? $('.exchange-flowers').addClass('position-fix')  : $('.exchange-flowers').removeClass('position-fix'); 
     $scope.successMask = function() {
     	$scope.isSuccess = !$scope.isSuccess;
     	$scope.isSuccess ? $('#activity').addClass('position-fix')  : $('#activity').removeClass('position-fix'); 
+      $scope.isSuccess ? $('.exchange-flowers').addClass('position-fix')  : $('.exchange-flowers').removeClass('position-fix'); 
     }
 
     $scope.checkPicCaptchLength = function(picCaptcha){

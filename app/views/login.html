@@ -3,7 +3,7 @@
   <!-- 登录密码登录表单 -->
   <form name="loginForm" id="loginForm" class="login-form ft-grey" autocomplete="on" ng-if="isPassward">
     <div class="to-login">
-      <input id="username" name="username" required="required" type="text" ng-model="user.account" placeholder="请输入手机号" required><br>
+      <input id="username" name="username" required="required" type="tel" ng-model="user.account" placeholder="请输入手机号" required><br>
       <input id="password" name="password" ng-model="user.password" required="required" type="password" placeholder="请输入登录密码" class="input-pwd" required/>
       <span class="pwd-eyes"><i class="fa fa-eye-slash ft-9f" select-eyes></i></span>
     </div>
