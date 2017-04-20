@@ -11,6 +11,7 @@ angular.module('p2pSiteMobApp')
   .controller('ProjectDetailCtrl', function(ipCookie, $scope, $timeout, $state, $rootScope, $stateParams, $location,$interval, Restangular, projectStatusMap, ProjectUtils, Utils, toCunGuanUtils, SessionService, UserService) {
     $rootScope.showFooter = false;
     $rootScope.showLoadingToast = true;
+    var deviceCode = Utils.deviceCode();
     // 项目详情页面
     var number = $stateParams.number;
     if (!$stateParams.number) {
@@ -266,12 +267,17 @@ angular.module('p2pSiteMobApp')
     /**
      * 虚拟键盘弹出遮住输入框问题
      */
+
     angular.element('.invest-input').bind({
       focus: function(){
-        angular.element('.new-project-detail').css('margin-bottom','100px');
+        angular.element('.new-project-detail').css('margin-bottom','30px');
+        if(deviceCode ===  5 || deviceCode ===6) {
+          angular.element('.toast1').css('top','58%');
+        }
       },
       blur: function(){
         angular.element('.new-project-detail').css('margin-bottom','0');
+        angular.element('.toast1').css('top','38%');
       }
     })
     $scope.blurNumber = function(){
