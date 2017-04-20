@@ -164,7 +164,9 @@ angular.module('p2pSiteMobApp')
             SessionService.loginSuccess(response);
             $rootScope.isLogged = response.mobile || response.email;
           } else if(Utils.isWeixin() && !$location.search().code){
-            Utils.redirectToWechatAuth(location.href);
+            if(toState.name !== 'root.activity.channel'){
+              Utils.redirectToWechatAuth(location.href);
+            }
           } 
         }); 
         return;
