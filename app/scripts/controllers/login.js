@@ -139,9 +139,8 @@ angular.module('p2pSiteMobApp')
     $scope.$watch('user.mobile', function(val) {
       if (val !== undefined) {
           var valLgth = val.toString().length;
-          if (valLgth > 11 && !$rootScope.mobilePattern.test(val)) {
-            msg = '手机号码格式不正确';
-            $rootScope.showMsg(msg);
+          if (valLgth > 11 && !$scope.mobilePattern.test(val)) {
+            $rootScope.showMsg('手机号码格式不正确');
           }
         }
     })
