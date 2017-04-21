@@ -7,7 +7,7 @@ angular.module('p2pSiteMobApp')
 
     $scope.test = config.test;
 
-    $scope.getUserCheckinRecords();
+    
 
     $scope.getUserCheckinRecords = function(){
       Restangular.one('dailyPrizes').get().then(function(response){
@@ -22,7 +22,7 @@ angular.module('p2pSiteMobApp')
         channelCode: $scope.channelCode
       });
     }
-
+    $scope.getUserCheckinRecords();
     $scope.showMask = false;
     $scope.showFirstDrawLottery = false;
     $scope.showSharedDrawLottery = false;
