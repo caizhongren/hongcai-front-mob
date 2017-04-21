@@ -630,7 +630,17 @@ p2pSiteMobApp
         }
       })
 
-   
+   //每日抽奖
+     .state('root.daily-lottery', {
+       url: '/daily-lottery',
+       views: {
+         '': {
+           templateUrl: 'views/activity/daily-lottery.html',
+           controller: 'DailyLotteryCtrl',
+           controllerUrl: 'scripts/controllers/daily-lottery/daily-lottery-ctrl'
+         }
+       }
+     })
 
     // 活动主url
     .state('root.activity', {
