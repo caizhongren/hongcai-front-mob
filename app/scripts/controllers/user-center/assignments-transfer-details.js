@@ -45,7 +45,7 @@ angular.module('p2pSiteMobApp')
         //当前时间
         $scope.currentDate = new Date().getTime();
         //上一次回款时间
-        var lastRepaymentTime = response.projectBill.lastRepaymentTime;
+        var lastRepaymentTime = response.projectBill ? response.projectBill.lastRepaymentTime : 0;
 
         //剩余期限
         $scope.remainDay = DateUtils.intervalDay(response.project.repaymentDate, $scope.currentDate);

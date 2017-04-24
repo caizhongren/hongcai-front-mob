@@ -67,7 +67,7 @@ angular.module('p2pSiteMobApp')
      */
     $rootScope.tofinishedOrder = function() {
       Restangular.one('orders').one('unpay').get().then(function(order) {
-        if (!order.orderAmount || order.ret === -1) {
+        if (!order || order.ret === -1) {
           return false;
         }
 
@@ -318,7 +318,8 @@ angular.module('p2pSiteMobApp')
         'privacy-policy',
         'assignments',
         'assignment_qr',
-        'credits-overview'
+        'credits-overview',
+        'daily-lottery'
       ];
       if (notShowFooterRoute.indexOf(path) === -1) {
         $rootScope.showFooter = true;

@@ -198,12 +198,12 @@ p2pSiteMobApp
           }
         }
       })
-      // 新项目项目详情页
+      // 项目投资详情页
       .state('root.project', {
         url: '/project/:number',
         views: {
           '': {
-            templateUrl: 'views/project/new-project-detail.html',
+            templateUrl: 'views/project/investment-project-detail.html',
             controller: 'ProjectDetailCtrl',
             controllerUrl: 'scripts/controllers/project/project-detail'
           }
@@ -630,7 +630,17 @@ p2pSiteMobApp
         }
       })
 
-   
+   //每日抽奖
+     .state('root.daily-lottery', {
+       url: '/daily-lottery',
+       views: {
+         '': {
+           templateUrl: 'views/activity/daily-lottery.html',
+           controller: 'DailyLotteryCtrl',
+           controllerUrl: 'scripts/controllers/daily-lottery/daily-lottery-ctrl'
+         }
+       }
+     })
 
     // 活动主url
     .state('root.activity', {
@@ -734,7 +744,7 @@ p2pSiteMobApp
         }
       },
       data: {
-        title: '邀请好友'
+        title: '宏财新手大礼包，抢！'
       }
     })
     

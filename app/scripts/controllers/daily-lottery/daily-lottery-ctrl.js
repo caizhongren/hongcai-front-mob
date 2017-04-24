@@ -7,7 +7,7 @@ angular.module('p2pSiteMobApp')
 
     $scope.test = config.test;
 
-    $scope.getUserCheckinRecords();
+    
 
     $scope.getUserCheckinRecords = function(){
       Restangular.one('dailyPrizes').get().then(function(response){
@@ -22,7 +22,7 @@ angular.module('p2pSiteMobApp')
         channelCode: $scope.channelCode
       });
     }
-
+    $scope.getUserCheckinRecords();
     $scope.showMask = false;
     $scope.showFirstDrawLottery = false;
     $scope.showSharedDrawLottery = false;
@@ -282,7 +282,7 @@ angular.module('p2pSiteMobApp')
 
     $scope.formatDate = function(date){
       var dateOfMonth = new Date(date).getMonth() + 1;
-      var dateOfHour = new Date(date).getDate();
+      var dateOfHour = new Date(date).getDate() > 9 ? new Date(date).getDate() : '0' + new Date(date).getDate();
       var dateStr = dateOfMonth + '.' + dateOfHour;
 
       return dateStr;

@@ -29,7 +29,7 @@ angular.module('p2pSiteMobApp')
     var loginBe;
 
     if (ipCookie('userName')) {
-      $scope.user.account = ipCookie('userName');
+      $scope.user.mobile = ipCookie('userName');
     }
 
     //登陆成功
@@ -53,7 +53,7 @@ angular.module('p2pSiteMobApp')
     $scope.toLogin = function(user) {
       
       user.password = user.password.replace(/\s/g, "");
-      if(!user.password || !user.account){
+      if(!user.password || !user.mobile){
         $rootScope.showMsg('账号或密码不能为空');
         return;
       }
@@ -64,13 +64,13 @@ angular.module('p2pSiteMobApp')
       $scope.busy = true;
 
       if ($scope.rememberUserName) {
-        ipCookie('userName', user.account, {
+        ipCookie('userName', user.mobile, {
           expires: 60
         });
       }
       
       HongcaiLogin.userLogin.$create({
-        account: user.account,
+        account: user.mobile,
         password: md5.createHash(user.password),
         openId: openId,
         guestId: ipCookie('guestId')
@@ -139,9 +139,8 @@ angular.module('p2pSiteMobApp')
     $scope.$watch('user.mobile', function(val) {
       if (val !== undefined) {
           var valLgth = val.toString().length;
-          if (valLgth > 11 && !$rootScope.mobilePattern.test(val)) {
-            msg = '手机号码格式不正确';
-            $rootScope.showMsg(msg);
+          if (valLgth > 11 && !$scope.mobilePattern.test(val)) {
+            $rootScope.showMsg('手机号码格式不正确');
           }
         }
     })
