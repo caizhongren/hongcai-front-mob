@@ -198,12 +198,12 @@ p2pSiteMobApp
           }
         }
       })
-      // 新项目项目详情页
+      // 项目投资详情页
       .state('root.project', {
         url: '/project/:number',
         views: {
           '': {
-            templateUrl: 'views/project/new-project-detail.html',
+            templateUrl: 'views/project/investment-project-detail.html',
             controller: 'ProjectDetailCtrl',
             controllerUrl: 'scripts/controllers/project/project-detail'
           }
