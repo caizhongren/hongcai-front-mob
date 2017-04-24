@@ -9,6 +9,7 @@
 // Documentation removed from script file (was kinda useless and outdated)
 
 (function($) {
+var Wilq32 = window.Wilq32||{};
 var supportedCSS,styles=document.getElementsByTagName("head")[0].style,toCheck="transformProperty WebkitTransform OTransform msTransform MozTransform".split(" ");
 for (var a=0;a<toCheck.length;a++) if (styles[toCheck[a]] !== undefined) supportedCSS = toCheck[a];
 // Bad eval to preven google closure to remove it from code o_O

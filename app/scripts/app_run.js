@@ -318,7 +318,8 @@ angular.module('p2pSiteMobApp')
         'privacy-policy',
         'assignments',
         'assignment_qr',
-        'credits-overview'
+        'credits-overview',
+        'daily-lottery'
       ];
       if (notShowFooterRoute.indexOf(path) === -1) {
         $rootScope.showFooter = true;
