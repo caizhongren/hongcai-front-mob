@@ -744,7 +744,7 @@ p2pSiteMobApp
         }
       },
       data: {
-        title: '邀请好友'
+        title: '宏财新手大礼包，抢！'
       }
     })
     
