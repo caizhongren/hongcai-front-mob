@@ -11,6 +11,7 @@
 		<img src="/images/invite/invite-sharing-header07.png" class="display-bl" width="100%">
 		<img src="/images/invite/invite-sharing-header08.png" class="display-bl" width="100%">
 		<img src="/images/invite/invite-sharing-header09.png" class="display-bl" width="100%">
+		<img src="/images/invite/invite-sharing-header10.png" class="display-bl" width="100%">
 	</div>
 	<div class="sharing-content">
 		<!-- 注册表单 -->
@@ -32,9 +33,9 @@
 		</form>
 
 		<!-- 已领取礼包好友 -->
-		<div class="received-lists">
+		<div class="received-lists" ng-if="inviteList.length>0">
 			<!-- 图片 -->
-			<div ng-if="inviteList.length>0" class="taked-icon text-center margin-t-3"><img src="/images/invite/invite-sharing-taked.png" alt="" width="28%"></div>
+			<div class="taked-icon text-center margin-t-3"><img src="/images/invite/invite-sharing-taked.png" alt="" width="28%"></div>
 			<!-- 领取好友列表 只显示最新的10条-->
 			<ul class="lists">
 				<li class="border-none" ng-repeat="item in inviteList">
