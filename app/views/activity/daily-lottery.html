@@ -15,7 +15,7 @@
       <span class="fl ">签到周期</span>
       <span class="fr ">{{formatDate(thisWeekCheckinRecords.monday)}}~{{formatDate(thisWeekCheckinRecords.sunday)}}</span>
     </div>
-    <ul class="rec-sign-list " ng-repeat="checkinRecord in thisWeekCheckinRecords.checkinRecords track by checkinRecord.id">
+    <ul class="rec-sign-list " ng-repeat="checkinRecord in thisWeekCheckinRecords.checkinRecords">
       <li ng-if="checkinRecord.seq < 7" class="fl {{checkinRecord.checkin ? 'li-signed' : 'li-sign'}}"><p class="rec-p" id="rec-color">{{formatDate(checkinRecord.createTime)}}</p><img ng-show="checkinRecord.checkin" src="../images/activity/rec-signed.png" alt=""><img ng-show="!checkinRecord.checkin" src="../images/activity/rec-sign.png" alt=""></li>
       <li ng-if="checkinRecord.seq === 7" class="fl {{checkinRecord.checkin ? 'li-signed' : 'li-sign'}}">
         <p class="rec-p rec-box">{{formatDate(checkinRecord.createTime)}}</p>
