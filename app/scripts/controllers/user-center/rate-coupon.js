@@ -10,7 +10,7 @@
 angular.module('p2pSiteMobApp')
   .controller('RateCouponCtrl',function ($scope, $state, $rootScope, $location, $stateParams, ipCookie, Restangular) {
     $scope.page = 1;
-    $scope.pageSize = 4;
+    $scope.pageSize = 10;
     $scope.datas = [];
     $scope.totalPage = 1;
     $scope.useTotalPage = 1;
@@ -110,9 +110,11 @@ angular.module('p2pSiteMobApp')
     /**
      *跳转到列表页
      */
-    $scope.toProjectList = function($index){
-      if($rootScope.timeout){
-        $state.go('root.project-list');
+    $scope.toProjectList = function(investProductType, $index){
+      if (investProductType == 5) {
+        $state.go('root.project-list', {tab : 0});
+      }else {
+        $state.go('root.project-list', {tab : 1});
       }
       ipCookie('rateNum',$scope.datas[$index].number);
       ipCookie('rateType',$scope.datas[$index].type);

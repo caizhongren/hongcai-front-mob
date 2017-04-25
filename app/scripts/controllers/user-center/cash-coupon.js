@@ -34,34 +34,73 @@ angular.module('p2pSiteMobApp')
 
 	/*现金券查询*/
 	$scope.status = 1;
-  $scope.cashCoupons = [];
+	$scope.page = 1;
+    $scope.pageSize = 2;
+    $scope.cashCoupons = [];
 	/*解决闪烁问题*/
 	$scope.loading = true;
 
-	/*选择提现状态*/
-	$scope.selectStat = function(status){
+	// 获取现金券列表
+	$scope.getCashCoupons = function (status) {
+		var totalPage = 0;
+		if(status === 1){
+			totalPage = $scope.unUseTotalPage;
+		}else if(status === 2){
+			totalPage = $scope.useTotalPage;
+		}
+
+		if (totalPage < $scope.page){
+			return;
+		}
+
 		$scope.loading = true;
-		$scope.cashCoupons = [];
+		
 		$scope.status = status;
 		var queryStatus = status === 1 ? '1' : '2,4';
 		Restangular.one('cashCoupons').get({
-			status : queryStatus
+			status : queryStatus,
+			page: $scope.page,
+			pageSize: $scope.pageSize
 		}).then(function(response){
 			$scope.loading = false;
 			$scope.cashCouponsData = response.data;
+			if(status === 1){
+				$scope.unUseTotalPage = response.totalPage;
+			}else if(status === 2){
+				$scope.useTotalPage = response.totalPage;
+			}
+			$scope.totalPage = response.totalPage;
 			for (var i = 0; i < response.data.length; i++) {
 				$scope.cashCoupons.push(response.data[i]);
 			}
 		});
 	}
-	$scope.selectStat($scope.status);
-  $scope.toProjectList = function($index){
-    if($rootScope.timeout){
-      $state.go('root.project-list');
-    }
-    ipCookie('cashNum', $scope.cashCoupons[$index].number);
-    ipCookie('cashType', $scope.cashCoupons[$index].type);
-  }
+	/*选择提现状态*/
+	$scope.selectStat = function(status){
+		$scope.cashCoupons = [];
+		$scope.page = 1;
+		$scope.status = status;
+		$scope.getCashCoupons(status);
+	}
+	$scope.selectStat(1);
+
+  	$scope.toProjectList = function(investProductType, $index){
+  		if (investProductType == 5) {
+  			$state.go('root.project-list', {tab : 0});
+  		}else if (investProductType == 6) {
+  			$state.go('root.project-list', {tab : 1});
+  		}else {
+  			$state.go('root.project-list');
+  		}
+	    ipCookie('cashNum', $scope.cashCoupons[$index].number);
+	    ipCookie('cashType', $scope.cashCoupons[$index].type);
+  	}
+  	// 查看更多
+  	$scope.loadMuch = function(status){
+      $scope.page = $scope.page + 1;
+      $scope.pageSize = $scope.pageSize;
+      $scope.getCashCoupons(status);
+    };
 
 });
 
