@@ -7,7 +7,7 @@
     <div>
       <p>登录密码：</p>
       <!-- <p>用于登录宏财网<span ng-click="checkPwdFlag=true"><a>修改></a></span></p> -->
-      <p>用于登录宏财网<span ng-click="toAnyState('root.modifyPwd');"><a>修改 ></a></span></p>
+      <p>用于登录宏财网<span ui-sref="root.modifyPwd"><a>修改 ></a></span></p>
     </div>
   </div>
   <div class="content-main">
@@ -19,7 +19,7 @@
       <p>手机号码：</p>
       <p>{{handleMobileNum(user.mobile) || '无'}}
         <span ng-show="userAuth.authStatus == 2" ng-click="toAnyState('root.userCenter.resetMobile');"><a>修改 ></a></span>
-        <span ng-show="userAuth.authStatus !== 2" ng-click="toRealNameAuth()"><a>修改 ></a></span>
+        <!-- <span ng-show="userAuth.authStatus !== 2" ng-click="toRealNameAuth()"><a>修改 ></a></span> -->
         <span ng-show="user.mobile == null"><i class="fa fa-check-circle-o"></i>&nbsp;未绑定</span>
       </p>
     </div>
@@ -48,7 +48,7 @@
         <span ng-click="bindBankcard()" ng-show="bankcard.status == 'VERIFY_NOT' || !bankcard"> <a>去绑定 ></a></span>
         <span ng-show="bankcard.status == 'VERIFING'"> 绑定中(尾号{{bankcard.cardNo}})</span>
         <span ng-show="bankcard.status == 'INIT'"> 解绑中(尾号{{bankcard.cardNo}})</span>
-        <span ng-show="bankcard.status == 'VERIFIED'" ui-sref="root.userCenter.bankcard" ng-click="toAnyState('root.userCenter.bankcard');"><a class="ft-blue">{{bankcard.openBank}}(尾号{{bankcard.cardNo}}) ></a></span>
+        <span ng-show="bankcard.status == 'VERIFIED'" ng-click="toAnyState('root.userCenter.bankcard');"><a class="ft-blue">{{bankcard.openBank}}(尾号{{bankcard.cardNo}}) ></a></span>
       </p>
     </div>
   </div>
@@ -75,7 +75,7 @@
       <p>{{ isQuestionnaire == -1 ? '帮助您了解自己的风险承受能力' : msgRisk }}
         <!-- <span>您的投资风格为：稳健型</span> -->
         <!-- <span><a class="ft-blue" ng-show="isQuestionnaire !== -1">&nbsp;已测评 ></a></span> -->
-        <span><a class="ft-blue" ng-click="toAnyState('root.userCenter.questionnaire');">&nbsp;去测评 ></a></span>
+        <span><a class="ft-blue" ui-sref="root.userCenter.questionnaire">&nbsp;去测评 ></a></span>
       </p>
     </div>
   </div>

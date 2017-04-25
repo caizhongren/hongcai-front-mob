@@ -9,7 +9,6 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('SettingsCtrl', function($scope, $rootScope, $state, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location, toCunGuanUtils, SessionService, UserService, restmod) {
-    $rootScope.toActivate();
     if ($location.path().split('/')[2] === 'setting') {
       $rootScope.showFooter = false;
     }
@@ -45,10 +44,11 @@ angular.module('p2pSiteMobApp')
      * 跳转到某个路由
      */
     $scope.toAnyState = function(state) {
-      var stateTo = function() {
-        $state.go(state);
+      if($scope.userAuth.authStatus !== 2) {
+        $rootScope.toRealNameAuth();
+        return;
       }
-      $rootScope.toActivate(stateTo);
+      $state.go(state);
     }
     
     /**
@@ -59,8 +59,7 @@ angular.module('p2pSiteMobApp')
         $rootScope.toRealNameAuth();
         return;
       }
-      var bindCard = function(){toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);}
-      $rootScope.toActivate(bindCard);
+      toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
       
     }
 
@@ -97,10 +96,6 @@ angular.module('p2pSiteMobApp')
       
       if($scope.userAuth.authStatus !== 2) {
         $rootScope.toRealNameAuth();
-        return;
-      }
-      if($scope.userAuth.authStatus === 2 && !$scope.userAuth.active) {
-        $rootScope.toActivate();
         return;
       }
       if($scope.userAuth.autoTransfer) {

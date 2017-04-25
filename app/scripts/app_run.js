@@ -45,10 +45,7 @@ angular.module('p2pSiteMobApp')
     //跳转到充值页面
     $rootScope.toRecharge = function(){
       if($rootScope.timeout){
-        var stateTo = function(){
-          $state.go('root.userCenter.recharge');
-        }
-        $rootScope.toActivate(stateTo);
+        $state.go('root.userCenter.recharge');
       }
     }
 
@@ -117,7 +114,9 @@ angular.module('p2pSiteMobApp')
             controller: 'ActivateCtrl'
           });
         }else {
-          stateTo();
+          if(stateTo) {
+            stateTo();
+          }
         }
       }
       if(userAuth){
@@ -149,6 +148,7 @@ angular.module('p2pSiteMobApp')
     }
     $rootScope.$on('$stateChangeStart', function(event, toState) {
       var title = '宏财网';
+      var path = $location.path().split('/')[1];
       if (toState.data && toState.data.title) {
         title = toState.data.title; 
       }
@@ -181,6 +181,9 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
+      if(path === 'user-center') {
+        $rootScope.toActivate();
+      }
 
 
       // $rootScope.showTitle = titleMap[path];

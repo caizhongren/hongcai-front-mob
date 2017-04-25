@@ -68,10 +68,7 @@ angular.module('p2pSiteMobApp')
     $scope.widthFlag = ScreenWidthUtil.screenWidth();
     $scope.go_moreMsg =function (){
       if ($rootScope.isLogged) {
-        var stateTo = function(){
-          $state.go('root.userCenter.messages');
-        }
-        $rootScope.toActivate(stateTo);
+        $state.go('root.userCenter.messages');
       }else {
         $state.go('root.login');
       }
@@ -81,10 +78,7 @@ angular.module('p2pSiteMobApp')
       if (!$rootScope.isLogged) {
         $state.go('root.login');
       }else {
-        var stateTo = function(){
-          $state.go('root.userCenter.web-site-notice',{id: noticeId});
-        }
-        $rootScope.toActivate(stateTo);
+        $state.go('root.userCenter.web-site-notice',{id: noticeId});
       }
     }
 
@@ -158,11 +152,8 @@ angular.module('p2pSiteMobApp')
      * 跳转到详情页
      */
     $scope.toDetail = function(project){
-      var stateTo = function() {
-        project.tab == 2 ? $state.go('root.assignments-detail', {number: project.number}) : $state.go('root.project', {number: project.number});
-      }
       if($rootScope.timeout){
-        $rootScope.toActivate(stateTo);
+        project.tab == 2 ? $state.go('root.assignments-detail', {number: project.number}) : $state.go('root.project', {number: project.number});
       }
     }
 
@@ -179,10 +170,7 @@ angular.module('p2pSiteMobApp')
         $rootScope.toLogin();
         return;
       }
-      var stateTo = function(){
-        $state.go('root.userCenter.setting');
-      }
-      $rootScope.toActivate(stateTo);
+      $state.go('root.userCenter.setting');
       
     }
     /**
@@ -193,30 +181,23 @@ angular.module('p2pSiteMobApp')
         $state.go('root.login');
         return;
       }
-      var stateTo = function(){
-        $state.go('root.userCenter.experience-money');
-      }
-      $rootScope.toActivate(stateTo);
+      $state.go('root.userCenter.experience-money');
+     
     }
     /**
      * banner链接
      */
     $scope.clickBanner = function(toStateOrUrl){
-      var stateTo1 = function(){$state.go(toStateOrUrl);}
-      var stateTo2 = function(){window.location.href = toStateOrUrl;}
       if(toStateOrUrl.indexOf('root.') !== -1){
-        $rootScope.toActivate(stateTo1);
+        $state.go(toStateOrUrl);
       } else {
-        $rootScope.toActivate(stateTo2);
+        window.location.href = toStateOrUrl;
       }
     }
 
     //更多
     $scope.linkMore = function(tab){
-      var stateTo = function(tab){
-        $state.go("root.project-list",{tab: tab});
-      }
-      $rootScope.toActivate(stateTo);
+      $state.go("root.project-list",{tab: tab});
     }
 
     //跳转活动中心

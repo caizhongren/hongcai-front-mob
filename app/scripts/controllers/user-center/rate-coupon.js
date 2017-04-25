@@ -9,7 +9,6 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('RateCouponCtrl',function ($scope, $state, $rootScope, $location, $stateParams, ipCookie, Restangular) {
-    $rootScope.toActivate();
     $scope.page = 1;
     $scope.pageSize = 10;
     $scope.datas = [];

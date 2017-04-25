@@ -9,7 +9,6 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('InviteRebateCtrl',function ($scope, $state, $rootScope, $location, Restangular, $window, Utils) {
-    $rootScope.toActivate();
     $scope.page = 1;
     $scope.pageSize = 6;
     $scope.datas = [];

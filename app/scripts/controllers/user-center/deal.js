@@ -9,7 +9,6 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('DealCtrl', function($rootScope, $scope, $state, Restangular) {
-    $rootScope.toActivate();
     $rootScope.selectedSide = 'account';
     $scope.page = 1;
     $scope.pageSize = 10;

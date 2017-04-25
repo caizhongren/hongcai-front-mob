@@ -10,7 +10,6 @@
 angular.module('p2pSiteMobApp')
 
 .controller('AccountCtrl', function ($scope, $state, $rootScope, Restangular, toCunGuanUtils, SessionService, UserService) {
-    $rootScope.toActivate();
     /**
      * 默认头像
      */
@@ -56,8 +55,7 @@ angular.module('p2pSiteMobApp')
     $scope.recentlyQuestionnaire();
 
     $scope.goWithdraw = function() {
-      var stateTo = function(){$state.go("root.userCenter.withdraw");}
-      $rootScope.toActivate(stateTo);
+      $state.go("root.userCenter.withdraw");
     }
 
 
