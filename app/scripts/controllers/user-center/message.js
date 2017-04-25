@@ -9,6 +9,7 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('MessageCtrl', function ($scope, $rootScope, Restangular, $timeout) {
+    $rootScope.toActivate();
   	$scope.userMsgsList = [];
   	$scope.page = 1;
   	$scope.notices = [];

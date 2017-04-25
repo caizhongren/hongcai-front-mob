@@ -9,6 +9,7 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('CreditCtrl', function($timeout, $scope, $rootScope, $state, $location, $stateParams, restmod, WEB_DEFAULT_DOMAIN, ScreenWidthUtil, Restangular) {
+    $rootScope.toActivate();
     // 特权加息
     $scope.privilegeRate = {
       orderNum: "",

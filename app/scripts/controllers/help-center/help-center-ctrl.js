@@ -8,6 +8,7 @@
 'use strict';
 angular.module('p2pSiteMobApp')
   .controller('HelpCenterCtrl', function($state, DateUtils, $stateParams, Restangular, $scope, $rootScope) {
+  	$rootScope.toActivate();
     $rootScope.showFooter = false;
 
 

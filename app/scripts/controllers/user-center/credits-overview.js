@@ -9,8 +9,8 @@
  */
 angular.module('p2pSiteMobApp')
 
-.controller('CreditsOverviewCtrl', function ($scope, $state, Restangular) {
-
+.controller('CreditsOverviewCtrl', function ($scope, $state, $rootScope, Restangular) {
+    $rootScope.toActivate();
     $scope.investStat = {
       selection: 0,
       hornor:0,

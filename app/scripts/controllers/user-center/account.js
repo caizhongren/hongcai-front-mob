@@ -9,8 +9,8 @@
  */
 angular.module('p2pSiteMobApp')
 
-.controller('AccountCtrl', function ($scope, $state, Restangular, toCunGuanUtils, SessionService, UserService) {
-
+.controller('AccountCtrl', function ($scope, $state, $rootScope, Restangular, toCunGuanUtils, SessionService, UserService) {
+    $rootScope.toActivate();
     /**
      * 默认头像
      */
@@ -56,12 +56,10 @@ angular.module('p2pSiteMobApp')
     $scope.recentlyQuestionnaire();
 
     $scope.goWithdraw = function() {
-      $state.go("root.userCenter.withdraw");
+      var stateTo = function(){$state.go("root.userCenter.withdraw");}
+      $rootScope.toActivate(stateTo);
     }
 
-    $scope.goRecharge = function() {
-      $state.go("root.userCenter.recharge");
-    }
 
     //查看更多 index:0体验金，1加息券，2邀请
     $scope.goIncreaseRateCoupon = function(index){

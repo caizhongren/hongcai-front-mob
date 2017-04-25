@@ -9,6 +9,7 @@
 angular.module('p2pSiteMobApp')
   .controller('CreditSecurityCtrl', function($scope, $rootScope, $state, $timeout, $stateParams, Restangular, WEB_DEFAULT_DOMAIN) {
     $scope.number = $stateParams.number;
+    $rootScope.toActivate();
     $rootScope.showLoadingToast = true;
     // 特权加息
     $scope.privilegeRate = {

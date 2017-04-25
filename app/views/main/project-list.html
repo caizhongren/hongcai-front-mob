@@ -67,7 +67,7 @@
     </div>
   </section>
   <section  ng-if="tabParam === 2" ng-class="{'padding-b-5': pageCount0 <= page}">
-    <div class="main-list-temp clear" ng-repeat="item in assignments" ui-sref="root.assignments-detail({number: item.number})">
+    <div class="main-list-temp clear" ng-repeat="item in assignments" ng-click="toDetail(item)">
       <div class="title ft-666">
         <span class="title-text" ng-show="widthFlag===0 && item.name.length <= 12"><span class="zhuan">转</span><span class="display-inb fl margin-t--0p2">{{item.name}}</span></span>
         <span class="title-text" ng-show="widthFlag===0 && item.name.length > 12"><span class="zhuan">转</span><span class="display-inb fl margin-t--0p2">{{item.name | limitTo:13}}...</span></span>

@@ -24,7 +24,6 @@ angular.module('p2pSiteMobApp')
       },{
         title: '债权转让',
     }];
-
     /**
      * 当前页项目列表
      */
@@ -86,7 +85,7 @@ angular.module('p2pSiteMobApp')
      */
     $scope.toDetail = function(project){
       if($rootScope.timeout){
-        $state.go('root.project', {number: project.number});
+          $scope.tabParam === 2 ? $state.go('root.assignments-detail', {number: project.number}) : $state.go('root.project', {number: project.number});
       }
     }
 

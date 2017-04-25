@@ -45,7 +45,10 @@ angular.module('p2pSiteMobApp')
     //跳转到充值页面
     $rootScope.toRecharge = function(){
       if($rootScope.timeout){
-        $state.go('root.userCenter.recharge');
+        var stateTo = function(){
+          $state.go('root.userCenter.recharge');
+        }
+        $rootScope.toActivate(stateTo);
       }
     }
 
@@ -101,23 +104,29 @@ angular.module('p2pSiteMobApp')
      * 激活存管通
      */
     $rootScope.payCompany = config.pay_company;
-    $rootScope.toActivate = function() {
+    $rootScope.toActivate = function(stateTo) {
       if ($rootScope.payCompany === 'yeepay'|| !$rootScope.isLogged) {
         return;
       }
       var userAuth = SessionService.getUserAuth();
-      if(userAuth){
-        return;
-      }
-
-      Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
+      var checkUserAuthStatus = function(userAuth,stateTo) {
         if(userAuth.ret !== -1 && userAuth.authStatus === 2 && !userAuth.active){
           $uibModal.open({
             animation: true,
             templateUrl: 'views/user-center/activate.html',
             controller: 'ActivateCtrl'
           });
+        }else {
+          stateTo();
         }
+      }
+      if(userAuth){
+        checkUserAuthStatus(userAuth);
+        return;
+      }
+
+      Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
+        checkUserAuthStatus(userAuth,stateTo);
       });
     } 
 

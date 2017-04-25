@@ -12,6 +12,7 @@ angular.module('p2pSiteMobApp')
     $rootScope.showFooter = false;
     $rootScope.showLoadingToast = true;
     var deviceCode = Utils.deviceCode();
+    $rootScope.toActivate();
     // 项目详情页面
     var number = $stateParams.number;
     if (!$stateParams.number) {
@@ -120,29 +121,31 @@ angular.module('p2pSiteMobApp')
     $scope.clicked = true;
     $scope.toInvest = function(project) {
       $scope.clicked = false;
-      if($scope.msg || project.investAmount < project.minInvest || !project.investAmount){
-        return;
-      }
-
-      $rootScope.showMsg($scope.msg);
-      var couponNumber = $scope.selectIncreaseRateCoupon != null ? $scope.selectIncreaseRateCoupon.number : '';
-      $rootScope.showLoadingToast = true;
-      Restangular.one('projects').one(number+'/users/' + '0').post('investment', {
-        investAmount: project.investAmount,
-        couponNumber: couponNumber,
-        device: Utils.deviceCode()
-      }).then(function(order){
-        $rootScope.showLoadingToast = false;
-        $scope.clicked = true;
-        // 重复下单后，response.number为undefined
-        if (order && order.ret !== -1) {
-          toCunGuanUtils.to('transfer', order.number, null, null, null, null);
-        } else {
-          $rootScope.tofinishedOrder();
-          $scope.msg = order.msg;
-          $rootScope.showMsg($scope.msg);
+      var toInvest = function(){
+        if($scope.msg || project.investAmount < project.minInvest || !project.investAmount){
+          return;
         }
-      });
+        $rootScope.showMsg($scope.msg);
+        var couponNumber = $scope.selectIncreaseRateCoupon != null ? $scope.selectIncreaseRateCoupon.number : '';
+        $rootScope.showLoadingToast = true;
+        Restangular.one('projects').one(number+'/users/' + '0').post('investment', {
+          investAmount: project.investAmount,
+          couponNumber: couponNumber,
+          device: Utils.deviceCode()
+        }).then(function(order){
+          $rootScope.showLoadingToast = false;
+          $scope.clicked = true;
+          // 重复下单后，response.number为undefined
+          if (order && order.ret !== -1) {
+            toCunGuanUtils.to('transfer', order.number, null, null, null, null);
+          } else {
+            $rootScope.tofinishedOrder();
+            $scope.msg = order.msg;
+            $rootScope.showMsg($scope.msg);
+          }
+        });
+      }
+      $rootScope.toActivate(toInvest);
     };
 
 
