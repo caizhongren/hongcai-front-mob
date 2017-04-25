@@ -106,7 +106,7 @@ angular.module('p2pSiteMobApp')
         return;
       }
       var userAuth = SessionService.getUserAuth();
-      var checkUserAuthStatus = function(userAuth,stateTo) {
+      var checkUserAuthStatus = function(userAuth, stateTo) {
         if(userAuth.ret !== -1 && userAuth.authStatus === 2 && !userAuth.active){
           $uibModal.open({
             animation: true,
@@ -120,12 +120,12 @@ angular.module('p2pSiteMobApp')
         }
       }
       if(userAuth){
-        checkUserAuthStatus(userAuth);
+        checkUserAuthStatus(userAuth, stateTo);
         return;
       }
 
       Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
-        checkUserAuthStatus(userAuth,stateTo);
+        checkUserAuthStatus(userAuth, stateTo);
       });
     } 
 
