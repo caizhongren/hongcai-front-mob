@@ -109,21 +109,24 @@ angular.module('p2pSiteMobApp')
 
     $scope.busy = false;
     $scope.recharge = function(amount) {
-      if ($scope.bankStatus && $scope.bankStatus == 1) {  //银行卡维护
-        $scope.maintainCard();
-        return;
-      }
-      
-      if (!amount || amount < 3 || amount > $scope.bankRemain || $scope.busy) {
-        return;
-      }
-    
-      $scope.busy = true;
-      $timeout(function() {
-        $scope.busy = false;
-      }, 1000);
+      var recharge = function() {
+        if ($scope.bankStatus && $scope.bankStatus == 1) {  //银行卡维护
+          $scope.maintainCard();
+          return;
+        }
+        
+        if (!amount || amount < 3 || amount > $scope.bankRemain || $scope.busy) {
+          return;
+        }
+        
+        $scope.busy = true;
+        $timeout(function() {
+          $scope.busy = false;
+        }, 1000);
 
-      toCunGuanUtils.to('recharge', amount, null, null, $scope.rechargeWay, $scope.expectPayCompany);
+        toCunGuanUtils.to('recharge', amount, null, null, $scope.rechargeWay, $scope.expectPayCompany);
+      }
+      $rootScope.toActivate(recharge);
     }
     Restangular.one('users/0').one('availableCash').get().then(function(response) {
       if (response.ret !== -1) {
@@ -138,10 +141,14 @@ angular.module('p2pSiteMobApp')
      * 绑定银行卡
      */
     $scope.bindBankcard = function() {
-      if ($scope.simpleWithdraw.cardStatus == 'VERIFIED' || $scope.simpleWithdraw.cardStatus == 'VERIFYING') {
-        return;
+      var bindBankcard = function() {
+        if ($scope.simpleWithdraw.cardStatus == 'VERIFIED' || $scope.simpleWithdraw.cardStatus == 'VERIFYING') {
+          return;
+        }
+        toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
       }
-      toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
+      $rootScope.toActivate(bindBankcard);
+      
     };
 
     //记录选择支付方式 'FUIOU':富友，'ALLINPAY'：通联，'UMPAY':通联优势， 'UCFPAY': 先锋支付

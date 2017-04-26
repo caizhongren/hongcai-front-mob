@@ -103,27 +103,31 @@ angular.module('p2pSiteMobApp')
      */
     $scope.clicked = false;
     $scope.toInvest = function(assignmentNum, assignmentAmount) {
-      if($scope.msg || !assignmentNum || !assignmentAmount){
-        return;
-      }
-
-      $rootScope.showMsg($scope.msg);
-      $rootScope.tofinishedOrder();
-      $rootScope.showLoadingToast = true;
-      Restangular.one('assignments/' + assignmentNum + '/orders' + '?amount=' + assignmentAmount).post('', {
-        amount: assignmentAmount,
-        device: Utils.deviceCode()
-      }).then(function(order){
-        $rootScope.showLoadingToast = false;
-        $scope.clicked = true;
-        // 重复下单后，response.number为undefined
-        if (order && order.ret !== -1) {
-          toCunGuanUtils.to('transfer', order.number, null, null, null, null);
-        } else {
-          $scope.msg = order.msg;
-          $rootScope.showMsg($scope.msg);
+      var toInvest = function() {
+        if($scope.msg || !assignmentNum || !assignmentAmount){
+          return;
         }
-      });
+
+        $rootScope.showMsg($scope.msg);
+        $rootScope.tofinishedOrder();
+        $rootScope.showLoadingToast = true;
+        Restangular.one('assignments/' + assignmentNum + '/orders' + '?amount=' + assignmentAmount).post('', {
+          amount: assignmentAmount,
+          device: Utils.deviceCode()
+        }).then(function(order){
+          $rootScope.showLoadingToast = false;
+          $scope.clicked = true;
+          // 重复下单后，response.number为undefined
+          if (order && order.ret !== -1) {
+            toCunGuanUtils.to('transfer', order.number, null, null, null, null);
+          } else {
+            $scope.msg = order.msg;
+            $rootScope.showMsg($scope.msg);
+          }
+        });
+      }
+      $rootScope.toActivate(toInvest);
+      
     };
 
     /**

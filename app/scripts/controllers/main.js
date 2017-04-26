@@ -54,13 +54,13 @@ angular.module('p2pSiteMobApp')
       annualEarnings: 0.00
     };
 
-    $scope.assignmentProject = {
-      name: '债权转让项目',
-      tab: 2,
-      currentStock: 0,
-      remainDay: 0,
-      annualEarnings: 0.00
-    };
+    // $scope.assignmentProject = {
+    //   name: '债权转让项目',
+    //   tab: 2,
+    //   currentStock: 0,
+    //   remainDay: 0,
+    //   annualEarnings: 0.00
+    // };
 
 
 
@@ -78,7 +78,7 @@ angular.module('p2pSiteMobApp')
       if (!$rootScope.isLogged) {
         $state.go('root.login');
       }else {
-        $state.go('root.userCenter.web-site-notice',{id: noticeId})
+        $state.go('root.userCenter.web-site-notice',{id: noticeId});
       }
     }
 
@@ -120,32 +120,32 @@ angular.module('p2pSiteMobApp')
     /**
     *债权转让列表
     */
-    $scope.getAssignmentList = function(page, pageSize) {
-      $scope.busy = true;
-      Restangular.one("assignments").get({
-        page: page,
-        pageSize: pageSize
-      }).then(function(response){
+    // $scope.getAssignmentList = function(page, pageSize) {
+    //   $scope.busy = true;
+    //   Restangular.one("assignments").get({
+    //     page: page,
+    //     pageSize: pageSize
+    //   }).then(function(response){
 
-        if(response && response.ret !== -1) {
-          $scope.assignmentProject.name = response.assignments[0].name;
-          $scope.assignmentProject.currentStock = response.assignments[0].currentStock;
-          $scope.assignmentProject.remainDay = response.assignments[0].remainDay;
-          $scope.assignmentProject.annualEarnings = response.assignments[0].annualEarnings;
-          $scope.assignmentProject.number = response.assignments[0].number;
-          localStorage.setItem('assignment', angular.toJson($scope.assignmentProject));
-        }
-      })
-    }
+    //     if(response && response.ret !== -1) {
+    //       $scope.assignmentProject.name = response.assignments[0].name;
+    //       $scope.assignmentProject.currentStock = response.assignments[0].currentStock;
+    //       $scope.assignmentProject.remainDay = response.assignments[0].remainDay;
+    //       $scope.assignmentProject.annualEarnings = response.assignments[0].annualEarnings;
+    //       $scope.assignmentProject.number = response.assignments[0].number;
+    //       localStorage.setItem('assignment', angular.toJson($scope.assignmentProject));
+    //     }
+    //   })
+    // }
 
     $scope.choiceProject = localStorage.getItem('choice') ? angular.fromJson(localStorage.getItem('choice')) : $scope.choiceProject;
     $scope.honorableProject = localStorage.getItem('honor') ? angular.fromJson(localStorage.getItem('honor')) : $scope.honorableProject;
-    $scope.assignmentProject = localStorage.getItem('assignment') ? angular.fromJson(localStorage.getItem('assignment')) : $scope.assignmentProject;
+    // $scope.assignmentProject = localStorage.getItem('assignment') ? angular.fromJson(localStorage.getItem('assignment')) : $scope.assignmentProject;
     $scope.notices = localStorage.getItem('notices') ? angular.fromJson(localStorage.getItem('notices')) : undefined;
     $scope.getNotice();
     $scope.getProjectList(1, 1, 5);
     $scope.getProjectList(1, 1, 6);
-    $scope.getAssignmentList(1, 1);
+    // $scope.getAssignmentList(1, 1);
 
     
     /**
@@ -171,6 +171,7 @@ angular.module('p2pSiteMobApp')
         return;
       }
       $state.go('root.userCenter.setting');
+      
     }
     /**
      * 查看体验金
@@ -181,8 +182,11 @@ angular.module('p2pSiteMobApp')
         return;
       }
       $state.go('root.userCenter.experience-money');
+     
     }
-
+    /**
+     * banner链接
+     */
     $scope.clickBanner = function(toStateOrUrl){
       if(toStateOrUrl.indexOf('root.') !== -1){
         $state.go(toStateOrUrl);
@@ -191,6 +195,13 @@ angular.module('p2pSiteMobApp')
       }
     }
 
+    //更多
+    $scope.linkMore = function(tab){
+      $state.go("root.project-list",{tab: tab});
+    }
+
+    //跳转活动中心
+    
     // 公告轮播
     $scope.timer = function(opj) {
       $(opj).find('ul').animate({

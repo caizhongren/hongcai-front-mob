@@ -11,7 +11,7 @@
         <span class="title-text ft-1p5" ng-show="widthFlag===1 || widthFlag===2">{{choiceProject.name}}</span>
         <span class="hot-project" ng-if="choiceProject.amount >0"></span>  
       </div>
-      <span class="more-list ft-1p2" ui-sref="root.project-list({tab: 0})">更多</span>    
+      <span class="more-list ft-1p2" ng-click="linkMore(0);">更多</span>    
       <img class="sold-out" src="/images/new-main/sold-out.png" alt="" ng-show="choiceProject.amount <=0">  
     </div>
     <div class="pro-info" ng-click="toDetail(choiceProject)">
@@ -44,7 +44,7 @@
         <span class="title-text ft-1p5" ng-show="widthFlag===1 || widthFlag===2">{{honorableProject.name}}</span>
         <span class="hot-project" ng-if="honorableProject.amount >0"></span>  
       </div>
-      <span class="more-list ft-1p2" ui-sref="root.project-list({tab: 1})">更多</span>    
+      <span class="more-list ft-1p2" ng-click="linkMore(1);">更多</span>    
       <img class="sold-out" src="/images/new-main/sold-out.png" alt="" ng-if="honorableProject.amount <=0">  
     </div>
     <div class="pro-info" ng-click="toDetail(honorableProject)">
@@ -67,7 +67,7 @@
   </div>
 
   <!-- 债权转让 -->
-  <div class="gap"></div>
+  <!-- <div class="gap"></div>
   <div class="main-list-temp clear border-none">
     <div class="projectType2"></div>
     <div class="new-title ft-666">
@@ -96,7 +96,7 @@
         <li><span class="asset-quality"></span><span class="scale-0p8 display-inb">资产优质</span></li>
       </ul>
     </div>
-  </div> 
+  </div>  -->
 
 
   <!-- 风险提醒 -->

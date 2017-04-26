@@ -8,7 +8,6 @@
 'use strict';
 angular.module('p2pSiteMobApp')
   .controller('assignmentsCtrl', function($timeout, $rootScope, $location, $stateParams, config, Restangular, $scope) {
-
     $rootScope.showLoadingToast = true;
     $scope.config = config;
 
