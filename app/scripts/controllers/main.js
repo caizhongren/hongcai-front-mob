@@ -157,11 +157,6 @@ angular.module('p2pSiteMobApp')
       }
     }
 
-    /**
-     * 是否激活存管通
-     */
-    $rootScope.toActivate();
-
    /**
     * 查看自动投标
     */
