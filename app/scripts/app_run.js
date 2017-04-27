@@ -181,7 +181,7 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
-      if(toState.name.indexOf('root.userCenter') !== -1 || toState.name.indexOf('root.main') !== -1) {
+      if(toState.name.indexOf('root.userCenter') !== -1) {
         $rootScope.toActivate();
       }
 
