@@ -58,7 +58,7 @@
         </div>
       </li>
       <!-- 募集期贴息 -->
-      <li class="margin-b--0p5" ng-hide="project.loanTime <= 0 || raiseInterestAmount <=0">
+      <li class="margin-b--0p5" ng-hide="creditRight.type === 6 || project.loanTime <= 0 || raiseInterestAmount <=0">
         <div class="timeline display-inb">
           <p  class="margin-b-0 grey-bg"></p>
           <div class="margin-t--0p5">
