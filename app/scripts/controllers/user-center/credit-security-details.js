@@ -42,7 +42,7 @@ angular.module('p2pSiteMobApp')
       $scope.projectBill = response.projectBill;
       
       // 年化收益率
-      $scope.annualEarnings = $scope.creditRight.type == 1 ? $scope.project.annualEarnings : $scope.creditRight.baseRate + $scope.creditRight.riseRate;
+      var annualEarnings = $scope.creditRight.baseRate + $scope.creditRight.riseRate;
       // 加息利率
       var increaseRateCouponValue = $scope.increaseRateCoupon ? $scope.increaseRateCoupon.value : 0;
 
@@ -52,7 +52,7 @@ angular.module('p2pSiteMobApp')
       var loanTime = $scope.project.loanTime > 0 ? new Date($scope.project.loanTime).setHours(0, 0, 0, 0) : 0;
       var oneDay = 24 * 60 * 60 * 1000;
       // 贴息金额
-      $scope.raiseInterestAmount = $scope.creditRight.amount * $scope.annualEarnings * parseInt(((loanTime - investTime))/oneDay) / 36500;
+      $scope.raiseInterestAmount = $scope.creditRight.amount * annualEarnings * parseInt(((loanTime - investTime))/oneDay) / 36500;
      
       //获取用户正在计息的加息券，通过这个去显示10%
       Restangular.one('/users/0/userIncreasingRateCoupons').get({}).then(function(response) {
