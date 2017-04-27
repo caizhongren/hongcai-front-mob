@@ -1172,9 +1172,6 @@ div, p {
       width: 100%;
       overflow: hidden;
       padding-top: 2.1rem; 
-      ul {
-        padding: 0 1.5rem;
-      }
       ul:first-child {
         margin-bottom: 0rem;
       }
@@ -1197,11 +1194,7 @@ div, p {
       ul li:nth-child(1) {
         margin-top: 0.3rem;
         margin-bottom: 0.3rem;
-        width: 35%;
-        text-align: left;
-        @media ( max-width : 320px ) {
-          width: 37%;
-        }
+        width: 33.3%;
         p:nth-child(1) {
           margin-bottom: 0.5rem;
           line-height: 4rem;
@@ -1222,7 +1215,7 @@ div, p {
       }
       ul li:nth-child(2) {
         box-sizing: border-box;
-        width: 30%;
+        width: 33%;
         p{
           text-align:left;
           font-size: 2rem;
@@ -1253,18 +1246,8 @@ div, p {
         }
       }
       ul li:nth-child(3) {
-        width: 31%;
-        text-align: right;
-        @media ( max-width : 414px ) {
-          width: 32%;
-        }
-        @media ( max-width : 375px ) {
-          width: 32%;
-        }
-        @media ( max-width : 360px ) {
-          width: 31%;
-        }
-        @media ( max-width : 320px ) {
+        width: 31.5%;
+        @media(max-width: 320px) {
           width: 30%;
         }
         span{
