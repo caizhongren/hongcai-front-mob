@@ -55,12 +55,14 @@ angular.module('p2pSiteMobApp')
      * 绑定银行卡
      */
     $scope.bindBankcard = function() {
-      if($scope.userAuth.authStatus !== 2) {
-        $rootScope.toRealNameAuth();
-        return;
+      var act = function() {
+        if($scope.userAuth.authStatus !== 2) {
+          $rootScope.toRealNameAuth();
+          return;
+        }
+        toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
       }
-      toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
-      
+      $rootScope.toActivate(act);
     }
 
     /*
@@ -94,17 +96,19 @@ angular.module('p2pSiteMobApp')
      */
     $scope.toAutoTender = function() {
       
-      if($scope.userAuth.authStatus !== 2) {
-        $rootScope.toRealNameAuth();
-        return;
+      var act = function() {
+        if($scope.userAuth.authStatus !== 2) {
+          $rootScope.toRealNameAuth();
+          return;
+        }
+        if($scope.userAuth.autoTransfer) {
+          $state.go('root.userCenter.autotender');
+        } else {
+          SessionService.removeUserAuth();
+          toCunGuanUtils.to('autoTransfer', null, null, null, null, null);
+        }
       }
-      if($scope.userAuth.autoTransfer) {
-        $state.go('root.userCenter.autotender');
-      } else {
-        SessionService.removeUserAuth();
-        toCunGuanUtils.to('autoTransfer', null, null, null, null, null);
-      }
-    
+      $rootScope.toActivate(act);
     };
 
 

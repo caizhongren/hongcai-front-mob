@@ -7,7 +7,7 @@
  */
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('assignmentsCtrl', function($timeout, $rootScope, $location, $stateParams, config, Restangular, $scope) {
+  .controller('assignmentsCtrl', function($timeout, $rootScope, $location, $stateParams, config, Restangular, $scope, $state) {
     $rootScope.showLoadingToast = true;
     $scope.config = config;
 
@@ -45,6 +45,14 @@ angular.module('p2pSiteMobApp')
 
     $scope.page = 1;
     $scope.pageSize = 5;
+
+    // 老用户拦截
+    $socpe.goTransfer = function(number) {
+      var stateTo = function() {
+        $state.go('root.userCenter.assignments-transfer-details',{number:number});
+      }
+      $rootScope.toActivate(stateTo);
+    }
 
     /**
      * 切换标签
