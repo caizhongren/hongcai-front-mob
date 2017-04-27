@@ -47,7 +47,7 @@ angular.module('p2pSiteMobApp')
     $scope.pageSize = 5;
 
     // 老用户拦截
-    $socpe.goTransfer = function(number) {
+    $scope.goTransfer = function(number) {
       var stateTo = function() {
         $state.go('root.userCenter.assignments-transfer-details',{number:number});
       }
