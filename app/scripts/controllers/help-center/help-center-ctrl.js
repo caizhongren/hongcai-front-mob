@@ -9,6 +9,6 @@
 angular.module('p2pSiteMobApp')
   .controller('HelpCenterCtrl', function($state, DateUtils, $stateParams, Restangular, $scope, $rootScope) {
     $rootScope.showFooter = false;
-
+    $rootScope.toActivate();
 
   });
