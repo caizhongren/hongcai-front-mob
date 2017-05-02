@@ -48,10 +48,7 @@ angular.module('p2pSiteMobApp')
 
     // 老用户拦截
     $scope.goTransfer = function(number) {
-      var stateTo = function() {
-        $state.go('root.userCenter.assignments-transfer-details',{number:number});
-      }
-      $rootScope.toActivate(stateTo);
+      $state.go('root.userCenter.assignments-transfer-details',{number:number});
     }
 
     /**
