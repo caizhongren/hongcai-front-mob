@@ -1605,7 +1605,16 @@ input[type="email"], input[type="number"], input[type="search"], input[type="tex
       vertical-align: baseline;
     }
 }
-
+.weui-loading1 {
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      vertical-align: middle;
+      -webkit-animation: weuiLoading 1s steps(12, end) infinite;
+      animation: weuiLoading 1s steps(12, end) infinite;
+      background: transparent url(images/loading.svg) no-repeat;
+      background-size: 100%;
+  }
 .weui-toast__content {
     margin: 0 0 15px;
 }
