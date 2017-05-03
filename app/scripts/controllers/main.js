@@ -8,7 +8,7 @@
 + */
 angular.module('p2pSiteMobApp')
   .controller('MainCtrl', function($scope, $rootScope, $state, Restangular, ProjectUtils, ScreenWidthUtil, $timeout) {
-
+    $rootScope.showLoadingToast = false;
     Restangular.one('banners').one('/').get({
       type : 2
     }).then(function(response){

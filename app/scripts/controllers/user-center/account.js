@@ -10,6 +10,7 @@
 angular.module('p2pSiteMobApp')
 
 .controller('AccountCtrl', function ($scope, $state, $rootScope, Restangular, toCunGuanUtils, SessionService, UserService) {
+    $rootScope.showLoadingToast = false;
     /**
      * 默认头像
      */
