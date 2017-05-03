@@ -12,8 +12,6 @@ angular.module('p2pSiteMobApp')
   	$scope.page = 1;
     $scope.pageSize = 5;
   	$scope.widthFlag = "";
-  	// $scope.projectDatas = [];
-    $scope.assignments = [];
     $rootScope.showLoadingToast = true;
     //限制项目名长度
   	$scope.widthFlag = ScreenWidthUtil.screenWidth();
@@ -108,7 +106,6 @@ angular.module('p2pSiteMobApp')
       $scope.busy = true;
       if(turn !== undefined) {
         $scope.pageCount = 2; 
-        console.log($scope.pageCount);
         $scope.projectDatas = type === 5 ? angular.fromJson(localStorage.getItem('choiceProjectList')) : angular.fromJson(localStorage.getItem('honorProjectList'));
         $rootScope.showLoadingToast = false;
         $scope.busy = false;
@@ -130,7 +127,6 @@ angular.module('p2pSiteMobApp')
         var serverTime = response.serverTime || (new Date().getTime());
         if(page === 1) {
           $scope.projectDatas = response.projectList;
-          $scope.projectDatas[0].pageCount = response.pageCount;
           type === 5 ? localStorage.setItem('choiceProjectList', angular.toJson($scope.projectDatas)) : localStorage.setItem('honorProjectList', angular.toJson($scope.projectDatas));
         }else {
           for (var i = 0; i < response.projectList.length; i++) {
@@ -152,7 +148,7 @@ angular.module('p2pSiteMobApp')
       $rootScope.showLoadingToast = true;
       $scope.busy = true;
       if(turn !== undefined) {
-        $scope.pageCount = 2; 
+        $scope.pageCount0 = 2; 
         $scope.assignments = angular.fromJson(localStorage.getItem('assignmentList'));
         $rootScope.showLoadingToast = false;
         $scope.busy = false;
