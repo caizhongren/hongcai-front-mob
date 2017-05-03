@@ -35,7 +35,7 @@ angular.module('p2pSiteMobApp')
 	/*现金券查询*/
 	$scope.status = 1;
 	$scope.page = 1;
-    $scope.pageSize = 2;
+    $scope.pageSize = 10;
     $scope.cashCoupons = [];
 	/*解决闪烁问题*/
 	$scope.loading = true;

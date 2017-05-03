@@ -1,5 +1,4 @@
 <!-- 项目列表页 在下面的div class="main-list-temp"上面添加ng-repeat即可  start list   ui-sref="root.project-detail"-->
-
 <div class="main-list">
   <div id ="main-list-title" class="bg-white">
     <div class="display-inb padding-l-1p5"  ng-repeat="tab in tabs"><a class="margin-b-0 ft-666 margin-auto " ng-class="{'title-border': tabParam === $index}" ng-click="switchTab($index)">{{tab.title}}</a></div>
