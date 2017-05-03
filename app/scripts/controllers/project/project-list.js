@@ -105,11 +105,9 @@ angular.module('p2pSiteMobApp')
       $rootScope.showLoadingToast = true;
       $scope.busy = true;
       if(turn !== undefined) {
-        $scope.pageCount = 2; 
         $scope.projectDatas = type === 5 ? angular.fromJson(localStorage.getItem('choiceProjectList')) : angular.fromJson(localStorage.getItem('honorProjectList'));
         $rootScope.showLoadingToast = false;
         $scope.busy = false;
-        return;
       }
       if ($scope.pageCount < $scope.page) {
         return;
@@ -148,11 +146,9 @@ angular.module('p2pSiteMobApp')
       $rootScope.showLoadingToast = true;
       $scope.busy = true;
       if(turn !== undefined) {
-        $scope.pageCount0 = 2; 
         $scope.assignments = angular.fromJson(localStorage.getItem('assignmentList'));
         $rootScope.showLoadingToast = false;
         $scope.busy = false;
-        return;
       }
       Restangular.one("assignments").get({
         page: page,
