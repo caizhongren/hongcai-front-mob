@@ -1206,6 +1206,9 @@ div, p {
       ul li:nth-child(2) {
         box-sizing: border-box;
         width: 33%;
+        @media(max-width: 360px) {
+          width: 32%;
+        }
         p{
           text-align:left;
           font-size: 2rem;
@@ -1237,6 +1240,9 @@ div, p {
       }
       ul li:nth-child(3) {
         width: 31%;
+        @media(max-width: 360px) {
+          width: 31.5%;
+        }
         span{
           display: inline-block;
         }

@@ -109,7 +109,7 @@
     <ul class="padding-1 margin-b-0 padding-b-0 normal-mid">
       <!-- 可用奖励 ：加息券 + 现金券-->
       <!-- 现金券 -->
-      <li class="margin-b-0p5 position-re" ng-click="selectCoupon(coupon)" ng-repeat=" coupon in increaseRateCoupons | orderBy : 'value'  track by $index |limitTo : initLimit " ng-show="coupon.type === 2">
+      <li class="margin-b-0p5 position-re" ng-click="selectCoupon(coupon)" ng-repeat=" coupon in increaseRateCoupons | orderBy : 'value' | limitTo : initLimit " ng-show="coupon.type === 2">
         <img ng-show="coupon.type === 2" src="/images/rate-ticket2.png" alt="">
         <p ng-show="coupon.type === 2" class="fl position-ab margin-b-0 ticket-left margin-l-p1"><span class="ft-1p6">￥</span>{{coupon.value | number }}</p>
         <div ng-show="coupon.type === 2" class="position-ab ticket-right">
@@ -119,7 +119,7 @@
         </div>
       </li>
         <!-- 加息券 -->
-      <li class="margin-b-0p5 position-re" ng-click="selectCoupon(coupon)" ng-repeat=" coupon in increaseRateCoupons | orderBy : '-value'  track by $index |limitTo : initLimit " ng-show="coupon.type === 1">
+      <li class="margin-b-0p5 position-re" ng-click="selectCoupon(coupon)" ng-repeat=" coupon in increaseRateCoupons | orderBy : '-value' | limitTo : initLimit " ng-show="coupon.type === 1">
         <img ng-show="coupon.type === 1" src="/images/rate-ticket.png" alt="">
         <p ng-show="coupon.type === 1" class="fl position-ab margin-b-0 ticket-left">{{coupon.value | number : 1}}<span class="ft-1p5">%</span></p>
         <div ng-show="coupon.type === 1" class="position-ab ticket-right">
@@ -134,7 +134,7 @@
       <span class="text-underline ">查看更多</span>
     </p>
     <p class="text-center padding-t-1 padding-b-1 ft-grey4 margin-b-0 boder-grey-t boder-grey-b click-active" ng-click="unUseIncreaseRateCoupon()">暂不使用</p>
-    <p class="text-center padding-t-1 padding-b-1 margin-b-0 ft-orange click-cancel" ng-click="showSelectIncreaseRateCoupon=false;initLimit=3;">取消</p>
+    <p class="text-center padding-t-1 padding-b-1 margin-b-0 ft-orange click-cancel" ng-click="showSelectIncreaseRateCoupon=false;initLimit=4;">取消</p>
   </div>
 </div>
 

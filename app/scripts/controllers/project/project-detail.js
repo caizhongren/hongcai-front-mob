@@ -23,9 +23,9 @@ angular.module('p2pSiteMobApp')
     $scope.increaseRateProfit = 0;
     $scope.projectStatusMap = projectStatusMap;
     $scope.unSelectCouponMsg = '';
-    $scope.initLimit = 3;
+    $scope.initLimit = 4;
     $scope.resetInitLimit = function(){
-        $scope.initLimit = 3;
+        $scope.initLimit = 4;
     }
 
     if(SessionService.isLogin()){
