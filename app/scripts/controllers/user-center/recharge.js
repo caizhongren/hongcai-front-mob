@@ -110,11 +110,17 @@ angular.module('p2pSiteMobApp')
     $scope.busy = false;
     $scope.recharge = function(amount) {
       var recharge = function() {
+        var curHours = new Date().getHours(); //当前小时值
+        var curMinutes = new Date().getMinutes(); //当前分钟值
         if ($scope.bankStatus && $scope.bankStatus == 1) {  //银行卡维护
           $scope.maintainCard();
           return;
         }
-        
+        //24点前后6分钟限制
+        if((curHours === 23 && curMinutes >= 54) || (curHours === 0 && curMinutes <= 6)) {
+          $scope.rechargeTimeLimit = true;
+          return;
+        }
         if (!amount || amount < 3 || amount > $scope.bankRemain || $scope.busy) {
           return;
         }

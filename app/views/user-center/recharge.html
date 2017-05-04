@@ -47,7 +47,7 @@
           <input name="amount" type="number" class="input-amount u-full-width padding-1 margin-t-0p5" ng-model="rechargeAmount" ng-focus="footer();" ng-blur="footer()" required placeholder="该卡本次最多充值{{bankRemain ||0}}元">
         </div>
         <div class="padding-l-2 padding-r-2">
-          <button type="submit" class="u-full-width ft-1p6 button button-primary margin-t-0p5 {{rechargeForm.$invalid || busy || rechargeAmount < 3 || rechargeAmount > bankRemain ? 'button-disabled' : ''}}" ng-disabled="rechargeForm.$invalid || busy" ng-click="recharge(rechargeAmount);">立即充值</button>
+          <button type="submit" class="u-full-width ft-1p6 button button-primary margin-t-0p5 {{rechargeForm.$invalid || busy || rechargeAmount < 3 || rechargeAmount > bankRemain ? 'button-disabled' : ''}}" ng-disabled="rechargeForm.$invalid || busy " ng-click="recharge(rechargeAmount);">立即充值</button>
         </div>
       </div>
     </form>
@@ -122,4 +122,15 @@
       </div>
     </div>
   </div>  
+</div>
+<!-- 充值限制 -->
+<div class="project-mask bankcard-setting" ng-show="rechargeTimeLimit" style="" ng-init="rechargeTimeLimit = false;">
+  <div class="project-mask-inner margin-t-20 text-center bg-white ft-black4 ft-1p6 padding-t-3 padding-b-1" style="">
+    <div>
+     <p class="margin-b-0 padding-l-2 padding-r-2 text-justify">尊敬的用户，23:55 — 00:05是充值系统维护期，请稍后操作。</p>
+      <div class="padding-l-2 padding-r-2 clearfix margin-t-2">
+        <button class="text-center bg-orange ft-white" ng-click="rechargeTimeLimit = false">我知道了</button>
+      </div>
+    </div><!-- end ngIf: account.tTotalAssets > 2 -->
+  </div>
 </div>
