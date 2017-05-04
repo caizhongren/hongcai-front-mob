@@ -24,7 +24,7 @@
 					    			<p class="margin-b-0">投资产品：{{ item.investProductType == 5 ? '宏财精选' : item.investProductType == 6 ? '宏财尊贵' : '宏财精选、宏财尊贵'}}</p>
 					    			<p class="margin-b-0">加息天数：{{ item.investProductType == '5,6' ? '1天' : '与所投资产品时长相同'}}</p>
 					    			<p class="margin-b-0 ">有效期：{{item.createTime | date :'yyyy.MM.dd'}}-{{item.endTime | date :'yyyy.MM.dd'}}</p>
-					    			<p class="withdraw margin-b-0 pull-right" ng-click="toProjectList($index)" ng-if="item.type !== 5">马上使用</p>
+					    			<p class="withdraw margin-b-0 pull-right" ng-click="toProjectList(item.investProductType,$index)" ng-if="item.type !== 5">马上使用</p>
 					    		</div>
 				    		</div>
 				    	</div>

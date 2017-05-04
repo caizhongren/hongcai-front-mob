@@ -101,23 +101,31 @@ angular.module('p2pSiteMobApp')
      * 激活存管通
      */
     $rootScope.payCompany = config.pay_company;
-    $rootScope.toActivate = function() {
+    $rootScope.toActivate = function(stateTo) {
       if ($rootScope.payCompany === 'yeepay'|| !$rootScope.isLogged) {
         return;
       }
       var userAuth = SessionService.getUserAuth();
-      if(userAuth){
-        return;
-      }
-
-      Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
+      var checkUserAuthStatus = function(userAuth, stateTo) {
         if(userAuth.ret !== -1 && userAuth.authStatus === 2 && !userAuth.active){
           $uibModal.open({
             animation: true,
             templateUrl: 'views/user-center/activate.html',
             controller: 'ActivateCtrl'
           });
+        }else {
+          if(stateTo) {
+            stateTo();
+          }
         }
+      }
+      if(userAuth){
+        checkUserAuthStatus(userAuth, stateTo);
+        return;
+      }
+
+      Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
+        checkUserAuthStatus(userAuth, stateTo);
       });
     } 
 
@@ -140,6 +148,7 @@ angular.module('p2pSiteMobApp')
     }
     $rootScope.$on('$stateChangeStart', function(event, toState) {
       var title = '宏财网';
+      var path = $location.path().split('/')[1];
       if (toState.data && toState.data.title) {
         title = toState.data.title; 
       }
@@ -172,6 +181,9 @@ angular.module('p2pSiteMobApp')
         return;
       }
 
+      if(toState.name.indexOf('root.userCenter') !== -1) {
+        $rootScope.toActivate();
+      }
 
 
       // $rootScope.showTitle = titleMap[path];

@@ -1,6 +1,6 @@
 
 <!-- 债权详情 -->
-<div class="credit-detail" ng-class="{'bg-offWhite':creditRight.type !== 3,'':creditRight.type == 3}" auto-height>
+<div class="credit-detail position-re" ng-class="{'bg-offWhite':creditRight.type !== 3,'':creditRight.type == 3}" auto-height>
   <div class="detail-header ft-white">
     <img src="/images/user-center/security-bg.png" width="100%" class="display-bl">
     <div class="annualEarnings position-ab text-center">
@@ -55,6 +55,21 @@
           <span class="hyphen display-inb" ng-class="{'grey-bg':project.loanTime > 0,'orange-bg':project.loanTime <= 0}"></span>
           <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="project.loanTime > 0 || creditRight.type == 3">计息日期：{{project.loanTime | date:'yyyy-MM-dd'}}</p>
           <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="project.loanTime <= 0" ng-hide="creditRight.type === 6 || creditRight.type === 3 ">项目募集中</p>
+        </div>
+      </li>
+      <!-- 募集期贴息 -->
+      <li class="margin-b--0p5" ng-hide="creditRight.type === 6 || project.loanTime <= 0 || raiseInterestAmount <=0">
+        <div class="timeline display-inb">
+          <p  class="margin-b-0 grey-bg"></p>
+          <div class="margin-t--0p5">
+            <img src="/images/user-center/circle-ed.png" width="19%" class="display-inb">
+          </div>
+        </div>
+        <div class="step display-inb position-ab margin-l--0p5">
+          <span class="display-inb grey-bg"></span>
+          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5">贴息：募集期贴息{{raiseInterestAmount | number:2}}元<br/>
+            <span class="ft-blue7 ft-1p2 margin-t--0p5">{{project.loanTime | date:'yyyy-MM-dd'}}</span>
+          </p>
         </div>
       </li>
       <!-- 每次回款 -->

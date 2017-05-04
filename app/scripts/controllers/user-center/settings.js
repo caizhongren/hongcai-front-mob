@@ -9,7 +9,6 @@
  */
 angular.module('p2pSiteMobApp')
   .controller('SettingsCtrl', function($scope, $rootScope, $state, md5, Utils, Restangular, WEB_DEFAULT_DOMAIN, $timeout, $location, toCunGuanUtils, SessionService, UserService, restmod) {
-    
     if ($location.path().split('/')[2] === 'setting') {
       $rootScope.showFooter = false;
     }
@@ -41,17 +40,29 @@ angular.module('p2pSiteMobApp')
           response.cardNo = response.cardNo.substr(response.cardNo.length - 4);
         }
     });
-
-
     /**
-     * 绑定银行卡
+     * 跳转到某个路由
      */
-    $scope.bindBankcard = function() {
+    $scope.toAnyState = function(state) {
       if($scope.userAuth.authStatus !== 2) {
         $rootScope.toRealNameAuth();
         return;
       }
-      toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
+      $state.go(state);
+    }
+    
+    /**
+     * 绑定银行卡
+     */
+    $scope.bindBankcard = function() {
+      var act = function() {
+        if($scope.userAuth.authStatus !== 2) {
+          $rootScope.toRealNameAuth();
+          return;
+        }
+        toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
+      }
+      $rootScope.toActivate(act);
     }
 
     /*
@@ -85,17 +96,19 @@ angular.module('p2pSiteMobApp')
      */
     $scope.toAutoTender = function() {
       
-      if($scope.userAuth.authStatus !== 2) {
-        $rootScope.toRealNameAuth();
-        return;
+      var act = function() {
+        if($scope.userAuth.authStatus !== 2) {
+          $rootScope.toRealNameAuth();
+          return;
+        }
+        if($scope.userAuth.autoTransfer) {
+          $state.go('root.userCenter.autotender');
+        } else {
+          SessionService.removeUserAuth();
+          toCunGuanUtils.to('autoTransfer', null, null, null, null, null);
+        }
       }
-      if($scope.userAuth.autoTransfer) {
-        $state.go('root.userCenter.autotender');
-      } else {
-        SessionService.removeUserAuth();
-        toCunGuanUtils.to('autoTransfer', null, null, null, null, null);
-      }
-    
+      $rootScope.toActivate(act);
     };
 
 

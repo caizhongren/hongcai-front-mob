@@ -10,7 +10,7 @@
           </div>
         </div>
         <div class="fr margin-r-1 margin-t-1p3 text-right">
-          <div class="message-icon" ui-sref="root.userCenter.messages"><!--<i class="fa fa-envelope-o" aria-hidden="true">--><img src="/images/user-center/envelope.png" width="35%" class="margin-t-0p2 display-inb"><p class="red-point" ng-if="(unReadMsgs + unReadNotices) > 0"></p><!-- </i> --></div>
+          <div class="message-icon" ui-sref="root.userCenter.messages"><!--<i class="fa fa-envelope-o" aria-hidden="true">--><img src="/images/user-center/envelope.png" width="35%" class="margin-t-0p2 display-inb"><p class="red-point outside-point" ng-if="(unReadMsgs + unReadNotices) > 0"></p><!-- </i> --></div>
         </div>
     </div>
       <div class="text-center ft-white">
@@ -42,7 +42,7 @@
         <div class="fl text-center ft-1p8 ft-orange width-half" ng-click="goWithdraw()">
           <span class="user-choice">取现</span><span class="fr vertical-line border-grey-r1"></span>
         </div>
-        <div class="fr text-center ft-1p8 ft-orange width-half" ng-click="goRecharge()"><span>充值</span></div>
+        <div class="fr text-center ft-1p8 ft-orange width-half" ng-click="toRecharge()"><span>充值</span></div>
       </div>
     </div>
     <div class="margin-b-1 bg-white  clearfix border-grey-t border-grey-bottom user-choice0" ng-if="userAuth.authStatus !==  2">

@@ -9,8 +9,8 @@
  */
 angular.module('p2pSiteMobApp')
 
-.controller('AccountCtrl', function ($scope, $state, Restangular, toCunGuanUtils, SessionService, UserService) {
-
+.controller('AccountCtrl', function ($scope, $state, $rootScope, Restangular, toCunGuanUtils, SessionService, UserService) {
+    $rootScope.showLoadingToast = false;
     /**
      * 默认头像
      */
@@ -59,9 +59,6 @@ angular.module('p2pSiteMobApp')
       $state.go("root.userCenter.withdraw");
     }
 
-    $scope.goRecharge = function() {
-      $state.go("root.userCenter.recharge");
-    }
 
     //查看更多 index:0体验金，1加息券，2邀请
     $scope.goIncreaseRateCoupon = function(index){
