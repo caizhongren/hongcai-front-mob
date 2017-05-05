@@ -1,15 +1,16 @@
 <div class="bind-wechat padding-l-1 padding-r-1 text-center">
 	<img src="/images/bind-wechat/hc-icon.png" alt="" class="margin-auto display-bl margin-b-2" width="31.3%">
-	<form name="bindForm" class="bind-form">
+	<form name="bindForm" class="bind-form clearfix margin-b-0 padding-b-0">
 		<div class="to-bind">
-		  <input id="username" name="username" required="required" type="tel" ng-model="user.mobile" placeholder="请输入手机号" required><br>
-		  <input id="password" name="password" ng-model="user.password" required="required" type="password" placeholder="请输入登录密码" class="input-pwd" required/>
+		  <input id="username" name="username" type="tel" ng-model="wechatUser.mobile" placeholder="请输入手机号" required><br>
+		  <input id="password" name="password" ng-model="wechatUser.password" type="password" placeholder="请输入登录密码" class="input-pwd" required/>
 		  <span class="pwd-eyes" id="toggle-eyes" select-eyes>
 		  	<!-- <i class="fa fa-eye-slash ft-9f" select-eyes></i> -->
 		  </span>
 		</div>
-		<p class="login margin-0 text-center margin-t-2">
-	      <button type="submit" class="button button-primary column ft-normal margin-t-4 margin-b-1p5 {{mobileCaptchaForm.$invalid ? 'button-disabled1' : ''}}" ng-click="toMobileLogin(user)" ng-disabled="mobileCaptchaForm.$invalid || busy">立即绑定{{hide}}</button>
+		<p class="login margin-0 text-center margin-b-0">
+	      <button type="submit" class="button button-primary column ft-normal margin-t-4 margin-b-1p5 {{bindForm.$invalid ? 'button-disabled1' : ''}}" ng-disabled='busy||bindForm.$invalid' ng-click=toBind(wechatUser);>立即绑定</button>
 	    </p>
 	</form>
+	<p class="to-register" ng-click="toRegister();">还没有宏财网账号>></p>
 </div>

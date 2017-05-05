@@ -166,7 +166,7 @@ p2pSiteMobApp
         }
       })
       .state('root.register2', {
-        url: '/register?inviteCode',
+        url: '/register?inviteCode&redirectUrl',
         data: {
           title: '注册'
         },
