@@ -286,5 +286,11 @@ angular.module('p2pSiteMobApp')
     $scope.blurNumber = function(){
       $("#invest-input").blur();
     }
-    
+    //点击蒙层关闭弹窗
+    $scope.hideCoupons = function($event) {
+      var _con = angular.element('#coupons');   // 设置目标区域
+      if(!_con .is($event.target) && _con .has($event.target).length === 0){ 
+        $scope.showSelectIncreaseRateCoupon = false;
+      }
+    }
   });
