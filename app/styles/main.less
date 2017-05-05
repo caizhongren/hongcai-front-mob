@@ -1304,4 +1304,115 @@ div, p {
   }
 }
 
+//微信绑定成功页面
+.bind-status {
+  background: url('/images/bind-wechat/bind-status-bg.jpg') no-repeat 0 0;
+  background-size: 100% 100%;
+  .bind-success {
+    padding-top: 11rem;
+    .red-bag {
+      top: 4rem;
+      left: 34%;
+    }
+    .hc-baby {
+      margin-right: -17%;
+    }
+    .hc-baby-speek {
+      margin-top: 2rem;
+      margin-left: 23%;
+    }
+    p.bind-success-tip {
+      color: #f85a10;
+    }
+    p.bind-success-tip2 {
+      color: #6b4a41;
+      line-height: 24rem;
+    }
+    @media(min-width:320px) {
+      padding-top: 10rem;
+      p.bind-success-tip2 {
+        line-height: 15rem;
+      }
+    }
+    @media(min-width:360px) {
+      padding-top: 11.3rem;
+      p.bind-success-tip2 {
+        line-height: 18rem;
+      }
+    }
+    @media(min-width:375px) {
+      padding-top: 11.8rem;
+    }
+    @media(min-width:411px) {
+      padding-top: 10.5rem;
+    }
+    @media(min-width:412px) {
+      padding-top: 13rem;
+      p.bind-success-tip2 {
+        line-height: 22rem;
+      }
+    }
+  }
+  .binded {
+    padding-top: 7rem;
+    img:first-child {
+      margin-left: 22%;
+    }
+    img:nth-child(2) {
+      left: 27%;
+      top: 14rem;
+      @media(min-width: 360px) {
+        top: 16rem;
+      }
+      @media(min-width: 411px) {
+        top: 15.6rem;
+      }
+      @media(min-width: 412px) {
+        top: 17.6rem;
+      }
+    }
+    img:nth-child(3) {
+      margin: 12rem auto 0;
+      @media(min-width: 360px) {
+        margin-top: 15rem;
+      }
+      @media(min-width: 375px) {
+        margin-top: 16rem;
+      }
+      @media(min-width: 411px) {
+        margin-top: 15rem;
+      }
+      @media(min-width: 412px) {
+        margin-top: 18rem;
+      }
+    }
+    p {
+      color: #6b4a41;
+      margin-top: 1rem;
+    }
+  }
+}
+//绑定微信页
+.bind-wechat {
+  padding-top: 7rem;
+  .bind-form {
+    .to-bind {
+      input {
+        height: 56px;
+      }
+      .pwd-eyes {
+        height: 56px;
+        line-height: 56px;
+        background: url('/images/bind-wechat/close-eye.png') no-repeat center center;
+        background-size: 50%;
+      }
+      .pwd-eyes.open-eye {
+        background: url('/images/bind-wechat/open-eye.png') no-repeat center center;
+        background-size: 50%;
+      }
+    }
+  }
+}
+
+
 
