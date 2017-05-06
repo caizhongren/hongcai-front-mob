@@ -329,7 +329,8 @@ angular.module('p2pSiteMobApp')
         'assignments',
         'assignment_qr',
         'credits-overview',
-        'daily-lottery'
+        'daily-lottery',
+        'bind-wechat-app'
       ];
       if (notShowFooterRoute.indexOf(path) === -1) {
         $rootScope.showFooter = true;
