@@ -61,6 +61,10 @@ angular.module('p2pSiteMobApp')
                 $scope.busy = false;
             },500)
             if(!response || response.ret === -1){
+                if(response.code === -1207){
+                    $state.go('root.bindWechat-status',{status:1});
+                    return;
+                }
                 $rootScope.showMsg(response.msg);
                 return;
             }
