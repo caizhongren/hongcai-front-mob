@@ -217,6 +217,11 @@ angular.module('p2pSiteMobApp')
 
           var wechat_code = $location.search().code;
 
+          if（wechat_code == ''）{//  没有code就再去微信授权
+            Utils.redirectToWechatAuth(location.href);
+            return;
+          }
+
           // 用户未登录但已经有code，去登录
           Restangular.one('users/' + wechat_code + '/openid').get().then(function(response) {
             if (response.ret == -1) { //微信授权登录失败
