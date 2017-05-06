@@ -11,6 +11,7 @@
 angular.module('p2pSiteMobApp')
   .controller('BindWechatCtrl', function($scope, $rootScope, $state, $location, $timeout, checkPwdUtils, Restangular, md5) {
     $rootScope.showFooter = false;
+    $rootScope.msg = '';
     
     // console.log(SessionService.getUser());
     /**
@@ -34,12 +35,6 @@ angular.module('p2pSiteMobApp')
           }
         }
     })
-    //监控密码
-    $scope.$watch('wechatUser.password', function(newVal) {
-        if(newVal) {
-            checkPwdUtils.showPwd1(newVal);
-        }
-    })
     //去注册
     $scope.toRegister = function() {
       if (!$rootScope.timeout) {
@@ -53,24 +48,19 @@ angular.module('p2pSiteMobApp')
     **/
     $scope.busy = false;
     $scope.toBind = function(wechatUser) {
-        var passwordMsg = checkPwdUtils.showPwd2(wechatUser.password)
+        // var passwordMsg = checkPwdUtils.showPwd2(wechatUser.password)
         if(!wechatUser.mobile || !wechatUser.password || $scope.busy) {
             return;
         }
-        $scope.busy = true;
         if(!$scope.mobilePattern.test(wechatUser.mobile)) {
            $rootScope.showMsg('手机号码格式不正确');
            return; 
-        }
-        if(passwordMsg !== '') {
-            $rootScope.showMsg(passwordMsg);
-            return;
         }
         if($scope.isBindWechat){
            $state.go('root.bindWechat-status',{status:1}); 
            return;
         }
-
+        $scope.busy = true;
         Restangular.one('activitys/').post('wechatSubscriptionBinding',{
             mobile: wechatUser.mobile,
             password: md5.createHash(wechatUser.password)
