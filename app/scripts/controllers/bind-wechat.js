@@ -9,16 +9,15 @@
  */
 
 angular.module('p2pSiteMobApp')
-  .controller('BindWechatCtrl', function($scope, $rootScope, $state, $location, $timeout, checkPwdUtils, SessionService, Restangular, md5) {
+  .controller('BindWechatCtrl', function($scope, $rootScope, $state, $location, $timeout, checkPwdUtils, Restangular, md5) {
     $rootScope.showFooter = false;
-    $scope.openid = SessionService.getUser().openid;
+    
+    // console.log(SessionService.getUser());
     /**
     * 查询用户绑定信息
     **/
     
-    Restangular.one('/activitys/isBindings').get({
-        openId: $scope.openid
-    }).then(function(response){
+    Restangular.one('/activitys/isBindings').get({}).then(function(response){
         if (!response || response.ret === -1) {
             return;
         }
@@ -74,17 +73,15 @@ angular.module('p2pSiteMobApp')
 
         Restangular.one('activitys/').post('wechatSubscriptionBinding',{
             mobile: wechatUser.mobile,
-            password: md5.createHash(wechatUser.password),
-            openId: $scope.openid
+            password: md5.createHash(wechatUser.password)
         }).then(function(response){
-            
+            $timeout(function(){
+                $scope.busy = false;
+            },500)
             if(!response || response.ret === -1){
                 $rootScope.showMsg(response.msg);
                 return;
             }
-            $timeout(function(){
-                $scope.busy = false;
-            },500)
             $state.go('root.bindWechat-status',{status:0});
         })
         
