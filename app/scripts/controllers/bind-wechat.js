@@ -9,15 +9,15 @@
  */
 
 angular.module('p2pSiteMobApp')
-  .controller('BindWechatCtrl', function($scope, $rootScope, $state, $location, $timeout, checkPwdUtils, Restangular, md5) {
+  .controller('BindWechatCtrl', function($scope, $rootScope, $state, $location, $timeout, checkPwdUtils, SessionService, Restangular, md5) {
     $rootScope.showFooter = false;
-
+    $scope.openid = SessionService.getUser().openid;
     /**
     * 查询用户绑定信息
     **/
     
     Restangular.one('/activitys/isBindings').get({
-        openId: $rootScope.openid
+        openId: $scope.openid
     }).then(function(response){
         if (!response || response.ret === -1) {
             return;
@@ -37,7 +37,9 @@ angular.module('p2pSiteMobApp')
     })
     //监控密码
     $scope.$watch('wechatUser.password', function(newVal) {
-        checkPwdUtils.showPwd1(newVal);
+        if(newVal) {
+            checkPwdUtils.showPwd1(newVal);
+        }
     })
     //去注册
     $scope.toRegister = function() {
@@ -66,23 +68,24 @@ angular.module('p2pSiteMobApp')
             return;
         }
         if($scope.isBindWechat){
-           $state.go('root.bindWechat-status',{status:0}); 
+           $state.go('root.bindWechat-status',{status:1}); 
            return;
         }
 
         Restangular.one('activitys/').post('wechatSubscriptionBinding',{
             mobile: wechatUser.mobile,
             password: md5.createHash(wechatUser.password),
-            openId: $rootScope.openid
+            openId: $scope.openid
         }).then(function(response){
             
             if(!response || response.ret === -1){
+                $rootScope.showMsg(response.msg);
                 return;
             }
             $timeout(function(){
                 $scope.busy = false;
             },500)
-            $state.go('root.bindWechat-status',{status:1});
+            $state.go('root.bindWechat-status',{status:0});
         })
         
         

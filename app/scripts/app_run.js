@@ -223,7 +223,6 @@ angular.module('p2pSiteMobApp')
               Utils.redirectToWechatAuth(location.href);
               return;
             }
-            $rootScope.openid = response.openid;
             SessionService.loginSuccess(response);
             $rootScope.isLogged = response.mobile || response.email;
 
@@ -234,7 +233,6 @@ angular.module('p2pSiteMobApp')
             } else if (response.ret == -1) { // 未拿到openid再次请求授权
               Utils.redirectToWechatAuth(location.href);
             } 
-            console.log(response);
           });
 
         }
