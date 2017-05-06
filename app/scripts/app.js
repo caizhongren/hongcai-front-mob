@@ -69,21 +69,6 @@ p2pSiteMobApp
         }
       })
 
-      //app向公众号引流引导落地页
-      .state('root.bind-wechat-app', {
-        url: '/bind-wechat-app',
-        views: {
-          '': {
-            templateUrl: 'views/bind-wechat-app.html',
-            controller: 'BindWechat',
-            controllerUrl: 'scripts/controllers/bind-wechat-ctrl'
-          }
-        },
-        data: {
-          title: '绑定微信有钱领'
-        }
-      })
-
       //绑定微信页面
       .state('root.bind-wechat', {
         url: '/bind-wechat',
