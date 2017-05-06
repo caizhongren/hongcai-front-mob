@@ -81,13 +81,13 @@ p2pSiteMobApp
         }
       })
       //微信绑定成功、已绑定页面
-      .state('root.bindWechat-success', {
-        url: '/bindWechat-success',
+      .state('root.bindWechat-status', {
+        url: '/bindWechat-status?status',
         views: {
           '': {
-            templateUrl: 'views/bindWechat-success.html',
+            templateUrl: 'views/bindWechat-status.html',
             controller: 'BindSuccessCtrl',
-            controllerUrl: 'scripts/controllers/bindWechat-success'
+            controllerUrl: 'scripts/controllers/bindWechat-status'
           }
         }
       })

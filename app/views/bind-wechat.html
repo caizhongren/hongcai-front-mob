@@ -1,4 +1,4 @@
-<div class="bind-wechat padding-l-1 padding-r-1 text-center" ng-if="!isBindWechat">
+<div class="bind-wechat padding-l-1 padding-r-1 text-center">
 	<img src="/images/bind-wechat/hc-icon.png" alt="" class="margin-auto display-bl margin-b-2" width="31.3%">
 	<form name="bindForm" class="bind-form clearfix margin-b-0 padding-b-0">
 		<div class="to-bind">
@@ -13,13 +13,4 @@
 	    </p>
 	</form>
 	<p class="to-register" ng-click="toRegister();">还没有宏财网账号>></p>
-</div>
-<div class="bind-status" auto-h ng-if="isBindWechat">
-	<!-- 已绑定 -->
-	<div class="binded position-re clearfix" ng-if="status === 1" ui-sref="root.bindWechat-status({status:0})">
-		<img src="/images/bind-wechat/red-bag.png" alt="" class="display-bl margin-l-2" width="11%">
-		<img src="/images/bind-wechat/binded.png" alt="" class="display-bl position-ab" width="50%">
-		<img src="/images/bind-wechat/hc-baby2.png" alt="" class="display-bl" width="21%">
-		<p class="text-center ft-1p2">贪多容易长肉肉哦！</p>
-	</div>
 </div>
