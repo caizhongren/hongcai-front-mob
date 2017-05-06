@@ -217,7 +217,7 @@ angular.module('p2pSiteMobApp')
 
           var wechat_code = $location.search().code;
 
-          if（wechat_code == ''）{//  没有code就再去微信授权
+          if(wechat_code == ''){//  没有code就再去微信授权
             Utils.redirectToWechatAuth(location.href);
             return;
           }
