@@ -70,6 +70,13 @@ angular.module('p2pSiteMobApp')
             $state.go('root.bindWechat-status',{status:0});
         })
         
-        
     }
-  });
+
+  
+    angular.element('#psw').focus(function(){
+        angular.element('#toggle-eyes').addClass('red-border');
+    }).blur(function(){
+        angular.element('#toggle-eyes').removeClass('red-border');
+    })
+    
+});
