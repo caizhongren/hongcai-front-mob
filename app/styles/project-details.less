@@ -289,12 +289,27 @@
   bottom: 0;
   right: 0;
   background-color: rgba(0,0,0,0.25);
+  p.click-active {
+    background-color: #f8f7f7;
+    position: absolute;
+    bottom: 46px;
+    left: 0;
+    width: 100%;
+   }
+  p.click-cancel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    
+   }
   .rate-increase-list{
     bottom: 0;
-    max-height: 65%;
+    max-height: 60%;
     overflow-y: scroll;
     ul{
-      padding-bottom: 0;
+      //padding-bottom: 0;
       li{
         .ticket-left {//¼ÓÏ¢È¯»î¶¯½±Àø
           left: 2rem;
@@ -362,9 +377,6 @@
           }
         }
       }
-    p.click-active {
-      background-color: #f8f7f7;
-     }
  }
 .hongjinbao-detail-more {
   .hr-orange {
