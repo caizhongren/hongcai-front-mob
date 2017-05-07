@@ -13,7 +13,6 @@ angular.module('p2pSiteMobApp')
     $rootScope.showFooter = false;
     $rootScope.msg = '';
     
-    // console.log(SessionService.getUser());
     /**
     * 查询用户绑定信息
     **/
