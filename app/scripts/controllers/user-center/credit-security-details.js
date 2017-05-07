@@ -40,9 +40,7 @@ angular.module('p2pSiteMobApp')
       $scope.project = response.project;
       $scope.increaseRateCoupon = response.increaseRateCoupon;
       $scope.projectBill = response.projectBill;
-      // 年化收益率
-      $scope.annualEarnings = $scope.creditRight.type == 1 ? $scope.project.annualEarnings : $scope.creditRight.baseRate + $scope.creditRight.riseRate;
-     
+      
       //获取用户正在计息的加息券，通过这个去显示10%
       Restangular.one('/users/0/userIncreasingRateCoupons').get({}).then(function(response) {
         if (response && response.ret !== -1 && response.length > 0) {

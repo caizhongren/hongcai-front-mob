@@ -14,7 +14,7 @@
 	    	</li>
 	    </ul>
    </div>
-   <div class="capital-list padding-l-2 padding-r-2 bg-offwhite" ng-if="!showLoadingToast && details.length > 0">
+   <div class="capital-list padding-l-2 padding-r-2 bg-offwhite" ng-if="!showLoadingToast && details && details.length > 0">
    		<ul>
    			<li ng-repeat=" detail in details">
    				<div class="ft-white display-inbl left ft-1p8">{{detail.amount | number : 0}}<span class="ft-1p7">元</span></div>
@@ -30,7 +30,7 @@
             <p><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a class="ft-666" ng-click="loadMore();">查看更多</a></p>
          </div>
    </div>
-   <div class="capital-list padding-l-2 padding-r-2 bg-offwhite" ng-if="!showLoadingToast && details.length <= 0">
+   <div class="capital-list padding-l-2 padding-r-2 bg-offwhite" ng-if="!showLoadingToast && details && details.length <= 0">
          <img src="/images/user-center/cash-coupon03.png" alt="" class="margin-auto display-bl">
          <p class="ft-666 text-center margin-t-1">暂无特权本金噢~</p>
    </div>

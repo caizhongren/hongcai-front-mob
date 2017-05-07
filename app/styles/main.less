@@ -71,21 +71,11 @@
     .dot{
       position: absolute;
       top: 82%;
-      // left: 38%;
-      left: 38%;
+      width: 100%;
+      text-align: center;
       z-index: 5;
       font-size: 0;
-      @media(min-width:320px){
-        left: 39%;
-      }
-      @media(min-width:360px){
-        left: 40%;
-      }
-      @media(min-width:375px){
-        left: 41%;
-      }
       @media(min-width:411px){
-        left: 42%;
         top: 75%;
       }
       span{
@@ -1172,9 +1162,6 @@ div, p {
       width: 100%;
       overflow: hidden;
       padding-top: 2.1rem; 
-      ul {
-        padding: 0 1.5rem;
-      }
       ul:first-child {
         margin-bottom: 0rem;
       }
@@ -1197,11 +1184,7 @@ div, p {
       ul li:nth-child(1) {
         margin-top: 0.3rem;
         margin-bottom: 0.3rem;
-        width: 35%;
-        text-align: left;
-        @media ( max-width : 320px ) {
-          width: 37%;
-        }
+        width: 33.3%;
         p:nth-child(1) {
           margin-bottom: 0.5rem;
           line-height: 4rem;
@@ -1222,7 +1205,10 @@ div, p {
       }
       ul li:nth-child(2) {
         box-sizing: border-box;
-        width: 30%;
+        width: 33%;
+        @media(max-width: 360px) {
+          width: 32%;
+        }
         p{
           text-align:left;
           font-size: 2rem;
@@ -1254,18 +1240,8 @@ div, p {
       }
       ul li:nth-child(3) {
         width: 31%;
-        text-align: right;
-        @media ( max-width : 414px ) {
-          width: 32%;
-        }
-        @media ( max-width : 375px ) {
-          width: 32%;
-        }
-        @media ( max-width : 360px ) {
-          width: 31%;
-        }
-        @media ( max-width : 320px ) {
-          width: 28%;
+        @media(max-width: 360px) {
+          width: 31.5%;
         }
         span{
           display: inline-block;
@@ -1327,5 +1303,130 @@ div, p {
     -webkit-transform: scale(0.86,0.86);
   }
 }
+
+//微信绑定成功页面
+.bind-status {
+  background: url('/images/bind-wechat/bind-status-bg.jpg') no-repeat 0 0;
+  background-size: 100% 100%;
+  .bind-success {
+    padding-top: 11rem;
+    .red-bag {
+      top: 4.5rem;
+      left: 34%;
+    }
+    .hc-baby {
+      margin-right: -17%;
+    }
+    .hc-baby-speek {
+      margin-top: 2rem;
+      margin-left: 23%;
+    }
+    p.bind-success-tip {
+      color: #f85a10;
+    }
+    p.bind-success-tip2 {
+      color: #6b4a41;
+      line-height: 24rem;
+    }
+    @media(min-width:320px) {
+      padding-top: 10rem;
+      p.bind-success-tip2 {
+        line-height: 15rem;
+      }
+    }
+    @media(min-width:360px) {
+      padding-top: 11.3rem;
+      p.bind-success-tip2 {
+        line-height: 18rem;
+      }
+    }
+    @media(min-width:375px) {
+      padding-top: 11.8rem;
+    }
+    @media(min-width:412px) {
+      padding-top: 10.5rem;
+    }
+    @media(min-width:414px) {
+      padding-top: 13rem;
+      p.bind-success-tip2 {
+        line-height: 24rem;
+      }
+    }
+  }
+  .binded {
+    padding-top: 7rem;
+    img:first-child {
+      margin-left: 22%;
+    }
+    img:nth-child(2) {
+      left: 27%;
+      top: 14rem;
+      @media(min-width: 360px) {
+        top: 16rem;
+      }
+      @media(min-width: 412px) {
+        top: 15.6rem;
+      }
+      @media(min-width: 414px) {
+        top: 18.5rem;
+      }
+    }
+    img:nth-child(3) {
+      margin: 12rem auto 0;
+      @media(min-width: 360px) {
+        margin-top: 15rem;
+      }
+      @media(min-width: 375px) {
+        margin-top: 16rem;
+      }
+      @media(min-width: 412px) {
+        margin-top: 15rem;
+      }
+      @media(min-width: 414px) {
+        margin-top: 19.5rem;
+      }
+    }
+    p {
+      color: #6b4a41;
+      margin-top: 1rem;
+    }
+  }
+}
+//绑定微信页
+.bind-wechat {
+  padding-top: 7rem;
+  .bind-form {
+    padding-bottom: 0 !important;
+    .to-bind {
+      input {
+        height: 56px;
+        padding: 20px 10px 0px;
+      }
+      input:focus {
+        border-color: #e94929;
+      }
+      .red-border {
+        border-bottom: 1px solid #e94929;
+      }
+      .pwd-eyes {
+        height: 56px;
+        line-height: 56px;
+        background: url('/images/bind-wechat/close-eye.png') no-repeat center 32px;
+        background-size: 50%;
+      }
+      .pwd-eyes.open-eye {
+        height: 56px;
+        line-height: 56px;
+        background: url('/images/bind-wechat/open-eye.png') no-repeat center 29px;
+        background-size: 50%;
+      }
+
+    }
+  }
+  .to-register {
+    color: #3eb1dd;
+  }
+}
+
 
 

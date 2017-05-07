@@ -58,24 +58,30 @@ angular.module('p2pSiteMobApp')
      */
     $scope.toWithdraw = function(simpleWithdraw) {
       // $scope.msg = '3';
-      var amount = simpleWithdraw.amountDraw;
-      if (!amount || amount < 1) {
-        return;
+      var Withdraw = function() {
+        var amount = simpleWithdraw.amountDraw;
+        if (!amount || amount < 1) {
+          return;
+        }
+        if ($scope.simpleWithdraw.amountDraw > $scope.availableCashRealNo) {
+          return;
+        }
+        toCunGuanUtils.to('withdraw', amount, null, null, null, null);
       }
-      if ($scope.simpleWithdraw.amountDraw > $scope.availableCashRealNo) {
-        return;
-      }
-      toCunGuanUtils.to('withdraw', amount, null, null, null, null);
+      $rootScope.toActivate(Withdraw);
     }
 
     /**
      * 绑定银行卡
      */
     $scope.bindBankcard = function() {
-      if ($scope.simpleWithdraw.cardStatus == 'VERIFIED' || $scope.simpleWithdraw.cardStatus == 'VERIFYING') {
-        return;
+      var bindCard = function() {
+        if ($scope.simpleWithdraw.cardStatus == 'VERIFIED' || $scope.simpleWithdraw.cardStatus == 'VERIFYING') {
+          return;
+        }
+        toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
       }
-      toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
+      $rootScope.toActivate(bindCard);
     }
 
 

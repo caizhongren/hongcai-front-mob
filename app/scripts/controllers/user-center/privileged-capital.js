@@ -9,7 +9,6 @@
  */
 angular.module('p2pSiteMobApp')
 .controller('PrivilegedCapitalCtrl', function ($scope, $state, $rootScope, $stateParams, Restangular, SessionService, UserService) {
-
     $scope.page = 1;
     $scope.pageSize = 10;
     $scope.details = [];

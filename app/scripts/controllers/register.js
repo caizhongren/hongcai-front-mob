@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('RegisterCtrl', function(CheckPicUtil, checkPwdUtils, $http, $timeout, $rootScope, $scope, $state, $stateParams, CheckMobUtil, md5, ipCookie, Utils, WEB_DEFAULT_DOMAIN, SessionService, Restangular) {
+  .controller('RegisterCtrl', function(CheckPicUtil, checkPwdUtils, $http, $timeout, $rootScope, $scope, $state, $stateParams,  $location, CheckMobUtil, md5, ipCookie, Utils, WEB_DEFAULT_DOMAIN, SessionService, Restangular) {
     // 注册链接上是否有邀请码
     $scope.btn = 'haha';
     $scope.user = {
@@ -23,6 +23,7 @@ angular.module('p2pSiteMobApp')
       $scope.showRegistrationAgreement = !$scope.showRegistrationAgreement;
     };
 
+    var redirectUrl = $stateParams.redirectUrl;
     $scope.checkPassword = function(password){
       var msg = checkPwdUtils.showPwd2(password);
       if (msg) {
@@ -79,7 +80,13 @@ angular.module('p2pSiteMobApp')
             $scope.busy = false;
           }, 2000);
         } else {
+          $rootScope.showSuccessMsg('注册成功！',800);
           SessionService.loginSuccess(response);
+          if (redirectUrl && redirectUrl.indexOf('/register2') !== 0) {
+            $location.url(decodeURIComponent(redirectUrl));
+            $rootScope.showSuccessMsg
+            return;
+          }
           $state.go('root.register-success', {
             userId: 0
           });

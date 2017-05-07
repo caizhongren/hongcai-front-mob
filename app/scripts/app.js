@@ -68,6 +68,29 @@ p2pSiteMobApp
           }
         }
       })
+
+      //绑定微信页面
+      .state('root.bind-wechat', {
+        url: '/bind-wechat',
+        views: {
+          '': {
+            templateUrl: 'views/bind-wechat.html',
+            controller: 'BindWechatCtrl',
+            controllerUrl: 'scripts/controllers/bind-wechat'
+          }
+        }
+      })
+      //微信绑定成功、已绑定页面
+      .state('root.bindWechat-status', {
+        url: '/bindWechat-status?status',
+        views: {
+          '': {
+            templateUrl: 'views/bindWechat-status.html',
+            controller: 'BindSuccessCtrl',
+            controllerUrl: 'scripts/controllers/bindWechat-status'
+          }
+        }
+      })
       //隐私条款
       .state('root.privacy-policy ', {
         url: '/privacy-policy',
@@ -143,7 +166,7 @@ p2pSiteMobApp
         }
       })
       .state('root.register2', {
-        url: '/register?inviteCode',
+        url: '/register?inviteCode&redirectUrl',
         data: {
           title: '注册'
         },

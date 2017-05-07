@@ -28,7 +28,7 @@ angular.module('p2pSiteMobApp')
         titleArray.push('朋友！收下这份大礼，你就是我的人了！');
         titleArray.push('这四海八荒的财运，我都攒到一起送给你啦！');
         titleArray.push('10%新人加息券来了，手快有手慢无！');
-        titleArray.push('一个好汉三个帮，理财就上宏财网！');
+        titleArray.push('一个好汉三个帮，投资就上宏财网！');
 
         return titleArray[Math.floor(Math.random() * titleArray.length)];
       },

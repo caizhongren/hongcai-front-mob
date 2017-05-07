@@ -43,8 +43,11 @@ angular.module('p2pSiteMobApp')
     $scope.showMask = false;
     $scope.showBankCard = false;
     $scope.toRemoveCard = function() {
-      $scope.showBankCard = true;
-      $scope.showMask = true;
+      var act = function() {
+        $scope.showBankCard = true;
+        $scope.showMask = true;
+      }
+      $rootScope.toActivate(act);
     }
     $scope.cancle = function() {
       $scope.showBankCard = false;
