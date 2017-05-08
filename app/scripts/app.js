@@ -687,6 +687,9 @@ p2pSiteMobApp
           controller: 'mothersDayCtrl',
           controllerUrl: 'scripts/controllers/activity/mothers-day'
         }
+      },
+      data: {
+        title: '五月爱，吾越爱'
       }
     })
 
