@@ -83,8 +83,8 @@ angular.module('p2pSiteMobApp')
           $rootScope.showSuccessMsg('注册成功！',800);
           SessionService.loginSuccess(response);
           if (redirectUrl && redirectUrl.indexOf('/register2') !== 0) {
-            // $location.url(decodeURIComponent(redirectUrl));
-            $state.go('root.bind-wechat');
+            $location.url(decodeURIComponent(redirectUrl));
+            $rootScope.showSuccessMsg
             return;
           }
           $state.go('root.register-success', {
