@@ -2540,3 +2540,162 @@ input::-webkit-inner-spin-button {
         }
     }
 }
+
+/*母亲节活动*/
+.mothers-day {
+  background-color: #4d7692;
+}
+.mothers-day {
+    .header {
+        position: relative;
+        img {
+          width: 100%;
+          display: inline-block;
+          vertical-align: top;
+        }
+        .avtivity-time {
+          color: #bac6cf;
+          font-size: 1.2rem;
+          position: absolute;
+          top: 8.7rem;
+          right: 1.4rem;
+        }
+    }
+    .iosTip {
+      background-color: #4d7692;
+      font-weight: 450;
+      text-align: center;
+      height: 6rem;
+      line-height: 6rem;
+      color: #fff;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      font-size: 1.4rem;
+    }
+    .rules-btn {
+      background: url('/images/mothers-day/rule-btn.png') no-repeat 0 0;
+      background-size: contain;
+      width: 5rem;
+      height: 7rem;
+      position: fixed;
+      top: 38%;
+      right: 0;
+    }
+}
+.mothers-rules {
+    padding: 6.5rem 2rem 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    .rec-showmoney {
+        background: url('../images/mothers-day/rules-bg.png') no-repeat center center;
+        background-size: contain;
+        height: 50rem;
+        overflow: auto;
+        .box {
+            position: relative;
+            overflow: auto;
+            .rules {
+                color: #562930;
+                margin-bottom: 1.4rem;
+            }
+        }
+        .rec-act-rule {
+            padding: .3rem;
+            margin: 0 3rem;
+            p {
+                margin-bottom: 0;
+            }
+            .rule-title {
+                font-size: 1.4rem;
+            }
+            .rule-content {
+                font-size: 1.2rem;
+                margin-left: 1rem;
+            }
+        }
+        .close-rule {
+            width: 14%;
+            height: 8%;
+            position: absolute;
+            bottom: 0;
+            left: 44%;
+            /*background: rgba(0,0,0,.8);*/
+        }
+    }
+}
+
+@media (min-width: 320px) {
+  .mothers-rules {
+    .rec-showmoney {
+        height: 43rem;
+        .box {
+            top: 7rem;
+            height: 24rem;
+        }
+    }
+  }
+  .mothers-day .header .avtivity-time {
+    top: 10rem;
+    right: 3.4rem;
+    transform: scale(.82);
+    -webkit-transform: scale(.82);
+  }
+}
+@media (min-width: 360px) {
+  .mothers-rules {
+    .rec-showmoney {
+        height: 48rem;
+        .box {
+            top: 8rem;
+            height: 26rem;
+        }
+    }
+  }
+  .mothers-day .header .avtivity-time {
+    top: 10.7rem;
+    right: 5rem;
+    transform: scale(.87);
+    -webkit-transform: scale(.87);
+  }
+}
+@media (min-width: 375px) {
+    .mothers-rules {
+        .rec-showmoney {
+            height: 50rem;
+            .box {
+                top: 8rem;
+                height: 28.5rem;
+            }
+            .rec-act-rule {
+                margin: 0 4rem;
+            }
+        }
+    }
+    .mothers-day .header .avtivity-time {
+        top: 12.1rem;
+        right: 5.5rem;
+        transform: scale(.91);
+        -webkit-transform: scale(.91);
+    }
+}
+@media (min-width: 414px) {
+    .mothers-rules {
+        .rec-showmoney {
+            height: 52rem;
+            .box {
+                top: 8rem;
+                height: 30rem;
+            }
+            .rec-act-rule {
+                margin: 0 5rem;
+            }
+        }
+    }
+    .mothers-day .header .avtivity-time {
+        top: 13.1rem;
+        right: 7rem;
+        transform: scale(.95);
+        -webkit-transform: scale(.95);
+    }
+}
