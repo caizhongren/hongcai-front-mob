@@ -105,7 +105,7 @@
         <p class="fl position-ab margin-b-0 ticket-left">{{coupon.value | number : 1}}<span class="ft-1p5">%</span></p>
         <div class="position-ab ticket-right">
           <p class="ft-grey4 ft-1p2">•&nbsp;投资产品：{{ coupon.investProductType == 5 ? '宏财精选' : coupon.investProductType == 6 ? '宏财尊贵' : '宏财精选、宏财尊贵'}}</p>
-          <p class="ft-grey4 ft-1p2">•&nbsp;加息天数：{{ coupon.investProductType == '5,6' ? '1天' : '与所投资产品时长相同'}}</p>
+          <p class="ft-grey4 ft-1p2">•&nbsp;加息天数：{{ coupon.type == '5' ? '1天' : '与所投资产品时长相同'}}</p>
           <p class="ft-grey4 ft-1p2">•&nbsp;有效期至{{coupon.endTime | date : 'yyyy-MM-dd'}}</p>
         </div>
       </li>
