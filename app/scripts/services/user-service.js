@@ -51,6 +51,25 @@ angular.module('p2pSiteMobApp')
           localStorage.setItem('voucher' + SessionService.getUser().id, angular.toJson($scope.voucher));
         });
       },	
+      loadCouponAmount: function($scope,type) {
+        if(!SessionService.isLogin()){
+          return;
+        }
+        $scope.cashCouponStatis = angular.fromJson(localStorage.getItem('cashCouponStatis'))? angular.fromJson(localStorage.getItem('cashCouponStatis')) : undefined;
+        $scope.couponStatis = angular.fromJson(localStorage.getItem('couponStatis'))? angular.fromJson(localStorage.getItem('couponStatis')) : undefined;
+        Restangular.one('users').one('0/'+ type).get({}).then(function(response){
+          if(type === 'increaseRateCoupon') {
+            $scope.couponStatis = response;
+            localStorage.setItem('couponStatis', angular.toJson($scope.couponStatis));
+          }else {
+            $scope.cashCouponStatis = response;
+            localStorage.setItem('cashCouponStatis', angular.toJson($scope.cashCouponStatis));
+          }
+          
+        });
+
+      }
+
     }
 
 

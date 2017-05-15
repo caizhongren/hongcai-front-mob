@@ -678,6 +678,21 @@ p2pSiteMobApp
       }
     })
 
+    //母亲节活动 2017.5.13 24:00
+    .state('root.activity.mothers-day', {
+      url: '/mothers-day',
+      views: {
+        '': {
+          templateUrl: 'views/activity/mothers-day.html',
+          controller: 'mothersDayCtrl',
+          controllerUrl: 'scripts/controllers/activity/mothers-day'
+        }
+      },
+      data: {
+        title: '五月爱，吾越爱'
+      }
+    })
+
     //探幕 游戏兑换
     .state('root.activity.exchange-cdkey', {
       url: '/exchange-cdkey',

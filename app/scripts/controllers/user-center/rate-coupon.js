@@ -113,8 +113,10 @@ angular.module('p2pSiteMobApp')
     $scope.toProjectList = function(investProductType, $index){
       if (investProductType == 5) {
         $state.go('root.project-list', {tab : 0});
-      }else {
+      }else if (investProductType == 6) {
         $state.go('root.project-list', {tab : 1});
+      }else {
+        $state.go('root.project-list');
       }
       ipCookie('rateNum',$scope.datas[$index].number);
       ipCookie('rateType',$scope.datas[$index].type);

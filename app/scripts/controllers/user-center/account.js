@@ -18,15 +18,9 @@ angular.module('p2pSiteMobApp')
 
     UserService.loadUserAuth($scope);
     UserService.loadAccount($scope);
+    UserService.loadCouponAmount($scope,'increaseRateCoupon');
+    UserService.loadCouponAmount($scope,'cashCoupon');
     $scope.user = SessionService.getUser();
-
-    // $scope.voucher = Restangular.one('users').one('0/userInviteNum').get().$object;
-
-    $scope.couponStatis = Restangular.one('users').one('0/increaseRateCoupon').get().$object;
-    $scope.cashCouponStatis = Restangular.one('users').one('0/cashCoupon').get().$object;
-
-    $scope.unGotCash = Restangular.one('cashCoupons').one('stat').get().$object;
-
 
    
     /**
@@ -44,6 +38,7 @@ angular.module('p2pSiteMobApp')
     /*
     *风险测评 结果
     */
+    $scope.showQuestionnaire = angular.fromJson(localStorage.getItem('showQuestionnaire'))? angular.fromJson(localStorage.getItem('showQuestionnaire')) : undefined;
     $scope.recentlyQuestionnaire = function() {
       Restangular.one('/users/' + '0' + '/recentlyQuestionnaire' ).get().then(function(response){
        if(response.score1 == -1 && response.score2 == -1){
@@ -51,6 +46,7 @@ angular.module('p2pSiteMobApp')
        }else {
         $scope.showQuestionnaire = false;
        }
+       localStorage.setItem('showQuestionnaire', $scope.showQuestionnaire);
       })
     }
     $scope.recentlyQuestionnaire();
