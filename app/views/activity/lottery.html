@@ -1,0 +1,155 @@
+<style>
+	#btn .cjBtnDom,#btn .cjBtn,#luck .active,#luck td{
+	}
+
+	#btn.cjBtn{
+		background: rgba(0,0,0,.6);
+		color: red;
+	}
+	#btn.cjBtnDom{
+		background-image: url(buttonDown.png);
+	}
+
+
+	#luck .active{
+		background: red;
+	}
+	#luck td{
+		text-align: center;
+		width: 8rem;
+		height: 8rem;
+		padding: 0;
+	}
+	#luck img{
+		width: 50%;
+	}
+	#luck table{
+		padding-left: 63px;
+		padding-top: 63px;
+	}
+</style>
+<div id="luck">
+	<table>
+		<tbody><tr>
+			<td class="luck-unit luck-unit-0"><img src="http://www.jsdaima.com/Upload/1482283667/1.png"></td>
+			<td class="luck-unit luck-unit-1"><img src="http://www.jsdaima.com/Upload/1482283667/2.png"></td>
+			<td class="luck-unit luck-unit-2"><img src="http://www.jsdaima.com/Upload/1482283667/4.png"></td>
+			<td class="luck-unit luck-unit-3"><img src="http://www.jsdaima.com/Upload/1482283667/3.png"></td>
+		</tr>
+		<tr>
+			<td class="luck-unit luck-unit-11"><img src="http://www.jsdaima.com/Upload/1482283667/6.png"></td>
+			<td rowspan="2" colspan="2" class="cjBtn" id="btn">立即抽奖</td>
+			<td class="luck-unit luck-unit-4 active"><img src="http://www.jsdaima.com/Upload/1482283667/5.png"></td>
+		</tr>
+		<tr>
+			<td class="luck-unit luck-unit-10"><img src="http://www.jsdaima.com/Upload/1482283667/1.png"></td>
+			<td class="luck-unit luck-unit-5"><img src="http://www.jsdaima.com/Upload/1482283667/6.png"></td>
+		</tr>
+		<tr>
+			<td class="luck-unit luck-unit-9"><img src="http://www.jsdaima.com/Upload/1482283667/3.png"></td>
+			<td class="luck-unit luck-unit-8"><img src="http://www.jsdaima.com/Upload/1482283667/4.png"></td>
+			<td class="luck-unit luck-unit-7"><img src="http://www.jsdaima.com/Upload/1482283667/8.png"></td>
+			<td class="luck-unit luck-unit-6"><img src="http://www.jsdaima.com/Upload/1482283667/7.png"></td>
+		</tr>
+	</tbody></table>
+</div>
+<script>
+var luck={
+	index:-1,	//当前转动到哪个位置，起点位置
+	count:0,	//总共有多少个位置
+	timer:0,	//setTimeout的ID，用clearTimeout清除
+	speed:20,	//初始转动速度
+	times:0,	//转动次数
+	cycle:50,	//转动基本次数：即至少需要转动多少次再进入抽奖环节
+	prize:-1,	//中奖位置
+	init:function(id){
+		if ($("#"+id).find(".luck-unit").length>0) {
+			$luck = $("#"+id);
+			$units = $luck.find(".luck-unit");
+			this.obj = $luck;
+			this.count = $units.length;
+			$luck.find(".luck-unit-"+this.index).addClass("active");
+		};
+	},
+
+	
+	roll:function(){
+		var index = this.index;
+		var count = this.count;
+		var luck = this.obj;
+		$(luck).find(".luck-unit-"+index).removeClass("active");
+		index += 1;
+		if (index>count-1) {
+			index = 0;
+		};
+		$(luck).find(".luck-unit-"+index).addClass("active");
+		this.index=index;
+		return false;
+	},
+	stop:function(index){
+		this.prize=index;
+		return false;
+	}
+};
+
+
+function roll(){
+	luck.times += 1;
+	luck.roll();
+	if (luck.times > luck.cycle+10 && luck.prize==luck.index) {
+		clearTimeout(luck.timer);
+		luck.prize=-1;
+		luck.times=0;
+		click=false;
+	}else{
+		if (luck.times<luck.cycle) {
+			luck.speed -= 10;
+		}else if(luck.times==luck.cycle) {
+			var index = Math.random()*(luck.count)|0;
+			luck.prize = index;		
+		}else{
+			if (luck.times > luck.cycle+10 && ((luck.prize==0 && luck.index==7) || luck.prize==luck.index+1)) {
+				luck.speed += 110;
+			}else{
+				luck.speed += 20;
+			}
+		}
+		if (luck.speed<40) {
+			luck.speed=40;
+		};
+
+		luck.timer = setTimeout(roll,luck.speed);
+	}
+	return false;
+}
+
+
+var click=false;
+window.onload=function(){
+	luck.init('luck');
+	$("#btn").click(function(){
+		//按下弹起效果
+		$("#btn").addClass("cjBtnDom");
+		setTimeout(function(){	
+			$("#btn").removeClass("cjBtnDom");
+		},200);
+
+		
+		if(click) {
+			return false;
+		}
+		else{
+			luck.speed=100;
+			roll();
+			click=true;
+			return false;
+		}
+	
+	});
+};
+
+
+
+
+
+</script>
