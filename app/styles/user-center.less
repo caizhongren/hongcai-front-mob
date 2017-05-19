@@ -1635,9 +1635,6 @@
   .input-amount {
     height: 45px;
   }
-  .pay-active {
-    color: #ff6600;
-  }
   .balance {
     padding: 0.2rem 2rem 1rem;
     margin-bottom: 1.5rem;
@@ -1666,67 +1663,43 @@
     margin: 0 auto;
     padding-bottom: 3rem;
   }
-  .pay-typeUCF {
-    background: url(/images/user-center/UCFPAY.png) no-repeat 0 5px;
-    background-size: 17%;
-    padding-left: 2.5rem;
-  }
-  .pay-typeFU {
-    background: url(/images/user-center/FUIOU.png) no-repeat 0px 6px;
-    background-size: 21%;
-    padding-left: 3.5rem;
-  }
-  @media(min-width:320px){
-    .pay-typeUCF {
-      background: url(/images/user-center/UCFPAY.png) no-repeat 0 3px;
-      background-size: 17%;
-      padding-left: 2.2rem;
+  .pay-typeFU, .pay-typeUCF {
+    span {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border: 1px solid #999;
+      border-radius: 50%;
+      position: relative;
+      margin-bottom: -2px;
+      margin-right: 3px;
     }
-    .pay-typeFU {
-      background: url(/images/user-center/FUIOU.png) no-repeat 4px 4px;
-      background-size: 21%;
-      padding-left: 3.3rem;
+  } 
+  .pay-active {
+    color: #ff6600;
+    span {
+      width: 12px;
+      height: 12px;
+      border: 1px solid #fd8f3f;
+      border-radius: 50%;
+      position: relative;
+      background-color: #fff!important;
+      margin-bottom: -2px;
+      margin-right: 3px;
     }
-  }
-  @media(min-width:360px){
-    .pay-typeUCF {
-      background: url(/images/user-center/UCFPAY.png) no-repeat 0 0px;
-      background-size: 17%;
-      padding-left: 2.2rem;
-    }
-    .pay-typeFU {
-      background: url(/images/user-center/FUIOU.png) no-repeat 4px 3px;
-      background-size: 21%;
-      padding-left: 3.3rem;
-    }
-  }
-  @media(min-width:375px){
-    .pay-typeUCF {
-      background: url(/images/user-center/UCFPAY.png) no-repeat 0px 3px;
-      background-size: 17%;
-      padding-left: 2.2rem;
-    }
-    .pay-typeFU {
-      background: url(/images/user-center/FUIOU.png) no-repeat 4px 3px;
-      background-size: 21%;
-      padding-left: 3.3rem;
+    span:after {
+      content: "";
+      display: block;
+      width: 8px;
+      height: 8px;
+      position: absolute;
+      background-color: #fd8f3f;
+      top: 17%;
+      left: 17%;
+      border-radius: 50%;
     }
   }
-  @media(min-width:414px){
-    .pay-typeUCF {
-      background: url(/images/user-center/UCFPAY.png) no-repeat 0 0px;
-      background-size: 17%;
-      padding-left: 2.6rem;
-    }
-    .pay-typeFU {
-      background: url(/images/user-center/FUIOU.png) no-repeat 8px 3px;
-      background-size: 21%;
-      padding-left: 4.1rem;
-    }
-    .bankLimit {
-      margin-top: 3px;
-    }
-  }
+  
   .bankCard {
     width: 66%;
     height: 12.5rem;
