@@ -68,43 +68,41 @@
 		}
 	</style>
 </head>
-<body>
-	<!-- 端午节活动页 -->
-	<div class="dragon-boat">
-	    <img src="/images/dragon-boat/dragon-boat-01.png">
-	    <div class="activityTime">
-	    	<img src="/images/dragon-boat/dragon-boat-02.png">
-	    	<div class="time">活动时间: 2017.5.22—2017.5.30</div>
-	    </div>
-	    <img src="/images/dragon-boat/dragon-boat-03.png">
-	    <img src="/images/dragon-boat/dragon-boat-04.png">
-	    <img src="/images/dragon-boat/dragon-boat-05.png">
-	    <img src="/images/dragon-boat/dragon-boat-06.png">
-	    <img src="/images/dragon-boat/dragon-boat-07.png">
-	    <img src="/images/dragon-boat/dragon-boat-08.png">
-	    <img src="/images/dragon-boat/dragon-boat-09.png">
-	    <img src="/images/dragon-boat/dragon-boat-10.png">
-	    <img src="/images/dragon-boat/dragon-boat-11.png">
-	    <img src="/images/dragon-boat/dragon-boat-12.png">
-	    <img src="/images/dragon-boat/dragon-boat-13.png">
-	    <img src="/images/dragon-boat/dragon-boat-14.png">
-	    <img src="/images/dragon-boat/dragon-boat-15.png">
-	    <img src="/images/dragon-boat/dragon-boat-16.png">
-	    <img src="/images/dragon-boat/dragon-boat-17.png">
-	    <img src="/images/dragon-boat/dragon-boat-18.png">
-	    <img src="/images/dragon-boat/dragon-boat-19.png">
-	    <img src="/images/dragon-boat/dragon-boat-20.png">
-	    <div class="iosTip">该活动与设备生产商Apple Inc.公司无关</div>
-	</div>
-</body>
+<!-- 端午节活动页 -->
+<div class="dragon-boat">
+    <img src="/images/dragon-boat/dragon-boat-01.png">
+    <div class="activityTime">
+    	<img src="/images/dragon-boat/dragon-boat-02.png">
+    	<div class="time">活动时间: 2017.5.22—2017.5.30</div>
+    </div>
+    <img src="/images/dragon-boat/dragon-boat-03.png">
+    <img src="/images/dragon-boat/dragon-boat-04.png">
+    <img src="/images/dragon-boat/dragon-boat-05.png">
+    <img src="/images/dragon-boat/dragon-boat-06.png">
+    <img src="/images/dragon-boat/dragon-boat-07.png">
+    <img src="/images/dragon-boat/dragon-boat-08.png">
+    <img src="/images/dragon-boat/dragon-boat-09.png">
+    <img src="/images/dragon-boat/dragon-boat-10.png">
+    <img src="/images/dragon-boat/dragon-boat-11.png">
+    <img src="/images/dragon-boat/dragon-boat-12.png">
+    <img src="/images/dragon-boat/dragon-boat-13.png">
+    <img src="/images/dragon-boat/dragon-boat-14.png">
+    <img src="/images/dragon-boat/dragon-boat-15.png">
+    <img src="/images/dragon-boat/dragon-boat-16.png">
+    <img src="/images/dragon-boat/dragon-boat-17.png">
+    <img src="/images/dragon-boat/dragon-boat-18.png">
+    <img src="/images/dragon-boat/dragon-boat-19.png">
+    <img src="/images/dragon-boat/dragon-boat-20.png">
+    <div class="iosTip" id="iosTip">该活动与设备生产商Apple Inc.公司无关</div>
+</div>
 <script type="text/javascript">
 	var u = navigator.userAgent;
 	var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
 	var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 	if (isAndroid) {
-		$('.iosTip').hide();
+		document.getElementById("iosTip").style.display="none";
 	}else {
-		$('.iosTip').show();
+		document.getElementById("iosTip").style.display="block";
 	}
 </script>
 
