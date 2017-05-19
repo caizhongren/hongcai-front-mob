@@ -664,6 +664,14 @@ p2pSiteMobApp
          }
        }
      })
+      .state('root.lottery', {
+       url: '/lottery',
+       views: {
+         '': {
+           templateUrl: 'views/activity/lottery.html'
+         }
+       }
+     })
 
     // 活动主url
     .state('root.activity', {
@@ -690,6 +698,19 @@ p2pSiteMobApp
       },
       data: {
         title: '五月爱，吾越爱'
+      }
+    })
+
+    //端午节活动 
+    .state('root.activity.dragon-boat', {
+      url: '/dragon-boat',
+      views: {
+        '': {
+          templateUrl: 'views/activity/dragon-boat.html'
+        }
+      },
+      data: {
+        title: '浓情端午'
       }
     })
 
