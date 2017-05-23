@@ -668,7 +668,9 @@ p2pSiteMobApp
        url: '/lottery',
        views: {
          '': {
-           templateUrl: 'views/activity/lottery.html'
+           templateUrl: 'views/activity/lottery.html',
+           controller: 'LotteryCtrl',
+           controllerUrl: 'scripts/controllers/lottery-ctrl'
          }
        }
      })

@@ -1,0 +1,300 @@
+.lottery{
+	font-family: "微软雅黑" !important;
+	.lottery-wrap {
+		background: url('../images/lottery/lottery-bg.jpg') 0 0 no-repeat;
+		background-size: cover;
+		padding-top: 6rem;
+		.draw-lottery {
+			background: url(../images/lottery/draw-bg1.png) 0 0 no-repeat;
+			height: 17rem;
+			width: 96%;
+			margin: 0 auto;
+			background-size: 100% 100%; 
+			.lottery-box {
+				width: 92%;
+			    margin: 0 auto;
+			    text-align: center;
+			    padding-top: 1.3rem;
+			    .lottery-item {
+			    	display: inline-block;
+			    	width: 25%;
+			    	position: relative;
+			    	.item-mask {
+			    		position: absolute;
+			    		left: 0;
+			    		top: 0;
+			    		width: 100%;
+			    		height: 100%;
+			    		background: rgba(0,0,0,0.5);
+			    		z-index: 10;
+			    		border-radius: .6rem;
+			    	}
+			    	img{
+			    		width: 100%;
+			    		display: block;
+			    	}
+			    }
+			    .selecting .item-mask {
+			    	display: none;
+			    }
+			}
+		}
+		.lottery-other {
+			width: 94%;
+			margin: 0 auto;
+			margin-top: 1.2rem;
+			text-align: center;
+			p {
+				width: 40%;
+				height: 4rem;
+				border-radius: 1rem;
+				line-height: 4rem;
+				font-size: 2.2rem;
+			}
+			p:first-child {
+				color: #046151;
+				margin-right: 1.3rem;
+				background: url(../images/lottery/rule-btn.png) no-repeat;
+				background-size: 100% 100%;
+			}
+			p:last-child {
+				color: #564705;
+				background: url(../images/lottery/reward-btn.png) no-repeat;
+				background-size: 100% 100%;
+			}
+		}
+		.lucky-users {
+			background-color: #fbd942;
+			padding-bottom: 5rem;
+			img{
+				display: block;
+				margin: 1rem auto;
+			}
+			.lucky-users-wrap {
+				width: 92%;
+				margin: 0 auto;
+				padding: 1rem;
+				background: #f7d25e;
+				border: 1.3rem solid #edcd40;
+				border-radius: 1.2rem;
+				height: 32rem;
+				overflow-y: hidden;
+				position: relative;
+				li{
+					color: #000;
+					margin-bottom: 1rem;
+				}
+			}
+		}
+	}
+}
+//抽奖弹窗
+.draw-box {
+	text-align: center;
+	.receive-draw {
+		text-align: center;
+		padding: 32% 0 4rem;
+		.getPrize {
+			background: url('../images/lottery/receive-draw-02.png') no-repeat center center;
+			background-size: contain;
+			height: 20rem;
+			padding-top: 11.6rem;
+			margin-top: .5rem;
+			p {
+				color: #fc7371;
+				font-size: 1.6rem; 
+				margin-bottom: 0;
+				line-height: 1.8rem;
+			}
+		}
+		.prize-effect {
+			color: rgba(255,255,255,.82);
+			font-size: 1.4rem;
+			margin: 2rem 0 1.4rem;
+		}
+	}
+	.upper-limit {
+		padding: 40% 0 4rem;
+	} 
+	.usedAndcanShare {
+		padding: 40% 0 7rem;
+	}
+}
+//规则弹窗
+.rule-box {
+    padding: 22% 3.2rem 6rem;
+    .rule-title {
+    	position: relative;
+    	.hongcai-portrait {
+    		position: absolute;
+    		top: -2.56rem;
+    		left: 27%;
+    	}
+    }
+    .rule-bg {
+    	height: 34rem;
+    	overflow: auto;
+    	background: url('../images/lottery/rule-bg.png') no-repeat center center;
+    	background-size: contain;
+    	.rule-content {
+    		height: 24.5rem;
+    	    position: relative;
+    	    top: 4rem;
+    	    padding: 0 4rem;
+    	    overflow: auto;
+    	    p {
+    	    	margin-bottom: 1.2rem;
+    	    	color: #fff;
+    	    	font-size: 1.4rem;
+    	    	text-align: justify;
+    	    }
+    	}
+    }
+}
+@media(min-width: 320px) {
+	.lottery .lottery-wrap {
+		padding-top: 6rem;
+		height: 69rem;
+	}
+	.lottery .lottery-wrap .draw-lottery {
+		height: 31rem;
+	}
+	.lottery .lottery-wrap .draw-lottery p {
+		padding-top: 3.2rem;
+		color: #70090d;
+		margin-bottom: 1.1rem;
+	}
+	.lottery .lottery-wrap .draw-lottery .draw-count {
+		font-size: 2.4rem;
+		color: #f5fb60;
+	}
+	.lottery .lottery-wrap .draw-lottery .lottery-box {
+	    padding-top: 1.3rem;
+	}
+	.lottery .lottery-wrap .lucky-users .lucky-users-wrap {
+		height: 30rem;
+	}
+	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li{
+		font-size: 1.2rem;
+		letter-spacing: .08rem;
+	}
+	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li span{
+		margin-right: 5%;
+	}
+	.rule-box .rule-bg {
+		height: 30rem;
+	}
+	.rule-box .rule-bg .rule-content {
+		height: 21rem;
+	    top: 4rem;
+	    padding: 0 4rem;
+	}
+	.rule-box .rule-title .hongcai-portrait {
+		top: -2.6rem;
+	}
+}
+@media(min-width: 360px) {
+	.lottery .lottery-wrap {
+		height: 75rem;
+	}
+	.lottery .lottery-wrap .draw-lottery {
+		height: 35rem;
+	}
+	.lottery .lottery-wrap .draw-lottery p {
+		padding-top: 3.8rem;
+		margin-bottom: 3rem;
+	}
+	.lottery .lottery-wrap .draw-lottery .draw-count {
+		font-size: 2.4rem;
+	}
+	.lottery .lottery-wrap .draw-lottery .lottery-box {
+	    padding-top: 0;
+	}
+	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li{
+		font-size: 1.3rem;
+		letter-spacing: .1rem;
+	}
+	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li span{
+		margin-right: 7%;
+	}
+	.rule-box .rule-bg {
+		height: 33rem;
+	}
+	.rule-box .rule-bg .rule-content {
+		height: 23rem;
+	    top: 3.5rem;
+	    padding: 0 5rem;
+	}
+}
+@media(min-width: 375px) {
+	.lottery .lottery-wrap {
+		padding-top: 7rem;
+		height: 76rem;
+	}
+	.lottery .lottery-wrap .draw-lottery {
+		height: 37rem;
+	}
+	.lottery .lottery-wrap .draw-lottery p {
+		padding-top: 4.2rem;
+		margin-bottom: 2rem;
+	}
+	.lottery .lottery-wrap .draw-lottery .draw-count {
+		font-size: 2.5rem;
+	}
+	.lottery .lottery-wrap .draw-lottery .lottery-box {
+	    padding-top: 1.2rem;
+	}
+	.lottery .lottery-wrap .lucky-users .lucky-users-wrap {
+		height: 32rem;
+	}
+	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li{
+		font-size: 1.4rem;
+	}
+	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li span{
+		margin-right: 6%;
+	}
+	.rule-box .rule-bg {
+		height: 35rem;
+	}
+	.rule-box .rule-bg .rule-content {
+		height: 26rem;
+	    top: 4rem;
+	    padding: 0 4.5rem;
+	}
+	.rule-box .rule-title .hongcai-portrait {
+		top: -3.2rem;
+	}
+}
+@media(min-width: 411px) {
+	.lottery .lottery-wrap {
+		padding-top: 7rem;
+	}
+	.lottery .lottery-wrap .draw-lottery {
+		height: 41rem;
+	}
+	.lottery .lottery-wrap .draw-lottery p {
+		padding-top: 4.8rem;
+	}
+	.lottery .lottery-wrap .draw-lottery .lottery-box {
+	    padding-top: 2rem;
+	}
+	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li{
+		font-size: 1.4rem;
+	}
+	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li span{
+		margin-right: 10%;
+	}
+}
+@media(min-width: 414px) {
+	.rule-box .rule-bg {
+		height: 38rem;
+	}
+	.rule-box .rule-bg .rule-content {
+		height: 28.5rem;
+	    top: 4rem;
+	    padding: 0 5rem;
+	}
+	.rule-box .rule-title .hongcai-portrait {
+		top: -3.7rem;
+	}
+}
