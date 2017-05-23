@@ -21,6 +21,7 @@ angular.module('p2pSiteMobApp')
   	    },
   	    turnEndCallback: function(prizeId, obj){
   	        // alert('恭喜您中了 - ' + prizeList[prizeId].name);
+            window.clearInterval($scope._timer);
   	        setTimeout(function(){
   	            alert('恭喜您中了 - ' + obj.name);
   	            $lotteryItem.addClass('selecting');
@@ -30,26 +31,34 @@ angular.module('p2pSiteMobApp')
   	    startBtnClick: function($btn){
   	    	//点击抽奖立即去掉奖品选中样式
   	    	$lotteryItem.removeClass('selecting');
-  	        if(this.isLocked()){
-  	            // alert('正在摇奖中...');
-  	            return;
-  	        }
-  	        var prizeId = 5;
-  	        // alert('start');
-  	        // 模拟掉抽奖接口。获取抽奖类型设置prizeId，确定最后停止的位置 data-prize-id:prizeId
-  	        // $.ajax({
-  	        //     url: "http://localhost:8000/hongcai/rest/cashCoupons?page=1&pageSize=10&status=1",
-  	        //     cache: false,
-  	        //     success: function(response) {
-  	        //         var prizeId = response.ret === -1? 3 : 0;
-  	        //         alert('最终奖品: ' + prizeList[prizeId].name);
-  	        //         rld.start(prizeId);
-  	        //     },
-  	        //     error: function(xhr) {
+          //背景灯闪效果
+           var sArr =['../images/lottery/draw-bg1.png','../images/lottery/draw-bg2.png'];
+           $scope._timer = setInterval(function(){    
+               $("#draw-lottery").css("backgroundImage","url("+sArr[fRandomBy(0,1)]+")");
+           },200); //单位毫秒
+           function fRandomBy(under, over){ 
+              return parseInt(Math.random()*(over-under+1) + under); 
+           } 
+	        if(this.isLocked()){
+	            // alert('正在摇奖中...');
+	            return;
+	        }
+	        var prizeId = 5;
+	        // alert('start');
+	        // 模拟掉抽奖接口。获取抽奖类型设置prizeId，确定最后停止的位置 data-prize-id:prizeId
+	        // $.ajax({
+	        //     url: "http://localhost:8000/hongcai/rest/cashCoupons?page=1&pageSize=10&status=1",
+	        //     cache: false,
+	        //     success: function(response) {
+	        //         var prizeId = response.ret === -1? 3 : 0;
+	        //         alert('最终奖品: ' + prizeList[prizeId].name);
+	        //         rld.start(prizeId);
+	        //     },
+	        //     error: function(xhr) {
 
-  	        //     }
-  	        // });
-  	        rld.start(prizeId);
+	        //     }
+	        // });
+	        rld.start(prizeId);
   	        
   	    },
   	    onLock: function(){
@@ -59,18 +68,24 @@ angular.module('p2pSiteMobApp')
   	        // alert('解锁了');
   	    }
   	});
-
+    
   	
 
   	var luckyTimer = function(val) {
-  		setInterval(function(){
-			$('.lucky-users-wrap').find('ul').animate({
-			  marginTop : val + 'rem'
-			  },500,function(){
-			  // $(this).css({marginTop : "0.0rem"}).find("li:first").appendTo(this);
-			});
-  			val = val - 14;
-  		},1000);
+  		$rootScope.timer = setInterval(function(){
+        if(val % 85.2 === 0) {
+          val = -14.2;
+          $('.lucky-users-wrap').find('ul').css('marginTop','-14.2rem');
+          val -= 14.2;
+          return
+        }
+  			$('.lucky-users-wrap').find('ul').animate({
+  			  marginTop : val + 'rem'
+  			  },500,function(){
+  			  // $(this).css({marginTop : "0.0rem"}).find("li:first").appendTo(this);
+  			});
+  			val -= 14.2;
+  		},5000);
   	}
-  	// luckyTimer(-14);
+  	luckyTimer(-14.2);
   })
