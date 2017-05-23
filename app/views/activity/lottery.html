@@ -3,7 +3,7 @@
 	<div class="lottery-wrap">
 		<div class="draw-lottery" id="draw-lottery">
 			<p class="text-center ft-1p3">
-				<span>今日可抽奖次数：<span class="draw-count">1</span>次</span>
+				<!-- <span>今日可抽奖次数：<span class="draw-count">1</span>次</span> -->
 			</p>
 			<!-- 抽奖转盘 -->
 			<div class="lottery-box" id="js-rect-luck-draw-con">
@@ -53,41 +53,7 @@
 			<img src="/images/lottery/title-lucky-users.png" alt="" width="48%">
 			<div class="lucky-users-wrap">
 				<ul class="margin-b-0">
-					<li class="text-justify"><span>恭喜133****9895</span>获得+0.1%当日加息</li>
-					<li class="text-justify"><span>恭喜133****9895</span>获得特权本金666元</li>
-					<li class="text-justify"><span>恭喜133****9895</span>获得+0.1%当日加息</li>
-					<li class="text-justify"><span>恭喜133****9895</span>获得特权本金666元</li>	
-					<li class="text-justify"><span>恭喜133****9895</span>这是第5条</li>
-					<li class="text-justify"><span>恭喜133****9895</span>获得特权本金666元</li>	
-					<li class="text-justify"><span>恭喜133****9895</span>获得+0.1%当日加息</li>
-					<li class="text-justify"><span>恭喜133****9895</span>获得特权本金666元</li>	
-					<li class="text-justify"><span>恭喜133****9895</span>获得+0.1%当日加息</li>
-					<li class="text-justify"><span>恭喜133****9895</span>10</li>	
-					<li class="text-justify"><span>恭喜133****9895</span>获得+0.1%当日加息</li>
-					<li class="text-justify"><span>恭喜133****9895</span>获得特权本金666元</li>
-					<li class="text-justify"><span>恭喜133****9895</span>获得+0.1%当日加息</li>
-					<li class="text-justify"><span>恭喜133****9895</span>获得特权本金666元</li>	
-					<li class="text-justify"><span>恭喜133****9895</span>这是第15条</li>
-					<li class="text-justify"><span>恭喜133****9895</span>获得特权本金666元</li>	
-					<li class="text-justify"><span>恭喜133****9895</span>获得+0.1%当日加息</li>
-					<li class="text-justify"><span>恭喜133****9895</span>获得特权本金666元</li>	
-					<li class="text-justify"><span>恭喜133****9895</span>获得+0.1%当日加息</li>
-					<li class="text-justify"><span>恭喜133****9895</span>20</li>	
-					<li class="text-justify"><span>恭喜133****9895</span>获得+0.1%当日加息</li>
-					<li class="text-justify"><span>恭喜133****9895</span>获得特权本金666元</li>
-					<li class="text-justify"><span>恭喜133****9895</span>获得+0.1%当日加息</li>
-					<li class="text-justify"><span>恭喜133****9895</span>获得特权本金666元</li>	
-					<li class="text-justify"><span>恭喜133****9895</span>这是第25条</li>
-					<li class="text-justify"><span>恭喜133****9895</span>获得特权本金666元</li>	
-					<li class="text-justify"><span>恭喜133****9895</span>获得+0.1%当日加息</li>
-					<li class="text-justify"><span>恭喜133****9895</span>获得特权本金666元</li>	
-					<li class="text-justify"><span>恭喜133****9895</span>获得+0.1%当日加息</li>
-					<li class="text-justify"><span>恭喜133****9895</span>30</li>	
-					<li class="text-justify"><span>恭喜133****9895</span>获得+0.1%当日加息</li>
-					<li class="text-justify"><span>恭喜133****9895</span>获得特权本金666元</li>
-					<li class="text-justify"><span>恭喜133****9895</span>获得+0.1%当日加息</li>
-					<li class="text-justify"><span>恭喜133****9895</span>获得特权本金666元</li>	
-					<li class="text-justify"><span>恭喜133****9895</span>这是第5条</li>	
+					<li class="text-justify" ng-repeat="item in luckyUsers"><span>恭喜{{item.mobile}}</span>获得{{item.prizeName}}</li>
 				</ul>
 			</div>
 			<p class="text-center ft-1p2 ft-black margin-t-3 margin-b-0 padding-b-1">该活动与设备生产商Apple Inc. 公司无关</p>

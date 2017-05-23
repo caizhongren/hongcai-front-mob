@@ -1,6 +1,6 @@
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('LotteryCtrl', function($scope, $rootScope) {
+  .controller('LotteryCtrl', function($scope, $rootScope, Restangular) {
   	/**
   	*抽奖动画
   	**/
@@ -31,14 +31,6 @@ angular.module('p2pSiteMobApp')
   	    startBtnClick: function($btn){
   	    	//点击抽奖立即去掉奖品选中样式
   	    	$lotteryItem.removeClass('selecting');
-          //背景灯闪效果
-           var sArr =['../images/lottery/draw-bg1.png','../images/lottery/draw-bg2.png'];
-           $scope._timer = setInterval(function(){    
-               $("#draw-lottery").css("backgroundImage","url("+sArr[fRandomBy(0,1)]+")");
-           },200); //单位毫秒
-           function fRandomBy(under, over){ 
-              return parseInt(Math.random()*(over-under+1) + under); 
-           } 
 	        if(this.isLocked()){
 	            // alert('正在摇奖中...');
 	            return;
@@ -69,23 +61,52 @@ angular.module('p2pSiteMobApp')
   	    }
   	});
     
-  	
+  	/**
+     *  幸运用户数据
+     *  prizeType：1, "当日加息"" ; 2, "现金奖励 ; 3, "加息券 ; 4, "现金券" ; 5, "特权本金" ; 6, "谢谢"
+    **/
 
+    $scope.luckyUsers = angular.fromJson(localStorage.getItem('luckyUsers'))? angular.fromJson(localStorage.getItem('luckyUsers')) : undefined;
+    Restangular.one('lotteries').one('luckyUsers').get().then(function(response){
+      $scope.luckyUsers = response;
+      localStorage.setItem('luckyUsers', angular.toJson($scope.luckyUsers));
+      for(var i = 0; i <$scope.luckyUsers.length; i++) {
+        var prizeType = $scope.luckyUsers[i].prizeType;
+        switch(prizeType)
+        {
+        case 1:
+          $scope.luckyUsers[i].prizeName = '+' + $scope.luckyUsers[i].value + '%当日加息';
+          break;
+        case 2:
+          $scope.luckyUsers[i].prizeName = '返现' + $scope.luckyUsers[i].value + '元';
+          break;
+        case 3:
+          $scope.luckyUsers[i].prizeName = '+' + $scope.luckyUsers[i].value + '%加息券';
+          break;
+        case 4:
+          $scope.luckyUsers[i].prizeName = $scope.luckyUsers[i].value + '元现金券';
+          break;
+        case 5:
+          $scope.luckyUsers[i].prizeName = '特权本金' + $scope.luckyUsers[i].value + '元';
+          break;
+        }
+      }
+    });
   	var luckyTimer = function(val) {
   		$rootScope.timer = setInterval(function(){
-        if(val % 85.2 === 0) {
-          val = -14.2;
-          $('.lucky-users-wrap').find('ul').css('marginTop','-14.2rem');
-          val -= 14.2;
+        if(val % 60 === 0) {
+          val = 0;
+          $('.lucky-users-wrap').find('ul').css('marginTop',val + 'rem');
+          val -= 15;
           return
         }
   			$('.lucky-users-wrap').find('ul').animate({
   			  marginTop : val + 'rem'
-  			  },500,function(){
+  			  },800,function(){
   			  // $(this).css({marginTop : "0.0rem"}).find("li:first").appendTo(this);
   			});
-  			val -= 14.2;
+  			val -= 15;
   		},5000);
   	}
-  	luckyTimer(-14.2);
+  	luckyTimer(-15);
   })
