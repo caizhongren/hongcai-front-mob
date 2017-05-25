@@ -198,7 +198,7 @@
 		.receive-draw {
 			text-align: center;
 			padding: 32% 0 4rem;
-			display: none;
+			//display: none;
 			.getPrize {
 				background: url('../images/lottery/receive-draw-02.png') no-repeat center center;
 				background-size: contain;
@@ -259,6 +259,60 @@
     	}
     }
 }
+//注册弹窗
+.register-box {
+	.register-list {
+		p {
+			color: #885418;
+			margin-top: 7rem;
+			line-height: 1.8rem !important;
+		}
+		margin: 0 auto;
+		margin-top: 6rem;
+		height: 36rem;
+		width: 92%;
+		border-radius: 1rem;
+		background-color: #fbd942;
+		padding: 2rem 1rem;
+		.register-header {
+			img:first-child {
+				top: 0;
+				left: 24%;
+			}
+			input.picCaptcha {
+				width: 65%;
+			}
+		}
+		.sharing-content {
+			.to-register {
+				padding: 0 9%;
+			}
+			.mobilecode, .sent {
+				width: 30%;
+				height: 3.8rem;
+				border-radius: .5rem;
+				color: #fff;
+   	 			background-color: #ff4141;
+			}
+			.sent {
+				background-color: transparent;
+				color: #ff4141;
+				border: 1px solid #ff4141;
+				height: 3.7rem;
+				line-height: 3.7rem;
+				font-size: 1.4rem;
+				float: right;
+			}
+			.invited-btn {
+				border: 0;
+				margin: 0 -78%;
+				width: 60%;
+				background: url('/images/lottery/register-draw-btn.png') center center no-repeat;
+				background-size: 100% 100%;
+			}
+		}
+	}
+}
 @media(min-width: 320px) {
 	.lottery .lottery-wrap {
 		padding-top: 7rem;
@@ -284,7 +338,6 @@
 	}
 	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li{
 		font-size: 1.2rem;
-		letter-spacing: .08rem;
 		margin-bottom: 0;
 		height: 3rem;
 		line-height: 3rem;
@@ -346,8 +399,7 @@
 	    padding-top: 0;
 	}
 	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li{
-		font-size: 1.3rem;
-		letter-spacing: .1rem;
+		font-size: 1.2rem;
 	}
 	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li span{
 		margin-right: 7%;
@@ -404,7 +456,7 @@
 	    padding-top: 2rem;
 	}
 	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li{
-		font-size: 1.4rem;
+		font-size: 1.3rem;
 	}
 	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li span{
 		margin-right: 6%;
