@@ -738,18 +738,7 @@ p2pSiteMobApp
         }
       }
     })
-    //摩擦二次唤醒活动
-    .state('root.activity.moca-awaken', {
-      url: '/moca-awaken',
-      views: {
-        '': {
-          templateUrl: 'views/activity/moca-awaken.html',
-          // controller: 'InviteSharingCtrl',
-          // controllerUrl: 'scripts/controllers/activity/invite-sharing-ctrl'
-        }
-      }
-    })
-
+    
     // 渠道活动落地页
     .state('root.activity.channel', {
       url: '/channel?act&f',
