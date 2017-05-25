@@ -668,7 +668,9 @@ p2pSiteMobApp
        url: '/lottery',
        views: {
          '': {
-           templateUrl: 'views/activity/lottery.html'
+           templateUrl: 'views/activity/lottery.html',
+           controller: 'LotteryCtrl',
+           controllerUrl: 'scripts/controllers/lottery-ctrl'
          }
        }
      })
@@ -736,7 +738,7 @@ p2pSiteMobApp
         }
       }
     })
-
+    
     // 渠道活动落地页
     .state('root.activity.channel', {
       url: '/channel?act&f',

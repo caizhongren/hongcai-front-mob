@@ -1,155 +1,159 @@
-<style>
-	#btn .cjBtnDom,#btn .cjBtn,#luck .active,#luck td{
-	}
-
-	#btn.cjBtn{
-		background: rgba(0,0,0,.6);
-		color: red;
-	}
-	#btn.cjBtnDom{
-		background-image: url(buttonDown.png);
-	}
-
-
-	#luck .active{
-		background: red;
-	}
-	#luck td{
-		text-align: center;
-		width: 8rem;
-		height: 8rem;
-		padding: 0;
-	}
-	#luck img{
-		width: 50%;
-	}
-	#luck table{
-		padding-left: 63px;
-		padding-top: 63px;
-	}
-</style>
-<div id="luck">
-	<table>
-		<tbody><tr>
-			<td class="luck-unit luck-unit-0"><img src="http://www.jsdaima.com/Upload/1482283667/1.png"></td>
-			<td class="luck-unit luck-unit-1"><img src="http://www.jsdaima.com/Upload/1482283667/2.png"></td>
-			<td class="luck-unit luck-unit-2"><img src="http://www.jsdaima.com/Upload/1482283667/4.png"></td>
-			<td class="luck-unit luck-unit-3"><img src="http://www.jsdaima.com/Upload/1482283667/3.png"></td>
-		</tr>
-		<tr>
-			<td class="luck-unit luck-unit-11"><img src="http://www.jsdaima.com/Upload/1482283667/6.png"></td>
-			<td rowspan="2" colspan="2" class="cjBtn" id="btn">立即抽奖</td>
-			<td class="luck-unit luck-unit-4 active"><img src="http://www.jsdaima.com/Upload/1482283667/5.png"></td>
-		</tr>
-		<tr>
-			<td class="luck-unit luck-unit-10"><img src="http://www.jsdaima.com/Upload/1482283667/1.png"></td>
-			<td class="luck-unit luck-unit-5"><img src="http://www.jsdaima.com/Upload/1482283667/6.png"></td>
-		</tr>
-		<tr>
-			<td class="luck-unit luck-unit-9"><img src="http://www.jsdaima.com/Upload/1482283667/3.png"></td>
-			<td class="luck-unit luck-unit-8"><img src="http://www.jsdaima.com/Upload/1482283667/4.png"></td>
-			<td class="luck-unit luck-unit-7"><img src="http://www.jsdaima.com/Upload/1482283667/8.png"></td>
-			<td class="luck-unit luck-unit-6"><img src="http://www.jsdaima.com/Upload/1482283667/7.png"></td>
-		</tr>
-	</tbody></table>
+<!-- 幸运大抽奖 -->
+<div class="lottery padding-b-3">
+	<div class="lottery-wrap">
+		<div class="draw-lottery">
+			<p class="text-center ft-1p3">
+				<span ng-if="isLogged">今日可抽奖次数：<span class="draw-count">{{drawCount}}</span>次</span>
+			</p>
+			<!-- 抽奖转盘 1, "当日加息"" ; 2, "现金奖励 ; 3, "加息券 ; 4, "现金券" ; 5, "特权本金" ; 6, "谢谢"-->
+			<div class="lottery-box" id="js-rect-luck-draw-con">
+				<div class="lottery-item js-item selecting" data-sort="1" data-prize-id="1">
+					<img src="images/lottery/one-day-rate.png" alt="">
+					<span class="item-mask"></span>
+				</div>
+				<div class="lottery-item js-item selecting" data-sort="2" data-prize-id="2">
+					<img src="images/lottery/cash.png" alt="">
+					<span class="item-mask"></span>
+				</div>
+				<div class="lottery-item js-item selecting" data-sort="3" data-prize-id="3">
+					<img src="images/lottery/rate-coupon.png" alt="">
+					<span class="item-mask"></span>
+				</div>
+				<div class="lottery-item js-item selecting" data-sort="8" data-prize-id="5">
+					<img src="images/lottery/privilege.png" alt="">
+					<span class="item-mask"></span>
+				</div>
+				<div class="lottery-item js-start-btn">
+					<img src="images/lottery/draw.png" alt="">
+				</div>
+				<div class="lottery-item js-item selecting" data-sort="4" data-prize-id="4">
+					<img src="images/lottery/cash-coupon.png" alt="">
+					<span class="item-mask"></span>
+				</div>
+				<div class="lottery-item js-item selecting" data-sort="7" data-prize-id="6">
+					<img src="images/lottery/thanks.png" alt="">
+					<span class="item-mask"></span>
+				</div>
+				<div class="lottery-item js-item selecting" data-sort="6" data-prize-id="1">
+					<img src="images/lottery/one-day-rate.png" alt="">
+					<span class="item-mask"></span>
+				</div>
+				<div class="lottery-item js-item selecting" data-sort="5" data-prize-id="5">
+					<img src="images/lottery/privilege.png" alt="">
+					<span class="item-mask"></span>
+				</div>
+			</div>
+		</div>
+		<div class="lottery-other">
+			<p class="display-inb" ng-click="showRuleBox = true;">活动规则</p>
+			<p class="display-inb">我的奖励</p>
+		</div>
+		<!-- 幸运用户 -->
+		<div class="lucky-users">
+			<img src="images/lottery/title-lucky-users.png" alt="" width="48%">
+			<div class="lucky-users-wrap">
+				<ul class="margin-b-0">
+					<li class="text-justify" ng-repeat="item in luckyUsers"><span>恭喜{{item.mobile}}</span>获得{{item.prizeName}}</li>
+				</ul>
+			</div>
+			<!-- <p class="text-center ft-1p2 ft-black margin-t-3 margin-b-0 padding-b-1">该活动与设备生产商Apple Inc. 公司无关</p> -->
+		</div>
+		<!-- 关于宏财 -->
+		<div class="about-hongcai">
+			<img src="images/lottery/title-about-hongcai.png" alt="" width="48%">
+			<div class="about-content">
+				<!-- 国资背景 -->
+				<div class="about-background">
+					<ul>
+						<li><i class="fa fa-check" aria-hidden="true"></i><span>2016年获国有金融机构亿元A轮融资</span></li>
+						<li><i class="fa fa-check" aria-hidden="true"></i><span>国有企业战略入股</span></li>
+						<li><i class="fa fa-check" aria-hidden="true"></i><span>新三板金控第一股入主</span></li>
+						<li><i class="fa fa-check" aria-hidden="true"></i><span>拥有博士高管团队的互联网金融平台</span></li>
+					</ul>
+				</div>
+				<!-- 银行存管 -->
+				<div class="bank-custody">
+					<ul>
+						<li><i class="fa fa-check" aria-hidden="true"></i><span>与海口联合农商银行正式签订银行存管</span></li>
+						<li><i class="fa fa-check" aria-hidden="true"></i><span>2016年宏财网成为北京网贷协会成员</span></li>
+						<li><i class="fa fa-check" aria-hidden="true"></i><span>首批对接北京市网贷风险监控及资金存管系统</span></li>
+					</ul>
+				</div>
+				<!-- 风险安全 -->
+				<div class="risk-safety">
+					<ul>
+						<li><i class="fa fa-check" aria-hidden="true"></i><span>十年风控实战经验，数百亿项目经验</span></li>
+						<li><i class="fa fa-check" aria-hidden="true"></i><span>金融生态圈优质资产，历史坏账率为0% </span></li>
+						<li><i class="fa fa-check" aria-hidden="true"></i><span>用户资金与平台资金严格隔离，所有资金来往经由中信银行账户</span></li>
+					</ul>
+					
+				</div>
+			</div>
+		</div>
+		<!-- 战略合作 -->
+		<div class="strategic-cooperation">
+			<img src="images/lottery/title-cooperation.png" alt="" width="48%" class="margin-b-3">
+			<ul>
+				<li class="one"></li>
+				<li class="two"></li>
+				<li class="three"></li>
+				<li class="four"></li>
+				<li class="five"></li>
+				<li class="six"></li>
+				<li class="seven"></li>
+				<li class="eight"></li>
+			</ul>
+		</div>
+	</div>
 </div>
-<script>
-var luck={
-	index:-1,	//当前转动到哪个位置，起点位置
-	count:0,	//总共有多少个位置
-	timer:0,	//setTimeout的ID，用clearTimeout清除
-	speed:20,	//初始转动速度
-	times:0,	//转动次数
-	cycle:50,	//转动基本次数：即至少需要转动多少次再进入抽奖环节
-	prize:-1,	//中奖位置
-	init:function(id){
-		if ($("#"+id).find(".luck-unit").length>0) {
-			$luck = $("#"+id);
-			$units = $luck.find(".luck-unit");
-			this.obj = $luck;
-			this.count = $units.length;
-			$luck.find(".luck-unit-"+this.index).addClass("active");
-		};
-	},
-
-	
-	roll:function(){
-		var index = this.index;
-		var count = this.count;
-		var luck = this.obj;
-		$(luck).find(".luck-unit-"+index).removeClass("active");
-		index += 1;
-		if (index>count-1) {
-			index = 0;
-		};
-		$(luck).find(".luck-unit-"+index).addClass("active");
-		this.index=index;
-		return false;
-	},
-	stop:function(index){
-		this.prize=index;
-		return false;
-	}
-};
-
-
-function roll(){
-	luck.times += 1;
-	luck.roll();
-	if (luck.times > luck.cycle+10 && luck.prize==luck.index) {
-		clearTimeout(luck.timer);
-		luck.prize=-1;
-		luck.times=0;
-		click=false;
-	}else{
-		if (luck.times<luck.cycle) {
-			luck.speed -= 10;
-		}else if(luck.times==luck.cycle) {
-			var index = Math.random()*(luck.count)|0;
-			luck.prize = index;		
-		}else{
-			if (luck.times > luck.cycle+10 && ((luck.prize==0 && luck.index==7) || luck.prize==luck.index+1)) {
-				luck.speed += 110;
-			}else{
-				luck.speed += 20;
-			}
-		}
-		if (luck.speed<40) {
-			luck.speed=40;
-		};
-
-		luck.timer = setTimeout(roll,luck.speed);
-	}
-	return false;
-}
-
-
-var click=false;
-window.onload=function(){
-	luck.init('luck');
-	$("#btn").click(function(){
-		//按下弹起效果
-		$("#btn").addClass("cjBtnDom");
-		setTimeout(function(){	
-			$("#btn").removeClass("cjBtnDom");
-		},200);
-
-		
-		if(click) {
-			return false;
-		}
-		else{
-			luck.speed=100;
-			roll();
-			click=true;
-			return false;
-		}
-	
-	});
-};
-
-
-
-
-
-</script>
+<!-- 中奖弹窗 -->
+<div class="share-page-breakWishLayer bg-grey0p8 showDrawBox">
+	<div class="draw-box">
+		<!-- 抽奖 获得奖励-->
+		<div class="receive-draw">
+			<img src="images/lottery/receive-draw-01.png" alt="恭喜您获得奖励!" width="55%">
+			<div class="getPrize">
+				<p>2.88%{{prizeList.prizeType}}</p>
+				<p>当日加息{{prizeList.prizeType}}</p>
+			</div>
+			<div class="prize-effect">奖励已自动生效, 成功为您加息!{{prizeList.prizeText}}</div>
+			<!-- 第一次抽奖 未分享 出现 ；第二次获得奖励 隐藏 -->
+			<img src="images/lottery/share-friends.png" alt="分享好友，再抽一次" width="42%">
+		</div>
+		<!-- 抽奖次数达上限，欢迎明日再来！ -->
+		<div class="upper-limit">
+			<img src="images/lottery/upper-limit-01.png" alt="抽奖次数达上限，欢迎明日再来！" width="65%">
+			<img src="images/lottery/upper-limit-02.png" alt="明日见" width="45%" class="margin-t-4">
+		</div>
+		<!-- 今日次数用完需分享 -->
+		<div class="usedAndcanShare">
+			<img src="images/lottery/usedAndcanShare-01.png" alt="今日免费抽奖机会已使用！分享好友可再获一次免费抽奖机会" width="75%">
+			<img src="images/lottery/usedAndcanShare-02.png" alt="分享好友，再抽一次" width="38%" class="margin-t-1">
+		</div>
+		<img src="images/lottery/close-drawBox.png" alt="关闭中奖弹窗" width="8%" ng-click="closeDrawBox();">
+	</div>
+</div>
+<!-- 活动规则 -->
+<div class="share-page-breakWishLayer bg-grey0p8 text-center" ng-show="showRuleBox">
+	<div class="rule-box">
+		<div class="rule-title">
+			<img src="images/lottery/rule-title.png" alt="活动规则" width="50%">
+			<img src="images/lottery/rule-title-portrait.png" alt="宏财宝宝" width="12%" class="hongcai-portrait">
+		</div>
+		<div class="rule-bg">
+			<div class="rule-content">
+				<p>1.每人每天拥有1次免费抽奖机会，首次分享幸运大抽奖到第三方平台，可再获得1次免费抽奖机会；</p>
+				<p>2.您可在【我的奖励】中查看自己最近两周内的中奖情况；</p>
+				<p>3.抽中的当日加息奖励系统将自动为您使用，次日即可获得奖励收益，加息仅针对您当日宏财精选及宏财尊贵项目在投总资产有效，包含当日新增投资，不含购买的债权转让项目及已经成功转让的资产；</p>
+				<p>4.抽中的特权本金、返现、现金券及加息券奖励将直接发放至您的账户中，可在【我的】页面相应位置查看；</p>
+				<p>5.所有奖励均可叠加获得；</p>
+				<p>6.在法律规定范围内，平台保留本活动最终解释权；</p>
+				<p>7.如有更多相关问题，可致电详询<br>
+					客服电话：400-990-7626 <br>
+					服务时间：工作日9:00-18:00
+				</p>
+			</div>
+		</div>
+	</div>
+	<img src="images/lottery/close-drawBox.png" alt="关闭弹窗" width="8%" ng-click="showRuleBox = false;">
+</div>

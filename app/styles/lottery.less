@@ -1,0 +1,513 @@
+.lottery{
+	font-family: "微软雅黑" !important;
+	.lottery-wrap {
+		background: url('../images/lottery/lottery-bg.jpg') 0 0 no-repeat;
+		background-size: cover;
+		padding-top: 6rem;
+		.draw-lottery {
+			background: url(../images/lottery/draw-bg1.png) -0.2rem 0 no-repeat;
+			height: 17rem;
+			width: 97%;
+			margin: 0 auto;
+			background-size: 100% 100%; 
+			.lottery-box {
+				width: 92%;
+			    margin: 0 auto;
+			    text-align: center;
+			    padding-top: 1.3rem;
+			    .lottery-item {
+			    	display: inline-block;
+			    	width: 25%;
+			    	position: relative;
+			    	.item-mask {
+			    		position: absolute;
+			    		left: 0;
+			    		top: 0;
+			    		width: 100%;
+			    		height: 100%;
+			    		background: rgba(0,0,0,0.5);
+			    		z-index: 10;
+			    		border-radius: .6rem;
+			    	}
+			    	img{
+			    		width: 100%;
+			    		display: block;
+			    	}
+			    }
+			    .selecting .item-mask {
+			    	display: none;
+			    }
+			}
+		}
+		.lottery-other {
+			width: 94%;
+			margin: 1.2rem auto;
+			text-align: center;
+			p {
+				width: 40%;
+				height: 4.6rem;
+				border-radius: 1rem;
+				line-height: 4.6rem;
+				font-size: 2.1rem;
+			}
+			p:first-child {
+				color: #046151;
+				margin-right: 1.3rem;
+				background: url(../images/lottery/rule-btn.png) no-repeat;
+				background-size: 100% 100%;
+			}
+			p:last-child {
+				color: #564705;
+				background: url(../images/lottery/reward-btn.png) no-repeat;
+				background-size: 100% 100%;
+			}
+		}
+		.lucky-users {
+			background-color: #fbd942;
+			padding-bottom: 5rem;
+			img{
+				display: block;
+				margin: 1rem auto;
+			}
+			.lucky-users-wrap {
+				width: 92%;
+				margin: 0 auto;
+				padding: 1rem;
+				background: #f7d25e;
+				border: 1.3rem solid #edcd40;
+				border-radius: 1.2rem;
+				height: 32rem;
+				overflow-y: hidden;
+				position: relative;
+				li{
+					color: #000;
+					margin-bottom: 1rem;
+				}
+			}
+		}
+		.about-hongcai {
+			background-color: #fbd942;
+			padding-bottom: 3rem;
+			text-align: center;
+			.about-content {
+				.about-background, .bank-custody, .risk-safety {
+					width: 90%;
+					height: 17rem;
+    				margin: 3rem auto;
+					background-size: contain;
+					ul {
+						padding-top: 7.5rem;
+						li {
+							color: rgba(255,255,255,.85);
+							font-size: 1.4rem;
+							text-align: left;
+							width: 78%;
+							margin: 0 auto;
+							font-weight: 300;
+							overflow: hidden;
+							i {
+								font-size: 1.2rem;
+	    						margin-right: .4rem;
+							    float: left;
+							    line-height: 2rem;
+							}
+							span {
+								display: inline-block;
+							    float: left;
+							    width: 92%;
+							}
+						}
+					}
+				}
+				.about-background {
+					background: url('/images/lottery/about-background.png') no-repeat center center;
+					background-size: contain;
+				}
+				.bank-custody {
+					background: url('/images/lottery/bank-custody.png') no-repeat center center;
+					background-size: contain;
+					ul {
+						padding-top: 7rem;
+					}
+				}
+				.risk-safety {
+					background: url('/images/lottery/risk-safety.png') no-repeat center center;
+					background-size: contain;
+					height: 19rem;
+				}
+			}
+		}
+		.strategic-cooperation {
+			background-color: #fbd942;
+			padding-bottom: 5rem;
+			text-align: center;
+			ul {
+				width: 77%;
+				overflow: hidden;
+				margin: 0 auto;
+				li {
+					width: 45%;
+					height: 4rem;
+					float: left;
+					margin-bottom: 1.5rem;
+				}
+				li:nth-child(odd) {
+					margin-right: 10%;
+				}
+				li.one {
+					background: url('/images/lottery/cooperation-01.png') no-repeat center center;
+					background-size: contain;
+				}
+				li.two {
+					background: url('/images/lottery/cooperation-02.png') no-repeat center center;
+					background-size: contain;
+				}
+				li.three {
+					background: url('/images/lottery/cooperation-03.png') no-repeat center center;
+					background-size: contain;
+				}
+				li.four {
+					background: url('/images/lottery/cooperation-04.png') no-repeat center center;
+					background-size: contain;
+				}
+				li.five {
+					background: url('/images/lottery/cooperation-05.png') no-repeat center center;
+					background-size: contain;
+				}
+				li.six {
+					background: url('/images/lottery/cooperation-06.png') no-repeat center center;
+					background-size: contain;
+				}
+				li.seven {
+					background: url('/images/lottery/cooperation-07.png') no-repeat center center;
+					background-size: contain;
+				}
+				li.eight {
+					background: url('/images/lottery/cooperation-08.png') no-repeat center center;
+					background-size: contain;
+				}
+			}
+		}
+	}
+}
+//抽奖弹窗
+.showDrawBox {
+	display: none;
+	.draw-box {
+		text-align: center;
+		.receive-draw {
+			text-align: center;
+			padding: 32% 0 4rem;
+			display: none;
+			.getPrize {
+				background: url('../images/lottery/receive-draw-02.png') no-repeat center center;
+				background-size: contain;
+				height: 20rem;
+				padding-top: 11.6rem;
+				margin-top: .5rem;
+				p {
+					color: #fc7371;
+					font-size: 1.6rem; 
+					margin-bottom: 0;
+					line-height: 1.8rem;
+				}
+			}
+			.prize-effect {
+				color: rgba(255,255,255,.82);
+				font-size: 1.4rem;
+				margin: 2rem 0 1.4rem;
+			}
+		}
+		.upper-limit {
+			padding: 40% 0 4rem;
+			display: none;
+		} 
+		.usedAndcanShare {
+			padding: 40% 0 7rem;
+			display: none;
+		}
+	}
+}
+//规则弹窗
+.rule-box {
+    padding: 22% 3.2rem 6rem;
+    .rule-title {
+    	position: relative;
+    	.hongcai-portrait {
+    		position: absolute;
+    		top: -2.56rem;
+    		left: 27%;
+    	}
+    }
+    .rule-bg {
+    	height: 34rem;
+    	overflow: auto;
+    	background: url('../images/lottery/rule-bg.png') no-repeat center center;
+    	background-size: contain;
+    	.rule-content {
+    		height: 24.5rem;
+    	    position: relative;
+    	    top: 4rem;
+    	    padding: 0 4rem;
+    	    overflow: auto;
+    	    p {
+    	    	margin-bottom: 1.2rem;
+    	    	color: #fff;
+    	    	font-size: 1.4rem;
+    	    	text-align: justify;
+    	    }
+    	}
+    }
+}
+@media(min-width: 320px) {
+	.lottery .lottery-wrap {
+		padding-top: 7rem;
+		height: 69rem;
+	}
+	.lottery .lottery-wrap .draw-lottery {
+		height: 38rem;
+	}
+	.lottery .lottery-wrap .draw-lottery p {
+		height: 9.5rem;
+	    line-height: 12rem;
+	    margin-bottom: 0;
+	}
+	.lottery .lottery-wrap .draw-lottery .draw-count {
+		font-size: 2.3rem;
+		color: #f5fb60;
+	}
+	.lottery .lottery-wrap .draw-lottery .lottery-box {
+	    padding-top: 1.3rem;
+	}
+	.lottery .lottery-wrap .lucky-users .lucky-users-wrap {
+		height: 34rem;
+	}
+	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li{
+		font-size: 1.2rem;
+		letter-spacing: .08rem;
+		margin-bottom: 0;
+		height: 3rem;
+		line-height: 3rem;
+	}
+	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li span{
+		margin-right: 5%;
+	}
+	.lottery {
+		.lottery-wrap {
+			.about-hongcai {
+				.about-content {
+					.about-background, .bank-custody, .risk-safety {
+						ul li {
+							width: 92%;
+						}
+					}
+				}
+			}
+			.strategic-cooperation {
+				ul {
+					width: 86%;
+					li {
+						width: 45%;
+					}
+					li:nth-child(odd) {
+						margin-right: 10%;
+					}
+				}
+			}
+		}
+	}  
+	.rule-box .rule-bg {
+		height: 30rem;
+	}
+	.rule-box .rule-bg .rule-content {
+		height: 21rem;
+	    top: 4rem;
+	    padding: 0 4rem;
+	}
+	.rule-box .rule-title .hongcai-portrait {
+		top: -2.6rem;
+	}
+}
+@media(min-width: 360px) {
+	.lottery .lottery-wrap {
+		height: 75rem;
+	}
+	.lottery .lottery-wrap .draw-lottery {
+		height: 43rem;
+	}
+	.lottery .lottery-wrap .draw-lottery p {
+		height: 12.5rem;
+    	line-height: 13.2rem;
+	}
+	.lottery .lottery-wrap .draw-lottery .draw-count {
+		font-size: 2.4rem;
+	}
+	.lottery .lottery-wrap .draw-lottery .lottery-box {
+	    padding-top: 0;
+	}
+	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li{
+		font-size: 1.3rem;
+		letter-spacing: .1rem;
+	}
+	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li span{
+		margin-right: 7%;
+	}
+	.lottery {
+		.lottery-wrap { 
+			.about-hongcai {
+				.about-content {
+					.about-background, .bank-custody, .risk-safety {
+						ul li {
+							width: 83%;
+						}
+					}
+				}
+			}
+			.strategic-cooperation {
+				ul {
+					width: 79%;
+					li {
+						width: 45%;
+					}
+					li:nth-child(odd) {
+						margin-right: 10%;
+					}
+				}
+			}
+		}
+	} 
+	.rule-box .rule-bg {
+		height: 33rem;
+	}
+	.rule-box .rule-bg .rule-content {
+		height: 23rem;
+	    top: 3.5rem;
+	    padding: 0 5rem;
+	}
+}
+@media(min-width: 375px) {
+	.lottery .lottery-wrap {
+		padding-top: 8rem;
+		height: 76rem;
+	}
+	.lottery .lottery-wrap .draw-lottery {
+		height: 44rem;
+	}
+	.lottery .lottery-wrap .draw-lottery p {
+		height: 10.5rem;
+	    line-height: 13.8rem;
+	}
+	.lottery .lottery-wrap .draw-lottery .draw-count {
+		font-size: 2.5rem;
+	}
+	.lottery .lottery-wrap .draw-lottery .lottery-box {
+	    padding-top: 2rem;
+	}
+	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li{
+		font-size: 1.4rem;
+	}
+	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li span{
+		margin-right: 6%;
+	}
+	.lottery {
+		.lottery-wrap {
+			.about-hongcai {
+				.about-content {
+					.about-background, .bank-custody, .risk-safety {
+						ul li {
+							width: 80%;
+						}
+					}
+				}
+			}
+			.strategic-cooperation {
+				ul {
+					width: 79%;
+					li {
+						width: 48%;
+					}
+					li:nth-child(odd) {
+						margin-right: 4%;
+					}
+				}
+			}
+		}
+	} 
+	.rule-box .rule-bg {
+		height: 35rem;
+	}
+	.rule-box .rule-bg .rule-content {
+		height: 26rem;
+	    top: 4rem;
+	    padding: 0 4.5rem;
+	}
+	.rule-box .rule-title .hongcai-portrait {
+		top: -3.2rem;
+	}
+}
+@media(min-width: 411px) {
+	.lottery .lottery-wrap {
+		padding-top: 8rem;
+	}
+	.lottery .lottery-wrap .draw-lottery {
+		height: 48rem;
+	}
+	.lottery .lottery-wrap .draw-lottery p {
+		height: 11.5rem;
+	    line-height: 15rem;
+	}
+	.lottery .lottery-wrap .draw-lottery .lottery-box {
+	    padding-top: 2rem;
+	}
+	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li{
+		font-size: 1.4rem;
+	}
+	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li span{
+		margin-right: 10%;
+	}
+}
+@media(min-width: 414px) {
+	.lottery {
+		.lottery-wrap {
+			.about-hongcai {
+				.about-content {
+					.about-background, .bank-custody, .risk-safety {
+						height: 20rem;
+						ul {
+							padding-top: 9rem;
+						}
+						ul li {
+							width: 80%;
+						}
+					}
+					.risk-safety {
+						height: 22rem;
+					}
+				}
+			}
+			.strategic-cooperation {
+				ul {
+					width: 90%;
+					li {
+						width: 50%;
+						height: 4.5rem;
+					}
+					li:nth-child(odd) {
+						margin-right: 0%;
+					}
+				}
+			}
+		}
+	} 
+	.rule-box .rule-bg {
+		height: 38rem;
+	}
+	.rule-box .rule-bg .rule-content {
+		height: 28.5rem;
+	    top: 4rem;
+	    padding: 0 5rem;
+	}
+	.rule-box .rule-title .hongcai-portrait {
+		top: -3.7rem;
+	}
+}
