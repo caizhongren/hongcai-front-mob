@@ -45,8 +45,8 @@
 			</div>
 		</div>
 		<div class="lottery-other">
-			<p class="display-inb" ng-click="showRuleBox = true;">活动规则</p>
-			<p class="display-inb">我的奖励</p>
+			<p class="display-inb" ng-click="closeRuleBox();">活动规则</p>
+			<p class="display-inb" ng-click="downloadApp();">下载APP查看奖励</p>
 		</div>
 		<!-- 幸运用户 -->
 		<div class="lucky-users">
@@ -56,7 +56,6 @@
 					<li class="text-justify" ng-repeat="item in luckyUsers"><span>恭喜{{item.mobile}}</span>获得{{item.prizeName}}</li>
 				</ul>
 			</div>
-			<!-- <p class="text-center ft-1p2 ft-black margin-t-3 margin-b-0 padding-b-1">该活动与设备生产商Apple Inc. 公司无关</p> -->
 		</div>
 		<!-- 关于宏财 -->
 		<div class="about-hongcai">
@@ -111,24 +110,13 @@
 	<div class="draw-box">
 		<!-- 抽奖 获得奖励-->
 		<div class="receive-draw">
-			<img src="images/lottery/receive-draw-01.png" alt="恭喜您获得奖励!" width="55%">
-			<div class="getPrize">
-				<p>2.88%{{prizeList.prizeType}}</p>
-				<p>当日加息{{prizeList.prizeType}}</p>
+			<img src="images/lottery/receive-draw-01.png" alt="恭喜您获得奖励!" width="55%" ng-hide="prizeList.prizeType == 6">
+			<div class="getPrize" ng-class="{'ft-1p1': prizeList.prizeType === 5 , 'ft-1p4': prizeList.prizeType !== 5}">
+				<p ng-show="prizeList.prizeType !== 6">{{prizeList.prizeValue}}</p>
+				<p  ng-class="{'margin-t-0p8': prizeList.prizeType === 6}">{{prizeList.prizeText}}</p>
 			</div>
-			<div class="prize-effect">奖励已自动生效, 成功为您加息!{{prizeList.prizeText}}</div>
-			<!-- 第一次抽奖 未分享 出现 ；第二次获得奖励 隐藏 -->
-			<img src="images/lottery/share-friends.png" alt="分享好友，再抽一次" width="42%">
-		</div>
-		<!-- 抽奖次数达上限，欢迎明日再来！ -->
-		<div class="upper-limit">
-			<img src="images/lottery/upper-limit-01.png" alt="抽奖次数达上限，欢迎明日再来！" width="65%">
-			<img src="images/lottery/upper-limit-02.png" alt="明日见" width="45%" class="margin-t-4">
-		</div>
-		<!-- 今日次数用完需分享 -->
-		<div class="usedAndcanShare">
-			<img src="images/lottery/usedAndcanShare-01.png" alt="今日免费抽奖机会已使用！分享好友可再获一次免费抽奖机会" width="75%">
-			<img src="images/lottery/usedAndcanShare-02.png" alt="分享好友，再抽一次" width="38%" class="margin-t-1">
+			<div class="prize-effect">{{prizeList.prizeCont.split('，')[0]}} <br> {{prizeList.prizeCont.split('，')[1]}}</div>
+			<img src="images/lottery/download-app.png" alt="下载APP查看奖励" width="42%" ng-click="downloadApp();">
 		</div>
 		<img src="images/lottery/close-drawBox.png" alt="关闭中奖弹窗" width="8%" ng-click="closeDrawBox();">
 	</div>
@@ -155,5 +143,5 @@
 			</div>
 		</div>
 	</div>
-	<img src="images/lottery/close-drawBox.png" alt="关闭弹窗" width="8%" ng-click="showRuleBox = false;">
+	<img src="images/lottery/close-drawBox.png" alt="关闭弹窗" width="8%" ng-click="closeRuleBox();">
 </div>
