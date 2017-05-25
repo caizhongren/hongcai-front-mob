@@ -43,7 +43,7 @@
 					<span class="item-mask"></span>
 				</div>
 				<!-- 注册弹窗 -->
-				<div class="share-page-breakWishLayer bg-grey0p8" ng-show="showRegister">
+				<div class="share-page-breakWishLayer bg-grey0p8 register-draw" ng-show="showRegister" auto-h>
 					<div class="register-box">
 						<div class="register-list">
 							<div class="register-header position-re padding-t-3">
@@ -71,7 +71,7 @@
 							<p class="text-center ft-1p2">本活动仅针对新用户，已经注册的用户请前往APP内参与！</p>
 						</div>
 					</div>
-					<img src="images/lottery/close-drawBox.png" alt="关闭中奖弹窗" class="close" width="8%" ng-click="showRegister = false">
+					<img src="images/lottery/close-drawBox.png" alt="关闭中奖弹窗" class="close" width="8%" ng-click="closeRegisterBox()">
 				</div>
 			</div>
 		</div>

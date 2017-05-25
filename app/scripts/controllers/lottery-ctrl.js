@@ -31,8 +31,6 @@ angular.module('p2pSiteMobApp')
             $lotteryItem.addClass('selecting');
   	    },
   	    startBtnClick: function($btn){
-  	    	//点击抽奖立即去掉奖品选中样式
-  	    	$lotteryItem.removeClass('selecting');
 	        if(this.isLocked() || !$scope.drawed){
 	            return;
 	        }
@@ -54,7 +52,12 @@ angular.module('p2pSiteMobApp')
         $showDrawBox.show();
         return;
       }
+      $lottery.addClass('position-fix');
       $scope.showRegister = true;
+    }
+    $scope.closeRegisterBox = function() {
+      $scope.showRegister = false;
+      $lottery.removeClass('position-fix');
     }
     /**
     * 注册
