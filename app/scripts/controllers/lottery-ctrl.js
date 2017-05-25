@@ -1,6 +1,6 @@
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('LotteryCtrl', function($scope, $rootScope, Restangular, WEB_DEFAULT_DOMAIN, CheckMobUtil, CheckPicUtil, md5, ipCookie, Utils, $timeout, DEFAULT_DOMAIN, $http) {
+  .controller('LotteryCtrl', function($scope, $rootScope, Restangular, WEB_DEFAULT_DOMAIN, CheckMobUtil, CheckPicUtil, md5, ipCookie, Utils, $timeout, DEFAULT_DOMAIN, $http, $window) {
     $scope.getPicCaptcha = WEB_DEFAULT_DOMAIN + '/siteUser/getPicCaptcha?';
     $scope.busy = false;
     $scope.showDrawBox = false;
@@ -12,15 +12,12 @@ angular.module('p2pSiteMobApp')
   	**/
   	var prizeList = {},
         second = 60,
-        $showDrawBox = $('.showDrawBox'), 
+        $showDrawBox = $('.showDrawBox'),
+        $lottery = $('.lottery'), 
         $mobilecode = $('#lottery-mobilecode')[0],
   	    prizes = ['当日加息','现金奖励','加息券','现金券','特权本金','谢谢','当日加息','特权本金'],
   	    $lotteryItem = $('.lottery-item');
-  	for(var i=1; i<9; i++){
-  	    prizeList[i] = {
-  	        name: prizes[i-1]
-  	    };
-  	}
+  
   	var rld = new RectLuckDraw('#js-rect-luck-draw-con', prizeList, {
   	    turnAroundCount: 5, 
   	    maxAnimateDelay: 400,
@@ -30,6 +27,7 @@ angular.module('p2pSiteMobApp')
   	    turnEndCallback: function(prizeId, obj){
             window.clearInterval($scope._timer);
             $showDrawBox.show();
+            $lottery.addClass('position-fix');
             $lotteryItem.addClass('selecting');
   	    },
   	    startBtnClick: function($btn){
@@ -47,11 +45,7 @@ angular.module('p2pSiteMobApp')
   	        // alert('解锁了');
   	    }
   	});
-    // 关闭中奖弹窗
-    $scope.closeDrawBox = function() {
-      $showDrawBox.hide();
-      $('.lottery').removeClass('position-fix');
-    }
+
     /**
     * 抽奖
     **/
@@ -149,6 +143,15 @@ angular.module('p2pSiteMobApp')
                   prizeCont: '奖励已发放至您的账户，赶快下载App查看吧！'
                 }
                 break;
+              case 6:
+                $scope.prizeList = {
+                  prizeType: receivePrize.prizeType,
+                  prizeText: '谢谢',
+                  prizeValue: receivePrize.value,
+                  prizeCont: '什么都木有赚到，换个姿势再试一次吧～'
+                }
+                break;
+
             }
             var prizeId = response.prizeType;
             rld.start(prizeId);
@@ -235,46 +238,74 @@ angular.module('p2pSiteMobApp')
         account: user.mobile
       }).then(function(response) {
         if(response && response.ret === -1) {
-          $rootScope.showMsg('已经注册过，去APP');
+          $rootScope.showMsg('您已是宏财用户，请前往app参与');
           return;
         }
         $scope.checkCapcha(user);
       })
     }
 
- 
-    
   	/**
      *  幸运用户数据
      *  prizeType：1, "当日加息"" ; 2, "现金奖励 ; 3, "加息券 ; 4, "现金券" ; 5, "特权本金" ; 6, "谢谢"
     **/
-
     $scope.luckyUsers = angular.fromJson(localStorage.getItem('luckyUsers'))? angular.fromJson(localStorage.getItem('luckyUsers')) : undefined;
-    Restangular.one('lotteries').one('luckyUsers').get().then(function(response){
-      $scope.luckyUsers = response;
-      localStorage.setItem('luckyUsers', angular.toJson($scope.luckyUsers));
-      for(var i = 0; i <$scope.luckyUsers.length; i++) {
-        var prizeType = $scope.luckyUsers[i].prizeType;
-        switch(prizeType)
-        {
-        case 1:
-          $scope.luckyUsers[i].prizeName = '+' + $scope.luckyUsers[i].value + '%当日加息';
-          break;
-        case 2:
-          $scope.luckyUsers[i].prizeName = '返现' + $scope.luckyUsers[i].value + '元';
-          break;
-        case 3:
-          $scope.luckyUsers[i].prizeName = '+' + $scope.luckyUsers[i].value + '%加息券';
-          break;
-        case 4:
-          $scope.luckyUsers[i].prizeName = $scope.luckyUsers[i].value + '元现金券';
-          break;
-        case 5:
-          $scope.luckyUsers[i].prizeName = '特权本金' + $scope.luckyUsers[i].value + '元';
-          break;
+    $scope.getLuckyUsers = function() {
+      Restangular.one('lotteries').one('luckyUsers').get().then(function(response){
+        $scope.luckyUsers = response;
+        localStorage.setItem('luckyUsers', angular.toJson($scope.luckyUsers));
+        for(var i = 0; i <$scope.luckyUsers.length; i++) {
+          var prizeType = $scope.luckyUsers[i].prizeType;
+          switch(prizeType)
+          {
+          case 1:
+            $scope.luckyUsers[i].prizeName = '+' + $scope.luckyUsers[i].value + '%当日加息';
+            break;
+          case 2:
+            $scope.luckyUsers[i].prizeName = '返现' + $scope.luckyUsers[i].value + '元';
+            break;
+          case 3:
+            $scope.luckyUsers[i].prizeName = '+' + $scope.luckyUsers[i].value + '%加息券';
+            break;
+          case 4:
+            $scope.luckyUsers[i].prizeName = $scope.luckyUsers[i].value + '元现金券';
+            break;
+          case 5:
+            $scope.luckyUsers[i].prizeName = '特权本金' + $scope.luckyUsers[i].value + '元';
+            break;
+          }
         }
+      });
+    }
+    $scope.getLuckyUsers();
+
+    /**
+     *  关闭中奖弹窗
+    **/
+    $scope.closeDrawBox = function() {
+      $showDrawBox.hide();
+      $lottery.removeClass('position-fix');
+    }
+ 
+    /**
+     *  关闭活动规则弹窗
+    **/ 
+    $scope.showRuleBox = false;
+    $scope.closeRuleBox = function() {
+      $scope.showRuleBox = !$scope.showRuleBox;
+      if ($scope.showRuleBox) {
+        $lottery.addClass('position-fix');
+      }else {
+        $lottery.removeClass('position-fix');
       }
-    });
+    }
+    /**
+     *  下载app
+     **/
+    $scope.downloadApp = function() {
+      $window.location.href = ' http://a.app.qq.com/o/simple.jsp?pkgname=com.hoolai.hongcai';
+    }
+
   	var luckyTimer = function(val) {
   		$rootScope.timer = setInterval(function(){
         if(val % 75 === 0) {
