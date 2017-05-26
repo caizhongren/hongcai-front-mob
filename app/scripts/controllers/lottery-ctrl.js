@@ -7,6 +7,7 @@ angular.module('p2pSiteMobApp')
     $scope.drawed = false;
     $scope.canGetMobileCapcha = true;
     var mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
+    var deviceCode = Utils.deviceCode();
   	/**
   	*抽奖动画
   	**/
@@ -308,7 +309,28 @@ angular.module('p2pSiteMobApp')
     $scope.downloadApp = function() {
       $window.location.href = ' http://a.app.qq.com/o/simple.jsp?pkgname=com.hoolai.hongcai';
     }
-
+    /**
+     * 虚拟键盘弹出遮住输入框问题
+     */
+     if(deviceCode ===  2 || deviceCode === 3) {
+        angular.element('.picCaptcha').bind({
+          focus: function(){
+            angular.element('.register-box').css('margin-top','-6rem');
+          },
+          blur: function(){
+            angular.element('.register-box').css('margin-top','-5rem');
+          }
+        })
+        angular.element('.mobileCaptcha').bind({
+          focus: function(){
+            angular.element('.register-box').css('margin-top','-6rem');
+          },
+          blur: function(){
+            angular.element('.register-box').css('margin-top','0rem');
+          }
+        })
+     }
+    
   	var luckyTimer = function(val) {
   		$rootScope.timer = setInterval(function(){
         if(val % 75 === 0) {
