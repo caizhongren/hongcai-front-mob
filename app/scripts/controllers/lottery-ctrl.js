@@ -335,7 +335,7 @@ angular.module('p2pSiteMobApp')
   		$rootScope.timer = setInterval(function(){
         if(val % 75 === 0) {
           val = 0;
-          $('.lucky-users-wrap').find('ul').css('marginTop',val + 'rem');
+          $('.lucky-users-wrap').find('ul').css('marginTop', '0rem');
           val -= 15;
           return
         }
