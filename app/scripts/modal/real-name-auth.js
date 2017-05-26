@@ -13,6 +13,7 @@ angular.module('p2pSiteMobApp')
 
     $scope.cancel = function () {
       $uibModalInstance.dismiss('cancel');
+      $('#body-box').removeClass('body-box');
     };
 
     /**

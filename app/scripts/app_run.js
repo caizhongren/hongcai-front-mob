@@ -61,6 +61,7 @@ angular.module('p2pSiteMobApp')
           //   }
           // }
       });
+      $('#body-box').addClass('body-box');
     }
     /**
      * 未支付订单

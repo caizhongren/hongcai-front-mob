@@ -666,6 +666,9 @@ p2pSiteMobApp
      })
       .state('root.lottery', {
        url: '/lottery',
+       data: {
+        title: '幸运大抽奖'
+       },
        views: {
          '': {
            templateUrl: 'views/activity/lottery.html',
