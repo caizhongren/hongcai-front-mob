@@ -2,6 +2,9 @@
 angular.module('p2pSiteMobApp')
   .controller('LotteryCtrl', function($scope, $rootScope, Restangular, WEB_DEFAULT_DOMAIN, CheckMobUtil, CheckPicUtil, md5, ipCookie, Utils, $timeout, DEFAULT_DOMAIN, $http, $window) {
     $scope.getPicCaptcha = WEB_DEFAULT_DOMAIN + '/siteUser/getPicCaptcha?';
+    $scope.refreshCode = function() {
+      angular.element('#checkCaptcha').attr('src', angular.element('#checkCaptcha').attr('src').substr(0, angular.element('#checkCaptcha').attr('src').indexOf('?')) + '?code=' + Math.random());
+    };
     $scope.busy = false;
     $scope.showDrawBox = false;
     $scope.drawed = false;
