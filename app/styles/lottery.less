@@ -268,13 +268,15 @@
 //注册弹窗
 .register-box {
 	.register-list {
-		p {
+		p.tip {
 			color: #885418;
 			margin-top: 7rem;
-			line-height: 1.8rem !important;
 		}
-		margin: 0 auto;
-		margin-top: 6rem;
+		//margin: 0 auto;
+		//margin-top: 6rem;
+		position: absolute;
+		left: 4%;
+		top: 5rem;
 		height: 36rem;
 		width: 92%;
 		border-radius: 1rem;
@@ -390,6 +392,12 @@
 	.showDrawBox .draw-box .receive-draw {
 		padding: 22% 0 2rem;
 	}
+	.register-box .register-list {
+		//margin-top: 5rem;
+		p.tip#act-tip {
+			line-height: 1.8rem;
+		}
+	}
 }
 @media(min-width: 360px) {
 	.lottery .lottery-wrap {
@@ -448,6 +456,15 @@
 	}
 	.showDrawBox .draw-box .receive-draw {
 		padding: 22% 0 2rem;
+	}
+	.register-box .register-list {
+		//margin-top: 6rem;
+	}
+	.register-box .register-list {
+		height: 37rem;
+		p.tip#act-tip {
+			line-height: 2.8rem;
+		}
 	}
 }
 @media(min-width: 375px) {
@@ -509,6 +526,12 @@
 	.showDrawBox .draw-box .receive-draw {
 		padding: 32% 0 4rem;
 	}
+	.register-box .register-list {
+		height: 38rem;
+		p.tip#act-tip {
+			line-height: 3.8rem;
+		}
+	}
 }
 @media(min-width: 411px) {
 	.lottery .lottery-wrap {
@@ -529,6 +552,12 @@
 	}
 	.lottery .lottery-wrap .lucky-users .lucky-users-wrap li span{
 		margin-right: 10%;
+	}
+	.register-box .register-list {
+		height: 41rem;
+		p.tip#act-tip {
+			line-height: 8rem;
+		}
 	}
 }
 @media(min-width: 414px) {
