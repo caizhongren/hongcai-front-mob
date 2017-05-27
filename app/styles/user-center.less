@@ -7,6 +7,13 @@
     right: 0;
     max-width: 640px;
     margin: 0 auto;
+    .close {
+      margin-top: 6rem;
+      @media(max-width: 320px) {
+        margin-top: 3rem;
+      }
+    }
+
 }
 .user-center {
   //红点
@@ -558,7 +565,7 @@
             }
             @media(min-width:320px){
               p:nth-child(1) {
-                width: 33%;
+                width: 31.2%;
               }
             }
             @media(min-width:360px){
@@ -602,6 +609,9 @@
 .realname-mask {
   padding-top: 0rem;
   font-family: "microsoft yahei";
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  position: absolute;
+  overflow: hidden;
   p:nth-child(1) {
     width: 100%;
     border-bottom: 0.1rem solid #bbb;
@@ -645,7 +655,7 @@
     span {
       display: inline-block;
       float: left;
-      width: 49.8%;
+      width: 49.7%;
       text-align: center;
     }
     span:nth-child(1) {

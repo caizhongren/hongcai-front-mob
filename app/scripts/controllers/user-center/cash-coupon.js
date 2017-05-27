@@ -22,9 +22,11 @@ angular.module('p2pSiteMobApp')
 	$scope.showRules = false;
 	$scope.showRule = function(){
 		$scope.showRules = true;
+		$('#body-box').addClass('body-box');
 	}
 	$scope.closeRule = function() {
 		$scope.showRules = false;
+		$('#body-box').removeClass('body-box');
 	}
 
 	/*投资统计*/
