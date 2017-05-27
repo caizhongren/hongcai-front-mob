@@ -65,6 +65,7 @@ angular.module('p2pSiteMobApp')
       $scope.showRegister = false;
       $lottery.removeClass('position-fix');
       $lottery.removeClass('overflow-hid');
+      $lotteryItem.addClass('selecting');
     }
     /**
     * 注册
@@ -273,7 +274,6 @@ angular.module('p2pSiteMobApp')
     $scope.getLuckyUsers = function() {
       Restangular.one('lotteries').one('luckyUsers').get().then(function(response){
         $scope.luckyUsers = response;
-        localStorage.setItem('luckyUsers', angular.toJson($scope.luckyUsers));
         for(var i = 0; i <$scope.luckyUsers.length; i++) {
           var prizeType = $scope.luckyUsers[i].prizeType;
           switch(prizeType)
@@ -296,6 +296,7 @@ angular.module('p2pSiteMobApp')
           }
         }
       });
+      localStorage.setItem('luckyUsers', angular.toJson($scope.luckyUsers));
     }
     $scope.getLuckyUsers();
 
