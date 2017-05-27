@@ -345,7 +345,7 @@ angular.module('p2pSiteMobApp')
   	luckyTimer(-15);
 
     var rld = new RectLuckDraw('#js-rect-luck-draw-con', prizeList, {
-        turnAroundCount: 5, 
+        turnAroundCount: 3, 
         maxAnimateDelay: 400,
         turnStartCallback: function(){
             //alert('摇奖开始...');
