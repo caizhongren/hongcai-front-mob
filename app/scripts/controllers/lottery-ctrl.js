@@ -31,6 +31,7 @@ angular.module('p2pSiteMobApp')
             window.clearInterval($scope._timer);
             $showDrawBox.show();
             $lottery.addClass('position-fix');
+            $lottery.addClass('overflow-hid');
             $lotteryItem.addClass('selecting');
   	    },
   	    startBtnClick: function($btn){
@@ -306,6 +307,7 @@ angular.module('p2pSiteMobApp')
     $scope.closeDrawBox = function() {
       $showDrawBox.hide();
       $lottery.removeClass('position-fix');
+      $lottery.removeClass('overflow-hid');
     }
  
     /**
@@ -316,8 +318,10 @@ angular.module('p2pSiteMobApp')
       $scope.showRuleBox = !$scope.showRuleBox;
       if ($scope.showRuleBox) {
         $lottery.addClass('position-fix');
+        $lottery.addClass('overflow-hid');
       }else {
         $lottery.removeClass('position-fix');
+        $lottery.removeClass('overflow-hid');
       }
     }
     /**
