@@ -19,7 +19,6 @@ angular.module('p2pSiteMobApp')
         $showDrawBox = $('.showDrawBox'),
         $lottery = $('.lottery'), 
         $mobilecode = $('#lottery-mobilecode')[0],
-  	    prizes = ['当日加息','现金奖励','加息券','现金券','特权本金','谢谢','当日加息','特权本金'],
   	    $lotteryItem = $('.lottery-item');
   
   	var rld = new RectLuckDraw('#js-rect-luck-draw-con', prizeList, {
@@ -35,7 +34,8 @@ angular.module('p2pSiteMobApp')
             $lotteryItem.addClass('selecting');
   	    },
   	    startBtnClick: function($btn){
-	        if(this.isLocked() || !$scope.drawed){
+          $lotteryItem.removeClass('selecting');
+	        if(this.isLocked()){
 	            return;
 	        }
           $scope.signUp($scope.user);
@@ -52,16 +52,19 @@ angular.module('p2pSiteMobApp')
     * 抽奖
     **/
     $scope.drawLottery = function() {
+      $lottery.addClass('position-fix');
       if($scope.drawed){ //抽过一次
         $showDrawBox.show();
         return;
       }
-      $lottery.addClass('position-fix');
       $scope.showRegister = true;
+      $lottery.addClass('overflow-hid');
+      // $lottery.attr('auto-h');
     }
     $scope.closeRegisterBox = function() {
       $scope.showRegister = false;
       $lottery.removeClass('position-fix');
+      $lottery.removeClass('overflow-hid');
     }
     /**
     * 注册
@@ -78,11 +81,16 @@ angular.module('p2pSiteMobApp')
         return res;
     }
     $scope.showRegister = false;
+
     $scope.signUp = function(user) {
+      if(!user.mobile || !user.picCaptcha ||!user.captcha || $scope.busy) {
+        return;
+      }
       var act;
       if(ipCookie('act') && !isNaN(ipCookie('act'))){
         act = ipCookie('act');
       }
+      $scope.busy = true;
       Restangular.one('users/').post('register', { 
         picCaptcha: user.picCaptcha,
         mobile: user.mobile,
@@ -94,6 +102,9 @@ angular.module('p2pSiteMobApp')
         device: Utils.deviceCode(),
         guestId: ipCookie('guestId')
       }).then(function(response) {
+        $timeout(function(){
+          $scope.busy = false;
+        },2000)
         if (response.ret === -1) {
           $rootScope.showMsg(response.msg);
           return;
@@ -101,6 +112,8 @@ angular.module('p2pSiteMobApp')
         $scope.user = response;
         $scope.drawed = true;
         $scope.showRegister = false;
+        $lottery.removeClass('position-fix');
+        $lottery.removeClass('overflow-hid');
         Restangular.one('lotteries/').post('draw', {
           scenetype: 1,
           userId: $scope.user.id
@@ -278,7 +291,7 @@ angular.module('p2pSiteMobApp')
             $scope.luckyUsers[i].prizeName = $scope.luckyUsers[i].value + '元现金券';
             break;
           case 5:
-            $scope.luckyUsers[i].prizeName = '特权本金' + $scope.luckyUsers[i].value + '元';
+            $scope.luckyUsers[i].prizeName = '特权本金' + $scope.luckyUsers[i].value.slice(0,-3) + '元';
             break;
           }
         }

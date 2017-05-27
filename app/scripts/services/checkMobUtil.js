@@ -29,9 +29,15 @@ angular.module('p2pSiteMobApp')
                 }
                 msg = '该手机号还未注册';
                 $rootScope.showMsg(msg);
+                return;
               }
               if (path !== 'getPwd1') {
                 if (response.ret === -1) {
+                  if(path === 'lottey') {
+                    msg = '已经注册，去APP';
+                    $rootScope.showMsg(msg);
+                    return;
+                  }
                   msg = '手机号已被占用';
                   $rootScope.showMsg(msg);
                 }

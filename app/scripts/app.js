@@ -665,11 +665,11 @@ p2pSiteMobApp
        }
      })
       .state('root.lottery', {
-       url: '/lottery',
-       data: {
-        title: '幸运大抽奖'
-       },
-       views: {
+        url: '/lottery?act&f',
+        data:{
+          title: '幸运大抽奖'
+        },
+        views: {
          '': {
            templateUrl: 'views/activity/lottery.html',
            controller: 'LotteryCtrl',
