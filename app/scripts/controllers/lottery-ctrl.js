@@ -268,8 +268,9 @@ angular.module('p2pSiteMobApp')
             break;
           }
         }
+        localStorage.setItem('luckyUsers', angular.toJson($scope.luckyUsers));
       });
-      localStorage.setItem('luckyUsers', angular.toJson($scope.luckyUsers));
+      
     }
     $scope.getLuckyUsers();
 
