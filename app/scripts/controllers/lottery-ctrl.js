@@ -126,7 +126,7 @@ angular.module('p2pSiteMobApp')
                 $scope.prizeList = {
                   prizeType: receivePrize.prizeType,
                   prizeText: '现金券',
-                  prizeValue: receivePrize.value + '元',
+                  prizeValue: Number(receivePrize.value).toFixed(0) + '元',
                   prizeCont: '奖励已发放至您的账户，赶快下载App查看吧！'
                 }
                 break;
@@ -262,7 +262,7 @@ angular.module('p2pSiteMobApp')
             $scope.luckyUsers[i].prizeName = '+' + $scope.luckyUsers[i].value + '%加息券';
             break;
           case 4:
-            $scope.luckyUsers[i].prizeName = $scope.luckyUsers[i].value + '元现金券';
+            $scope.luckyUsers[i].prizeName =  Number($scope.luckyUsers[i].value).toFixed(0) + '元现金券';
             break;
           case 5:
             $scope.luckyUsers[i].prizeName = '特权本金' + $scope.luckyUsers[i].value.slice(0,-3) + '元';
