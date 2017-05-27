@@ -243,7 +243,7 @@ angular.module('p2pSiteMobApp')
      *  幸运用户数据
      *  prizeType：1, "当日加息"" ; 2, "现金奖励 ; 3, "加息券 ; 4, "现金券" ; 5, "特权本金" ; 6, "谢谢"
     **/
-    // $scope.luckyUsers = localStorage.getItem('luckyUsers') ? angular.fromJson(localStorage.getItem('luckyUsers')) : undefined;
+    $scope.luckyUsers = localStorage.getItem('luckyUsers') ? angular.fromJson(localStorage.getItem('luckyUsers')) : undefined;
     $scope.getLuckyUsers = function() {
       Restangular.one('lotteries').one('luckyUsers').get().then(function(response){
         $scope.luckyUsers = response;
