@@ -31,6 +31,7 @@ angular.module('p2pSiteMobApp')
         return;
       }
       $scope.showRegister = true;
+      $('.register-draw').show().animate({top: $('.lottery').scrollTop()}, 10,function(){})
       $lottery.addClass('overflow-hid');
       // $lottery.attr('auto-h');
     }
