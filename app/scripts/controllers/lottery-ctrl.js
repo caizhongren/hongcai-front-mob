@@ -90,7 +90,7 @@ angular.module('p2pSiteMobApp')
         $lottery.removeClass('position-fix');
         $lottery.removeClass('overflow-hid');
         Restangular.one('lotteries/').post('draw', {
-          scenetype: 1,
+          sceneType: 1,
           userId: $scope.user.id
         }).then(function(response){
           $scope.showRegister = false;
