@@ -178,7 +178,7 @@ angular.module('p2pSiteMobApp')
             rld.start(prizeId);
             return;
           }
-          $rootScope.showMsg('response.msg');
+          $rootScope.showMsg(response.msg);
 
         })
 
