@@ -20,34 +20,6 @@ angular.module('p2pSiteMobApp')
         $lottery = $('.lottery'), 
         $mobilecode = $('#lottery-mobilecode')[0],
   	    $lotteryItem = $('.lottery-item');
-  
-  	var rld = new RectLuckDraw('#js-rect-luck-draw-con', prizeList, {
-  	    turnAroundCount: 5, 
-  	    maxAnimateDelay: 400,
-  	    turnStartCallback: function(){
-  	        //alert('摇奖开始...');
-  	    },
-  	    turnEndCallback: function(prizeId, obj){
-            window.clearInterval($scope._timer);
-            $showDrawBox.show();
-            $lottery.addClass('position-fix');
-            $lottery.addClass('overflow-hid');
-            $lotteryItem.addClass('selecting');
-  	    },
-  	    startBtnClick: function($btn){
-          $lotteryItem.removeClass('selecting');
-	        if(this.isLocked()){
-	            return;
-	        }
-          $scope.signUp($scope.user);
-  	    },
-  	    onLock: function(){
-  	        // alert('锁上了');
-  	    },
-  	    onUnlock: function(obj){
-  	        // alert('解锁了');
-  	    }
-  	});
 
     /**
     * 抽奖
@@ -369,4 +341,32 @@ angular.module('p2pSiteMobApp')
   		},5000);
   	}
   	luckyTimer(-15);
+
+    var rld = new RectLuckDraw('#js-rect-luck-draw-con', prizeList, {
+        turnAroundCount: 5, 
+        maxAnimateDelay: 400,
+        turnStartCallback: function(){
+            //alert('摇奖开始...');
+        },
+        turnEndCallback: function(prizeId, obj){
+            window.clearInterval($scope._timer);
+            $showDrawBox.show();
+            $lottery.addClass('position-fix');
+            $lottery.addClass('overflow-hid');
+            $lotteryItem.addClass('selecting');
+        },
+        startBtnClick: function($btn){
+          $lotteryItem.removeClass('selecting');
+          if(this.isLocked()){
+              return;
+          }
+          $scope.signUp($scope.user);
+        },
+        onLock: function(){
+            // alert('锁上了');
+        },
+        onUnlock: function(obj){
+            // alert('解锁了');
+        }
+    });
   })
