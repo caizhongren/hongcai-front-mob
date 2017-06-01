@@ -79,7 +79,7 @@ angular.module('p2pSiteMobApp')
       }).then(function(response) {
         $timeout(function(){
           $scope.busy = false;
-        },2000)
+        },300)
         if (response.ret === -1) {
           $rootScope.showMsg(response.msg);
           return;
@@ -97,6 +97,8 @@ angular.module('p2pSiteMobApp')
           if(response && response.ret !== -1) {
             // $scope.lottery = response;
             var receivePrize = response;
+            var prizeId = response.prizeType;
+            rld.start(prizeId);
             switch(receivePrize.prizeType){
               case 1:
                 $scope.prizeList = {
@@ -148,8 +150,6 @@ angular.module('p2pSiteMobApp')
                 break;
 
             }
-            var prizeId = response.prizeType;
-            rld.start(prizeId);
             return;
           }
           $rootScope.showMsg(response.msg);
@@ -352,10 +352,13 @@ angular.module('p2pSiteMobApp')
         },
         turnEndCallback: function(prizeId, obj){
             window.clearInterval($scope._timer);
-            $showDrawBox.show();
-            $lottery.addClass('position-fix');
-            $lottery.addClass('overflow-hid');
-            $lotteryItem.addClass('selecting');
+            $timeout(function(){
+              $showDrawBox.show();
+              $lottery.addClass('position-fix');
+              $lottery.addClass('overflow-hid');
+              $lotteryItem.addClass('selecting');
+            },2000)
+            
         },
         startBtnClick: function($btn){
           $lotteryItem.removeClass('selecting');
