@@ -914,6 +914,19 @@ p2pSiteMobApp
         }
       })
 
+      //签署银行存管介绍页面
+      .state('root.sign-bank-deposits', {
+        url: '/sign-bank-deposits',
+        data: {
+          title: '了解存管'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/sign-bank-deposits.html'
+          }
+        }
+      })
+
 
     ;
     $urlRouterProvider.otherwise('/');
