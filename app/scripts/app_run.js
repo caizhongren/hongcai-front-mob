@@ -333,7 +333,8 @@ angular.module('p2pSiteMobApp')
         'daily-lottery',
         'bindWechat-status',
         'bind-wechat',
-        'lottery'
+        'lottery',
+        'sign-bank-deposits'
       ];
       if (notShowFooterRoute.indexOf(path) === -1) {
         $rootScope.showFooter = true;
