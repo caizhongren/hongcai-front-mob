@@ -16,7 +16,7 @@ angular.module('p2pSiteMobApp')
     }
 
     /**
-     * 是否激活存管通
+     * 是否激活银行资金存管系统
      */
     $rootScope.toActivate();
 

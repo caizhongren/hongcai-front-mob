@@ -83,17 +83,17 @@ angular.module('p2pSiteMobApp')
     }
 
     //查询网站公告
-    $scope.getNotice = function(){
-      Restangular.one('userMsgs/0/notices').get({
-        page: 1,
-        pageSize: 3
-      }).then(function(response){
-        if(response && response.ret !== -1) {
-            $scope.notices = response.data;
-            localStorage.setItem('notices', angular.toJson($scope.notices));
-        }
-      })
-    }
+    // $scope.getNotice = function(){
+    //   Restangular.one('userMsgs/0/notices').get({
+    //     page: 1,
+    //     pageSize: 3
+    //   }).then(function(response){
+    //     // if(response && response.ret !== -1) {
+    //     //     // $scope.notices = response.data;
+    //     //     // localStorage.setItem('notices', angular.toJson($scope.notices));
+    //     // }
+    //   })
+    // }
     
 
     /**
@@ -141,8 +141,8 @@ angular.module('p2pSiteMobApp')
     $scope.choiceProject = localStorage.getItem('choice') ? angular.fromJson(localStorage.getItem('choice')) : $scope.choiceProject;
     $scope.honorableProject = localStorage.getItem('honor') ? angular.fromJson(localStorage.getItem('honor')) : $scope.honorableProject;
     // $scope.assignmentProject = localStorage.getItem('assignment') ? angular.fromJson(localStorage.getItem('assignment')) : $scope.assignmentProject;
-    $scope.notices = localStorage.getItem('notices') ? angular.fromJson(localStorage.getItem('notices')) : undefined;
-    $scope.getNotice();
+    // $scope.notices = localStorage.getItem('notices') ? angular.fromJson(localStorage.getItem('notices')) : undefined;
+    // $scope.getNotice();
     $scope.getProjectList(1, 1, 5);
     $scope.getProjectList(1, 1, 6);
     // $scope.getAssignmentList(1, 1);
@@ -158,7 +158,7 @@ angular.module('p2pSiteMobApp')
     }
 
     /**
-     * 是否激活存管通
+     * 是否激活银行资金存管系统
      */
     $rootScope.toActivate();
 

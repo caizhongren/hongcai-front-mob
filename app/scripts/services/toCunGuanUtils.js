@@ -108,7 +108,7 @@ angular.module('p2pSiteMobApp')
           });
         } else if (type === 'autoRepayment') { //自动还款授权
 
-        } else if (type === 'active') { //存管通激活
+        } else if (type === 'active') { //银行资金存管系统激活
           Restangular.one('/userAuths/').post('cgtActive', {
             'from': 2
           }).then(function(response){

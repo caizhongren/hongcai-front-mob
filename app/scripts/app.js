@@ -102,7 +102,7 @@ p2pSiteMobApp
           }
         }
       })
-    // 开通存管通落地页
+    // 开通银行资金存管系统落地页
     .state('root.activate-landing', {
         url: '/activate',
         views: {
