@@ -102,17 +102,24 @@ p2pSiteMobApp
           }
         }
       })
-    // 开通银行资金存管系统落地页
-    .state('root.activate-landing', {
-        url: '/activate',
-        views: {
-          '': {
-            templateUrl: 'views/activate-landing.html',
-            controller: 'ActivateCtrl',
-            controllerUrl: 'scripts/modal/activate'
-          }
+    // 银行资金存管系统落地页
+    .state('root.bank-custody-landing', {
+      url: '/bank-custody-landing',
+      views: {
+        '': {
+          templateUrl: 'views/bank-custody-landing.html'
         }
-      })
+      }
+    })
+    // 开通银行资金存管系统流程图页面
+    .state('root.bank-custody-process', {
+      url: '/bank-custody-process',
+      views: {
+        '': {
+          templateUrl: 'views/bank-custody-process.html'
+        }
+      }
+    })
     // 忘记密码流程
     .state('root.getPwd1', {
         url: '/getPwd1',

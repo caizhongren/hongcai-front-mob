@@ -2,7 +2,7 @@
   <div class="overflow-hid" ng-hide="page == 10 ">
     <img src="/images/success-re_03.png" width="30%">
     <p class="padding-t-1 ft-2 ft-black2 margin-t-2">
-      <strong ng-switch-default>恭喜您，成功开通存管账户！</strong>
+      <strong ng-switch-default>恭喜您，成功开通银行资金存管账户！</strong>
       <strong ng-switch-when="1">恭喜您，成功充值{{amount | number:2}}元！</strong>
       <strong ng-switch-when="2">恭喜您，成功提现{{amount | number:2}}元！</strong>
       <strong ng-switch-when="3">恭喜您，成功投资{{amount}}元，<br><span class="text-center">开始计息！<span ng-show="coupon.type == 1">额外加息{{coupon.value}}%</span><span  ng-show="coupon.type == 2">额外奖励{{coupon.value}}元</span></span></strong>
