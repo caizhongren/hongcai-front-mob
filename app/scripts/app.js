@@ -102,14 +102,21 @@ p2pSiteMobApp
           }
         }
       })
-    // 开通存管通落地页
-    .state('root.activate-landing', {
-        url: '/activate',
+    // 开通银行存管落地页
+    .state('root.bank-custody-landing', {
+        url: '/bank-custody-landing',
         views: {
           '': {
-            templateUrl: 'views/activate-landing.html',
-            controller: 'ActivateCtrl',
-            controllerUrl: 'scripts/modal/activate'
+            templateUrl: 'views/bank-custody-landing.html'
+          }
+        }
+      })
+    // 开通银行存管流程页
+    .state('root.bank-custody-process', {
+        url: '/bank-custody-process',
+        views: {
+          '': {
+            templateUrl: 'views/activate-process.html'
           }
         }
       })
