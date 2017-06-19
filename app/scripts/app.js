@@ -105,6 +105,9 @@ p2pSiteMobApp
     // 开通银行存管落地页
     .state('root.bank-custody-landing', {
         url: '/bank-custody-landing',
+        data: {
+          title: '银行存管介绍'
+        },
         views: {
           '': {
             templateUrl: 'views/bank-custody-landing.html'
