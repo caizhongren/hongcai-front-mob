@@ -25,11 +25,11 @@ angular.module('p2pSiteMobApp')
         	return;
       	}
 
-      	// if($scope.userAuth.authStatus === 2 && !$scope.userAuth.active){
+      	if($scope.userAuth.authStatus === 2 && !$scope.userAuth.active){
           toCunGuanUtils.to('active', null, null, null, null, null);
-      	// } else if($scope.userAuth.authStatus == 0){
-      		// $rootScope.toRealNameAuth();
-      	// }
+      	} else if($scope.userAuth.authStatus == 0){
+      		$rootScope.toRealNameAuth();
+      	}
 
     }
 

@@ -108,38 +108,38 @@ angular.module('p2pSiteMobApp')
         controller: 'ActivateCtrl'
       });
     }
-    $rootScope.stopService();
+    // $rootScope.stopService();
 
     /**
      * 激活银行资金存管系统
      */
     $rootScope.payCompany = config.pay_company;
     $rootScope.toActivate = function(stateTo) {
-      // if ($rootScope.payCompany === 'yeepay'|| !$rootScope.isLogged) {
-      //   return;
-      // }
-      // var userAuth = SessionService.getUserAuth();
-      // var checkUserAuthStatus = function(userAuth, stateTo) {
-      //   if(userAuth.ret !== -1 && userAuth.authStatus === 2 && !userAuth.active){
+      if ($rootScope.payCompany === 'yeepay'|| !$rootScope.isLogged) {
+        return;
+      }
+      var userAuth = SessionService.getUserAuth();
+      var checkUserAuthStatus = function(userAuth, stateTo) {
+        if(userAuth.ret !== -1 && userAuth.authStatus === 2 && !userAuth.active){
           $uibModal.open({
             animation: true,
             templateUrl: 'views/user-center/activate-bank.html',
             controller: 'ActivateCtrl'
           });
-      //   }else {
-      //     if(stateTo) {
-      //       stateTo();
-      //     }
-      //   }
-      // }
-      // if(userAuth){
-      //   checkUserAuthStatus(userAuth, stateTo);
-      //   return;
-      // }
+        }else {
+          if(stateTo) {
+            stateTo();
+          }
+        }
+      }
+      if(userAuth){
+        checkUserAuthStatus(userAuth, stateTo);
+        return;
+      }
 
-      // Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
-      //   checkUserAuthStatus(userAuth, stateTo);
-      // });
+      Restangular.one('users').one('0/userAuth').get().then(function(userAuth){
+        checkUserAuthStatus(userAuth, stateTo);
+      });
     } 
 
     /**
