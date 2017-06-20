@@ -23,7 +23,7 @@ angular.module('p2pSiteMobApp')
       $timeout(function() {
         $scope.busy = false;
       }, 1000);
-      toCunGuanUtils.to('UNBIND_BANK_CARD', null, null, null, null, null);
+      toCunGuanUtils.to('UNBIND_BANKCARD', null, null, null, null, null);
       
 
       // $scope.busy = true;
