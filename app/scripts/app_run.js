@@ -346,7 +346,12 @@ angular.module('p2pSiteMobApp')
         'bindWechat-status',
         'bind-wechat',
         'lottery',
-        'sign-bank-deposits'
+        'sign-bank-deposits',
+        'bank-custody-landing',
+        'bank-custody-process',
+        'new-user-process',
+        'old-user-process',
+        'bank-custody'
       ];
       if (notShowFooterRoute.indexOf(path) === -1) {
         $rootScope.showFooter = true;

@@ -102,17 +102,58 @@ p2pSiteMobApp
           }
         }
       })
-    // 开通银行资金存管系统落地页
-    .state('root.activate-landing', {
-        url: '/activate',
-        views: {
-          '': {
-            templateUrl: 'views/activate-landing.html',
-            controller: 'ActivateCtrl',
-            controllerUrl: 'scripts/modal/activate'
-          }
+
+    // 开通银行存管落地页——上线前
+    .state('root.bank-custody-landing', {
+      url: '/bank-custody-landing',
+      data: {
+        title: '银行存管介绍'
+      },
+      views: {
+        '': {
+          templateUrl: 'views/bank-custody-landing.html'
         }
-      })
+      }
+    })
+    // 开通银行存管落地页——上线后
+    .state('root.bank-custody', {
+      url: '/bank-custody',
+      data: {
+        title: '银行存管介绍'
+      },
+      views: {
+        '': {
+          templateUrl: 'views/bank-custody.html',
+          controller: 'ActivateCtrl',
+          controllerUrl: 'scripts/modal/activate.js'
+        }
+      }
+    })
+    // 开通银行存管流程页——新用户
+    .state('root.new-user-process', {
+      url: '/new-user-process',
+      data: {
+        title: '新用户开通流程'
+      },
+      views: {
+        '': {
+          templateUrl: 'views/new-user-process.html'
+        }
+      }
+    })
+    // 开通银行存管流程页——老用户
+    .state('root.old-user-process', {
+      url: '/old-user-process',
+      data: {
+        title: '老用户开通流程'
+      },
+      views: {
+        '': {
+          templateUrl: 'views/old-user-process.html'
+        }
+      }
+    })
+
     // 忘记密码流程
     .state('root.getPwd1', {
         url: '/getPwd1',
