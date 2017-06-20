@@ -74,7 +74,7 @@ angular.module('p2pSiteMobApp')
           });
 
         } else if (type === 'UNBIND_BANK_CARD') { //解绑卡
-          restmod.model(WEB_DEFAULT_DOMAIN + '/yeepay').$find('/cgtUnbindBankCard').$then(function(response) {
+          restmod.model(WEB_DEFAULT_DOMAIN + '/yeepay').$find('/cgtUnbindBankCard',{'from': 2}).$then(function(response) {
              redirectToYeepay('toUnBindBankCard', response);
           })
 
