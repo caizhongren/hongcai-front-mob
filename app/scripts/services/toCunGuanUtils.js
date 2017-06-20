@@ -1,6 +1,6 @@
 'use strict';
 angular.module('p2pSiteMobApp')
-  .factory('toCunGuanUtils', function($state, $rootScope, $timeout, $stateParams, config, Utils, Restangular) {
+  .factory('toCunGuanUtils', function($state, $rootScope, $timeout, $stateParams, config, Utils, Restangular, restmod, WEB_DEFAULT_DOMAIN) {
     
     function redirectToYeepay(business, encrpyMsg) {
         if (encrpyMsg.ret !== -1) {
@@ -72,6 +72,11 @@ angular.module('p2pSiteMobApp')
           }).then(function(response) {
             redirectToYeepay('toBindBankCard', response);
           });
+
+        } else if (type === 'UNBIND_BANK_CARD') { //解绑卡
+          restmod.model(WEB_DEFAULT_DOMAIN + '/yeepay').$find('/cgtUnbindBankCard').$then(function(response) {
+             redirectToYeepay('toUnBindBankCard', response);
+          })
 
         } else if (type === 'register') { // 开通易宝
           Restangular.one('/users/0/').post('yeepayRegister', {
