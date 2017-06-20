@@ -74,7 +74,7 @@
   <img src="/images/bank-deposits/bank-custody01.png">
   <div class="count-down">
     <img src="/images/bank-deposits/bank-custody02.png">
-    <div class="time" id="time">距离正式上线还有 <span class="countDown0" id="countDown0">1</span> <span class="countDown" id="countDown">0</span> 天</div>
+    <div class="time" id="time">距离开始上线还有 <span class="countDown0" id="countDown0">1</span> <span class="countDown" id="countDown">0</span> 天</div>
   </div>
   <img src="/images/bank-deposits/bank-custody03.png">
   <img src="/images/bank-deposits/bank-custody04.png">
@@ -105,20 +105,26 @@
     return ua.match(/MicroMessenger/i)=="micromessenger";
   }
   function getTime() {
-    var onlineTime = new Date('2017.06.29').getDate();
+    var startDate = new Date('2017.06.26 21:00:00').getDate();
+    var startTime = new Date('2017.06.26 21:00:00').getTime();
+    var onlineTime = new Date('2017.06.29 11:00:00').getTime();
     var today = new Date().getDate();
-    var countDown = onlineTime - today;
+    var countDown = startDate - today;
     if (countDown <=0) {
+      
       countDown0 = 0;
-      countDown = 0;
-      document.getElementById('time').style.display = 'none';
-    }else if (countDown <10 && countDown >0) {
-      countDown = countDown;
-      countDown0 = 0;
-    }else if (countDown >=10) {
-      countDown = countDown - ((Math.floor(countDown/10))*10);
-      countDown0 = ((onlineTime - today) - ((Math.floor((onlineTime - today)/100))*100) - countDown)/10; 
+      countDown = 1;
+      if (onlineTime - new Date().getTime() >=0 && onlineTime - new Date().getTime() <= onlineTime - startTime) {
+        document.getElementById('time').innerHTML = '   正在上线中···';
+        document.getElementById('time').style.left = '40%';
+      }
+
     }
+    if (countDown <10 && countDown >0) {
+      countDown = countDown + 1;
+      countDown0 = 0;
+    }
+
     document.getElementById('countDown0').innerHTML = countDown0;
     document.getElementById('countDown').innerHTML = countDown;
   }
