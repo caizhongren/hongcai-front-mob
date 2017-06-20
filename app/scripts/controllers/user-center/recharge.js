@@ -169,6 +169,9 @@ angular.module('p2pSiteMobApp')
       }else if (payment === 3) {
         $scope.rechargeWay = 'SWIFT';
         $scope.expectPayCompany = 'UCFPAY';
+      }else if (payment === 4) {
+        $scope.rechargeWay = 'SWIFT';
+        $scope.expectPayCompany = 'YEEPAY';
       }
       $scope.getUserBankCard($scope.expectPayCompany);
       $scope.getBankRechargeLimit($scope.expectPayCompany);
