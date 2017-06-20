@@ -114,15 +114,30 @@ p2pSiteMobApp
           }
         }
       })
-    // 开通银行存管流程页
-    .state('root.bank-custody-process', {
-        url: '/bank-custody-process',
-        views: {
-          '': {
-            templateUrl: 'views/activate-process.html'
-          }
+    // 开通银行存管流程页——新用户
+    .state('root.new-user-process', {
+      url: '/new-user-process',
+      data: {
+        title: '新用户开通流程'
+      },
+      views: {
+        '': {
+          templateUrl: 'views/new-user-process.html'
         }
-      })
+      }
+    })
+    // 开通银行存管流程页——老用户
+    .state('root.old-user-process', {
+      url: '/old-user-process',
+      data: {
+        title: '老用户开通流程'
+      },
+      views: {
+        '': {
+          templateUrl: 'views/old-user-process.html'
+        }
+      }
+    })
     // 忘记密码流程
     .state('root.getPwd1', {
         url: '/getPwd1',

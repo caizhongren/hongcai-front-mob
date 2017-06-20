@@ -36,6 +36,7 @@
       text-align: center;
       border-radius: 2px;
       color: #000;
+      background-color: #39fba4;
       background-image:-webkit-linear-gradient(to bottom right, #27e0f7, #39fba4); 
       background-image:linear-gradient(to bottom right, #27e0f7, #39fba4);
     }
@@ -73,7 +74,7 @@
   <img src="/images/bank-deposits/bank-custody01.png">
   <div class="count-down">
     <img src="/images/bank-deposits/bank-custody02.png">
-    <div class="time">距离正式上线还有 <span class="countDown0">1</span> <span class="countDown">0</span> 天</div>
+    <div class="time" id="time">距离正式上线还有 <span class="countDown0" id="countDown0">1</span> <span class="countDown" id="countDown">0</span> 天</div>
   </div>
   <img src="/images/bank-deposits/bank-custody03.png">
   <img src="/images/bank-deposits/bank-custody04.png">
@@ -93,8 +94,8 @@
   <img src="/images/bank-deposits/bank-custody18.png">
   <div class="toProcess">
     <img src="/images/bank-deposits/bank-custody19.png">
-    <div class="newUser" onclick="UserProcess();"></div>
-    <div class="oldUser" onclick="UserProcess();"></div>
+    <div class="newUser" onclick="newUserProcess();"></div>
+    <div class="oldUser" onclick="oldUserProcess();"></div>
   </div>
   <img src="/images/bank-deposits/bank-custody20.png">
 </div>
@@ -103,26 +104,37 @@
     var ua = navigator.userAgent.toLowerCase();
     return ua.match(/MicroMessenger/i)=="micromessenger";
   }
-  var onlineTime = new Date('2017.06.29').getDate();
-  var today = new Date().getDate();
-  var countDown = onlineTime - today;
-  if (countDown <=0) {
-    countDown = 0;
-  }else if (countDown <10 && countDown >0) {
-    countDown = countDown;
-    countDown0 = 0;
-  }else if (countDown >=10) {
-    countDown = countDown - ((Math.floor(countDown/10))*10);
-    countDown0 = ((onlineTime - today) - ((Math.floor((onlineTime - today)/100))*100) - countDown)/10; 
+  function getTime() {
+    var onlineTime = new Date('2017.06.29').getDate();
+    var today = new Date().getDate();
+    var countDown = onlineTime - today;
+    if (countDown <=0) {
+      countDown0 = 0;
+      countDown = 0;
+      document.getElementById('time').style.display = 'none';
+    }else if (countDown <10 && countDown >0) {
+      countDown = countDown;
+      countDown0 = 0;
+    }else if (countDown >=10) {
+      countDown = countDown - ((Math.floor(countDown/10))*10);
+      countDown0 = ((onlineTime - today) - ((Math.floor((onlineTime - today)/100))*100) - countDown)/10; 
+    }
+    document.getElementById('countDown0').innerHTML = countDown0;
+    document.getElementById('countDown').innerHTML = countDown;
   }
-  console.log(onlineTime-today);
-  console.log(countDown);
-  console.log(countDown0);
-  function UserProcess(argument) {
+  getTime();
+  function newUserProcess() {
     if (isWeixin()) {
-      window.location.href = "views/bank-custody-process.html";
+      window.location.href = "views/new-user-process.html";
     }else {
-      window.location.href = "bank-custody-process.html";
+      window.location.href = "new-user-process.html";
+    }
+  }
+  function oldUserProcess() {
+    if (isWeixin()) {
+      window.location.href = "views/old-user-process.html";
+    }else {
+      window.location.href = "old-user-process.html";
     }
   }
 </script>
