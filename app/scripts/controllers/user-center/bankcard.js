@@ -14,6 +14,8 @@ angular.module('p2pSiteMobApp')
     UserService.loadAccount($scope);
 
     $scope.bankcard = Restangular.one('users/0').one('bankcard').get().$object;
+    
+    $scope.unbindBankCardApply = Restangular.one('users/0').one('unbindBankCardApply').get().$object;
 
     $scope.busy = false;
     $scope.unBindBankcard = function() {
