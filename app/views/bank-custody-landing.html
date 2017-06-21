@@ -105,9 +105,10 @@
     return ua.match(/MicroMessenger/i)=="micromessenger";
   }
   function getTime() {
-    var startDate = new Date('2017.06.26 21:00:00').getDate();
-    var startTime = new Date('2017.06.26 21:00:00').getTime();
-    var onlineTime = new Date('2017.06.29 11:00:00').getTime();
+    // var startDate = new Date('2017.06.26 21:00:00').getDate();
+    var startDate = new Date('2017','06','26','21','00','00').getDate();
+    var startTime = new Date('2017','06','26','21','00','00').getTime();
+    var onlineTime = new Date('2017','06','29','11','00','00').getTime();
     var today = new Date().getDate();
     var countDown = startDate - today;
     if (countDown <=0) {
@@ -127,12 +128,6 @@
 
     document.getElementById('countDown0').innerHTML = countDown0;
     document.getElementById('countDown').innerHTML = countDown;
-    alert(document.getElementById('countDown0').innerHTML);
-    alert(document.getElementById('countDown').innerHTML);
-    document.getElementById('countDown0').innerHTML = parseInt(countDown0);
-    document.getElementById('countDown').innerHTML = parseInt(countDown);
-    alert(document.getElementById('countDown0').innerHTML);
-    alert(document.getElementById('countDown').innerHTML);
   }
   getTime();
   function newUserProcess() {
