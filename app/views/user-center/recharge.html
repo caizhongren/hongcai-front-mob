@@ -12,8 +12,8 @@
         {{bankcardErr}}账户余额 : <span class="account ft-Arial">{{ simpleWithdraw.account.balance | number:2}} </span>元
       </div>
       <div class="payment bg-white">
-        <div class="col-xs-3 pay-typeUCF" ng-class="{'pay-active':payment ==3}" ng-click="selectPay(3)"><span></span>先锋支付</div>
         <div class="col-xs-3 pay-typeFU" ng-class="{'pay-active':payment ==4}" ng-click="selectPay(4)"><span></span>易宝支付</div>
+        <div class="col-xs-3 pay-typeUCF" ng-class="{'pay-active':payment ==3}" ng-click="selectPay(3)"><span></span>先锋支付</div>
         <span class="bankLimit ft-1p2 fr line-h2" ng-click="showbankLimit($scope.showLimit);">支持银行</span>
       </div>
       <div class="bg-white">
