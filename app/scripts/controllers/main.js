@@ -138,11 +138,11 @@ angular.module('p2pSiteMobApp')
     //   })
     // }
 
-    // $scope.choiceProject = localStorage.getItem('choice') ? angular.fromJson(localStorage.getItem('choice')) : $scope.choiceProject;
-    // $scope.honorableProject = localStorage.getItem('honor') ? angular.fromJson(localStorage.getItem('honor')) : $scope.honorableProject;
-    // $scope.assignmentProject = localStorage.getItem('assignment') ? angular.fromJson(localStorage.getItem('assignment')) : $scope.assignmentProject;
-    // $scope.notices = localStorage.getItem('notices') ? angular.fromJson(localStorage.getItem('notices')) : undefined;
-    // $scope.getNotice();
+    $scope.choiceProject = localStorage.getItem('choice') ? angular.fromJson(localStorage.getItem('choice')) : $scope.choiceProject;
+    $scope.honorableProject = localStorage.getItem('honor') ? angular.fromJson(localStorage.getItem('honor')) : $scope.honorableProject;
+    $scope.assignmentProject = localStorage.getItem('assignment') ? angular.fromJson(localStorage.getItem('assignment')) : $scope.assignmentProject;
+    $scope.notices = localStorage.getItem('notices') ? angular.fromJson(localStorage.getItem('notices')) : undefined;
+    $scope.getNotice();
     $scope.getProjectList(1, 1, 5);
     $scope.getProjectList(1, 1, 6);
     // $scope.getAssignmentList(1, 1);
