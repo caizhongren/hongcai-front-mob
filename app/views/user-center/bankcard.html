@@ -34,7 +34,7 @@
 <div class="project-mask bankcard-setting" ng-show="showMask">
   <div class="project-mask-inner margin-t-20 text-center bg-white ft-black4 ft-1p6 padding-t-3 padding-b-3"  ng-show="showBankCard">
     <!-- 账户总资产≤2元，可以自行解绑 -->
-    <div ng-if="account.tTotalAssets <= 2">
+    <div ng-if="account.tTotalAssets <= 2 || unbindBankCardApply.status === 1">
       <p class="margin-b-0 ">解绑银行卡将会影响您的提现，</p>
       <p class="margin-b-2">您确定要解绑此银行卡么？</p>
       <div class="padding-l-2 padding-r-2 clearfix">
@@ -43,7 +43,7 @@
       </div>
     </div>
     <!-- 账户资产＞2元，需要联系客服解绑 -->
-    <div ng-if="account.tTotalAssets > 2">
+    <div ng-if="account.tTotalAssets > 2 && unbindBankCardApply.status !== 1">
      <p class="margin-b-0 padding-l-2 padding-r-2 text-justify">尊敬的用户，检测到您的账户总资产大于2元，为了您的资金安全，请联系客服进行人工解绑。客服热线：400-990-7626</p>
       <div class="padding-l-2 padding-r-2 clearfix margin-t-2">
         <button class="text-center bg-orange ft-white" ng-click="cancle()">我知道了</button>
