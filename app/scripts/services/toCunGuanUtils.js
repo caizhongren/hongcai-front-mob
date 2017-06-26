@@ -1,6 +1,6 @@
 'use strict';
 angular.module('p2pSiteMobApp')
-  .factory('toCunGuanUtils', function($state, $rootScope, $timeout, $stateParams, config, Utils, Restangular) {
+  .factory('toCunGuanUtils', function($state, $rootScope, $timeout, $stateParams, config, Utils, Restangular, restmod, WEB_DEFAULT_DOMAIN) {
     
     function redirectToYeepay(business, encrpyMsg) {
         if (encrpyMsg.ret !== -1) {
@@ -73,6 +73,14 @@ angular.module('p2pSiteMobApp')
             redirectToYeepay('toBindBankCard', response);
           });
 
+        } else if (type === 'UNBIND_BANKCARD') { //解绑卡
+          restmod.model(WEB_DEFAULT_DOMAIN + '/yeepay').$find('/cgtUnbindBankCard',{
+            'from': 2,
+            'device': Utils.deviceCode()
+          }).$then(function(response) {
+             redirectToYeepay('toUnBindBankCard', response);
+          })
+
         } else if (type === 'register') { // 开通易宝
           Restangular.one('/users/0/').post('yeepayRegister', {
             'realName': realName,
@@ -108,7 +116,7 @@ angular.module('p2pSiteMobApp')
           });
         } else if (type === 'autoRepayment') { //自动还款授权
 
-        } else if (type === 'active') { //存管通激活
+        } else if (type === 'active') { //银行资金存管系统激活
           Restangular.one('/userAuths/').post('cgtActive', {
             'from': 2
           }).then(function(response){

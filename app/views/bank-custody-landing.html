@@ -106,28 +106,27 @@
   }
   function getTime() {
     // var startDate = new Date('2017.06.26 21:00:00').getDate();
-    var startDate = new Date('2017','06','26','21','00','00').getDate();
-    var startTime = new Date('2017','06','26','21','00','00').getTime();
-    var onlineTime = new Date('2017','06','29','11','00','00').getTime();
+    var startDate = new Date('2017/06/26 21:00').getDate();
+    var startTime = new Date('2017/06/26 21:00').getTime();
+    var onlineTime = new Date('2017/06/29 11:00').getTime();
     var today = new Date().getDate();
     var countDown = startDate - today;
     if (countDown <=0) {
       
       countDown0 = 0;
-      countDown = 1;
+      countDown1 = 1;
       if (onlineTime - new Date().getTime() >=0 && onlineTime - new Date().getTime() <= onlineTime - startTime) {
         document.getElementById('time').innerHTML = '   正在上线中···';
         document.getElementById('time').style.left = '40%';
+        return
       }
-
     }
     if (countDown <10 && countDown >0) {
-      countDown = countDown + 1;
+      countDown1 = countDown1 + 1;
       countDown0 = 0;
     }
-
     document.getElementById('countDown0').innerHTML = countDown0;
-    document.getElementById('countDown').innerHTML = countDown;
+    document.getElementById('countDown').innerHTML = countDown1;
   }
   getTime();
   function newUserProcess() {

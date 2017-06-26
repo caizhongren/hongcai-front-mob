@@ -1,5 +1,5 @@
 {
-  "YEEPAY_ADDRESS":"http://220.181.25.233:8602/bha-neo-app/lanmaotech/gateway",
+  "YEEPAY_ADDRESS":"http://101.200.54.92/bha-neo-app/lanmaotech/gateway",
 	"wechatRedirect": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx02dfe579709d2d95&redirect_uri=http%3A%2F%2Fdz.test321.hongcai.com%2F&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect",
 	"consume": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx02dfe579709d2d95&redirect_uri=http%3A%2F%2Fdz.test321.hongcai.com%2Fiou&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect",
 	"recharge": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx02dfe579709d2d95&redirect_uri=http%3A%2F%2Fdz.test321.hongcai.com%2F&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect",

@@ -99,7 +99,19 @@ angular.module('p2pSiteMobApp')
     }
 
     /**
-     * 激活存管通
+     * 停服弹窗
+     */
+    $rootScope.stopService = function() {
+      $uibModal.open({
+        animation: true,
+        templateUrl: 'views/user-center/stop-service.html',
+        controller: 'ActivateCtrl'
+      });
+    }
+    // $rootScope.stopService();
+
+    /**
+     * 激活银行资金存管系统
      */
     $rootScope.payCompany = config.pay_company;
     $rootScope.toActivate = function(stateTo) {
@@ -111,7 +123,7 @@ angular.module('p2pSiteMobApp')
         if(userAuth.ret !== -1 && userAuth.authStatus === 2 && !userAuth.active){
           $uibModal.open({
             animation: true,
-            templateUrl: 'views/user-center/activate.html',
+            templateUrl: 'views/user-center/activate-bank.html',
             controller: 'ActivateCtrl'
           });
         }else {
@@ -131,6 +143,13 @@ angular.module('p2pSiteMobApp')
     } 
 
     /**
+     * 获取服务器状态 //status :1 停服
+     */
+    $rootScope.migrateStatus = function(stateTo) { 
+      $rootScope.serviceStatus == 1 ? $rootScope.stopService() : $rootScope.toActivate(stateTo);
+    }
+
+    /**
      * 错误提示
      */
     $rootScope.showErrorMsg = false;
@@ -148,6 +167,11 @@ angular.module('p2pSiteMobApp')
       }
     }
     $rootScope.$on('$stateChangeStart', function(event, toState) {
+      Restangular.one('systems').one('migrateStatus').get().then(function(response){
+        if (response) { //status :1 停服
+          $rootScope.serviceStatus = response.status;
+        }
+      })
       var title = '宏财网';
       var path = $location.path().split('/')[1];
       if (toState.data && toState.data.title) {
@@ -183,7 +207,7 @@ angular.module('p2pSiteMobApp')
       }
 
       if(toState.name.indexOf('root.userCenter') !== -1) {
-        $rootScope.toActivate();
+        $rootScope.migrateStatus();
       }
 
 
@@ -338,7 +362,8 @@ angular.module('p2pSiteMobApp')
         'bank-custody-landing',
         'bank-custody-process',
         'new-user-process',
-        'old-user-process'
+        'old-user-process',
+        'bank-custody'
       ];
       if (notShowFooterRoute.indexOf(path) === -1) {
         $rootScope.showFooter = true;

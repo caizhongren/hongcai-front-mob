@@ -8,36 +8,46 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('BankcardCtrl', function($scope, $rootScope, $state, restmod, WEB_DEFAULT_DOMAIN, Restangular, UserService) {
+  .controller('BankcardCtrl', function($scope, $rootScope, $state, restmod, WEB_DEFAULT_DOMAIN, Restangular, UserService, toCunGuanUtils, $timeout) {
 
 
     UserService.loadAccount($scope);
 
     $scope.bankcard = Restangular.one('users/0').one('bankcard').get().$object;
+    
+    $scope.unbindBankCardApply = Restangular.one('users/0').one('unbindBankCardApply').get().$object;
 
     $scope.busy = false;
     $scope.unBindBankcard = function() {
-
+      $scope.showMask = false;
+      $scope.showBankCard = false;
       $scope.busy = true;
-      restmod.model(WEB_DEFAULT_DOMAIN + '/yeepay').$find('/unbindBankCard').$then(function(response) {
-        $scope.showMask = false;
-        $scope.showBankCard = false;
-        if (!response || response.ret == -1) {
-          return;
-        }
-        if ($rootScope.payCompany === 'cgt') {
-          $state.go('root.yeepay-callback', {
-            business: 'UNBIND_BANK_CARD'
-          });
-        }
-        if ($rootScope.payCompany === 'yeepay') {
-          $state.go('root.yeepay-callback', {
-            business: 'UNBIND_BANK_CARD_ING'
-          });
-        }
-
+      $timeout(function() {
         $scope.busy = false;
-      });
+      }, 1000);
+      toCunGuanUtils.to('UNBIND_BANKCARD', null, null, null, null, null);
+      
+
+      // $scope.busy = true;
+      // restmod.model(WEB_DEFAULT_DOMAIN + '/yeepay').$find('/unbindBankCard').$then(function(response) {
+      //   $scope.showMask = false;
+      //   $scope.showBankCard = false;
+      //   if (!response || response.ret == -1) {
+      //     return;
+      //   }
+      //   if ($rootScope.payCompany === 'cgt') {
+      //     $state.go('root.yeepay-callback', {
+      //       business: 'UNBIND_BANK_CARD'
+      //     });
+      //   }
+      //   if ($rootScope.payCompany === 'yeepay') {
+      //     $state.go('root.yeepay-callback', {
+      //       business: 'UNBIND_BANK_CARD_ING'
+      //     });
+      // //   }
+
+      //   $scope.busy = false;
+      // });
     }
     
     $scope.showMask = false;
@@ -47,7 +57,7 @@ angular.module('p2pSiteMobApp')
         $scope.showBankCard = true;
         $scope.showMask = true;
       }
-      $rootScope.toActivate(act);
+      $rootScope.migrateStatus(act);
     }
     $scope.cancle = function() {
       $scope.showBankCard = false;

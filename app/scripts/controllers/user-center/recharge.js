@@ -132,7 +132,7 @@ angular.module('p2pSiteMobApp')
 
         toCunGuanUtils.to('recharge', amount, null, null, $scope.rechargeWay, $scope.expectPayCompany);
       }
-      $rootScope.toActivate(recharge);
+      $rootScope.migrateStatus(recharge);
     }
     Restangular.one('users/0').one('availableCash').get().then(function(response) {
       if (response.ret !== -1) {
@@ -153,7 +153,7 @@ angular.module('p2pSiteMobApp')
         }
         toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
       }
-      $rootScope.toActivate(bindBankcard);
+      $rootScope.migrateStatus(bindBankcard);
       
     };
 
@@ -169,6 +169,9 @@ angular.module('p2pSiteMobApp')
       }else if (payment === 3) {
         $scope.rechargeWay = 'SWIFT';
         $scope.expectPayCompany = 'UCFPAY';
+      }else if (payment === 4) {
+        $scope.rechargeWay = 'SWIFT';
+        $scope.expectPayCompany = 'YEEPAY';
       }
       $scope.getUserBankCard($scope.expectPayCompany);
       $scope.getBankRechargeLimit($scope.expectPayCompany);

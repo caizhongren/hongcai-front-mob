@@ -31,7 +31,7 @@ angular.module('p2pSiteMobApp')
       $scope.page = 6;
     } else if (business === 'USER_ACTIVE') {
       $scope.page = 7;
-    } else if (business === 'UNBIND_BANK_CARD') {
+    } else if (business === 'UNBIND_BANKCARD') {
       $scope.page = 8;
     } else if (business === 'UNBIND_BANK_CARD_ING') {
       $scope.page = 9;

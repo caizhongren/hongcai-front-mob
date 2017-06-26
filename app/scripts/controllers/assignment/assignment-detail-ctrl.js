@@ -126,7 +126,7 @@ angular.module('p2pSiteMobApp')
           }
         });
       }
-      $rootScope.toActivate(toInvest);
+      $rootScope.migrateStatus(toInvest);
       
     };
 

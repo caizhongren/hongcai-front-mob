@@ -78,7 +78,7 @@
       <button class="button btn-disabled" ng-if="(assignment.status ===1 && userAuth.authStatus === 2 && isLogged && !assignmentInvestAmount ) || (assignment.status ===1 && userAuth.authStatus === 2 && isLogged && msg)">立即认购</button>
       <button class="button btn-disabled" ng-if="assignment.status === 5  && isLogged && userAuth.authStatus === 2">冻结中</button>
       <button class="button btn-disabled" ng-if="(assignment.status === 4 || (assignment.status === 3 && assignment.soldStock !== 0)) && isLogged && userAuth.authStatus === 2">已转让</button>
-      <button class="button button-primary" type="button" ng-if="isLogged && userAuth.authStatus !== 2" ng-click="toRealNameAuth()">开通资金存管账户</button>
+      <button class="button button-primary" type="button" ng-if="isLogged && userAuth.authStatus !== 2" ng-click="toRealNameAuth()">开通银行存管账户</button>
       <button class="button button-primary" type="button" ng-if="!isLogged" ng-click="toLogin()">立即登录</button>
     </div>
   </div>
