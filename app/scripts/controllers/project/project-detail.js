@@ -12,7 +12,7 @@ angular.module('p2pSiteMobApp')
     $rootScope.showFooter = false;
     $rootScope.showLoadingToast = true;
     var deviceCode = Utils.deviceCode();
-    $rootScope.toActivate();
+    $rootScope.migrateStatus();
     // 项目详情页面
     var number = $stateParams.number;
     if (!$stateParams.number) {
@@ -145,7 +145,7 @@ angular.module('p2pSiteMobApp')
           }
         });
       }
-      $rootScope.toActivate(toInvest);
+      $rootScope.migrateStatus(toInvest);
     };
 
 
