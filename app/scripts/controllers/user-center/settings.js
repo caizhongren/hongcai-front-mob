@@ -62,7 +62,7 @@ angular.module('p2pSiteMobApp')
         }
         toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
       }
-      $rootScope.toActivate(act);
+      $rootScope.migrateStatus(act);
     }
 
     /*
@@ -108,7 +108,8 @@ angular.module('p2pSiteMobApp')
           toCunGuanUtils.to('autoTransfer', null, null, null, null, null);
         }
       }
-      $rootScope.toActivate(act);
+      $rootScope.migrateStatus(act);
+
     };
 
 

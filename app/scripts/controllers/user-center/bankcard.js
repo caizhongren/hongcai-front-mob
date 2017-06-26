@@ -57,7 +57,7 @@ angular.module('p2pSiteMobApp')
         $scope.showBankCard = true;
         $scope.showMask = true;
       }
-      $rootScope.toActivate(act);
+      $rootScope.migrateStatus(act);
     }
     $scope.cancle = function() {
       $scope.showBankCard = false;

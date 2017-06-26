@@ -143,6 +143,13 @@ angular.module('p2pSiteMobApp')
     } 
 
     /**
+     * 获取服务器状态 //status :1 停服
+     */
+    $rootScope.migrateStatus = function(stateTo) { 
+      $rootScope.serviceStatus == 1 ? $rootScope.stopService() : $rootScope.toActivate(stateTo);
+    }
+
+    /**
      * 错误提示
      */
     $rootScope.showErrorMsg = false;
@@ -160,6 +167,11 @@ angular.module('p2pSiteMobApp')
       }
     }
     $rootScope.$on('$stateChangeStart', function(event, toState) {
+      Restangular.one('systems').one('migrateStatus').get().then(function(response){
+        if (response) { //status :1 停服
+          $rootScope.serviceStatus = response.status;
+        }
+      })
       var title = '宏财网';
       var path = $location.path().split('/')[1];
       if (toState.data && toState.data.title) {
@@ -195,7 +207,7 @@ angular.module('p2pSiteMobApp')
       }
 
       if(toState.name.indexOf('root.userCenter') !== -1) {
-        $rootScope.toActivate();
+        $rootScope.migrateStatus();
       }
 
 

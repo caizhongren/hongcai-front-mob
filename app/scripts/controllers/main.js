@@ -83,17 +83,17 @@ angular.module('p2pSiteMobApp')
     }
 
     //查询网站公告
-    // $scope.getNotice = function(){
-    //   Restangular.one('userMsgs/0/notices').get({
-    //     page: 1,
-    //     pageSize: 3
-    //   }).then(function(response){
-    //     // if(response && response.ret !== -1) {
-    //     //     // $scope.notices = response.data;
-    //     //     // localStorage.setItem('notices', angular.toJson($scope.notices));
-    //     // }
-    //   })
-    // }
+    $scope.getNotice = function(){
+      Restangular.one('userMsgs/0/notices').get({
+        page: 1,
+        pageSize: 3
+      }).then(function(response){
+        if(response && response.ret !== -1) {
+          $scope.notices = response.data;
+          localStorage.setItem('notices', angular.toJson($scope.notices));
+        }
+      })
+    }
     
 
     /**
@@ -160,7 +160,8 @@ angular.module('p2pSiteMobApp')
     /**
      * 是否激活银行资金存管系统
      */
-    $rootScope.toActivate();
+
+    $rootScope.migrateStatus();
 
    /**
     * 查看自动投标

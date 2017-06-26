@@ -68,7 +68,7 @@ angular.module('p2pSiteMobApp')
         }
         toCunGuanUtils.to('withdraw', amount, null, null, null, null);
       }
-      $rootScope.toActivate(Withdraw);
+      $rootScope.migrateStatus(Withdraw);
     }
 
     /**
@@ -81,7 +81,7 @@ angular.module('p2pSiteMobApp')
         }
         toCunGuanUtils.to('BIND_BANK_CARD', null, null, null, null, null);
       }
-      $rootScope.toActivate(bindCard);
+      $rootScope.migrateStatus(bindCard);
     }
 
 
