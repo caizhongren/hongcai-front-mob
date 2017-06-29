@@ -72,7 +72,7 @@ angular.module('p2pSiteMobApp')
        * 如果用户已实名认证，则缓存
        */
       setUserAuthIfAuthed: function(userAuth){
-        if(userAuth && userAuth.authStatus == 2){
+        if(userAuth && userAuth.authStatus == 2 && userAuth.status == 2){
           sessionStorage.setItem('userAuth', angular.toJson(userAuth));
         }
       },
