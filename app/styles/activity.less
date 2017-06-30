@@ -2378,9 +2378,15 @@ input::-webkit-inner-spin-button {
     .box2 {
         background-image: linear-gradient(to bottom, #e94e9c 0%, #6e2193 100%);
         font-size: 0;
+        position: relative;
+        top: -1.5rem;
     }
     .sharing-content {
         background-image: linear-gradient(to bottom, #ee3f68 0%, #e23974 100%);
+        img {
+            position: relative;
+            z-index: 2222
+        }
     }
     
 }
@@ -2429,6 +2435,7 @@ input::-webkit-inner-spin-button {
             margin: 0 16%;
             position: absolute;
             top: 16rem;
+            z-index: 22222;
         }
     }
 }
