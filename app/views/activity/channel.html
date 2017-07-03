@@ -16,7 +16,7 @@
         <input id="mobilesignup" name="mobile" ng-model="user.mobile" type="tel" placeholder="请输入您的手机号" required/>
         <!-- 图形验证码 -->
         <input id="picCaptcha" name="picCaptcha" ng-model="user.picCaptcha" required type="text" placeholder="请输入图形验证码" class="picCaptcha"/>
-        <img src="{{getPicCaptcha}}" id="checkCaptcha" class="captchacode fr" ng-click="refreshCode()">
+        <img src="{{getPicCaptcha}}" id="checkCaptcha" class="captchacode fr bg-white" ng-click="refreshCode()">
         <!-- 手机验证码 -->
         <input id="mobileCaptcha" name="captchasignup" ng-model="user.captcha" required="required" type="number" placeholder="请输入手机验证码" class="mobileCaptcha"/>
         <div id="mobilecode" capcha-countdown>获取</div>
