@@ -733,6 +733,19 @@ p2pSiteMobApp
       }
     })
 
+    // 庆存管迎合规 ——存管上线后续活动
+    .state('root.activity.custody-activity', {
+      url: '/custody-activity',
+      data: {
+        title: '庆存管迎合规'
+      },
+      views: {
+        '': {
+          templateUrl: 'views/activity/custody-activity.html'
+        }
+      }
+    })
+
     //母亲节活动 2017.5.13 24:00
     .state('root.activity.mothers-day', {
       url: '/mothers-day',
