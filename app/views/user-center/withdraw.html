@@ -16,14 +16,14 @@
       <div class="hint text-center bg-red1 box-shadow margin-t-9" ng-show="withdrawForm.amount.$dirty && withdrawForm.amount.$error.pattern">
         <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入数字(最多精确到小数点后两位)</span>
       </div>
-      <div class="hint text-center bg-red1 box-shadow margin-t-9" ng-show="simpleWithdraw.amountDraw > availableCashRealNo">
-        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入一个小于 {{availableCashRealNo | number:2}}的值</span>
+      <div class="hint text-center bg-red1 box-shadow margin-t-9" ng-show="simpleWithdraw.amountDraw > availableCashRealNo || simpleWithdraw.amountDraw<1">
+        <span class="ft-white"><i class="fa fa-info">&nbsp;</i>请输入一个介于 1 -- {{availableCashRealNo | number:2}}之间的值</span>
       </div>
       <div class="padding-l-2 padding-r-2">
         <input type="text" name="amount" class="u-full-width padding-t-1 padding-b-1 padding-l-1 padding-r-1 margin-t-1" min="1" max="{{availableCashRealNo }}" ng-model="simpleWithdraw.amountDraw" ng-pattern="/^[0-9]*(\.[0-9]{1,2})?$/" placeholder="请输入提现金额" ng-disabled="availableCashRealNo  < 1" required ng-focus="footer();" ng-blur="footer()" >
       </div>
       <div class="padding-l-2 padding-r-2">
-        <button type="submit" class="u-full-width button button-primary margin-t-0p5 {{withdrawForm.$invalid || simpleWithdraw.amountDraw>availableCashRealNo ? 'button-disabled' : ' '}}" ng-disabled="withdrawForm.$invalid || simpleWithdraw.amountDraw>availableCashRealNo" ng-click="toWithdraw(simpleWithdraw)" >
+        <button type="submit" class="u-full-width button button-primary margin-t-0p5 {{withdrawForm.$invalid || simpleWithdraw.amountDraw>availableCashRealNo || simpleWithdraw.amountDraw < 1 ? 'button-disabled' : ' '}}" ng-disabled="withdrawForm.$invalid || simpleWithdraw.amountDraw>availableCashRealNo || simpleWithdraw.amountDraw<1" ng-click="toWithdraw(simpleWithdraw)" >
           申请提现
         </button>
       </div>
@@ -33,8 +33,8 @@
       <h7>温馨提示：</h7>
       <div class="margin-b-1 margin-t-1">
         <span class="u-pull-left"><small>1.</small></span>
-        <p class="padding-l-1 margin-0" ng-if="payCompany === 'yeepay'"><small>目前提现是由银行存管机构平台收取2元每笔的提现费用。宏财网平台不收取任何提现费用；</small></p>
-        <p class="padding-l-1 margin-0" ng-if="payCompany === 'cgt'"><small>目前提现是由海口联合农商银行资金存管系统收取2元每笔的提现费用。宏财网平台不收取任何提现费用；</small></p>
+        <p class="padding-l-1 margin-0" ng-if="payCompany === 'yeepay'"><small>目前提现是由银行存管机构平台收取2元每笔的提现费用。提现金额的最小额度为1元，即额度大于或等于1元。宏财网平台不收取任何提现费用；</small></p>
+        <p class="padding-l-1 margin-0" ng-if="payCompany === 'cgt'"><small>目前提现是由海口联合农商银行资金存管系统收取2元每笔的提现费用。提现金额的最小额度为1元，即额度大于或等于1元。宏财网平台不收取任何提现费用；</small></p>
       </div>
       <div class="margin-b-1">
         <span class="u-pull-left"><small>2.</small></span>
