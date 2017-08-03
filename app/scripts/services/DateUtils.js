@@ -48,12 +48,18 @@ angular.module('p2pSiteMobApp')
 
 
       intervalDays: function(timeInMills1, timeInMills2) {
-        var DAY_TIME_IN_MILLS = 24 * 60 * 60 * 1000;
-
-        var time1 = Math.floor(timeInMills1/DAY_TIME_IN_MILLS) * DAY_TIME_IN_MILLS;
-        var time2 = Math.floor(timeInMills2/DAY_TIME_IN_MILLS) * DAY_TIME_IN_MILLS;
-
-        return Math.abs((time2 - time1)/DAY_TIME_IN_MILLS);
+        var t1 = new Date(timeInMills1)
+        ,t2 = new Date(timeInMills2)
+        ,DAY_TIME_IN_MILLS = 24 * 60 * 60 * 1000
+        t1.setHours(0)
+        t1.setMinutes(0)
+        t1.setSeconds(0)
+        t1.setMilliseconds(0)
+        t2.setHours(0)
+        t2.setMinutes(0)
+        t2.setSeconds(0)
+        t2.setMilliseconds(0)
+        return Math.abs((t1.getTime() - t2.getTime()) / DAY_TIME_IN_MILLS)
       },
 
 
