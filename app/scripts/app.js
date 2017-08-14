@@ -808,6 +808,15 @@ p2pSiteMobApp
         }
       }
     })
+    // 渠道活动落地页
+    .state('root.activity.channel-landing', {
+      url: '/channel-landing?act&f',
+      views: {
+        '': {
+          templateUrl: 'views/activity/channel-landing.html'
+        }
+      }
+    })
     // 邀请活动
     .state('root.activity.invite-activity', {
       url: '/invite-activity',
