@@ -808,20 +808,12 @@ p2pSiteMobApp
         }
       }
     })
-    // 渠道活动落地页
+    // 渠道活动落地页——单独html页面
     .state('root.activity.channels', {
       url: '/channels?act&f',
       views: {
         '': {
           templateUrl: 'views/activity/channels.html'
-        }
-      }
-    })
-    .state('root.activity.channelLanding', {
-      url: '/channelLanding?act&f',
-      views: {
-        '': {
-          templateUrl: 'views/activity/channelLanding.html'
         }
       }
     })
