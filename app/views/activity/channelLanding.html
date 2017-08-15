@@ -335,7 +335,6 @@
       ajaxPOST('/hongcai/rest/users/isUnique', function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var requstdata = JSON.parse(xmlhttp.responseText);
-            console.log(requstdata.ret);
             if (requstdata && requstdata.ret === -1) {
               showToast(requstdata.msg);
             }
@@ -365,7 +364,6 @@
       showToast('手机号码格式不正确');
       return;
     }
-    console.log(!$picCaptcha.value)
     if ($picCaptcha.value.length<4) {
       showToast('图形验证码错误');
       return;
@@ -375,7 +373,6 @@
     ajaxPOST('/hongcai/rest/users/mobileCaptcha', function() {
       if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
           var requstdata = JSON.parse(xmlhttp.responseText);
-          console.log(requstdata.ret);
           if (requstdata && requstdata.ret === -1) {
             showToast(requstdata.msg);
           } else {
@@ -416,13 +413,11 @@
       showToast('手机号码格式不正确');
       return;
     }
-    console.log(document.cookie)
     busy = true;
     var datas = "password=''&mobile=" + $account.value + "&captcha=" + $mobileCaptcha.value + "&channelCode="+ getCookie('utm_from') +"&act="+ getCookie('act') +"&channelParams="+ getCookie('channelParams') +"&device=" + deviceCode() + "&guestId="+ getCookie('guestId');
     ajaxPOST('/hongcai/rest/users/register', function() {
       if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
           var requstdata = JSON.parse(xmlhttp.responseText);
-          console.log(requstdata.ret);
           if (requstdata && requstdata.ret === -1) {
             showToast(requstdata.msg);
             setTimeout(function() {

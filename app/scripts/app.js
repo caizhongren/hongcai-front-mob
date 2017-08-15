@@ -809,19 +809,19 @@ p2pSiteMobApp
       }
     })
     // 渠道活动落地页
-    .state('root.activity.channel-landing', {
-      url: '/channel-landing?act&f',
+    .state('root.activity.channels', {
+      url: '/channels?act&f',
       views: {
         '': {
-          templateUrl: 'views/activity/channel-landing.html'
+          templateUrl: 'views/activity/channels.html'
         }
       }
     })
-    .state('root.activity.test', {
-      url: '/test?act&f',
+    .state('root.activity.channelLanding', {
+      url: '/channelLanding?act&f',
       views: {
         '': {
-          templateUrl: 'views/activity/test.html'
+          templateUrl: 'views/activity/channelLanding.html'
         }
       }
     })
