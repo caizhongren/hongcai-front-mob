@@ -817,6 +817,14 @@ p2pSiteMobApp
         }
       }
     })
+    .state('root.activity.test', {
+      url: '/test?act&f',
+      views: {
+        '': {
+          templateUrl: 'views/activity/test.html'
+        }
+      }
+    })
     // 邀请活动
     .state('root.activity.invite-activity', {
       url: '/invite-activity',
