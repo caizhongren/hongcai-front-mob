@@ -1,8 +1,22 @@
+<!-- growing io -->
+<script type="text/javascript">
+  var _vds = _vds || [];
+  window._vds = _vds;
+  (function(){
+    _vds.push(['setAccountId', 'ac984f19ec2981ca']);
+    (function() {
+      var vds = document.createElement('script');
+      vds.type='text/javascript';
+      vds.async = true;
+      vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(vds, s);
+    })();
+  })();
+</script>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,mininum-scale=1,maximum-scale=1">
-    <meta http-equiv="Access-Control-Allow-Origin" content="*">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>宏财网</title>
   <style>
     body {
@@ -231,21 +245,7 @@
 <div class="toast toast1" id="toast">
   <p></p>
 </div>
-<!-- growing io -->
 <script type="text/javascript">
-  var _vds = _vds || [];
-  window._vds = _vds;
-  (function(){
-    _vds.push(['setAccountId', 'ac984f19ec2981ca']);
-    (function() {
-      var vds = document.createElement('script');
-      vds.type='text/javascript';
-      vds.async = true;
-      vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(vds, s);
-    })();
-  })();
 
   $toast = document.getElementById('toast');
   $account = document.getElementById('mobilesignup');
@@ -276,7 +276,6 @@
     return /android/i.test(userAgent) && !/windows phone/i.test(userAgent);
   }
 
-  // iOS detection from: http://stackoverflow.com/a/9039885/177710
   function isIos(){
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
     return /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
