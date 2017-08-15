@@ -249,4 +249,224 @@
     <p></p>
   </div>
 </body>
+
+<script type="text/javascript">
+
+  $toast = document.getElementById('toast');
+  $account = document.getElementById('mobilesignup');
+  $mobileCaptcha = document.getElementById('mobileCaptcha');
+  $picCaptcha = document.getElementById('picCaptcha');
+  $mobilecode = document.getElementById('mobilecode');
+  var mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
+
+  function getCookie(c_name) {  
+    if (document.cookie.length > 0) {  
+      c_start = document.cookie.indexOf(c_name + "=");  
+      if (c_start != -1) {  
+        c_start = c_start + c_name.length + 1;  
+        c_end = document.cookie.indexOf(";", c_start);  
+        if (c_end == -1)  
+          c_end = document.cookie.length;  
+        return unescape(document.cookie.substring(c_start, c_end));  
+      }  
+    }  
+    return "";  
+  }
+  /**
+   * 判断浏览器手机版本
+   */
+  
+  function isAndroid(){
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    return /android/i.test(userAgent) && !/windows phone/i.test(userAgent);
+  }
+
+  function isIos(){
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    return /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+  }
+
+  function isWinPhone(){
+    return /windows phone/i.test(userAgent);
+  }
+  function isWeixin(){
+      var ua = navigator.userAgent.toLowerCase();
+      return ua.match(/MicroMessenger/i)=="micromessenger";
+  }
+
+  /**
+   * 获取和后端对应的deviceCode
+   */
+  function deviceCode() {
+    var deviceCode = 0;
+    if(isAndroid()){
+      deviceCode = 2;
+    }
+    if(isWeixin() && isAndroid()){
+      deviceCode = 3;
+    }
+    if(isIos()){
+      deviceCode = 5;
+    }
+    if(isWeixin() && isIos()){
+      deviceCode = 6;
+    }
+    return deviceCode;
+  }
+
+  function refreshCode() {
+    var capchaCode = document.getElementById('checkCaptcha');
+    capchaCode.src = capchaCode.getAttribute("src") + '?code=' + Math.random();
+  }
+
+  function showToast(msg) {
+    $toast.innerHTML = msg;
+    $toast.style.display = 'block';
+    setTimeout(function() {
+      $toast.style.display = 'none';
+      $toast.innerHTML = ''
+    }, 2000);
+  }
+
+  function watchAccount(e){
+    if (e.target.value.length === 11 && !mobilePattern.test(e.target.value)) {
+      showToast('手机号码格式不正确');
+    }else if (e.target.value.length === 11 && mobilePattern.test(e.target.value)) {
+      ajaxPOST('/hongcai/rest/users/isUnique', function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var requstdata = JSON.parse(xmlhttp.responseText);
+            console.log(requstdata.ret);
+            if (requstdata && requstdata.ret === -1) {
+              showToast(requstdata.msg);
+            }
+        }
+      }, 'account=' + e.target.value)
+    }
+  }
+
+  function watchPicChacha(e) {
+    if (e.target.value.length === 4) {
+      ajaxPOST('/hongcai/rest/captchas/checkPic', function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var requstdata = JSON.parse(xmlhttp.responseText);
+            if (requstdata === false) {
+              showToast('图形验证码错误');
+            }
+        }
+      }, 'captcha=' + e.target.value)
+    }
+  }
+
+  function setCountDown() {
+    if (!$picCaptcha.value || !$account.value) {
+      return;
+    }
+    if (!mobilePattern.test($account.value)) {
+      showToast('手机号码格式不正确');
+      return;
+    }
+    console.log(!$picCaptcha.value)
+    if ($picCaptcha.value.length<4) {
+      showToast('图形验证码错误');
+      return;
+    }
+    var second = 60;
+    var datas = "business=0&mobile=" + $account.value + "&picCaptcha=" + $picCaptcha.value + "&type=1&act="+ getCookie('act') +"&device=" + deviceCode()
+    ajaxPOST('/hongcai/rest/users/mobileCaptcha', function() {
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          var requstdata = JSON.parse(xmlhttp.responseText);
+          console.log(requstdata.ret);
+          if (requstdata && requstdata.ret === -1) {
+            showToast(requstdata.msg);
+          } else {
+            countDown();
+          }
+          function countDown() {
+            // 如果秒数还是大于0，则表示倒计时还没结束
+            if (second >= 0) {
+              // 倒计时不结束按钮不可点
+              $mobilecode.disabled = true;
+              $mobilecode.innerHTML = null;
+              $mobilecode.innerHTML = second + "s";
+              $mobilecode.className = '';
+              // 时间减一
+              second -= 1;
+              // 一秒后重复执行
+              setTimeout(function() {
+                countDown($mobilecode);
+              }, 1000);
+              // 否则，按钮重置为初始状态,可点击
+            } else {
+              $mobilecode.className = '';
+              $mobilecode.innerHTML = "重新发送";
+              second = 60;
+              $mobilecode.disabled = false;
+            }
+
+          }
+      }
+    }, datas)
+  }
+  var busy = false;
+  function signUp() {
+    if (!$account.value || !$picCaptcha.value || !$mobileCaptcha.value || busy) {
+      return;
+    }
+    if (!mobilePattern.test($account.value)) {
+      showToast('手机号码格式不正确');
+      return;
+    }
+    console.log(document.cookie)
+    busy = true;
+    var datas = "password=''&mobile=" + $account.value + "&captcha=" + $mobileCaptcha.value + "&channelCode="+ getCookie('utm_from') +"&act="+ getCookie('act') +"&channelParams="+ getCookie('channelParams') +"&device=" + deviceCode() + "&guestId="+ getCookie('guestId');
+    ajaxPOST('/hongcai/rest/users/register', function() {
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          var requstdata = JSON.parse(xmlhttp.responseText);
+          console.log(requstdata.ret);
+          if (requstdata && requstdata.ret === -1) {
+            showToast(requstdata.msg);
+            setTimeout(function() {
+                busy = false;
+              }, 1000);
+          } else {
+            ajaxGet('/hongcai/rest/users/0/isInvitedFriends', function() {
+              if (xmlGet.readyState == 4 && xmlGet.status == 200) {
+                var res = JSON.parse(xmlGet.responseText);
+                if (res && res.ret !== -1) {
+                  document.getElementById('successMask').style.display = 'block';
+                } else if(res.code && res.code === -1041){        
+                  alert('活动已结束');
+                  return;
+                }
+              }
+            })
+          }
+      }
+    }, datas)
+  }
+
+  var xmlhttp = "";
+  var xmlGet = "";
+  function ajaxPOST(urlstr, responseFunc, datas) {
+    if (window.XMLHttpRequest) {
+      xmlhttp = new XMLHttpRequest();
+    } else {
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.open("POST", urlstr, true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send(datas);
+    xmlhttp.onreadystatechange = responseFunc;
+  }
+  function ajaxGet(urlstr, responseFunc) {
+    if (window.XMLHttpRequest) {
+        xmlGet = new XMLHttpRequest();
+    } else {
+        xmlGet = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlGet.open("GET", urlstr, true);
+    xmlGet.send();
+    xmlGet.onreadystatechange = responseFunc;
+  }
+</script>
 </html>
