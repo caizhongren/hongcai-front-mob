@@ -257,6 +257,69 @@
     $mobilecode = document.getElementById('mobilecode');
     var mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
 
+    var act = getQueryString("act");  
+    var channelCode = getQueryString("f");  
+    var channelParamsObj = {};
+
+
+    function getQueryString(name) {  
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");  
+      var r = window.location.search.substr(1).match(reg);  
+      if (r != null) return unescape(r[2]); return null;  
+    }  
+    function parseQueryString(url) {
+      var obj = {};
+      var keyvalue = [];
+      var key = "",
+          value = "";
+      var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+      for (var i in paraString) {
+          keyvalue = paraString[i].split("=");
+          key = keyvalue[0];
+          value = keyvalue[1];
+          obj[key] = value;
+      }
+      return obj;
+    }
+    console.log(parseQueryString(location.search))
+    for (var obj in parseQueryString(location.search)) {
+      if (obj !== 'act' && obj !== 'f') {
+        channelParamsObj[obj] = parseQueryString(location.search)[obj];
+      }
+    }
+    var channelParams = '';
+    function isEmptyObject(obj) {
+      for (var prop in obj) {
+        if (obj.hasOwnProperty(prop)) {
+          return false;
+        }
+      }
+      return true;
+    }
+    
+    if ((act || channelCode) && !isEmptyObject(channelParamsObj)) {
+      channelParams = channelParamsObj.toJSONString();
+    }
+
+    if (channelParams) {
+      setCookie('channelParams', channelParams, 1);
+    }
+
+    if (channelCode) {
+      setCookie('utm_from', channelCode, 1);
+    }
+
+    if (act) {
+      setCookie('act', act, 1);
+    }
+    
+    function setCookie(c_name,value,expiredays) {
+      var exdate=new Date()
+      exdate.setDate(exdate.getDate()+expiredays)
+      document.cookie=c_name+ "=" +escape(value)+
+      ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+    }
+
     function getCookie(c_name) {  
       if (document.cookie.length > 0) {  
         c_start = document.cookie.indexOf(c_name + "=");  
