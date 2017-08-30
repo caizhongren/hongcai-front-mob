@@ -50,7 +50,7 @@ angular.module('p2pSiteMobApp')
     $scope.readNotices = function() {
 	    Restangular.one('/userMsgs/' + '0' + '/unReadNotices' ).get().then(function(response){
 	  		if (response && response.ret !== -1) {
-	  			if(response > 0) {
+	  			if(response.count > 0) {
 	  				// 标记所有公告已读
 	  				Restangular.one('/userMsgs/' + '0' + '/readAllNotices' ).put({}).then(function(response){});
 	  			}
@@ -62,7 +62,7 @@ angular.module('p2pSiteMobApp')
     $scope.readMsgs = function() {
 	    Restangular.one('/userMsgs/' + '0' + '/unReadMsgs' ).get().then(function(response){
 	  		if (response && response.ret !== -1) {
-	  			$scope.unReadMsgs = response;
+	  			$scope.unReadMsgs = response.count;
 	  		}
 	  	})
     }
