@@ -67,13 +67,13 @@ angular.module('p2pSiteMobApp')
       // 查询是否有未读的提醒
       Restangular.one('/userMsgs/' + '0' + '/unReadMsgs' ).get().then(function(response){
         if (response && response.ret !== -1) {
-          $scope.unReadMsgs = response;
+          $scope.unReadMsgs = response.count;
         }
       })
       // 查询是否有未读的公告
       Restangular.one('/userMsgs/' + '0' + '/unReadNotices' ).get().then(function(response){
         if (response && response.ret !== -1) {
-          $scope.unReadNotices = response;
+          $scope.unReadNotices = response.count;
         }
       })
      
