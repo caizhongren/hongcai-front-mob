@@ -13,4 +13,13 @@ window.onload = function(){
             }))
     }
     setRem();
+  function setHeight () {
+    document.body.style.height = window.innerHeight + 'px'
+  }
+  window.addEventListener('load', function () {
+    setHeight()
+  })
+  window.addEventListener('resize', function () {
+    setHeight()
+  })
 }()

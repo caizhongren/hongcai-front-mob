@@ -108,3 +108,24 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
 .animation_opactiy{
     animation: backOpacity 2s ease-in-out infinite;
 }
+
+/*游戏公用背景样式*/
+.game-counting-wrap {
+  background-color: #fff026;
+  padding: .2rem;
+}
+.game-counting {
+  padding: .1rem;
+  border-radius: .1rem;
+  background: url('../../images/games/guang.png') no-repeat center center;
+  background-size: 100% 100%;
+  background-color: #ff2421;
+}
+.game-counting-innner {
+  padding-top: .4rem;
+  background: url('../../images/games/circle.png') no-repeat 0 0;
+  background-size: 100% 100%
+}
+
+
+
