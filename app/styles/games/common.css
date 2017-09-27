@@ -1,8 +1,7 @@
-body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, li, a, p, h1, h2, h3, h4,h5, h6, i, b, textarea, button, input, select, figure, figcaption {
+body, div, header, footer, nav, section, aside, article, ul, dl, dt, dd, li, a, h1, h2, h3, h4,h5, h6, i, b, textarea, button, input, select, figure, figcaption {
     max-width: 7.2rem;
     height: 100%;
     margin: 0 auto;
-    overflow-x: hidden;
     font-size: .24rem;
     line-height: 1.6;
     list-style: none;

@@ -14,8 +14,15 @@
     <title>谁是点钞王</title>
     <!-- <link rel="stylesheet" type="text/css" href="../../styles/games/game-counting.css"> -->
     <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico"/>
-    <link rel="stylesheet" type="text/css" href="../../styles/games/common.css">
     <style type="text/css">
+      .game-counting-innner div {
+        height: auto;
+      }
+      .game-counting-wrap p, .game-counting-wrap div {
+        font-size: .32rem;
+        color: #fff;
+        font-weight: bold;
+      }
       .game-counting-innner img.logo {
         display: block;
         margin: .04rem auto;
@@ -23,17 +30,177 @@
       .game-counting-innner img.title-img {
         margin-left: .4rem;
       }
+      .display-inbl {
+        display: inline-block;
+      }
+      .display-bl {
+        display: block;
+      }
+      .margin {
+        margin: 0 auto;
+      }
+      span.count-tip {
+        font-size: .28rem;
+        position: absolute;
+      }
+      .times img, .count-down img {
+        margin: .2rem .1rem 0 .3rem;
+      }
+      .count-down img {
+        margin-left: .4rem;
+      }
+      .count-down .process-wrap {
+        position: relative;
+        margin-left: 2%;
+        width: 66%;
+        height: .58rem;
+        background: url('../../images/games/process-bg.png') no-repeat center center;
+        background-size: 100%;
+      }
+      .count-down .process-wrap .process {
+        height: .2rem;
+        width: 96%;
+        background-color: #fff026;
+        border-radius: .15rem;
+        position: absolute;
+        top: .15rem;
+        left: .04rem;
+      }
+      .count-down .process-wrap .count-tip {
+        right: .2rem;
+        top: -.3rem;
+      }
+      .count-down div.display-inbl {
+        width: 83%;
+        height: .48rem;
+      }
+      .count .count-statistics {
+        margin: .2rem;
+        height: 1rem;
+        width: 100%;
+        background: url('../../images/games/icon-money.png') no-repeat 38% center;
+        background-size: 23%;
+        text-align: center;
+      }
+      .count .count-statistics p {
+        margin: .22rem 0 0.4rem .8rem;
+        color: #fff026;
+        position: relative;
+      }
+      .count .count-statistics p span {
+        position: absolute;
+        color: #fff;
+        right: .8rem;
+        top: -.33rem;
+      }
+      .count .count-statistics p span.icon-rule {
+        position: absolute;
+        top: -.2rem;
+        right: -1.98rem;
+        width: .9rem;
+        padding: .07rem 0 .07rem .1rem;
+        background: url('../../images/games/icon-rule.png') no-repeat 0 0;
+        background-size: 100% 100%;
+        font-size: .24rem;
+        color: #ff001a;
+        line-height: 1.2;
+      }
+      .count .count-money img.box-top {
+        margin-bottom: -.19rem;
+      }
+      .count .count-money ul {
+        margin-top: -.33rem;
+      }
+      .count .count-money .btns {
+        width: 94%;
+        margin-top: -.3rem;
+      }
+      .count .count-money .btns div {
+        width: 49%;
+        position: relative;
+      }
+      .btns .btn-left img:first-child, .btns .btn-right img:first-child {
+        position: absolute;
+        top: -1.6rem;
+      }
+      .btns .btn-left img:first-child {
+        left: 0.1rem;
+      }
+      .btns .btn-right img:first-child {
+        right: 0.1rem;
+      }
+      .btns .btn-left span, .btns .btn-right span {
+        position: absolute;
+        top: -.62rem;
+        font-size: .42rem;
+        font-family: CTCuHeiSJ;
+      }
+      .btns .btn-left span {
+        left: .2rem;
+        color: #c8e5d0;
+      }
+      .btns .btn-right span {
+        right: .2rem;
+        color: #ffbdc5;
+      }
     </style>
+    <link rel="stylesheet" type="text/css" href="../../styles/games/common.css">
+    <script src="../../scripts/rem.js"></script>
   </head>
   <body>
     <div class="game-counting-wrap">
       <div class="game-counting">
         <div class="game-counting-innner">
           <!-- <img src="../../images/games/logo-hongcai.png" width="44%" class="logo"> -->
-          <img src="../../images/games/header-title.png" width="70%" class="title-img">
+          <img src="../../images/games/header-title.png" width="72%" class="title-img">
+          <!-- 剩余次数 -->
+          <div class="times">
+            <img src="../../images/games/hand-left.png" class="display-inbl" width="7%">
+            <p class="display-inbl">剩余游戏次数：5次</p>
+          </div>
+          <!-- 倒计时 -->
+          <div class="count-down">
+            <img src="../../images/games/count-down.png" class="display-inbl" width="4.5%">
+            <div class="display-inbl">
+              <span class="left">倒计时:</span>
+              <div class="process-wrap left">
+                <span class="count-tip">-5</span>
+                <div class="process"></div>
+              </div>
+              <span class="left">17s</span>
+            </div>
+          </div>
+          <div class="count">
+            <div class="count-statistics">
+              <p class="display-inbl">9000元 
+                <span class="count-tip">+100</span>
+                <span class="icon-rule">活动<br>规则 </span>
+              </p>
+            </div>
+            <div class="count-money">
+              <img src="../../images/games/box1.png" width="65%" class="margin display-bl box-top box-top">
+              <img src="../../images/games/box2.png" width="61.5%" class="margin display-bl">
+              <ul>
+                <li><img src="../../images/games/50.png" class="display-bl margin" width="55%"></li>
+                <li><img src="../../images/games/100.png" class="display-bl margin" width="55%"></li>
+                <li><img src="../../images/games/50.png" class="display-bl margin" width="55%"></li>
+              </ul>
+              <div class="btns clear">
+                <div class="display-inbl btn-left">
+                  <img src="../../images/games/hand.png" width="28%">
+                  <span>50</span>
+                  <img src="../../images/games/button-50.png" width="41%">
+                </div>
+                <div class="display-inbl btn-right">
+                  <img src="../../images/games/hand.png" width="28%">
+                  <span>100</span>
+                  <img src="../../images/games/button-100.png" class="right" width="41%">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </body>
-  <script src="../../scripts/rem.js"></script>
 </html>
