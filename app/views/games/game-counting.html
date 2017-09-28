@@ -42,7 +42,7 @@
           <!-- 点钞 -->
           <div class="count">
             <div class="count-statistics">
-              <p class="display-inbl">9000元 
+              <p class="display-inbl">0元 
                 <span class="count-tip" id="add-100">+100</span>
                 <span class="count-tip" id="add-50">+50</span>
                 <span class="icon-rule showRule">活动<br>规则 </span>
@@ -60,12 +60,12 @@
               <!-- 点钞按钮 -->
               <div class="btns clear">
                 <div class="display-inbl btn-left">
-                  <img src="../../images/games/hand.png" width="28%" class="noviceHand">
+                  <img src="../../images/games/hand.png" width="28%" class="noviceHand hand-50">
                   <span>50</span>
                   <img id="count-50" src="../../images/games/button-50.png" width="41%">
                 </div>
                 <div class="display-inbl btn-right">
-                  <img src="../../images/games/hand.png" width="28%" class="noviceHand">
+                  <img src="../../images/games/hand.png" width="28%" class="noviceHand hand-100">
                   <span>100</span>
                   <img id="count-100" src="../../images/games/button-100.png" class="right" width="41%">
                 </div>
@@ -137,6 +137,8 @@
         gameCounts: 5,
         gameTimes: 30,
         firstEntry: true,
+        countList: [],
+        totalMoney: 0,
         // 钱币加减 和 时间减少提示淡入淡出效果 
         showTip: function (ele, inDuration, outDuration) {
           $(ele).fadeIn(inDuration, function () {
@@ -192,7 +194,9 @@
         showMoneyTip: function (clickEle, showEle) {
           var _this = this
           $(clickEle).on('click', function () {
-            _this.showTip(showEle, 100, 400)
+            $('.hand-100').hide()
+            $('.hand-50').hide()
+            _this.showTip(showEle, 200, 400)
           })
         },
         
@@ -200,19 +204,33 @@
          ** 点钞
          */
         countStart: function () {
-          
+          // alert(1)
         },
-        toggleRuleBox: function (ele) {
+        showRule: function (ele) {
+          var _this = this
+          _this.firstEntry ? $RuleStartGame.hide() : null
           if (ele.css("display") == 'none') {
             ele.show();
           } else {
             ele.hide();
           }
         },
+        toggleRuleBox: function (ele) {
+          var _this = this
+          $showRule.on('click', function () {
+            _this.showRule($ruleBox)
+          })
+        },
         // 开始游戏
         RuleStartGame: function () {
-          this.toggleRuleBox($ruleBox);
+          var _this = countObj;
+          $ruleBox.hide();
           $ReadyFlash.show();
+          setTimeout(function () {
+            _this.countDown();
+            $showRule.css({zIndex: 99999})
+            $ReadyFlash.hide();
+          }, 4600)
         },
         // 获取游戏规则
         getGameRules: function () {
@@ -223,7 +241,7 @@
               
             } else {
               res.gameCounts = 3;
-              $(gameCounts).html(res.gameCounts)
+              $gameCounts.html(res.gameCounts)
               // alert(res.msg);
             }
           })
@@ -236,7 +254,7 @@
             if (res && res.ret !== -1) {
               
             } else {
-              res.firstEntry = false;
+              res.firstEntry = true;
               _this.firstEntry = res.firstEntry
               if (_this.firstEntry) {
                 $ruleBox.show();
@@ -245,28 +263,66 @@
                 _this.RuleStartGame()
               }
               // alert(res.msg);
+              if (_this.firstEntry && _this.countList[0].value == '50') {
+                $('.hand-50').show()
+              } else if (_this.firstEntry && _this.countList[0].value == '100') {
+                $('.hand-100').show()
+              }
             }
           })
+        },
+        //获取钞票列表
+        getCountList: function () {
+          var _this = this
+          $.get("/hongcai/rest/assignments/assignmentRule", function (res, status) {
+            console.log(res)
+            if (res && res.ret !== -1) {
+              
+            } else {
+              res.countList = [
+                {
+                  value: '100'
+                },
+                {
+                  value: '100'
+                },
+                {
+                  value: '50'
+                },
+                {
+                  value: '100'
+                },
+                {
+                  value: '100'
+                },
+                {
+                  value: '100'
+                }
+              ];
+              _this.countList = res.countList
+              // alert(res.msg);
+              _this.getGameState();
+              
+            }
+          })
+        },
+        startGameConfig: function () {
+          this.toggleRuleBox();
+          this.getGameRules();
+          this.getCountList();
+          $RuleStartGame.on('click', this.RuleStartGame)
+          $('#totalMoney').html(0);
         }
       };
       countObj.showMoneyTip('#count-100', '#add-100');
       countObj.showMoneyTip('#count-50', '#add-50');
-      countObj.getGameRules();
-      countObj.getGameState();
-      setTimeout(function () {
-        countObj.countDown();
-        $showRule.css({zIndex: 99999})
-        $ReadyFlash.hide();
-      }, 4600)
-      // 活动规则弹窗
-      $showRule.on('click', function() {
-        if ($ruleBox.css("display") == 'none') {
-          $ruleBox.show();
-        } else {
-          $ruleBox.hide();
-        }
-      })
-      $RuleStartGame.on('click', countObj.RuleStartGame)
+      countObj.startGameConfig();
+      // setTimeout(function () {
+      //   countObj.countDown();
+      //   $showRule.css({zIndex: 99999})
+      //   $ReadyFlash.hide();
+      // }, 4600)
+      
     })
   </script>
 </html>

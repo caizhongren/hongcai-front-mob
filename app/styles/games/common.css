@@ -169,8 +169,12 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
   background-color: rgba(0,0,0,0.6);
   -webkit-overflow-scrolling: touch;
   overflow-y: hidden !important;
+  display: none;
 }
 /*活动规则弹窗*/
+#ruleBox {
+  z-index: 99999;
+}
 .ruleBox {
   background: url('../../images/games/rule-box.png') no-repeat 0 0;
   background-size: contain;
@@ -248,6 +252,7 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
   -moz-animation: noviceHand 1s alternate infinite;
   -webkit-animation: noviceHand 1s alternate infinite;
   animation: noviceHand 1s alternate infinite;
+  display: none;
 }
     
 @-moz-keyframes noviceHand {
@@ -269,7 +274,7 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
   -webkit-animation: fideOut 1s alternate 4s forwards;
   animation: fideOut 1s alternate 4s forwards;
   opacity: 1;
-  /*display: none;*/
+  display: none;
 }
 .startGame img {
   display: block;
@@ -317,13 +322,13 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
 }
 @-moz-keyframes fideOut {
   from { opacity: 1; }
-  to { opacity: 0; }
+  to { opacity: 0; zIndex: 99}
 }
 @-webkit-keyframes fideOut {
   from { opacity: 1; }
-  to { opacity: 0; }
+  to { opacity: 0; zIndex: 99}
 }
 @keyframes fideOut {
   from { opacity: 1; }
-  to { opacity: 0; }
+  to { opacity: 0; zIndex: 99}
 }
