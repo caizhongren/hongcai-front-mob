@@ -42,7 +42,7 @@
           <!-- 点钞 -->
           <div class="count">
             <div class="count-statistics">
-              <p class="display-inbl">0元 
+              <p class="display-inbl"><i id="totalMoney">0</i>元 
                 <span class="count-tip" id="add-100">+100</span>
                 <span class="count-tip" id="add-50">+50</span>
                 <span class="icon-rule showRule">活动<br>规则 </span>
@@ -158,6 +158,12 @@
               value: 50
             },
             {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
               value: 50
             },
             {
@@ -171,6 +177,250 @@
             },
             {
               value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },{
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },{
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
             }
           ],
           $ruleBox = $('#ruleBox'),
@@ -181,15 +431,16 @@
           percentWidth = 96, // 进度条初始化样式百分比数值
           percentOneSecond = 3.2, // 一秒进度条递减值
           countWrong = false, // 是否数错钞,
-          scrollDirection = -18.681; // 钞票初始位置
+          wrongSecond,
+          scrollDirection = -139.389; // 钞票初始位置
         $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
         document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
       var countObj = {
         gameCounts: 5,
         gameTimes: 30,
         firstEntry: true,
-        countList: [],
         totalMoney: 0,
+        num: countList.length -1,
         // 钱币加减 和 时间减少提示淡入淡出效果 
         showTip: function (ele, inDuration, outDuration) {
           $(ele).fadeIn(inDuration, function () {
@@ -200,13 +451,14 @@
         /*
         ** 倒计时沙漏 
         */
-        hourglassAnimate: function () {
+        hourglassAnimate: function (duration) {
           $hourglass.addClass('hourglass')
           var glassTimer = setTimeout(function() {
             $hourglass.removeClass('hourglass')
             clearTimeout(glassTimer)
-          }, 9900)
+          }, duration)
         },
+
 
         /*
          ** 倒计时进度条和时间效果
@@ -215,15 +467,15 @@
           // 如果秒数还是大于0，则表示倒计时还没结束
           if (second > 0) {
             // 时间只剩10秒时
-            if (second === 10) {
-              this.hourglassAnimate()
+            if (second <= 11) {
+              this.hourglassAnimate(second*1000-100)
             }
             // 判断是否点错，假设在28秒， countWrong === ture 表示点错钞
-            if (second === 28) { countWrong = true} else { countWrong = false}
+            if (second === wrongSecond) { countWrong = true} else { countWrong = false}
             if (countWrong) {
-              second -= 5
+              second >=5 ? second -= 5 : second = 0
               percentWidth -= 16
-              this.showTip('#sub', 800, 1500)
+              
             }else {
               second -= 1
               percentWidth -= 3.2
@@ -243,12 +495,7 @@
         // 点钞金额增加提示效果
         showMoneyTip: function (clickEle, showEle) {
           var _this = this
-          $(clickEle).on('click', function () {
-            $('.hand-100').hide()
-            $('.hand-50').hide()
-            _this.showTip(showEle, 100, 400);
-            _this.countSlideDown()
-          })
+          _this.showTip(showEle, 100, 400);
         },
         // 钞票配置
         moneyConfig: function (count, type) {
@@ -260,7 +507,8 @@
               moneyHtml += '<li><img src="../../images/games/100.png" class="display-bl margin" width="55%"></li>'
             }
           }
-          return moneyHtml;
+          // return moneyHtml;
+          $('.count-list').append(moneyHtml) //点钞调用
         },
         // 钞票滑出效果
         countSlideDown: function () {
@@ -274,8 +522,30 @@
          ** 点钞
          */
         countStart: function (clickEle, showEle, type) { // 点击元素， 显示的元素， 点击的按钮类型 50 ／ 100
-          this.showMoneyTip(clickEle, showEle)
-          $('.count-list').append(countObj.moneyConfig(countList, type)) //点钞调用
+          var _this = this;
+          $(clickEle).on('click', function () {
+            console.log(_this.num)
+            if (_this.num < 1 || second <= 0) {
+              return;
+            }
+            if (countList[_this.num].value == type && type == 50) {
+              _this.showMoneyTip(clickEle, showEle);
+              _this.totalMoney += type
+              $('#totalMoney').html()
+            } else if (countList[_this.num].value == type && type == 100){
+              _this.showMoneyTip(clickEle, showEle);
+              _this.totalMoney += type
+            } else {
+              countWrong = true;
+              _this.showTip('#sub', 800, 1500)
+              wrongSecond = second
+            }
+            $('.hand-100').hide()
+            $('.hand-50').hide()
+            $('#totalMoney').html(_this.totalMoney)
+            _this.countSlideDown()
+            _this.num --
+          })
         },
         showRule: function (ele) {
           var _this = this
@@ -311,7 +581,7 @@
             if (res && res.ret !== -1) {
               
             } else {
-              res.gameCounts = 3;
+              res.gameCounts = 5;
               $gameCounts.html(res.gameCounts)
               // alert(res.msg);
             }
@@ -325,7 +595,7 @@
             if (res && res.ret !== -1) {
               
             } else {
-              res.firstEntry = true;
+              res.firstEntry = false;
               _this.firstEntry = res.firstEntry
               if (_this.firstEntry) {
                 $ruleBox.show();
@@ -383,13 +653,14 @@
           this.getCountList();
           $RuleStartGame.on('click', this.RuleStartGame)
           $('#totalMoney').html(0);
+          $gameCounts.html(this.gameCounts);
+          
         }
       };
-      countObj.countStart('#count-100', '#add-100', 100);
-      countObj.countStart('#count-50', '#add-50', 50);
+      countObj.countStart('#count-100', '#add-100', 100)
+      countObj.countStart('#count-50', '#add-50', 50)
+      // countObj.countStart('#count-50', '#sub', 50)
       countObj.moneyConfig(countList)
-      countObj.showMoneyTip('#count-100', '#add-100');
-      countObj.showMoneyTip('#count-50', '#add-50');
       countObj.startGameConfig();
       // setTimeout(function () {
       //   countObj.countDown();

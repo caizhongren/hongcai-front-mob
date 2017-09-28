@@ -120,24 +120,29 @@ span.count-tip {
   background: url('../../images/games/icon-money.png') no-repeat 38% center;
   background-size: 23%;
   text-align: center;
+  position: relative;
 }
 .count .count-statistics p {
-  margin: .22rem 0 0.4rem .8rem;
+  margin: .25rem 0 0.4rem .2rem;
   color: #fff026;
-  position: relative;
 }
 .count .count-statistics p span {
   position: absolute;
   color: #fff;
-  right: .8rem;
-  top: -.33rem;
+  left: 2.35rem;
+  top: -.15rem;
   display: none;
+}
+.count .count-statistics p #totalMoney {
+  color: #fff026;
+  font-size: .32rem;
+  font-weight: bold;
 }
 .count .count-statistics p span.icon-rule {
   display: block;
   position: absolute;
-  top: -.2rem;
-  right: -1.98rem;
+  top: 0;
+  left: 81%;
   width: .9rem;
   padding: .07rem 0 .07rem .1rem;
   background: url('../../images/games/icon-rule.png') no-repeat 0 0;
