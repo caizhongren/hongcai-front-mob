@@ -68,7 +68,7 @@
 		color: #ff2d3d;
 		font-size: .3rem;    
 		position: relative;
-    z-index: 999999;
+    z-index: 9999;
 	}
 	#startHand {
 		background: url('../../images/games/start-hand.png') no-repeat center center;
@@ -144,9 +144,9 @@
 		  		<span class="txt">每人有5次机会，邀请好友一起玩，可额外获得1次奖励机会，多邀多得！</span>
 		  	</div>
 	  	</div>
-	  	<div class="close-btn" onclick="closeBtn()"></div>
 	  </div>
-	  <div class="rule-start-btn">我知道了，开始游戏</div>
+	  <div class="close-btn" onclick="closeRuleBox()"></div>
+	  <div class="rule-start-btn" onClick="location.href= location.origin + '/views/games/game-counting.html'">我知道了，开始游戏</div>
   </div>
 </body>
 <script src="../../scripts/rem.js"></script>

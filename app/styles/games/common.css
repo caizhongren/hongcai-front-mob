@@ -179,7 +179,7 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
   background: url('../../images/games/rule-box.png') no-repeat 0 0;
   background-size: contain;
   margin: 1.5rem .3rem 0.5rem .5rem;
-  padding: .6rem .6rem 1.2rem .4rem;
+  padding: .44rem .6rem 1.2rem .4rem;
   position: relative;
   height: 5.5rem;
   overflow: hidden;
@@ -228,13 +228,14 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
   vertical-align: bottom;
   margin-right: .05rem;
 }
-.ruleBox .close-btn {
+#ruleBox .close-btn {
   width: .7rem;
   height: .7rem;
-  background: #000;
+  background: url('../../images/games/rule-close.png') no-repeat 0 0;
+  background-size: contain;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 1.28rem;
+  right: .3rem;
 }
 .rule-start-btn {
   background: url('../../images/games/rule-btn.png') no-repeat 0 0;
