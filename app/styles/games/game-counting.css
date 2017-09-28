@@ -145,6 +145,7 @@ span.count-tip {
   font-size: .24rem;
   color: #ff001a;
   line-height: 1.2;
+  display: block;
 }
 .count .count-money img.box-top {
   margin-bottom: -.19rem;

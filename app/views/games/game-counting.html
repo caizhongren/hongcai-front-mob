@@ -45,7 +45,7 @@
               <p class="display-inbl">9000元 
                 <span class="count-tip" id="add-100">+100</span>
                 <span class="count-tip" id="add-50">+50</span>
-                <span class="icon-rule">活动<br>规则 </span>
+                <span class="icon-rule showRule">活动<br>规则 </span>
               </p>
             </div>
             <div class="count-money">
@@ -73,56 +73,58 @@
             </div>
           </div>
         </div>
-        <!-- 321游戏开始倒计时 -->
-        <div class="mask-common" id="startGame">
-          <div class="startGame">
-            <img src="../../images/games/reload-3.png" width="30%" class="countDown3">
-            <img src="../../images/games/reload-2.png" width="28%" class="countDown2">
-            <img src="../../images/games/reload-1.png" width="16%" class="countDown1">
-            <img src="../../images/games/reload-start.png" width="50%" class="countDown0">
+      </div>
+    </div>
+    <!-- 321游戏开始倒计时 -->
+    <div class="mask-common" id="startGame">
+      <div class="startGame">
+        <img src="../../images/games/reload-3.png" width="30%" class="countDown3">
+        <img src="../../images/games/reload-2.png" width="28%" class="countDown2">
+        <img src="../../images/games/reload-1.png" width="16%" class="countDown1">
+        <img src="../../images/games/reload-start.png" width="50%" class="countDown0">
+      </div>
+    </div>
+    <!-- 活动规则弹窗 -->
+    <div class="mask-common" id="ruleBox" style="display: none">
+      <div class="ruleBox">
+        <div class="rule-title">游戏规则</div>
+        <div class="contents">
+          <div class="rule-content">
+            <span class="num">①</span>
+            <span class="txt">遇到面值50元时，点击左手按钮；<img src="../../images/games/rule-hand-left.png" alt=""  width="8%"></span>
+          </div>
+          <div class="rule-content">
+            <span class="num">②</span>
+            <span class="txt">遇到面值100元时，点击右手按钮；<img src="../../images/games/rule-hand-right.png" alt=""  width="8%"></span>
+          </div>
+          <div class="rule-content">
+            <span class="num">③</span>
+            <span class="txt">注意！如选择错误的方向，<img src="../../images/games/rule-count.png" alt=""  width="6%">倒计时将减少5秒哟！</span>
+          </div>
+          <div class="rule-content">
+            <span class="num">④</span>
+            <span class="txt">在规定30s倒计时结束后，<img src="../../images/games/rule-clock.png" alt=""  width="8%">您将获得与正确数出金额相同的特权本金奖励！（有效期3天）</span>
+          </div>
+          <div class="rule-content">
+            <span class="num">⑤</span>
+            <span class="txt">每人有5次机会，邀请好友一起玩，可额外获得1次奖励机会，多邀多得！</span>
           </div>
         </div>
-        <!-- 活动规则弹窗 -->
-        <div class="mask-common" id="ruleBox" style="display: none">
-          <div class="ruleBox">
-            <div class="rule-title">游戏规则</div>
-            <div class="contents">
-              <div class="rule-content">
-                <span class="num">①</span>
-                <span class="txt">遇到面值50元时，点击左手按钮；<img src="../../images/games/rule-hand-left.png" alt=""  width="8%"></span>
-              </div>
-              <div class="rule-content">
-                <span class="num">②</span>
-                <span class="txt">遇到面值100元时，点击右手按钮；<img src="../../images/games/rule-hand-right.png" alt=""  width="8%"></span>
-              </div>
-              <div class="rule-content">
-                <span class="num">③</span>
-                <span class="txt">注意！如选择错误的方向，<img src="../../images/games/rule-count.png" alt=""  width="6%">倒计时将减少5秒哟！</span>
-              </div>
-              <div class="rule-content">
-                <span class="num">④</span>
-                <span class="txt">在规定30s倒计时结束后，<img src="../../images/games/rule-clock.png" alt=""  width="8%">您将获得与正确数出金额相同的特权本金奖励！（有效期3天）</span>
-              </div>
-              <div class="rule-content">
-                <span class="num">⑤</span>
-                <span class="txt">每人有5次机会，邀请好友一起玩，可额外获得1次奖励机会，多邀多得！</span>
-              </div>
-            </div>
-            <div class="close-btn" onclick="closeBtn()"></div>
-          </div>
-          <div class="rule-start-btn">我知道了，开始游戏</div>
-        </div>
+        <div class="close-btn showRule"></div>
       </div>
     </div>
   </body>
   <script type="text/javascript" src="../../../bower_components/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript">
     $(function () {
+
       var second = 31,
           countTimer,
           $processBar = $('#process-bar'),
           $time = $('#time'),
           $hourglass = $('#hourglass'),
+          $ruleBox = $('#ruleBox'),
+          $showRule = $('.showRule'),
           percentWidth = 96, // 进度条初始化样式百分比数值
           percentOneSecond = 3.2, // 一秒进度条递减值
           countWrong = false; // 是否数错钞
@@ -134,6 +136,15 @@
         })
       }
 
+      // 活动规则弹窗
+      $showRule.on('click', function () {
+        if ($ruleBox.css("display") == 'none') {
+          $ruleBox.show();
+        } else {
+          $ruleBox.hide();
+        }
+      })
+      
       /*
       ** 倒计时沙漏 
       */
