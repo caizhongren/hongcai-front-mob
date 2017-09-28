@@ -25,7 +25,7 @@
           <!-- 剩余次数 -->
           <div class="times">
             <img src="../../images/games/hand-left.png" class="display-inbl" width="7%">
-            <p class="display-inbl">剩余游戏次数：5次</p>
+            <p class="display-inbl">剩余游戏次数：<span id="gameCounts">5</span>次</p>
           </div>
           <!-- 倒计时 -->
           <div class="count-down">
@@ -62,12 +62,12 @@
                 <div class="display-inbl btn-left">
                   <img src="../../images/games/hand.png" width="28%" class="noviceHand">
                   <span>50</span>
-                  <img id="count-50" src="../../images/games/button-50.png" width="41%" onclick="showTip('#add-50')">
+                  <img id="count-50" src="../../images/games/button-50.png" width="41%">
                 </div>
                 <div class="display-inbl btn-right">
                   <img src="../../images/games/hand.png" width="28%" class="noviceHand">
                   <span>100</span>
-                  <img id="count-100" src="../../images/games/button-100.png" class="right" width="41%" onclick="showTip('#add-100')">
+                  <img id="count-100" src="../../images/games/button-100.png" class="right" width="41%">
                 </div>
               </div>
             </div>
@@ -85,7 +85,7 @@
       </div>
     </div>
     <!-- 活动规则弹窗 -->
-    <div class="mask-common" id="ruleBox" style="display: none">
+    <div class="mask-common" id="ruleBox">
       <div class="ruleBox">
         <div class="rule-title">游戏规则</div>
         <div class="contents">
@@ -112,6 +112,7 @@
         </div>
         <div class="close-btn showRule"></div>
       </div>
+      <div class="rule-start-btn" id="RuleStartGame">我知道了，开始游戏</div>
     </div>
   </body>
   <script type="text/javascript" src="../../../bower_components/jquery/dist/jquery.min.js"></script>
@@ -125,89 +126,147 @@
           $hourglass = $('#hourglass'),
           $ruleBox = $('#ruleBox'),
           $showRule = $('.showRule'),
+          $gameCounts = $('#gameCounts'),
+          $RuleStartGame = $('#RuleStartGame'),
+          $ReadyFlash = $('#startGame'),
           percentWidth = 96, // 进度条初始化样式百分比数值
           percentOneSecond = 3.2, // 一秒进度条递减值
           countWrong = false; // 是否数错钞
 
-      // 钱币加减 和 时间减少提示淡入淡出效果 
-      var showTip = function (ele) {
-        $(ele).fadeIn(800, function () {
-          $(ele).fadeOut(1500)
-        })
-      }
+      var countObj = {
+        gameCounts: 5,
+        gameTimes: 30,
+        firstEntry: true,
+        // 钱币加减 和 时间减少提示淡入淡出效果 
+        showTip: function (ele, inDuration, outDuration) {
+          $(ele).fadeIn(inDuration, function () {
+            $(ele).fadeOut(outDuration)
+          })
+        },
+      
+        /*
+        ** 倒计时沙漏 
+        */
+        hourglassAnimate: function () {
+          $hourglass.addClass('hourglass')
+          var glassTimer = setTimeout(function() {
+            $hourglass.removeClass('hourglass')
+            clearTimeout(glassTimer)
+          }, 9900)
+        },
 
+        /*
+         ** 倒计时进度条和时间效果
+         */
+        countDown: function () {
+          // 如果秒数还是大于0，则表示倒计时还没结束
+          if (second > 0) {
+            // 时间只剩10秒时
+            if (second === 10) {
+              this.hourglassAnimate()
+            }
+            // 判断是否点错，假设在28秒， countWrong === ture 表示点错钞
+            if (second === 28) { countWrong = true} else { countWrong = false}
+            if (countWrong) {
+              second -= 5
+              percentWidth -= 16
+              this.showTip('#sub', 800, 1500)
+            }else {
+              second -= 1
+              percentWidth -= 3.2
+            }
+            // 进度条递减
+            $processBar.animate({width: percentWidth + '%'}, {duration: 800});
+            $time.html(second + 's');
+            // 一秒后重复执行
+            var _this = this
+            countTimer = setTimeout(function () {
+              _this.countDown();
+            }, 1000)
+          } else {
+            clearTimeout(countTimer)
+          }
+          $('.btns div').css({zIndex: 999}) // 解决倒计时蒙层消失按钮不能点击问题
+        },
+        // 点钞金额增加提示效果
+        showMoneyTip: function (clickEle, showEle) {
+          var _this = this
+          $(clickEle).on('click', function () {
+            _this.showTip(showEle, 100, 400)
+          })
+        },
+        
+        /*
+         ** 点钞
+         */
+        countStart: function () {
+          
+        },
+        toggleRuleBox: function (ele) {
+          if (ele.css("display") == 'none') {
+            ele.show();
+          } else {
+            ele.hide();
+          }
+        },
+        // 开始游戏
+        RuleStartGame: function () {
+          this.toggleRuleBox($ruleBox);
+          $ReadyFlash.show();
+        },
+        // 获取游戏规则
+        getGameRules: function () {
+          var _this = this
+          $.get("/hongcai/rest/assignments/assignmentRule", function (res, status) {
+            console.log(res)
+            if (res && res.ret !== -1) {
+              
+            } else {
+              res.gameCounts = 3;
+              $(gameCounts).html(res.gameCounts)
+              // alert(res.msg);
+            }
+          })
+        },
+        // 判断是否首次进入游戏页
+        getGameState: function () {
+          var _this = this
+          $.get("/hongcai/rest/assignments/assignmentRule", function (res, status) {
+            console.log(res)
+            if (res && res.ret !== -1) {
+              
+            } else {
+              res.firstEntry = false;
+              _this.firstEntry = res.firstEntry
+              if (_this.firstEntry) {
+                $ruleBox.show();
+              } else {
+                $RuleStartGame.hide()
+                _this.RuleStartGame()
+              }
+              // alert(res.msg);
+            }
+          })
+        }
+      };
+      countObj.showMoneyTip('#count-100', '#add-100');
+      countObj.showMoneyTip('#count-50', '#add-50');
+      countObj.getGameRules();
+      countObj.getGameState();
+      setTimeout(function () {
+        countObj.countDown();
+        $showRule.css({zIndex: 99999})
+        $ReadyFlash.hide();
+      }, 4600)
       // 活动规则弹窗
-      $showRule.on('click', function () {
+      $showRule.on('click', function() {
         if ($ruleBox.css("display") == 'none') {
           $ruleBox.show();
         } else {
           $ruleBox.hide();
         }
       })
-      
-      /*
-      ** 倒计时沙漏 
-      */
-      function hourglassAnimate () {
-        $hourglass.addClass('hourglass')
-        var glassTimer = setTimeout(function() {
-          $hourglass.removeClass('hourglass')
-          clearTimeout(glassTimer)
-        }, 9900)
-      }
-
-      /*
-       ** 倒计时进度条和时间效果
-       */
-      function countDown () {
-        // 如果秒数还是大于0，则表示倒计时还没结束
-        if (second > 0) {
-          // 时间只剩10秒时
-          if (second === 10) {
-            hourglassAnimate()
-          }
-          // 判断是否点错，假设在28秒， countWrong === ture 表示点错钞
-          if (second === 28) { countWrong = true} else { countWrong = false}
-          if (countWrong) {
-            second -= 5
-            percentWidth -= 16
-            showTip('#sub')
-          }else {
-            second -= 1
-            percentWidth -= 3.2
-          }
-          // 进度条递减
-          $processBar.animate({width: percentWidth + '%'}, {duration: 800});
-          $time.html(second + 's');
-          // 一秒后重复执行
-          countTimer = setTimeout(function () {
-            countDown();
-          }, 1000)
-        } else {
-          clearTimeout(countTimer)
-        }
-      }
-      countDown();
-
-      // 点钞金额增加提示效果
-      function showMoneyTip (clickEle, showEle) {
-        var showTip = function (ele) {
-          $(ele).fadeIn(800, function () {
-            $(ele).fadeOut(1500)
-          })
-        }
-        $(clickEle).on('click', function () {
-          showTip(showEle)
-        })
-      }
-      showMoneyTip('#count-100', '#add-100');
-      showMoneyTip('#count-50', '#add-50');
-      /*
-       ** 点钞
-       */
-      function countStart () {
-        
-      }
+      $RuleStartGame.on('click', countObj.RuleStartGame)
     })
   </script>
 </html>
