@@ -103,6 +103,36 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
    75%  { opacity: .5 }
    100% { opacity: 1 }
 }
+@-moz-keyframes flashingLight {
+  0% { 
+    background: url('../../images/games/circle-white.png') no-repeat 0 0;
+    background-size: 100% 100%
+  }
+  100% { 
+    background: url('../../images/games/circle-red.png') no-repeat 0 0;
+    background-size: 100% 100%
+  }
+}
+@-webkit-keyframes flashingLight {
+  0% { 
+    background: url('../../images/games/circle-white.png') no-repeat 0 0;
+    background-size: 100% 100%
+  }
+  100% { 
+    background: url('../../images/games/circle-red.png') no-repeat 0 0;
+    background-size: 100% 100%
+  }
+}
+@keyframes flashingLight{
+  0% { 
+    background: url('../../images/games/circle-white.png') no-repeat 0 0;
+    background-size: 100% 100%
+  }
+  100% { 
+    background: url('../../images/games/circle-red.png') no-repeat 0 0;
+    background-size: 100% 100%
+  }
+}
 
 .animation_opactiy{
     animation: backOpacity 2s ease-in-out infinite;
@@ -122,8 +152,9 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
 }
 .game-counting-innner {
   padding-top: .4rem;
-  background: url('../../images/games/circle.png') no-repeat 0 0;
-  background-size: 100% 100%
+  background: url('../../images/games/circle-white.png') no-repeat 0 0;
+  background-size: 100% 100%;
+  animation: flashingLight 1s ease-in-out infinite;
 }
 /*公用蒙层*/
 .mask-common {
@@ -168,6 +199,7 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
   height: auto;
   box-sizing: border-box;
   width: 100%;
+  margin-bottom: .25rem;
 }
 .rule-content .num {
   display: inline-block;
@@ -176,13 +208,14 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
   color: #333333;
   margin-right: .1rem;
   vertical-align: top;
+  margin-top: .03rem;
 }
 .rule-content:nth-child(3) .num {
-  margin-top: .1rem;
+  margin-top: .06rem;
 }
 .rule-content .txt {
   display: inline-block;
-  width: 80%;
+  width: 85%;
   font-size: .22rem;
   color: #666;
   text-align: justify;
@@ -210,3 +243,22 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
   font-weight: bold;
   color: #ff2d3d;
 }
+
+  .noviceHand {
+    -moz-animation: noviceHand 1s alternate infinite;
+    -webkit-animation: noviceHand 1s alternate infinite;
+    animation: noviceHand 1s alternate infinite;
+  }
+      
+  @-moz-keyframes noviceHand {
+    from { top: -1.6rem; }
+    to { top: -1.4rem; }
+  }
+  @-webkit-keyframes noviceHand {
+    from { top: -1.6rem; }
+    to { top: -1.4rem; }
+  }
+  @keyframes noviceHand {
+    from { top: -1.6rem; }
+    to { top: -1.4rem; }
+  }

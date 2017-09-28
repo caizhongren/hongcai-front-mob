@@ -57,6 +57,8 @@
 		background-size: contain;
 		margin-top: 1.22rem;
 		padding-top: .8rem;
+		position: relative;
+    z-index: 999999;
 	}
 	.rule-btn {
 		background: url('../../images/games/btn-1.png') no-repeat center center;
@@ -64,7 +66,6 @@
 		height: .9rem;
 		background-size: contain;
 		line-height: .85rem;
-		margin-top: .5rem;
 		font-weight: bold;
 		color: #ff2d3d;
 		font-size: .3rem;    
@@ -82,48 +83,23 @@
     z-index: 2222;
 	}
 	.scaleHand {
-	  -moz-animation-duration: 1s;
-	  -webkit-animation-duration: 1s;
-	  animation-duration: 1s;
-	  -moz-animation-name: scaleHand;
-	  -webkit-animation-name: scaleHand;
-	  animation-name: scaleHand;
-	  -moz-animation-iteration-count: infinite;
-	  -webkit-animation-iteration-count: infinite;
-	  animation-iteration-count: infinite;
-	  -moz-animation-direction: alternate;
-	  -webkit-animation-direction: alternate;
-	  animation-direction: alternate;
+	  -moz-animation: scaleHand 1s alternate infinite;
+	  -webkit-animation: scaleHand 1s alternate infinite;
+	  animation: scaleHand 1s alternate infinite;
 	}
-	    
 	@-moz-keyframes scaleHand {
-	  from {
-	    transform: scale(1);
-	  }
-	      
-	  to {
-	    transform: scale(1.2);
-	  }
+	  from { transform: scale(1); }
+	  to { transform: scale(1.2); }
 	}
 
 	@-webkit-keyframes scaleHand {
-	  from {
-	    transform: scale(1);
-	  }
-	      
-	  to {
-	    transform: scale(1.2);
-	  }
+	  from { transform: scale(1); }
+	  to { transform: scale(1.2); }
 	}
 
 	@keyframes scaleHand {
-	  from {
-	    transform: scale(1);
-	  }
-	      
-	  to {
-	    transform: scale(1.2);
-	  }
+	  from { transform: scale(1); }
+	  to { transform: scale(1.2); }
 	}
 </style>
 </head>
@@ -136,7 +112,7 @@
           <img src="../../images/games/logo-hongcai.png" width="44%" class="logo">
           <img src="../../images/games/header-title.png" width="85%" class="title-img">
           <div class="bg-money">
-          	<div class="start-button">
+          	<div class="start-button" onClick="location.href= location.origin + '/views/games/game-counting.html'">
 	          	<img src="../../images/games/start-text.png" width="50%">
 	          </div>
           </div>
@@ -153,19 +129,19 @@
 	  	<div class="contents">
 	  		<div class="rule-content">
 		  		<span class="num">①</span>
-		  		<span class="txt">遇到面值50元时，点击左手按钮；</span>
+		  		<span class="txt">遇到面值50元时，点击左手按钮；<img src="../../images/games/rule-hand-left.png" alt=""  width="8%"></span>
 		  	</div>
 		  	<div class="rule-content">
 		  		<span class="num">②</span>
-		  		<span class="txt">遇到面值100元时，点击右手按钮；</span>
+		  		<span class="txt">遇到面值100元时，点击右手按钮；<img src="../../images/games/rule-hand-right.png" alt=""  width="8%"></span>
 		  	</div>
 		  	<div class="rule-content">
 		  		<span class="num">③</span>
-		  		<span class="txt">注意！如选择错误的方向，<img src="../../images/games/rule-count.png" alt=""  width="8%">倒计时将减少5秒哟！</span>
+		  		<span class="txt">注意！如选择错误的方向，<img src="../../images/games/rule-count.png" alt=""  width="6%">倒计时将减少5秒哟！</span>
 		  	</div>
 		  	<div class="rule-content">
 		  		<span class="num">④</span>
-		  		<span class="txt">在规定30s倒计时结束后，<img src="../../images/games/rule-clock.png" alt=""  width="10%">您将获得与正确数出金额相同的特权本金奖励！（有效期3天）</span>
+		  		<span class="txt">在规定30s倒计时结束后，<img src="../../images/games/rule-clock.png" alt=""  width="8%">您将获得与正确数出金额相同的特权本金奖励！（有效期3天）</span>
 		  	</div>
 		  	<div class="rule-content">
 		  		<span class="num">⑤</span>
