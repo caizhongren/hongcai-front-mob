@@ -131,10 +131,10 @@ span.count-tip {
   color: #fff;
   right: .8rem;
   top: -.33rem;
-  opacity: 1;
   display: none;
 }
 .count .count-statistics p span.icon-rule {
+  display: block;
   position: absolute;
   top: -.2rem;
   right: -1.98rem;
@@ -159,6 +159,7 @@ span.count-tip {
 .count .count-money .btns div {
   width: 49%;
   position: relative;
+  /*z-index: 999;*/
 }
 .btns .btn-left img:first-child, .btns .btn-right img:first-child {
   position: absolute;
