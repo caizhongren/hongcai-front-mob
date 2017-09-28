@@ -57,8 +57,6 @@
 		background-size: contain;
 		margin-top: 1.22rem;
 		padding-top: .8rem;
-		position: relative;
-    z-index: 999999;
 	}
 	.rule-btn {
 		background: url('../../images/games/btn-1.png') no-repeat center center;
@@ -91,12 +89,10 @@
 	  from { transform: scale(1); }
 	  to { transform: scale(1.2); }
 	}
-
 	@-webkit-keyframes scaleHand {
 	  from { transform: scale(1); }
 	  to { transform: scale(1.2); }
 	}
-
 	@keyframes scaleHand {
 	  from { transform: scale(1); }
 	  to { transform: scale(1.2); }
@@ -116,7 +112,7 @@
 	          	<img src="../../images/games/start-text.png" width="50%">
 	          </div>
           </div>
-          <div class="rule-btn" onclick="closeBtn()">游戏规则</div>
+          <div class="rule-btn" onclick="closeRuleBox()">游戏规则</div>
         </div>
       </div>
     </div>
@@ -156,7 +152,7 @@
 <script src="../../scripts/rem.js"></script>
 <script type="text/javascript">
 var $ruleBox = document.getElementById('ruleBox')
-function closeBtn() {
+function closeRuleBox() {
 	if ($ruleBox.style.display == 'none') {
 		$ruleBox.style.display = 'block'
 	} else {
