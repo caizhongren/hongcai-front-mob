@@ -160,7 +160,7 @@ span.count-tip {
   height: 4.311rem;
   overflow-y: hidden;
 }
-.count .count-money ul.slide-down {
+.count .count-money ul.slide-down, .count .count-money ul li img.out {
   /*transform: translateY(-10.3rem);
   -ms-transform: translateY(-10.3rem);
   -webkit-transform: translateY(-10.3rem);
