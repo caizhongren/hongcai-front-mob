@@ -149,12 +149,34 @@ span.count-tip {
 .count .count-money img.box-top {
   margin-bottom: -.19rem;
 }
-.count .count-money ul {
+.count .count-money .money-list {
   margin-top: -.33rem;
+  height: 4.311rem;
+  overflow-y: hidden;
+}
+.count .count-money ul.slide-down {
+  /*transform: translateY(-10.3rem);
+  -ms-transform: translateY(-10.3rem);
+  -webkit-transform: translateY(-10.3rem);
+  -o-transform: translateY(-10.3rem);
+  -moz-transform: translateY(-10.3rem);*/
+  -webkit-transition:all .6s ease-in-out;
+  -moz-transition:all .6s ease-in-out;
+  -o-transition:all .6s ease-in-out;
+  -ms-transition:all .6s ease-in-out;    
+  transition:all .6s ease-in-out;
+}
+.count .count-money ul li {
+  /*width: 100%;
+  float: left;*/
+  font-size: 0;
+  height: 1.437rem;
 }
 .count .count-money .btns {
-  width: 94%;
-  margin-top: -.3rem;
+  position: absolute;
+  bottom: 10%;
+  width: 85%;
+  left: 7.8%;
 }
 .count .count-money .btns div {
   width: 49%;
