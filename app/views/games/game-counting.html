@@ -52,11 +52,10 @@
               <img src="../../images/games/box1.png" width="65%" class="margin display-bl box-top box-top">
               <img src="../../images/games/box2.png" width="61.5%" class="margin display-bl">
               <!-- 钞票列表 -->
-              <ul>
-                <li><img src="../../images/games/50.png" class="display-bl margin" width="55%"></li>
-                <li><img src="../../images/games/100.png" class="display-bl margin" width="55%"></li>
-                <li><img src="../../images/games/50.png" class="display-bl margin" width="55%"></li>
-              </ul>
+              <div class="money-list">
+                <ul class="count-list">
+                </ul>
+              </div>
               <!-- 点钞按钮 -->
               <div class="btns clear">
                 <div class="display-inbl btn-left">
@@ -85,7 +84,7 @@
       </div>
     </div>
     <!-- 活动规则弹窗 -->
-    <div class="mask-common" id="ruleBox">
+    <div class="mask-common" id="ruleBox" style="display: none">
       <div class="ruleBox">
         <div class="rule-title">游戏规则</div>
         <div class="contents">
@@ -124,6 +123,56 @@
           $processBar = $('#process-bar'),
           $time = $('#time'),
           $hourglass = $('#hourglass'),
+          countList = [
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            },
+            {
+              value: 100
+            },
+            {
+              value: 50
+            },
+            {
+              value: 50
+            }
+          ],
           $ruleBox = $('#ruleBox'),
           $showRule = $('.showRule'),
           $gameCounts = $('#gameCounts'),
@@ -131,8 +180,10 @@
           $ReadyFlash = $('#startGame'),
           percentWidth = 96, // 进度条初始化样式百分比数值
           percentOneSecond = 3.2, // 一秒进度条递减值
-          countWrong = false; // 是否数错钞
-
+          countWrong = false, // 是否数错钞,
+          scrollDirection = -18.681; // 钞票初始位置
+        $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
+        document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
       var countObj = {
         gameCounts: 5,
         gameTimes: 30,
@@ -188,7 +239,6 @@
           } else {
             clearTimeout(countTimer)
           }
-          $('.btns div').css({zIndex: 999}) // 解决倒计时蒙层消失按钮不能点击问题
         },
         // 点钞金额增加提示效果
         showMoneyTip: function (clickEle, showEle) {
@@ -196,15 +246,36 @@
           $(clickEle).on('click', function () {
             $('.hand-100').hide()
             $('.hand-50').hide()
-            _this.showTip(showEle, 200, 400)
+            _this.showTip(showEle, 100, 400);
+            _this.countSlideDown()
           })
+        },
+        // 钞票配置
+        moneyConfig: function (count, type) {
+          var moneyHtml = ''
+          for (var i = 0; i < count.length; i++) {
+            if (count[i].value === 50) {
+              moneyHtml += '<li><img src="../../images/games/50.png" class="display-bl margin" width="55%"></li>'
+            } else {
+              moneyHtml += '<li><img src="../../images/games/100.png" class="display-bl margin" width="55%"></li>'
+            }
+          }
+          return moneyHtml;
+        },
+        // 钞票滑出效果
+        countSlideDown: function () {
+          scrollDirection += 1.439
+          $('.count-list').addClass('slide-down')
+          $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
+          document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
         },
         
         /*
          ** 点钞
          */
-        countStart: function () {
-          // alert(1)
+        countStart: function (clickEle, showEle, type) { // 点击元素， 显示的元素， 点击的按钮类型 50 ／ 100
+          this.showMoneyTip(clickEle, showEle)
+          $('.count-list').append(countObj.moneyConfig(countList, type)) //点钞调用
         },
         showRule: function (ele) {
           var _this = this
@@ -314,6 +385,9 @@
           $('#totalMoney').html(0);
         }
       };
+      countObj.countStart('#count-100', '#add-100', 100);
+      countObj.countStart('#count-50', '#add-50', 50);
+      countObj.moneyConfig(countList)
       countObj.showMoneyTip('#count-100', '#add-100');
       countObj.showMoneyTip('#count-50', '#add-50');
       countObj.startGameConfig();
