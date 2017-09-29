@@ -91,7 +91,7 @@ span.count-tip {
   margin-left: 2%;
   width: 64%;
   height: .58rem;
-  background: url('../../images/games/process-bg.png') no-repeat center center;
+  background: url('/images/games/process-bg.png') no-repeat center center;
   background-size: 100%;
 }
 .count-down .process-wrap .process {
@@ -117,7 +117,7 @@ span.count-tip {
   margin: .2rem;
   height: 1rem;
   width: 100%;
-  background: url('../../images/games/icon-money.png') no-repeat 38% center;
+  background: url('/images/games/icon-money.png') no-repeat 38% center;
   background-size: 23%;
   text-align: center;
   position: relative;
@@ -145,7 +145,7 @@ span.count-tip {
   left: 81%;
   width: .9rem;
   padding: .07rem 0 .07rem .1rem;
-  background: url('../../images/games/icon-rule.png') no-repeat 0 0;
+  background: url('/images/games/icon-rule.png') no-repeat 0 0;
   background-size: 100% 100%;
   font-size: .24rem;
   color: #ff001a;
@@ -158,7 +158,7 @@ span.count-tip {
 .count .count-money .money-list {
   margin-top: -.33rem;
   height: 4.311rem;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 .count .count-money ul.slide-down, .count .count-money ul li img.out {
   /*transform: translateY(-10.3rem);

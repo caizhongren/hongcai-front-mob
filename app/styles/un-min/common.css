@@ -105,31 +105,31 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
 }
 @-moz-keyframes flashingLight {
   0% { 
-    background: url('../../images/games/circle-white.png') no-repeat 0 0;
+    background: url('/images/games/circle-white.png') no-repeat 0 0;
     background-size: 100% 100%
   }
   100% { 
-    background: url('../../images/games/circle-red.png') no-repeat 0 0;
+    background: url('/images/games/circle-red.png') no-repeat 0 0;
     background-size: 100% 100%
   }
 }
 @-webkit-keyframes flashingLight {
   0% { 
-    background: url('../../images/games/circle-white.png') no-repeat 0 0;
+    background: url('/images/games/circle-white.png') no-repeat 0 0;
     background-size: 100% 100%
   }
   100% { 
-    background: url('../../images/games/circle-red.png') no-repeat 0 0;
+    background: url('/images/games/circle-red.png') no-repeat 0 0;
     background-size: 100% 100%
   }
 }
 @keyframes flashingLight{
   0% { 
-    background: url('../../images/games/circle-white.png') no-repeat 0 0;
+    background: url('/images/games/circle-white.png') no-repeat 0 0;
     background-size: 100% 100%
   }
   100% { 
-    background: url('../../images/games/circle-red.png') no-repeat 0 0;
+    background: url('/images/games/circle-red.png') no-repeat 0 0;
     background-size: 100% 100%
   }
 }
@@ -146,13 +146,13 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
 .game-counting {
   padding: .1rem;
   border-radius: .1rem;
-  background: url('../../images/games/guang.png') no-repeat center center;
+  background: url('/images/games/guang.png') no-repeat center center;
   background-size: 100% 100%;
   background-color: #ff2421;
 }
 .game-counting-innner {
   padding-top: .4rem;
-  background: url('../../images/games/circle-white.png') no-repeat 0 0;
+  background: url('/images/games/circle-white.png') no-repeat 0 0;
   background-size: 100% 100%;
   animation: flashingLight 1s ease-in-out infinite;
 }
@@ -176,7 +176,7 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
   z-index: 99999;
 }
 .ruleBox {
-  background: url('../../images/games/rule-box.png') no-repeat 0 0;
+  background: url('/images/games/rule-box.png') no-repeat 0 0;
   background-size: contain;
   margin: 1.5rem .3rem 0.5rem .5rem;
   padding: .44rem .6rem 1.2rem .4rem;
@@ -231,14 +231,14 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
 #ruleBox .close-btn {
   width: .7rem;
   height: .7rem;
-  background: url('../../images/games/rule-close.png') no-repeat 0 0;
+  background: url('/images/games/rule-close.png') no-repeat 0 0;
   background-size: contain;
   position: absolute;
   top: 1.28rem;
   right: .3rem;
 }
 .rule-start-btn {
-  background: url('../../images/games/rule-btn.png') no-repeat 0 0;
+  background: url('/images/games/rule-btn.png') no-repeat 0 0;
   background-size: contain;
   width: 60%;
   height: 1rem;
