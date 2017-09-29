@@ -3,9 +3,9 @@
   height: auto;
 }
 .game-counting-wrap p, .game-counting-wrap div {
-  font-size: .32rem;
+  font-size: .3rem;
   color: #fff;
-  font-weight: bold;
+  font-weight: 500;
 }
 .game-counting-innner img.logo {
   display: block;
@@ -32,6 +32,7 @@ span.count-tip {
 }
 .count-down img {
   margin-left: .4rem;
+  margin-right: .12rem;
 }
 /* animation */
  @keyframes gyrate {
@@ -111,10 +112,10 @@ span.count-tip {
 }
 .count-down div.display-inbl {
   width: 83%;
-  height: .48rem;
+  height: .43rem;
 }
 .count .count-statistics {
-  margin: .2rem;
+  margin: .2rem .2rem 0;
   height: 1rem;
   width: 100%;
  /* background: url('/images/games/icon-money.png') no-repeat 38% center;
@@ -142,7 +143,7 @@ span.count-tip {
   display: block;
   position: absolute;
   top: 0;
-  left: 81%;
+  left: 83%;
   width: .9rem;
   padding: .07rem 0 .07rem .1rem;
  /* background: url('/images/games/icon-rule.png') no-repeat 0 0;

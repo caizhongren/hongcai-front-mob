@@ -28,9 +28,9 @@
         margin: 1.4rem .1rem 0 .3rem;
       }
       .times p {
-        font-size: .32rem;
+        font-size: .3rem;
         color: #fff;
-        font-weight: bold;
+        font-weight: 500;
       }
       .times img:last-child {
         position: absolute;
@@ -40,43 +40,43 @@
       /* animation */
        @keyframes gyrate {
         0% {
-          transform: translateY(0.4rem);
+          transform: translateY(0rem);
         }
         100% {
-          transform: translateY(-0.4rem);
+          transform: translateY(-0.6rem);
         }
       }
       @-moz-keyframes gyrate {
         0% {
-          transform: translateY(0.4rem);
+          transform: translateY(0rem);
         }
         100% {
-          transform: translateY(-0.4rem);
+          transform: translateY(-0.6rem);
         }
       }
       @-webkit-keyframes gyrate
       {
         0% {
-          transform: translateY(0.4rem);
+          transform: translateY(0rem);
         }
         100% {
-          transform: translateY(-0.4rem);
+          transform: translateY(-0.6rem);
         }
       }
       @-o-keyframes gyrate
       {
         0% {
-          transform: translateY(0.4rem);
+          transform: translateY(0rem);
         }
         100% {
-          transform: translateY(-0.4rem);
+          transform: translateY(-0.6rem);
         }
       }
       .times .arrow.arrow-animate {
-        animation: gyrate .8s 0s infinite alternate;
-        -moz-animation: gyrate .8s 0s infinite alternate;
-        -webkit-animation: gyrate .8s 0s infinite alternate;
-        -o-animation: gyrate .8s 0s infinite alternate;
+        animation: gyrate .6s 0s infinite alternate;
+        -moz-animation: gyrate .6s 0s infinite alternate;
+        -webkit-animation: gyrate .6s 0s infinite alternate;
+        -o-animation: gyrate .6s 0s infinite alternate;
         /*transform: rotate(5deg);*/
       } 
       .game-out {
@@ -118,7 +118,7 @@
     	      <img src="/images/games/header-title.png" width="72%" class="title-img">
     	      <!-- 剩余次数 -->
             <div class="times">
-              <img src="/images/games/hand-left.png" class="display-inbl" width="7%">
+              <img src="/images/games/hand-left.png" class="display-inbl" width="6%">
               <p class="display-inbl">剩余游戏次数：<span id="gameCounts">0</span>次</p>
               <img src="/images/games/novice-arrow.png" width="30%" class="display-inbl arrow">
             </div>

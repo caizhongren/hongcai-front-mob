@@ -151,7 +151,7 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
   background-color: #ff2421;
 }
 .game-counting-innner {
-  padding-top: .4rem;
+  padding-top: .3rem;
   background: url('/images/games/circle-white.png') no-repeat 0 0;
   background-size: 100% 100%;
   animation: flashingLight 1s ease-in-out infinite;
