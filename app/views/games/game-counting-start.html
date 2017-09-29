@@ -19,7 +19,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,mininum-scale=1,maximum-scale=1">
   <title>谁是点钞王</title>
-  <link rel="stylesheet" href="../../styles/un-min/common.css">
+  <!-- build:css /styles/un-min/common.css --><!-- endbuild -->
+  <link rel="stylesheet" href="/styles/un-min/common.css">
 <style>
 	.bg-white {
 	  background-color: #fff;
@@ -34,6 +35,7 @@
 		margin: 0 auto;
 		text-align: center;
 		position: relative;
+		width: 100%;
 	}
 	.game-counting-innner img {
 		margin: 0 auto;
@@ -84,6 +86,15 @@
 	  -webkit-animation: scaleHand 1s alternate infinite;
 	  animation: scaleHand 1s alternate infinite;
 	}
+	.game-counting {
+	  background: url('/images/games/guang.png') no-repeat center center;
+	  background-size: 100% 100%;
+  	background-color: #ff2421;
+	}
+	.game-counting-innner {
+	  background: url('/images/games/circle-white.png') no-repeat 0 0;
+	  background-size: 100% 100%;
+	}
 	@-moz-keyframes scaleHand {
 	  from { transform: scale(1); }
 	  to { transform: scale(1.2); }
@@ -95,6 +106,36 @@
 	@keyframes scaleHand {
 	  from { transform: scale(1); }
 	  to { transform: scale(1.2); }
+	}
+	@-moz-keyframes flashingLight {
+	  0% { 
+	    background: url('/images/games/circle-white.png') no-repeat 0 0;
+	    background-size: 100% 100%
+	  }
+	  100% { 
+	    background: url('/images/games/circle-red.png') no-repeat 0 0;
+	    background-size: 100% 100%
+	  }
+	}
+	@-webkit-keyframes flashingLight {
+	  0% { 
+	    background: url('/images/games/circle-white.png') no-repeat 0 0;
+	    background-size: 100% 100%
+	  }
+	  100% { 
+	    background: url('/images/games/circle-red.png') no-repeat 0 0;
+	    background-size: 100% 100%
+	  }
+	}
+	@keyframes flashingLight{
+	  0% { 
+	    background: url('/images/games/circle-white.png') no-repeat 0 0;
+	    background-size: 100% 100%
+	  }
+	  100% { 
+	    background: url('/images/games/circle-red.png') no-repeat 0 0;
+	    background-size: 100% 100%
+	  }
 	}
 </style>
 </head>
@@ -120,6 +161,7 @@
   <!-- 活动规则弹窗 -->
   <div class="mask-common" id="ruleBox" style="display: none">
   	<div class="ruleBox">
+  		<img src="/images/games/rule-box.png" alt="" class="box">
 	  	<div class="rule-title">游戏规则</div>
 	  	<div class="contents">
 	  		<div class="rule-content">
@@ -144,8 +186,11 @@
 		  	</div>
 	  	</div>
 	  </div>
-	  <div class="close-btn" onclick="closeRuleBox()"></div>
-	  <div class="rule-start-btn" onClick="location.href= location.origin + '/views/games/game-counting.html'">我知道了，开始游戏</div>
+	  <img src="/images/games/rule-close.png" alt="" class="close-btn" onclick="closeRuleBox()">
+	  <div class="rule-start-btn" onClick="location.href= location.origin + '/views/games/game-counting.html'">
+		<img src="/images/games/rule-btn.png" alt="">
+	  	<span>我知道了，开始游戏</span>
+	  </div>
   </div>
 </body>
 <script src="/styles/un-min/rem.js"></script>
