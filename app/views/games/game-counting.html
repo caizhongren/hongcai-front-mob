@@ -84,7 +84,7 @@
       </div>
     </div>
     <!-- 活动规则弹窗 -->
-    <div class="mask-common" id="ruleBox" style="display: none">
+    <div class="mask-common" id="ruleBox">
       <div class="ruleBox">
         <div class="rule-title">游戏规则</div>
         <div class="contents">
@@ -118,8 +118,9 @@
   <script type="text/javascript">
     $(function () {
 
-      var second = 31,
+      var second = 30,
           countTimer,
+          step = 0,
           $processBar = $('#process-bar'),
           $time = $('#time'),
           $hourglass = $('#hourglass'),
@@ -507,7 +508,6 @@
               moneyHtml += '<li><img src="../../images/games/100.png" class="display-bl margin" width="55%"></li>'
             }
           }
-          // return moneyHtml;
           $('.count-list').append(moneyHtml) //点钞调用
         },
         // 钞票滑出效果
@@ -517,7 +517,24 @@
           $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
           document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
         },
-        
+        // 第一张钞票收起
+        firstMoneyOut: function (type, turn) { // type: 钞票类别
+          var step = 0
+          if (turn > 1) {
+            if (type === 50) {
+              step -= 150;
+            } else {
+              step += 150
+            }
+            var outTimer = setTimeout(function () {
+              $($('.count-list li img')[turn]).addClass('out')
+              $($('.count-list li img')[turn]).css('transform', 'translateX(' + step + '%)')
+              document.querySelector('.count-list li img').style.webkitTransform = 'translateX(' + step + '%)'
+            }, 200)
+          } else {
+            clearTimeout(outTimert)
+          }
+        },
         /*
          ** 点钞
          */
@@ -543,7 +560,8 @@
             $('.hand-100').hide()
             $('.hand-50').hide()
             $('#totalMoney').html(_this.totalMoney)
-            _this.countSlideDown()
+            _this.countSlideDown() // 出钞票列表
+            _this.firstMoneyOut(countList[_this.num].value, _this.num) // 钞票收起
             _this.num --
           })
         },
