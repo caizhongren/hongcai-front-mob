@@ -133,7 +133,7 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
   border-radius: .1rem;
 }
 .game-counting-innner {
-  padding-top: .4rem;
+  padding-top: .3rem;
   animation: flashingLight 1s ease-in-out infinite;
 }
 /*公用蒙层*/

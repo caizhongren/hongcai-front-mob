@@ -14,6 +14,20 @@
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="/styles/un-min/common.css">
     <link rel="stylesheet" type="text/css" href="/styles/un-min/game-counting.css">
+    <style type="text/css">
+      .count-down .process-wrap {
+        background: url('/images/games/process-bg.png') no-repeat center center;
+        background-size: 100%;
+      }
+      .count .count-statistics {
+        background: url('/images/games/icon-money.png') no-repeat 38% center;
+        background-size: 23%;
+      }
+      .count .count-statistics p span.icon-rule {
+        background: url('/images/games/icon-rule.png') no-repeat 0 0;
+        background-size: 100% 100%;
+      }
+    </style>
     <script src="/styles/un-min/rem.js"></script>
     <style>
       .game-counting {
@@ -182,12 +196,12 @@
           <img src="/images/games/header-title.png" width="72%" class="title-img">
           <!-- 剩余次数 -->
           <div class="times">
-            <img src="/images/games/hand-left.png" class="display-inbl" width="7%">
+            <img src="/images/games/hand-left.png" class="display-inbl" width="6%">
             <p class="display-inbl">剩余游戏次数：<span id="gameCounts">5</span>次</p>
           </div>
           <!-- 倒计时 -->
           <div class="count-down">
-            <img src="/images/games/count-down.png" class="display-inbl" width="4.5%" id="hourglass">
+            <img src="/images/games/count-down.png" class="display-inbl" width="4%" id="hourglass">
             <div class="display-inbl">
               <span class="left">倒计时:</span>
               <div class="process-wrap left">
@@ -677,11 +691,12 @@
          ** 倒计时进度条和时间效果
          */
         countDown: function () {
+          var _this = this
           // 如果秒数还是大于0，则表示倒计时还没结束
           if (second > 0) {
             // 时间只剩10秒时
             if (second <= 11) {
-              this.hourglassAnimate(second*1000-100)
+              _this.hourglassAnimate(second*1000-100)
             }
             // 判断是否点错，假设在28秒， countWrong === ture 表示点错钞
             if (second === wrongSecond) { countWrong = true} else { countWrong = false}
@@ -697,13 +712,13 @@
             $processBar.animate({width: percentWidth + '%'}, {duration: 800});
             $time.html(second + 's');
             // 一秒后重复执行
-            var _this = this
             countTimer = setTimeout(function () {
               _this.countDown();
             }, 1000)
           } else {
             clearTimeout(countTimer)
             $('#registerBox').show()
+            $('#registerBox .totalMoney').html(_this.totalMoney)
           }
         },
         // 点钞金额增加提示效果
@@ -797,6 +812,7 @@
         RuleStartGame: function () {
           var _this = countObj;
           $('#closeBtn').show()
+          $('#registerBox').hide()
           $ruleBox.hide();
           $ReadyFlash.show();
           setTimeout(function () {
