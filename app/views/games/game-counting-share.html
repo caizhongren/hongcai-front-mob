@@ -14,6 +14,45 @@
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="/styles/un-min/common.css">
     <style type="text/css">
+      .game-counting {
+        background: url('/images/games/guang.png') no-repeat center center;
+        background-size: 100% 100%;
+        background-color: #ff2421;
+      }
+      .game-counting-innner {
+        background: url('/images/games/circle-white.png') no-repeat 0 0;
+        background-size: 100% 100%;
+      }
+      @-moz-keyframes flashingLight {
+        0% { 
+          background: url('/images/games/circle-white.png') no-repeat 0 0;
+          background-size: 100% 100%
+        }
+        100% { 
+          background: url('/images/games/circle-red.png') no-repeat 0 0;
+          background-size: 100% 100%
+        }
+      }
+      @-webkit-keyframes flashingLight {
+        0% { 
+          background: url('/images/games/circle-white.png') no-repeat 0 0;
+          background-size: 100% 100%
+        }
+        100% { 
+          background: url('/images/games/circle-red.png') no-repeat 0 0;
+          background-size: 100% 100%
+        }
+      }
+      @keyframes flashingLight{
+        0% { 
+          background: url('/images/games/circle-white.png') no-repeat 0 0;
+          background-size: 100% 100%
+        }
+        100% { 
+          background: url('/images/games/circle-red.png') no-repeat 0 0;
+          background-size: 100% 100%
+        }
+      }
     	.game-counting-innner img.title-img {
     	  margin-left: .4rem;
     	}
