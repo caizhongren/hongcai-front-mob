@@ -159,7 +159,7 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
   /*background: url('/images/games/rule-box.png') no-repeat 0 0;
   background-size: contain;*/
   margin: 1.5rem .5rem 0.5rem;
-  padding: .38rem .2rem .5rem .5rem;
+  padding: .387rem .2rem .5rem .5rem;
   position: relative;
   height: 5.5rem;
   overflow: hidden;
@@ -180,7 +180,7 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
   line-height: .7rem;
   text-align: center;
   position: relative;
-  left: -.1rem;
+  left: -.15rem;
 }
 .ruleBox .contents {
   overflow: auto;
@@ -232,7 +232,7 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
   background-size: contain;*/
   /*width: 60%;*/
   height: 1rem;
-  line-height: .88rem;
+  line-height: .95rem;
   text-align: center;
   font-size: .3rem;
   font-weight: bold;
