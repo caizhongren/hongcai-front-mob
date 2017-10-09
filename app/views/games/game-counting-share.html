@@ -149,6 +149,8 @@
         display: none;
       }
     </style>
+    <script type="text/javascript" src="/styles/un-min/jquery.min.js"></script>
+    <script src="/styles/un-min/jweixin-1.0.0.js"></script>
     <script src="/styles/un-min/rem.js"></script>
     <body>
     	<div class="game-counting-wrap">
@@ -170,8 +172,9 @@
     	  </div>
     	</div>
       <!-- 活动规则弹窗 -->
-      <div class="mask-common" id="ruleBox">
+      <div class="mask-common" id="ruleBox" style="display: none">
         <div class="ruleBox">
+          <img src="/images/games/rule-box.png" alt="" class="box">
           <div class="rule-title">游戏规则</div>
           <div class="contents">
             <div class="rule-content">
@@ -196,7 +199,7 @@
             </div>
           </div>
         </div>
-        <div class="close-btn showRule"></div>
+        <img src="/images/games/rule-close.png" alt="" class="close-btn ruleBtn">
       </div>
     	<script type="text/javascript">
         var closeBtn = document.getElementsByClassName('close-btn')[0],

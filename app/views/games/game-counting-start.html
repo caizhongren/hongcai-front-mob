@@ -136,6 +136,11 @@
 	    background-size: 100% 100%
 	  }
 	}
+	@media (max-width: 320px) {
+  	.bg-money {
+  		height: 4.9rem;
+  	}
+  }
 </style>
 </head>
 <body>
@@ -151,7 +156,7 @@
 	          	<img src="/images/games/start-text.png" width="50%">
 	          </div>
           </div>
-          <div class="rule-btn" onclick="closeRuleBox()">游戏规则</div>
+          <div class="rule-btn ruleBtn">游戏规则</div>
         </div>
       </div>
     </div>
@@ -185,22 +190,26 @@
 		  	</div>
 	  	</div>
 	  </div>
-	  <img src="/images/games/rule-close.png" alt="" class="close-btn" onclick="closeRuleBox()">
+	  <img src="/images/games/rule-close.png" alt="" class="close-btn ruleBtn">
 	  <div class="rule-start-btn" onClick="location.href= location.origin + '/views/games/game-counting.html'">
 		<img src="/images/games/rule-btn.png" alt="">
 	  	<span>我知道了，开始游戏</span>
 	  </div>
   </div>
 </body>
+<script type="text/javascript" src="/styles/un-min/jquery.min.js"></script>
+<script src="/styles/un-min/jweixin-1.0.0.js"></script>
 <script src="/styles/un-min/rem.js"></script>
 <script type="text/javascript">
-var $ruleBox = document.getElementById('ruleBox')
-function closeRuleBox() {
-	if ($ruleBox.style.display == 'none') {
-		$ruleBox.style.display = 'block'
-	} else {
-		$ruleBox.style.display = 'none'
-	}
-}
+$(function () {
+	var $ruleBox = $('#ruleBox')
+	$('.ruleBtn').on('click', function () {
+		if ($ruleBox.css("display") == 'none') {
+			$ruleBox.show()
+		} else {
+			$ruleBox.hide()
+		}
+	})
+})
 </script>
 </html>
