@@ -28,6 +28,7 @@
         background-size: 100% 100%;
       }
     </style>
+    <script src="/styles/un-min/jweixin-1.0.0.js"></script>
     <script src="/styles/un-min/rem.js"></script>
     <style>
       .game-counting {
@@ -73,8 +74,8 @@
       .registerBox {
         background: url('/images/games/register-box.png') no-repeat 0 0;
         background-size: contain;
-        margin: 1.5rem .2rem 0.5rem .5rem;
-        padding: .7rem .5rem .2rem .25rem;
+        margin: 1.5rem .5rem 0.5rem;
+        padding: .7rem .25rem .2rem;
         position: relative;
         height: 6rem;
         overflow: hidden;
@@ -92,14 +93,6 @@
         z-index: 9999;
         text-align: center;
         padding-right: .1rem;
-      }
-      .showRegister {
-        width: .7rem;
-        height: .7rem;
-        /*background: red;*/
-        position: absolute;
-        top: 1.5rem;
-        right: .2rem;
       }
       .register-btns {
         margin: .2rem .55rem;
@@ -123,7 +116,7 @@
         background-size: contain;
         width: 100%;
         height: .5rem;
-        margin: .15rem auto .5rem;
+        margin: .15rem auto .15rem;
       }
       .totalMoney {
         font-size: .32rem;
@@ -312,7 +305,6 @@
           </div>
         </form>
       </div>
-      <div class="showRegister"></div>
       <div class="register-btns">
         <div class="startAgin rule-btn" id="startAgin">再玩一次</div>
         <div class="getPrize rule-btn" id="getPrize">立即领取</div>
@@ -900,7 +892,6 @@
         },
         startGameConfig: function () {
           this.toggleRuleBox($showRule, $ruleBox);
-          this.toggleRuleBox($('.showRegister'), $('#registerBox'));
           this.getGameRules();
           this.getCountList();
           $RuleStartGame.on('click', this.RuleStartGame)
@@ -1016,7 +1007,6 @@
               console.log(res)
               if (res.code || res.ret === -1) {
                 if (res.code === -1005) {
-                  _this.showRegister = false
                   _this.showToast('该活动只针对新用户哦，您已经注册过了，前往登录app参与其他活动吧！', 1)
                 } else {
                   _this.showToast(res.msg)
