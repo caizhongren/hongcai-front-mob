@@ -46,14 +46,25 @@ window.onload = function(){
     var r = window.location.search.substr(1).match(reg);  
     if (r != null) return unescape(r[2]); return null;  
   }
-  /**
-   * 跳转去微信授权
-   */
-  function redirectToWechatAuth (redirect_uri){
-    var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + 'wx02dfe579709d2d95' +
-              "&redirect_uri=" + encodeURIComponent(removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"
-    window.location.href = wechatRedirectUrl
-    // configJsApi(redirect_uri)
+  function setCookie(c_name,value,expiredays) {
+    var exdate=new Date()
+    exdate.setDate(exdate.getDate()+expiredays)
+    document.cookie=c_name+ "=" +escape(value)+
+    ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+  }
+
+  function getCookie(c_name) {  
+    if (document.cookie.length > 0) {  
+      c_start = document.cookie.indexOf(c_name + "=");  
+      if (c_start != -1) {  
+        c_start = c_start + c_name.length + 1;  
+        c_end = document.cookie.indexOf(";", c_start);  
+        if (c_end == -1)  
+          c_end = document.cookie.length;  
+        return unescape(document.cookie.substring(c_start, c_end));  
+      }  
+    }  
+    return "";  
   }
   /**
    * 调用微信接口，申请此页的分享接口调用
@@ -86,6 +97,7 @@ window.onload = function(){
    * 设置用户分享的标题以及描述以及图片等。
    */
   function onMenuShareAppMessage (title, subTitle, shareLink, imgUrl){
+    // 获取“分享给朋友”按钮点击状态及自定义分享内容接口
     wx.onMenuShareAppMessage({
       title: title,
       desc: subTitle,
@@ -115,7 +127,7 @@ window.onload = function(){
         console.log('onMenuShareAppMessage: fail')
       }
     });
-
+    // 获取“分享到朋友圈”按钮点击状态及自定义分享内容接口
     wx.onMenuShareTimeline({
       title: title,
       link: shareLink,
@@ -144,11 +156,81 @@ window.onload = function(){
         console.log('onMenuShareTimeline: fail')
       }
     });
+    // 获取“分享到QQ”按钮点击状态及自定义分享内容接口
+    wx.onMenuShareQQ({
+      title: title,
+      desc: subTitle,
+      link: shareLink,
+      imgUrl: imgUrl,
+      trigger: function (res) {
+      },
+      success: function (res) {
+        // 分享成功后隐藏分享引导窗口
+        console.log('onMenuShareQQ: success')
+        if (location.pathname === '/views/games/game-counting-share.html') {
+          window.location.href = location.protocol + location.host + '/views/games/game-counting-start.html?code=' + openid
+        } else {
+          // location.reload()
+        }
+        $.post('/hongcai/rest/users/shareActivity', {
+          openId: openid,
+          act: getQueryString('act'),
+          channelCode: getQueryString('f')
+        }, function (res) {
+
+        })
+      },
+      cancel: function (res) {
+      },
+      fail: function (res) {
+        console.log('onMenuShareQQ: fail')
+      }
+    });
+    // 获取“分享到QQ空间”按钮点击状态及自定义分享内容接口
+    wx.onMenuShareQZone({
+      title: title,
+      desc: subTitle,
+      link: shareLink,
+      imgUrl: imgUrl,
+      trigger: function (res) {
+      },
+      success: function (res) {
+        // 分享成功后隐藏分享引导窗口
+        console.log('onMenuShareQZone: success')
+        if (location.pathname === '/views/games/game-counting-share.html') {
+          window.location.href = location.protocol + location.host + '/views/games/game-counting-start.html?code=' + openid
+        } else {
+          // location.reload()
+        }
+        $.post('/hongcai/rest/users/shareActivity', {
+          openId: openid,
+          act: getQueryString('act'),
+          channelCode: getQueryString('f')
+        }, function (res) {
+
+        })
+      },
+      cancel: function (res) {
+      },
+      fail: function (res) {
+        console.log('onMenuShareQZone: fail')
+      }
+    });
   }
   /**
-   * 校验是否在微信中
+   * 跳转去微信授权
+   */
+  function redirectToWechatAuth (redirect_uri){
+    var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + 'wx02dfe579709d2d95' +
+              "&redirect_uri=" + encodeURIComponent(removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"
+    window.location.href = wechatRedirectUrl
+    // configJsApi(redirect_uri)
+  }
+  /**
+   * 统一授权分享判断
    */
   function WechatAuth () {
+    var wechat_code = getQueryString('code')
     var shareItem = {
       title : '我正在疯狂数钱中…',
       subTitle : '论手速，你不一定能比过我！不信就来试试看！数出多少送多少！',
@@ -157,24 +239,32 @@ window.onload = function(){
     }
     if (!isWeixin()) {
       redirectToWechatAuth(location.href)
-    } else if(isWeixin() && location.search.indexOf('code') === -1){
-      redirectToWechatAuth('http://m.test321.hongcai.com/views/games/game-counting-start.html')
-      return
-    } else if(isWeixin() && location.search.indexOf('code') !== -1){
-      wx.error(function(res){
-        console.log('wx.error' + res)
-      })
-
-      wx.ready(function(){
-        console.log('wx.ready')
-        onMenuShareAppMessage(shareItem.title, shareItem.subTitle, shareItem.linkUrl, shareItem.imageUrl)
-      })
-
-      configJsApi(location.href.split('#')[0])
-      openid = getQueryString('code')
-      console.log(shareItem)
-      
+      return;
+    } else if(!wechat_code){
+      redirectToWechatAuth(location.href)
+      // redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
+      return;
     }
+    $.get('/hongcai/rest/users/' + wechat_code + '/openid', function (response, status) {
+      if (response && response.ret == -1) { //微信授权登录失败
+        redirectToWechatAuth(location.href)
+        // redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
+        return
+      } else if (response && response.openid){
+        openid = response.openid
+        window.location.href = location.href + '&openid=' + openid
+        setCookie('openid', openid, 1)
+        configJsApi(location.href.split('#')[0])
+        wx.error(function(res){
+          console.log('wx.error' + res)
+        })
+        console.log(shareItem)
+        wx.ready(function(){
+          console.log('wx.ready')
+          onMenuShareAppMessage(shareItem.title, shareItem.subTitle, shareItem.linkUrl, shareItem.imageUrl)
+        })
+      }
+    })
   }
   window.addEventListener('load', function () {
     setHeight()
