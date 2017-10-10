@@ -66,14 +66,13 @@
     
   }
   function hideOrShowControls(obj) {
-  	var audio = document.getElementById("game-audio");
   	if(audio.controls){
   		audio.removeAttribute('controls');
   		obj.innerHTML = '显示控制框'
   		return;
   	}
   	audio.controls = 'controls';
-  	console.log('隐藏控制框')
+  	obj.innerHTML = '隐藏控制框';
   	return;
   }
 </script>
