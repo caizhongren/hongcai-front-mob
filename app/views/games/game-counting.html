@@ -184,6 +184,9 @@
     </style>
   </head>
   <body>
+    <!-- <audio  controls="controls"><source src="/styles/un-min/nsn.mp3"></audio> -->
+    <audio id="audio"></audio>
+    <audio id="warning"></audio>
     <div class="game-counting-wrap">
       <div class="game-counting">
         <div class="game-counting-innner">
@@ -380,11 +383,39 @@
         firstEntry: true,
         totalMoney: 0,
         num: 0,
+        // audio: document.querySelector('audio'),
+        audio: document.getElementById('audio'),
+        tipAudio: document.getElementById('warning'),
         // 钱币加减 和 时间减少提示淡入淡出效果 
         showTip: function (ele, inDuration, outDuration) {
           $(ele).fadeIn(inDuration, function () {
             $(ele).fadeOut(outDuration)
           })
+        },
+
+        /*
+        ** 音效播放
+        */
+        playOrPaused: function(obj, url) {
+          var _this = this
+          obj.setAttribute('src', url);
+          if (obj.paused) {
+            // 暂停中
+            var playPromise = obj.play();
+            if (playPromise !== undefined) {
+              playPromise.then(function() {
+              }).catch(function(error) {
+                alert(error)
+              });
+            }
+            // obj.innerHTML='停止';
+            // obj.play()
+          } else {
+            // 播放中
+            obj.pause()
+            obj.currentTime = 0;
+          }
+          
         },
       
         /*
@@ -408,6 +439,7 @@
           if (second > 0) {
             // 时间只剩10秒时
             if (second <= 11) {
+              _this.playOrPaused(_this.tipAudio, '/styles/un-min/tip.mp3')
               _this.hourglassAnimate(second*1000-100)
             }
             // 判断是否点错，假设在28秒， countWrong === ture 表示点错钞
@@ -431,6 +463,7 @@
             clearTimeout(countTimer)
             $('#registerBox').show()
             $('#registerBox .totalMoney').html(_this.totalMoney)
+            _this.playOrPaused(_this.audio, '/styles/un-min/get.mp3')
           }
         },
         // 点钞金额增加提示效果
@@ -486,13 +519,16 @@
               return;
             }
             if (countList[_this.num].value == type && type == 50) {
+              _this.playOrPaused(_this.audio, '/styles/un-min/yes.mp3')
               _this.showMoneyTip(clickEle, showEle);
               _this.totalMoney += type
               $('#totalMoney').html()
             } else if (countList[_this.num].value == type && type == 100){
+              _this.playOrPaused(_this.audio, '/styles/un-min/yes.mp3')
               _this.showMoneyTip(clickEle, showEle);
               _this.totalMoney += type
             } else {
+              _this.playOrPaused(_this.audio, '/styles/un-min/no.mp3')
               countWrong = true;
               _this.showTip('#sub', 800, 1500)
               wrongSecond = second
