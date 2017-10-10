@@ -191,7 +191,7 @@
           <!-- 剩余次数 -->
           <div class="times">
             <img src="/images/games/hand-left.png" class="display-inbl" width="6%">
-            <p class="display-inbl">剩余游戏次数：<span id="gameCounts">5</span>次</p>
+            <p class="display-inbl">剩余游戏次数：<span id="gameCounts">0</span>次</p>
           </div>
           <!-- 倒计时 -->
           <div class="count-down">
@@ -319,11 +319,16 @@
   <script type="text/javascript">
     $(function () {
       /**
-       * 判断浏览器手机版本
+       * 获取参数
        */
       function isAndroid(){
         var userAgent = navigator.userAgent || navigator.vendor || window.opera;
         return /android/i.test(userAgent) && !/windows phone/i.test(userAgent);
+      }
+      function getQueryString(name) {  
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");  
+        var r = window.location.search.substr(1).match(reg);  
+        if (r != null) return unescape(r[2]); return null;  
       }
       function isIos(){
         var userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -336,6 +341,19 @@
         var ua = navigator.userAgent.toLowerCase();
         return ua.match(/MicroMessenger/i)=="micromessenger";
       }
+      function getCookie(c_name) {  
+        if (document.cookie.length > 0) {  
+          c_start = document.cookie.indexOf(c_name + "=");  
+          if (c_start != -1) {  
+            c_start = c_start + c_name.length + 1;  
+            c_end = document.cookie.indexOf(";", c_start);  
+            if (c_end == -1)  
+              c_end = document.cookie.length;  
+            return unescape(document.cookie.substring(c_start, c_end));  
+          }  
+        }  
+        return "";  
+      }
       var second = 30,
           CountDownSecond = 60,
           countTimer,
@@ -343,306 +361,7 @@
           $processBar = $('#process-bar'),
           $time = $('#time'),
           $hourglass = $('#hourglass'),
-          countList = [
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },{
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },{
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 50
-            },
-            {
-              value: 100
-            }
-          ],
+          countList = [],
           $ruleBox = $('#ruleBox'),
           $showRule = $('.showRule'),
           $gameCounts = $('#gameCounts'),
@@ -656,11 +375,11 @@
         $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
         document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
       var countObj = {
-        gameCounts: 5,
+        gameCounts: 0,
         gameTimes: 30,
-        firstEntry: false,
+        firstEntry: true,
         totalMoney: 0,
-        num: countList.length -1,
+        num: 0,
         // 钱币加减 和 时间减少提示淡入淡出效果 
         showTip: function (ele, inDuration, outDuration) {
           $(ele).fadeIn(inDuration, function () {
@@ -760,7 +479,7 @@
          ** 点钞
          */
         countStart: function (clickEle, showEle, type) { // 点击元素， 显示的元素， 点击的按钮类型 50 ／ 100
-          var _this = this;
+          var _this = countObj;
           $(clickEle).on('click', function () {
             console.log(_this.num)
             if (_this.num < 1 || second <= 0) {
@@ -810,35 +529,47 @@
           $ReadyFlash.show();
           setTimeout(function () {
             _this.countDown();
+            _this.updateCount()
             $showRule.css({zIndex: 99999})
             $ReadyFlash.hide();
+            if (_this.firstEntry && countList[countList.length - 1].value == '50') {
+              $('.hand-50').show()
+            } else if (_this.firstEntry && countList[countList.length - 1].value == '100') {
+              $('.hand-100').show()
+            }
           }, 4000)
         },
         // 获取游戏规则
         getGameRules: function () {
           var _this = this
           $.get("/hongcai/rest/assignments/assignmentRule", function (res, status) {
-            console.log(res)
+          // $.get('/hongcai/rest/activity/countingKings/' + openid + '/userCountingInfo', function (res, status) {
             if (res && res.ret !== -1) {
-              
+              res = {
+                unUsedCount: 5,
+                usedCount: 1
+              }
+              _this.gameCounts = res.unUsedCount
+              res.usedCount <=0 ? _this.firstEntry = true : _this.firstEntry = false
             } else {
-              res.gameCounts = 5;
-              $gameCounts.html(res.gameCounts)
-              // alert(res.msg);
+              alert('获取用户游戏参与信息接口报错')
             }
+            $gameCounts.html(_this.gameCounts);
           })
         },
         // 判断是否首次进入游戏页
         getGameState: function () {
           var _this = this
           $.get("/hongcai/rest/assignments/assignmentRule", function (res, status) {
-            console.log(res)
+          // $.get('/hongcai/rest/activity/countingKings/' + openid + '/userCountingInfo', function (res, status) {
             if (res && res.ret !== -1) {
-              
-            } else {
-              res.firstEntry = true;
-              _this.firstEntry = res.firstEntry
-              if (res.firstEntry) {
+              res = {
+                unUsedCount: 2,
+                usedCount: 0
+              }
+              _this.gameCounts = res.unUsedCount
+              res.usedCount <=0 ? _this.firstEntry = true : _this.firstEntry = false
+              if (_this.firstEntry) {
                 $ruleBox.show();
                 $('#closeBtn').hide()
               } else {
@@ -846,64 +577,664 @@
                 $RuleStartGame.hide()
                 _this.RuleStartGame()
               }
-              // alert(res.msg);
-              if (_this.firstEntry && _this.countList[0].value == '50') {
-                $('.hand-50').show()
-              } else if (_this.firstEntry && _this.countList[0].value == '100') {
-                $('.hand-100').show()
-              }
+              // if (_this.firstEntry && countList[countList.length - 1].value == '50') {
+              //   $('.hand-50').show()
+              // } else if (_this.firstEntry && countList[countList.length - 1].value == '100') {
+              //   $('.hand-100').show()
+              // }
+            } else {
+              alert('获取用户游戏参与信息接口报错')
             }
+            $gameCounts.html(_this.gameCounts);
           })
         },
         //获取钞票列表
         getCountList: function () {
           var _this = this
           $.get("/hongcai/rest/assignments/assignmentRule", function (res, status) {
-            console.log(res)
+          // $.get("/hongcai/rest/activity/countingKings", function (res, status) {
             if (res && res.ret !== -1) {
-              
-            } else {
-              res.countList = [
+              res.countingValues = [
                 {
-                  value: '100'
+                  value: 50
                 },
                 {
-                  value: '100'
+                  value: 100
                 },
                 {
-                  value: '50'
+                  value: 50
                 },
                 {
-                  value: '100'
+                  value: 50
                 },
                 {
-                  value: '100'
+                  value: 50
                 },
                 {
-                  value: '100'
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },{
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },{
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 50
+                },
+                {
+                  value: 100
                 }
               ];
-              _this.countList = res.countList
-              // alert(res.msg);
+              countList = res.countingValues
+              countObj.moneyConfig(countList)
               _this.getGameState();
-              
+              _this.num = countList.length -1
+            } else {
+              // res.countingValues = [
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },{
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },{
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 50
+              //   },
+              //   {
+              //     value: 100
+              //   }
+              // ];
+              // countList = res.countingValues
+              // _this.getGameState();
+              alert(res.msg);
             }
+          })
+        },
+        //更新游戏剩余次数
+        updateCount: function () {
+          var _this = this
+          $.ajax({
+            url: '/hongcai/rest/assignments/assignmentRule',
+            // url: '/activity/countingKings/userCountingInfo',
+            // type: 'PUT',
+            type: 'GET',
+            success: function (res) {
+              console.log(res)
+              if (res && res.ret !== -1) {
+                res.unUsedCount = 1
+                _this.gameCounts = res.unUsedCount
+                $gameCounts.html(res.unUsedCount)
+              } else {
+                alert(res.msg)
+              }
+            },
+            data: 'openid=' + getCookie('openid') + '&type=1'
           })
         },
         startGameConfig: function () {
           this.toggleRuleBox($showRule, $ruleBox);
-          this.getGameRules();
           this.getCountList();
           $RuleStartGame.on('click', this.RuleStartGame)
           $('#totalMoney').html(0);
-          $gameCounts.html(this.gameCounts);
-          
+          this.countStart('#count-100', '#add-100', 100)
+          this.countStart('#count-50', '#add-50', 50)
         }
       };
-      countObj.countStart('#count-100', '#add-100', 100)
-      countObj.countStart('#count-50', '#add-50', 50)
-      // countObj.countStart('#count-50', '#sub', 50)
-      countObj.moneyConfig(countList)
       countObj.startGameConfig();
 
       // 注册逻辑
@@ -1029,15 +1360,16 @@
               mobile: _this.mobile.val(),
               password: '',
               captcha: _this.mobileCaptcha.val(),
-              channelCode: 'game',
-              act: '33',
+              channelCode: getQueryString('f'),
+              act: getQueryString('act'),
               device: _this.deviceCode()
             }, function (res) {
               console.log(res)
               setTimeout(function () {
                 _this.busy = false
               }, 1000)
-              if (res.code && res.ret === -1) {
+              if (res.code || res.ret === -1) {
+                alert(1)
                 if (res.code === -1003) {
                   _this.showToast('请输入正确的手机号！')
                 } else if (res.code === -1005) {
@@ -1047,20 +1379,32 @@
                 }
                 return
               }
-              alert('注册成功')
+              console.log('注册成功')
+              _this.takeReward()
             })
+          })
+        },
+        //发放特权本金
+        takeReward: function () {
+          $.get("/hongcai/rest/assignments/assignmentRule", function (res, status) {
+          // $.post('/activity/countingKings/takeReward', {
+            // openid: getCookie('openid'),
+            // principalCapital: countObj.totalMoney
+          // }, function (res) {
+            if (res && res.ret !== -1) {
+              window.location.href= location.origin + '/views/games/game-counting-reward.html?principal=' + countObj.totalMoney 
+            } else {  
+              alert(res.msg)
+            }
           })
         },
         playAgain: function (clickEle) {
           var _this = this
           clickEle.on('click', function () {
-            var gameCounts = 10
-            if (gameCounts <= 0) { //判断游戏剩余次数
-              window.location.href= location.origin + '/views/games/game-counting-share.html?principal=100' 
+            if (countObj.gameCounts <= 0) { //判断游戏剩余次数
+              window.location.href= location.origin + '/views/games/game-counting-share.html'
             } else {
-              $('#registerBox').hide()
-              console.log(countObj)
-              countObj.RuleStartGame()
+              location.reload()
             }
           })
         }
