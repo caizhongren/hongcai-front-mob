@@ -53,7 +53,7 @@ window.onload = function(){
     var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + 'wx02dfe579709d2d95' +
               "&redirect_uri=" + encodeURIComponent(removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"
     window.location.href = wechatRedirectUrl
-    configJsApi(redirect_uri)
+    // configJsApi(redirect_uri)
   }
   /**
    * 调用微信接口，申请此页的分享接口调用
@@ -63,9 +63,8 @@ window.onload = function(){
   function configJsApi (url){
     $.get('/hongcai/rest/wechat/jsApiConfig?requestUrl=' + url, function (apiConfig, status) {
       if (apiConfig && apiConfig.ret !== -1) {
-        console.log(apiConfig)
         wx.config({
-          debug: false,
+          debug: true,
           appId: apiConfig.appId, // 必填，公众号的唯一标识
           timestamp: apiConfig.timestamp, // 必填，生成签名的时间戳
           nonceStr: apiConfig.nonceStr, // 必填，生成签名的随机串
@@ -78,7 +77,7 @@ window.onload = function(){
               ]
         })
       } else {
-        alert(apiConfig.msg)
+        console.log('apiConfig' + apiConfig.msg)
       }
     })
   }
@@ -96,16 +95,16 @@ window.onload = function(){
       },
       success: function (res) {
         // 分享成功后隐藏分享引导窗口
-        alert('success')
+        console.log('onMenuShareAppMessage: success')
         if (location.pathname === '/views/games/game-counting-share.html') {
-          window.location.href = 'http://localhost:9000/views/games/game-counting-start.html?code=' + openid
+          window.location.href = location.protocol + location.host + '/views/games/game-counting-start.html?code=' + openid
         } else {
-          location.reload()
+          // location.reload()
         }
         $.post('/hongcai/rest/users/shareActivity', {
           openId: openid,
-          act: '11',
-          channelCode: 'games'
+          act: getQueryString('act'),
+          channelCode: getQueryString('f')
         }, function (res) {
 
         })
@@ -113,6 +112,7 @@ window.onload = function(){
       cancel: function (res) {
       },
       fail: function (res) {
+        console.log('onMenuShareAppMessage: fail')
       }
     });
 
@@ -124,16 +124,16 @@ window.onload = function(){
       },
       success: function (res) {
         // 分享成功后隐藏分享引导窗口
-        alert('success')
+        console.log('onMenuShareTimeline: success')
         if (location.pathname === '/views/games/game-counting-share.html') {
-          window.location.href = 'http://localhost:9000/views/games/game-counting-start.html?code=' + openid
+          window.location.href = location.protocol + location.host + '/views/games/game-counting-start.html?code=' + openid
         } else {
-          location.reload()
+          // location.reload()
         }
         $.post('/hongcai/rest/users/shareActivity', {
           openId: openid,
-          act: '11',
-          channelCode: 'games'
+          act: getQueryString('act'),
+          channelCode: getQueryString('f')
         }, function (res) {
 
         })
@@ -141,6 +141,7 @@ window.onload = function(){
       cancel: function (res) {
       },
       fail: function (res) {
+        console.log('onMenuShareTimeline: fail')
       }
     });
   }
@@ -152,7 +153,7 @@ window.onload = function(){
       title : '我正在疯狂数钱中…',
       subTitle : '论手速，你不一定能比过我！不信就来试试看！数出多少送多少！',
       linkUrl : 'http://m.test321.hongcai.com/views/games/game-counting-start.html',
-      imageUrl : 'https://mmbiz.qlogo.cn/mmbiz_jpg/8MZDOEkib8Akr3KNzVxtZ95xUPndUzXu3CvoSK2iap7RdeDEU69hTG8tSSL0no6uV9T75FqVsJXj54hVicu40KMicw/0?wx_fmt=jpeg'
+      imageUrl : 'https://mmbiz.qpic.cn/mmbiz_png/8MZDOEkib8AlSSicY3du8iciaLhZly5kkUP3PSrln8puqracuY9T3W79wJW4kh1BFV59zgG2T5nm7qictF9IicvC4gyw/0?wx_fmt=png'
     }
     if (!isWeixin()) {
       redirectToWechatAuth(location.href)
@@ -160,22 +161,24 @@ window.onload = function(){
       redirectToWechatAuth('http://m.test321.hongcai.com/views/games/game-counting-start.html')
       return
     } else if(isWeixin() && location.search.indexOf('code') !== -1){
-      configJsApi(location.href.split('#')[0])
-      openid = getQueryString('code')
-      alert(shareItem)
       wx.error(function(res){
-        alert('error')
+        console.log('wx.error' + res)
       })
 
       wx.ready(function(){
+        console.log('wx.ready')
         onMenuShareAppMessage(shareItem.title, shareItem.subTitle, shareItem.linkUrl, shareItem.imageUrl)
       })
+
+      configJsApi(location.href.split('#')[0])
+      openid = getQueryString('code')
+      console.log(shareItem)
+      
     }
   }
   window.addEventListener('load', function () {
     setHeight()
     WechatAuth()
-    console.log(location)
   })
   window.addEventListener('resize', function () {
     setHeight()
