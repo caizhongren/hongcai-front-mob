@@ -1,5 +1,15 @@
 <html>
 	<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta name='apple-mobile-web-app-capable' content='yes' />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name='format-detection' content='telephone=no' />
+    <meta name='format-detection' content='email=no' />
+    <!--去掉移动端input聚焦默认背景-->
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="wap-font-scale" content="no">
 		<title></title>
 	</head>
 	<style type="text/css">
@@ -8,41 +18,50 @@
 		}
 		audio {
 			display: block;
-			height: 500px;
+			height: 200px;
 			width: 80%;
 			margin: 30px auto;
 		}
 	</style>
 	<body>
-		<audio id="game-audio" controls="controls" src='/nsn.mp3'>
-		  浏览器不支持audio
-		</audio>
+		<span id="game-audio">
+      <audio  controls="controls"><source src="/nsn.mp3"></audio>
+    </span>
 		<a href="javascript:void(0);" onclick="playOrPaused(this);">播放</a>
 		<a href="javascript:void(0);" onclick="hideOrShowControls(this);">隐藏控制框</a>
 		<!-- audio test ending -->
 	</body>
 </html>
+<script type="text/javascript" src="/styles/un-min/jquery.min.js"></script>
 <script type="text/javascript">
-  var audio = document.getElementById("game-audio");
-  function play() {
-      document.removeEventListener("WeixinJSBridgeReady", play);
-      document.removeEventListener("YixinJSBridgeReady", play);
-      audio.play();
-      audio.pause();
-      // document.removeEventListener("touchstart", play, false);
-  };
-  document.addEventListener("WeixinJSBridgeReady", play, false);
-  document.addEventListener('YixinJSBridgeReady', play, false);
+  var audio = document.querySelector('audio')
+  // function play() {
+  //     document.removeEventListener("WeixinJSBridgeReady", play);
+  //     document.removeEventListener("YixinJSBridgeReady", play);
+  //     audio.play();
+  //     audio.pause();
+  // };
+  // document.addEventListener("WeixinJSBridgeReady", play, false);
+  // document.addEventListener('YixinJSBridgeReady', play, false);
+  console.log(audio)
   function playOrPaused(obj) {
-  	if(audio.paused){
-  		audio.play();
-  		obj.innerHTML='重新播放';
-  		return;
-  	}
-  	// audio.pause();
-  	audio.currentTime = 0;
-  	audio.play();
-  	obj.innerHTML='播放';
+    if (audio.paused) {
+      // 暂停中
+      var playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(function() {
+          obj.innerHTML='停止';
+        }).catch(function(error) {
+          alert(error)
+        });
+      }
+    } else {
+      // 播放中
+      obj.innerHTML='播放';
+      audio.pause()
+      audio.currentTime = 0;
+    }
+    
   }
   function hideOrShowControls(obj) {
   	var audio = document.getElementById("game-audio");
