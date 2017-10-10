@@ -185,7 +185,8 @@
   </head>
   <body>
     <!-- <audio  controls="controls"><source src="/styles/un-min/nsn.mp3"></audio> -->
-    <audio controls="controls"></audio>
+    <audio id="audio"></audio>
+    <audio id="warning"></audio>
     <div class="game-counting-wrap">
       <div class="game-counting">
         <div class="game-counting-innner">
@@ -663,7 +664,9 @@
         firstEntry: false,
         totalMoney: 0,
         num: countList.length -1,
-        audio: document.querySelector('audio'),
+        // audio: document.querySelector('audio'),
+        audio: document.getElementById('audio'),
+        tipAudio: document.getElementById('warning'),
         // 钱币加减 和 时间减少提示淡入淡出效果 
         showTip: function (ele, inDuration, outDuration) {
           $(ele).fadeIn(inDuration, function () {
@@ -674,12 +677,12 @@
         /*
         ** 音效播放
         */
-        playOrPaused: function(url) {
+        playOrPaused: function(obj, url) {
           var _this = this
-          _this.audio.setAttribute('src', url);
-          if (_this.audio.paused) {
+          obj.setAttribute('src', url);
+          if (obj.paused) {
             // 暂停中
-            var playPromise = _this.audio.play();
+            var playPromise = obj.play();
             if (playPromise !== undefined) {
               playPromise.then(function() {
               }).catch(function(error) {
@@ -687,11 +690,11 @@
               });
             }
             // obj.innerHTML='停止';
-            // _this.audio.play()
+            // obj.play()
           } else {
             // 播放中
-            _this.audio.pause()
-            _this.audio.currentTime = 0;
+            obj.pause()
+            obj.currentTime = 0;
           }
           
         },
@@ -717,7 +720,7 @@
           if (second > 0) {
             // 时间只剩10秒时
             if (second <= 11) {
-              _this.playOrPaused('/styles/un-min/tip.mp3')
+              _this.playOrPaused(_this.tipAudio, '/styles/un-min/tip.mp3')
               _this.hourglassAnimate(second*1000-100)
             }
             // 判断是否点错，假设在28秒， countWrong === ture 表示点错钞
@@ -740,8 +743,8 @@
           } else {
             clearTimeout(countTimer)
             $('#registerBox').show()
-            _this.playOrPaused('/styles/un-min/get.mp3')
             $('#registerBox .totalMoney').html(_this.totalMoney)
+            _this.playOrPaused(_this.audio, '/styles/un-min/get.mp3')
           }
         },
         // 点钞金额增加提示效果
@@ -797,16 +800,16 @@
               return;
             }
             if (countList[_this.num].value == type && type == 50) {
-              _this.playOrPaused('/styles/un-min/yes.mp3')
+              _this.playOrPaused(_this.audio, '/styles/un-min/yes.mp3')
               _this.showMoneyTip(clickEle, showEle);
               _this.totalMoney += type
               $('#totalMoney').html()
             } else if (countList[_this.num].value == type && type == 100){
-              _this.playOrPaused('/styles/un-min/yes.mp3')
+              _this.playOrPaused(_this.audio, '/styles/un-min/yes.mp3')
               _this.showMoneyTip(clickEle, showEle);
               _this.totalMoney += type
             } else {
-              _this.playOrPaused('/styles/un-min/no.mp3')
+              _this.playOrPaused(_this.audio, '/styles/un-min/no.mp3')
               countWrong = true;
               _this.showTip('#sub', 800, 1500)
               wrongSecond = second
