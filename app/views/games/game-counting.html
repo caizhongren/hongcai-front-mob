@@ -674,11 +674,12 @@
         /*
         ** 音效播放
         */
-        playOrPaused(url): {
-          audio.setAttribute('src', url);
-          if (audio.paused) {
+        playOrPaused: function(url) {
+          var _this = this
+          _this.audio.setAttribute('src', url);
+          if (_this.audio.paused) {
             // 暂停中
-            var playPromise = audio.play();
+            var playPromise = _this.audio.play();
             if (playPromise !== undefined) {
               playPromise.then(function() {
               }).catch(function(error) {
@@ -686,14 +687,14 @@
               });
             }
             // obj.innerHTML='停止';
-            // audio.play()
+            // _this.audio.play()
           } else {
             // 播放中
-            audio.pause()
-            audio.currentTime = 0;
+            _this.audio.pause()
+            _this.audio.currentTime = 0;
           }
           
-        }
+        },
       
         /*
         ** 倒计时沙漏 
