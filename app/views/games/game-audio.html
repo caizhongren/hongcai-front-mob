@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<title></title>
+	</head>
+	<style type="text/css">
+		body {
+			font-size: 38px;
+		}
+		audio {
+			display: block;
+			height: 500px;
+			width: 80%;
+			margin: 30px auto;
+		}
+	</style>
+	<body>
+		<audio id="game-audio" controls="controls" src='/nsn.mp3'>
+		  浏览器不支持audio
+		</audio>
+		<a href="javascript:void(0);" onclick="playOrPaused(this);">播放</a>
+		<a href="javascript:void(0);" onclick="hideOrShowControls(this);">隐藏控制框</a>
+		<!-- audio test ending -->
+	</body>
+</html>
+<script type="text/javascript">
+  var audio = document.getElementById("game-audio");
+  function play() {
+      document.removeEventListener("WeixinJSBridgeReady", play);
+      document.removeEventListener("YixinJSBridgeReady", play);
+      audio.play();
+      audio.pause();
+      // document.removeEventListener("touchstart", play, false);
+  };
+  document.addEventListener("WeixinJSBridgeReady", play, false);
+  document.addEventListener('YixinJSBridgeReady', play, false);
+  function playOrPaused(obj) {
+  	if(audio.paused){
+  		audio.play();
+  		obj.innerHTML='重新播放';
+  		return;
+  	}
+  	// audio.pause();
+  	audio.currentTime = 0;
+  	audio.play();
+  	obj.innerHTML='播放';
+  }
+  function hideOrShowControls(obj) {
+  	var audio = document.getElementById("game-audio");
+  	if(audio.controls){
+  		audio.removeAttribute('controls');
+  		obj.innerHTML = '显示控制框'
+  		return;
+  	}
+  	audio.controls = 'controls';
+  	console.log('隐藏控制框')
+  	return;
+  }
+</script>
