@@ -47,14 +47,16 @@
   function playOrPaused(obj) {
     if (audio.paused) {
       // 暂停中
-      var playPromise = audio.play();
-      if (playPromise !== undefined) {
-        playPromise.then(function() {
-          obj.innerHTML='停止';
-        }).catch(function(error) {
-          alert(error)
-        });
-      }
+      // var playPromise = audio.play();
+      // if (playPromise !== undefined) {
+      //   playPromise.then(function() {
+      //     obj.innerHTML='停止';
+      //   }).catch(function(error) {
+      //     alert(error)
+      //   });
+      // }
+      obj.innerHTML='停止';
+      audio.play()
     } else {
       // 播放中
       obj.innerHTML='播放';
