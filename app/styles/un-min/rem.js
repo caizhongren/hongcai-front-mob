@@ -93,6 +93,25 @@ window.onload = function(){
     })
   }
 
+  //更新游戏剩余次数
+  function updateCount () {
+    $.ajax({
+      url: '/hongcai/rest/assignments/assignmentRule',
+      // url: '/activity/countingKings/userCountingInfo',
+      // type: 'PUT',
+      type: 'GET',
+      success: function (res) {
+        console.log(res)
+        if (res && res.ret !== -1) {
+          console.log('分享成功游戏次数减少')
+        } else {
+          alert(res.msg)
+        }
+      },
+      data: 'openid=' + getCookie('openid') + '&type=2'
+    })
+  }
+
   /**
    * 设置用户分享的标题以及描述以及图片等。
    */
@@ -120,6 +139,7 @@ window.onload = function(){
         }, function (res) {
 
         })
+        updateCount()
       },
       cancel: function (res) {
       },
@@ -149,6 +169,7 @@ window.onload = function(){
         }, function (res) {
 
         })
+        updateCount()
       },
       cancel: function (res) {
       },
@@ -179,6 +200,7 @@ window.onload = function(){
         }, function (res) {
 
         })
+        updateCount()
       },
       cancel: function (res) {
       },
@@ -209,6 +231,7 @@ window.onload = function(){
         }, function (res) {
 
         })
+        updateCount()
       },
       cancel: function (res) {
       },
@@ -250,9 +273,9 @@ window.onload = function(){
         redirectToWechatAuth(location.href)
         // redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
         return
-      } else if (response && response.openid){
-        openid = response.openid
-        window.location.href = location.href + '&openid=' + openid
+      } else if (response){
+        openid = response.openid || getQueryString('openid')
+        // window.location.href = location.href + '&openid=' + openid
         setCookie('openid', openid, 1)
         configJsApi(location.href.split('#')[0])
         wx.error(function(res){
