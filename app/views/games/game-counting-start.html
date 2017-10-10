@@ -19,7 +19,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,mininum-scale=1,maximum-scale=1">
   <title>谁是点钞王</title>
-  <!-- build:css /styles/un-min/common.css --><!-- endbuild -->
   <link rel="stylesheet" href="/styles/un-min/common.css">
 <style>
 	.bg-white {
@@ -152,7 +151,7 @@
           <img src="/images/games/logo-hongcai.png" width="44%" class="logo">
           <img src="/images/games/header-title.png" width="85%" class="title-img">
           <div class="bg-money">
-          	<div class="start-button" onClick="location.href= location.origin + '/views/games/game-counting.html'">
+          	<div class="start-button">
 	          	<img src="/images/games/start-text.png" width="50%">
 	          </div>
           </div>
@@ -202,14 +201,89 @@
 <script src="/styles/un-min/rem.js"></script>
 <script type="text/javascript">
 $(function () {
-	var $ruleBox = $('#ruleBox')
-	$('.ruleBtn').on('click', function () {
-		if ($ruleBox.css("display") == 'none') {
-			$ruleBox.show()
-		} else {
-			$ruleBox.hide()
-		}
-	})
+	function getQueryString(name) {  
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");  
+    var r = window.location.search.substr(1).match(reg);  
+    if (r != null) return unescape(r[2]); return null;  
+  }
+  function getCookie(c_name) {  
+    if (document.cookie.length > 0) {  
+      c_start = document.cookie.indexOf(c_name + "=");  
+      if (c_start != -1) {  
+        c_start = c_start + c_name.length + 1;  
+        c_end = document.cookie.indexOf(";", c_start);  
+        if (c_end == -1)  
+          c_end = document.cookie.length;  
+        return unescape(document.cookie.substring(c_start, c_end));  
+      }  
+    }  
+    return "";  
+  }
+	var openid = getCookie('openid') || getQueryString('openid')
+	console.log(openid)
+	var userCountingInfo = {
+		unUsedCount: 5, //剩余游戏次数
+		usedCount: 0, //是否首次进入游戏
+		// 参与游戏用户，游戏资格初始化
+	  countingKings: function () {
+	    var _this = this
+	    $.post('/hongcai/rest/activity/countingKings', {
+        openid: openid,
+        channelCode: getQueryString('f')
+      }, function (res) {
+	      if (res && res.ret !== -1) {
+	      	// 获取用户游戏参与信息
+	      //   $.get('/hongcai/rest/activity/countingKings/' + openid + '/userCountingInfo', function (res, status) {
+			    //   if (res && res.ret !== -1) {
+			    //     _this.unUsedCount = res.unUsedCount
+			    //     _this.usedCount = res.usedCount
+			    //   } else {
+			    //   	// alert('获取用户游戏参与信息接口报错')
+			    //   	_this.unUsedCount = res.unUsedCount
+			    //     _this.usedCount = res.usedCount
+			    //   }
+			    // })
+	      } else {
+	        $.get('/hongcai/rest/activity/countingKings/' + openid + '/userCountingInfo', function (res, status) {
+			      if (res && res.ret !== -1) {
+			        _this.unUsedCount = res.unUsedCount
+			        _this.usedCount = res.usedCount
+			      } else {
+			      	// alert('获取用户游戏参与信息接口报错')
+			      	_this.unUsedCount = res.unUsedCount
+			        _this.usedCount = res.usedCount
+			      }
+			    })
+	        // alert(res.msg);
+	      }
+	    })
+	  },
+	  goGameCounting: function () {
+	  	var _this = userCountingInfo
+	  	if (_this.unUsedCount > 0) {
+	  		location.href= location.origin + '/views/games/game-counting.html?act=' + getQueryString('act') + '&f=' + getQueryString('f')
+	  	} else {
+	  		location.href= location.origin + '/views/games/game-counting-share.html'
+	  	}
+	  },
+	  showRule: function () {
+	  	var $ruleBox = $('#ruleBox')
+			$('.ruleBtn').on('click', function () {
+				if ($ruleBox.css("display") == 'none') {
+					$ruleBox.show()
+				} else {
+					$ruleBox.hide()
+				}
+			})
+	  },
+	  addClick: function () {
+	  	$('.start-button').on('click', this.goGameCounting)
+	  	this.showRule()
+	  }
+	}
+	userCountingInfo.countingKings()
+	userCountingInfo.addClick()
+	
 })
 </script>
 </html>
