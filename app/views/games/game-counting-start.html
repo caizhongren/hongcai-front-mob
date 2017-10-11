@@ -231,11 +231,11 @@ $(function () {
 	    var _this = this
 	    $.post('/hongcai/rest/activity/countingKings', {
         openid: openid,
-        channelCode: getQueryString('f')
+        channelCode: getCookie('f')
       }, function (res) {
 	      if (res && res.ret !== -1) {
 	      	// 获取用户游戏参与信息
-	        $.get('/hongcai/rest/activity/countingKings/' + getCookie('openid') + '/userCountingInfo', function (res, status) {
+	        $.get('/hongcai/rest/activity/countingKings/' + openid + '/userCountingInfo', function (res, status) {
 			      if (res && res.ret !== -1) {
 			        _this.unUsedCount = res.unUsedCount
 			        _this.usedCount = res.usedCount
@@ -248,7 +248,7 @@ $(function () {
 	      } else {
 	        alert(res.msg);
 	        // 获取用户游戏参与信息
-	        $.get('/hongcai/rest/activity/countingKings/' + getCookie('openid') + '/userCountingInfo', function (res, status) {
+	        $.get('/hongcai/rest/activity/countingKings/' + openid + '/userCountingInfo', function (res, status) {
 			      if (res && res.ret !== -1) {
 			        _this.unUsedCount = res.unUsedCount
 			        _this.usedCount = res.usedCount
@@ -264,7 +264,7 @@ $(function () {
 	  goGameCounting: function () {
 	  	var _this = userCountingInfo
 	  	if (_this.unUsedCount > 0) {
-	  		location.href= location.origin + '/views/games/game-counting.html?act=' + getQueryString('act') + '&f=' + getQueryString('f')
+	  		location.href= location.origin + '/views/games/game-counting.html?act=' + getCookie('act') + '&f=' + getCookie('f')
 	  	} else {
 	  		location.href= location.origin + '/views/games/game-counting-share.html'
 	  	}
