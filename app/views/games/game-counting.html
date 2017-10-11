@@ -383,9 +383,6 @@
         firstEntry: true,
         totalMoney: 0,
         num: 0,
-        // audio: document.querySelector('audio'),
-        // audio: document.getElementById('audio'),
-        // tipAudio: document.getElementById('warning'),
         // 钱币加减 和 时间减少提示淡入淡出效果 
         showTip: function (ele, inDuration, outDuration) {
           $(ele).fadeIn(inDuration, function () {
@@ -399,7 +396,6 @@
         playOrPaused: function(url) {
           var _this = this
           var audio = new Audio();
-          audio.currentTime = 0;
           audio.setAttribute('src', url);
           var playPromise = audio.play();
           if (playPromise) {
@@ -409,7 +405,20 @@
             });
           }
         },
-      
+        /*
+        ** 音效播放,解决iOS下无法触发自动播放
+        */
+        forceSafariPlayAudio: function (url) {
+          var audioEl = new Audio();
+          audioEl.setAttribute('src', url);
+          audioEl.load(); // iOS 9   还需要额外的 load 一下, 否则直接 play 无效
+          audioEl.play(); // iOS 7/8 仅需要 play 一下
+          var _this = this
+          audioEl.addEventListener('play', function() {
+            // 当 audio 能够播放后, 移除这个事件
+            window.removeEventListener('touchstart', _this.forceSafariPlayAudio, false);
+          }, false);
+        },
         /*
         ** 倒计时沙漏 
         */
@@ -421,7 +430,6 @@
           }, duration)
         },
 
-
         /*
          ** 倒计时进度条和时间效果
          */
@@ -431,7 +439,7 @@
           if (second > 0) {
             // 时间只剩10秒时
             if (second <= 11) {
-              _this.playOrPaused('/styles/un-min/tip.mp3')
+              window.addEventListener('touchstart', _this.forceSafariPlayAudio('/styles/un-min/tip.mp3'), false);
               _this.hourglassAnimate(second*1000-100)
             }
             // 判断是否点错，假设在28秒， countWrong === ture 表示点错钞
@@ -455,7 +463,7 @@
             clearTimeout(countTimer)
             $('#registerBox').show()
             $('#registerBox .totalMoney').html(_this.totalMoney)
-            _this.playOrPaused('/styles/un-min/get.mp3')
+            window.addEventListener('touchstart', _this.forceSafariPlayAudio('/styles/un-min/get.mp3'), false);
           }
         },
         // 点钞金额增加提示效果
