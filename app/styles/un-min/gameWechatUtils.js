@@ -267,7 +267,7 @@ window.onload = function(){
         openid = response.openid || 'oBBBjs6uL13Z7E03h5E2hEOnM_l8'
         // window.location.href = location.href + '&openid=' + openid
         openid ? setCookie('openid', openid, 1) : null
-        configJsApi(encodeURIComponent(location.href.split('#')[0]))
+        configJsApi(location.href.split('#')[0])
         wx.error(function(res){
           console.log('wx.error' + res)
         })
