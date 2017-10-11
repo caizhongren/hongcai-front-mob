@@ -189,9 +189,8 @@
     </style>
   </head>
   <body>
-    <audio id="getAudio"><source src="/styles/un-min/get.mp3"></audio>
-    <audio id="warning"><source src="/styles/un-min/tip.mp3"></audio>
-    <audio id="warning"></audio>
+    <audio id="getAudio" preload="preload"><source src="/styles/un-min/get.mp3"></audio>
+    <audio id="warning" preload="preload"><source src="/styles/un-min/tip.mp3"></audio>
     <div class="game-counting-wrap">
       <div class="game-counting">
         <div class="game-counting-innner">
@@ -383,6 +382,8 @@
           percentOneSecond = 3.2, // 一秒进度条递减值
           countWrong = false, // 是否数错钞,
           wrongSecond,
+          getAudio = document.getElementById('getAudio'),
+          warningAudio = document.getElementById('warning'),
           scrollDirection = -139.389; // 钞票初始位置
         $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
         document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
@@ -420,11 +421,19 @@
         /*
         ** 音效播放,解决iOS下无法触发自动播放
         */
-        forceSafariPlayAudio: function (url) {
-          var audioEl = new Audio();
-          audioEl.setAttribute('src', url);
-          audioEl.load(); // iOS 9   还需要额外的 load 一下, 否则直接 play 无效
-          audioEl.play(); // iOS 7/8 仅需要 play 一下
+        forceSafariPlayAudio: function (obj) {
+          if (window.WeixinJSBridge) {
+            WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+              obj.play();
+            }, false);
+          } else {
+            document.addEventListener("WeixinJSBridgeReady", function () {
+              WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                  obj.play();
+              });
+            }, false);
+          }
+          obj.play();
         },
         /*
         ** 倒计时沙漏 
@@ -447,9 +456,7 @@
             // 时间只剩10秒时
             if (second <= 11) {
               // window.addEventListener('touchstart', _this.forceSafariPlayAudio('/styles/un-min/tip.mp3'), false);
-              wx.ready(function() {
-                document.getElementById('warning').play();
-              });
+              document.addEventListener("WeixinJSBridgeReady", forceSafariPlayAudio(warningAudio), false);
               _this.hourglassAnimate(second*1000-100)
             }
             // 判断是否点错，假设在28秒， countWrong === ture 表示点错钞
@@ -474,9 +481,7 @@
             $('#registerBox').show()
             $('#registerBox .totalMoney').html(_this.totalMoney)
             // window.addEventListener('touchstart', _this.forceSafariPlayAudio('/styles/un-min/get.mp3'), false);
-            wx.ready(function() {
-              document.getElementById('getAudio').play();
-            });
+            document.addEventListener("WeixinJSBridgeReady", forceSafariPlayAudio(getAudio), false);
             _this.showRewardMoney()
           }
         },
@@ -1493,6 +1498,7 @@
       registerObj.signUp($('#getPrize'))
       registerObj.playAgain($('#startAgin'))
       registerObj.windowChange($('#register'))
+      document.addEventListener("WeixinJSBridgeReady", countObj.forceSafariPlayAudio(warningAudio), false);
     })
   </script>
 </html>
