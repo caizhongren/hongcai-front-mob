@@ -384,7 +384,7 @@
         totalMoney: 0,
         num: 0,
         // audio: document.querySelector('audio'),
-        audio: document.getElementById('audio'),
+        // audio: document.getElementById('audio'),
         // tipAudio: document.getElementById('warning'),
         // 钱币加减 和 时间减少提示淡入淡出效果 
         showTip: function (ele, inDuration, outDuration) {
@@ -396,10 +396,12 @@
         /*
         ** 音效播放
         */
-        playOrPaused: function(obj, url) {
+        playOrPaused: function(url) {
           var _this = this
-          obj.setAttribute('src', url);
-          var playPromise = obj.play();
+          var audio = new Audio();
+          audio.currentTime = 0;
+          audio.setAttribute('src', url);
+          var playPromise = audio.play();
           if (playPromise) {
             playPromise.then(function() {
             }).catch(function(error) {
@@ -429,7 +431,7 @@
           if (second > 0) {
             // 时间只剩10秒时
             if (second <= 11) {
-              _this.playOrPaused(_this.audio, '/styles/un-min/tip.mp3')
+              _this.playOrPaused('/styles/un-min/tip.mp3')
               _this.hourglassAnimate(second*1000-100)
             }
             // 判断是否点错，假设在28秒， countWrong === ture 表示点错钞
@@ -453,7 +455,7 @@
             clearTimeout(countTimer)
             $('#registerBox').show()
             $('#registerBox .totalMoney').html(_this.totalMoney)
-            _this.playOrPaused(_this.audio, '/styles/un-min/get.mp3')
+            _this.playOrPaused('/styles/un-min/get.mp3')
           }
         },
         // 点钞金额增加提示效果
@@ -504,20 +506,21 @@
         countStart: function (clickEle, showEle, type) { // 点击元素， 显示的元素， 点击的按钮类型 50 ／ 100
           var _this = countObj;
           $(clickEle).on('touchstart', function () {
+            // _this.playOrPaused('/styles/un-min/no.mp3')
             if (_this.num < 1 || second <= 0) {
               return;
             }
             if (countList[_this.num].value == type && type == 50) {
-              _this.playOrPaused(_this.audio, '/styles/un-min/yes.mp3')
+              _this.playOrPaused('/styles/un-min/yes.mp3')
               _this.showMoneyTip(clickEle, showEle);
               _this.totalMoney += type
               $('#totalMoney').html()
             } else if (countList[_this.num].value == type && type == 100){
-              _this.playOrPaused(_this.audio, '/styles/un-min/yes.mp3')
+              _this.playOrPaused('/styles/un-min/yes.mp3')
               _this.showMoneyTip(clickEle, showEle);
               _this.totalMoney += type
             } else {
-              _this.playOrPaused(_this.audio, '/styles/un-min/no.mp3')
+              _this.playOrPaused('/styles/un-min/no.mp3')
               countWrong = true;
               _this.showTip('#sub', 800, 1500)
               wrongSecond = second
@@ -542,7 +545,7 @@
         toggleRuleBox: function (clickEle, showEle) {
           var _this = this
           clickEle.on('touchstart', function () {
-            _this.playOrPaused(_this.audio, '/styles/un-min/yes.mp3')
+            _this.playOrPaused('/styles/un-min/yes.mp3')
             _this.showRule(showEle)
           })
         },
