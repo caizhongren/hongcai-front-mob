@@ -221,8 +221,8 @@ $(function () {
     }  
     return "";  
   }
-	var openid = getCookie('openid') || getQueryString('openid')
-	console.log(openid)
+	var openid = getCookie('openid')
+	console.log('start-openid:' + openid)
 	var userCountingInfo = {
 		unUsedCount: 5, //剩余游戏次数
 		usedCount: 0, //是否首次进入游戏

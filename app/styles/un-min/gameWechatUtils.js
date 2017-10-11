@@ -260,9 +260,9 @@ window.onload = function(){
         redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
         return
       } else if (response){
-        openid = response.openid || getQueryString('openid')
+        openid = response.openid || 'oBBBjs6uL13Z7E03h5E2hEOnM_l8'
         // window.location.href = location.href + '&openid=' + openid
-        setCookie('openid', openid, 1)
+        openid ? setCookie('openid', openid, 1) : null
         configJsApi(location.href.split('#')[0])
         wx.error(function(res){
           console.log('wx.error' + res)
