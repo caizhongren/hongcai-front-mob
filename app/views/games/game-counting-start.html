@@ -19,7 +19,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,mininum-scale=1,maximum-scale=1">
   <title>谁是点钞王</title>
-  <link rel="stylesheet" href="/styles/un-min/common.css">
+  <link rel="stylesheet" href="/styles/un-min/game-common.css">
+	<script src="/styles/un-min/rem.js"></script>
 <style>
 	.bg-white {
 	  background-color: #fff;
@@ -31,9 +32,9 @@
 	  text-align: center;
 	}
 	.game-start {
-		margin: 0 auto;
+		/*margin: 0 auto;*/
 		text-align: center;
-		position: relative;
+		/*position: relative;*/
 		width: 100%;
 	}
 	.game-counting-innner img {
@@ -78,6 +79,7 @@
 		bottom: 0px;
     right: -.53rem;    
     z-index: 2222;
+    pointer-events: none
 	}
 	.scaleHand {
 	  -moz-animation: scaleHand 1s alternate infinite;
@@ -198,7 +200,7 @@
 </body>
 <script type="text/javascript" src="/styles/un-min/jquery.min.js"></script>
 <script src="/styles/un-min/jweixin-1.0.0.js"></script>
-<script src="/styles/un-min/rem.js"></script>
+<script type="text/javascript" src="/styles/un-min/gameWechatUtils.js"></script>
 <script type="text/javascript">
 $(function () {
 	function getQueryString(name) {  
