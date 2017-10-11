@@ -455,8 +455,7 @@
           if (second > 0) {
             // 时间只剩10秒时
             if (second <= 11) {
-              // window.addEventListener('touchstart', _this.forceSafariPlayAudio('/styles/un-min/tip.mp3'), false);
-              document.addEventListener("WeixinJSBridgeReady", forceSafariPlayAudio(warningAudio), false);
+              document.addEventListener("WeixinJSBridgeReady", _this.forceSafariPlayAudio(warningAudio), false);
               _this.hourglassAnimate(second*1000-100)
             }
             // 判断是否点错，假设在28秒， countWrong === ture 表示点错钞
@@ -480,8 +479,7 @@
             clearTimeout(countTimer)
             $('#registerBox').show()
             $('#registerBox .totalMoney').html(_this.totalMoney)
-            // window.addEventListener('touchstart', _this.forceSafariPlayAudio('/styles/un-min/get.mp3'), false);
-            document.addEventListener("WeixinJSBridgeReady", forceSafariPlayAudio(getAudio), false);
+            document.addEventListener("WeixinJSBridgeReady", _this.forceSafariPlayAudio(getAudio), false);
             _this.showRewardMoney()
           }
         },
@@ -1498,7 +1496,6 @@
       registerObj.signUp($('#getPrize'))
       registerObj.playAgain($('#startAgin'))
       registerObj.windowChange($('#register'))
-      document.addEventListener("WeixinJSBridgeReady", countObj.forceSafariPlayAudio(warningAudio), false);
     })
   </script>
 </html>
