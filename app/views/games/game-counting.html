@@ -186,7 +186,7 @@
   <body>
     <!-- <audio  controls="controls"><source src="/styles/un-min/nsn.mp3"></audio> -->
     <audio id="audio"></audio>
-    <audio id="warning"></audio>
+    <!-- <audio id="warning"></audio> -->
     <div class="game-counting-wrap">
       <div class="game-counting">
         <div class="game-counting-innner">
@@ -385,7 +385,7 @@
         num: 0,
         // audio: document.querySelector('audio'),
         audio: document.getElementById('audio'),
-        tipAudio: document.getElementById('warning'),
+        // tipAudio: document.getElementById('warning'),
         // 钱币加减 和 时间减少提示淡入淡出效果 
         showTip: function (ele, inDuration, outDuration) {
           $(ele).fadeIn(inDuration, function () {
@@ -405,7 +405,7 @@
             if (playPromise !== undefined) {
               playPromise.then(function() {
               }).catch(function(error) {
-                console.log(error)
+                alert(error)
               });
             }
             // obj.innerHTML='停止';
@@ -439,7 +439,7 @@
           if (second > 0) {
             // 时间只剩10秒时
             if (second <= 11) {
-              _this.playOrPaused(_this.tipAudio, '/styles/un-min/tip.mp3')
+              _this.playOrPaused(_this.audio, '/styles/un-min/tip.mp3')
               _this.hourglassAnimate(second*1000-100)
             }
             // 判断是否点错，假设在28秒， countWrong === ture 表示点错钞
@@ -513,7 +513,7 @@
          */
         countStart: function (clickEle, showEle, type) { // 点击元素， 显示的元素， 点击的按钮类型 50 ／ 100
           var _this = countObj;
-          $(clickEle).on('click', function () {
+          $(clickEle).on('touchstart', function () {
             console.log(_this.num)
             if (_this.num < 1 || second <= 0) {
               return;
@@ -552,7 +552,7 @@
         },
         toggleRuleBox: function (clickEle, showEle) {
           var _this = this
-          clickEle.on('click', function () {
+          clickEle.on('touchstart', function () {
             _this.showRule(showEle)
           })
         },
@@ -1265,7 +1265,7 @@
         startGameConfig: function () {
           this.toggleRuleBox($showRule, $ruleBox);
           this.getCountList();
-          $RuleStartGame.on('click', this.RuleStartGame)
+          $RuleStartGame.on('touchstart', this.RuleStartGame)
           $('#totalMoney').html(0);
           this.countStart('#count-100', '#add-100', 100)
           this.countStart('#count-50', '#add-50', 50)
@@ -1309,7 +1309,7 @@
         },
         // 获取图形验证码
         refreshCode: function (clickEle) {
-          clickEle.on('click', function () {
+          clickEle.on('touchstart', function () {
             var capchaCode = document.getElementById('checkCaptcha');
             capchaCode.src = capchaCode.getAttribute("src") + '?code=' + Math.random();
           })
@@ -1341,7 +1341,7 @@
         // 点击获取短信验证码
         getCaptcha: function (clickEle) {
           var _this = this
-          clickEle.on('click', function () {
+          clickEle.on('touchstart', function () {
             console.log(_this.mobile.val())
             if (!_this.canGetCaptch) {
               return
@@ -1387,7 +1387,7 @@
         // 注册
         signUp: function (clickEle) {
           var _this = this
-          clickEle.on('click', function () {
+          clickEle.on('touchstart', function () {
             if (!_this.mobile.val() || !_this.picCaptcha.val() || !_this.mobileCaptcha.val()) {
               return
             }
@@ -1436,7 +1436,7 @@
         },
         playAgain: function (clickEle) {
           var _this = this
-          clickEle.on('click', function () {
+          clickEle.on('touchstart', function () {
             if (countObj.gameCounts <= 0) { //判断游戏剩余次数
               window.location.href= location.origin + '/views/games/game-counting-share.html'
             } else {
