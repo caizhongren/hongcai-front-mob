@@ -82,10 +82,8 @@ window.onload = function(){
   //更新游戏剩余次数
   function updateCount () {
     $.ajax({
-      url: '/hongcai/rest/assignments/assignmentRule',
-      // url: '/activity/countingKings/userCountingInfo',
-      // type: 'PUT',
-      type: 'GET',
+      url: '/hongcai/rest/activity/countingKings/userCountingInfo',
+      type: 'PUT',
       success: function (res) {
         console.log(res)
         if (res && res.ret !== -1) {
@@ -233,7 +231,6 @@ window.onload = function(){
     var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + 'wx02dfe579709d2d95' +
               "&redirect_uri=" + encodeURIComponent(removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"
     window.location.href = wechatRedirectUrl
-    // configJsApi(redirect_uri)
   }
   /**
    * 统一授权分享判断
@@ -245,6 +242,12 @@ window.onload = function(){
       subTitle : '论手速，你不一定能比过我！不信就来试试看！数出多少送多少！',
       linkUrl : 'http://m.test321.hongcai.com/views/games/game-counting-start.html',
       imageUrl : 'https://mmbiz.qpic.cn/mmbiz_png/8MZDOEkib8AlSSicY3du8iciaLhZly5kkUP3PSrln8puqracuY9T3W79wJW4kh1BFV59zgG2T5nm7qictF9IicvC4gyw/0?wx_fmt=png'
+    }
+    if (getQueryString('act')) {
+      setCookie('act', getQueryString('act'), 1)
+    }
+    if (getQueryString('f')) {
+      setCookie('f', getQueryString('f'), 1)
     }
     if (!isWeixin()) {
       redirectToWechatAuth(location.href)
@@ -263,7 +266,7 @@ window.onload = function(){
         openid = response.openid || 'oBBBjs6uL13Z7E03h5E2hEOnM_l8'
         // window.location.href = location.href + '&openid=' + openid
         openid ? setCookie('openid', openid, 1) : null
-        configJsApi(location.href.split('#')[0])
+        configJsApi(encodeURIComponent(location.href.split('#')[0]))
         wx.error(function(res){
           console.log('wx.error' + res)
         })

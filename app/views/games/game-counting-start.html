@@ -235,18 +235,7 @@ $(function () {
       }, function (res) {
 	      if (res && res.ret !== -1) {
 	      	// 获取用户游戏参与信息
-	      //   $.get('/hongcai/rest/activity/countingKings/' + openid + '/userCountingInfo', function (res, status) {
-			    //   if (res && res.ret !== -1) {
-			    //     _this.unUsedCount = res.unUsedCount
-			    //     _this.usedCount = res.usedCount
-			    //   } else {
-			    //   	// alert('获取用户游戏参与信息接口报错')
-			    //   	_this.unUsedCount = res.unUsedCount
-			    //     _this.usedCount = res.usedCount
-			    //   }
-			    // })
-	      } else {
-	        $.get('/hongcai/rest/activity/countingKings/' + openid + '/userCountingInfo', function (res, status) {
+	        $.get('/hongcai/rest/activity/countingKings/' + getCookie('openid') + '/userCountingInfo', function (res, status) {
 			      if (res && res.ret !== -1) {
 			        _this.unUsedCount = res.unUsedCount
 			        _this.usedCount = res.usedCount
@@ -256,7 +245,19 @@ $(function () {
 			        _this.usedCount = res.usedCount
 			      }
 			    })
-	        // alert(res.msg);
+	      } else {
+	        alert(res.msg);
+	        // 获取用户游戏参与信息
+	        $.get('/hongcai/rest/activity/countingKings/' + getCookie('openid') + '/userCountingInfo', function (res, status) {
+			      if (res && res.ret !== -1) {
+			        _this.unUsedCount = res.unUsedCount
+			        _this.usedCount = res.usedCount
+			      } else {
+			      	// alert('获取用户游戏参与信息接口报错')
+			      	_this.unUsedCount = res.unUsedCount
+			        _this.usedCount = res.usedCount
+			      }
+			    })
 	      }
 	    })
 	  },

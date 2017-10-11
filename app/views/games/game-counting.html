@@ -513,7 +513,7 @@
         moneyConfig: function (count, type) {
           var moneyHtml = ''
           for (var i = 0; i < count.length; i++) {
-            if (count[i].value === 50) {
+            if (count[i] === 50) {
               moneyHtml += '<li><img src="../../images/games/50.png" class="display-bl margin" width="55%"></li>'
             } else {
               moneyHtml += '<li><img src="../../images/games/100.png" class="display-bl margin" width="55%"></li>'
@@ -556,12 +556,12 @@
             if (_this.num < 1 || second <= 0) {
               return;
             }
-            if (countList[_this.num].value == type && type == 50) {
+            if (countList[_this.num] == type && type == 50) {
               _this.playOrPaused('/styles/un-min/yes.mp3')
               _this.showMoneyTip(clickEle, showEle);
               _this.totalMoney += type
               $('#totalMoney').html()
-            } else if (countList[_this.num].value == type && type == 100){
+            } else if (countList[_this.num] == type && type == 100){
               _this.playOrPaused('/styles/un-min/yes.mp3')
               _this.showMoneyTip(clickEle, showEle);
               _this.totalMoney += type
@@ -575,7 +575,7 @@
             $('.hand-50').hide()
             $('#totalMoney').html(_this.totalMoney)
             _this.countSlideDown() // 出钞票列表
-            _this.firstMoneyOut(countList[_this.num].value, _this.num) // 钞票收起
+            _this.firstMoneyOut(countList[_this.num], _this.num) // 钞票收起
             _this.num --
           })
         },
@@ -606,9 +606,9 @@
             _this.updateCount()
             $showRule.css({zIndex: 99999})
             $ReadyFlash.hide();
-            if (_this.firstEntry && countList[countList.length - 1].value == '50') {
+            if (_this.firstEntry && countList[countList.length - 1] == '50') {
               $('.hand-50').show()
-            } else if (_this.firstEntry && countList[countList.length - 1].value == '100') {
+            } else if (_this.firstEntry && countList[countList.length - 1] == '100') {
               $('.hand-100').show()
             }
           }, 4000)
@@ -616,8 +616,7 @@
         // 获取游戏规则
         getGameRules: function () {
           var _this = this
-          $.get("/hongcai/rest/assignments/assignmentRule", function (res, status) {
-          // $.get('/hongcai/rest/activity/countingKings/' + openid + '/userCountingInfo', function (res, status) {
+          $.get('/hongcai/rest/activity/countingKings/' + getCookie('openid') + '/userCountingInfo' , function (res, status) {
             if (res && res.ret !== -1) {
               res = {
                 unUsedCount: 5,
@@ -634,8 +633,7 @@
         // 判断是否首次进入游戏页
         getGameState: function () {
           var _this = this
-          $.get("/hongcai/rest/assignments/assignmentRule", function (res, status) {
-          // $.get('/hongcai/rest/activity/countingKings/' + openid + '/userCountingInfo', function (res, status) {
+          $.get('/hongcai/rest/activity/countingKings/' + getCookie('openid') + 'userCountingInfo', function (res, status) {
             if (res && res.ret !== -1) {
               res = {
                 unUsedCount: 2,
@@ -665,616 +663,14 @@
         //获取钞票列表
         getCountList: function () {
           var _this = this
-          $.get("/hongcai/rest/assignments/assignmentRule", function (res, status) {
-          // $.get("/hongcai/rest/activity/countingKings", function (res, status) {
+          $.get("/hongcai/rest/activity/countingKings", function (res, status) {
             if (res && res.ret !== -1) {
-              res.countingValues = [
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },{
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },{
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 50
-                },
-                {
-                  value: 100
-                }
-              ];
+              alert(11)
               countList = res.countingValues
               countObj.moneyConfig(countList)
               _this.getGameState();
               _this.num = countList.length -1
             } else {
-              // res.countingValues = [
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },{
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },{
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 50
-              //   },
-              //   {
-              //     value: 100
-              //   }
-              // ];
-              // countList = res.countingValues
-              // _this.getGameState();
               alert(res.msg);
             }
           })
@@ -1283,10 +679,8 @@
         updateCount: function () {
           var _this = this
           $.ajax({
-            url: '/hongcai/rest/assignments/assignmentRule',
-            // url: '/activity/countingKings/userCountingInfo',
-            // type: 'PUT',
-            type: 'GET',
+            url: '/hongcai/rest/activity/countingKings/userCountingInfo',
+            type: 'PUT',
             success: function (res) {
               console.log(res)
               if (res && res.ret !== -1) {
@@ -1307,6 +701,7 @@
           $('#totalMoney').html(0);
           this.countStart('#count-100', '#add-100', 100)
           this.countStart('#count-50', '#add-50', 50)
+          this.updateCount()
         }
       };
       countObj.startGameConfig();
@@ -1459,14 +854,14 @@
           })
         },
         //发放特权本金
-        takeReward: function () {
-          $.get("/hongcai/rest/assignments/assignmentRule", function (res, status) {
-          // $.post('/activity/countingKings/takeReward', {
-            // openid: getCookie('openid'),
-            // principalCapital: countObj.totalMoney
-          // }, function (res) {
+        takeReward: function (rewardMoney) {
+          // $.get("/hongcai/rest/assignments/assignmentRule", function (res, status) {
+          $.post('/hongcai/rest/activity/countingKings/takeReward', {
+            openid: getCookie('openid'),
+            amount: rewardMoney
+          }, function (res) {
             if (res && res.ret !== -1) {
-              window.location.href= location.origin + '/views/games/game-counting-reward.html?principal=' + countObj.totalMoney 
+              window.location.href= location.origin + '/views/games/game-counting-reward.html?principal=' + rewardMoney 
             } else {  
               alert(res.msg)
             }
@@ -1498,6 +893,7 @@
       registerObj.signUp($('#getPrize'))
       registerObj.playAgain($('#startAgin'))
       registerObj.windowChange($('#register'))
+      registerObj.takeReward(1000)
     })
   </script>
 </html>
