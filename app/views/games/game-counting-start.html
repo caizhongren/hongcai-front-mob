@@ -151,7 +151,7 @@
           <img src="/images/games/logo-hongcai.png" width="44%" class="logo">
           <img src="/images/games/header-title.png" width="85%" class="title-img">
           <div class="bg-money">
-          	<div class="start-button">
+          	<div class="start-button start">
 	          	<img src="/images/games/start-text.png" width="50%">
 	          </div>
           </div>
@@ -190,7 +190,7 @@
 	  	</div>
 	  </div>
 	  <img src="/images/games/rule-close.png" alt="" class="close-btn ruleBtn">
-	  <div class="rule-start-btn" onClick="location.href= location.origin + '/views/games/game-counting.html'">
+	  <div class="rule-start-btn start">
 		<img src="/images/games/rule-btn.png" alt="">
 	  	<span>我知道了，开始游戏</span>
 	  </div>
@@ -268,7 +268,7 @@ $(function () {
 	  },
 	  showRule: function () {
 	  	var $ruleBox = $('#ruleBox')
-			$('.ruleBtn').on('click', function () {
+			$('.ruleBtn').on('touchstart', function () {
 				if ($ruleBox.css("display") == 'none') {
 					$ruleBox.show()
 				} else {
@@ -277,7 +277,7 @@ $(function () {
 			})
 	  },
 	  addClick: function () {
-	  	$('.start-button').on('click', this.goGameCounting)
+	  	$('.start').on('touchstart', this.goGameCounting)
 	  	this.showRule()
 	  }
 	}
