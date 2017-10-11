@@ -250,14 +250,14 @@ window.onload = function(){
       redirectToWechatAuth(location.href)
       return;
     } else if(!wechat_code){
-      // redirectToWechatAuth(location.href)
-      redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
+      redirectToWechatAuth(location.href)
+      // redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
       return;
     }
     $.get('/hongcai/rest/users/' + wechat_code + '/openid', function (response, status) {
       if (response && response.ret == -1) { //微信授权登录失败
-        // redirectToWechatAuth(location.href)
-        redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
+        redirectToWechatAuth(location.href)
+        // redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
         return
       } else if (response){
         openid = response.openid || 'oBBBjs6uL13Z7E03h5E2hEOnM_l8'
