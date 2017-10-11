@@ -127,6 +127,7 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
 .game-counting-wrap {
   background-color: #fff026;
   padding: .2rem;
+  position: fixed;
 }
 .game-counting {
   padding: .1rem;
@@ -149,7 +150,7 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
   background-color: rgba(0,0,0,0.6);
   -webkit-overflow-scrolling: touch;
   overflow-y: hidden !important;
-  /*display: none;*/
+  display: none;
 }
 /*活动规则弹窗*/
 #ruleBox, #registerBox {

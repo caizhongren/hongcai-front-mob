@@ -84,7 +84,9 @@ window.onload = function(){
               [
               'onMenuShareAppMessage',
               'hideMenuItems',
-              'onMenuShareTimeline'
+              'onMenuShareTimeline', 
+              'onMenuShareQQ', 
+              'onMenuShareQZone'
               ]
         })
       } else {

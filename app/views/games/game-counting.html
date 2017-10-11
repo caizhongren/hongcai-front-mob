@@ -27,6 +27,14 @@
         background: url('/images/games/icon-rule.png') no-repeat 0 0;
         background-size: 100% 100%;
       }
+      .input-focus {
+        transform: translateY(-2rem);
+        -webkit-transition:all .2s ease-out;
+        -moz-transition:all .2s ease-out;
+        -o-transition:all .2s ease-out;
+        -ms-transition:all .2s ease-out;    
+        transition:all .2s ease-out;
+      }
     </style>
     <script src="/styles/un-min/jweixin-1.0.0.js"></script>
     <script src="/styles/un-min/rem.js"></script>
@@ -186,7 +194,7 @@
   <body>
     <!-- <audio  controls="controls"><source src="/styles/un-min/nsn.mp3"></audio> -->
     <audio id="audio"></audio>
-    <!-- <audio id="warning"></audio> -->
+    <audio id="warning"></audio>
     <div class="game-counting-wrap">
       <div class="game-counting">
         <div class="game-counting-innner">
@@ -244,7 +252,7 @@
       </div>
     </div>
     <!-- 321游戏开始倒计时 -->
-    <div class="mask-common" id="startGame" style="display: none;">
+    <div class="mask-common" id="startGame">
       <div class="startGame">
         <img src="/images/games/reload-3.png" width="30%" class="countDown3">
         <img src="/images/games/reload-2.png" width="28%" class="countDown2">
@@ -253,7 +261,7 @@
       </div>
     </div>
     <!-- 活动规则弹窗 -->
-    <div class="mask-common" id="ruleBox" style="display: none;">
+    <div class="mask-common" id="ruleBox">
       <div class="ruleBox">
         <img src="/images/games/rule-box.png" alt="" class="box">
         <div class="rule-title">游戏规则</div>
@@ -287,30 +295,32 @@
       </div>
     </div>
     <!-- 注册弹窗 -->
-    <div class="mask-common" id="registerBox" style="display: none;">
-      <div class="registerBox">
-        <div class="register-title">
-          <img src="/images/games/register-title1.png" width="45%">
-          <div class="rewardMoney"><span class="totalMoney">0</span></div>
-        </div>
-        <!-- 注册表单 -->
-        <form autocomplete="off" class="invite-form" name="registerForm" id="registerForm" novalidate>
-          <div class="to-register">
-            <!-- 手机号码 -->
-            <input id="mobilesignup" name="mobile" type="number" placeholder="请输入手机号" required maxlength="11"/>
-            <!-- 图形验证码 -->
-            <input id="picCaptcha" name="picCaptcha" required type="text" placeholder="请输入图形验证码" class="picCaptcha" maxlength="4"/>
-            <img src="/hongcai/api/v1/siteUser/getPicCaptcha?" id="checkCaptcha" class="captchacode fr bg-white">
-            <!-- 手机验证码 -->
-            <input id="mobileCaptcha" name="captchasignup" required type="number" placeholder="请输入短信验证码" class="mobileCaptcha" maxlength="6"/>
-            <div id="mobilecode">获取</div>
-            <div class="register-tips">*每个账号只能领取一次奖励哦</div>
+    <div class="mask-common" id="registerBox">
+      <div id="register">
+        <div class="registerBox">
+          <div class="register-title">
+            <img src="/images/games/register-title1.png" width="45%">
+            <div class="rewardMoney"><span class="totalMoney">0</span></div>
           </div>
-        </form>
-      </div>
-      <div class="register-btns">
-        <div class="startAgin rule-btn" id="startAgin">再玩一次</div>
-        <div class="getPrize rule-btn" id="getPrize">立即领取</div>
+          <!-- 注册表单 -->
+          <form autocomplete="off" class="invite-form" name="registerForm" id="registerForm" novalidate>
+            <div class="to-register">
+              <!-- 手机号码 -->
+              <input id="mobilesignup" name="mobile" type="number" placeholder="请输入手机号" required maxlength="11"/>
+              <!-- 图形验证码 -->
+              <input id="picCaptcha" name="picCaptcha" required type="text" placeholder="请输入图形验证码" class="picCaptcha" maxlength="4"/>
+              <img src="/hongcai/api/v1/siteUser/getPicCaptcha?" id="checkCaptcha" class="captchacode fr bg-white">
+              <!-- 手机验证码 -->
+              <input id="mobileCaptcha" name="captchasignup" required type="number" placeholder="请输入短信验证码" class="mobileCaptcha" maxlength="6"/>
+              <div id="mobilecode">获取</div>
+              <div class="register-tips">*每个账号只能领取一次奖励哦</div>
+            </div>
+          </form>
+        </div>
+        <div class="register-btns">
+          <div class="startAgin rule-btn" id="startAgin">再玩一次</div>
+          <div class="getPrize rule-btn" id="getPrize">立即领取</div>
+        </div>
       </div>
     </div>
     <!-- 错误提示弹窗 -->
@@ -397,12 +407,15 @@
           var _this = this
           var audio = new Audio();
           audio.setAttribute('src', url);
-          var playPromise = audio.play();
-          if (playPromise) {
-            playPromise.then(function() {
-            }).catch(function(error) {
-              alert(error)
-            });
+          if (audio.paused) {
+            // 暂停中
+            var playPromise = audio.play();
+            if (playPromise) {
+              playPromise.then(function() {
+              }).catch(function(error) {
+                console.log(error)
+              });
+            }
           }
         },
         /*
@@ -464,7 +477,27 @@
             $('#registerBox').show()
             $('#registerBox .totalMoney').html(_this.totalMoney)
             window.addEventListener('touchstart', _this.forceSafariPlayAudio('/styles/un-min/get.mp3'), false);
+            _this.showRewardMoney()
           }
+        },
+        // 获得金额增加钱币效果
+        showRewardMoney: function () {
+          var _this = this
+          var rewardMoney = 0
+          countTimer = setInterval(function () {
+            if (rewardMoney < _this.totalMoney) {
+              rewardMoney += 100
+              if (rewardMoney < _this.totalMoney) {
+                $('#registerBox .totalMoney').html(rewardMoney)
+              } else {
+                $('#registerBox .totalMoney').html(_this.totalMoney)
+                clearInterval(countTimer)
+              }
+            } else {
+              $('#registerBox .totalMoney').html(_this.totalMoney)
+              clearInterval(countTimer)
+            }
+          }, 1000)
         },
         // 点钞金额增加提示效果
         showMoneyTip: function (clickEle, showEle) {
@@ -514,21 +547,21 @@
         countStart: function (clickEle, showEle, type) { // 点击元素， 显示的元素， 点击的按钮类型 50 ／ 100
           var _this = countObj;
           $(clickEle).on('touchstart', function () {
-            // _this.playOrPaused('/styles/un-min/no.mp3')
+            console.log(_this.num)
             if (_this.num < 1 || second <= 0) {
               return;
             }
             if (countList[_this.num].value == type && type == 50) {
-              _this.playOrPaused('/styles/un-min/yes.mp3')
+              _this.playOrPaused(_this.audio, '/styles/un-min/yes.mp3')
               _this.showMoneyTip(clickEle, showEle);
               _this.totalMoney += type
               $('#totalMoney').html()
             } else if (countList[_this.num].value == type && type == 100){
-              _this.playOrPaused('/styles/un-min/yes.mp3')
+              _this.playOrPaused(_this.audio, '/styles/un-min/yes.mp3')
               _this.showMoneyTip(clickEle, showEle);
               _this.totalMoney += type
             } else {
-              _this.playOrPaused('/styles/un-min/no.mp3')
+              _this.playOrPaused(_this.audio, '/styles/un-min/no.mp3')
               countWrong = true;
               _this.showTip('#sub', 800, 1500)
               wrongSecond = second
@@ -553,7 +586,6 @@
         toggleRuleBox: function (clickEle, showEle) {
           var _this = this
           clickEle.on('touchstart', function () {
-            _this.playOrPaused('/styles/un-min/yes.mp3')
             _this.showRule(showEle)
           })
         },
@@ -1444,12 +1476,23 @@
               location.reload()
             }
           })
+        },
+        windowChange: function (ele) {
+          var winHeight = $(window).height()
+          window.addEventListener('resize', function () {
+            if ($(window).height() < winHeight) {
+              isAndroid() ? ele.addClass('input-focus') : null
+            } else {
+              isAndroid() ? ele.removeClass('input-focus') : null
+            }
+          })
         }
       }
       registerObj.refreshCode($('#checkCaptcha'))
       registerObj.getCaptcha(registerObj.mobilecode)
       registerObj.signUp($('#getPrize'))
       registerObj.playAgain($('#startAgin'))
+      registerObj.windowChange($('#register'))
     })
   </script>
 </html>
