@@ -399,23 +399,13 @@
         playOrPaused: function(obj, url) {
           var _this = this
           obj.setAttribute('src', url);
-          if (obj.paused) {
-            // 暂停中
-            var playPromise = obj.play();
-            if (playPromise !== undefined) {
-              playPromise.then(function() {
-              }).catch(function(error) {
-                alert(error)
-              });
-            }
-            // obj.innerHTML='停止';
-            // obj.play()
-          } else {
-            // 播放中
-            obj.pause()
-            obj.currentTime = 0;
+          var playPromise = obj.play();
+          if (playPromise) {
+            playPromise.then(function() {
+            }).catch(function(error) {
+              alert(error)
+            });
           }
-          
         },
       
         /*
@@ -514,7 +504,6 @@
         countStart: function (clickEle, showEle, type) { // 点击元素， 显示的元素， 点击的按钮类型 50 ／ 100
           var _this = countObj;
           $(clickEle).on('touchstart', function () {
-            console.log(_this.num)
             if (_this.num < 1 || second <= 0) {
               return;
             }
@@ -553,6 +542,7 @@
         toggleRuleBox: function (clickEle, showEle) {
           var _this = this
           clickEle.on('touchstart', function () {
+            _this.playOrPaused(_this.audio, '/styles/un-min/yes.mp3')
             _this.showRule(showEle)
           })
         },
