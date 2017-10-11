@@ -425,11 +425,6 @@
           audioEl.setAttribute('src', url);
           audioEl.load(); // iOS 9   还需要额外的 load 一下, 否则直接 play 无效
           audioEl.play(); // iOS 7/8 仅需要 play 一下
-          var _this = this
-          audioEl.addEventListener('play', function() {
-            // 当 audio 能够播放后, 移除这个事件
-            window.removeEventListener('touchstart', _this.forceSafariPlayAudio, false);
-          }, false);
         },
         /*
         ** 倒计时沙漏 
@@ -451,7 +446,10 @@
           if (second > 0) {
             // 时间只剩10秒时
             if (second <= 11) {
-              window.addEventListener('touchstart', _this.forceSafariPlayAudio('/styles/un-min/tip.mp3'), false);
+              // window.addEventListener('touchstart', _this.forceSafariPlayAudio('/styles/un-min/tip.mp3'), false);
+              wx.ready(function() {
+                _this.forceSafariPlayAudio('/styles/un-min/tip.mp3');
+              });
               _this.hourglassAnimate(second*1000-100)
             }
             // 判断是否点错，假设在28秒， countWrong === ture 表示点错钞
@@ -475,7 +473,10 @@
             clearTimeout(countTimer)
             $('#registerBox').show()
             $('#registerBox .totalMoney').html(_this.totalMoney)
-            window.addEventListener('touchstart', _this.forceSafariPlayAudio('/styles/un-min/get.mp3'), false);
+            // window.addEventListener('touchstart', _this.forceSafariPlayAudio('/styles/un-min/get.mp3'), false);
+            wx.ready(function() {
+              _this.forceSafariPlayAudio('/styles/un-min/tip.mp3');
+            });
             _this.showRewardMoney()
           }
         },
@@ -551,16 +552,16 @@
               return;
             }
             if (countList[_this.num].value == type && type == 50) {
-              _this.playOrPaused(_this.audio, '/styles/un-min/yes.mp3')
+              _this.playOrPaused('/styles/un-min/yes.mp3')
               _this.showMoneyTip(clickEle, showEle);
               _this.totalMoney += type
               $('#totalMoney').html()
             } else if (countList[_this.num].value == type && type == 100){
-              _this.playOrPaused(_this.audio, '/styles/un-min/yes.mp3')
+              _this.playOrPaused('/styles/un-min/yes.mp3')
               _this.showMoneyTip(clickEle, showEle);
               _this.totalMoney += type
             } else {
-              _this.playOrPaused(_this.audio, '/styles/un-min/no.mp3')
+              _this.playOrPaused('/styles/un-min/no.mp3')
               countWrong = true;
               _this.showTip('#sub', 800, 1500)
               wrongSecond = second
