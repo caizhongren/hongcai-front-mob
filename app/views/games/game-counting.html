@@ -387,9 +387,7 @@
           getAudio = document.getElementById('getAudio'),
           warningAudio = document.getElementById('warning'),
           receiveMoney = document.getElementsByClassName('totalMoney'),
-          scrollDirection = -139.389; // 钞票初始位置
-        $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
-        document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
+          scrollDirection = 0; // 钞票初始位置  钞票的初始位置公式： -1.439 * (接口拿到的钞票张数 - 3)
       var countObj = {
         gameCounts: 0,
         gameTimes: 30,
@@ -486,25 +484,6 @@
             document.addEventListener("WeixinJSBridgeReady", _this.forceSafariPlayAudio(getAudio), false);
           }
         },
-        // 获得金额增加钱币效果
-        // showRewardMoney: function () {
-        //   var _this = this
-        //   var rewardMoney = 0
-        //   countTimer = setInterval(function () {
-        //     if (rewardMoney < _this.totalMoney) {
-        //       rewardMoney += 100
-        //       if (rewardMoney < _this.totalMoney) {
-        //         $('#registerBox .totalMoney').html(rewardMoney)
-        //       } else {
-        //         $('#registerBox .totalMoney').html(_this.totalMoney)
-        //         clearInterval(countTimer)
-        //       }
-        //     } else {
-        //       $('#registerBox .totalMoney').html(_this.totalMoney)
-        //       clearInterval(countTimer)
-        //     }
-        //   }, 1000)
-        // },
         showRewardMoney: function(elem, endVal, startVal, duration, decimal) {  
           //传入参数依次为 数字要变化的元素，最终显示数字，数字变化开始值，变化持续时间，小数点位数
           console.log(elem.innerHTML)
@@ -651,7 +630,7 @@
         // 判断是否首次进入游戏页
         getGameState: function () {
           var _this = this
-          $.get('/hongcai/rest/activity/countingKings/' + getCookie('openid') + 'userCountingInfo', function (res, status) {
+          $.get('/hongcai/rest/activity/countingKings/' + getCookie('openid') + '/userCountingInfo', function (res, status) {
             if (res && res.ret !== -1) {
               res = {
                 unUsedCount: 2,
@@ -688,6 +667,9 @@
               countObj.moneyConfig(countList)
               _this.getGameState();
               _this.num = countList.length -1
+              scrollDirection =  -1.439 * (countList.length - 3)
+              $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
+              document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
             } else {
               alert(res.msg);
             }
@@ -847,8 +829,8 @@
               mobile: _this.mobile.val(),
               password: '',
               captcha: _this.mobileCaptcha.val(),
-              channelCode: getQueryString('f'),
-              act: getQueryString('act'),
+              channelCode: getCookie('f'),
+              act: getCookie('act'),
               device: _this.deviceCode()
             }, function (res) {
               console.log(res)
@@ -867,16 +849,15 @@
                 return
               }
               console.log('注册成功')
-              _this.takeReward()
+              _this.takeReward(countObj.totalMoney)
             })
           })
         },
         //发放特权本金
         takeReward: function (rewardMoney) {
-          // $.get("/hongcai/rest/assignments/assignmentRule", function (res, status) {
           $.post('/hongcai/rest/activity/countingKings/takeReward', {
-            openid: getCookie('openid'),
-            amount: rewardMoney
+            'openid': getCookie('openid'),
+            'amount': rewardMoney
           }, function (res) {
             if (res && res.ret !== -1) {
               window.location.href= location.origin + '/views/games/game-counting-reward.html?principal=' + rewardMoney 
@@ -911,7 +892,6 @@
       registerObj.signUp($('#getPrize'))
       registerObj.playAgain($('#startAgin'))
       registerObj.windowChange($('#register'))
-      registerObj.takeReward(1000)
     })
   </script>
 </html>
