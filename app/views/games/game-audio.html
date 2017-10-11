@@ -25,7 +25,7 @@
 	</style>
 	<body>
 		<span id="game-audio">
-      <audio  controls="controls"><source src="/styles/un-min/nsn.mp3"></audio>
+      <audio  controls="controls"><source src="/styles/un-min/no.mp3"></audio>
     </span>
 		<a href="javascript:void(0);" onclick="playOrPaused(this);">播放</a>
 		<a href="javascript:void(0);" onclick="hideOrShowControls(this);">隐藏控制框</a>
@@ -45,25 +45,18 @@
   // document.addEventListener('YixinJSBridgeReady', play, false);
   console.log(audio)
   function playOrPaused(obj) {
-    if (audio.paused) {
       // 暂停中
-      var playPromise = audio.play();
-      if (playPromise !== undefined) {
-        playPromise.then(function() {
-          obj.innerHTML='停止';
-        }).catch(function(error) {
-          alert(error)
-        });
-      }
+      // var playPromise = audio.play();
+      // if (playPromise !== undefined) {
+      //   playPromise.then(function() {
+      //     obj.innerHTML='停止';
+      //   }).catch(function(error) {
+      //     alert(error)
+      //   });
+      // }
       // obj.innerHTML='停止';
-      // audio.play()
-    } else {
-      // 播放中
-      obj.innerHTML='播放';
-      audio.pause()
-      audio.currentTime = 0;
-    }
-    
+      audio.play()
+  
   }
   function hideOrShowControls(obj) {
   	if(audio.controls){
