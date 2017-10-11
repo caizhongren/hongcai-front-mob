@@ -56,6 +56,7 @@ window.onload = function(){
    * @return
    */
   function configJsApi (url){
+    url = encodeURIComponent(url);
     $.get('/hongcai/rest/wechat/jsApiConfig?requestUrl=' + url, function (apiConfig, status) {
       if (apiConfig && apiConfig.ret !== -1) {
         wx.config({
