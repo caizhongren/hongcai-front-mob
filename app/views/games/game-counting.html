@@ -189,8 +189,8 @@
     </style>
   </head>
   <body>
-    <!-- <audio  controls="controls"><source src="/styles/un-min/nsn.mp3"></audio> -->
-    <audio id="audio"></audio>
+    <audio id="getAudio"><source src="/styles/un-min/get.mp3"></audio>
+    <audio id="warning"><source src="/styles/un-min/tip.mp3"></audio>
     <audio id="warning"></audio>
     <div class="game-counting-wrap">
       <div class="game-counting">
@@ -448,7 +448,7 @@
             if (second <= 11) {
               // window.addEventListener('touchstart', _this.forceSafariPlayAudio('/styles/un-min/tip.mp3'), false);
               wx.ready(function() {
-                _this.forceSafariPlayAudio('/styles/un-min/tip.mp3');
+                document.getElementById('warning').play();
               });
               _this.hourglassAnimate(second*1000-100)
             }
@@ -475,7 +475,7 @@
             $('#registerBox .totalMoney').html(_this.totalMoney)
             // window.addEventListener('touchstart', _this.forceSafariPlayAudio('/styles/un-min/get.mp3'), false);
             wx.ready(function() {
-              _this.forceSafariPlayAudio('/styles/un-min/tip.mp3');
+              document.getElementById('getAudio').play();
             });
             _this.showRewardMoney()
           }
