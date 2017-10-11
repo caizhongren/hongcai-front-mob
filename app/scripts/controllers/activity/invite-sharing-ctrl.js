@@ -136,9 +136,13 @@ angular.module('p2pSiteMobApp')
       return arr[Math.floor(Math.random()*arr.length)];
     }
 
-    if(SessionService.isLogin() && Utils.isWeixin()){
+    if(Utils.isWeixin()){
       //邀请码
       Restangular.one('users/0').one('voucher').get().then(function(response){
+        if (response.ret == -1) {
+          return;
+        }
+
         $scope.voucher = response;
         
         wx.error(function(res){
