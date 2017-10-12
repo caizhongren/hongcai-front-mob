@@ -224,10 +224,8 @@ window.onload = function(){
         // redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
         return
       } else if (response){
-        alert(response.openid)
         openid = getCookie('openid') || response.openid
         setCookie('openid', openid, 1)
-        alert(getCookie('openid'))
       }
     })
   }
@@ -262,7 +260,6 @@ window.onload = function(){
         getOpenid()
       }
       if (!getCookie('openid')) {
-        alert(getCookie('openid'))
         redirectToWechatAuth(location.href)
         // redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
         return

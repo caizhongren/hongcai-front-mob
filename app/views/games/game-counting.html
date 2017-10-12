@@ -707,7 +707,10 @@
           $('#totalMoney').html(0);
           this.countStart('#count-100', '#add-100', 100)
           this.countStart('#count-50', '#add-50', 50)
-          this.updateCount()
+          if (this.gameCounts <=0) {
+            location.href= location.origin + '/views/games/game-counting-share.html'
+            return
+          }
         }
       };
       countObj.startGameConfig();
