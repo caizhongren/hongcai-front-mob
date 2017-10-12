@@ -219,6 +219,7 @@ window.onload = function(){
   function getOpenid () {
     $.get('/hongcai/rest/users/' + wechat_code + '/openid', function (response, status) {
       if ((response && response.ret == -1)) { //微信授权登录失败
+        alert('openid')
         redirectToWechatAuth(location.href)
         // redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
         return
