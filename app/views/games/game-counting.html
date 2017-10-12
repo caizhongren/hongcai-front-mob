@@ -188,6 +188,11 @@
         border: 1px solid #fff;
         color: #ff172f;
       }
+      #voice {
+        position: absolute;
+        top: .7rem;
+        right: .7rem;
+      }
     </style>
   </head>
   <body>
@@ -196,7 +201,8 @@
     <div class="game-counting-wrap">
       <div class="game-counting">
         <div class="game-counting-innner">
-          <img src="/images/games/header-title.png" width="72%" class="title-img">
+          <img src="/images/games/on.png" width="7.5%" class="position-ab" id="voice">
+          <img src="/images/games/header-title.png" width="70%" class="title-img">
           <!-- 剩余次数 -->
           <div class="times">
             <img src="/images/games/hand-left.png" class="display-inbl" width="6%">
@@ -380,9 +386,11 @@
           $gameCounts = $('#gameCounts'),
           $RuleStartGame = $('#RuleStartGame'),
           $ReadyFlash = $('#startGame'),
+          $voice = $('#voice'),
           percentWidth = 96, // 进度条初始化样式百分比数值
           percentOneSecond = 3.2, // 一秒进度条递减值
           countWrong = false, // 是否数错钞,
+          isPlay = true, // 是否静音
           wrongSecond,
           getAudio = document.getElementById('getAudio'),
           warningAudio = document.getElementById('warning'),
@@ -405,17 +413,19 @@
         ** 音效播放
         */
         playOrPaused: function(url) {
-          var _this = this
-          var audio = new Audio();
-          audio.setAttribute('src', url);
-          if (audio.paused) {
-            // 暂停中
-            var playPromise = audio.play();
-            if (playPromise) {
-              playPromise.then(function() {
-              }).catch(function(error) {
-                console.log(error)
-              });
+          if (isPlay) {
+            var _this = this
+            var audio = new Audio();
+            audio.setAttribute('src', url);
+            if (audio.paused) {
+              // 暂停中
+              var playPromise = audio.play();
+              if (playPromise) {
+                playPromise.then(function() {
+                }).catch(function(error) {
+                  console.log(error)
+                });
+              }
             }
           }
         },
@@ -423,18 +433,21 @@
         ** 音效播放,解决iOS下无法触发自动播放
         */
         forceSafariPlayAudio: function (obj) {
-          if (window.WeixinJSBridge) {
-            WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-              obj.play();
-            }, false);
-          } else {
-            document.addEventListener("WeixinJSBridgeReady", function () {
+          // isPlay ? obj.muted = false : obj.muted = true;
+          if (isPlay) {
+            if (window.WeixinJSBridge) {
               WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
                 obj.play();
-              });
-            }, false);
+              }, false);
+            } else {
+              document.addEventListener("WeixinJSBridgeReady", function () {
+                WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                  obj.play();
+                });
+              }, false);
+            }
+            obj.play();
           }
-          obj.play();
         },
         /*
         ** 倒计时沙漏 
@@ -892,6 +905,11 @@
       registerObj.signUp($('#getPrize'))
       registerObj.playAgain($('#startAgin'))
       registerObj.windowChange($('#register'))
+      $voice.on('touchstart', function () {
+        isPlay = !isPlay;
+        var onOrOff = isPlay ? 'on' : 'off';
+        $(this).attr('src', '/images/games/' + onOrOff + '.png');
+      })
     })
   </script>
 </html>
