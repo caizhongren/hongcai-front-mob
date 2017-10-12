@@ -236,6 +236,7 @@ window.onload = function(){
   /**
    * 统一授权分享判断
    */
+  // var openid = getCookie('openid') || 'oBBBjs6uL13Z7E03h5E2hEOnM_l8'
   function WechatAuth () {
     var wechat_code = getQueryString('code')
     var shareItem = {
@@ -244,6 +245,7 @@ window.onload = function(){
       linkUrl : 'http://m.test321.hongcai.com/views/games/game-counting-start.html',
       imageUrl : 'https://mmbiz.qpic.cn/mmbiz_png/8MZDOEkib8AlSSicY3du8iciaLhZly5kkUP3PSrln8puqracuY9T3W79wJW4kh1BFV59zgG2T5nm7qictF9IicvC4gyw/0?wx_fmt=png'
     }
+    // setCookie('openid', 'oBBBjs6uL13Z7E03h5E2hEOnM_l8', {'expires': 0.1, 'domain': 'http://localhost:9000'})
     if (getQueryString('act')) {
       setCookie('act', getQueryString('act'), 1)
     }
@@ -253,31 +255,33 @@ window.onload = function(){
     if (!isWeixin()) {
       redirectToWechatAuth(location.href)
       return;
-    } else if(!wechat_code){
-      redirectToWechatAuth(location.href)
-      // redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
-      return;
-    }
-    $.get('/hongcai/rest/users/' + wechat_code + '/openid', function (response, status) {
-      if (response && response.ret == -1) { //微信授权登录失败
-        redirectToWechatAuth(location.href)
-        // redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
-        return
-      } else if (response){
-        openid = response.openid || 'oBBBjs6uL13Z7E03h5E2hEOnM_l8'
-        // window.location.href = location.href + '&openid=' + openid
-        openid ? setCookie('openid', openid, 1) : null
+    } else {
+      if (wechat_code) {
+        $.get('/hongcai/rest/users/' + wechat_code + '/openid', function (response, status) {
+          if ((response && response.ret == -1) || !response.openid) { //微信授权登录失败
+            redirectToWechatAuth(location.href)
+            // redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
+            return
+          } else if (response && response.openid){
+            openid = getCookie('openid') || response.openid
+            setCookie('openid', openid, 0.1)
+            
+          }
+        })
+      } else if (openid) {
         configJsApi(location.href.split('#')[0])
         wx.error(function(res){
           console.log('wx.error' + res)
         })
-        console.log(shareItem)
         wx.ready(function(){
           console.log('wx.ready')
           onMenuShareAppMessage(shareItem.title, shareItem.subTitle, shareItem.linkUrl, shareItem.imageUrl)
         })
+      } else {
+        redirectToWechatAuth(location.href)
+        // redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
       }
-    })
+    }  
   }
   window.addEventListener('load', function () {
     WechatAuth()
