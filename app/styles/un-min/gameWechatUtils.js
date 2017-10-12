@@ -205,6 +205,8 @@ window.onload = function(){
   function redirectToWechatAuth (redirect_uri){
     var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + 'wx02dfe579709d2d95' +
               "&redirect_uri=" + encodeURIComponent(removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"
+    alert(redirect_uri)
+    alert(wechatRedirectUrl)
     window.location.href = wechatRedirectUrl
   }
   /**
@@ -228,7 +230,6 @@ window.onload = function(){
     })
   }
   function WechatAuth () {
-    alert(getCookie('openid'))
     var shareItem = {
       title : '我正在疯狂数钱中…',
       subTitle : '论手速，你不一定能比过我！不信就来试试看！数出多少送多少！',
@@ -259,6 +260,7 @@ window.onload = function(){
         getOpenid()
       }
       if (!getCookie('openid')) {
+        alert(getCookie('openid'))
         redirectToWechatAuth(location.href)
         // redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
         return

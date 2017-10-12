@@ -831,7 +831,6 @@
               alert('1111')
               return
             }
-            alert(1)
             $.post('/hongcai/rest/users/register', {
               picCaptcha: _this.picCaptcha.val(),
               mobile: _this.mobile.val(),
@@ -853,8 +852,10 @@
                 } else {
                   _this.showToast(res.msg)
                 }
+                alert(res.msg)
                 return
               }
+              alert(1)
               console.log('注册成功')
               _this.takeReward(countObj.totalMoney, res.id)
             })
