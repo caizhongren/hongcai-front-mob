@@ -862,15 +862,16 @@
                 return
               }
               console.log('注册成功')
-              _this.takeReward(countObj.totalMoney)
+              _this.takeReward(countObj.totalMoney, res.id)
             })
           })
         },
         //发放特权本金
-        takeReward: function (rewardMoney) {
+        takeReward: function (rewardMoney, userId) {
           $.post('/hongcai/rest/activity/countingKings/takeReward', {
             'openid': getCookie('openid'),
-            'amount': rewardMoney
+            userId: userId,
+            amount: rewardMoney
           }, function (res) {
             if (res && res.ret !== -1) {
               window.location.href= location.origin + '/views/games/game-counting-reward.html?principal=' + rewardMoney 
