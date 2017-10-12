@@ -62,7 +62,7 @@ window.onload = function(){
     $.get('/hongcai/rest/wechat/jsApiConfig?requestUrl=' + url, function (apiConfig, status) {
       if (apiConfig && apiConfig.ret !== -1) {
         wx.config({
-          debug: true,
+          debug: false,
           appId: apiConfig.appId, // 必填，公众号的唯一标识
           timestamp: apiConfig.timestamp, // 必填，生成签名的时间戳
           nonceStr: apiConfig.nonceStr, // 必填，生成签名的随机串
@@ -116,7 +116,7 @@ window.onload = function(){
         console.log('onMenuShareAppMessage: success')
         updateCount()
         if (location.pathname === '/views/games/game-counting-share.html') {
-          window.location.href = location.origin + '/views/games/game-counting-start.html?code=' + openid
+          window.location.href = location.origin + '/views/games/game-counting-start.html'
         } else {
           location.reload()
         }
@@ -139,7 +139,7 @@ window.onload = function(){
         console.log('onMenuShareTimeline: success')
         updateCount()
         if (location.pathname === '/views/games/game-counting-share.html') {
-          window.location.href = location.origin + '/views/games/game-counting-start.html?code=' + openid
+          window.location.href = location.origin + '/views/games/game-counting-start.html'
         } else {
           location.reload()
         }
@@ -163,7 +163,7 @@ window.onload = function(){
         console.log('onMenuShareQQ: success')
         updateCount()
         if (location.pathname === '/views/games/game-counting-share.html') {
-          window.location.href = location.origin + '/views/games/game-counting-start.html?code=' + openid
+          window.location.href = location.origin + '/views/games/game-counting-start.html'
         } else {
           location.reload()
         }
@@ -187,7 +187,7 @@ window.onload = function(){
         console.log('onMenuShareQZone: success')
         updateCount()
         if (location.pathname === '/views/games/game-counting-share.html') {
-          window.location.href = location.origin + '/views/games/game-counting-start.html?code=' + openid
+          window.location.href = location.origin + '/views/games/game-counting-start.html'
         } else {
           location.reload()
         }
@@ -228,6 +228,7 @@ window.onload = function(){
     })
   }
   function WechatAuth () {
+    alert(getCookie('openid'))
     var shareItem = {
       title : '我正在疯狂数钱中…',
       subTitle : '论手速，你不一定能比过我！不信就来试试看！数出多少送多少！',
