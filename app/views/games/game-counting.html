@@ -631,11 +631,7 @@
           var _this = this
           $.get('/hongcai/rest/activity/countingKings/' + getCookie('openid') + '/userCountingInfo' , function (res, status) {
             if (res && res.ret !== -1) {
-              res = {
-                unUsedCount: 5,
-                usedCount: 1
-              }
-              _this.gameCounts = res.unUsedCount
+              _this.gameCounts = res.count
               res.usedCount <=0 ? _this.firstEntry = true : _this.firstEntry = false
             } else {
               alert('获取用户游戏参与信息接口报错')
@@ -648,11 +644,7 @@
           var _this = this
           $.get('/hongcai/rest/activity/countingKings/' + getCookie('openid') + '/userCountingInfo', function (res, status) {
             if (res && res.ret !== -1) {
-              res = {
-                unUsedCount: 2,
-                usedCount: 0
-              }
-              _this.gameCounts = res.unUsedCount
+              _this.gameCounts = res.count
               res.usedCount <=0 ? _this.firstEntry = true : _this.firstEntry = false
               if (_this.firstEntry) {
                 $ruleBox.show();
@@ -700,9 +692,8 @@
             success: function (res) {
               console.log(res)
               if (res && res.ret !== -1) {
-                res.unUsedCount = 1
-                _this.gameCounts = res.unUsedCount
-                $gameCounts.html(res.unUsedCount)
+                _this.gameCounts = res.count
+                $gameCounts.html(res.count)
               } else {
                 alert(res.msg)
               }

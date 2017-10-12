@@ -114,19 +114,12 @@ window.onload = function(){
       success: function (res) {
         // 分享成功后隐藏分享引导窗口
         console.log('onMenuShareAppMessage: success')
-        if (location.pathname === '/views/games/game-counting-share.html') {
-          window.location.href = location.protocol + location.host + '/views/games/game-counting-start.html?code=' + openid
-        } else {
-          // location.reload()
-        }
-        $.post('/hongcai/rest/users/shareActivity', {
-          openId: openid,
-          act: getQueryString('act'),
-          channelCode: getQueryString('f')
-        }, function (res) {
-
-        })
         updateCount()
+        if (location.pathname === '/views/games/game-counting-share.html') {
+          window.location.href = location.origin + '/views/games/game-counting-start.html?code=' + openid
+        } else {
+          location.reload()
+        }
       },
       cancel: function (res) {
       },
@@ -144,19 +137,12 @@ window.onload = function(){
       success: function (res) {
         // 分享成功后隐藏分享引导窗口
         console.log('onMenuShareTimeline: success')
-        if (location.pathname === '/views/games/game-counting-share.html') {
-          window.location.href = location.protocol + location.host + '/views/games/game-counting-start.html?code=' + openid
-        } else {
-          // location.reload()
-        }
-        $.post('/hongcai/rest/users/shareActivity', {
-          openId: openid,
-          act: getQueryString('act'),
-          channelCode: getQueryString('f')
-        }, function (res) {
-
-        })
         updateCount()
+        if (location.pathname === '/views/games/game-counting-share.html') {
+          window.location.href = location.origin + '/views/games/game-counting-start.html?code=' + openid
+        } else {
+          location.reload()
+        }
       },
       cancel: function (res) {
       },
@@ -175,19 +161,12 @@ window.onload = function(){
       success: function (res) {
         // 分享成功后隐藏分享引导窗口
         console.log('onMenuShareQQ: success')
-        if (location.pathname === '/views/games/game-counting-share.html') {
-          window.location.href = location.protocol + location.host + '/views/games/game-counting-start.html?code=' + openid
-        } else {
-          // location.reload()
-        }
-        $.post('/hongcai/rest/users/shareActivity', {
-          openId: openid,
-          act: getQueryString('act'),
-          channelCode: getQueryString('f')
-        }, function (res) {
-
-        })
         updateCount()
+        if (location.pathname === '/views/games/game-counting-share.html') {
+          window.location.href = location.origin + '/views/games/game-counting-start.html?code=' + openid
+        } else {
+          location.reload()
+        }
       },
       cancel: function (res) {
       },
@@ -206,19 +185,12 @@ window.onload = function(){
       success: function (res) {
         // 分享成功后隐藏分享引导窗口
         console.log('onMenuShareQZone: success')
-        if (location.pathname === '/views/games/game-counting-share.html') {
-          window.location.href = location.protocol + location.host + '/views/games/game-counting-start.html?code=' + openid
-        } else {
-          // location.reload()
-        }
-        $.post('/hongcai/rest/users/shareActivity', {
-          openId: openid,
-          act: getQueryString('act'),
-          channelCode: getQueryString('f')
-        }, function (res) {
-
-        })
         updateCount()
+        if (location.pathname === '/views/games/game-counting-share.html') {
+          window.location.href = location.origin + '/views/games/game-counting-start.html?code=' + openid
+        } else {
+          location.reload()
+        }
       },
       cancel: function (res) {
       },
@@ -245,8 +217,8 @@ window.onload = function(){
   function getOpenid () {
     $.get('/hongcai/rest/users/' + wechat_code + '/openid', function (response, status) {
       if ((response && response.ret == -1)) { //微信授权登录失败
-        // redirectToWechatAuth(location.href)
-        redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
+        redirectToWechatAuth(location.href)
+        // redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
         return
       } else if (response){
         openid = getCookie('openid') || response.openid
@@ -262,7 +234,7 @@ window.onload = function(){
       linkUrl : 'http://m.test321.hongcai.com/views/games/game-counting-start.html',
       imageUrl : 'https://mmbiz.qpic.cn/mmbiz_png/8MZDOEkib8AlSSicY3du8iciaLhZly5kkUP3PSrln8puqracuY9T3W79wJW4kh1BFV59zgG2T5nm7qictF9IicvC4gyw/0?wx_fmt=png'
     }
-    // setCookie('openid', 'oBBBjs6uL13Z7E03h5E2hEOnM_l8', {'expires': 0.1, 'domain': 'http://localhost:9000'})
+    setCookie('openid', 'oBBBjs6uL13Z7E03h5E2hEOnM_l8', {'expires': 0.1, 'domain': 'http://localhost:9000'})
     if (getQueryString('act')) {
       setCookie('act', getQueryString('act'), 1)
     }
@@ -283,22 +255,11 @@ window.onload = function(){
       })
 
       if (wechat_code) {
-        // $.get('/hongcai/rest/users/' + wechat_code + '/openid', function (response, status) {
-        //   if ((response && response.ret == -1)) { //微信授权登录失败
-        //     // redirectToWechatAuth(location.href)
-        //     redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
-        //     return
-        //   } else if (response){
-        //     openid = getCookie('openid') || response.openid
-        //     setCookie('openid', openid, 0.1)
-            
-        //   }
-        // })
         getOpenid()
       }
-      if (!openid) {
-        // redirectToWechatAuth(location.href)
-        redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
+      if (!getCookie('openid')) {
+        redirectToWechatAuth(location.href)
+        // redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
         return
       }
     }  
