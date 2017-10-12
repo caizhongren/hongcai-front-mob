@@ -828,8 +828,10 @@
           var _this = this
           clickEle.on('touchstart', function () {
             if (!_this.mobile.val() || !_this.picCaptcha.val() || !_this.mobileCaptcha.val()) {
+              alert('1111')
               return
             }
+            alert(1)
             $.post('/hongcai/rest/users/register', {
               picCaptcha: _this.picCaptcha.val(),
               mobile: _this.mobile.val(),
@@ -844,7 +846,6 @@
                 _this.busy = false
               }, 1000)
               if (res.code || res.ret === -1) {
-                alert(1)
                 if (res.code === -1003) {
                   _this.showToast('请输入正确的手机号！')
                 } else if (res.code === -1005) {
