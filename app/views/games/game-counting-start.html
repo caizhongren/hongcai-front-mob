@@ -203,11 +203,6 @@
 <script type="text/javascript" src="/styles/un-min/gameWechatUtils.js"></script>
 <script type="text/javascript">
 $(function () {
-	function getQueryString(name) {  
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");  
-    var r = window.location.search.substr(1).match(reg);  
-    if (r != null) return unescape(r[2]); return null;  
-  }
   function getCookie(c_name) {  
     if (document.cookie.length > 0) {  
       c_start = document.cookie.indexOf(c_name + "=");  
@@ -221,8 +216,7 @@ $(function () {
     }  
     return "";  
   }
-	var openid = getCookie('openid')
-	console.log('start-openid:' + openid)
+	console.log('start-openid:' + getCookie('openid'))
 	var userCountingInfo = {
 		unUsedCount: 5, //剩余游戏次数
 		usedCount: 0, //是否首次进入游戏
@@ -230,12 +224,12 @@ $(function () {
 	  countingKings: function () {
 	    var _this = this
 	    $.post('/hongcai/rest/activity/countingKings', {
-        openid: openid,
+        openid: getCookie('openid'),
         channelCode: getCookie('f')
       }, function (res) {
 	      if (res && res.ret !== -1) {
 	      	// 获取用户游戏参与信息
-	        $.get('/hongcai/rest/activity/countingKings/' + openid + '/userCountingInfo', function (res, status) {
+	        $.get('/hongcai/rest/activity/countingKings/' + getCookie('openid') + '/userCountingInfo', function (res, status) {
 			      if (res && res.ret !== -1) {
 			        _this.unUsedCount = res.count
 			        _this.usedCount = res.usedCount
@@ -271,9 +265,19 @@ $(function () {
 	  	this.showRule()
 	  }
 	}
-	userCountingInfo.countingKings()
+	// getCookie('openid') ? userCountingInfo.countingKings() : null
 	userCountingInfo.addClick()
-	
+	function getConfig () {
+		if (getCookie('openid')) {
+			userCountingInfo.countingKings()
+			clearTimeout(outTimer)
+		} else {
+			var outTimer = setTimeout(function () {
+			  getConfig()
+			}, 200)
+		}
+	}
+	getConfig()
 })
 </script>
 </html>

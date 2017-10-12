@@ -670,7 +670,6 @@
           var _this = this
           $.get("/hongcai/rest/activity/countingKings", function (res, status) {
             if (res && res.ret !== -1) {
-              alert(11)
               countList = res.countingValues
               countObj.moneyConfig(countList)
               _this.getGameState();
@@ -695,7 +694,7 @@
                 _this.gameCounts = res.count
                 $gameCounts.html(res.count)
               } else {
-                alert(res.msg)
+                console.log(res.msg)
               }
             },
             data: 'openid=' + getCookie('openid') + '&type=1'

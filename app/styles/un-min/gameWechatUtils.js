@@ -234,7 +234,7 @@ window.onload = function(){
       linkUrl : 'http://m.test321.hongcai.com/views/games/game-counting-start.html',
       imageUrl : 'https://mmbiz.qpic.cn/mmbiz_png/8MZDOEkib8AlSSicY3du8iciaLhZly5kkUP3PSrln8puqracuY9T3W79wJW4kh1BFV59zgG2T5nm7qictF9IicvC4gyw/0?wx_fmt=png'
     }
-    setCookie('openid', 'oBBBjs6uL13Z7E03h5E2hEOnM_l8', {'expires': 0.1, 'domain': 'http://localhost:9000'})
+    // setCookie('openid', 'oBBBjs6uL13Z7E03h5E2hEOnM_l8', {'expires': 0.1, 'domain': 'http://localhost:9000'})
     if (getQueryString('act')) {
       setCookie('act', getQueryString('act'), 1)
     }
