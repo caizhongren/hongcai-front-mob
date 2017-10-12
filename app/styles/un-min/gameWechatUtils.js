@@ -1,5 +1,7 @@
 window.onload = function(){
-
+  $.ajaxSetup({  
+    async : false  
+  }); 
   /**
    * 是否在微信中
    */
@@ -237,8 +239,23 @@ window.onload = function(){
    * 统一授权分享判断
    */
   // var openid = getCookie('openid') || 'oBBBjs6uL13Z7E03h5E2hEOnM_l8'
+  var openid = getCookie('openid') || ''
+
+  var wechat_code = getQueryString('code')
+  function getOpenid () {
+    $.get('/hongcai/rest/users/' + wechat_code + '/openid', function (response, status) {
+      if ((response && response.ret == -1)) { //微信授权登录失败
+        // redirectToWechatAuth(location.href)
+        redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
+        return
+      } else if (response){
+        openid = getCookie('openid') || response.openid
+        setCookie('openid', openid, 0.1)
+        
+      }
+    })
+  }
   function WechatAuth () {
-    var wechat_code = getQueryString('code')
     var shareItem = {
       title : '我正在疯狂数钱中…',
       subTitle : '论手速，你不一定能比过我！不信就来试试看！数出多少送多少！',
@@ -256,30 +273,33 @@ window.onload = function(){
       redirectToWechatAuth(location.href)
       return;
     } else {
+      configJsApi(location.href.split('#')[0])
+      wx.error(function(res){
+        console.log('wx.error' + res)
+      })
+      wx.ready(function(){
+        console.log('wx.ready')
+        onMenuShareAppMessage(shareItem.title, shareItem.subTitle, shareItem.linkUrl, shareItem.imageUrl)
+      })
+
       if (wechat_code) {
-        $.get('/hongcai/rest/users/' + wechat_code + '/openid', function (response, status) {
-          if ((response && response.ret == -1) || !response.openid) { //微信授权登录失败
-            redirectToWechatAuth(location.href)
-            // redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
-            return
-          } else if (response && response.openid){
-            openid = getCookie('openid') || response.openid
-            setCookie('openid', openid, 0.1)
+        // $.get('/hongcai/rest/users/' + wechat_code + '/openid', function (response, status) {
+        //   if ((response && response.ret == -1)) { //微信授权登录失败
+        //     // redirectToWechatAuth(location.href)
+        //     redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
+        //     return
+        //   } else if (response){
+        //     openid = getCookie('openid') || response.openid
+        //     setCookie('openid', openid, 0.1)
             
-          }
-        })
-      } else if (openid) {
-        configJsApi(location.href.split('#')[0])
-        wx.error(function(res){
-          console.log('wx.error' + res)
-        })
-        wx.ready(function(){
-          console.log('wx.ready')
-          onMenuShareAppMessage(shareItem.title, shareItem.subTitle, shareItem.linkUrl, shareItem.imageUrl)
-        })
-      } else {
-        redirectToWechatAuth(location.href)
-        // redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
+        //   }
+        // })
+        getOpenid()
+      }
+      if (!openid) {
+        // redirectToWechatAuth(location.href)
+        redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
+        return
       }
     }  
   }
