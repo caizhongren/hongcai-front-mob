@@ -237,12 +237,10 @@ $(function () {
 	      	// 获取用户游戏参与信息
 	        $.get('/hongcai/rest/activity/countingKings/' + openid + '/userCountingInfo', function (res, status) {
 			      if (res && res.ret !== -1) {
-			        _this.unUsedCount = res.unUsedCount
+			        _this.unUsedCount = res.count
 			        _this.usedCount = res.usedCount
 			      } else {
-			      	// alert('获取用户游戏参与信息接口报错')
-			      	_this.unUsedCount = res.unUsedCount
-			        _this.usedCount = res.usedCount
+			      	alert('获取用户游戏参与信息接口报错')
 			      }
 			    })
 	      } else {
