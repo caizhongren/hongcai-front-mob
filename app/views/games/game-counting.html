@@ -536,7 +536,7 @@
         },
         // 钞票滑出效果
         countSlideDown: function () {
-          scrollDirection += 1.439
+          scrollDirection += 1.437
           $('.count-list').addClass('slide-down')
           $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
           document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
@@ -683,7 +683,7 @@
               countObj.moneyConfig(countList)
               _this.getGameState();
               _this.num = countList.length -1
-              scrollDirection =  -1.439 * (countList.length - 3)
+              scrollDirection =  -1.437 * (countList.length - 3)
               $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
               document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
             } else {
