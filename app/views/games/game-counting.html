@@ -191,7 +191,7 @@
       #voice {
         position: absolute;
         top: .7rem;
-        right: .7rem;
+        right: 0.3rem;
       }
     </style>
   </head>
@@ -201,7 +201,10 @@
     <div class="game-counting-wrap">
       <div class="game-counting">
         <div class="game-counting-innner">
-          <img src="/images/games/on.png" width="7.5%" class="position-ab" id="voice">
+          <div id="voice">
+            <img src="/images/games/on.png" width="55%" class="position-ab" id="voice-on">
+            <img src="/images/games/off.png" width="55%" class="position-ab" id="voice-off" style="display: none;">
+          </div>
           <img src="/images/games/header-title.png" width="70%" class="title-img">
           <!-- 剩余次数 -->
           <div class="times">
@@ -908,8 +911,13 @@
       registerObj.windowChange($('#register'))
       $voice.on('touchstart', function () {
         isPlay = !isPlay;
-        var onOrOff = isPlay ? 'on' : 'off';
-        $(this).attr('src', '/images/games/' + onOrOff + '.png');
+        if (isPlay) {
+          $('#voice-off').css({'display': 'none'});
+          $('#voice-on').css({'display': 'block'});
+        } else {
+          $('#voice-off').css({'display': 'block'});
+          $('#voice-on').css({'display': 'none'});
+        }
       })
     })
   </script>
