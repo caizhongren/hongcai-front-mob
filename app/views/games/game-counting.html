@@ -483,16 +483,17 @@
               percentWidth -= 16
               
             }else {
-              second -= 1
-              percentWidth -= 3.2
+              second -= .1
+              percentWidth -= .32
             }
             // 进度条递减
-            $processBar.animate({width: percentWidth + '%'}, {duration: 800});
-            $time.html(second + 's');
+            $processBar.animate({width: percentWidth + '%'}, {duration: 0});
+            var secondInt = Math.floor(second) > 0 ? Math.floor(second) : 0;
+            $time.html(secondInt + 's');
             // 一秒后重复执行
             countTimer = setTimeout(function () {
               _this.countDown();
-            }, 1000)
+            }, 100)
           } else {
             clearTimeout(countTimer)
             $('#registerBox').show()

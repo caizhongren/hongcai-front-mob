@@ -167,11 +167,11 @@ span.count-tip {
   -webkit-transform: translateY(-10.3rem);
   -o-transform: translateY(-10.3rem);
   -moz-transform: translateY(-10.3rem);*/
-  -webkit-transition:all .4s linear;
-  -moz-transition:all .4s linear;
-  -o-transition:all .4s linear;
-  -ms-transition:all .4s linear;    
-  transition:all .4s linear;
+  -webkit-transition:all .5s linear;
+  -moz-transition:all .5s linear;
+  -o-transition:all .5s linear;
+  -ms-transition:all .5s linear;    
+  transition:all .5s linear;
 }
 .count .count-money ul li {
   /*width: 100%;
