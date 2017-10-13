@@ -12,7 +12,7 @@
     } else {
       xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    xmlhttp.open("POST", urlstr, true);
+    xmlhttp.open("POST", urlstr, false);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send(datas);
     xmlhttp.onreadystatechange = responseFunc;
@@ -23,7 +23,7 @@
     } else {
         xmlGet = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    xmlGet.open("GET", urlstr, true);
+    xmlGet.open("GET", urlstr, false);
     xmlGet.send();
     xmlGet.onreadystatechange = responseFunc;
   }
@@ -34,7 +34,7 @@
     } else {
       xmlPut = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    xmlPut.open("PUT", urlstr, true);
+    xmlPut.open("PUT", urlstr, false);
     xmlPut.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlPut.send(datas);
     xmlPut.onreadystatechange = responseFunc;
