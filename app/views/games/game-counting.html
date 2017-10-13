@@ -609,15 +609,10 @@
         // 开始游戏
         RuleStartGame: function () {
           var _this = countObj;
-          if (gameOver) {
-            location.href= location.origin + '/views/games/game-counting-share.html'
-            return
-          }
           $('#closeBtn').show()
           $('#registerBox').hide()
           $ruleBox.hide();
           $ReadyFlash.show();
-          _this.updateCount()
           setTimeout(function () {
             _this.countDown();
             $showRule.css({zIndex: 99999})
@@ -696,9 +691,15 @@
               if (res && res.ret !== -1) {
                 _this.gameCounts = res.count
                 $gameCounts.html(res.count)
+                gameOver = false
+                _this.getCountList();
               } else {
                 console.log(res.msg)
                 gameOver = true
+                if (gameOver) {
+                  location.href= location.origin + '/views/games/game-counting-share.html'
+                  return
+                }
                 return
               }
             },
@@ -708,7 +709,6 @@
         startGameConfig: function () {
           this.updateCount()
           this.toggleRuleBox($showRule, $ruleBox);
-          this.getCountList();
           $RuleStartGame.on('touchstart', this.RuleStartGame)
           $('#totalMoney').html(0);
           this.countStart('#count-100', '#add-100', 100)
@@ -884,11 +884,7 @@
         playAgain: function (clickEle) {
           var _this = this
           clickEle.on('touchstart', function () {
-            if (countObj.gameCounts <= 0) { //判断游戏剩余次数
-              window.location.href= location.origin + '/views/games/game-counting-share.html'
-            } else {
-              location.reload()
-            }
+            location.reload()
           })
         },
         windowChange: function (ele) {
