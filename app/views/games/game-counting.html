@@ -609,6 +609,7 @@
           $('#registerBox').hide()
           $ruleBox.hide();
           $ReadyFlash.show();
+          _this.updateCount()
           setTimeout(function () {
             _this.countDown();
             $showRule.css({zIndex: 99999})
@@ -620,19 +621,6 @@
             }
           }, 4000)
         },
-        // 获取游戏规则
-        getGameRules: function () {
-          var _this = this
-          $.get('/hongcai/rest/activity/countingKings/' + getCookie('openid') + '/userCountingInfo' , function (res, status) {
-            if (res && res.ret !== -1) {
-              _this.gameCounts = res.count
-              res.usedCount <=0 ? _this.firstEntry = true : _this.firstEntry = false
-            } else {
-              alert('获取用户游戏参与信息接口报错')
-            }
-            $gameCounts.html(_this.gameCounts);
-          })
-        },
         // 判断是否首次进入游戏页
         getGameState: function () {
           var _this = this
@@ -640,23 +628,24 @@
             if (res && res.ret !== -1) {
               _this.gameCounts = res.count
               res.usedCount <=0 ? _this.firstEntry = true : _this.firstEntry = false
-              if (_this.firstEntry) {
-                $ruleBox.show();
-                $('#closeBtn').hide()
+              if (_this.gameCounts <=0) {
+                window.location.href= location.origin + '/views/games/game-counting-share.html'
+                  return
               } else {
-                $ruleBox.hide();
-                $RuleStartGame.hide()
-                _this.RuleStartGame()
+                _this.getCountList();
+                if (_this.firstEntry) {
+                  $ruleBox.show();
+                  $('#closeBtn').hide()
+                } else {
+                  $ruleBox.hide();
+                  $RuleStartGame.hide()
+                  _this.RuleStartGame()
+                }
+                $gameCounts.html(_this.gameCounts);
               }
-              // if (_this.firstEntry && countList[countList.length - 1].value == '50') {
-              //   $('.hand-50').show()
-              // } else if (_this.firstEntry && countList[countList.length - 1].value == '100') {
-              //   $('.hand-100').show()
-              // }
             } else {
               alert('获取用户游戏参与信息接口报错')
             }
-            $gameCounts.html(_this.gameCounts);
           })
         },
         //获取钞票列表
@@ -666,7 +655,6 @@
             if (res && res.ret !== -1) {
               countList = res.countingValues
               countObj.moneyConfig(countList)
-              _this.getGameState();
               _this.num = countList.length -1
               scrollDirection =  -1.437 * (countList.length - 3)
               $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
@@ -687,23 +675,15 @@
               if (res && res.ret !== -1) {
                 _this.gameCounts = res.count
                 $gameCounts.html(res.count)
-                gameOver = false
-                _this.getCountList();
               } else {
                 console.log(res.msg)
-                gameOver = true
-                if (gameOver) {
-                  location.href= location.origin + '/views/games/game-counting-share.html'
-                  return
-                }
-                return
               }
             },
             data: 'openid=' + getCookie('openid') + '&type=1'
           })
         },
         startGameConfig: function () {
-          this.updateCount()
+          this.getGameState()
           this.toggleRuleBox($showRule, $ruleBox);
           $RuleStartGame.on('touchstart', this.RuleStartGame)
           $('#totalMoney').html(0);
