@@ -619,6 +619,7 @@
           $('#registerBox').hide()
           $ruleBox.hide();
           $ReadyFlash.show();
+          _this.updateCount()
           setTimeout(function () {
             _this.countDown();
             $showRule.css({zIndex: 99999})
@@ -866,6 +867,10 @@
         },
         //发放特权本金
         takeReward: function (rewardMoney, userId) {
+          if (rewardMoney <=0) {
+            window.location.href= location.origin + '/views/games/game-counting-reward.html?principal=' + rewardMoney
+            return
+          }
           $.post('/hongcai/rest/activity/countingKings/takeReward', {
             'openid': getCookie('openid'),
             userId: userId,
