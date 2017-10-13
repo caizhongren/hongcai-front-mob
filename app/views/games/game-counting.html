@@ -550,13 +550,9 @@
             } else {
               step += 150
             }
-            var outTimer = setTimeout(function () {
-              $($('.count-list li img')[turn]).addClass('out')
-              $($('.count-list li img')[turn]).css('transform', 'translateX(' + step + '%)')
-              document.querySelector('.count-list li img').style.webkitTransform = 'translateX(' + step + '%)'
-            }, 100)
-          } else {
-            clearTimeout(outTimert)
+            $($('.count-list li img')[turn]).addClass('out')
+            $($('.count-list li img')[turn]).css('transform', 'translateX(' + step + '%)')
+            document.querySelector('.count-list li img').style.webkitTransform = 'translateX(' + step + '%)'
           }
         },
         /*
