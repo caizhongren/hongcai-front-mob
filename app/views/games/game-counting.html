@@ -537,6 +537,7 @@
         },
         // 钞票滑出效果
         countSlideDown: function () {
+          this.firstMoneyOut(countList[this.num], this.num) // 钞票收起
           scrollDirection += 1.437
           $('.count-list').addClass('slide-down')
           $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
@@ -589,7 +590,6 @@
             $('.hand-50').hide()
             $('#totalMoney').html(_this.totalMoney)
             _this.countSlideDown() // 出钞票列表
-            _this.firstMoneyOut(countList[_this.num], _this.num) // 钞票收起
             _this.num --
           })
         },
