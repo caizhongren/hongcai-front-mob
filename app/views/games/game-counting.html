@@ -496,6 +496,7 @@
           } else {
             clearTimeout(countTimer)
             $('#registerBox').show()
+            registerObj.playAgain($('#startAgin'))
             _this.showRewardMoney(receiveMoney, _this.totalMoney, 0, 800, 0)
             $('#registerBox .totalMoney').html(_this.totalMoney)
             document.addEventListener("WeixinJSBridgeReady", _this.forceSafariPlayAudio(getAudio), false);
@@ -859,9 +860,11 @@
         },
         playAgain: function (clickEle) {
           var _this = this
-          clickEle.on('touchstart', function () {
-            location.reload()
-          })
+          setTimeout(function() {
+            clickEle.on('touchstart', function () {
+              location.reload()
+            })
+          }, 1000)
         },
         windowChange: function (ele) {
           var winHeight = $(window).height()
@@ -877,7 +880,6 @@
       registerObj.refreshCode($('#checkCaptcha'))
       registerObj.getCaptcha(registerObj.mobilecode)
       registerObj.signUp($('#getPrize'))
-      registerObj.playAgain($('#startAgin'))
       registerObj.windowChange($('#register'))
       $voice.on('touchstart', function () {
         isPlay = !isPlay;
