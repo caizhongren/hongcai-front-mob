@@ -395,6 +395,7 @@
           countWrong = false, // 是否数错钞,
           isPlay = true, // 是否静音
           wrongSecond,
+          gameOver = false,
           getAudio = document.getElementById('getAudio'),
           warningAudio = document.getElementById('warning'),
           receiveMoney = document.getElementsByClassName('totalMoney'),
@@ -610,13 +611,16 @@
         // 开始游戏
         RuleStartGame: function () {
           var _this = countObj;
+          if (gameOver) {
+            location.href= location.origin + '/views/games/game-counting-share.html'
+            return
+          }
           $('#closeBtn').show()
           $('#registerBox').hide()
           $ruleBox.hide();
           $ReadyFlash.show();
           setTimeout(function () {
             _this.countDown();
-            _this.updateCount()
             $showRule.css({zIndex: 99999})
             $ReadyFlash.hide();
             if (_this.firstEntry && countList[countList.length - 1] == '50') {
@@ -695,22 +699,21 @@
                 $gameCounts.html(res.count)
               } else {
                 console.log(res.msg)
+                gameOver = true
+                return
               }
             },
             data: 'openid=' + getCookie('openid') + '&type=1'
           })
         },
         startGameConfig: function () {
+          this.updateCount()
           this.toggleRuleBox($showRule, $ruleBox);
           this.getCountList();
           $RuleStartGame.on('touchstart', this.RuleStartGame)
           $('#totalMoney').html(0);
           this.countStart('#count-100', '#add-100', 100)
           this.countStart('#count-50', '#add-50', 50)
-          if (this.gameCounts <=0) {
-            location.href= location.origin + '/views/games/game-counting-share.html'
-            return
-          }
         }
       };
       countObj.startGameConfig();
