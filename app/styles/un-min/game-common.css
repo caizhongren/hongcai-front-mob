@@ -125,8 +125,9 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
 }
 /*游戏公用背景样式*/
 .game-counting-wrap {
-  background-color: #fff026;
-  padding: .2rem;
+  /*background-color: #fff026;*/
+  *background-color: #ff2421;
+  /*padding: .2rem;*/
   position: fixed;
 }
 .game-counting {
