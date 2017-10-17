@@ -876,12 +876,27 @@
               isAndroid() ? ele.removeClass('input-focus') : null
             }
           })
+        },
+        watchInput: function () {
+          $('#mobilesignup').bind('input propertychange', function() {
+            $(this).val($(this).val().replace(/\D/g, ''))
+            $(this).val($(this).val().length > 11 ? $(this).val().slice(0, 11) : $(this).val())
+          });
+          $('#mobileCaptcha').bind('input propertychange', function() {
+            $(this).val($(this).val().replace(/\D/g, ''))
+            $(this).val($(this).val().length > 6 ? $(this).val().slice(0, 6) : $(this).val())
+          });
+          $('#picCaptcha').bind('input propertychange', function() {
+            $(this).val($(this).val().replace(/[\W]/g, ''))
+            $(this).val($(this).val().length > 4 ? $(this).val().slice(0, 4) : $(this).val())
+          });
         }
       }
       registerObj.refreshCode($('#checkCaptcha'))
       registerObj.getCaptcha(registerObj.mobilecode)
       registerObj.signUp($('#getPrize'))
       registerObj.windowChange($('#register'))
+      registerObj.watchInput()
       $voice.on('touchstart', function () {
         isPlay = !isPlay;
         if (isPlay) {
