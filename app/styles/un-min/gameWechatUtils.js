@@ -34,8 +34,7 @@ window.onload = function(){
   }
   function setCookie(c_name,value,expiredays) {
     var exdate=new Date()
-    // exdate.setDate(exdate.getDate()+expiredays)
-    exdate.setTime(exdate.getTime()+expiredays*1000)
+    exdate.setTime(exdate.getTime()+expiredays*60*60*1000)
     document.cookie=c_name+ "=" +escape(value)+
     ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
   }
@@ -215,7 +214,7 @@ window.onload = function(){
         return
       } else if (response){
         openid = getCookie('openid') || response.openid
-        setCookie('openid', openid, 60)
+        setCookie('openid', openid, 12)
       }
     })
   }
@@ -227,10 +226,10 @@ window.onload = function(){
       imageUrl : 'https://mmbiz.qpic.cn/mmbiz_png/8MZDOEkib8AlSSicY3du8iciaLhZly5kkUP3PSrln8puqracuY9T3W79wJW4kh1BFV59zgG2T5nm7qictF9IicvC4gyw/0?wx_fmt=png'
     }
     if (getQueryString('act')) {
-      setCookie('act', getQueryString('act'), 1)
+      setCookie('act', getQueryString('act'), 24)
     }
     if (getQueryString('f')) {
-      setCookie('f', getQueryString('f'), 1)
+      setCookie('f', getQueryString('f'), 24)
     }
     if (!isWeixin()) {
       redirectToWechatAuth(location.href)
