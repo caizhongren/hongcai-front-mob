@@ -222,7 +222,7 @@ window.onload = function(){
     var shareItem = {
       title : '我正在疯狂数钱中…',
       subTitle : '论手速，你不一定能比过我！不信就来试试看！数出多少送多少！',
-      linkUrl : 'http://m.test321.hongcai.com/views/games/game-counting-start.html',
+      linkUrl : location.origin + '/views/games/game-counting-start.html?act=' + getCookie('act') + '&f=' + getCookie('f'),
       imageUrl : 'https://mmbiz.qpic.cn/mmbiz_png/8MZDOEkib8AlSSicY3du8iciaLhZly5kkUP3PSrln8puqracuY9T3W79wJW4kh1BFV59zgG2T5nm7qictF9IicvC4gyw/0?wx_fmt=png'
     }
     if (getQueryString('act')) {
