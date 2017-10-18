@@ -184,13 +184,14 @@ span.count-tip {
 .count .count-money .btns {
   position: absolute;
   bottom: 6%;
-  width: 85%;
-  left: 7.8%;
+  width: 90%;
+  left: 5%;
 }
 .count .count-money .btns div {
   width: 37%;
   position: relative;
-  height: 1rem;
+  /*height: 1rem;*/
+  padding: .5rem .2rem;
   /*z-index: 999;*/
 }
 .btns .btn-left img:first-child, .btns .btn-right img:first-child {
@@ -205,15 +206,15 @@ span.count-tip {
 }
 .btns .btn-left span, .btns .btn-right span {
   position: absolute;
-  top: -.62rem;
+  top: -.3rem;
   font-size: .42rem;
   font-family: CTCuHeiSJ;
 }
 .btns .btn-left span {
-  left: .2rem;
+  left: .5rem;
   color: #c8e5d0;
 }
 .btns .btn-right span {
-  right: .2rem;
+  right: .5rem;
   color: #ffbdc5;
 }
