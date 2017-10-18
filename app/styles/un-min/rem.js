@@ -1,9 +1,8 @@
 window.onload = function(){
     function setRem() {
-      // if(window.orientation!=0){
-      //   alert('亲，把手机竖起来游戏体验更好哦～')
-      //   return
-      // }
+      if(window.orientation!=0){
+        alert('亲，把手机竖起来游戏体验更好哦～')
+      }
       (document.documentElement.style.fontSize = (document.documentElement.clientWidth > 640 ? 100 : 100 * document.documentElement.clientWidth / 640) + "px")
       window.addEventListener && (document.addEventListener("DOMContentLoaded",
       function() {

@@ -255,6 +255,6 @@ window.onload = function(){
     }  
   }
   window.addEventListener('load', function () {
-    // WechatAuth()
+    WechatAuth()
   })
 }()
