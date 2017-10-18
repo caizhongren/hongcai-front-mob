@@ -161,17 +161,19 @@ span.count-tip {
   height: 4.311rem;
   overflow: hidden;
 }
-.count .count-money ul.slide-down, .count .count-money ul li img.out {
-  /*transform: translateY(-10.3rem);
-  -ms-transform: translateY(-10.3rem);
-  -webkit-transform: translateY(-10.3rem);
-  -o-transform: translateY(-10.3rem);
-  -moz-transform: translateY(-10.3rem);*/
-  -webkit-transition:all .5s linear;
-  -moz-transition:all .5s linear;
-  -o-transition:all .5s linear;
-  -ms-transition:all .5s linear;    
-  transition:all .5s linear;
+.count .count-money ul.slide-down {
+  -webkit-transition:all .38s linear;
+  -moz-transition:all .38s linear;
+  -o-transition:all .38s linear;
+  -ms-transition:all .38s linear;    
+  transition:all .38s linear;
+}
+.count .count-money ul li img.out {
+  -webkit-transition:all .2s linear;
+  -moz-transition:all .2s linear;
+  -o-transition:all .2s linear;
+  -ms-transition:all .2s linear;    
+  transition:all .2s linear;
 }
 .count .count-money ul li {
   /*width: 100%;
