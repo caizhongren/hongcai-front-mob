@@ -183,13 +183,14 @@ span.count-tip {
 }
 .count .count-money .btns {
   position: absolute;
-  bottom: 10%;
+  bottom: 6%;
   width: 85%;
   left: 7.8%;
 }
 .count .count-money .btns div {
-  width: 49%;
+  width: 37%;
   position: relative;
+  height: 1rem;
   /*z-index: 999;*/
 }
 .btns .btn-left img:first-child, .btns .btn-right img:first-child {
