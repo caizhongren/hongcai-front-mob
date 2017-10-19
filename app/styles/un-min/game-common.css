@@ -257,16 +257,16 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
 }
     
 @-moz-keyframes noviceHand {
-  from { top: -1.6rem; }
-  to { top: -1.4rem; }
+  from { top: -.6rem; }
+  to { top: -.2rem; }
 }
 @-webkit-keyframes noviceHand {
-  from { top: -1.6rem; }
-  to { top: -1.4rem; }
+  from { top: -.6rem; }
+  to { top: -.2rem; }
 }
 @keyframes noviceHand {
-  from { top: -1.6rem; }
-  to { top: -1.4rem; }
+  from { top: -.6rem; }
+  to { top: -.2rem; }
 }
 
 /*开始游戏321倒计时*/

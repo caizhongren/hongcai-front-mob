@@ -183,7 +183,7 @@ span.count-tip {
 }
 .count .count-money .btns {
   position: absolute;
-  bottom: 4%;
+  bottom: 1%;
   width: 96%;
   left: 2%;
 }
@@ -191,22 +191,22 @@ span.count-tip {
   width: 37%;
   position: relative;
   /*height: 1rem;*/
-  padding: .5rem .2rem;
+  padding: 1.5rem .2rem .8rem;
   /*z-index: 999;*/
 }
 .btns .btn-left img:first-child, .btns .btn-right img:first-child {
   position: absolute;
-  top: -1.6rem;
+  top: -.6rem;
 }
 .btns .btn-left img:first-child {
-  left: 0.1rem;
+  left: 0.4rem;
 }
 .btns .btn-right img:first-child {
-  right: 0.1rem;
+  right: 0.4rem;
 }
 .btns .btn-left span, .btns .btn-right span {
   position: absolute;
-  top: -.3rem;
+  top: .7rem;
   font-size: .42rem;
   font-family: CTCuHeiSJ;
 }
