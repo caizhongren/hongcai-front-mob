@@ -19,6 +19,20 @@
     <link rel="stylesheet" type="text/css" href="/styles/un-min/game-counting.css">
     <script src="/styles/un-min/rem.js"></script>
     <style type="text/css">
+      .count .count-money ul.slide-down {
+        -webkit-transition:all .5s linear;
+        -moz-transition:all .5s linear;
+        -o-transition:all .5s linear;
+        -ms-transition:all .5s linear;    
+        transition:all .5s linear;
+      }
+      .count .count-money ul li img.out {
+        -webkit-transition:all .2s linear;
+        -moz-transition:all .2s linear;
+        -o-transition:all .2s linear;
+        -ms-transition:all .2s linear;    
+        transition:all .2s linear;
+      }
       .count-down .process-wrap {
         background: url('/images/games/process-bg.png') no-repeat center center;
         background-size: 100%;
@@ -496,11 +510,11 @@
             }, 100)
           } else {
             clearTimeout(countTimer)
-            $('#registerBox').show()
+            // $('#registerBox').show()
             registerObj.playAgain($('#startAgin'))
             _this.showRewardMoney(receiveMoney, _this.totalMoney, 0, 800, 0)
             $('#registerBox .totalMoney').html(_this.totalMoney)
-            document.addEventListener("WeixinJSBridgeReady", _this.forceSafariPlayAudio(getAudio), false);
+            // document.addEventListener("WeixinJSBridgeReady", _this.forceSafariPlayAudio(getAudio), false);
           }
         },
         showRewardMoney: function(elem, endVal, startVal, duration, decimal) {  
