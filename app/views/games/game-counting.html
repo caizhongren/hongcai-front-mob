@@ -541,7 +541,8 @@
           scrollDirection += 1.437
           $('.count-list').addClass('slide-down')
           $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
-          document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
+          $('.count-list').css('-webkit-transform', 'translateY(' + scrollDirection + 'rem)')
+          // document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
         },
         // 第一张钞票收起
         firstMoneyOut: function (type, turn) { // type: 钞票类别
@@ -554,7 +555,8 @@
             }
             $($('.count-list li img')[turn]).addClass('out')
             $($('.count-list li img')[turn]).css('transform', 'translateX(' + step + '%)')
-            document.querySelector('.count-list li img').style.webkitTransform = 'translateX(' + step + '%)'
+            $($('.count-list li img')[turn]).css('-webkit-transform', 'translateX(' + step + '%)')
+            // document.querySelector('.count-list li img').style.webkitTransform = 'translateX(' + step + '%)'
           }
         },
         /*
@@ -562,7 +564,7 @@
          */
         countStart: function (clickEle, showEle, type) { // 点击元素， 显示的元素， 点击的按钮类型 50 ／ 100
           var _this = countObj;
-          $(clickEle).on('touchstart', function () {
+          $(clickEle).on('touchend', function () {
             if (_this.num < 1 || second <= 0) {
               return;
             }
@@ -600,7 +602,7 @@
         },
         toggleRuleBox: function (clickEle, showEle) {
           var _this = this
-          clickEle.on('touchstart', function () {
+          clickEle.on('touchend', function () {
             _this.showRule(showEle)
           })
         },
@@ -660,7 +662,8 @@
               _this.num = countList.length -1
               scrollDirection =  -1.437 * (countList.length - 3)
               $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
-              document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
+              $('.count-list').css('-webkit-transform', 'translateY(' + scrollDirection + 'rem)')
+              // document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
             } else {
               alert(res.msg);
             }
@@ -687,7 +690,7 @@
         startGameConfig: function () {
           this.getGameState()
           this.toggleRuleBox($showRule, $ruleBox);
-          $RuleStartGame.on('touchstart', this.RuleStartGame)
+          $RuleStartGame.on('touchend', this.RuleStartGame)
           $('#totalMoney').html(0);
           this.countStart('#count-100', '#add-100', 100)
           this.countStart('#count-50', '#add-50', 50)
@@ -731,7 +734,7 @@
         },
         // 获取图形验证码
         refreshCode: function (clickEle) {
-          clickEle.on('touchstart', function () {
+          clickEle.on('touchend', function () {
             var capchaCode = document.getElementById('checkCaptcha');
             capchaCode.src = capchaCode.getAttribute("src") + '?code=' + Math.random();
           })
@@ -763,7 +766,7 @@
         // 点击获取短信验证码
         getCaptcha: function (clickEle) {
           var _this = this
-          clickEle.on('touchstart', function () {
+          clickEle.on('touchend', function () {
             console.log(_this.mobile.val())
             if (!_this.canGetCaptch) {
               return
@@ -809,7 +812,7 @@
         // 注册
         signUp: function (clickEle) {
           var _this = this
-          clickEle.on('touchstart', function () {
+          clickEle.on('touchend', function () {
             if (!_this.mobile.val() || !_this.picCaptcha.val() || !_this.mobileCaptcha.val()) {
               return
             }
@@ -862,7 +865,7 @@
         playAgain: function (clickEle) {
           var _this = this
           setTimeout(function() {
-            clickEle.on('touchstart', function () {
+            clickEle.on('touchend', function () {
               location.reload()
             })
           }, 1000)
@@ -897,7 +900,7 @@
       registerObj.signUp($('#getPrize'))
       registerObj.windowChange($('#register'))
       registerObj.watchInput()
-      $voice.on('touchstart', function () {
+      $voice.on('touchend', function () {
         isPlay = !isPlay;
         if (isPlay) {
           $('#voice-off').css({'display': 'none'});
