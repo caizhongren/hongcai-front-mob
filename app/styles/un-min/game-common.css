@@ -286,28 +286,28 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
   left: 33%;
 }
 .startGame img.countDown3 {
-  -moz-animation: countDown 1s alternate;
-  -webkit-animation: countDown 1s alternate;
-  animation: countDown 1s alternate;
+  -moz-animation: countDown 0.8s alternate;
+  -webkit-animation: countDown 0.8s alternate;
+  animation: countDown 0.8s alternate;
 }
 .startGame img.countDown2 {
   left: 36%;
-  -moz-animation: countDown 1s alternate 1s;
-  -webkit-animation: countDown 1s alternate 1s;
-  animation: countDown 1s alternate 1s;
+  -moz-animation: countDown 0.8s alternate 1s;
+  -webkit-animation: countDown 0.8s alternate 1s;
+  animation: countDown 0.8s alternate 1s;
 }
 .startGame img.countDown1 {
   left: 40%;
-  -moz-animation: countDown 1s alternate 2s;
-  -webkit-animation: countDown 1s alternate 2s;
-  animation: countDown 1s alternate 2s;
+  -moz-animation: countDown 0.8s alternate 2s;
+  -webkit-animation: countDown 0.8s alternate 2s;
+  animation: countDown 0.8s alternate 2s;
 }
 .startGame img.countDown0 {
   top: 4rem;
   left: 26%;
-  -moz-animation: countDown 1s alternate 3s;
-  -webkit-animation: countDown 1s alternate 3s;
-  animation: countDown 1s alternate 3s;
+  -moz-animation: countDown 0.8s alternate 3s;
+  -webkit-animation: countDown 0.8s alternate 3s;
+  animation: countDown 0.8s alternate 3s;
 }
 @-moz-keyframes countDown {
   from { opacity: 0; }
