@@ -162,18 +162,18 @@ span.count-tip {
   overflow: hidden;
 }
 .count .count-money ul.slide-down {
-  -webkit-transition: -webkit-transform .38s linear .1s;
-  -moz-transition: -webkit-transform .38s linear .1s;
-  -o-transition: -webkit-transform .38s linear .1s;
-  -ms-transition: -webkit-transform .38s linear .1s;    
-  transition: -webkit-transform .38s linear .1s;
+  -webkit-transition:all .38s linear;
+  -moz-transition:all .38s linear;
+  -o-transition:all .38s linear;
+  -ms-transition:all .38s linear;    
+  transition:all .38s linear;
 }
 .count .count-money ul li img.out {
-  -webkit-transition: -webkit-transform .2s linear .1s;
-  -moz-transition: -webkit-transform .2s linear .1s;
-  -o-transition: -webkit-transform .2s linear .1s;
-  -ms-transition: -webkit-transform .2s linear .1s;    
-  transition: -webkit-transform .2s linear .1s;
+  -webkit-transition:all .2s linear;
+  -moz-transition:all .2s linear;
+  -o-transition:all .2s linear;
+  -ms-transition:all .2s linear;    
+  transition:all .2s linear;
 }
 .count .count-money ul li {
   /*width: 100%;
