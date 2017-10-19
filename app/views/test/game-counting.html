@@ -33,6 +33,13 @@
         -ms-transition:all .2s linear;    
         transition:all .2s linear;
       }
+      .count .count-money .money-list {
+        position: relative;
+      }
+      .count .count-money .money-list ul {
+        position: absolute;
+        top: -139.389rem;
+      }
       .count-down .process-wrap {
         background: url('/images/games/process-bg.png') no-repeat center center;
         background-size: 100%;
@@ -511,7 +518,7 @@
           } else {
             clearTimeout(countTimer)
             // $('#registerBox').show()
-            registerObj.playAgain($('#startAgin'))
+            // registerObj.playAgain($('#startAgin'))
             _this.showRewardMoney(receiveMoney, _this.totalMoney, 0, 800, 0)
             $('#registerBox .totalMoney').html(_this.totalMoney)
             // document.addEventListener("WeixinJSBridgeReady", _this.forceSafariPlayAudio(getAudio), false);
@@ -553,22 +560,32 @@
         // 钞票滑出效果
         countSlideDown: function () {
           scrollDirection += 1.437
-          $('.count-list').addClass('slide-down')
-          $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
-          document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
+          $('.count-list').stop().animate({'top':scrollDirection + 'rem'}, 400)
+          // $('.count-list').addClass('slide-down')
+          // $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
+          // document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
+          // $('.count-list').stop().animate({'top':scrollDirection + 'rem'}, 400)
         },
         // 第一张钞票收起
         firstMoneyOut: function (type, turn) { // type: 钞票类别
-          var step = 0
+          var step = 0,
+              _this = this;
           if (turn > 1) {
             if (type === 50) {
               step -= 150;
+              $($('.count-list li img')[turn]).animate({'margin-left':'-20rem'}, 400, function () {
+                // _this.countSlideDown()
+              })
             } else {
               step += 150
+              $($('.count-list li img')[turn]).animate({'margin-right':'-20rem'}, 400, function () {
+                // _this.countSlideDown()
+              })
             }
-            $($('.count-list li img')[turn]).addClass('out')
-            $($('.count-list li img')[turn]).css('transform', 'translateX(' + step + '%)')
-            document.querySelector('.count-list li img').style.webkitTransform = 'translateX(' + step + '%)'
+            // $($('.count-list li img')[turn]).addClass('out')
+            // $($('.count-list li img')[turn]).css('transform', 'translateX(' + step + '%)')
+            // document.querySelector('.count-list li img').style.webkitTransform = 'translateX(' + step + '%)'
+
           }
         },
         /*
@@ -621,8 +638,9 @@
               countObj.moneyConfig(countList)
               _this.num = countList.length -1
               scrollDirection =  -1.437 * (countList.length - 3)
-              $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
-              document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
+              // $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
+              // document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
+              $('.count-list').css('top', scrollDirection + 'rem)')
             } else {
               alert(res.msg);
             }
