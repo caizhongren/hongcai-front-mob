@@ -162,20 +162,11 @@ span.count-tip {
   overflow: hidden;
 }
 .count .count-money ul.slide-down {
-  will-change: transform;
   -webkit-transition:all .38s linear;
   -moz-transition:all .38s linear;
   -o-transition:all .38s linear;
   -ms-transition:all .38s linear;    
   transition:all .38s linear;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  -moz-perspective: 1000;
-  -ms-perspective: 1000;
-  perspective: 1000;
 }
 .count .count-money ul li img.out {
   -webkit-transition:all .2s linear;
@@ -183,14 +174,6 @@ span.count-tip {
   -o-transition:all .2s linear;
   -ms-transition:all .2s linear;    
   transition:all .2s linear;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  -moz-perspective: 1000;
-  -ms-perspective: 1000;
-  perspective: 1000;
 }
 .count .count-money ul li {
   /*width: 100%;

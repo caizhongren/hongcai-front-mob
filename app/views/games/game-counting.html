@@ -496,8 +496,6 @@
             }, 100)
           } else {
             clearTimeout(countTimer)
-            $('.count-list').removeClass('slide-down')
-            $('.count-list').css('will-change','auto')
             $('#registerBox').show()
             registerObj.playAgain($('#startAgin'))
             _this.showRewardMoney(receiveMoney, _this.totalMoney, 0, 800, 0)
@@ -542,8 +540,8 @@
         countSlideDown: function () {
           scrollDirection += 1.437
           $('.count-list').addClass('slide-down')
-          $('.count-list').css('transform', 'translate3d(0,' + scrollDirection + 'rem, 0)')
-          document.querySelector('.count-list').style.webkitTransform = 'translate3d(0,' + scrollDirection + 'rem, 0)'
+          $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
+          document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
         },
         // 第一张钞票收起
         firstMoneyOut: function (type, turn) { // type: 钞票类别
@@ -555,8 +553,8 @@
               step += 150
             }
             $($('.count-list li img')[turn]).addClass('out')
-            $($('.count-list li img')[turn]).css('transform', 'translate3d(' + step + '%, 0, 0)')
-            document.querySelector('.count-list li img').style.webkitTransform = 'translate3d(' + step + '%, 0, 0)'
+            $($('.count-list li img')[turn]).css('transform', 'translateX(' + step + '%)')
+            document.querySelector('.count-list li img').style.webkitTransform = 'translateX(' + step + '%)'
           }
         },
         /*
@@ -564,7 +562,7 @@
          */
         countStart: function (clickEle, showEle, type) { // 点击元素， 显示的元素， 点击的按钮类型 50 ／ 100
           var _this = countObj;
-          $(clickEle).on('touchend', function () {
+          $(clickEle).on('touchstart', function () {
             if (_this.num < 1 || second <= 0) {
               return;
             }
@@ -661,8 +659,8 @@
               countObj.moneyConfig(countList)
               _this.num = countList.length -1
               scrollDirection =  -1.437 * (countList.length - 3)
-              $('.count-list').css('transform', 'translate3d(0,' + scrollDirection + 'rem, 0)')
-              document.querySelector('.count-list').style.webkitTransform = 'translate3d(0,' + scrollDirection + 'rem, 0)'
+              $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
+              document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
             } else {
               alert(res.msg);
             }
