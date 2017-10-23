@@ -19,6 +19,9 @@
     <link rel="stylesheet" type="text/css" href="/styles/un-min/game-counting.css">
     <script src="/styles/un-min/rem.js"></script>
     <style type="text/css">
+      #count-100, #count-50 {
+        touch-action: none
+      }
       .count-down .process-wrap {
         background: url('/images/games/process-bg.png') no-repeat center center;
         background-size: 100%;
@@ -562,7 +565,8 @@
          */
         countStart: function (clickEle, showEle, type) { // 点击元素， 显示的元素， 点击的按钮类型 50 ／ 100
           var _this = countObj;
-          $(clickEle).on('touchstart', function () {
+          $(clickEle).on('touchstart', function (event) {
+            event.preventDefault()
             if (_this.num < 1 || second <= 0) {
               return;
             }
