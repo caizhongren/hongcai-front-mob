@@ -19,6 +19,12 @@
     <link rel="stylesheet" type="text/css" href="/styles/un-min/game-counting.css">
     <script src="/styles/un-min/rem.js"></script>
     <style type="text/css">
+      .count .count-money .money-list {
+        position: relative;
+      }
+      .count .count-money .money-list ul {
+        top: -139.389rem;
+      }
       #count-100, #count-50 {
         touch-action: none
       }
@@ -342,7 +348,6 @@
     </div>
   </body>
   <script type="text/javascript">
-    $(function () {
       /**
        * 获取参数
        */
@@ -542,22 +547,34 @@
         // 钞票滑出效果
         countSlideDown: function () {
           scrollDirection += 1.437
-          $('.count-list').addClass('slide-down')
-          $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
-          document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
+          if (isAndroid()) {
+            $('.count-list').stop().animate({'top':scrollDirection + 'rem'}, 400)
+          } else {
+            $('.count-list').addClass('slide-down')
+            $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
+            document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
+          }
         },
         // 第一张钞票收起
         firstMoneyOut: function (type, turn) { // type: 钞票类别
-          var step = 0
+          var step = 0;
           if (turn > 1) {
             if (type === 50) {
               step -= 150;
+              if (isAndroid()) {
+                $($('.count-list li img')[turn]).animate({'margin-left':'-20rem'}, 400)
+              }
             } else {
               step += 150
+              if (isAndroid()) {
+                $($('.count-list li img')[turn]).animate({'margin-right':'-20rem'}, 400)
+              }
             }
-            $($('.count-list li img')[turn]).addClass('out')
-            $($('.count-list li img')[turn]).css('transform', 'translateX(' + step + '%)')
-            document.querySelector('.count-list li img').style.webkitTransform = 'translateX(' + step + '%)'
+            if (!isAndroid()) {
+              $($('.count-list li img')[turn]).addClass('out')
+              $($('.count-list li img')[turn]).css('transform', 'translateX(' + step + '%)')
+              document.querySelector('.count-list li img').style.webkitTransform = 'translateX(' + step + '%)'
+            }
           }
         },
         /*
@@ -663,8 +680,12 @@
               countObj.moneyConfig(countList)
               _this.num = countList.length -1
               scrollDirection =  -1.437 * (countList.length - 3)
-              $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
-              document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
+              if (isAndroid()) {
+                $('.count-list').css({'top': scrollDirection + 'rem','position':'absolute'})
+              } else {
+                $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
+                document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
+              }
             } else {
               alert(res.msg);
             }

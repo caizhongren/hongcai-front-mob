@@ -174,8 +174,6 @@ span.count-tip {
   -ms-transform: translateZ(0); 
   -o-transform: translateZ(0); 
   transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
 }
 .count .count-money ul li {
   /*width: 100%;
