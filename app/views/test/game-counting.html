@@ -1,5 +1,6 @@
 <html>
   <script type="text/javascript" src="/styles/un-min/jquery.min.js"></script>
+  <script type="text/javascript" src="/styles/un-min/jquery.SuperSlide.2.1.2.js"></script>
   <script src="/styles/un-min/jweixin-1.0.0.js"></script>
   <script type="text/javascript" src="/styles/un-min/gameWechatUtils.js"></script>
   <head>
@@ -38,7 +39,8 @@
       }
       .count .count-money .money-list ul {
         position: absolute;
-        top: -139.389rem;
+        bottom: -139.389rem;
+        /*transform: rotateX(180deg);*/
       }
       .count-down .process-wrap {
         background: url('/images/games/process-bg.png') no-repeat center center;
@@ -266,12 +268,12 @@
               </div>
               <!-- 点钞按钮 -->
               <div class="btns clear">
-                <div class="display-inbl btn-left" id="count-50">
+                <div class="display-inbl btn-left prev" id="count-50">
                   <img src="/images/games/hand.png" width="28%" class="noviceHand hand-50">
                   <span>50</span>
                   <img src="/images/games/button-50.png" width="66%" style="float: left;">
                 </div>
-                <div class="display-inbl btn-right" id="count-100" style="float: right;">
+                <div class="display-inbl btn-right prev" id="count-100" style="float: right;">
                   <img src="/images/games/hand.png" width="28%" class="noviceHand hand-100">
                   <span>100</span>
                   <img src="/images/games/button-100.png" class="right" width="66%">
@@ -560,7 +562,7 @@
         // 钞票滑出效果
         countSlideDown: function () {
           scrollDirection += 1.437
-          $('.count-list').stop().animate({'top':scrollDirection + 'rem'}, 400)
+          // $('.count-list').stop().animate({'top':scrollDirection + 'rem'}, 400)
           // $('.count-list').addClass('slide-down')
           // $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
           // document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
@@ -573,14 +575,10 @@
           if (turn > 1) {
             if (type === 50) {
               step -= 150;
-              $($('.count-list li img')[turn]).animate({'margin-left':'-20rem'}, 400, function () {
-                // _this.countSlideDown()
-              })
+              // $($('.count-list li img')[turn]).animate({'margin-left':'-20rem'}, 400, function () {})
             } else {
               step += 150
-              $($('.count-list li img')[turn]).animate({'margin-right':'-20rem'}, 400, function () {
-                // _this.countSlideDown()
-              })
+              // $($('.count-list li img')[turn]).animate({'margin-right':'-20rem'}, 400, function () {})
             }
             // $($('.count-list li img')[turn]).addClass('out')
             // $($('.count-list li img')[turn]).css('transform', 'translateX(' + step + '%)')
@@ -640,7 +638,8 @@
               scrollDirection =  -1.437 * (countList.length - 3)
               // $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
               // document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
-              $('.count-list').css('top', scrollDirection + 'rem')
+              jQuery(".count-money").slide({titCell:"",mainCell:".count-list",autoPage:true,effect:"bottom",autoPlay:false,vis:3,trigger:"click"});
+              // $('.count-list').css('bottom', scrollDirection + 'rem')
             } else {
               alert(res.msg);
             }
