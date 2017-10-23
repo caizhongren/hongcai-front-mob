@@ -549,7 +549,8 @@
         countSlideDown: function () {
           scrollDirection += 1.437
           if (isAndroid()) {
-            $('.count-list').stop().animate({'top':scrollDirection + 'rem'}, 400)
+            // $('.count-list').stop().animate({'top':scrollDirection + 'rem'}, 400)
+            $('.count-list').css({'top':scrollDirection + 'rem'})
           } else {
             $('.count-list').addClass('slide-down')
             $('.count-list').css('transform', 'translateY(' + scrollDirection + 'rem)')
@@ -563,12 +564,12 @@
             if (type === 50) {
               step -= 150;
               if (isAndroid()) {
-                $($('.count-list li img')[turn]).animate({'margin-left':'-20rem'}, 400)
+                $($('.count-list li img')[turn]).animate({'margin-left':'-20rem', 'margin-top':'-10rem'}, 600)
               }
             } else {
               step += 150
               if (isAndroid()) {
-                $($('.count-list li img')[turn]).animate({'margin-right':'-20rem'}, 400)
+                $($('.count-list li img')[turn]).animate({'margin-right':'-20rem', 'margin-top':'-10rem'}, 600)
               }
             }
             if (!isAndroid()) {
