@@ -565,7 +565,7 @@
          */
         countStart: function (clickEle, showEle, type) { // 点击元素， 显示的元素， 点击的按钮类型 50 ／ 100
           var _this = countObj;
-          $(clickEle).on('touchend', function (event) {
+          $(clickEle).unbind('touchend').on('touchend', function (event) {
             event.preventDefault()
             if (_this.num < 1 || second <= 0) {
               return;
