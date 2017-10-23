@@ -160,13 +160,22 @@ span.count-tip {
   margin-top: -.33rem;
   height: 4.311rem;
   overflow: hidden;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 .count .count-money ul.slide-down, .count .count-money ul li img.out {
-  -webkit-transition:all .5s linear;
-  -moz-transition:all .5s linear;
-  -o-transition:all .5s linear;
-  -ms-transition:all .5s linear;    
-  transition:all .5s linear;
+  -webkit-transition: all .4s linear;
+  -moz-transition: all .4s linear;
+  -o-transition: all .4s linear;
+  -ms-transition: all .4s linear;    
+  transition: all .4s linear;
+  -webkit-transform: translateZ(0); 
+  -moz-transform: translateZ(0); 
+  -ms-transform: translateZ(0); 
+  -o-transform: translateZ(0); 
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .count .count-money ul li {
   /*width: 100%;
