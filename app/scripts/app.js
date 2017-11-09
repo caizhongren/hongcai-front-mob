@@ -991,6 +991,55 @@ p2pSiteMobApp
         }
       })
 
+      //开始游戏页面
+      .state('root.game-counting-start', {
+        url: '/game-counting-start',
+        data: {
+          title: '谁是点钞王'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/games/game-counting-start.html'
+          }
+        }
+      })
+      //游戏点钞页面
+      .state('root.game-counting', {
+        url: '/game-counting',
+        data: {
+          title: '谁是点钞王'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/games/game-counting.html'
+          }
+        }
+      })
+      //游戏微信分享页面
+      .state('root.game-counting-share', {
+        url: '/game-counting-share',
+        data: {
+          title: '谁是点钞王'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/games/game-counting-share.html'
+          }
+        }
+      })
+      //游戏获的奖励页面
+      .state('root.game-counting-reward', {
+        url: '/game-counting-reward',
+        data: {
+          title: '谁是点钞王'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/games/game-counting-reward.html'
+          }
+        }
+      })
+
 
     ;
     $urlRouterProvider.otherwise('/');
