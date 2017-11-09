@@ -194,7 +194,7 @@ window.onload = function(){
    * 跳转去微信授权
    */
   function redirectToWechatAuth (redirect_uri){
-    var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + 'wx02dfe579709d2d95' +
+    var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + 'wx643d9b3aa9ca1e64' +
               "&redirect_uri=" + encodeURIComponent(removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"
     window.location.href = wechatRedirectUrl
   }
