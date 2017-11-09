@@ -669,7 +669,7 @@
                 $gameCounts.html(_this.gameCounts);
               }
             } else {
-              alert('获取用户游戏参与信息接口报错')
+              console.log('获取用户游戏参与信息接口报错')
             }
           })
         },
@@ -689,7 +689,7 @@
                 document.querySelector('.count-list').style.webkitTransform = 'translateY(' + scrollDirection + 'rem)'
               }
             } else {
-              alert(res.msg);
+              console.log(res.msg);
             }
           })
         },
@@ -882,7 +882,7 @@
             if (res && res.ret !== -1) {
               window.location.href= location.origin + '/views/games/game-counting-reward.html?principal=' + rewardMoney 
             } else {  
-              alert(res.msg)
+              console.log(res.msg)
             }
           })
         },

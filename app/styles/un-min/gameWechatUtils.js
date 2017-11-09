@@ -94,7 +94,7 @@ window.onload = function(){
           console.log('分享成功游戏次数增加')
           shareSuccess()
         } else {
-          alert(res.msg)
+          console.log(res.msg)
         }
       },
       data: 'openid=' + getCookie('openid') + '&type=2'
@@ -208,7 +208,7 @@ window.onload = function(){
   function getOpenid () {
     $.get('/hongcai/rest/users/' + wechat_code + '/openid', function (response, status) {
       if ((response && response.ret == -1)) { //微信授权登录失败
-        alert('openid')
+        console.log('openid')
         redirectToWechatAuth(location.href)
         // redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
         return
