@@ -1,0 +1,110 @@
+<!-- 渠道活动落地页 -->
+<div class="new-channel" id="activity">
+  <!-- 头部header -->
+  <div class="header">
+    <img src="/images/channel-landing/111-new.png" class="display-bl" width="100%">
+  </div>
+  <div class="sharing-content">
+    <!-- 注册表单 -->
+    <form autocomplete="off" class="invite-form margin-0" name="registerForm" autocomplete="on"  id="registerForm" novalidate>
+      <div class="to-register">
+        <!-- 手机号码 -->
+        <input id="mobilesignup" name="mobile" ng-model="user.mobile" type="tel" placeholder="请输入您的手机号" required/>
+        <!-- 图形验证码 -->
+        <input id="picCaptcha" name="picCaptcha" ng-model="user.picCaptcha" required type="text" placeholder="请输入图形验证码" class="picCaptcha"/>
+        <img src="{{getPicCaptcha}}" id="checkCaptcha" class="captchacode fr bg-white" ng-click="refreshCode()">
+        <!-- 手机验证码 -->
+        <input id="mobileCaptcha" name="captchasignup" ng-model="user.captcha" required="required" type="number" placeholder="请输入手机验证码" class="mobileCaptcha"/>
+        <div id="mobilecode" capcha-countdown>获取</div>
+        <!-- 立即注册按钮 -->
+        <div class="invitedBtn" ng-click="signUp(user);"></div>
+      </div>
+    </form>
+  </div>
+  <!-- 增信文案
+  <div class="Trust">
+    <div class="product">
+      <div class="title">产品特点</div>
+      <div class="info info1">
+        <img src="/images/channel-landing/2-money.png" alt="">
+        依托耕耘十多年的金融生态圈，借款企业信息知根知底。
+      </div>
+      <div class="info info2">
+        <img src="/images/channel-landing/2-money.png" alt="">
+        上线两年多，始终零逾期。
+      </div>
+      <ul class="projects">
+        <li class="fl">
+          <div class="jx">
+            <p>以55天汽车金融为主，年化收益率8.6%起。</p>
+            <p>宏财精选项目</p>
+          </div>
+        </li>
+        <li class="fr">
+          <div class="zg">
+            <p>以180天小微产业金融为主，年化收益率9.8%起。</p>
+            <p>宏财尊贵项目</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="hongcai">
+      <div class="title">选择宏财的4大理由</div>
+      <ul class="abouts">
+        <li>
+          <img src="/images/channel-landing/4.png" alt="">
+          <p>银行存管</p>
+          <p>2017年6月正式上线 <br/>海口联合农商银行资金存管</p>
+        </li>
+        <li>
+          <img src="/images/channel-landing/1-new.png" alt="">
+          <p>国资背景</p>
+          <p>2016年获国有企业<br/>1亿元A轮战略融资</p>
+        </li>
+        <li>
+          <img src="/images/channel-landing/2-new.png" alt="">
+          <p>博士团队</p>
+          <p>拥有博士高管团队的<br/>互联网金融信息服务平台</p>
+        </li>
+        <li>
+          <img src="/images/channel-landing/3.png" alt="">
+          <p>优质资产</p>
+          <p>十多年金融生态圈<br/>积累优质资产</p>
+        </li>
+      </ul>
+    </div>
+    <!-- <div class="message">
+      <p>北京竞财投资服务有限公司</p>
+      <p>京ICP备15025477号</p>
+      <p>市场有风险，投资需谨慎</p>
+    </div>
+  </div> -->
+  <div class="Trust">
+    <img src="/images/channel-landing/product_01.png" width="90%">
+    <div class="products">
+      <img src="/images/channel-landing/product_02.png" alt="">
+      <img src="/images/channel-landing/product_03.png" alt="">
+      <img src="/images/channel-landing/product_04.png" alt="">
+      <img src="/images/channel-landing/product_05.png" alt="">
+    </div>
+    <img src="/images/channel-landing/abouts_01.png" class="margin-t-4" width="90%">
+    <div class="abouts">
+      <img src="/images/channel-landing/abouts_02.png" alt="">
+      <img src="/images/channel-landing/abouts_03.png" alt="">
+      <img src="/images/channel-landing/abouts_04.png" alt="">
+      <img src="/images/channel-landing/abouts_05.png" alt="">
+    </div>
+  </div>
+</div>
+<!-- 受邀成功弹窗 -->
+<div class="project-mask bg-grey6 channel-mask" auto-h id="successMask" ng-show="isSuccess">
+  <div class="successMask text-center">
+    <img src="/images/channel-landing/register-01.png" alt="" width="60%">
+    <img src="/images/channel-landing/register-02-1.png" alt="" width="25%" class="register-02-1">
+    <img src="/images/channel-landing/register-02.png" alt="" width="70%">
+    <img src="/images/channel-landing/register-03.png" alt="" width="43%">
+    <img src="/images/channel-landing/register-04.png" alt="" width="80%">
+    <!-- 立即查收按钮：点击按钮跳转至app下载页，iOS跳转至App Store，安卓跳至应用宝； -->
+    <img src="/images/channel-landing/register-05.png" alt="" width="94%" ng-click="successMask()" onClick="javascript:window.location.href='http://a.app.qq.com/o/simple.jsp?pkgname=com.hoolai.hongcai'">
+  </div>
+</div>

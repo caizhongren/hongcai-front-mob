@@ -193,8 +193,11 @@ window.onload = function(){
   /**
    * 跳转去微信授权
    */
+   console.log(location.origin)
+   var wechatAppid = ''
+  location.origin !== 'https://m.hongcai.com' ? wechatAppid = 'wx02dfe579709d2d95' : wechatAppid = 'wx643d9b3aa9ca1e64'
   function redirectToWechatAuth (redirect_uri){
-    var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + 'wx643d9b3aa9ca1e64' +
+    var wechatRedirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + wechatAppid +
               "&redirect_uri=" + encodeURIComponent(removeParam('code', redirect_uri)) + "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"
     window.location.href = wechatRedirectUrl
   }
@@ -209,8 +212,7 @@ window.onload = function(){
     $.get('/hongcai/rest/users/' + wechat_code + '/openid', function (response, status) {
       if ((response && response.ret == -1)) { //微信授权登录失败
         console.log('openid')
-        redirectToWechatAuth(location.href)
-        // redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
+        location.origin !== 'https://m.hongcai.com' ? redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname) : redirectToWechatAuth(location.href)
         return
       } else if (response){
         openid = getCookie('openid') || response.openid
@@ -248,8 +250,7 @@ window.onload = function(){
         getOpenid()
       }
       if (!getCookie('openid')) {
-        redirectToWechatAuth(location.href)
-        // redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname)
+        location.origin !== 'https://m.hongcai.com' ? redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname) : redirectToWechatAuth(location.href)
         return
       }
     }  
