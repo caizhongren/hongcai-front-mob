@@ -712,6 +712,10 @@
           })
         },
         startGameConfig: function () {
+          if (!getCookie('openid')) {
+            window.location.href = location.origin + '/views/games/game-counting-start.html'
+            return
+          }
           this.getGameState()
           this.toggleRuleBox($showRule, $ruleBox);
           $RuleStartGame.on('touchend', this.RuleStartGame)
