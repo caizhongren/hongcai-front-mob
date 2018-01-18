@@ -183,6 +183,14 @@ angular.module('p2pSiteMobApp')
       }
 
     }
+    //监测图形验证码
+    $scope.$watch('user.picCaptcha', function(newVal) {
+      //校验图形验证码只能输入数字
+      var captchaPattern = /^\d{1,4}$/
+      if (newVal && !captchaPattern.test(newVal)) {
+        $scope.user.picCaptcha = newVal.replace(/\D/g, '').toString().slice(0, 4)
+      }
+    })
     //校验图形验证码
     $scope.checkCapcha = function(user) {
       
