@@ -20,7 +20,7 @@ angular.module('p2pSiteMobApp')
     } else if (business === 'TRANSFER') {
       $scope.page = 3;
       Restangular.one('orders/'+$stateParams.number+'/orderCoupon').get().then(function(response) {
-        $scope.coupon = response.coupon;
+        $scope.coupon = response;
       });
 
     } else if (business === 'BIND_BANK_CARD') {
