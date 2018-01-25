@@ -89,12 +89,15 @@ angular.module('p2pSiteMobApp')
       if(newVal){
         $scope.checkAmount(newVal);
       }
-      //手续费计算   
-      if ($scope.currentDate - $scope.creatTime <= $scope.borderDay*24*60*60*1000) {
-        $scope.counterFee = $scope.transferAmount * $scope.lessThanOrEqualBorderDayFee / 100 * $scope.discountFeeRate > $scope.minFee ? $scope.transferAmount * $scope.lessThanOrEqualBorderDayFee / 100 * $scope.discountFeeRate : $scope.minFee;
-      }else {
-        $scope.counterFee = $scope.transferAmount * $scope.greaterThanBorderDayFee /100 * $scope.discountFeeRate > $scope.minFee ? $scope.transferAmount * $scope.greaterThanBorderDayFee /100 * $scope.discountFeeRate : $scope.minFee;
-      }
+      //手续费计算   // 原规则：该笔债权持有时间 < 30天，手续费 = 转让本金 * 1%，持有时间 ≥ 30天，手续费 = 转让本金 * 0.5%，单笔转让的手续费最低为3元。
+      // if ($scope.currentDate - $scope.creatTime <= $scope.borderDay*24*60*60*1000) {
+      //   $scope.counterFee = $scope.transferAmount * $scope.lessThanOrEqualBorderDayFee / 100 * $scope.discountFeeRate > $scope.minFee ? $scope.transferAmount * $scope.lessThanOrEqualBorderDayFee / 100 * $scope.discountFeeRate : $scope.minFee;
+      // }else {
+      //   $scope.counterFee = $scope.transferAmount * $scope.greaterThanBorderDayFee /100 * $scope.discountFeeRate > $scope.minFee ? $scope.transferAmount * $scope.greaterThanBorderDayFee /100 * $scope.discountFeeRate : $scope.minFee;
+      // }
+
+      // 现规则：手续费 = 转让本金 * 1%，单笔转让的手续费最低为3元。
+      $scope.counterFee = $scope.transferAmount * $scope.lessThanOrEqualBorderDayFee / 100 * $scope.discountFeeRate > $scope.minFee ? $scope.transferAmount * $scope.lessThanOrEqualBorderDayFee / 100 * $scope.discountFeeRate : $scope.minFee;
       //待收未收利息
       $scope.profit = $scope.annualEarnings * newVal * $scope.profitDate /36500;
 
