@@ -2448,6 +2448,7 @@ input::-webkit-inner-spin-button {
 //新版渠道落地页
 .new-channel {
   background: #fedeb4;
+  overflow-x: hidden;
   .sharing-content {
     position: relative;
     background-image: linear-gradient(to bottom, #feaf65 0%, #ffddae 100%);
@@ -2643,10 +2644,21 @@ input::-webkit-inner-spin-button {
       padding: .8rem 0 1.5rem;
     }
     .hongcai .title {
-      padding: .7rem 0 1.5rem;
+      padding: .65rem 0 1.5rem;
     }
 }
 @media (min-width:320px) {
+  .new-channel .product {
+    height: 38rem;
+    .info1 img {
+      left: -3.4rem;
+      top: -2.5rem;
+    }
+    .info2 img {
+      right: -3.4rem;
+      top: 1rem;
+    }
+  }
 }
 @media (min-width:360px) {
   .new-channel {
@@ -2683,7 +2695,7 @@ input::-webkit-inner-spin-button {
       padding: .8rem 0 2.5rem;
     }
     .hongcai .title {
-      padding: .7rem 0 2.5rem;
+      padding: .65rem 0 2.5rem;
     }
   }
 }
