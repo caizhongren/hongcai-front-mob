@@ -92,8 +92,8 @@
     <!-- 活动详情  弹出来需要去掉X号 -->
     <section class="rec-act-rule rec-act-rule1 bg-white margin-l-4 margin-r-4  border-ra-0p5" ng-show="modalMsg">
       <div class="rule padding-t-2 padding-r-1 padding-l-1p8 padding-b-1p5 text-center">
-        <p class="margin-b-0">您该笔债权持有时间不足10日，</p>
-        <p class="margin-b-0 margin-l-p1 padding-b-2">{{createTime +  10*24*3600*1000 | date:'yyyy.MM.dd'}}日起可以进行转让</p>
+        <p class="margin-b-0">您该笔债权持有时间不足30日，</p>
+        <p class="margin-b-0 margin-l-p1 padding-b-2">{{createTime +  30*24*3600*1000 | date:'yyyy.MM.dd'}}日起可以进行转让</p>
         <button class="rec-rule-btn button" ng-click="closeRule()">我知道了</button>
       </div>
     </section>

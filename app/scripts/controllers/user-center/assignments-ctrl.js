@@ -85,7 +85,7 @@ angular.module('p2pSiteMobApp')
           var currentDate = new Date().getTime();
           if(status === 1){
             for (var i = $scope.transferablesList.length - 1; i >= 0; i--) {
-              $scope.transferablesList[i].canTransfer = config.isTest || (currentDate - $scope.transferablesList[i].createTime > 10*24*3600*1000);
+              $scope.transferablesList[i].canTransfer = config.isTest || (currentDate - $scope.transferablesList[i].createTime > 30*24*3600*1000);
             }
           }
           $scope.loading = false;
