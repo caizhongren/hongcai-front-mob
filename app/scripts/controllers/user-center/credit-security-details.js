@@ -24,7 +24,7 @@ angular.module('p2pSiteMobApp')
      */
     Restangular.one('creditRights').one($scope.number + '/creditRightBills').get({}).then(function(response) {
       if(response && response.ret !== -1) {
-        $scope.credits = response;
+        $scope.credits = response.data;
         $timeout(function(){
           $rootScope.showLoadingToast = false;
         },200)

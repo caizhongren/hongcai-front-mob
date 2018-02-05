@@ -160,13 +160,13 @@ angular.module('p2pSiteMobApp')
         $timeout(function(){
           $rootScope.showLoadingToast = false;
         },100);
-        $scope.pageCount0 = response.pageCount;
+        $scope.pageCount0 = response.totalPage;
         if(page === 1) {
-          $scope.assignments = response.assignments;
+          $scope.assignments = response.data;
           localStorage.setItem('assignmentList', angular.toJson($scope.assignments));
         } else {
-          for (var i = 0; i < response.assignments.length; i++) {
-            $scope.assignments.push(response.assignments[i]);
+          for (var i = 0; i < response.data.length; i++) {
+            $scope.assignments.push(response.data[i]);
           };
         }
         $timeout(function() {
