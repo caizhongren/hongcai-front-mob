@@ -17,7 +17,7 @@
         <span class="display-inb fl margin-t--0p2">{{item.creditRight.projectName}}</span>
       </span>
       <!-- <img class="fl" src="/images/user-center/rate-icon.png" alt="" width="9%" ng-show="true"> --> 
-      <div ng-show="(item.increaseRateCoupon && item.increaseRateCoupon.type === 1) || item.privilegeValue">
+      <div ng-show="(item.increaseRateCoupon && (item.increaseRateCoupon.type === 1 || item.increaseRateCoupon.type === 6 || item.increaseRateCoupon.type === 7)) || item.privilegeValue">
         <div class="fl arrow-left"></div><div class="fl rate-icon">
           <span ng-show="item.increaseRateCoupon && item.increaseRateCoupon.type === 1 || item.increaseRateCoupon.type === 6 || item.increaseRateCoupon.type === 7">{{item.increaseRateCoupon.value}}%</span>
           <span ng-show="item.increaseRateCoupon && (item.increaseRateCoupon.type === 1 || item.increaseRateCoupon.type === 6 || item.increaseRateCoupon.type === 7) && item.privilegeValue">＋</span>
