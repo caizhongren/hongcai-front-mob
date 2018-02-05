@@ -4,7 +4,7 @@
   <div class="detail-header ft-white">
     <img src="/images/user-center/security-bg.png" width="100%" class="display-bl">
     <div class="annualEarnings position-ab text-center">
-      <p class="margin-b-0 text-cneter">{{creditRight.baseRate || 0}}<span class="ft-1p4">%</span><span class="ft-1p8 ft-red0" ng-show="increaseRateCoupon.value && increaseRateCoupon.type == 1">+{{increaseRateCoupon.value}}<span class="ft-1p4 ">%</span></span><span class="ft-1p8 ft-red0" ng-show="isPrivilegeRate">+{{privilegeRate.value}}<span class="ft-1p4 ">%</span></span></p>
+      <p class="margin-b-0 text-cneter">{{creditRight.baseRate || 0}}<span class="ft-1p4">%</span><span class="ft-1p8 ft-red0" ng-show="increaseRateCoupon.value && (increaseRateCoupon.type == 1 || increaseRateCoupon.type == 6 || increaseRateCoupon.type == 7)">+{{increaseRateCoupon.value}}<span class="ft-1p4 ">%</span></span><span class="ft-1p8 ft-red0" ng-show="isPrivilegeRate">+{{privilegeRate.value}}<span class="ft-1p4 ">%</span></span></p>
       <p class="margin-b-0">年均回报率</p>
     </div>
     <div  class="projectDays position-ab text-center">
@@ -14,7 +14,7 @@
   </div>
   <div class="detail-steps padding-b-4">
     <ul>
-    <!-- 投资本金 -->
+      <!-- 投资本金 -->
       <li class="margin-b--0p5">
         <div class="timeline display-inb">
           <p  class="margin-b-0 grey-bg"></p>
@@ -26,20 +26,6 @@
           <span class="display-inb grey-bg"></span>
           <p class="margin-t-2p5 display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="creditRight.type !== 6">投资：本金{{creditRight.amount | number:2 || 0}}元<br><span class="ft-blue7 ft-1p2 margin-t--0p5">{{creditRight.createTime | date:'yyyy-MM-dd'}}</span></p>
           <p class="margin-t-2p5 display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="creditRight.type === 6">债券认购：本金{{creditRight.amount | number:2 || 0}}元<br><span class="ft-blue7 ft-1p2 margin-t--0p5">{{creditRight.createTime | date:'yyyy-MM-dd'}}</span></p>
-        </div>
-      </li>
-      <!-- 特权加息 -->
-      <li class="margin-b--0p5" ng-show="privilegeRate.value > 0 && privilegeRate.type === 5 && privilegeRate.profit <= 0 && isPrivilegeRate">
-        <div class="timeline display-inb">
-          <p class="margin-b-0" ng-class="{'grey-bg':privilegeRate.profit > 0,'orange-bg':privilegeRate.profit <= 0}"></p>
-          <div class="margin-t--0p5">
-            <img src="/images/user-center/circle-ed.png" width="19%" class="display-inb" ng-if="privilegeRate.profit > 0">
-            <img src="/images/user-center/circle-ex.png" width="19%" class="display-inb" ng-if="privilegeRate.profit <= 0">
-          </div>
-        </div>
-        <div class="step display-inb position-ab margin-l--0p5">
-          <span class="hyphen display-inb" ng-class="{'grey-bg':privilegeRate.profit > 0,'orange-bg':privilegeRate.profit <= 0}"></span>
-          <p class="margin-t-2p5 display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="creditRight.type !== 6">特权加息：+{{(creditRight.amount * privilegeRate.value) * privilegeRate.duration/36500 | number:2 || 0}}元<br></p>
         </div>
       </li>
       <!-- 计息日期 -->
@@ -59,24 +45,29 @@
       </li>
       <!-- 每次回款 -->
       <li class="margin-b--0p5" ng-repeat="item in credits track by $index">
-        <div class="timeline display-inb">
+        <div class="timeline display-inb" ng-if="item.type !== 2 && item.type !== 3 && item.type !== 1">
           <p  class="margin-b-0" ng-class="{'grey-bg':item.status === 1,'orange-bg':item.status === 0}"></p>
           <div class="margin-t--0p5">
             <img src="/images/user-center/circle-ed.png" width="19%" class="display-inb" ng-if="item.status==1">
             <img src="/images/user-center/circle-ex.png" width="19%" class="display-inb" ng-if="item.status==0">
           </div>
         </div>
-        <div class="step display-inb position-ab margin-l--0p5">
+        <div class="step display-inb position-ab margin-l--0p5" ng-if="item.type !== 2 && item.type !== 3 && item.type !== 1">
           <span class="display-inb" ng-class="{'grey-bg':item.status === 1,'orange-bg':item.status === 0}"></span>
-          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="item.type === 3">贴息：募集期贴息{{ item.amount | number: 2 }}元<br/>
-            <span class="ft-blue7 ft-1p2 margin-t--0p5">{{ item.createTime | date:'yyyy-MM-dd' }}</span>
+          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="item.type === 6">募集期贴息：{{ item.amount | number: 2 }}元<br/>
+            <span class="ft-blue7 ft-1p2 margin-t--0p5">{{ item.date }}</span>
           </p>
-          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="item.type !== 3 && item.creditAssignmentId <= 0">回款：利息{{ item.profit | number: 2 }}元
-            <b class="ft-red0 display-inb ft-normal" ng-show="increaseRateCoupon.value && increaseRateCoupon.type === 1">+{{(creditRight.baseRate + increaseRateCoupon.value) * item.profit/creditRight.baseRate - item.profit | number:2 || 0}}元</b>
-            <br><span class="ft-1p2 margin-t--0p5" ng-class="{'ft-blue7':item.status === 1,'orange-ft':item.status === 0}">{{ item.createTime | date:'yyyy-MM-dd'}}</span></p>
-          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="item.principal > 0 && item.creditAssignmentId > 0">债权转让：利息{{ item.profit | number: 2 }}元<br><span class="ft-1p2 margin-t--0p5" ng-class="{'ft-blue7':item.status==1,'orange-ft':item.status==0}">{{ item.createTime | date:'yyyy-MM-dd'}}</span></p>
+          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="item.type === 7">特权加息：{{ item.amount | number: 2 }}元<br/>
+            <span class="ft-blue7 ft-1p2 margin-t--0p5">{{ item.date }}</span>
+          </p>
+          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="item.type !== 6 && item.type !== 7 && item.type !== 8">
+            回款：{{item.type === 5 ? '本金':'利息'}}{{ item.amount | number: 2 }}元
+            <b class="ft-red0 display-inb ft-normal" ng-if="item.type !== 5 && item.couponProfit >0">+{{item.couponProfit | number:2 || 0}}元</b>
+            <br><span class="ft-1p2 margin-t--0p5" ng-class="{'ft-blue7':item.status === 1,'orange-ft':item.status === 0}">{{ item.date}}</span>
+          </p>
+          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="item.type === 8 ">债权转让：利息{{ item.amount | number: 2 }}元<br><span class="ft-1p2 margin-t--0p5" ng-class="{'ft-blue7':item.status==1,'orange-ft':item.status==0}">{{ item.date}}</span></p>
         </div>
-        <div ng-if="item.principal > 0 && item.creditAssignmentId > 0">
+        <div ng-if="type === 8">
           <div class="timeline display-inb">
             <p  class="margin-b-0" ng-class="{'grey-bg':item.status === 1,'orange-bg':item.status === 0}"></p>
             <div class="margin-t--0p5">
@@ -86,24 +77,10 @@
           </div>
           <div class="step display-inb position-ab margin-l--0p5">
             <span class="display-inb" ng-class="{'grey-bg':item.status === 1,'orange-bg':item.status === 0}"></span>
-            <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="item.principal > 0">债权转让：本金{{ item.principal || 0 | number: 2 }}元<br><span class="ft-1p2 margin-t--0p5" ng-class="{'ft-blue7':item.status==1,'orange-ft':item.status==0}">{{ item.createTime | date:'yyyy-MM-dd'}}</span></p>
+            <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="item.amount > 0">债权转让：本金{{ item.amount || 0 | number: 2 }}元<br><span class="ft-1p2 margin-t--0p5" ng-class="{'ft-blue7':item.status==1,'orange-ft':item.status==0}">{{ item.date}}</span></p>
           </div>
         </div>
       </li>
-      <!-- 最后一次本金和利息 -->
-      <li class="margin-b--0p5">
-        <div class="timeline display-inb">
-          <p  class="margin-b-0 {{credits[credits.length-1].status == 1 ?'grey-bg':'orange-bg'}}"></p>
-          <div class="margin-t--0p5">
-            <img src="/images/user-center/circle-ed.png" width="19%" class="display-inb" ng-if="credits[credits.length-1].status == 1">
-            <img src="/images/user-center/circle-ex.png" width="19%" class="display-inb" ng-if="credits[credits.length-1].status == 0">
-          </div>
-        </div>
-        <div class="step display-inb position-ab margin-l--0p5">
-          <span class="display-inb {{credits[credits.length-1].status == 1 ?'grey-bg':'orange-bg'}}"></span>
-          <p class="display-inb ft-grey4 ft-1p4 margin-b--0p5">回款：本金{{credits[credits.length-1].principal | number:2 || 0}}元<br><span class="ft-1p2 margin-t--0p5 {{credits[credits.length-1].status == 1 ? 'ft-blue7':'orange-ft'}}">{{ credits[credits.length-1].createTime | date:'yyyy-MM-dd'}}</span></p>
-        </div>
-      </li> 
     </ul>
   </div>
   <div class="project-details text-center" ng-hide="creditRight.type == 3">

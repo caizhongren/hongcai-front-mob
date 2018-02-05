@@ -13,7 +13,7 @@ angular.module('p2pSiteMobApp')
       type : 2
     }).then(function(response){
       if(!response || response.ret == -1) { return;}
-      $scope.banners = response;
+      $scope.banners = response.data;
 
       /**
        * 轮播图
