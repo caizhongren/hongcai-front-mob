@@ -11,7 +11,7 @@
             <span class="u-pull-left border-left1" ng-show="widthFlag===0 && item.projectName.length <= 11">{{item.projectName}} </span>
             <span class="u-pull-left border-left1" ng-show="widthFlag===0 && item.projectName.length > 11">{{item.projectName | limitTo:8}}... </span>
             <span class="u-pull-left border-left1"  ng-show="widthFlag===1 || widthFlag===2">{{item.projectName}}</span>
-            <img class="fl" src="/images/user-center/rate-icon.png" alt="" width="9%" ng-show="item.coupon && item.coupon.type === 1">
+            <img class="fl" src="/images/user-center/rate-icon.png" alt="" width="9%" ng-show="item.coupon && (item.coupon.type === 1 || item.coupon.type === 6 || item.coupon.type === 7)">
             <span class="u-pull-right ft-orange2 ft-1p3" ng-show="!item.canTransfer" ng-click="showRule(item.createTime)">&nbsp;暂不可转&nbsp;</span>  
             <span class="u-pull-right ft-orange2 ft-1p3" ng-show="item.canTransfer" ng-click="goTransfer(item.number);">&nbsp;转让&nbsp;</span>
           </div>
@@ -23,7 +23,7 @@
             <span class="ft-greyaaa padding-l-0p5">本(元)</span>
           </div>
           <div class="assignment-item-info u-pull-left text-center ft-1p4 border-greye-right">
-            <strong class="ft-grey999 content-number">{{item.profit - item.returnProfit | number:2 || 0}}</strong><strong class="ft-red0 ft-1p4" ng-show="item.coupon && item.coupon.type === 1">+{{(item.baseRate + item.riseRate + item.coupon.value) * (item.profit - item.returnProfit) / (item.baseRate + item.riseRate) - (item.profit - item.returnProfit) | number:2 || 0 }}</strong>
+            <strong class="ft-grey999 content-number">{{item.profit - item.returnProfit | number:2 || 0}}</strong><strong class="ft-red0 ft-1p4" ng-show="item.coupon && (item.coupon.type === 1 || item.coupon.type === 6 || item.coupon.type === 7)">+{{(item.baseRate + item.riseRate + item.coupon.value) * (item.profit - item.returnProfit) / (item.baseRate + item.riseRate) - (item.profit - item.returnProfit) | number:2 || 0 }}</strong>
             <br>
             <span class="ft-greyaaa">息(元)</span>
           </div>
