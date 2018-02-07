@@ -69,6 +69,20 @@ p2pSiteMobApp
         }
       })
 
+      .state('root.disclosure', {
+        url: '/disclosure/:tab',
+        data: {
+          title: '信息披露'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/disclosure.html',
+            controller: 'disclosureCtrl',
+            controllerUrl: 'scripts/controllers/disclosure'
+          }
+        }
+      })
+
       //绑定微信页面
       .state('root.bind-wechat', {
         url: '/bind-wechat',
