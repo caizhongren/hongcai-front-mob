@@ -87,39 +87,6 @@
 .disclosure-banner {
   margin: 0 auto;
   max-width: 560px;
-  .bd{
-    z-index:0;
-    li {
-      a{
-        img{
-          vertical-align:top;
-          width:100%;
-        }
-      }
-    }
-  }
-  .hd {
-    top: 83%;
-    left: 38%;
-    li{
-      display:inline-block;
-      width:8px;
-      height:8px;
-     -webkit-border-radius:5px;
-     -moz-border-radius:5px;
-     border-radius:5px;
-     background-color: black;
-     opacity: .25;
-     text-indent:-9999px;
-     overflow:hidden;
-     margin:0 6px;
-     }
-     li.on{
-       background:#fff;
-       opacity: .75;
-     }
-  }
-
   .slide{
     position: relative;
     overflow: hidden;
@@ -133,6 +100,7 @@
       left: 0%;
       top: 0;
       width: 100%;
+    	border-radius: 12.5px;
     }
     li{
       list-style: none;
@@ -140,12 +108,13 @@
       left: 0;
       top: 0;
       width: 100%;
+    	border-radius: 12.5px;
       img{
         position: absolute;
         left: 0;
         top: 0;
         width: 100%;
-    		border-radius: 1rem;
+    		border-radius: 12.5px;
       }
     }
     /* 解决js阻塞页面显示首屏 */
@@ -281,16 +250,16 @@
     background-color: #ff611d;
     display: block;
     margin-top: -0.2rem;
-    margin-right: 0.53rem;
+    margin-right: 0.525rem;
   }
   .column3 .middle .line, .column4 .middle .line, .column8 .middle .line {
     height: 6.2rem;
   }
   .column4 .middle .line {
-    height: 9rem;
+    height: 11rem;
   }
   .column8 .middle .line {
-    height: 6.4rem;
+    height: 7.4rem;
   }
   .column3 .right, .column4 .right, .column8 .right {
     width: 47%;
@@ -345,7 +314,7 @@
   .list .list-left {
     float: left;
     width: 10%;
-    margin-top: .7rem;
+    margin-top: 3rem;
   }
   .list .list-left img {
     margin: 0;
@@ -359,10 +328,10 @@
     background-color: #fdaa7d;
   }
   .list .list-left .line1 {
-    height: 12.83rem;
+    height: 10.83rem;
   }
   .list .list-left .line2 {
-    height: 8.83rem;
+    height: 10.83rem;
   }
   .list .list-left .line3 {
     height: 11.83rem;
@@ -685,7 +654,7 @@
   .commonBoxShadow .title {
     font-size: 1.5rem;
     color: #666666;
-    margin-bottom: .1rem;
+    margin-bottom: .5rem;
   }
   .commonBoxShadow .data {
     font-size: 1.6rem;
@@ -745,7 +714,7 @@
     margin: 0.3rem auto;
     text-align: left;
     overflow: hidden;
-    padding-right: .2rem;
+    padding-right: 1rem;
     margin-bottom: 1.5rem;
     max-height: 7rem;
   }
