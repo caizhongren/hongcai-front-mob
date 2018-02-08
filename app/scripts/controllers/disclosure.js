@@ -59,13 +59,13 @@ angular.module('p2pSiteMobApp')
         window.scrollTo(0, 0)
       }
       if ($scope.toggle.activeTab === 3) {
-        $('.column').addClass('transition-left')
+        $('.columns').addClass('transition-left')
       }
       if ($scope.toggle.activeTab === 1) {
-        $('.column').removeClass('transition-left')
+        $('.columns').removeClass('transition-left')
       }
       if ($scope.toggle.activeTab === 2) {
-        $('.column').hasClass('transition-left') ? $('.columns').removeClass('transition-left') : $('.column').addClass('transition-left')
+        $('.columns').hasClass('transition-left') ? $('.columns').removeClass('transition-left') : $('.columns').addClass('transition-left')
       }
       $scope.toggle.activeTab = tabIndex;
     };
