@@ -82,6 +82,19 @@ p2pSiteMobApp
           }
         }
       })
+      .state('root.policies', {
+        url: '/policies/:id',
+        data: {
+          title: '信息披露'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/policies.html',
+            controller: 'disclosureCtrl',
+            controllerUrl: 'scripts/controllers/disclosure'
+          }
+        }
+      })
 
       //绑定微信页面
       .state('root.bind-wechat', {

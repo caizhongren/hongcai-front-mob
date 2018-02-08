@@ -453,7 +453,7 @@
     </section>
     <section ng-if="tab.title==='政策法规'" class="margin-b-7 ">
       <div class="policiesList">
-        <div class="commonBoxShadow" ng-repeat="item in policiesList">
+        <div class="commonBoxShadow" ng-repeat="item in policiesList track by $index" ng-click="showPoliciesText($index)">
           <span></span>
           <p class="title">{{item.title}}</p>
           <img src="../../images/disclosure/icon-right.png" alt="">
