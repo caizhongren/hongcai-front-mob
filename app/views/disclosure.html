@@ -454,9 +454,9 @@
     <section ng-if="tab.title==='政策法规'" class="margin-b-7 ">
       <div class="policiesList">
         <div class="commonBoxShadow" ng-repeat="item in policiesList track by $index" ng-click="showPoliciesText($index)">
-          <span></span>
+          <span ng-class="{'border-6': $index == 1 || $index == 2 || $index == 3 || $index == 6}"></span>
           <p class="title">{{item.title}}</p>
-          <img src="../../images/disclosure/icon-right.png" alt="">
+          <img src="../../images/disclosure/icon-right.png" alt="" ng-class="{'margin-6': $index === 0 || $index === 4 || $index === 5}">
         </div>
       </div>
     </section>

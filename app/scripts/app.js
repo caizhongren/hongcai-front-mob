@@ -90,8 +90,8 @@ p2pSiteMobApp
         views: {
           '': {
             templateUrl: 'views/policies.html',
-            controller: 'disclosureCtrl',
-            controllerUrl: 'scripts/controllers/disclosure'
+            controller: 'policiesCtrl',
+            controllerUrl: 'scripts/controllers/policies'
           }
         }
       })
