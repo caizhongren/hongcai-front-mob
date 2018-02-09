@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('disclosureCtrl', function($scope, $stateParams, $rootScope, Restangular, $state) {
+  .controller('disclosureCtrl', function($scope, $stateParams, $rootScope, Restangular, $state, $location) {
     $scope.showPoliciesText = function (id) {
       $state.go('root.policies', {
         id: id
@@ -51,6 +51,7 @@ angular.module('p2pSiteMobApp')
     }, {
       title: '政策法规'
     }];
+    $scope.tab == '4' ? $('.columns').addClass('transition-left') : null
     $scope.toggle.switchTab = function(tabIndex) {
       if ($scope.toggle.activeTab !== tabIndex) {
         $scope.toggle.activeTab = tabIndex
@@ -66,6 +67,7 @@ angular.module('p2pSiteMobApp')
         $('.columns').hasClass('transition-left') ? $('.columns').removeClass('transition-left') : $('.columns').addClass('transition-left')
       }
       $scope.toggle.activeTab = tabIndex;
+      $location.search('tab', tabIndex);
     };
     $scope.toggle.switchTab($scope.tab);
 
