@@ -11,19 +11,19 @@
             <span class="u-pull-left border-left1" ng-show="widthFlag===0 && item.projectName.length <= 11">{{item.projectName}} </span>
             <span class="u-pull-left border-left1" ng-show="widthFlag===0 && item.projectName.length > 11">{{item.projectName | limitTo:8}}... </span>
             <span class="u-pull-left border-left1"  ng-show="widthFlag===1 || widthFlag===2">{{item.projectName}}</span>
-            <img class="fl" src="/images/user-center/rate-icon.png" alt="" width="9%" ng-show="item.coupon && (item.coupon.type === 1 || item.coupon.type === 6 || item.coupon.type === 7)">
+            <img class="fl" src="/images/user-center/rate-icon.png" alt="" width="9%" ng-show="item.couponProfit > 0">
             <span class="u-pull-right ft-orange2 ft-1p3" ng-show="!item.canTransfer" ng-click="showRule(item.createTime)">&nbsp;暂不可转&nbsp;</span>  
             <span class="u-pull-right ft-orange2 ft-1p3" ng-show="item.canTransfer" ng-click="goTransfer(item.number);">&nbsp;转让&nbsp;</span>
           </div>
         </div>
         <div class="u-full-width padding-t-0p5 padding-b-1p5 padding-r-1 padding-l-0p5 overflow-hid bg-white border-grey2-bottom ">
           <div class="assignment-item-info u-pull-left text-center ft-1p4 border-greye-right">
-            <strong class="ft-grey999 content-number">{{item.transferableAmount | number:2 || 0}}</strong>
+            <strong class="ft-grey999 content-number">{{item.amount | number:2 || 0}}</strong>
             <br>
             <span class="ft-greyaaa padding-l-0p5">本(元)</span>
           </div>
           <div class="assignment-item-info u-pull-left text-center ft-1p4 border-greye-right">
-            <strong class="ft-grey999 content-number">{{item.profit - item.returnProfit | number:2 || 0}}</strong><strong class="ft-red0 ft-1p4" ng-show="item.coupon && (item.coupon.type === 1 || item.coupon.type === 6 || item.coupon.type === 7)">+{{(item.baseRate + item.riseRate + item.coupon.value) * (item.profit - item.returnProfit) / (item.baseRate + item.riseRate) - (item.profit - item.returnProfit) | number:2 || 0 }}</strong>
+            <strong class="ft-grey999 content-number">{{item.profit - item.returnProfit | number:2 || 0}}</strong><strong class="ft-red0 ft-1p4" ng-show="item.couponProfit > 0">+{{item.couponProfit | number:2 || 0 }}</strong>
             <br>
             <span class="ft-greyaaa">息(元)</span>
           </div>
@@ -39,7 +39,7 @@
       <img src="images/user-center/deal-list.png" width="35%" ui-sref="root.userCenter.assignments-transfer-details({number:item.number})">
       <p class="margin-t-2">暂无可转让项目</p>
     </div>
-    <div class="text-center bg-white" ng-show="transferablesList.length>0 && !loading && pageSize < transferableCounts" ng-click="loadAssignmentMore(searchStatus);">
+    <div class="text-center bg-white" ng-show="transferablesList.length>0 && !loading && page < transferableCounts" ng-click="loadAssignmentMore(searchStatus);">
       <p class="margin-b-0 padding-t-3 padding-b-3"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a class="ft-black">查看更多</a></p>
     </div>
   </div>
