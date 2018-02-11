@@ -77,18 +77,23 @@ angular.module('p2pSiteMobApp')
         page: $scope.page,
         pageSize: $scope.pageSize
       }).then(function(response) {
+        $scope.transferablesList = $scope.page ==1 ? [] : $scope.transferablesList;
         if (response && response.ret !== -1) {
-          $scope.transferablesList = response.transferables;
-          $scope.transferableCounts = response.count;
+          if (response.data.length>0) {
+            for (var i = 0; i < response.data.length; i++) {
+              $scope.transferablesList.push(response.data[i]);
+            };
+            $scope.transferableCounts = response.totalPage;
     
           // 测试环境放开限制
-          var currentDate = new Date().getTime();
-          if(status === 1){
-            for (var i = $scope.transferablesList.length - 1; i >= 0; i--) {
-              $scope.transferablesList[i].canTransfer = config.isTest || (currentDate - $scope.transferablesList[i].createTime > 30*24*3600*1000);
+            var currentDate = new Date().getTime();
+            if(status === 1){
+              for (var i = $scope.transferablesList.length - 1; i >= 0; i--) {
+                $scope.transferablesList[i].canTransfer = config.isTest || (currentDate - $scope.transferablesList[i].createTime > 30*24*3600*1000);
+              }
             }
+            $scope.loading = false;
           }
-          $scope.loading = false;
           $timeout(function() {
             $rootScope.showLoadingToast = false;
           }, 200);
@@ -136,7 +141,7 @@ angular.module('p2pSiteMobApp')
      */
     $scope.loadAssignmentMore = function(status) {
       if (status == '0') {
-        $scope.pageSize = $scope.transferableCounts-$scope.pageSize >5 ? $scope.transferableCounts-$scope.pageSize + 1 :$scope.transferableCounts;
+        $scope.page += 1;
         $scope.getAssignments(1);
       }else if (status == '1') {
         $scope.page2 += 1;
