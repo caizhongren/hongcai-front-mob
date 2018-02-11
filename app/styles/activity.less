@@ -2342,7 +2342,7 @@ input::-webkit-inner-spin-button {
 }
 .register-02-1 {
     position: relative;
-    left: -23%;
+    left: -30%;
 }
 // 受邀成功弹窗
 .successMask {
@@ -2448,9 +2448,10 @@ input::-webkit-inner-spin-button {
 //新版渠道落地页
 .new-channel {
   background: #fedeb4;
+  overflow-x: hidden;
   .sharing-content {
     position: relative;
-    background-image: linear-gradient(to bottom, #ed8d47 0%, #ffddae 100%);
+    background-image: linear-gradient(to bottom, #feaf65 0%, #ffddae 100%);
     .to-register {
       width: 100%;
       padding: 1rem 10% 3rem;
@@ -2494,17 +2495,16 @@ input::-webkit-inner-spin-button {
     }
   }
   .header {
-    background-image: linear-gradient(to bottom, #fc810e 0%, #ed8d47 100%);
+    background-image: linear-gradient(to bottom, #fd820f 0%, #feaf65 100%);
     font-size: 0;
   }
   .Trust {
     background: #fedeb4;
-    padding-bottom: 3rem;
+    padding: 0 1.5rem 3rem;
     text-align: center;
     .abouts, .products {
       width: 90%;
       margin: 0 auto;
-      background: red;
       border-bottom-left-radius: 1.2rem;
       border-bottom-right-radius: 1.2rem;
       margin-top: -1.1rem;
@@ -2518,48 +2518,63 @@ input::-webkit-inner-spin-button {
   }
   .product {
     width: 100%;
-    height: 24rem;
+    height: 35rem;
+    text-align: left;
     background: url(/images/channel-landing/22.png) no-repeat center center;
-    background-size: contain;
+    background-size: 100% 100%;
     .info {
-      width: 70%;
+      width: 85%;
       margin: 0 auto;
       border-radius: 3rem;
       background-color: #c2141f;
       color: #fff;
       font-size: 1.2rem;
-      padding: .65rem 0 0.65rem 1.8rem;
+      padding: .65rem 1.5rem 0.65rem 2.4rem;
       position: relative;
       background-color: #c2141f;
       img {
-        width: 34%;
+        width: 30%;
         position: absolute;
       }
     }
     .info1 {
       img {
-        left: -2.9rem;
-        top: -1rem;
+        left: -4.4rem;
+        top: -3.5rem;
       }
     }
     .info2 {
-      padding: .45rem 0 0.45rem 1.8rem;
+      padding: .45rem 1.5rem 0.45rem 1.8rem;
       margin-top: 1rem;
       img {
-        right: -2.9rem;
-        top: -2rem;
+        right: -4.4rem;
+        top: 0rem;
       }
     }
     ul.projects {
       overflow: hidden;
       clear: both;
-      width: 80%;
-      margin: 0 5% 0 10%;
+      width: 100%;
+      margin: 1rem auto;
+      p.tips {
+        color: #fff;
+        font-size: 12px;
+        text-align: center;
+        clear: both;
+        transform: scale(.9);
+        line-height: 1.5;
+        img {
+            width: 6%;
+            vertical-align: bottom;
+            margin-right: .5rem;
+        }
+      }
       li {
         width: 50%;
-        height: 12rem;
+        height: 15rem;
         background: url(/images/channel-landing/33.png) no-repeat center center;
-        background-size: contain;
+        background-size: 100% 100%;
+        margin-bottom: 0;
         .jx, .zg {
           width: 70%;
           margin: 2rem 17% 0 12%;
@@ -2567,40 +2582,39 @@ input::-webkit-inner-spin-button {
             text-align: center;
           }
           p:nth-child(1) {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             line-height: 1.38;
             text-align: justify;
             color: #80381b;
-            margin-bottom: 1.7rem;
+            margin-bottom: 0;
+            height: 8.3rem;
           }
           p:nth-child(2) {
             font-size: 1.4rem;
             color: #fff;
+            font-weight: bold;
           }
         }
         .zg {
-          transform: rotateY(180deg);
-          p:nth-child(1) {
-            margin-bottom: .4rem;
-          }
         }
       }
       li:nth-child(2) {
-        transform: rotateY(180deg);
+        background: url(/images/channel-landing/44.png) no-repeat center center;
+        background-size: 104% 101%;
       }
     }
   }
   .hongcai {
     width: 100%;
-    height: 26rem;
+    height: 32rem;
     background: url(/images/channel-landing/11.png) no-repeat center center;
-    background-size: contain;
+    background-size: 100% 100%;
     margin-top: 3rem;
     .abouts {
       overflow: hidden;
       clear: both;
-      width: 90%;
-      margin: 0 2% 0 8%;
+      width: 100%;
+      margin: 0 auto;
       li {
         float: left;
         width: 50%;
@@ -2626,35 +2640,35 @@ input::-webkit-inner-spin-button {
     letter-spacing: 1.8px;
     text-align: center;
     color: #ffffff;
-    padding: 0.3rem 0 1.5rem;
   }
+    .product .title {
+      padding: .8rem 0 1.5rem;
+    }
+    .hongcai .title {
+      padding: .4rem 0 1.5rem;
+    }
 }
-@media (min-width:320px) {
-  .new-channel .product {
-    height: 26rem;
-    .info {
-      width: 67%;
-      padding: .65rem 0.2rem 0.65rem 2.4rem;
+@media (max-width:320px) {
+  .new-channel {
+     .product {
+      height: 38rem;
+      .info1 img {
+        left: -3.4rem;
+        top: -2.5rem;
+      }
+      .info2 img {
+        right: -3.4rem;
+        top: 1rem;
+      }
+    }
+    .hongcai {
+      height: 30rem;
     }
   }
 }
 @media (min-width:360px) {
   .new-channel {
-    .product {
-      height: 26rem;
-      .info {
-        width: 67%;
-        padding: .65rem 0.2rem 0.65rem 2.4rem;
-      }
-      ul.projects {
-        margin: 1.3rem 5% 0 10%;
-        li .zg p:nth-child(1), li .jx p:nth-child(1) {
-          margin-bottom: 2rem;
-        }
-      }
-    }
     .hongcai {
-      height: 28rem;
       .abouts li:nth-child(3) img, .abouts li:nth-child(4) img {
           margin-top: 1rem;
       }
@@ -2666,21 +2680,7 @@ input::-webkit-inner-spin-button {
 }
 @media (min-width:375px) {
  .new-channel {
-    .product {
-      height: 27rem;
-      .info {
-        width: 67%;
-        padding: .65rem 0.2rem 0.65rem 2.4rem;
-      }
-      ul.projects {
-        margin: 1.3rem 5% 0 10%;
-        li .zg p:nth-child(1), li .jx p:nth-child(1) {
-          margin-bottom: 2rem;
-        }
-      }
-    }
     .hongcai {
-      height: 29rem;
       .abouts li:nth-child(3) img, .abouts li:nth-child(4) img {
           margin-top: 1rem;
       }
@@ -2689,27 +2689,7 @@ input::-webkit-inner-spin-button {
 }
 @media (min-width:411px) {
   .new-channel {
-    .product {
-      height: 30rem;
-      .info {
-        width: 65%;
-        margin: 1.5rem 22% 0 15%;
-      }
-      .info1 img {
-        top: -1.8rem;
-      }
-      .info2 img {
-        top: -2.6rem;
-      }
-      ul.projects {
-        margin: 1.3rem 5% 0 10%;
-        li .zg p:nth-child(1), li .jx p:nth-child(1) {
-          margin-bottom: 2.3rem;
-        }
-      }
-    }
     .hongcai {
-      height: 32rem;
       .abouts li:nth-child(3) img, .abouts li:nth-child(4) img {
           margin-top: 1rem;
       }
@@ -2717,8 +2697,11 @@ input::-webkit-inner-spin-button {
         transform: scale(.98);
       }
     }
-    .product .title, .hongcai .title {
-      padding: .7rem 0 2.5rem;
+    .product .title {
+      padding: .8rem 0 2.5rem;
+    }
+    .hongcai .title {
+      padding: .4rem 0 2.5rem;
     }
   }
 }

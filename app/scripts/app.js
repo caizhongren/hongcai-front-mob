@@ -69,6 +69,33 @@ p2pSiteMobApp
         }
       })
 
+      .state('root.disclosure', {
+        url: '/disclosure?tab',
+        data: {
+          title: '信息披露'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/disclosure.html',
+            controller: 'disclosureCtrl',
+            controllerUrl: 'scripts/controllers/disclosure'
+          }
+        }
+      })
+      .state('root.policies', {
+        url: '/policies/:id',
+        data: {
+          title: '信息披露'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/policies.html',
+            controller: 'policiesCtrl',
+            controllerUrl: 'scripts/controllers/policies'
+          }
+        }
+      })
+
       //绑定微信页面
       .state('root.bind-wechat', {
         url: '/bind-wechat',
@@ -802,8 +829,7 @@ p2pSiteMobApp
       url: '/channel?act&f',
       views: {
         '': {
-          // templateUrl: 'views/activity/channel.html',
-          templateUrl: 'views/activity/new-channel.html',
+          templateUrl: 'views/activity/channel.html',
           controller: 'InviteSharingCtrl',
           controllerUrl: 'scripts/controllers/activity/invite-sharing-ctrl'
         }
