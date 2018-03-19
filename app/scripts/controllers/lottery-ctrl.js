@@ -71,6 +71,7 @@ angular.module('p2pSiteMobApp')
         mobile: user.mobile,
         password: md5.createHash(generateMixed(7)),
         captcha: user.captcha,
+        inviteCode: $stateParams.inviteCode,
         channelCode: ipCookie('utm_from'),
         act: act,
         channelParams: ipCookie('channelParams'),
