@@ -1067,6 +1067,105 @@ p2pSiteMobApp
         }
       })
 
+    //愚人节活动主页面 
+    .state('root.activity.fools-day', {
+        url: '/fools-day/?act&f&inviteCode',
+        data:{
+          title: '愚人节'
+        },
+        views: {
+         '': {
+           templateUrl: 'views/activity/fools-day.html',
+           controller: 'FoolsDayCtrl',
+           controllerUrl: 'scripts/controllers/activity/fools-day-ctrl'
+         }
+       }
+    })
+    //愚人节活动创建题目页面 
+    .state('root.activity.fools-question', {
+      url: '/fools-question/?act&f&inviteCode',
+      data:{
+        title: '愚人节创建题目'
+      },
+      views: {
+        '': {
+          templateUrl: 'views/activity/fools-question.html',
+          controller: 'FoolsQuestionCtrl',
+          controllerUrl: 'scripts/controllers/activity/fools-question-ctrl'
+        }
+      }
+    })
+    //愚人节活动查看答题结果页面 
+    .state('root.activity.fools-result', {
+      url: '/fools-result/?act&f&inviteCode',
+      data:{
+        title: '愚人节查看结果'
+      },
+      views: {
+        '': {
+          templateUrl: 'views/activity/fools-result.html',
+          controller: 'FoolsResultCtrl',
+          controllerUrl: 'scripts/controllers/activity/fools-result-ctrl'
+        }
+      }
+    })
+    //愚人节活动成绩单页面 
+    .state('root.activity.fools-reportCard', {
+      url: '/fools-reportCard/?act&f&inviteCode',
+      data:{
+        title: '愚人节成绩单'
+      },
+      views: {
+        '': {
+          templateUrl: 'views/activity/fools-reportCard.html',
+          controller: 'FoolsReportCardCtrl',
+          controllerUrl: 'scripts/controllers/activity/fools-reportCard-ctrl'
+        }
+      }
+    })
+    //愚人节活动排行榜页面
+    .state('root.activity.fools-record', {
+      url: '/fools-record/?act&f&inviteCode',
+      data:{
+        title: '愚人节成绩单'
+      },
+      views: {
+        '': {
+          templateUrl: 'views/activity/fools-record.html',
+          controller: 'FoolsRecordCtrl',
+          controllerUrl: 'scripts/controllers/activity/fools-record-ctrl'
+        }
+      }
+    })
+    //愚人节活动兑换页面
+    .state('root.activity.fools-exchange', {
+      url: '/fools-exchange/?act&f&inviteCode',
+      data:{
+        title: '愚人节成绩单'
+      },
+      views: {
+        '': {
+          templateUrl: 'views/activity/fools-exchange.html',
+          controller: 'FoolsExchangeCtrl',
+          controllerUrl: 'scripts/controllers/activity/fools-exchange-ctrl'
+        }
+      }
+    })
+    //愚人节活动答题页面
+    .state('root.activity.fools-answer', {
+      url: '/fools-answer/?act&f&inviteCode',
+      data:{
+        title: '愚人节成绩单'
+      },
+      views: {
+        '': {
+          templateUrl: 'views/activity/fools-answer.html',
+          controller: 'FoolsAnswerCtrl',
+          controllerUrl: 'scripts/controllers/activity/fools-answer-ctrl'
+        }
+      }
+    })
+
 
     ;
     $urlRouterProvider.otherwise('/');

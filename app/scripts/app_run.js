@@ -199,7 +199,8 @@ angular.module('p2pSiteMobApp')
             $rootScope.isLogged = response.mobile || response.email;
           } else if(Utils.isWeixin() && !$location.search().code){
             if(toState.name !== 'root.activity.channel'){
-              Utils.redirectToWechatAuth(location.href);
+              // Utils.redirectToWechatAuth(location.href);
+              location.origin !== 'https://m.hongcai.com' ? Utils.redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname) : Utils.redirectToWechatAuth(location.href)
             }
           } 
         }); 
@@ -236,7 +237,8 @@ angular.module('p2pSiteMobApp')
             }
             return;
           } else if(!$location.search().code){
-            Utils.redirectToWechatAuth(location.href);
+            // Utils.redirectToWechatAuth(location.href);
+            location.origin !== 'https://m.hongcai.com' ? Utils.redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname) : Utils.redirectToWechatAuth(location.href)
             return;
           }
 
@@ -245,7 +247,8 @@ angular.module('p2pSiteMobApp')
           // 用户未登录但已经有code，去登录
           Restangular.one('users/' + wechat_code + '/openid').get().then(function(response) {
             if (response.ret == -1) { //微信授权登录失败
-              Utils.redirectToWechatAuth(location.href);
+              // Utils.redirectToWechatAuth(location.href);
+              location.origin !== 'https://m.hongcai.com' ? Utils.redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname) : Utils.redirectToWechatAuth(location.href)
               return;
             }
             SessionService.loginSuccess(response);
@@ -256,7 +259,8 @@ angular.module('p2pSiteMobApp')
                 redirectUrl: encodeURIComponent($location.url())
               });
             } else if (response.ret == -1) { // 未拿到openid再次请求授权
-              Utils.redirectToWechatAuth(location.href);
+              // Utils.redirectToWechatAuth(location.href);
+              location.origin !== 'https://m.hongcai.com' ? Utils.redirectToWechatAuth('http://m.test321.hongcai.com' + location.pathname) : Utils.redirectToWechatAuth(location.href)
             } 
           });
 
