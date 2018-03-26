@@ -826,7 +826,7 @@ p2pSiteMobApp
     
     // 渠道活动落地页
     .state('root.activity.channel', {
-      url: '/channel?act&f',
+      url: '/channel?act&f&inviteCode',
       views: {
         '': {
           templateUrl: 'views/activity/channel.html',
