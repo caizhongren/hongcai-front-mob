@@ -149,7 +149,7 @@
 	<img src="images/lottery/close-drawBox.png" alt="关闭弹窗" width="8%" ng-click="closeRuleBox();">
 </div>
 <!-- 注册弹窗 -->
-<div class="share-page-breakWishLayer bg-grey0p8 register-draw" ng-show="showRegister" auto-h>
+<div class="share-page-breakWishLayer bg-grey0p8 register-draw" ng-show="showRegister">
 	<div class="register-box">
 		<div class="register-list">
 			<div class="register-header position-re">
@@ -170,7 +170,8 @@
 						<div class="mobilecode" id="lottery-mobilecode" ng-click="getMobileCapcha(user)">获取</div>
 					</div>
 					<!-- 立即注册按钮 -->
-					<button type="submit" class="register-invited-btn js-start-btn" ng-click="signUp(user)"></button>
+					<!-- <button type="submit" class="register-invited-btn js-start-btn" ng-click="signUp(user)"></button> -->
+					<img src="../../images/lottery/register-draw-btn.png" alt="" class="register-invited-btn js-start-btn" ng-click="signUp(user)"/>
 				</form>
 				
 			</div>

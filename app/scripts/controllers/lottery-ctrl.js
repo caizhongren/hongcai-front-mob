@@ -31,9 +31,7 @@ angular.module('p2pSiteMobApp')
         return;
       }
       $scope.showRegister = true;
-      $('.register-draw').show().css({'top': $('.lottery').scrollTop()});
       $lottery.addClass('overflow-hid');
-      // $lottery.attr('auto-h');
     }
     $scope.closeRegisterBox = function() {
       $scope.showRegister = false;
