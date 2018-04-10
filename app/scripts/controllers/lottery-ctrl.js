@@ -1,6 +1,6 @@
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('LotteryCtrl', function($scope, $rootScope, Restangular, WEB_DEFAULT_DOMAIN, CheckMobUtil, CheckPicUtil, md5, ipCookie, Utils, $timeout, DEFAULT_DOMAIN, $http, $window) {
+  .controller('LotteryCtrl', function($scope, $rootScope, Restangular, WEB_DEFAULT_DOMAIN, CheckMobUtil, CheckPicUtil, md5, ipCookie, Utils, $timeout, DEFAULT_DOMAIN, $http, $window, $stateParams) {
     $scope.getPicCaptcha = WEB_DEFAULT_DOMAIN + '/siteUser/getPicCaptcha?';
     $scope.refreshCode = function() {
       angular.element('#checkCaptcha').attr('src', angular.element('#checkCaptcha').attr('src').substr(0, angular.element('#checkCaptcha').attr('src').indexOf('?')) + '?code=' + Math.random());
@@ -58,7 +58,7 @@ angular.module('p2pSiteMobApp')
     $scope.showRegister = false;
 
     $scope.signUp = function(user) {
-      if(!user.mobile || !user.picCaptcha ||!user.captcha || $scope.busy) {
+      if(user == undefined || !user.mobile || !user.picCaptcha ||!user.captcha || $scope.busy) {
         return;
       }
       var act;
@@ -184,17 +184,30 @@ angular.module('p2pSiteMobApp')
       }
 
     }
+    //监测手机号码
+    $scope.$watch('user.mobile', function(newVal) {
+      var mobilePattern = /^\d{1,11}$/
+      if (newVal && !mobilePattern.test(newVal)) {
+        $scope.user.mobile = newVal.replace(/\D/g, '').toString().slice(0, 11)
+      }
+    })    
     //监测图形验证码
     $scope.$watch('user.picCaptcha', function(newVal) {
-      //校验图形验证码只能输入数字
       var captchaPattern = /^\d{1,4}$/
       if (newVal && !captchaPattern.test(newVal)) {
         $scope.user.picCaptcha = newVal.replace(/\D/g, '').toString().slice(0, 4)
       }
     })
+    //监测短信验证码
+    $scope.$watch('user.captcha', function(newVal) {
+      var captchaPattern = /^\d{1,6}$/
+      if (newVal && !captchaPattern.test(newVal)) {
+        $scope.user.captcha = newVal.replace(/\D/g, '').toString().slice(0, 6)
+      }
+    })
+    
     //校验图形验证码
     $scope.checkCapcha = function(user) {
-      
       $http({
         method: 'POST',
         headers: {
@@ -212,12 +225,12 @@ angular.module('p2pSiteMobApp')
             device: Utils.deviceCode(),
             guestId: ipCookie('guestId')
           }).then(function(response) {
+            if(!$scope.canGetMobileCapcha){
+              return;
+            }
             if (response.ret === -1) {
               $rootScope.showMsg(response.msg);
             } else {
-              if(!$scope.canGetMobileCapcha){
-                return;
-              }
               $scope.countDown();
             }
           });
@@ -230,10 +243,15 @@ angular.module('p2pSiteMobApp')
     }
     //获取手机验证码
     $scope.getMobileCapcha = function(user) {
-      if(!$scope.user.mobile || !$scope.user.picCaptcha){
+      if(user == undefined || !user.mobile){
+        $rootScope.showMsg('请输入手机号码');
         return;
       }
-      if(!mobilePattern.test($scope.user.mobile)){
+      if (!user.picCaptcha) {
+        $rootScope.showMsg('请输入图形验证码');
+        return;
+      }
+      if(!mobilePattern.test(user.mobile)){
         $rootScope.showMsg('手机号码格式有误');
         return;
       }

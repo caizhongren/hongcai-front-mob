@@ -209,7 +209,7 @@
 }
 //抽奖弹窗
 .register-draw {
-	position: absolute !important;
+	position: fixed !important;
 	background-color: rgba(0, 0, 0, 0.8) !important;
 	z-index: 999999;
     bottom: 0;
@@ -219,11 +219,12 @@
     margin: 0 auto;
 }
 .register-draw .close {
-  margin-top: 6rem;
+	display: block;
+	margin: 5rem auto 0;
 }
 @media (max-width: 320px) {
   .register-draw .close {
-    margin-top: 3rem;
+    margin: 2.5rem auto 0;
   }
 }
 .showDrawBox {
@@ -324,7 +325,8 @@
 				height: 3.8rem;
 				border-radius: .5rem;
 				color: #fff;
-   	 			background-color: #ff4141;
+				background-color: #ff4141;
+				text-align: center; 
 			}
 			.sent {
 				background-color: transparent;
@@ -337,7 +339,7 @@
 			}
 			.invited-btn {
 				border: 0;
-				margin: 0 -78%;
+				margin: 0 20%;
 				width: 60%;
 				height: 4.5rem;
 				background: url('/images/lottery/register-draw-btn.png') center center no-repeat;
