@@ -1,6 +1,6 @@
 'use strict';
 angular.module('p2pSiteMobApp')
-  .controller('LotteryCtrl', function($scope, $rootScope, Restangular, WEB_DEFAULT_DOMAIN, CheckMobUtil, CheckPicUtil, md5, ipCookie, Utils, $timeout, DEFAULT_DOMAIN, $http, $window, $stateParams) {
+  .controller('LotteryCtrl', function($scope, $rootScope, Restangular, WEB_DEFAULT_DOMAIN, CheckMobUtil, CheckPicUtil, ipCookie, Utils, $timeout, DEFAULT_DOMAIN, $http, $window, $stateParams) {
     $scope.getPicCaptcha = WEB_DEFAULT_DOMAIN + '/siteUser/getPicCaptcha?';
     $scope.refreshCode = function() {
       angular.element('#checkCaptcha').attr('src', angular.element('#checkCaptcha').attr('src').substr(0, angular.element('#checkCaptcha').attr('src').indexOf('?')) + '?code=' + Math.random());
@@ -42,17 +42,6 @@ angular.module('p2pSiteMobApp')
     /**
     * 注册
     **/
-    
-    // 随机生成
-    var chars = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-    function generateMixed(n) {
-        var res = "";
-        for(var i = 0; i < n ; i ++) {
-            var id = Math.ceil(Math.random()*35);
-            res += chars[id];
-        }
-        return res;
-    }
     $scope.showRegister = false;
 
     $scope.signUp = function(user) {
@@ -67,7 +56,6 @@ angular.module('p2pSiteMobApp')
       Restangular.one('users/').post('register', { 
         picCaptcha: user.picCaptcha,
         mobile: user.mobile,
-        password: md5.createHash(generateMixed(7)),
         captcha: user.captcha,
         inviteCode: $stateParams.inviteCode,
         channelCode: ipCookie('utm_from'),
