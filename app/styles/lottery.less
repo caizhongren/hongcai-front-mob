@@ -209,7 +209,7 @@
 }
 //抽奖弹窗
 .register-draw {
-	position: fixed !important;
+	position: absolute !important;
 	background-color: rgba(0, 0, 0, 0.8) !important;
 	z-index: 999999;
     bottom: 0;
@@ -219,12 +219,11 @@
     margin: 0 auto;
 }
 .register-draw .close {
-	display: block;
-	margin: 5rem auto 0;
+  margin-top: 6rem;
 }
 @media (max-width: 320px) {
   .register-draw .close {
-		margin: 2.5rem auto 0;
+    margin-top: 3rem;
   }
 }
 .showDrawBox {
@@ -325,8 +324,7 @@
 				height: 3.8rem;
 				border-radius: .5rem;
 				color: #fff;
-				background-color: #ff4141;
-				text-align: center;	
+   	 			background-color: #ff4141;
 			}
 			.sent {
 				background-color: transparent;

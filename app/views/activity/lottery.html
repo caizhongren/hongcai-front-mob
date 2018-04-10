@@ -47,6 +47,37 @@
 					<img src="images/lottery/privilege.png" alt="">
 					<span class="item-mask"></span>
 				</div>
+				<!-- 注册弹窗 -->
+				<div class="share-page-breakWishLayer bg-grey0p8 register-draw" ng-show="showRegister" auto-h>
+					<div class="register-box">
+						<div class="register-list">
+							<div class="register-header position-re padding-t-3">
+								<img src="/images/lottery/hc-baby.png" width="12%" class="position-ab">
+								<img src="/images/lottery/register-header.png" class="display-bl margin-auto" width="90%">
+							</div>
+							<div class="sharing-content margin-b-2 margin-t-2p5 clearfix">
+							  <!-- 注册表单 -->
+							  <form autocomplete="off" class="invite-form margin-0" name="registerForm" autocomplete="on" novalidate>
+							    <div class="to-register">
+							      <!-- 手机号码 -->
+							      <input class="mobilesignup fl" name="mobile" ng-model="user.mobile" type="tel" placeholder="请输入您的手机号" required/>
+							      <!-- 图形验证码 -->
+							      <input name="picCaptcha" ng-model="user.picCaptcha" required type="text" placeholder="请输入图形验证码" class="picCaptcha fl"/>
+							      <img src="{{getPicCaptcha}}" id="checkCaptcha" class="captchacode fr" ng-click="refreshCode()">
+							      <!-- 手机验证码 -->
+							      <input name="captchasignup" ng-model="user.captcha" required="required" type="number" placeholder="请输入手机验证码" class="mobileCaptcha fl"/>
+							      <div class="mobilecode" id="lottery-mobilecode" ng-click="getMobileCapcha(user)">获取</div>
+							    </div>
+							    <!-- 立即注册按钮 -->
+							    <button type="submit" class="invited-btn js-start-btn" ng-click="signUp(user)"></button>
+							  </form>
+								
+							</div>
+							<p class="text-center ft-1p2 tip" id="act-tip">本活动仅针对新用户，已经注册的用户请前往APP内参与！</p>
+						</div>
+					</div>
+					<img src="images/lottery/close-drawBox.png" alt="关闭中奖弹窗" class="close" width="8%" ng-click="closeRegisterBox()">
+				</div>
 			</div>
 		</div>
 		<div class="lottery-other">
@@ -147,38 +178,6 @@
 		</div>
 	</div>
 	<img src="images/lottery/close-drawBox.png" alt="关闭弹窗" width="8%" ng-click="closeRuleBox();">
-</div>
-
-<!-- 注册弹窗 -->
-<div class="share-page-breakWishLayer bg-grey0p8 register-draw" ng-show="showRegister" auto-h>
-	<div class="register-box">
-		<div class="register-list">
-			<div class="register-header position-re padding-t-3">
-				<img src="/images/lottery/hc-baby.png" width="12%" class="position-ab">
-				<img src="/images/lottery/register-header.png" class="display-bl margin-auto" width="90%">
-			</div>
-			<div class="sharing-content margin-b-2 margin-t-2p5 clearfix">
-				<!-- 注册表单 -->
-				<form autocomplete="off" class="invite-form margin-0" name="registerForm" autocomplete="on" novalidate>
-					<div class="to-register">
-						<!-- 手机号码 -->
-						<input class="mobilesignup fl" name="mobile" ng-model="user.mobile" type="tel" placeholder="请输入您的手机号" required/>
-						<!-- 图形验证码 -->
-						<input name="picCaptcha" ng-model="user.picCaptcha" required type="tel" placeholder="请输入图形验证码" class="picCaptcha fl"/>
-						<img src="{{getPicCaptcha}}" id="checkCaptcha" class="captchacode fr" ng-click="refreshCode()">
-						<!-- 手机验证码 -->
-						<input name="captchasignup" ng-model="user.captcha" required="required" type="tel" placeholder="请输入手机验证码" class="mobileCaptcha fl"/>
-						<div class="mobilecode" id="lottery-mobilecode" ng-click="getMobileCapcha(user)">获取</div>
-					</div>
-					<!-- 立即注册按钮 -->
-					<button type="submit" class="invited-btn js-start-btn" ng-click="signUp(user)"></button>
-				</form>
-				
-			</div>
-			<p class="text-center ft-1p2 tip" id="act-tip">本活动仅针对新用户，已经注册的用户请前往APP内参与！</p>
-		</div>
-	</div>
-	<img src="images/lottery/close-drawBox.png" alt="关闭中奖弹窗" class="close" width="10%" ng-click="closeRegisterBox()">
 </div>
 
 
