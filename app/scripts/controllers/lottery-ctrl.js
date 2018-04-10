@@ -82,7 +82,7 @@ angular.module('p2pSiteMobApp')
         }).then(function(response){
           $scope.showRegister = false;
           if(response && response.ret !== -1) {
-            // $scope.lottery = response;
+            $('.lottery-item').removeClass('selecting')
             var receivePrize = response;
             var prizeId = response.prizeType;
             rld.start(prizeId);
