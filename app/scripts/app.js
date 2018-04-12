@@ -734,7 +734,7 @@ p2pSiteMobApp
        }
      })
       .state('root.lottery', {
-        url: '/lottery/?act&f&inviteCode',
+        url: '/lottery?act&f&inviteCode',
         data:{
           title: '幸运大抽奖'
         },
