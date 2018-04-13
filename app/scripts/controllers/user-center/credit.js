@@ -101,7 +101,7 @@ angular.module('p2pSiteMobApp')
         $scope.creditsData = response.data.heldIdCreditList;
         $scope.creditsData.length > 0 ? $scope.getProjectPrepaymentTime() : null
         for (var i = 0; i <= $scope.creditsData.length - 1; i++) {
-          if ($scope.creditsData[i].increaseRateCoupon && $scope.creditsData[i].increaseRateCoupon.type === 1 || $scope.creditsData[i].increaseRateCoupon.type === 6 || $scope.creditsData[i].increaseRateCoupon.type === 7) {
+          if ($scope.creditsData[i].increaseRateCoupon && ($scope.creditsData[i].increaseRateCoupon.type === 1 || $scope.creditsData[i].increaseRateCoupon.type === 6 || $scope.creditsData[i].increaseRateCoupon.type === 7)) {
             var oriRate = $scope.creditsData[i].creditRight.riseRate + $scope.creditsData[i].creditRight.baseRate;
             $scope.creditsData[i].rateCouponProfit = $scope.creditsData[i].creditRight.profit * ($scope.creditsData[i].increaseRateCoupon.value + oriRate) / oriRate - $scope.creditsData[i].creditRight.profit;
           }
