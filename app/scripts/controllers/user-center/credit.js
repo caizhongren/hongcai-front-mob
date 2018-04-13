@@ -63,7 +63,14 @@ angular.module('p2pSiteMobApp')
       $scope.page = 1;
       $scope.getCredits($scope.creditStatus);
     };
-
+    
+    $scope.getProjectPrepaymentTime = function () { // 获取提前还款最后期限
+      Restangular.one('/users/0/creditRights/projectPrepaymentTime').get({}).then(function(response) {
+        if (response && response.ret !== -1) {
+          $scope.prepaymentTime = response.prepaymentTime
+        }
+      })
+    }
     /**
      * 投资统计
      */
@@ -92,8 +99,9 @@ angular.module('p2pSiteMobApp')
       }).$then(function(response) {
         $scope.totalPage = Math.ceil(response.data.count / $scope.pageSize);
         $scope.creditsData = response.data.heldIdCreditList;
+        $scope.creditsData.length > 0 ? $scope.getProjectPrepaymentTime() : null
         for (var i = 0; i <= $scope.creditsData.length - 1; i++) {
-          if ($scope.creditsData[i].increaseRateCoupon && $scope.creditsData[i].increaseRateCoupon.type === 1) {
+          if ($scope.creditsData[i].increaseRateCoupon && ($scope.creditsData[i].increaseRateCoupon.type === 1 || $scope.creditsData[i].increaseRateCoupon.type === 6 || $scope.creditsData[i].increaseRateCoupon.type === 7)) {
             var oriRate = $scope.creditsData[i].creditRight.riseRate + $scope.creditsData[i].creditRight.baseRate;
             $scope.creditsData[i].rateCouponProfit = $scope.creditsData[i].creditRight.profit * ($scope.creditsData[i].increaseRateCoupon.value + oriRate) / oriRate - $scope.creditsData[i].creditRight.profit;
           }
