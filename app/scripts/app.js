@@ -1166,6 +1166,18 @@ p2pSiteMobApp
       }
     })
 
+    //出借风险提示和禁止性行为告知书
+    .state('root.investment-agree', {
+      url: '/investment-agree',
+      data:{
+        title: '出借风险提示和禁止性行为告知书'
+      },
+      views: {
+        '': {
+          templateUrl: 'views/investment-agree.html'
+        }
+      }
+    })
 
     ;
     $urlRouterProvider.otherwise('/');
