@@ -73,6 +73,10 @@ angular.module('p2pSiteMobApp')
 
     $scope.businessInfo = [
       {
+        name: '平台名称',
+        content: '宏财网'
+      },
+      {
         name: '公司名称',
         content: '北京竞财投资服务有限公司'
       },
@@ -98,15 +102,23 @@ angular.module('p2pSiteMobApp')
       },
       {
         name: '公司经营地',
-        content: '北京市海淀区中关村南二条1号中科院空间中心九章大厦B栋一层'
+        content: '北京市海淀区中关村南二条一号中科院国家空间中心九章大厦B'
       },
       {
         name: '公司成立时间',
-        content: '2015年01月23日'
+        content: '2015-1-23'
+      },
+      {
+        name: '官网网站正式上线运营时间',
+        content: '2015-2-2'
+      },
+      {
+        name: 'APP上线运营时间',
+        content: '2017-3-13'
       },
       {
         name: '公司经营期限',
-        content: '至2035年01月22日'
+        content: '2015-1-23至2035-1-22'
       },
       {
         name: '公司经营状态',
@@ -114,6 +126,22 @@ angular.module('p2pSiteMobApp')
       },
       {
         name: '公司法定代表人',
+        content: '刘刚'
+      },
+      {
+        name: '实际控制人',
+        content: '刘刚'
+      },
+      {
+        name: '董事',
+        content: '刘刚；李青；邓铁军'
+      },
+      {
+        name: '监事',
+        content: '王静波'
+      },
+      {
+        name: '经理',
         content: '刘刚'
       },
       {
