@@ -12,5 +12,6 @@
   "domain":"https://m.hongcai.com",
   "base_file_url":"https://www.hongcai.com/uploads/",
   "wechat_id": "gh_9eddaa04a222",
-  "pay_company":"cgt"
+  "pay_company":"cgt",
+  "vue_domain": "https://app.hongcai.com"
 }

@@ -7,7 +7,7 @@
  * Controller of the p2pSiteMobApp
 + */
 angular.module('p2pSiteMobApp')
-  .controller('MainCtrl', function($scope, $rootScope, $state, Restangular, ProjectUtils, ScreenWidthUtil, $timeout) {
+  .controller('MainCtrl', function($scope, $rootScope, $state, Restangular, ProjectUtils, ScreenWidthUtil, $timeout, config) {
     $rootScope.showLoadingToast = false;
     Restangular.one('banners').one('/').get({
       type : 2
@@ -155,6 +155,10 @@ angular.module('p2pSiteMobApp')
       if($rootScope.timeout){
         project.tab == 2 ? $state.go('root.assignments-detail', {number: project.number}) : $state.go('root.project', {number: project.number});
       }
+    }
+
+    $scope.toDisclosure = function() {
+      window.location.href = config.vue_domain + '/disclosure'
     }
 
     /**
