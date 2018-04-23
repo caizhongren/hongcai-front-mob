@@ -18,7 +18,7 @@ angular.module('p2pSiteMobApp')
     $scope.refreshCode = function() {
       angular.element('#checkCaptcha').attr('src', angular.element('#checkCaptcha').attr('src').substr(0, angular.element('#checkCaptcha').attr('src').indexOf('?')) + '?code=' + Math.random());
     };
-
+    $scope.mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
     $scope.isSuccess = false;
     $scope.isActivityEnd = false;
     $scope.isSuccess ? $('#activity').addClass('position-fix')  : $('#activity').removeClass('position-fix'); 
@@ -106,11 +106,12 @@ angular.module('p2pSiteMobApp')
       if (newVal && !captchaPattern.test(newVal)) {
         $scope.user.picCaptcha = newVal.replace(/\D/g, '').toString().slice(0, 4)
       }
-      $scope.piccha = false;
-      var msg = CheckPicUtil.checkePic(newVal);
-      if(msg){
-        $scope.piccha = true;
-      }
+      // $scope.piccha = false;
+      // var msg = CheckPicUtil.checkePic(newVal);
+      // alert(msg)
+      // if(msg){
+      //   $scope.piccha = true;
+      // }
     })
 
     // 用户获取短信验证码
