@@ -17,9 +17,6 @@ angular.module('p2pSiteMobApp')
           if (!scope.user.mobile || !scope.mobilePattern.test(scope.user.mobile) || !scope.user.picCaptcha) {
             return;
           }
-          if (scope.piccha === false) {
-            var msg = '图形验证码有误';
-          }
           Restangular.one('/users/').post('mobileCaptcha', {  
             mobile: scope.user.mobile,
             picCaptcha: scope.user.picCaptcha,
