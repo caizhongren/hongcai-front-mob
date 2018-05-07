@@ -830,8 +830,8 @@ p2pSiteMobApp
       views: {
         '': {
           templateUrl: 'views/activity/channel.html',
-          controller: 'InviteSharingCtrl',
-          controllerUrl: 'scripts/controllers/activity/invite-sharing-ctrl'
+          controller: 'ChannelCtrl',
+          controllerUrl: 'scripts/controllers/activity/channel-ctrl'
         }
       }
     })
