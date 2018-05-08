@@ -81,6 +81,9 @@ angular.module('p2pSiteMobApp')
 
     // 监测手机号码
     $scope.$watch('user.mobile', function(newVal) {
+      if (newVal > 11) {
+        $scope.user.mobile = newVal.replace(/\D/g, '').toString().slice(0, 11)
+      }
       CheckMobUtil.checkMob(newVal);
     })
 
@@ -90,6 +93,14 @@ angular.module('p2pSiteMobApp')
       var captchaPattern = /^\d{1,4}$/
       if (newVal && !captchaPattern.test(newVal)) {
         $scope.user.picCaptcha = newVal.replace(/\D/g, '').toString().slice(0, 4)
+      }
+    })
+
+    // 监测短信验证码
+    $scope.$watch('user.captcha', function(newVal) {
+      var captchaPattern = /^\d{1,6}$/
+      if (newVal && !captchaPattern.test(newVal)) {
+        $scope.user.captcha = newVal.replace(/\D/g, '').toString().slice(0, 6)
       }
     })
 
