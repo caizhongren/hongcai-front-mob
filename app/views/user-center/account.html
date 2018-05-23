@@ -118,17 +118,17 @@
           <img class="display-bl margin-auto" src="/images/user-center/questionnaire.png" width="18%" alt="">
           <p class="ft-1p5 ft-666 margin-b-0 ">风险测评</p>
         </li>
-        <li class="fl" ng-click="goProjectListAuditLoan();" ng-show="!showQuestionnaire">
+        <li class="fl" ng-click="goProjectListAuditLoan();" ng-show="!showQuestionnaire && isLoanUser">
           <img class="display-bl margin-auto" src="/images/user-center/examine.png" width="18%" alt="">
           <p class="ft-1p5 ft-666 margin-b-0 ">审核</p>
         </li>
       </ul>
       <ul class="clearfix border-grey-bottom margin-b-0">
-        <li class="fl border-grey-r" ng-click="goProjectListAuditLoan();" ng-show="showQuestionnaire">
+        <li class="fl border-grey-r" ng-click="goProjectListAuditLoan();" ng-show="showQuestionnaire && isLoanUser">
           <img class="display-bl margin-auto" src="/images/user-center/examine.png" width="18%" alt="">
           <p class="ft-1p5 ft-666 margin-b-0 ">审核</p>
         </li>
-        <li class="fl border-grey-r" ng-click="goProjectListFull();">
+        <li class="fl border-grey-r" ng-click="goProjectListFull();" ng-show="isLoanUser">
           <img class="display-bl margin-auto" src="/images/user-center/loan.png" width="18%" alt="">
           <p class="ft-1p5 ft-666 margin-b-0 ">放款</p>
         </li>
