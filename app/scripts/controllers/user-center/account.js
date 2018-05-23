@@ -79,5 +79,12 @@ angular.module('p2pSiteMobApp')
      
     }
     $scope.unread();
+
+    $scope.goProjectListAuditLoan = function () {
+      location.href= location.origin + '/views/admin/project-listAuditLoan.html'
+    }
+    $scope.goProjectListFull = function () {
+      location.href= location.origin + '/views/admin/project-listFull.html'
+    }
     
   });
