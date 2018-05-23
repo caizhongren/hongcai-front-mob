@@ -78,8 +78,10 @@
      	url: '/hongcai/rest/erp/project/loan?contrlFlag=true&fee=0&handLoan=true&projectId=' + getUrlParam('projectId'),
      	type: 'POST',
      	success: function( response ) {
-      	alert('放款成功');
-				location.href= location.origin + '/views/admin/project-listFull.html'
+      	alert('放款成功,5s后自动跳转至满标项目列表');
+				setTimeout(function() {
+					location.href= location.origin + '/views/admin/project-listFull.html'
+        }, 5000)
   		}
  		});
   }
