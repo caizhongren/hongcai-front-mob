@@ -830,8 +830,8 @@ p2pSiteMobApp
       views: {
         '': {
           templateUrl: 'views/activity/channel.html',
-          controller: 'InviteSharingCtrl',
-          controllerUrl: 'scripts/controllers/activity/invite-sharing-ctrl'
+          controller: 'ChannelCtrl',
+          controllerUrl: 'scripts/controllers/activity/channel-ctrl'
         }
       }
     })
@@ -975,17 +975,39 @@ p2pSiteMobApp
           }
         }
       })
-      //个人中心我的奖金
-      .state('root.userCenter.cash-coupon', {
-        url: '/cash-coupon',
+      //个人中心-审核-放款审批列表
+      .state('root.project-listAuditLoan', {
+        url: '/project-listAuditLoan',
         data: {
-          title: '现金券'
+          title: '放款审批列表'
         },
         views: {
           '': {
-            templateUrl: 'views/user-center/cash-coupon.html',
-            controller: 'CashCouponCtrl',
-            controllerUrl: 'scripts/controllers/user-center/cash-coupon'
+            templateUrl: 'views/admin/project-listAuditLoan.html'
+          }
+        }
+      })
+      //个人中心-放款-满标项目列表
+      .state('root.project-listFull', {
+        url: '/project-listFull',
+        data: {
+          title: '满标项目列表'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/admin/project-listFull.html'
+          }
+        }
+      })
+      //个人中心-放款-项目投资记录
+      .state('root.project-loan', {
+        url: '/project-loan',
+        data: {
+          title: '项目投资记录'
+        },
+        views: {
+          '': {
+            templateUrl: 'views/admin/project-loan.html'
           }
         }
       })

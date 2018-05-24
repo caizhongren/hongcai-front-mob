@@ -19,6 +19,10 @@ angular.module('p2pSiteMobApp')
     //
     //
     //
+    // 获取所有交易类型
+    Restangular.one('users/0').one('deals/types').get({}).then(function(response){
+      $scope.dealMap = response
+    })
     $rootScope.showLoadingToast = true;
     $scope.dealList = function(types){
       $rootScope.showLoadingToast = true;
@@ -28,7 +32,7 @@ angular.module('p2pSiteMobApp')
       Restangular.one('users/0').one('deals').get({
         page: $scope.page,
         pageSize: $scope.pageSize,
-        types: types
+        filterType: types
       }).then(function(response){
         if(response.ret !== -1){
           $scope.dealDate = response;
@@ -59,46 +63,12 @@ angular.module('p2pSiteMobApp')
     };
     //以上为增加 自动加载代码
 
-
-    $scope.dealMap = {
-      1: '充值',
-      2: '提现',
-      3: '投资',
-      4: '回款',
-      5: '项目流标',
-      6: '放款',
-      7: '还款',
-      8: '提现手续费',
-      9: '充值手续费',
-      10: '活期利息',
-      11: '预约期利息',
-      12: '预约',
-      13: '取消预约',
-      14: '咨询服务费',
-      15: '债权转让服务费',
-      16: '债权转让回款',
-      17: '宏金盈转账',
-      18: '奖金',
-      19: '提前赎回',
-      20: '代理人绩效',
-      21: '愿望达成',
-      22: '星愿币兑换',
-      23: '提现打款失败',
-      24: '补偿',
-      25: '冻结资金',
-      26: '解冻资金',
-      27: '特权本金收益',
-      28: '募集期贴息',
-      29: '抽奖现金奖励',
-      30: '抽奖当日加息'
-    };
-
     $scope.showSelect = false;
     $scope.selected = '全部';
     $scope.dealType = [
       {
         'type': '全部',
-        'no': ''
+        'no': '0'
       },{
         'type': '充值',
         'no': '1'
@@ -106,17 +76,17 @@ angular.module('p2pSiteMobApp')
         'type': '投资',
         'no': '3'
       },{
-        'type': '回款',  //包含：项目正常回款、债权转让回款
-        'no': '4,16'
+        'type': '回款',
+        'no': '4'
       },{
         'type': '提现',  
         'no': '2'
       },{
-        'type': '奖励',  //包含：奖金、代理人绩效
-        'no': '18,20,27,28,29,30'
+        'type': '奖励',
+        'no': '5'
       },{
-        'type': '其他',  //包含：提现手续费、债权转让手续费
-        'no': '8,15'
+        'type': '其他',
+        'no': '6'
       }
     ]
     //下拉菜单
