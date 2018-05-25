@@ -76,7 +76,7 @@
      	type: 'POST',
      	success: function( response ) {
      		if (response && response.ret !== -1) {
-	      	alert('放款成功,5s后自动跳转至满标项目列表');
+	      	alert('放款成功,点击确认5s后跳转至满标项目列表');
 					setTimeout(function() {
 						location.href= location.origin + '/views/admin/project-listFull.html'
 	        }, 5000)
