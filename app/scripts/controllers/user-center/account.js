@@ -87,10 +87,12 @@ angular.module('p2pSiteMobApp')
       location.href= location.origin + '/views/admin/project-listFull.html'
     }
     // 获取登录用户的角色类型 判断是否显示审核、放款功能
+    $scope.isExamineUser = false;
     $scope.isLoanUser = false;
     Restangular.one('/erp/user/userFigures').get().then(function(response){
       if (response && response.ret !== -1) {
-        response.userFigures.indexOf('18') === 1 ? $scope.isLoanUser = true : $scope.isLoanUser = false;
+        response.userFigures.indexOf('19') !== -1 ? $scope.isExamineUser = true : $scope.isExamineUser = false;
+        response.userFigures.indexOf('20') !== -1 ? $scope.isLoanUser = true : $scope.isLoanUser = false;
       }
     })
     
