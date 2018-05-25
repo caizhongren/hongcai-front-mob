@@ -72,7 +72,7 @@
   }
   function loan () {
   	$.ajax({
-     	url: '/hongcai/rest/erp/project/loan?contrlFlag=true&fee=0&handLoan=true&projectId=' + getUrlParam('projectId'),
+     	url: '/hongcai/rest/erp/project/loan?contrlFlag=false&fee=0&handLoan=true&projectId=' + getUrlParam('projectId'),
      	type: 'POST',
      	success: function( response ) {
      		if (response && response.ret !== -1) {
