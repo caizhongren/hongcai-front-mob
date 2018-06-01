@@ -60,7 +60,7 @@ angular.module('p2pSiteMobApp')
       //         return;
       //       }
       //       if(!response.isOk){
-      //         $scope.msg = '仅限首次投资后一周内参与';
+      //         $scope.msg = '仅限首次出借后一周内参与';
       //         $rootScope.showMsg($scope.msg);
       //       }
       //   });
@@ -160,13 +160,13 @@ angular.module('p2pSiteMobApp')
 
       if(newVal){
         if(newVal > $scope.project.amount){
-          $scope.msg = '投资金额必须小于' + $scope.project.amount;
+          $scope.msg = '出借金额必须小于' + $scope.project.amount;
         }else if(newVal > $scope.account.balance){
           $scope.msg = '账户余额不足，请先充值';
         } else if(newVal < $scope.project.minInvest ){
-          $scope.msg = '投资金额必须大于' + $scope.project.minInvest;
+          $scope.msg = '出借金额必须大于' + $scope.project.minInvest;
         } else if(newVal % $scope.project.increaseAmount !==0 ){
-          $scope.msg = '投资金额必须为' + $scope.project.increaseAmount + '的整数倍';
+          $scope.msg = '出借金额必须为' + $scope.project.increaseAmount + '的整数倍';
         }
       }
 
@@ -183,10 +183,10 @@ angular.module('p2pSiteMobApp')
       $rootScope.showMsg($scope.msg);
     });
 
-    // 判断现金券投资金额显示错误提示
+    // 判断现金券出借金额显示错误提示
     $scope.showCashMsg = function(investAmount){
       if(investAmount && investAmount < $scope.selectIncreaseRateCoupon.minInvestAmount){
-        $scope.msg = '投资金额不满足返现条件';
+        $scope.msg = '出借金额不满足返现条件';
         $rootScope.showMsg($scope.msg);
       }
       return;
@@ -208,7 +208,7 @@ angular.module('p2pSiteMobApp')
       $scope.increaseRateProfit = $scope.calcProfit(coupon.value) || 0;
       $scope.cashProfit = $scope.project.investAmount >= $scope.selectIncreaseRateCoupon.minInvestAmount ? $scope.selectIncreaseRateCoupon.value : 0;
       $scope.resetInitLimit();
-      //选择现金券时判断投资金额是否满足条件
+      //选择现金券时判断出借金额是否满足条件
       if(coupon.type ===2){
         $scope.msg = '';
         if($scope.msg){
@@ -233,7 +233,7 @@ angular.module('p2pSiteMobApp')
     }
 
     /**
-     * 跳转到投资记录页
+     * 跳转到出借记录页
      */
     $scope.toOrderList = function(){
       if(!$rootScope.isLogged){
@@ -252,7 +252,7 @@ angular.module('p2pSiteMobApp')
     }
 
     /**
-     * 修改投资金额
+     * 修改出借金额
      */
     $scope.modInvestAmout = function(offset,$event){
       if($scope.project && $scope.project.status != 7){

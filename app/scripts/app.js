@@ -492,7 +492,7 @@ p2pSiteMobApp
       .state('root.userCenter.credits-overview', {
         url: '/credits-overview',
         data: {
-          title: '我的投资'
+          title: '我的出借'
         },
         views: {
           '': {
