@@ -67,7 +67,7 @@ angular.module('p2pSiteMobApp')
 
       wx.onMenuShareAppMessage({
         title: '8888体验金 + 300元现金！',
-        desc: '宏运当头，8888体验金注册即送！财源滚滚，300元现金投资立领！',
+        desc: '宏运当头，8888体验金注册即送！财源滚滚，300元现金出借立领！',
         link: shareLink,
         imgUrl: 'https://mmbiz.qlogo.cn/mmbiz_jpg/8MZDOEkib8AlesZAUd6woODtlJbnNpuQHYibUasRbts0teKicv4JpcggcOVxvMvI32ASyw42VoPv04aZvYQdgicmKw/0?wx_fmt=jpeg',
         trigger: function (res) {

@@ -5,10 +5,10 @@
       <strong ng-switch-default>恭喜您，成功开通银行资金存管账户！</strong>
       <strong ng-switch-when="1">恭喜您，成功充值{{amount | number:2}}元！</strong>
       <strong ng-switch-when="2">恭喜您，成功提现{{amount | number:2}}元！</strong>
-      <strong ng-switch-when="3">恭喜您，成功投资{{amount}}元，<br><span class="text-center">开始计息！<span ng-show="coupon.type == 1">额外加息{{coupon.value}}%</span><span  ng-show="coupon.type == 2">额外奖励{{coupon.value}}元</span></span></strong>
+      <strong ng-switch-when="3">恭喜您，成功出借{{amount}}元，<br><span class="text-center">开始计息！<span ng-show="coupon.type == 1">额外加息{{coupon.value}}%</span><span  ng-show="coupon.type == 2">额外奖励{{coupon.value}}元</span></span></strong>
       <strong ng-switch-when="4">恭喜您，成功绑定银行卡！</strong>
       <strong ng-switch-when="5">恭喜您，成功修改手机号！</strong>
-      <strong ng-switch-when="6">恭喜您，成功投资{{amount}}元！</strong>
+      <strong ng-switch-when="6">恭喜您，成功出借{{amount}}元！</strong>
       <strong ng-switch-when="7">恭喜您，成功开通存管账号！</strong>
       <strong ng-switch-when="8">恭喜您，成功解绑银行卡！</strong>
       <strong ng-switch-when="9">恭喜您，成功申请解绑银行卡！</strong>
@@ -32,7 +32,7 @@
       </div>
       <!-- userCenter.credits -->
       <div class="one-half column button button-primary u-pull-left border-none" ng-switch-when="3" ui-sref="root.userCenter.credits-overview">
-        <span>我的投资</span>
+        <span>我的出借</span>
       </div>
       <div class="one-half column button button-primary u-pull-left border-none" ng-switch-when="3" ui-sref="root.project-list">
         <span>浏览项目</span>

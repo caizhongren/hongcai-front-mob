@@ -290,7 +290,7 @@ p2pSiteMobApp
           }
         }
       })
-      // 项目投资详情页
+      // 项目出借详情页
       .state('root.project', {
         url: '/project/:number',
         views: {
@@ -301,7 +301,7 @@ p2pSiteMobApp
           }
         }
       })
-      // 项目投资人记录页
+      // 项目出借人记录页
       .state('root.orders', {
         url: '/project/:number/orders',
         views: {
@@ -312,7 +312,7 @@ p2pSiteMobApp
           }
         },
         data: {
-          title: '项目投资人'
+          title: '项目出借人'
         },
       })
       // 项目列表页
@@ -477,7 +477,7 @@ p2pSiteMobApp
           }
         }
       })
-      // 投资统计
+      // 出借统计
       .state('root.userCenter.investments-stat', {
         url: '/investments-stat',
         views: {
@@ -488,7 +488,7 @@ p2pSiteMobApp
           }
         }
       })
-       // 我的投资总览
+       // 我的出借总览
       .state('root.userCenter.credits-overview', {
         url: '/credits-overview',
         data: {
@@ -502,7 +502,7 @@ p2pSiteMobApp
           }
         }
       })
-      // 我的投资列表
+      // 我的出借列表
       .state('root.userCenter.credits', {
         url: '/credit?tab',
         data: {
@@ -1014,11 +1014,11 @@ p2pSiteMobApp
           }
         }
       })
-      //个人中心-放款-项目投资记录
+      //个人中心-放款-项目出借记录
       .state('root.project-loan', {
         url: '/project-loan',
         data: {
-          title: '项目投资记录'
+          title: '项目出借记录'
         },
         views: {
           '': {

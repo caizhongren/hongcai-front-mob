@@ -69,7 +69,7 @@
     <!-- 实际支付金额 -->
     <div class="payMoney" ng-init="showMessage = false">
       <p class="margin-b-0 ft-orange text-center ft-1p3"><span>您需要实际支付<b class="ft-normal ft-Arial">{{realPayAmount || 0 | number:2}}</b>元&nbsp;&nbsp;</span><i class="fa fa-question-circle ft-orange2 ft-16 margin-l-10" aria-hidden="true" ng-click="showMessage = !showMessage;"></i></p>
-      <p class="payMessage ft-grey999 ft-1p3 ft-Arial" ng-if="showMessage && exProfit.toFixed(2) > 0">您需先行垫付投资人该笔债权当期已产生利息{{exProfit || 0 | number:2}}元，该部分资金会在下个还款日归还给您。</p>
+      <p class="payMessage ft-grey999 ft-1p3 ft-Arial" ng-if="showMessage && exProfit.toFixed(2) > 0">您需先行垫付出借人该笔债权当期已产生利息{{exProfit || 0 | number:2}}元，该部分资金会在下个还款日归还给您。</p>
       <p class="payMessage ft-grey999 ft-1p3 ft-Arial" ng-if="showMessage && exProfit.toFixed(2) < 0">该笔债权当期已产生利息{{-exProfit || 0 | number:2}}元。</p>
     </div>
     <!-- 状态按钮 -->

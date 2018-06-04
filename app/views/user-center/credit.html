@@ -29,12 +29,12 @@
     <div ng-repeat="item in credits track by $index" ng-include src='"views/user-center/_credit-detail.html"'>
     </div>
     <div class="text-center bg-white ft-666" ng-show="!loading && totalPage > page ">
-      <p class="margin-b-0 padding-t-3 padding-b-3"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a ng-click="loadCreditMore();" class="ft-black">查看更多投资信息</a></p>
+      <p class="margin-b-0 padding-t-3 padding-b-3"><i class="fa fa-list-ul ft-orange"></i>&nbsp;<a ng-click="loadCreditMore();" class="ft-black">查看更多出借信息</a></p>
     </div>
   </div>
   <div class="row text-center margin-t-5 padding-l-1 padding-r-1 ft-666" ng-show="creditsData && !loading && credits.length <= 0">
     <img src="images/user-center/deal-list.png" width="35%">
     <p class="padding-2-t margin-t-2">暂无数据...</p>
-    <button type="button" class="u-full-width ft-1p8 button button-primary" ui-sref="root.project-list">浏览投资产品</button>
+    <button type="button" class="u-full-width ft-1p8 button button-primary" ui-sref="root.project-list">浏览出借产品</button>
   </div>
 </div>

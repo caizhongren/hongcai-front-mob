@@ -24,7 +24,7 @@
         </div>
         <div class="step display-inb position-ab margin-l--0p5">
           <span class="display-inb grey-bg"></span>
-          <p class="margin-t-2p5 display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="creditRight.type !== 6">投资：本金{{creditRight.amount | number:2 || 0}}元<br><span class="ft-blue7 ft-1p2 margin-t--0p5">{{creditRight.createTime | date:'yyyy-MM-dd'}}</span></p>
+          <p class="margin-t-2p5 display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="creditRight.type !== 6">出借：本金{{creditRight.amount | number:2 || 0}}元<br><span class="ft-blue7 ft-1p2 margin-t--0p5">{{creditRight.createTime | date:'yyyy-MM-dd'}}</span></p>
           <p class="margin-t-2p5 display-inb ft-grey4 ft-1p4 margin-b--0p5" ng-if="creditRight.type === 6">债券认购：本金{{creditRight.amount | number:2 || 0}}元<br><span class="ft-blue7 ft-1p2 margin-t--0p5">{{creditRight.createTime | date:'yyyy-MM-dd'}}</span></p>
         </div>
       </li>

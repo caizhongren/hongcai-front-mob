@@ -63,7 +63,7 @@ angular.module('p2pSiteMobApp')
 
       wx.onMenuShareAppMessage({
         title: '邀请好友，双重奖励等你哟!!',
-        desc: '邀请好友,投资收益的30%全部属于你！上不封顶的奖金券也属于你！',
+        desc: '邀请好友,出借利息的30%全部属于你！上不封顶的奖金券也属于你！',
         link: shareLink,
         imgUrl: 'https://mmbiz.qlogo.cn/mmbiz_jpg/8MZDOEkib8AlesZAUd6woODtlJbnNpuQHbBib1VSOomErWq3iblnczkbqoFwEgrYVFoFn3LI81SiaUDkkwPtmaVMkA/0?wx_fmt=jpeg',
         trigger: function (res) {
