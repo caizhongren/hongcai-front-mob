@@ -18,7 +18,7 @@ angular.module('p2pSiteMobApp')
     $scope.refreshCode = function() {
       angular.element('#checkCaptcha').attr('src', angular.element('#checkCaptcha').attr('src').substr(0, angular.element('#checkCaptcha').attr('src').indexOf('?')) + '?code=' + Math.random());
     };
-    $scope.mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
+    // $scope.mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
     $scope.isSuccess = false;
     $scope.isSuccess ? $('#activity').addClass('position-fix')  : $('#activity').removeClass('position-fix'); 
     $scope.successMask = function() {

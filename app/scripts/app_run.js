@@ -29,7 +29,7 @@ angular.module('p2pSiteMobApp')
       'safe': '安全保障',
       'account': '账户总览'
     };
-
+    $rootScope.mobilePattern = /^1[0-9]{10}$/;
     /**
      * 跳转到登陆页
      */
