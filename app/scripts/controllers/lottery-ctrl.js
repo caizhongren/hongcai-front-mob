@@ -9,7 +9,7 @@ angular.module('p2pSiteMobApp')
     $scope.showDrawBox = false;
     $scope.drawed = false;
     $scope.canGetMobileCapcha = true;
-    var mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
+    // var mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
     var deviceCode = Utils.deviceCode();
   	/**
   	*抽奖动画
@@ -237,7 +237,7 @@ angular.module('p2pSiteMobApp')
         $rootScope.showMsg('请输入图形验证码');
         return;
       }
-      if(!mobilePattern.test(user.mobile)){
+      if(!$rootScrope.mobilePattern.test(user.mobile)){
         $rootScope.showMsg('手机号码格式有误');
         return;
       }

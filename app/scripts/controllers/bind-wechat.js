@@ -28,7 +28,7 @@ angular.module('p2pSiteMobApp')
     })
 
     //监测手机号码
-    $scope.mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
+    // $scope.mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
     
     //去注册
     $scope.toRegister = function() {
@@ -47,7 +47,7 @@ angular.module('p2pSiteMobApp')
         if(!wechatUser.mobile || !wechatUser.password || $scope.busy) {
             return;
         }
-        if(!$scope.mobilePattern.test(wechatUser.mobile)) {
+        if(!$rootScope.mobilePattern.test(wechatUser.mobile)) {
            $rootScope.showMsg('手机号码格式不正确');
            return; 
         }
