@@ -15,7 +15,7 @@ angular.module('p2pSiteMobApp')
     };
 
     $scope.busy = false;
-    $scope.mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
+    // $scope.mobilePattern = /^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[03678])|(14[0-9]))\d{8}$/;
 
     // 默认登陆密码登录
     $scope.isPassward = true;
@@ -95,7 +95,7 @@ angular.module('p2pSiteMobApp')
     }
 
     $scope.checkMobile = function(mobile){
-      if(!$scope.mobilePattern.test(mobile)){
+      if(!$rootScope.mobilePattern.test(mobile)){
         $rootScope.showMsg("手机号码格式不正确");
         return false;
       }
@@ -139,7 +139,7 @@ angular.module('p2pSiteMobApp')
     $scope.$watch('user.mobile', function(val) {
       if (val !== undefined) {
           var valLgth = val.toString().length;
-          if (valLgth > 11 && !$scope.mobilePattern.test(val)) {
+          if (valLgth >= 11 && !$rootScope.mobilePattern.test(val)) {
             $rootScope.showMsg('手机号码格式不正确');
           }
         }
