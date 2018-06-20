@@ -9,7 +9,7 @@
  */
 angular.module('p2pSiteMobApp')
 
-.controller('AccountCtrl', function ($scope, $state, $rootScope, Restangular, toCunGuanUtils, SessionService, UserService) {
+.controller('AccountCtrl', function ($scope, $state, $rootScope, Restangular, toCunGuanUtils, SessionService, UserService, config) {
     $rootScope.showLoadingToast = false;
     /**
      * 默认头像
@@ -96,4 +96,7 @@ angular.module('p2pSiteMobApp')
       }
     })
     
+    $scope.toHelpCenter = function () {
+      window.location.href = config.vue_domain + '/user-center/help-center'
+    }
   });

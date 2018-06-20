@@ -367,19 +367,7 @@ p2pSiteMobApp
           title: '常见问题'
         }
       })
-      //全部－常见问题
-      .state('root.questions', {
-        url: '/questions',
-        views: {
-          '': {
-            templateUrl: 'views/help-center/questions.html',
-            controller: 'HelpCenterCtrl',
-            controllerUrl: 'scripts/controller/help-center/help-center-ctrl'
-          }
-        },data: {
-          title: '常见问题'
-        }
-      })
+     
       // 项目详情页更多详情
       .state('root.project-detail-more', {
         url: '/project-detail-more/:number',
@@ -682,35 +670,6 @@ p2pSiteMobApp
           }
         }
       })
-      // 安全保障
-      .state('root.safe', {
-        url: '/safe',
-        data: {
-          title: '安全保障'
-        },
-        views: {
-          '': {
-            templateUrl: 'views/safe.html',
-            controller: 'SafeCtrl',
-            controllerUrl: 'scripts/controllers/safe'
-          }
-        }
-      })
-      // 宏财简介
-      .state('root.about', {
-        url: '/about/:tab',
-        data: {
-          title: '宏财介绍'
-        },
-        views: {
-          '': {
-            templateUrl: 'views/about.html',
-            controller: 'AboutCtrl',
-            controllerUrl: 'scripts/controllers/about'
-          }
-        }
-      })
-
 
       //网站公告
       .state('root.web-site-notice', {
