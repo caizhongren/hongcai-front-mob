@@ -8,7 +8,7 @@
  * Controller of the p2pSiteMobApp
  */
 angular.module('p2pSiteMobApp')
-  .controller('AssignmentsTransferCtrl',['Restangular', '$scope', '$rootScope', '$state', '$stateParams', '$timeout', 'DateUtils', function(Restangular, $scope, $rootScope, $state, $stateParams, $timeout, DateUtils) {
+  .controller('AssignmentsTransferCtrl',['Restangular', '$scope', '$rootScope', '$state', '$stateParams', '$timeout', 'DateUtils', 'config', function(Restangular, $scope, $rootScope, $state, $stateParams, $timeout, DateUtils, config) {
     var num = $stateParams.number;
     $scope.showAutoTenderTip = false;
     /*
@@ -203,5 +203,9 @@ angular.module('p2pSiteMobApp')
       })
 
     };
+
+    $scope.toAssignmentQr = function () {
+      window.location.href = config.vue_domain + '/assignment-question'
+    }
 
   }]);
