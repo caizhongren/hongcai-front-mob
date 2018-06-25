@@ -15,7 +15,6 @@ angular.module('p2pSiteMobApp')
       mobileCaptchaType:1,
       mobileCaptchaBusiness:0
     };
-    console.log($rootScope.mobilePattern)
     if ($stateParams.inviteCode) {
       $scope.user.inviteCode = $stateParams.inviteCode;
     }
