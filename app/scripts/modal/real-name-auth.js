@@ -20,7 +20,7 @@ angular.module('p2pSiteMobApp')
      * 实名认证，即开通易宝
      */
     $scope.realNameAuth = function(user){
-      if (!user.realName || !user.idNo){
+      if (!user || !user.realName || !user.idNo){
         // $scope.errMsg = '请输入姓名或身份证号';
         return;
       }
