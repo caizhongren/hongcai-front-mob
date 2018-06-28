@@ -82,7 +82,7 @@ angular.module('p2pSiteMobApp')
           $scope.riskPreference = '保守型';
         }
         
-        $scope.msgRisk = '您的投资风格为' + $scope.riskPreference;
+        $scope.msgRisk = '您的出借风格为' + $scope.riskPreference;
        }
       })
     };

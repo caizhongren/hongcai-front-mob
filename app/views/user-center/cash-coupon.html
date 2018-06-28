@@ -39,8 +39,8 @@
   			<p class="margin-b-0 top-margin ft-4"><small class="ft-1p6">￥</small>{{item.value}}</p>
   		</div>
   		<div class="inner-panel-center1">
-  			<p class="margin-b-0">投资产品：{{ item.investProductType == 5 ? '宏财精选' : item.investProductType == 6 ? '宏财尊贵' : '宏财精选、宏财尊贵'}}</p>
-  			<p class="margin-b-0">使用条件：投资&ge;{{item.minInvestAmount}}元</p>
+  			<p class="margin-b-0">出借产品：{{ item.investProductType == 5 ? '宏财精选' : item.investProductType == 6 ? '宏财尊贵' : '宏财精选、宏财尊贵'}}</p>
+  			<p class="margin-b-0">使用条件：出借&ge;{{item.minInvestAmount}}元</p>
   			<p class="margin-b-0">有效期：{{item.createTime | date :'yyyy.MM.dd'}}-{{item.endTime | date :'yyyy.MM.dd'}}</p>
   			<p class="withdraw margin-b-0 pull-right" ng-click="toProjectList(item.investProductType,$index)">马上使用</p>
   		</div>
@@ -54,7 +54,7 @@
   			<p class="margin-b-0 top-margin ft-4"><small class="ft-1p6">￥</small>{{item.value}}</p>
   		</div>
   		<div class="inner-panel-center1">
-  			<p class="margin-b-0"><span class="fl">投资项目：</span><span class="col-2">{{item.order.projectName}}</span></p>
+  			<p class="margin-b-0"><span class="fl">出借项目：</span><span class="col-2">{{item.order.projectName}}</span></p>
   			<p class="margin-b-0">使用时间：{{item.usedTime | date: 'yyyy-MM-dd'}}</p>
   			<img class="received" src="/images/user-center/cash-coupon02.png" alt="">
   		</div>
@@ -83,11 +83,11 @@
 	    </div>
 	    <div class=" rec-act-rule-btm margin-l-1 margin-r-1 ft-1p5 margin-t-0p5">
 	        <div class="rule padding-r-1 padding-l-1 padding-b-1p5">
-	          <p class="margin-t-0 margin-b-0">1、单笔投资达到对应额度时，使用对应现金券；</p>
+	          <p class="margin-t-0 margin-b-0">1、单笔出借达到对应额度时，使用对应现金券；</p>
 	          <!-- <p class="margin-t-0 margin-b-0">2、每个账号每天只能使用一张现金券；</p> -->
 	          <p class="margin-t-0 margin-b-0">2、每张现金券都有使用期限，需要在有效期内使用，过期作废；</p>
-	          <p class="margin-t-0 margin-b-0">3、使用加息券投资时不可再使用现金券；</p>
-	          <p class="margin-t-0 margin-b-0">4、相应现金券在投资成功后即可到账，请在"我的账户"中查看。</p>
+	          <p class="margin-t-0 margin-b-0">3、使用加息券出借时不可再使用现金券；</p>
+	          <p class="margin-t-0 margin-b-0">4、相应现金券在出借成功后即可到账，请在"我的账户"中查看。</p>
 	          <button class="rec-rule-btn button" ng-click="closeRule()">关闭页面</button>
 	        </div>
 	    </div>

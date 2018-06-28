@@ -24,7 +24,7 @@ angular.module('p2pSiteMobApp')
           return;
       }
       $scope.newbieBiaoProject = response;
-      // 可投资金额
+      // 可出借金额
       $scope.newbieBiaoProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
 
     });
@@ -80,7 +80,7 @@ angular.module('p2pSiteMobApp')
 
       wx.onMenuShareAppMessage({
         title: '688元现金奖励+3%加息券！！',
-        desc: '现在宏财网注册，即可获得以上奖励！现金奖励，投资即可提现！',
+        desc: '现在宏财网注册，即可获得以上奖励！现金奖励，出借即可提现！',
         link: shareLink,
         imgUrl: 'https://mmbiz.qlogo.cn/mmbiz/8MZDOEkib8Ak5t5pVMCyJsOvnmGG6obPj8qU2yXy8WA78oSwHPNRfIic4uW9X7Rbs652IQzBX65ycTU6JbYXQWWg/0?wx_fmt=jpeg',
         trigger: function (res) {

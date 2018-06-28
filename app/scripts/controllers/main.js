@@ -160,6 +160,12 @@ angular.module('p2pSiteMobApp')
     $scope.toDisclosure = function() {
       window.location.href = config.vue_domain + '/disclosure'
     }
+    $scope.toSafe = function () {
+      window.location.href = config.vue_domain + '/safe'
+    }
+    $scope.toAbout = function () {
+      window.location.href = config.vue_domain + '/about'
+    }
 
     /**
      * 是否激活银行资金存管系统

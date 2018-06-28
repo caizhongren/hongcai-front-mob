@@ -7,7 +7,7 @@
   </div>
   <div class="account-panel bg-white">
     <div class="icon"><img src="/images/user-center/balance2.png" alt=""></div>
-    <div class="title-text">累计收益</div>
+    <div class="title-text">累计利息</div>
     <div class="more"><strong class="ft-orange ft-1p8">{{ userAccount.totalProfit | number:2 }}</strong>元</div>
   </div>
   <div class="account-panel bg-white">
@@ -17,14 +17,14 @@
   </div>
   <div class="account-panel bg-white">
     <div class="icon"><img src="/images/user-center/balance4.png" alt=""></div>
-    <div class="title-text">待收收益</div>
+    <div class="title-text">待收利息</div>
     <div class="more"><strong class="ft-orange ft-1p8">{{ userAccount.waitingProfit  | number:2}}</strong>元</div>
   </div>
   <!-- <p><img src="/images/user-center/balance1.png" alt="">可用余额<span class="u-pull-right">
         <strong class="ft-orange ft-1p8">{{ userAccount.balance | number:2 }}</strong>
         元
       </span></p> -->
-  <!-- <p><img src="/images/user-center/balance2.png" alt="">累计收益<span class="u-pull-right">
+  <!-- <p><img src="/images/user-center/balance2.png" alt="">累计利息<span class="u-pull-right">
         <strong class="ft-orange ft-1p8">{{ userAccount.totalProfit | number:2 }}</strong>
         元
       </span></p>
@@ -32,7 +32,7 @@
         <strong class="ft-orange ft-1p8">{{ userAccount.waitingCapital | number:2 }}</strong>
         元
       </span></p>
-  <p><img src="/images/user-center/balance4.png" alt="">待收收益<span class="u-pull-right">
+  <p><img src="/images/user-center/balance4.png" alt="">待收利息<span class="u-pull-right">
         <strong class="ft-orange ft-1p8">{{ userAccount.waitingProfit  | number:2}}</strong>
         元
       </span></p> -->
@@ -64,7 +64,7 @@
       </span>
     </td>
     <td class="border-grey padding-0p5 ft-grey1">
-      <span class="u-pull-left">待收收益&nbsp;</span>
+      <span class="u-pull-left">待收利息&nbsp;</span>
       <span class="u-pull-left">
         <strong class="ft-orange">{{ userAccount.waitingProfit  | number:2}}</strong>
         &nbsp;元
