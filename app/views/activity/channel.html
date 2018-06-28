@@ -14,7 +14,7 @@
         <input id="picCaptcha" name="picCaptcha" ng-model="user.picCaptcha" required type="text" placeholder="请输入图形验证码" class="picCaptcha"/>
         <img src="{{getPicCaptcha}}" id="checkCaptcha" class="captchacode fr bg-white" ng-click="refreshCode()">
         <!-- 手机验证码 -->
-        <input id="mobileCaptcha" name="captchasignup" ng-model="user.captcha" required="required" type="tel" placeholder="请输入手机验证码" class="mobileCaptcha"/>
+        <input id="mobileCaptcha" name="captchasignup" ng-model="user.captcha" required="required" type="tel" placeholder="请输入短信验证码" class="mobileCaptcha"/>
         <div id="mobilecode" capcha-countdown>获取</div>
         <!-- 立即注册按钮 -->
         <div class="invitedBtn" ng-click="signUp(user);"></div>
@@ -40,9 +40,9 @@
       </div>
       <div class="description">由优质资产方推荐，经过宏财网严格风控程序层层筛选出的优质中短期金融资产。项目均有足额抵押物，灵活稳健，具有一定流动性。</div>
       <div class="projectType">
-        <span class="text">期限：180天以内(含180天)</span>
-        <span class="text">期望年均回报率：8%-10%</span>
-        <div class="projectName">精选项目</div>
+        <span class="text">期限：180天以上</span>
+        <span class="text">期望年均回报率：10%-12%</span>
+        <div class="projectName">尊贵项目</div>
       </div>
       <div class="description">由优质资产方推荐，经过宏财网严格风控程序层层筛选出的优质中长期金融资产。宏财网对项目全程把控，回报丰厚。</div>
       <ul class="projects">
