@@ -18,18 +18,18 @@ angular.module('p2pSiteMobApp')
     
 
     //初始化
-    $rootScope.headerTitle = '我的投资';
+    $rootScope.headerTitle = '我的出借';
     if($stateParams.tab === '0'){
-      $rootScope.headerTitle = '我的投资—宏财精选';
+      $rootScope.headerTitle = '我的出借—宏财精选';
       $scope.type = 7;
     } else if ($stateParams.tab === '1') {
-      $rootScope.headerTitle = '我的投资—宏财尊贵';
+      $rootScope.headerTitle = '我的出借—宏财尊贵';
       $scope.type = 8;
     } else if ($stateParams.tab === '2') {
-      $rootScope.headerTitle = '我的投资—债权转让';
+      $rootScope.headerTitle = '我的出借—债权转让';
       $scope.type = 6;
     } else if ($stateParams.tab === '3') {
-      $rootScope.headerTitle = '我的投资—其他';
+      $rootScope.headerTitle = '我的出借—其他';
       $scope.type = 3;
     }
     $scope.tab = 0;
@@ -72,7 +72,7 @@ angular.module('p2pSiteMobApp')
       })
     }
     /**
-     * 投资统计
+     * 出借统计
      */
      Restangular.one('/users/0/investments/typeStat').get({
       type: $scope.type
@@ -86,7 +86,7 @@ angular.module('p2pSiteMobApp')
     });
 
      /**
-     * 投资列表
+     * 出借列表
      */
     var siteCredits = restmod.model(WEB_DEFAULT_DOMAIN + '/siteCredit');
     $scope.getCredits = function(status) {

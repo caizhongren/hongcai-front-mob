@@ -27,11 +27,11 @@ angular.module('p2pSiteMobApp')
           $scope.simpleFundsProject = response;
           $scope.simpleFundsProject.isRepeatFlag = false;
           // console.log($scope.simpleFundsProject);
-          // 可投资金额
+          // 可出借金额
           $scope.fundsProjectInvestNum = response.total - (response.soldStock + response.occupancyStock) * response.increaseAmount;
-          // 当status===1可融资状态的时候，判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动投资用户。
+          // 当status===1可融资状态的时候，判断fundsFlag的状态。0：未登录，1：普通用户，2：实名用户，3：开启自动出借用户。
           if ($rootScope.isLogged) {
-            // 用户可投资金额
+            // 用户可出借金额
             $scope.userCanFundsInvestNum = $scope.fundsProjectInvestNum > $rootScope.account.balance ? $rootScope.account.balance : $scope.fundsProjectInvestNum;
 
             var plusNum = $rootScope.securityStatus.realNameAuthStatus + $rootScope.securityStatus.autoTransfer;
@@ -94,7 +94,7 @@ angular.module('p2pSiteMobApp')
           $scope.rewardFlag = true;
         }
       } else {
-        alert('请先输入投资金额');
+        alert('请先输入出借金额');
       }
     }
 
@@ -210,7 +210,7 @@ angular.module('p2pSiteMobApp')
       }
 
       if (!simpleFundsProject.investAmount) {
-        $scope.msg = '投资金额有误，请重新输入';
+        $scope.msg = '出借金额有误，请重新输入';
         return;
       }
 

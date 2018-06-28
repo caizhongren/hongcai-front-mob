@@ -237,7 +237,7 @@ angular.module('p2pSiteMobApp')
         $rootScope.showMsg('请输入图形验证码');
         return;
       }
-      if(!$rootScrope.mobilePattern.test(user.mobile)){
+      if(!$rootScope.mobilePattern.test(user.mobile)){
         $rootScope.showMsg('手机号码格式有误');
         return;
       }

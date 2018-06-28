@@ -73,7 +73,7 @@ angular.module('p2pSiteMobApp')
         'type': '充值',
         'no': '1'
       },{
-        'type': '投资',
+        'type': '出借',
         'no': '3'
       },{
         'type': '回款',

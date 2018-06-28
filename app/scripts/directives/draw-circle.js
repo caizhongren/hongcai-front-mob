@@ -24,7 +24,7 @@ angular.module('p2pSiteMobApp')
 			    ctx.font ='21px Microsoft yahei';
 			    ctx.textAlign = 'left';
 			    ctx.fillStyle = "#666";
-		        ctx.fillText('在投金额', 110, 100 );
+		        ctx.fillText('待收本金', 110, 100 );
 		        ctx.fillStyle = "#ff5400";	
 
 		        scope.$watch('investStat.totalInvestAmount', function(newValue, oldValue) {

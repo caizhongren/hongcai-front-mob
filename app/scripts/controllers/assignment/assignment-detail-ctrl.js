@@ -63,7 +63,7 @@ angular.module('p2pSiteMobApp')
     //   }
     // });
 
-    //监测投资金额
+    //监测出借金额
     $scope.$watch('assignmentInvestAmount', function(newVal, oldVal){
       if(!$rootScope.isLogged || $scope.currentStock <=0){
         return;
@@ -77,11 +77,11 @@ angular.module('p2pSiteMobApp')
         if(newVal >  $scope.account.balance || (newVal <= $scope.account.balancenewVal && $scope.account.balancenewVal < $scope.realPayAmount)){
           $scope.msg = '账户余额不足，请先充值';
         }else if(newVal % 100 !==0 ){
-          $scope.msg = '投资金额必须为100的整数倍';
+          $scope.msg = '出借金额必须为100的整数倍';
         }else if(newVal > $scope.currentStock *100){
-          $scope.msg = '投资金额必须小于' + $scope.currentStock *100;
+          $scope.msg = '出借金额必须小于' + $scope.currentStock *100;
         }else if(newVal < 100 ){
-          $scope.msg = '投资金额必须大于100';
+          $scope.msg = '出借金额必须大于100';
         }
       }
       $rootScope.showMsg($scope.msg);
@@ -131,7 +131,7 @@ angular.module('p2pSiteMobApp')
     };
 
     /**
-     * 修改投资金额
+     * 修改出借金额
      */
     $scope.modInvestAmout = function(offset,$event){
       if($scope.assignment && $scope.assignment.status != 1){
@@ -143,7 +143,7 @@ angular.module('p2pSiteMobApp')
     }    
 
     /**
-     * 跳转到投资记录页
+     * 跳转到出借记录页
      */
     $scope.toOrderList = function(){
       if(!$rootScope.isLogged){
